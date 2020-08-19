@@ -1,0 +1,14 @@
+---
+title: "Supplementary analyses"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(psyc7709Lab)
+```

@@ -1,0 +1,53 @@
+# see https://pkgdown.r-lib.org/articles/pkgdown.html for yml help
+url: https://crumplab.github.io/psyc7709Lab
+
+template:
+  opengraph:
+    img: logo.png
+
+development:
+  mode: unreleased
+
+toc:
+  depth: 2
+
+pkgdown:
+  as_is: true
+
+navbar:
+  structure:
+    left:
+    - home
+    - Syllabus
+    - articles
+    - slides
+    right:
+    - github
+    - news
+    - reference
+  components:
+    home:
+      icon: fa-home fa-lg
+      href: index.html
+    Syllabus:
+      text: Syllabus
+      href: articles/course_docs/Syllabus.html
+    articles:
+      text: Labs
+      menu:
+      - text: Getting Started
+        href: articles/Getting_Started.html
+    slides:
+      text: Slides
+      menu:
+      - text: R Markdown slides
+        href: slides/slides.html
+    reference:
+      text:
+      href: reference/index.html
+    news:
+      text: news
+      href: news/index.html
+    github:
+      icon: fa-lg fa-github
+      href: https://github.com/user/repo

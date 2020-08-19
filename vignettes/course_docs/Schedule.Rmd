@@ -1,0 +1,35 @@
+---
+title: "Schedule"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 4
+---
+
+### Getting Started
+
+Before we meet for our first class there are few things you should try at home to get started.
+
+1. Download and install R on your computer. This is the R website [https://www.r-project.org](https://www.r-project.org)
+2. Download and install R-studio. You must download and install R first before installing R-studio. The R-studio website is [https://www.rstudio.com](https://www.rstudio.com)
+3. Create a free github account. The github website is [https://github.com](https://github.com)
+4. Download and install github desktop [https://desktop.github.com](https://desktop.github.com)
+5. At this point you should have downloaded R and R-studio to your own computer. This will allow you to run R and R-studio locally. It is also possible to run R-studio in the cloud through your web-browser. To do this you need to create an account with R-studio cloud. Create an account here [https://rstudio.cloud](https://rstudio.cloud). **Note:** In class we will be using a computer lab wit R-studio installed on the computers. You will have the option of using the lab computer, or bringing your own laptop, and/or using R-studio through the cloud. 
+
+Don't worry if you ran into issues with these first steps, we will address them in class on Monday. 
+
+If you have R-studio working is there anything else you can do before we meet for the first time on Monday? Yes.
+
+You can follow the video tutorial on creating an R markdown website with github pages on the video page. And, you can get started with some of the readings, and you can begin messing around in R. Here are some things to read:
+
+1. [Programming for Psychologists, Chapter 1](https://crumplab.github.io/programmingforpsych/fundamentals-of-computer-programming-languages.html)
+2. [Programming for Psychologists, Chapter 2](https://crumplab.github.io/programmingforpsych/programming-in-r.html)
+3. [Navarros' Section 1: Core Toolkit](https://compcogscisydney.org/psyr/)
+
+We will be spending the first few weeks of the course working on solving different kinds of coding problems in R. These problems will help you learn the ins and outs of coding in R. You can get a head start by trying to solve the problems in this [list of programming challenges](https://crumplab.github.io/programmingforpsych/programming-challenges-i-learning-the-fundamentals.html). 
+
+
+
