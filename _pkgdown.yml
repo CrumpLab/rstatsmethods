@@ -3,7 +3,11 @@ url: https://crumplab.github.io/psyc7709Lab
 
 template:
   opengraph:
-    img: logo.png
+    image:
+      src: logo.png
+    twitter:
+      creator: "@MattCrump_"
+      card: summary
 
 development:
   mode: unreleased
