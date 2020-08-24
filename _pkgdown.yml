@@ -37,11 +37,6 @@ navbar:
       menu:
       - text: Getting Started
         href: articles/Getting_Started.html
-    slides:
-      text: Slides
-      menu:
-      - text: R Markdown slides
-        href: slides/slides.html
     reference:
       text:
       href: reference/index.html

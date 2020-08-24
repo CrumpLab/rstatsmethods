@@ -17,20 +17,52 @@ knitr::opts_chunk$set(
 
 Before we meet for our first class there are few things you should try at home to get started.
 
+## Install R and R Studio
+
 1. Download and install R on your computer. This is the R website [https://www.r-project.org](https://www.r-project.org)
 2. Download and install R-studio. You must download and install R first before installing R-studio. The R-studio website is [https://www.rstudio.com](https://www.rstudio.com)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VxsJYnQI0AE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Github.com and Github Desktop
+
 3. Create a free github account. The github website is [https://github.com](https://github.com)
 4. Download and install github desktop [https://desktop.github.com](https://desktop.github.com)
-5. At this point you should have downloaded R and R-studio to your own computer. This will allow you to run R and R-studio locally. It is also possible to run R-studio in the cloud through your web-browser. To do this you need to create an account with R-studio cloud. Create an account here [https://rstudio.cloud](https://rstudio.cloud). **Note:** In class we will be using a computer lab wit R-studio installed on the computers. You will have the option of using the lab computer, or bringing your own laptop, and/or using R-studio through the cloud. 
 
-Don't worry if you ran into issues with these first steps, we will address them in class on Monday. 
+## Test the pipeline
 
-If you have R-studio working is there anything else you can do before we meet for the first time on Monday? Yes.
+This semester students will be submitting their work as github repositories. Follow these steps to test the github pipeline to make sure it is working:
 
-You can follow the video tutorial on creating an R markdown website with github pages on the video page. And, you can get started with some of the readings, and you can begin messing around in R. Here are some things to read:
+1. Create a new R project (initialize with git)
+2. Create a new R Markdown document
+3. Publish the R project folder on Github.com
+4. Make commits and demonstrate that your local changes are reflected on github.com
 
-1. [Programming for Psychologists, Chapter 1](https://crumplab.github.io/programmingforpsych/fundamentals-of-computer-programming-languages.html)
-2. [Programming for Psychologists, Chapter 2](https://crumplab.github.io/programmingforpsych/programming-in-r.html)
-3. [Navarros' Section 1: Core Toolkit](https://compcogscisydney.org/psyr/)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/efQlpUomP94" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-We will be spending the first few weeks of the course working on solving different kinds of coding problems in R. These problems will help you learn the ins and outs of coding in R. You can get a head start by trying to solve the problems in this [list of programming challenges](https://crumplab.github.io/programmingforpsych/programming-challenges-i-learning-the-fundamentals.html). 
+## Why are we using R for this statistics lab?
+
+A quick attempt to explain why I think it is totally worth it to learn R for data-analysis, and for psychologists in general.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/l_goAV71iKM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## RStudio run through
+
+A look through some of the features of RStudio.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hEhm5orkzMc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Basic R programming overview
+
+We will take a number of different approaches to using R to learn about statistics this semester. One of the approaches will be to learn about basic coding/scripting in R, which can become an entire course on its own. This video gives an impression of what coding looks and feels like in R Studio, and introduces some basic coding concepts such as variables, logic, loops, and functions.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/RRGKCcWY-_Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Practice problems
+
+In addition to lab material, I will be posting additional screencasts here that provide more angles on learning R basics. For example, it can be useful to have specific problems thta you are trying to solve, and then set yourself the goal of figuring out how to solve the problems in R. I have a created a list of problems here <https://crumplab.github.io/programmingforpsych/programming-challenges-i-learning-the-fundamentals.html>. Some of the problems will be assigned in lab. Here, my plan to do some live coding, showing ways that I solve these problems. 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/50ElzpX7MOE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2k_K7rZezMU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
