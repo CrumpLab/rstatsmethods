@@ -43,6 +43,8 @@ navbar:
       menu:
       - text: Getting Started
         href: articles/Getting_Started.html
+      - text: Lab 1 Basics
+        href: articles/Lab1_Basics.html
     reference:
       text:
       href: reference/index.html
