@@ -8,6 +8,8 @@ template:
     twitter:
       creator: "@MattCrump_"
       card: summary
+  params:
+    ganalytics: UA-79429674-12
 
 development:
   mode: unreleased
@@ -49,4 +51,4 @@ navbar:
       href: news/index.html
     github:
       icon: fa-lg fa-github
-      href: https://github.com/user/repo
+      href: https://github.com/CrumpLab/psyc7709Lab
