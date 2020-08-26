@@ -1,0 +1,237 @@
+---
+title: "Lab 2 Descriptives"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Lab 2 Descriptives}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Reading
+
+Vokey & Allen, Chapters 2 & 3
+
+## Overview
+
+This lab looks at basic descriptive statistics, including measures of central tendency (e.g., means) and dispersion (variances). Data often involves large sets of numbers, and descriptive statistics are used to provide convenient summaries of the data sets. Central tendency statistics usually give numbers that are representative values of the data (what most of the numbers are like). Dispersion statistics usually give numbers that describe differences between the numbers in the set. 
+
+## Base R descriptive statistics functions
+
+Base R comes with functions for many common descriptive statistics. In general, these functions take a vector of number as an input, and return the statistic as an output. Here are some examples computing statistics on the sequence of integers from 1 to 10.
+
+```{r}
+a <- 1:10
+
+mean(a) # arithmetic mean
+median(a) # median
+sd(a) # sample standard deviation (n-1)
+var(a) # sample variance (n-1)
+```
+
+At the same time, base R does not have existing functions for every descriptive statistic, or custom descriptive statistics that you might want to make yourself. For example, there is no mode function. You would have to find another package with a mode function, or write your own.
+
+In the following sections we will learn how to write our own functions for descriptive statistics, and we will use R to demonstrate concepts about these statistics. Descriptive statistics are typically applied to data, however to keep things simple we will be applying them to short sets of numbers that we define. This will help us check our work. 
+
+As we will see in later labs, it is possible to generate or sample numbers from distributions in R. So, along with real data, we will often use simulated data. Here is a quick example of generating numbers from a normal distribution, plotting them, and calculating some descriptives.
+
+```{r}
+# sample 50 numbers from normal distribution
+sample_numbers <- rnorm(n= 50, mean = 0, sd = 1)
+
+#show a histogram of the sample
+hist(sample_numbers)
+
+mean(sample_numbers)
+sd(sample_numbers)
+```
+
+## Central Tendency
+
+### Arithmetic Mean
+
+We have seen already that the arithmetic mean can be computed using the `mean()` mean function. The mean function takes a vector of number as an input and returns the arithmetic mean. Here are some examples:
+
+```{r}
+mean(1:10)
+
+a <- c(1,2,3,4,5,6,7,8,9,10)
+mean(a)
+```
+
+The mean is the sum of the numbers, divided by the number of numbers:
+
+$\bar{X} = \frac{\sum_i^n{Xi}}{n}$
+
+If we wanted to break these steps down in R to compute the mean for the sequence 1 to 10, it could look like this:
+
+```{r}
+a <- 1:10 # create a vector
+sum_a <- sum(a) # store the sum
+length_a <- length(a) # store the length (n)
+mean_a <- sum(a)/length(a) # store the sum/n
+mean_a # report the mean
+```
+
+How would you write your own custom version of the mean function? Here are a few examples:
+
+```{r}
+# A long-form mean function that shows each step
+my_mean <- function(x) {
+  sum_x    <- sum(x) # store the sum
+  length_x <- length(x) # store the length (n)
+  mean_x   <- sum_x/length_x # divide and store mean
+  return(mean_x) # output the mean
+}
+
+my_mean(1:10)
+```
+
+The above example is "long" because it writes out each step of computing the mean on each line. Sometimes it is desirable to make the steps in your function clear and easy to follow. It is also possible and sometimes desirable to rewrite the function so it accomplishes the same steps in a short number of lines of code. Below I show an example of systematically rewriting the above function to make it take fewer lines of code. We will see that the `return()` statement is not necessary, and that the `{}` are not necessary if the function can be written on one line.
+
+```{r}
+# return() is not necessary if the function ends with a
+# variable name being printed
+my_mean <- function(x) {
+  sum_x    <- sum(x) # store the sum
+  length_x <- length(x) # store the length (n)
+  mean_x   <- sum_x/length_x # compute and store mean
+  mean_x # output the mean
+}
+
+my_mean(1:10)
+
+# end with the mean computation
+my_mean <- function(x) {
+  sum_x <- sum(x) # store the sum
+  length_x <- length(x) # store the length (n)
+  sum_x/length_x # compute and output the mean
+}
+
+my_mean(1:10)
+
+# no intermediate saving of sum or length
+my_mean <- function(x) {
+  sum(x)/length(x) # compute and output the mean
+}
+
+my_mean(1:10)
+
+# one-liner
+my_mean <- function(x) sum(x)/length(x)
+
+my_mean(1:10)
+```
+
+## Problem 1: Demonstrate that the mean is the point from which the sum of the deviations is 0.
+
+We learned that the mean of a set of numbers is the point where the sum of the deviations equal 0. Our problem is to use R to demonstrate this property of the mean. How can we do that?
+
+Let's break down the steps. We need some numbers:
+
+```{r}
+scores <- c(1,64,5,4,3,4,5,6,7,8,3)
+```
+
+We need to be able to compute the sum of the deviations. That is we wish to compute the differences between one number (which is going to be the mean), and all of the numbers in our set. These are the deviations. Then we want to add them all up to arrive at the sum of the deviations.
+
+How can we find the deviations between the numbers in `scores`, and some number of our choice? Let's pick the number 5. It turns out that we can simply subtract 5 from `scores`. And we will produce a vector of differences or deviations
+
+```{r}
+scores-5
+```
+
+Then, we can find the sum:
+
+```{r}
+sum(scores-5)
+```
+
+Notice that the sum of the deviations (between the numbers in `scores` and 5) does not equal 0. So, Clearly, the mean of our numbers must not be 5. The mean is the value that would cause the deviations to sum to 0.
+
+### Approximating the mean 
+
+We could very quickly show that the mean of `scores` causes the deviations to sum to 0. For example, the mean is 10, and the sum of the deviations between the scores and the mean is 0. 
+
+```{r}
+scores # the scores
+
+mean(scores) # the mean
+
+scores-mean(scores) #the vector of deviations from the mean
+
+sum(scores-mean(scores)) # the sum
+```
+
+But, let's use R to approximate the value of the mean by trying out different values, rather than by computing the mean first. For example, we previously tried a 5, and the sum of the deviations was not 0. What if we tried a bunch of numbers, say from the lowest number (1) to the highest number (64)? Each time we could compute the deviations, and the sum of the deviations. We could record the outcome for each test. Then we could look out our results and see which of the numbers comes closest to creating a sum of deviations that equals 0.
+
+This will require 64 individual tests, and that is too much do to by hand. Fortunately, we can use R to accomplish these goals very quickly.
+
+```{r}
+
+```
+
+
+
+
+
+## Lab 2 Generalization Assignment
+
+### Instructions
+
+In general, labs will present a discussion of problems and issues with example code like above, and then students will be tasked with completing generalization assignments, showing that they can work with the concepts and tools independently. 
+
+Your assignment instructions are the following:
+
+1. Make a new R project (initialized as a git repository) called "StatsLab1'.
+2. Create a new R Markdown document called "Lab1.Rmd"
+3. Upload your StatsLab1 R project to Github.com using Github Desktop
+4. Use Lab1.Rmd to show your work attempting to solve the following generalization problems. Commit your work regularly so that it appears on your Github repository.
+5. Submit your github repository link for Lab 1 on blackboard.
+6. There are six problems to solve, each worth 1 point.
+
+Refer to the [getting started](https://crumplab.github.io/psyc7709Lab/articles/Getting_Started.html) videos for examples of creating a new R project and uploading it to Github. If you have problems with these steps and they have not been resolved in our first class, then please email me about them, or create an issue on the course github page <https://github.com/CrumpLab/psyc7709Lab/issues>
+
+### Problems
+
+1. Compute the sum of the sequence 100 to 1000, going up by a constant value of 100 (100,200,300,400,500,600,700,800,900,1000).
+2. Compute the sum of these numbers (1,3,2,4,3,5,4,3,4,5,6,5,6,7,6,5,6,5,4,3,4,5)
+3. Write a custom sequence generator function **using a for loop** that generates a sequence from a starting integer value to an ending integer value in steps of 1. Demonstrate that it can produce the sequence 1 to 10.
+4. Write a custom function to implement the following general equation to find the sum of any constant series:
+
+$X_1 + X_2 + \ldots + X_n = (\frac{X_n-X_1}{c}+1)(\frac{X_1+X_n}{2})$
+
+Demonstrate that your function correctly produces the sum for the series below:
+
+```{r}
+seq(10,100,10)
+```
+
+5. Write a custom function that generates a constant series between any start and end values, with any constant, and finds the sum. Have your function output both the sequence and the sum. For this problem, feel free to use the existing `seq()` and `sum()` functions in your custom function. Demonstrate the function correctly prints out the above sequence (10 to 100 in steps of 10), and its sum.
+6. Use the `sum()` and the `length()` functions to calculate the mean (average) of the numbers `x = c(1,2,3,4,5)`.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

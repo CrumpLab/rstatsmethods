@@ -14,9 +14,13 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Reading
+## Reading and walkthrough video
 
 Vokey & Allen, Chapters 1
+
+Here is a walkthrough lecture on this lab (sorry the volume is a little low on this one):
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FuRD0HAIfBc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Overview
 
@@ -112,6 +116,8 @@ Xn <- 200
 step <- 5
 
 (((Xn - X1)/step) + 1) * ((X1 + Xn)/2)
+
+( ( (Xn-X1)/step ) + 1 ) * ( (X1+Xn)/2 )
 ```
 
 
@@ -270,7 +276,7 @@ If we keep doing this, we will keep adding 1s, to the end of `a`.
 ```{r}
 a <- c(a,1)
 a
-a <- c(a,1)
+a <- c(a,1) # c(1,1,1)
 a
 a <- c(a,1)
 a
@@ -380,7 +386,7 @@ The loop will automatically stop once it reaches the last item in the vector. Th
 # 1:5 creates a vector with 5 numbers in it, 1, 2, 3, 4, 5
 # the loop will run 5 times, because there are five things to assign to i
 for(i in 1:5){
-  print(5)
+  print("hello")
 }
 ```
 
@@ -422,9 +428,9 @@ for(i in my_things){
 
 ```{r}
 for(i in 1:10){
-  if(i <5){
+  if(i <= 5){
     print(i)
-  } else{
+  } else {
     break
   }
 }
@@ -564,7 +570,7 @@ add_one(1)
 add_one("a") #this will cause an error
 ```
 
-This function adds some input checking. We only add one if the input is a numeric type. Otheriwse, we use `stop()` to return an error message to the console
+This function adds some input checking. We only add one if the input is a numeric type. Otherwise, we use `stop()` to return an error message to the console
 
 ```{r, error=TRUE}
 add_one <- function(input){
@@ -582,7 +588,7 @@ add_one("a")
 A function with three inputs
 
 ```{r}
-add_multiply <- function(input, x_plus,x_times){
+add_multiply <- function(input, x_plus, x_times){
   temp <- (input+x_plus)*x_times
   return(temp)
 }

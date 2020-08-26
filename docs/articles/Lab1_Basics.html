@@ -114,10 +114,13 @@
 
     
     
-<div id="reading" class="section level2">
+<div id="reading-and-walkthrough-video" class="section level2">
 <h2 class="hasAnchor">
-<a href="#reading" class="anchor"></a>Reading</h2>
+<a href="#reading-and-walkthrough-video" class="anchor"></a>Reading and walkthrough video</h2>
 <p>Vokey &amp; Allen, Chapters 1</p>
+<p>Here is a walkthrough lecture on this lab (sorry the volume is a little low on this one):</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FuRD0HAIfBc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 </div>
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
@@ -203,6 +206,9 @@
 <span class="no">step</span> <span class="kw">&lt;-</span> <span class="fl">5</span>
 
 (((<span class="no">Xn</span> - <span class="no">X1</span>)/<span class="no">step</span>) + <span class="fl">1</span>) * ((<span class="no">X1</span> + <span class="no">Xn</span>)/<span class="fl">2</span>)
+<span class="co">#&gt; [1] 3150</span>
+
+( ( (<span class="no">Xn</span>-<span class="no">X1</span>)/<span class="no">step</span> ) + <span class="fl">1</span> ) * ( (<span class="no">X1</span>+<span class="no">Xn</span>)/<span class="fl">2</span> )
 <span class="co">#&gt; [1] 3150</span></pre></body></html></div>
 </div>
 <div id="vectors" class="section level2">
@@ -336,7 +342,7 @@
 <div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="no">a</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">a</span>,<span class="fl">1</span>)
 <span class="no">a</span>
 <span class="co">#&gt; [1] 1 1</span>
-<span class="no">a</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">a</span>,<span class="fl">1</span>)
+<span class="no">a</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">a</span>,<span class="fl">1</span>) <span class="co"># c(1,1,1)</span>
 <span class="no">a</span>
 <span class="co">#&gt; [1] 1 1 1</span>
 <span class="no">a</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">a</span>,<span class="fl">1</span>)
@@ -436,13 +442,13 @@
 <span class="co"># 1:5 creates a vector with 5 numbers in it, 1, 2, 3, 4, 5</span>
 <span class="co"># the loop will run 5 times, because there are five things to assign to i</span>
 <span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="fl">5</span>){
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="fl">5</span>)
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="st">"hello"</span>)
 }
-<span class="co">#&gt; [1] 5</span>
-<span class="co">#&gt; [1] 5</span>
-<span class="co">#&gt; [1] 5</span>
-<span class="co">#&gt; [1] 5</span>
-<span class="co">#&gt; [1] 5</span></pre></body></html></div>
+<span class="co">#&gt; [1] "hello"</span>
+<span class="co">#&gt; [1] "hello"</span>
+<span class="co">#&gt; [1] "hello"</span>
+<span class="co">#&gt; [1] "hello"</span>
+<span class="co">#&gt; [1] "hello"</span></pre></body></html></div>
 <div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="co"># show the value of i each step of the loop</span>
 <span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="fl">5</span>){
   <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">i</span>)
@@ -487,16 +493,17 @@
 <a href="#breaking-a-loop" class="anchor"></a>Breaking a loop</h3>
 <p><code>break</code> stops a loop. Used with logical statements to define the conditions necessary to cause the break.</p>
 <div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="fl">10</span>){
-  <span class="kw">if</span>(<span class="no">i</span> <span class="kw">&lt;</span><span class="fl">5</span>){
+  <span class="kw">if</span>(<span class="no">i</span> <span class="kw">&lt;=</span> <span class="fl">5</span>){
     <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">i</span>)
-  } <span class="kw">else</span>{
+  } <span class="kw">else</span> {
     <span class="kw">break</span>
   }
 }
 <span class="co">#&gt; [1] 1</span>
 <span class="co">#&gt; [1] 2</span>
 <span class="co">#&gt; [1] 3</span>
-<span class="co">#&gt; [1] 4</span></pre></body></html></div>
+<span class="co">#&gt; [1] 4</span>
+<span class="co">#&gt; [1] 5</span></pre></body></html></div>
 </div>
 <div id="while-loops" class="section level3">
 <h3 class="hasAnchor">
@@ -624,7 +631,7 @@
 <span class="co">#&gt; [1] 2</span>
 <span class="fu">add_one</span>(<span class="st">"a"</span>) <span class="co">#this will cause an error</span>
 <span class="co">#&gt; Error in input + 1: non-numeric argument to binary operator</span></pre></body></html></div>
-<p>This function adds some input checking. We only add one if the input is a numeric type. Otheriwse, we use <code><a href="https://rdrr.io/r/base/stop.html">stop()</a></code> to return an error message to the console</p>
+<p>This function adds some input checking. We only add one if the input is a numeric type. Otherwise, we use <code><a href="https://rdrr.io/r/base/stop.html">stop()</a></code> to return an error message to the console</p>
 <div class="sourceCode" id="cb45"><html><body><pre class="r"><span class="no">add_one</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">input</span>){
   <span class="kw">if</span>(<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span>(<span class="no">input</span>) <span class="kw">==</span> <span class="st">"numeric"</span>){
     <span class="no">temp</span> <span class="kw">&lt;-</span> <span class="no">input</span>+<span class="fl">1</span>
@@ -638,7 +645,7 @@
 <span class="fu">add_one</span>(<span class="st">"a"</span>)
 <span class="co">#&gt; Error in add_one("a"): input must be numeric</span></pre></body></html></div>
 <p>A function with three inputs</p>
-<div class="sourceCode" id="cb46"><html><body><pre class="r"><span class="no">add_multiply</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">input</span>, <span class="no">x_plus</span>,<span class="no">x_times</span>){
+<div class="sourceCode" id="cb46"><html><body><pre class="r"><span class="no">add_multiply</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">input</span>, <span class="no">x_plus</span>, <span class="no">x_times</span>){
   <span class="no">temp</span> <span class="kw">&lt;-</span> (<span class="no">input</span>+<span class="no">x_plus</span>)*<span class="no">x_times</span>
   <span class="fu"><a href="https://rdrr.io/r/base/function.html">return</a></span>(<span class="no">temp</span>)
 }
