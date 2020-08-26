@@ -149,9 +149,9 @@
 <p><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 <div class="sourceCode" id="cb3"><html><body><pre class="r">
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">sample_numbers</span>)
-<span class="co">#&gt; [1] -0.09689684</span>
+<span class="co">#&gt; [1] -0.1497024</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span>(<span class="no">sample_numbers</span>)
-<span class="co">#&gt; [1] 0.9363363</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.8615013</span></pre></body></html></div>
 </div>
 <div id="central-tendency" class="section level2">
 <h2 class="hasAnchor">
@@ -253,8 +253,90 @@
 
 <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">scores</span>-<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">scores</span>)) <span class="co"># the sum</span>
 <span class="co">#&gt; [1] 0</span></pre></body></html></div>
-<p>But, let’s use R to approximate the value of the mean by trying out different values, rather than by computing the mean first. For example, we previously tried a 5, and the sum of the deviations was not 0. What if we tried a bunch of numbers, say from the lowest number (1) to the highest number (64)? Each time we could compute the deviations, and the sum of the deviations. We could record the outcome for each test. Then we could look out our results and see which of the numbers comes closest to creating a sum of deviations that equals 0.</p>
-<p>This will require 64 individual tests, and that is too much do to by hand. Fortunately, we can use R to accomplish these goals very quickly.</p>
+<p>But, let’s use R to approximate the value of the mean by trying out different values, rather than by computing the mean first. For example, we previously tried a 5, and the sum of the deviations was not 0. What if we tried a bunch of numbers, say from the lowest number (1) to the highest number (64)? Each time we could compute the deviations, and the sum of the deviations. We could record the outcome for each test. Then we could look out our results and see which of the numbers comes closest to creating a sum of deviations that equals 0. This will require 64 individual tests, and that is too much do to by hand. Fortunately, we can use R to accomplish these goals very quickly.</p>
+<p>Basically, this is this the process of what I want to do…but I don’t want to write 64 lines of code either…</p>
+<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">scores</span>-<span class="fl">1</span>)
+<span class="co">#&gt; [1] 99</span>
+<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">scores</span>-<span class="fl">2</span>)
+<span class="co">#&gt; [1] 88</span>
+<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">scores</span>-<span class="fl">3</span>)
+<span class="co">#&gt; [1] 77</span>
+<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">scores</span>-<span class="fl">4</span>)
+<span class="co">#&gt; [1] 66</span>
+<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">scores</span>-<span class="fl">5</span>)
+<span class="co">#&gt; [1] 55</span>
+<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">scores</span>-<span class="fl">6</span>)
+<span class="co">#&gt; [1] 44</span>
+<span class="co">## and so on to 64</span></pre></body></html></div>
+<p>If we want to repeatedly apply a similar computation in R, remember we can use a <code>for</code> loop. We will test all of the integers between the smallest value and largest value. So, we first create a sequence of those numbers called <code>numbers_to_test</code>. And, then we use a loop to compute the sum of deviations between the scores and each of the test numbers.</p>
+<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(<span class="no">scores</span>)
+<span class="co">#&gt; [1] 1</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="no">scores</span>)
+<span class="co">#&gt; [1] 64</span>
+<span class="no">numbers_to_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(<span class="no">scores</span>):<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="no">scores</span>)
+
+<span class="no">sum_deviations</span> <span class="kw">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>() <span class="co"># create an empty vector to store sums</span>
+<span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="no">numbers_to_test</span>) {
+  <span class="no">sum_deviations</span>[<span class="no">i</span>] <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">scores</span>-<span class="no">i</span>)
+}
+
+<span class="no">sum_deviations</span>
+<span class="co">#&gt;  [1]   99   88   77   66   55   44   33   22   11    0  -11  -22  -33  -44  -55</span>
+<span class="co">#&gt; [16]  -66  -77  -88  -99 -110 -121 -132 -143 -154 -165 -176 -187 -198 -209 -220</span>
+<span class="co">#&gt; [31] -231 -242 -253 -264 -275 -286 -297 -308 -319 -330 -341 -352 -363 -374 -385</span>
+<span class="co">#&gt; [46] -396 -407 -418 -429 -440 -451 -462 -473 -484 -495 -506 -517 -528 -539 -550</span>
+<span class="co">#&gt; [61] -561 -572 -583 -594</span></pre></body></html></div>
+<p>We just computed 64 sums of deviations, and the results are displayed above. Our question was to approximate the mean, by finding a value that produces a sum of deviations closest to 0. Let’s discuss three ways to get at the answer. First, we could look at the above sums and see that the 10th value is a 0, this means that the number 10 produced the sum of deviations closest to 0 (equaling 0 because 10 is the mean).</p>
+</div>
+<div id="plotting-the-results" class="section level3">
+<h3 class="hasAnchor">
+<a href="#plotting-the-results" class="anchor"></a>Plotting the results</h3>
+<p>Second, we could visualize the sum of the deviations. We could quickly do that with the <code><a href="https://rdrr.io/r/base/plot.html">plot()</a></code> function.</p>
+<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">sum_deviations</span>)</pre></body></html></div>
+<p><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
+<p>We are looking for the value on the x-axis that causes the sum of the deviations on the y-axis to be closest to 0. One way to help locate this value could be to look at the absolute values. Absolute values remove the negative (-) sign from numbers, leaving everything positive. You can convert to absolute values in R using <code><a href="https://rdrr.io/r/base/MathFun.html">abs()</a></code></p>
+<p>Now, it is easy to see that 10 produces the sum of deviations closest to 0 (in this case it produces a value of 0, because 10 is also the mean).</p>
+<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="no">sum_deviations</span>))</pre></body></html></div>
+<p><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
+</div>
+<div id="locating-the-result-using-which" class="section level3">
+<h3 class="hasAnchor">
+<a href="#locating-the-result-using-which" class="anchor"></a>Locating the result using which()</h3>
+<p>Finally, we could use other R functions to help us compute the answer. For example, we could use the <code><a href="https://rdrr.io/r/base/which.html">which()</a></code> function. This function can be used to determine the indices or position of “logically” obtained values in a vector. Is a long way of saying we want R to tell us which position in the vector contains the 0</p>
+<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="co">#find the positions in vector that equal 0</span>
+<span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span>(<span class="no">sum_deviations</span> <span class="kw">==</span> <span class="fl">0</span>)
+<span class="co">#&gt; [1] 10</span>
+
+<span class="co">#show the value in position 10</span>
+<span class="no">sum_deviations</span>[<span class="fl">10</span>]
+<span class="co">#&gt; [1] 0</span>
+
+<span class="co">#all in one</span>
+<span class="no">sum_deviations</span>[ <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span>(<span class="no">sum_deviations</span> <span class="kw">==</span> <span class="fl">0</span>) ]
+<span class="co">#&gt; [1] 0</span></pre></body></html></div>
+</div>
+<div id="minor-details" class="section level3">
+<h3 class="hasAnchor">
+<a href="#minor-details" class="anchor"></a>Minor details</h3>
+<p>The above approach worked pretty well. By a simulation process, we found that 10 produced a sum of deviations that equaled 0. None of the other numbers produced a sum of deviations that equaled 0. However, our example code won’t work very well for other sets of numbers.</p>
+<p>For example, if we used the set of number from 1 to 20, where the mean is 10.5, we find that none of the sums of deviations ever get to 0 (that’s because we are only testing integers between 1 and 20). And, our <code><a href="https://rdrr.io/r/base/which.html">which()</a></code> function will never find a number that is exactly equal to 0.</p>
+<div class="sourceCode" id="cb17"><html><body><pre class="r">
+<span class="no">scores</span> <span class="kw">&lt;-</span> <span class="fl">1</span>:<span class="fl">20</span>
+<span class="no">numbers_to_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(<span class="no">scores</span>):<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="no">scores</span>)
+
+<span class="no">sum_deviations</span> <span class="kw">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>() <span class="co"># create an empty vector to store sums</span>
+<span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="no">numbers_to_test</span>) {
+  <span class="no">sum_deviations</span>[<span class="no">i</span>] <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">scores</span>-<span class="no">i</span>)
+}
+
+<span class="no">sum_deviations</span>
+<span class="co">#&gt;  [1]  190  170  150  130  110   90   70   50   30   10  -10  -30  -50  -70  -90</span>
+<span class="co">#&gt; [16] -110 -130 -150 -170 -190</span>
+<span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span>(<span class="no">sum_deviations</span> <span class="kw">==</span> <span class="fl">0</span>)
+<span class="co">#&gt; integer(0)</span></pre></body></html></div>
+<p>Here, we need to modify the comparison in the <code><a href="https://rdrr.io/r/base/which.html">which()</a></code> function to return “approximate” numbers that give the sums of deviations closest to zero.</p>
+<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="no">sum_deviations</span>) <span class="kw">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="no">sum_deviations</span>)))
+<span class="co">#&gt; [1] 10 11</span></pre></body></html></div>
 </div>
 </div>
 <div id="lab-2-generalization-assignment" class="section level2">
@@ -279,18 +361,7 @@
 <h3 class="hasAnchor">
 <a href="#problems" class="anchor"></a>Problems</h3>
 <ol style="list-style-type: decimal">
-<li>Compute the sum of the sequence 100 to 1000, going up by a constant value of 100 (100,200,300,400,500,600,700,800,900,1000).</li>
-<li>Compute the sum of these numbers (1,3,2,4,3,5,4,3,4,5,6,5,6,7,6,5,6,5,4,3,4,5)</li>
-<li>Write a custom sequence generator function <strong>using a for loop</strong> that generates a sequence from a starting integer value to an ending integer value in steps of 1. Demonstrate that it can produce the sequence 1 to 10.</li>
-<li>Write a custom function to implement the following general equation to find the sum of any constant series:</li>
-</ol>
-<p><span class="math inline">\(X_1 + X_2 + \ldots + X_n = (\frac{X_n-X_1}{c}+1)(\frac{X_1+X_n}{2})\)</span></p>
-<p>Demonstrate that your function correctly produces the sum for the series below:</p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">10</span>,<span class="fl">100</span>,<span class="fl">10</span>)
-<span class="co">#&gt;  [1]  10  20  30  40  50  60  70  80  90 100</span></pre></body></html></div>
-<ol start="5" style="list-style-type: decimal">
-<li>Write a custom function that generates a constant series between any start and end values, with any constant, and finds the sum. Have your function output both the sequence and the sum. For this problem, feel free to use the existing <code><a href="https://rdrr.io/r/base/seq.html">seq()</a></code> and <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> functions in your custom function. Demonstrate the function correctly prints out the above sequence (10 to 100 in steps of 10), and its sum.</li>
-<li>Use the <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> and the <code><a href="https://rdrr.io/r/base/length.html">length()</a></code> functions to calculate the mean (average) of the numbers <code>x = c(1,2,3,4,5)</code>.</li>
+<li>Demonstrate that the mean minimizes the sum of the squared deviations from the mean.</li>
 </ol>
 </div>
 </div>

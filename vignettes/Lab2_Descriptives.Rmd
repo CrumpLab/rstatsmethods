@@ -169,14 +169,92 @@ scores-mean(scores) #the vector of deviations from the mean
 sum(scores-mean(scores)) # the sum
 ```
 
-But, let's use R to approximate the value of the mean by trying out different values, rather than by computing the mean first. For example, we previously tried a 5, and the sum of the deviations was not 0. What if we tried a bunch of numbers, say from the lowest number (1) to the highest number (64)? Each time we could compute the deviations, and the sum of the deviations. We could record the outcome for each test. Then we could look out our results and see which of the numbers comes closest to creating a sum of deviations that equals 0.
+But, let's use R to approximate the value of the mean by trying out different values, rather than by computing the mean first. For example, we previously tried a 5, and the sum of the deviations was not 0. What if we tried a bunch of numbers, say from the lowest number (1) to the highest number (64)? Each time we could compute the deviations, and the sum of the deviations. We could record the outcome for each test. Then we could look out our results and see which of the numbers comes closest to creating a sum of deviations that equals 0. This will require 64 individual tests, and that is too much do to by hand. Fortunately, we can use R to accomplish these goals very quickly.
 
-This will require 64 individual tests, and that is too much do to by hand. Fortunately, we can use R to accomplish these goals very quickly.
+Basically, this is this the process of what I want to do...but I don't want to write 64 lines of code either...
+
+```{r}
+sum(scores-1)
+sum(scores-2)
+sum(scores-3)
+sum(scores-4)
+sum(scores-5)
+sum(scores-6)
+## and so on to 64
+```
+
+If we want to repeatedly apply a similar computation in R, remember we can use a `for` loop. We will test all of the integers between the smallest value and largest value. So, we first create a sequence of those numbers called `numbers_to_test`. And, then we use a loop to compute the sum of deviations between the scores and each of the test numbers.
+
+```{r}
+min(scores) 
+max(scores)
+numbers_to_test <- min(scores):max(scores)
+
+sum_deviations <-c() # create an empty vector to store sums
+for(i in numbers_to_test) {
+  sum_deviations[i] <- sum(scores-i)
+}
+
+sum_deviations
+```
+We just computed 64 sums of deviations, and the results are displayed above. Our question was to approximate the mean, by finding a value that produces a sum of deviations closest to 0. Let's discuss three ways to get at the answer. First, we could look at the above sums and see that the 10th value is a 0, this means that the number 10 produced the sum of deviations closest to 0 (equaling 0 because 10 is the mean).
+
+### Plotting the results
+
+Second, we could visualize the sum of the deviations. We could quickly do that with the `plot()` function.
+
+```{r}
+plot(sum_deviations)
+```
+
+We are looking for the value on the x-axis that causes the sum of the deviations on the y-axis to be closest to 0. One way to help locate this value could be to look at the absolute values. Absolute values remove the negative (-) sign from numbers, leaving everything positive. You can convert to absolute values in R using `abs()`
+
+Now, it is easy to see that 10 produces the sum of deviations closest to 0 (in this case it produces a value of 0, because 10 is also the mean).
+
+```{r}
+plot(abs(sum_deviations))
+```
+
+### Locating the result using which()
+
+Finally, we could use other R functions to help us compute the answer. For example, we could use the `which()` function. This function can be used to determine the indices or position of "logically" obtained values in a vector. Is a long way of saying we want R to tell us which position in the vector contains the 0
+
+```{r}
+#find the positions in vector that equal 0
+which(sum_deviations == 0)
+
+#show the value in position 10
+sum_deviations[10]
+
+#all in one
+sum_deviations[ which(sum_deviations == 0) ]
+```
+
+### Minor details
+
+The above approach worked pretty well. By a simulation process, we found that 10 produced a sum of deviations that equaled 0. None of the other numbers produced a sum of deviations that equaled 0. However, our example code won't work very well for other sets of numbers.
+
+For example, if we used the set of number from 1 to 20, where the mean is 10.5, we find that none of the sums of deviations ever get to 0 (that's because we are only testing integers between 1 and 20). And, our `which()` function will never find a number that is exactly equal to 0.
 
 ```{r}
 
+scores <- 1:20
+numbers_to_test <- min(scores):max(scores)
+
+sum_deviations <-c() # create an empty vector to store sums
+for(i in numbers_to_test) {
+  sum_deviations[i] <- sum(scores-i)
+}
+
+sum_deviations
+which(sum_deviations == 0)
 ```
 
+Here, we need to modify the comparison in the `which()` function to return "approximate" numbers that give the sums of deviations closest to zero.
+
+```{r}
+which(abs(sum_deviations) == min(abs(sum_deviations)))
+```
 
 
 
@@ -200,21 +278,8 @@ Refer to the [getting started](https://crumplab.github.io/psyc7709Lab/articles/G
 
 ### Problems
 
-1. Compute the sum of the sequence 100 to 1000, going up by a constant value of 100 (100,200,300,400,500,600,700,800,900,1000).
-2. Compute the sum of these numbers (1,3,2,4,3,5,4,3,4,5,6,5,6,7,6,5,6,5,4,3,4,5)
-3. Write a custom sequence generator function **using a for loop** that generates a sequence from a starting integer value to an ending integer value in steps of 1. Demonstrate that it can produce the sequence 1 to 10.
-4. Write a custom function to implement the following general equation to find the sum of any constant series:
+1. Demonstrate that the mean minimizes the sum of the squared deviations from the mean.
 
-$X_1 + X_2 + \ldots + X_n = (\frac{X_n-X_1}{c}+1)(\frac{X_1+X_n}{2})$
-
-Demonstrate that your function correctly produces the sum for the series below:
-
-```{r}
-seq(10,100,10)
-```
-
-5. Write a custom function that generates a constant series between any start and end values, with any constant, and finds the sum. Have your function output both the sequence and the sum. For this problem, feel free to use the existing `seq()` and `sum()` functions in your custom function. Demonstrate the function correctly prints out the above sequence (10 to 100 in steps of 10), and its sum.
-6. Use the `sum()` and the `length()` functions to calculate the mean (average) of the numbers `x = c(1,2,3,4,5)`.
 
 
 
