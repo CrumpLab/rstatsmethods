@@ -81,7 +81,7 @@ seq(from = 1, to = 5)
 seq(1, 5)
 
 #seq(from, to, by= )
-seq(from = 1, to = 5, by = 1)
+seq(from = 1, to = 5, by = 2)
 seq(1, 5, .5)
 seq(1, 10, 2)
 
@@ -118,6 +118,7 @@ step <- 5
 (((Xn - X1)/step) + 1) * ((X1 + Xn)/2)
 
 ( ( (Xn-X1)/step ) + 1 ) * ( (X1+Xn)/2 )
+
 ```
 
 
