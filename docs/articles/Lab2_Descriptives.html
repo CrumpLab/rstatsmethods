@@ -77,6 +77,9 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../articles/course_docs/resources.html">R resources</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -117,18 +120,85 @@
 <div id="reading" class="section level2">
 <h2 class="hasAnchor">
 <a href="#reading" class="anchor"></a>Reading</h2>
-<p>Vokey &amp; Allen, Chapters 2 &amp; 3</p>
+<p>Vokey &amp; Allen, Chapters 2 &amp; 3 on descriptive statistics, including measures of central tendency (e.g., means) and dispersion (variances).</p>
 </div>
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h2>
-<p>This lab looks at basic descriptive statistics, including measures of central tendency (e.g., means) and dispersion (variances). Data often involves large sets of numbers, and descriptive statistics are used to provide convenient summaries of the data sets. Central tendency statistics usually give numbers that are representative values of the data (what most of the numbers are like). Dispersion statistics usually give numbers that describe differences between the numbers in the set.</p>
+<p>General note, I am trying to find a consistent way to structure the lab content. In this lab I adopt a structure that splits the lab between <strong>conceptual</strong> and <strong>practical</strong> parts. In conceptual sections we will use R to demonstrate and reinforce concepts about statistics. In practical sections we will use R for data analysis.</p>
+<ul>
+<li>Conceptual Section: Using R to demonstrate properties of the mean</li>
+<li>Practical Section:
+<ul>
+<li>importing data</li>
+<li>calculating means or other descriptive statistics</li>
+<li>graphing means with ggplot2</li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="means-demo" class="section level2">
+<h2 class="hasAnchor">
+<a href="#means-demo" class="anchor"></a>Means Demo</h2>
+<p>This a quick piece of example code showing some steps to calculate and graph means from a data set in R using the <a href="https://www.tidyverse.org">tidyverse</a>. You will need to install the tidyverse libraries on your system before you can run the code below:</p>
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"tidyverse"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># load libraries</span>
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
+
+<span class="co"># chickwts is a built in data set</span>
+<span class="co"># with chick weights by feed</span>
+
+<span class="co"># calculate means for each feed type</span>
+<span class="no">means_df</span> <span class="kw">&lt;-</span> <span class="no">chickwts</span> <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">feed</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="kw">means</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">weight</span>))
+
+<span class="co"># print table of means</span>
+<span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="no">means_df</span>)</pre></body></html></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">feed</th>
+<th align="right">means</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">casein</td>
+<td align="right">323.5833</td>
+</tr>
+<tr class="even">
+<td align="left">horsebean</td>
+<td align="right">160.2000</td>
+</tr>
+<tr class="odd">
+<td align="left">linseed</td>
+<td align="right">218.7500</td>
+</tr>
+<tr class="even">
+<td align="left">meatmeal</td>
+<td align="right">276.9091</td>
+</tr>
+<tr class="odd">
+<td align="left">soybean</td>
+<td align="right">246.4286</td>
+</tr>
+<tr class="even">
+<td align="left">sunflower</td>
+<td align="right">328.9167</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb3"><html><body><pre class="r">
+<span class="co"># plot the means</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">means_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="no">feed</span>, <span class="kw">y</span><span class="kw">=</span><span class="no">means</span>)) +
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span>(<span class="kw">stat</span><span class="kw">=</span><span class="st">"identity"</span>)</pre></body></html></div>
+<p><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 </div>
 <div id="base-r-descriptive-statistics-functions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#base-r-descriptive-statistics-functions" class="anchor"></a>Base R descriptive statistics functions</h2>
 <p>Base R comes with functions for many common descriptive statistics. In general, these functions take a vector of number as an input, and return the statistic as an output. Here are some examples computing statistics on the sequence of integers from 1 to 10.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="no">a</span> <span class="kw">&lt;-</span> <span class="fl">1</span>:<span class="fl">10</span>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">a</span> <span class="kw">&lt;-</span> <span class="fl">1</span>:<span class="fl">10</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">a</span>) <span class="co"># arithmetic mean</span>
 <span class="co">#&gt; [1] 5.5</span>
@@ -141,17 +211,17 @@
 <p>At the same time, base R does not have existing functions for every descriptive statistic, or custom descriptive statistics that you might want to make yourself. For example, there is no mode function. You would have to find another package with a mode function, or write your own.</p>
 <p>In the following sections we will learn how to write our own functions for descriptive statistics, and we will use R to demonstrate concepts about these statistics. Descriptive statistics are typically applied to data, however to keep things simple we will be applying them to short sets of numbers that we define. This will help us check our work.</p>
 <p>As we will see in later labs, it is possible to generate or sample numbers from distributions in R. So, along with real data, we will often use simulated data. Here is a quick example of generating numbers from a normal distribution, plotting them, and calculating some descriptives.</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># sample 50 numbers from normal distribution</span>
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="co"># sample 50 numbers from normal distribution</span>
 <span class="no">sample_numbers</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw">n</span><span class="kw">=</span> <span class="fl">50</span>, <span class="kw">mean</span> <span class="kw">=</span> <span class="fl">0</span>, <span class="kw">sd</span> <span class="kw">=</span> <span class="fl">1</span>)
 
 <span class="co">#show a histogram of the sample</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="no">sample_numbers</span>)</pre></body></html></div>
-<p><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r">
+<p><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
+<div class="sourceCode" id="cb6"><html><body><pre class="r">
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">sample_numbers</span>)
-<span class="co">#&gt; [1] -0.04148883</span>
+<span class="co">#&gt; [1] 0.04071421</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span>(<span class="no">sample_numbers</span>)
-<span class="co">#&gt; [1] 1.065849</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.8596191</span></pre></body></html></div>
 </div>
 <div id="central-tendency" class="section level2">
 <h2 class="hasAnchor">
@@ -160,7 +230,7 @@
 <h3 class="hasAnchor">
 <a href="#arithmetic-mean" class="anchor"></a>Arithmetic Mean</h3>
 <p>We have seen already that the arithmetic mean can be computed using the <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> mean function. The mean function takes a vector of number as an input and returns the arithmetic mean. Here are some examples:</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="fl">1</span>:<span class="fl">10</span>)
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="fl">1</span>:<span class="fl">10</span>)
 <span class="co">#&gt; [1] 5.5</span>
 
 <span class="no">a</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span>,<span class="fl">10</span>)
@@ -169,14 +239,14 @@
 <p>The mean is the sum of the numbers, divided by the number of numbers:</p>
 <p><span class="math inline">\(\bar{X} = \frac{\sum_i^n{Xi}}{n}\)</span></p>
 <p>If we wanted to break these steps down in R to compute the mean for the sequence 1 to 10, it could look like this:</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">a</span> <span class="kw">&lt;-</span> <span class="fl">1</span>:<span class="fl">10</span> <span class="co"># create a vector</span>
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">a</span> <span class="kw">&lt;-</span> <span class="fl">1</span>:<span class="fl">10</span> <span class="co"># create a vector</span>
 <span class="no">sum_a</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">a</span>) <span class="co"># store the sum</span>
 <span class="no">length_a</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">a</span>) <span class="co"># store the length (n)</span>
 <span class="no">mean_a</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">a</span>)/<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">a</span>) <span class="co"># store the sum/n</span>
 <span class="no">mean_a</span> <span class="co"># report the mean</span>
 <span class="co">#&gt; [1] 5.5</span></pre></body></html></div>
 <p>How would you write your own custom version of the mean function? Here are a few examples:</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="co"># A long-form mean function that shows each step</span>
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="co"># A long-form mean function that shows each step</span>
 <span class="no">my_mean</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">x</span>) {
   <span class="no">sum_x</span>    <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">x</span>) <span class="co"># store the sum</span>
   <span class="no">length_x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">x</span>) <span class="co"># store the length (n)</span>
@@ -187,7 +257,7 @@
 <span class="fu">my_mean</span>(<span class="fl">1</span>:<span class="fl">10</span>)
 <span class="co">#&gt; [1] 5.5</span></pre></body></html></div>
 <p>The above example is “long” because it writes out each step of computing the mean on each line. Sometimes it is desirable to make the steps in your function clear and easy to follow. It is also possible and sometimes desirable to rewrite the function so it accomplishes the same steps in a short number of lines of code. Below I show an example of systematically rewriting the above function to make it take fewer lines of code. We will see that the <code><a href="https://rdrr.io/r/base/function.html">return()</a></code> statement is not necessary, and that the <code>{}</code> are not necessary if the function can be written on one line.</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="co"># return() is not necessary if the function ends with a</span>
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="co"># return() is not necessary if the function ends with a</span>
 <span class="co"># variable name being printed</span>
 <span class="no">my_mean</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">x</span>) {
   <span class="no">sum_x</span>    <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">x</span>) <span class="co"># store the sum</span>
@@ -229,20 +299,20 @@
 <a href="#problem-1-demonstrate-that-the-mean-is-the-point-from-which-the-sum-of-the-deviations-is-0-" class="anchor"></a>Problem 1: Demonstrate that the mean is the point from which the sum of the deviations is 0.</h2>
 <p>We learned that the mean of a set of numbers is the point where the sum of the deviations equal 0. Our problem is to use R to demonstrate this property of the mean. How can we do that?</p>
 <p>Let’s break down the steps. We need some numbers:</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">scores</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">64</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">3</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">scores</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">64</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">3</span>)</pre></body></html></div>
 <p>We need to be able to compute the sum of the deviations. That is we wish to compute the differences between one number (which is going to be the mean), and all of the numbers in our set. These are the deviations. Then we want to add them all up to arrive at the sum of the deviations.</p>
 <p>How can we find the deviations between the numbers in <code>scores</code>, and some number of our choice? Let’s pick the number 5. It turns out that we can simply subtract 5 from <code>scores</code>. And we will produce a vector of differences or deviations</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">scores</span>-<span class="fl">5</span>
+<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">scores</span>-<span class="fl">5</span>
 <span class="co">#&gt;  [1] -4 59  0 -1 -2 -1  0  1  2  3 -2</span></pre></body></html></div>
 <p>Then, we can find the sum:</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">scores</span>-<span class="fl">5</span>)
+<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">scores</span>-<span class="fl">5</span>)
 <span class="co">#&gt; [1] 55</span></pre></body></html></div>
 <p>Notice that the sum of the deviations (between the numbers in <code>scores</code> and 5) does not equal 0. So, Clearly, the mean of our numbers must not be 5. The mean is the value that would cause the deviations to sum to 0.</p>
 <div id="approximating-the-mean" class="section level3">
 <h3 class="hasAnchor">
 <a href="#approximating-the-mean" class="anchor"></a>Approximating the mean</h3>
 <p>We could very quickly show that the mean of <code>scores</code> causes the deviations to sum to 0. For example, the mean is 10, and the sum of the deviations between the scores and the mean is 0.</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">scores</span> <span class="co"># the scores</span>
+<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">scores</span> <span class="co"># the scores</span>
 <span class="co">#&gt;  [1]  1 64  5  4  3  4  5  6  7  8  3</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">scores</span>) <span class="co"># the mean</span>
@@ -255,7 +325,7 @@
 <span class="co">#&gt; [1] 0</span></pre></body></html></div>
 <p>But, let’s use R to approximate the value of the mean by trying out different values, rather than by computing the mean first. For example, we previously tried a 5, and the sum of the deviations was not 0. What if we tried a bunch of numbers, say from the lowest number (1) to the highest number (64)? Each time we could compute the deviations, and the sum of the deviations. We could record the outcome for each test. Then we could look out our results and see which of the numbers comes closest to creating a sum of deviations that equals 0. This will require 64 individual tests, and that is too much do to by hand. Fortunately, we can use R to accomplish these goals very quickly.</p>
 <p>Basically, this is this the process of what I want to do…but I don’t want to write 64 lines of code either…</p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">scores</span>-<span class="fl">1</span>)
+<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">scores</span>-<span class="fl">1</span>)
 <span class="co">#&gt; [1] 99</span>
 <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">scores</span>-<span class="fl">2</span>)
 <span class="co">#&gt; [1] 88</span>
@@ -269,7 +339,7 @@
 <span class="co">#&gt; [1] 44</span>
 <span class="co">## and so on to 64</span></pre></body></html></div>
 <p>If we want to repeatedly apply a similar computation in R, remember we can use a <code>for</code> loop. We will test all of the integers between the smallest value and largest value. So, we first create a sequence of those numbers called <code>numbers_to_test</code>. And, then we use a loop to compute the sum of deviations between the scores and each of the test numbers.</p>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(<span class="no">scores</span>)
+<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(<span class="no">scores</span>)
 <span class="co">#&gt; [1] 1</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="no">scores</span>)
 <span class="co">#&gt; [1] 64</span>
@@ -292,18 +362,18 @@
 <h3 class="hasAnchor">
 <a href="#plotting-the-results" class="anchor"></a>Plotting the results</h3>
 <p>Second, we could visualize the sum of the deviations. We could quickly do that with the <code><a href="https://rdrr.io/r/base/plot.html">plot()</a></code> function.</p>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">sum_deviations</span>)</pre></body></html></div>
-<p><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
+<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">sum_deviations</span>)</pre></body></html></div>
+<p><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
 <p>We are looking for the value on the x-axis that causes the sum of the deviations on the y-axis to be closest to 0. One way to help locate this value could be to look at the absolute values. Absolute values remove the negative (-) sign from numbers, leaving everything positive. You can convert to absolute values in R using <code><a href="https://rdrr.io/r/base/MathFun.html">abs()</a></code></p>
 <p>Now, it is easy to see that 10 produces the sum of deviations closest to 0 (in this case it produces a value of 0, because 10 is also the mean).</p>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="no">sum_deviations</span>))</pre></body></html></div>
-<p><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
+<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="no">sum_deviations</span>))</pre></body></html></div>
+<p><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-17-1.png" width="700"></p>
 </div>
 <div id="locating-the-result-using-which" class="section level3">
 <h3 class="hasAnchor">
 <a href="#locating-the-result-using-which" class="anchor"></a>Locating the result using which()</h3>
 <p>Finally, we could use other R functions to help us compute the answer. For example, we could use the <code><a href="https://rdrr.io/r/base/which.html">which()</a></code> function. This function can be used to determine the indices or position of “logically” obtained values in a vector. Is a long way of saying we want R to tell us which position in the vector contains the 0</p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="co">#find the positions in vector that equal 0</span>
+<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="co">#find the positions in vector that equal 0</span>
 <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span>(<span class="no">sum_deviations</span> <span class="kw">==</span> <span class="fl">0</span>)
 <span class="co">#&gt; [1] 10</span>
 
@@ -320,7 +390,7 @@
 <a href="#minor-details" class="anchor"></a>Minor details</h3>
 <p>The above approach worked pretty well. By a simulation process, we found that 10 produced a sum of deviations that equaled 0. None of the other numbers produced a sum of deviations that equaled 0. However, our example code won’t work very well for other sets of numbers.</p>
 <p>For example, if we used the set of number from 1 to 20, where the mean is 10.5, we find that none of the sums of deviations ever get to 0 (that’s because we are only testing integers between 1 and 20). And, our <code><a href="https://rdrr.io/r/base/which.html">which()</a></code> function will never find a number that is exactly equal to 0.</p>
-<div class="sourceCode" id="cb17"><html><body><pre class="r">
+<div class="sourceCode" id="cb20"><html><body><pre class="r">
 <span class="no">scores</span> <span class="kw">&lt;-</span> <span class="fl">1</span>:<span class="fl">20</span>
 <span class="no">numbers_to_test</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(<span class="no">scores</span>):<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="no">scores</span>)
 
@@ -335,7 +405,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span>(<span class="no">sum_deviations</span> <span class="kw">==</span> <span class="fl">0</span>)
 <span class="co">#&gt; integer(0)</span></pre></body></html></div>
 <p>Here, we need to modify the comparison in the <code><a href="https://rdrr.io/r/base/which.html">which()</a></code> function to return “approximate” numbers that give the sums of deviations closest to zero.</p>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="no">sum_deviations</span>) <span class="kw">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="no">sum_deviations</span>)))
+<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="no">sum_deviations</span>) <span class="kw">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span>(<span class="no">sum_deviations</span>)))
 <span class="co">#&gt; [1] 10 11</span></pre></body></html></div>
 </div>
 </div>

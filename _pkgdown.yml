@@ -26,6 +26,7 @@ navbar:
     - home
     - Syllabus
     - articles
+    - resources
     - slides
     right:
     - github
@@ -45,6 +46,9 @@ navbar:
         href: articles/Getting_Started.html
       - text: Lab 1 Basics
         href: articles/Lab1_Basics.html
+    resources:
+      text: R resources
+      href: articles/course_docs/resources.html
     reference:
       text:
       href: reference/index.html

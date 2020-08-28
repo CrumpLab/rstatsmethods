@@ -10,19 +10,59 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  message = FALSE,
+  warning = FALSE
 )
 ```
 
 ## Reading
 
-Vokey & Allen, Chapters 2 & 3
+Vokey & Allen, Chapters 2 & 3 on descriptive statistics, including measures of central tendency (e.g., means) and dispersion (variances).
 
 ## Overview
 
-This lab looks at basic descriptive statistics, including measures of central tendency (e.g., means) and dispersion (variances). Data often involves large sets of numbers, and descriptive statistics are used to provide convenient summaries of the data sets. Central tendency statistics usually give numbers that are representative values of the data (what most of the numbers are like). Dispersion statistics usually give numbers that describe differences between the numbers in the set. 
+General note, I am trying to find a consistent way to structure the lab content. In this lab I adopt a structure that splits the lab between **conceptual** and **practical** parts. In conceptual sections we will use R to demonstrate and reinforce concepts about statistics. In practical sections we will use R for data analysis.
 
-## Base R descriptive statistics functions
+- Conceptual Section: Using R to demonstrate properties of the mean
+- Practical Section: 
+  - importing data
+  - calculating means or other descriptive statistics
+  - graphing means with ggplot2
+  
+## Means Demo
+
+This a quick piece of example code showing some steps to calculate and graph means from a data set in R using the [tidyverse](https://www.tidyverse.org). You will need to install the tidyverse libraries on your system before you can run the code below:
+
+```{r, eval=FALSE}
+install.packages("tidyverse")
+```
+
+```{r}
+# load libraries
+library(dplyr)
+library(ggplot2)
+
+# chickwts is a built in data set
+# with chick weights by feed
+
+# calculate means for each feed type
+means_df <- chickwts %>%
+  group_by(feed) %>%
+  summarize(means = mean(weight))
+
+# print table of means
+knitr::kable(means_df)
+
+# plot the means
+ggplot(means_df, aes(x=feed, y=means)) +
+  geom_bar(stat="identity")
+```
+
+
+
+
+### Base R descriptive statistics functions
 
 Base R comes with functions for many common descriptive statistics. In general, these functions take a vector of number as an input, and return the statistic as an output. Here are some examples computing statistics on the sequence of integers from 1 to 10.
 
@@ -37,33 +77,25 @@ var(a) # sample variance (n-1)
 
 At the same time, base R does not have existing functions for every descriptive statistic, or custom descriptive statistics that you might want to make yourself. For example, there is no mode function. You would have to find another package with a mode function, or write your own.
 
-In the following sections we will learn how to write our own functions for descriptive statistics, and we will use R to demonstrate concepts about these statistics. Descriptive statistics are typically applied to data, however to keep things simple we will be applying them to short sets of numbers that we define. This will help us check our work. 
+## Concepts I: Demonstrating properties of the arithmetic mean in R
 
-As we will see in later labs, it is possible to generate or sample numbers from distributions in R. So, along with real data, we will often use simulated data. Here is a quick example of generating numbers from a normal distribution, plotting them, and calculating some descriptives.
+In this section we will:
 
-```{r}
-# sample 50 numbers from normal distribution
-sample_numbers <- rnorm(n= 50, mean = 0, sd = 1)
+1. use the built in `mean()` function
+2. write our own mean function
+3. conduct a simulation in R to demonstrate that the mean is the only number that causes the sum of the deviations from the mean to equal zero.
 
-#show a histogram of the sample
-hist(sample_numbers)
-
-mean(sample_numbers)
-sd(sample_numbers)
-```
-
-## Central Tendency
-
-### Arithmetic Mean
-
-We have seen already that the arithmetic mean can be computed using the `mean()` mean function. The mean function takes a vector of number as an input and returns the arithmetic mean. Here are some examples:
+We can use the `mean()` function to calculate arithmetic means in R. These examples show calculating means of different vectors inputted to the mean function.
 
 ```{r}
 mean(1:10)
-
-a <- c(1,2,3,4,5,6,7,8,9,10)
-mean(a)
+mean(c(1,2,3))
+mean(chickwts$weight)
 ```
+
+In order to calculate means we need a set of numbers to start with. In a research context, the sets of numbers will be data points from a research project. And, we will learn throughout this course how to input real data, manipulate it, and calculate descriptive and inferential statistics. However, in this section, we will use R to create sets of numbers, rather than input data. 
+
+### Arithmetic Mean
 
 The mean is the sum of the numbers, divided by the number of numbers:
 
@@ -78,6 +110,8 @@ length_a <- length(a) # store the length (n)
 mean_a <- sum(a)/length(a) # store the sum/n
 mean_a # report the mean
 ```
+
+### Writing a custom mean function
 
 How would you write your own custom version of the mean function? Here are a few examples:
 
@@ -129,7 +163,7 @@ my_mean <- function(x) sum(x)/length(x)
 my_mean(1:10)
 ```
 
-## Problem 1: Demonstrate that the mean is the point from which the sum of the deviations is 0.
+### Demonstrate that the mean is the point from which the sum of the deviations is 0.
 
 We learned that the mean of a set of numbers is the point where the sum of the deviations equal 0. Our problem is to use R to demonstrate this property of the mean. How can we do that?
 
@@ -155,7 +189,7 @@ sum(scores-5)
 
 Notice that the sum of the deviations (between the numbers in `scores` and 5) does not equal 0. So, Clearly, the mean of our numbers must not be 5. The mean is the value that would cause the deviations to sum to 0.
 
-### Approximating the mean 
+### Simulations to approximate the mean 
 
 We could very quickly show that the mean of `scores` causes the deviations to sum to 0. For example, the mean is 10, and the sum of the deviations between the scores and the mean is 0. 
 
@@ -169,7 +203,7 @@ scores-mean(scores) #the vector of deviations from the mean
 sum(scores-mean(scores)) # the sum
 ```
 
-But, let's use R to approximate the value of the mean by trying out different values, rather than by computing the mean first. For example, we previously tried a 5, and the sum of the deviations was not 0. What if we tried a bunch of numbers, say from the lowest number (1) to the highest number (64)? Each time we could compute the deviations, and the sum of the deviations. We could record the outcome for each test. Then we could look out our results and see which of the numbers comes closest to creating a sum of deviations that equals 0. This will require 64 individual tests, and that is too much do to by hand. Fortunately, we can use R to accomplish these goals very quickly.
+Instead, let's use R to approximate the value of the mean by trying out different values, rather than by computing the mean first. For example, we previously tried a 5, and the sum of the deviations was not 0. What if we tried a bunch of numbers, say from the lowest number (1) to the highest number (64)? Each time we could compute the deviations, and the sum of the deviations. We could record the outcome for each test. Then we could look at our results and see which of the numbers comes closest to creating a sum of deviations that equals 0. This will require 64 individual tests, and that is too much do to by hand. Fortunately, we can use R to accomplish these goals very quickly.
 
 Basically, this is this the process of what I want to do...but I don't want to write 64 lines of code either...
 
@@ -197,7 +231,10 @@ for(i in numbers_to_test) {
 
 sum_deviations
 ```
-We just computed 64 sums of deviations, and the results are displayed above. Our question was to approximate the mean, by finding a value that produces a sum of deviations closest to 0. Let's discuss three ways to get at the answer. First, we could look at the above sums and see that the 10th value is a 0, this means that the number 10 produced the sum of deviations closest to 0 (equaling 0 because 10 is the mean).
+We just computed our first simulation and produced these 64 sums of deviations, displayed above. Our question was to approximate the mean, by finding a value that produces a sum of deviations closest to 0. A final step is to evaluate the results of our simulation to answer the question.
+
+
+Let's discuss three ways to get at the answer. First, we could look at the above sums and see that the 10th value is a 0, this means that the number 10 produced the sum of deviations closest to 0 (equaling 0 because 10 is the mean).
 
 ### Plotting the results
 
@@ -256,8 +293,41 @@ Here, we need to modify the comparison in the `which()` function to return "appr
 which(abs(sum_deviations) == min(abs(sum_deviations)))
 ```
 
+### Advanced Example: Writing a function for our demonstration
+
+In this example I show how the above simulation could be written as a function. This function could then be used to approximate a mean for any set of scores, and test values.
+
+```{r}
+approximate_mean <- function(scores,test_sequence){
+  sum_deviations <- c()
+  for(i in 1:length(test_sequence)){
+    sum_deviations[i] <- sum(scores-test_sequence[i])
+  }
+  locate_index <- which(abs(sum_deviations) == min(abs(sum_deviations)))
+  test_sequence[locate_index]
+}
+
+a <- c(1,4,3,2,4,3,5,4,6,5,7,6,8,7,9,8,7,6,7,6,5)
+b <- seq(0,10,.1)
+approximate_mean(a,b)
+
+#actual mean
+mean(a)
+```
+
+## Practical I: Inputting real data and calculating descriptive statistics with tidyverse
+
+These practical examples will gloss over many important details that we will cover throughout the semester, but the example code is enough to get you started. We will be following a `tidyverse` approach, which minimally involves 
+  1. Importing data into a data.frame or similar (tibble, data.table)
+  2. "Wrangling" the data into a desired format for analysis
+  3. Applying calculations to the data
+  
+### Importing Data
+
+First, we need to have some "real data" to import. [Download this zip file](https://crumplab.github.io/psyc7709Lab/downloads/open_data.zip). It contains a folder `open_data`, which several data files taken from published psychology papers (whose authors made their data publicly available).
 
 
+## Practial II: Plotting the means with ggplot2
 
 ## Lab 2 Generalization Assignment
 
