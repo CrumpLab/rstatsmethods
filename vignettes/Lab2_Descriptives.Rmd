@@ -24,8 +24,8 @@ Vokey & Allen, Chapters 2 & 3 on descriptive statistics, including measures of c
 
 General note, I am trying to find a consistent way to structure the lab content. In this lab I adopt a structure that splits the lab between **conceptual** and **practical** parts. In conceptual sections we will use R to demonstrate and reinforce concepts about statistics. In practical sections we will use R for data analysis.
 
-- Conceptual Section: Using R to demonstrate properties of the mean
-- Practical Section: 
+- Conceptual Section I: Using R to demonstrate properties of the mean
+- Practical Sections I and II: 
   - importing data
   - calculating means or other descriptive statistics
   - graphing means with ggplot2
@@ -318,7 +318,7 @@ mean(a)
 ## Practical I: Inputting real data and calculating descriptive statistics with tidyverse
 
 These practical examples will gloss over many important details that we will cover throughout the semester, but the example code is enough to get you started. We will be following a `tidyverse` approach, which minimally involves 
-  1. Importing data into a data.frame or similar (tibble, data.table)
+  1. Importing data into a `data.frame` or similar (tibble, data.table)
   2. "Wrangling" the data into a desired format for analysis
   3. Applying calculations to the data
   
@@ -326,8 +326,144 @@ These practical examples will gloss over many important details that we will cov
 
 First, we need to have some "real data" to import. [Download this zip file](https://crumplab.github.io/psyc7709Lab/downloads/open_data.zip). It contains a folder `open_data`, which several data files taken from published psychology papers (whose authors made their data publicly available).
 
+In order to follow along with this example, unzip the file, then copy or move the `open_data` folder into your R project folder. The `open_data` folder should be in the same R project folder as the .Rmd document you are using for this lab.
 
-## Practial II: Plotting the means with ggplot2
+We will use the gapminder data set, which includes measures on life expectancy, population, and gdp per capita, as a function of year, country, and continent. First, we load the `gapminder.csv` file (csv stands for comma separated value) using the `read.table()` function.
+
+```{r}
+gapminder_data <- read.table("open_data/gapminder.csv", 
+                             sep = ",",
+                             header = TRUE )
+```
+
+There are many more ways to accomplish the same goal of importing data into R. We will discuss other options throughout the course.
+
+### Calculating means
+
+What is mean of each of the measures?
+
+```{r}
+mean(gapminder_data$lifeExp)
+mean(gapminder_data$pop)
+mean(gapminder_data$gdpPercap)
+```
+
+### dplyr (group_by then summarize)
+
+How can we calculate means separately as a function of the factors year, country, or continent?
+
+We will use the `dplyr` library (part of the tidyverse), and do three things:
+
+1. group the data by the levels of a factor (in this case, separate the data by different continents, using the `continent` variable)
+2. summarize the data using a mean function
+3. output a table of results
+
+```{r}
+library(dplyr)
+
+group_means <- gapminder_data %>%
+                group_by(continent) %>%
+                summarize(mean_lifeExp = mean(lifeExp))
+
+knitr::kable(group_means)
+```
+
+Change the name of the variable inside `group_by()` to change which factor you want to evaluate (e.g., enter year, or country). You can include multiple factors:
+
+```{r}
+group_means <- gapminder_data %>%
+                group_by(continent,country) %>%
+                summarize(mean_lifeExp = mean(lifeExp))
+
+knitr::kable(head(group_means))
+```
+Note, `group_means` now contains a very large data frame, I used the `head()` function when printing the table, which only prints the first five rows of the table, this is useful for previewing large tables.
+
+### More dplyr examples
+
+It is possible to add multiple functions inside summarize. Here we calculate the mean, median, standard deviation, and variance for Life Expectancy as a function of continent.
+
+```{r}
+group_means <- gapminder_data %>%
+                group_by(continent) %>%
+                summarize(mean_lifeExp = mean(lifeExp),
+                          median_lifeExp = median(lifeExp),
+                          sd_lifeExp = sd(lifeExp),
+                          var_lifeExp = var(lifeExp))
+```
+
+Note, you can even write your own custom functions and use them inside summarize.
+
+## Practical II: Plotting the means with ggplot2
+
+`ggplot2` is a powerful library for plotting and graphing in R. There are many details to using `ggplot2` and we will learn about them throughout the semester. Today, we will create bar plots and line graphs displaying means and error bars.
+
+### Bar graph 
+
+```{r}
+group_means <- gapminder_data %>%
+                group_by(continent) %>%
+                summarize(mean_lifeExp = mean(lifeExp))
+
+ggplot(group_means, aes(x = continent, y = mean_lifeExp))+
+  geom_bar(stat="identity")
+```
+
+Some options for modifying the plot:
+
+```{r}
+ggplot(group_means, aes(x = continent, y = mean_lifeExp))+
+  geom_bar(stat="identity")+
+  ylab("Mean Life Expectancy")+
+  xlab("Continent")+
+  theme_classic()+
+  ggtitle("Mean Life Expectancy by Continent")
+```
+
+### Line graph
+
+```{r, message=TRUE}
+ggplot(group_means, aes(x = continent, y = mean_lifeExp))+
+  geom_point()+
+  geom_line()
+```
+Note we get a message about adjusting the group aesthestic, and even though we asked ggplot to draw lines connecting the dots, we get a line graph. This is a good example of unexpected behavior that often requires a quick google. I copied the message the into google and found that setting `group=1` produced the lines I was expecting:
+
+```{r}
+ggplot(group_means, aes(x = continent, 
+                        y = mean_lifeExp,
+                        group = 1))+
+  geom_point()+
+  geom_line()
+
+```
+
+### Error bars
+
+It is common to present means in bar graphs or line graphs along with error bars to indicate variability around the mean. To do this with ggplot we need to calculate measures of variability for each condition, and then use those values as error bars. In this example I add a single standard deviation above and below the means as error bars.
+
+```{r}
+group_means <- gapminder_data %>%
+                group_by(continent) %>%
+                summarize(mean_lifeExp = mean(lifeExp),
+                          sd_lifeExp = sd(lifeExp))
+
+ggplot(group_means, aes(x = continent, y = mean_lifeExp))+
+  geom_bar(stat="identity") +
+  geom_errorbar(aes(ymin = mean_lifeExp - sd_lifeExp,
+                    ymax = mean_lifeExp + sd_lifeExp),
+                width = .25)
+
+ggplot(group_means, aes(x = continent, 
+                        y = mean_lifeExp,
+                        group = 1))+
+  geom_point() +
+  geom_line() +
+  geom_errorbar(aes(ymin = mean_lifeExp - sd_lifeExp,
+                    ymax = mean_lifeExp + sd_lifeExp),
+                width = .25)
+```
+
 
 ## Lab 2 Generalization Assignment
 
@@ -337,20 +473,38 @@ In general, labs will present a discussion of problems and issues with example c
 
 Your assignment instructions are the following:
 
-1. Make a new R project (initialized as a git repository) called "StatsLab1'.
-2. Create a new R Markdown document called "Lab1.Rmd"
-3. Upload your StatsLab1 R project to Github.com using Github Desktop
-4. Use Lab1.Rmd to show your work attempting to solve the following generalization problems. Commit your work regularly so that it appears on your Github repository.
-5. Submit your github repository link for Lab 1 on blackboard.
-6. There are six problems to solve, each worth 1 point.
-
-Refer to the [getting started](https://crumplab.github.io/psyc7709Lab/articles/Getting_Started.html) videos for examples of creating a new R project and uploading it to Github. If you have problems with these steps and they have not been resolved in our first class, then please email me about them, or create an issue on the course github page <https://github.com/CrumpLab/psyc7709Lab/issues>
+1. Work inside the R project "StatsLab1" that you made for lab 1.
+2. Create a new R Markdown document called "Lab2.Rmd"
+3. Use Lab2.Rmd to show your work attempting to solve the following generalization problems. Commit your work regularly so that it appears on your Github repository.
+4. Submit your github repository link for Lab 2 on blackboard.
+5. There are six problems to solve, each worth 1 point.
 
 ### Problems
 
-1. Demonstrate that the mean minimizes the sum of the squared deviations from the mean.
+1. Use R to demonstrate that the mean minimizes the sum of the squared deviations from the mean. Accomplish the following steps:
 
+a. Produce a sample of at least 10 or more different numbers
+b. Produce a simulation following the example from the concepts section
+c. Use your simulation to test a range of numbers smaller and larger than the mean to show that the mean minimizes the sum of the squared deviations from the mean.
+d. Plot your results.
 
+2. Write a custom R function for any one of the following descriptive statistics: median, mode, standard deviation, variance. Demonstrate that it produces the same value as the base R function given some set of numbers.
+
+3. Imagine the same instructor taught a morning, afternoon, and evening section of the same course. And, the average scores for each section on a midterm were 85% for the morning, 90% for the afternoon, and 93% for the evening sections. Create a data.frame representing these means for each section. Then, use ggplot2 to plot the means as bar graph. (hint you will need one vector for the class sections, and one vector for the means. Then you can combine them into a data.frame before plotting them)
+
+4. Imagine there were two instructors, and they each taught different sections in the morning, afternoon and evening. The midterm averages for instructor 1 were 75%, 78%, and 80% in the morning, afternoon, and evening. The midterm averages for instructor 2 were 88%, 76%, and 63% for the morning, afternoon, and evening. Create a data.frame representing the means, the time of day, and the instructors (three columns). Then plot data.frame using ggplot2 as a bar graph.
+
+5. Import the `WHR2018.csv` data file, containing measure from the World Happiness report from 2018. For the years 2010 to 2015, what was the mean "healthy life expectancy at birth" for each year (find the mean for each year across countries). Show your results in a table and in a graph using ggplot.
+
+6. Repeat the above, except in addition to calculating the mean for each year, also calculate the standard deviation for "healthy life expectancy at birth" for each year. Then, add error bars to your graph using the +1 and -1 standard deviations from the means for each year.
+
+### Advanced
+
+This problem is not officially assigned for points. I'm placing it here for your consideration.
+
+The mean minimizes the sum of the squared deviations. The median minimizes the sum of the absolute deviations. Demonstrate these properties by simulation in R.
+
+Create a set of numbers where the mean and median are different. Then show a plot of values around the mean and the median showing that the mean minimizes the sum of the squared deviations. Finally, create a plot of values around the mean and the median showing that the median minimizes the sum of the absolute deviations.
 
 
 

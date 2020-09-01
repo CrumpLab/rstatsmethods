@@ -127,8 +127,8 @@
 <a href="#overview" class="anchor"></a>Overview</h2>
 <p>General note, I am trying to find a consistent way to structure the lab content. In this lab I adopt a structure that splits the lab between <strong>conceptual</strong> and <strong>practical</strong> parts. In conceptual sections we will use R to demonstrate and reinforce concepts about statistics. In practical sections we will use R for data analysis.</p>
 <ul>
-<li>Conceptual Section: Using R to demonstrate properties of the mean</li>
-<li>Practical Section:
+<li>Conceptual Section I: Using R to demonstrate properties of the mean</li>
+<li>Practical Sections I and II:
 <ul>
 <li>importing data</li>
 <li>calculating means or other descriptive statistics</li>
@@ -433,16 +433,199 @@
 <div id="practical-i-inputting-real-data-and-calculating-descriptive-statistics-with-tidyverse" class="section level2">
 <h2 class="hasAnchor">
 <a href="#practical-i-inputting-real-data-and-calculating-descriptive-statistics-with-tidyverse" class="anchor"></a>Practical I: Inputting real data and calculating descriptive statistics with tidyverse</h2>
-<p>These practical examples will gloss over many important details that we will cover throughout the semester, but the example code is enough to get you started. We will be following a <code>tidyverse</code> approach, which minimally involves 1. Importing data into a data.frame or similar (tibble, data.table) 2. “Wrangling” the data into a desired format for analysis 3. Applying calculations to the data</p>
+<p>These practical examples will gloss over many important details that we will cover throughout the semester, but the example code is enough to get you started. We will be following a <code>tidyverse</code> approach, which minimally involves 1. Importing data into a <code>data.frame</code> or similar (tibble, data.table) 2. “Wrangling” the data into a desired format for analysis 3. Applying calculations to the data</p>
 <div id="importing-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#importing-data" class="anchor"></a>Importing Data</h3>
 <p>First, we need to have some “real data” to import. <a href="https://crumplab.github.io/psyc7709Lab/downloads/open_data.zip">Download this zip file</a>. It contains a folder <code>open_data</code>, which several data files taken from published psychology papers (whose authors made their data publicly available).</p>
+<p>In order to follow along with this example, unzip the file, then copy or move the <code>open_data</code> folder into your R project folder. The <code>open_data</code> folder should be in the same R project folder as the .Rmd document you are using for this lab.</p>
+<p>We will use the gapminder data set, which includes measures on life expectancy, population, and gdp per capita, as a function of year, country, and continent. First, we load the <code>gapminder.csv</code> file (csv stands for comma separated value) using the <code><a href="https://rdrr.io/r/utils/read.table.html">read.table()</a></code> function.</p>
+<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="no">gapminder_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span>(<span class="st">"open_data/gapminder.csv"</span>,
+                             <span class="kw">sep</span> <span class="kw">=</span> <span class="st">","</span>,
+                             <span class="kw">header</span> <span class="kw">=</span> <span class="fl">TRUE</span> )</pre></body></html></div>
+<p>There are many more ways to accomplish the same goal of importing data into R. We will discuss other options throughout the course.</p>
+</div>
+<div id="calculating-means" class="section level3">
+<h3 class="hasAnchor">
+<a href="#calculating-means" class="anchor"></a>Calculating means</h3>
+<p>What is mean of each of the measures?</p>
+<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">gapminder_data</span>$<span class="no">lifeExp</span>)
+<span class="co">#&gt; [1] 59.47444</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">gapminder_data</span>$<span class="no">pop</span>)
+<span class="co">#&gt; [1] 29601212</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">gapminder_data</span>$<span class="no">gdpPercap</span>)
+<span class="co">#&gt; [1] 7215.327</span></pre></body></html></div>
+</div>
+<div id="dplyr-group_by-then-summarize" class="section level3">
+<h3 class="hasAnchor">
+<a href="#dplyr-group_by-then-summarize" class="anchor"></a>dplyr (group_by then summarize)</h3>
+<p>How can we calculate means separately as a function of the factors year, country, or continent?</p>
+<p>We will use the <code>dplyr</code> library (part of the tidyverse), and do three things:</p>
+<ol style="list-style-type: decimal">
+<li>group the data by the levels of a factor (in this case, separate the data by different continents, using the <code>continent</code> variable)</li>
+<li>summarize the data using a mean function</li>
+<li>output a table of results</li>
+</ol>
+<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)
+
+<span class="no">group_means</span> <span class="kw">&lt;-</span> <span class="no">gapminder_data</span> <span class="kw">%&gt;%</span>
+                <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">continent</span>) <span class="kw">%&gt;%</span>
+                <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="kw">mean_lifeExp</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">lifeExp</span>))
+
+<span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="no">group_means</span>)</pre></body></html></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">continent</th>
+<th align="right">mean_lifeExp</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Africa</td>
+<td align="right">48.86533</td>
+</tr>
+<tr class="even">
+<td align="left">Americas</td>
+<td align="right">64.65874</td>
+</tr>
+<tr class="odd">
+<td align="left">Asia</td>
+<td align="right">60.06490</td>
+</tr>
+<tr class="even">
+<td align="left">Europe</td>
+<td align="right">71.90369</td>
+</tr>
+<tr class="odd">
+<td align="left">Oceania</td>
+<td align="right">74.32621</td>
+</tr>
+</tbody>
+</table>
+<p>Change the name of the variable inside <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> to change which factor you want to evaluate (e.g., enter year, or country). You can include multiple factors:</p>
+<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="no">group_means</span> <span class="kw">&lt;-</span> <span class="no">gapminder_data</span> <span class="kw">%&gt;%</span>
+                <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">continent</span>,<span class="no">country</span>) <span class="kw">%&gt;%</span>
+                <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="kw">mean_lifeExp</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">lifeExp</span>))
+
+<span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">group_means</span>))</pre></body></html></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">continent</th>
+<th align="left">country</th>
+<th align="right">mean_lifeExp</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Africa</td>
+<td align="left">Algeria</td>
+<td align="right">59.03017</td>
+</tr>
+<tr class="even">
+<td align="left">Africa</td>
+<td align="left">Angola</td>
+<td align="right">37.88350</td>
+</tr>
+<tr class="odd">
+<td align="left">Africa</td>
+<td align="left">Benin</td>
+<td align="right">48.77992</td>
+</tr>
+<tr class="even">
+<td align="left">Africa</td>
+<td align="left">Botswana</td>
+<td align="right">54.59750</td>
+</tr>
+<tr class="odd">
+<td align="left">Africa</td>
+<td align="left">Burkina Faso</td>
+<td align="right">44.69400</td>
+</tr>
+<tr class="even">
+<td align="left">Africa</td>
+<td align="left">Burundi</td>
+<td align="right">44.81733</td>
+</tr>
+</tbody>
+</table>
+<p>Note, <code>group_means</code> now contains a very large data frame, I used the <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> function when printing the table, which only prints the first five rows of the table, this is useful for previewing large tables.</p>
+</div>
+<div id="more-dplyr-examples" class="section level3">
+<h3 class="hasAnchor">
+<a href="#more-dplyr-examples" class="anchor"></a>More dplyr examples</h3>
+<p>It is possible to add multiple functions inside summarize. Here we calculate the mean, median, standard deviation, and variance for Life Expectancy as a function of continent.</p>
+<div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="no">group_means</span> <span class="kw">&lt;-</span> <span class="no">gapminder_data</span> <span class="kw">%&gt;%</span>
+                <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">continent</span>) <span class="kw">%&gt;%</span>
+                <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="kw">mean_lifeExp</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">lifeExp</span>),
+                          <span class="kw">median_lifeExp</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span>(<span class="no">lifeExp</span>),
+                          <span class="kw">sd_lifeExp</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span>(<span class="no">lifeExp</span>),
+                          <span class="kw">var_lifeExp</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span>(<span class="no">lifeExp</span>))</pre></body></html></div>
+<p>Note, you can even write your own custom functions and use them inside summarize.</p>
 </div>
 </div>
-<div id="practial-ii-plotting-the-means-with-ggplot2" class="section level2">
+<div id="practical-ii-plotting-the-means-with-ggplot2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#practial-ii-plotting-the-means-with-ggplot2" class="anchor"></a>Practial II: Plotting the means with ggplot2</h2>
+<a href="#practical-ii-plotting-the-means-with-ggplot2" class="anchor"></a>Practical II: Plotting the means with ggplot2</h2>
+<p><code>ggplot2</code> is a powerful library for plotting and graphing in R. There are many details to using <code>ggplot2</code> and we will learn about them throughout the semester. Today, we will create bar plots and line graphs displaying means and error bars.</p>
+<div id="bar-graph" class="section level3">
+<h3 class="hasAnchor">
+<a href="#bar-graph" class="anchor"></a>Bar graph</h3>
+<div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="no">group_means</span> <span class="kw">&lt;-</span> <span class="no">gapminder_data</span> <span class="kw">%&gt;%</span>
+                <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">continent</span>) <span class="kw">%&gt;%</span>
+                <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="kw">mean_lifeExp</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">lifeExp</span>))
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">group_means</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">continent</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">mean_lifeExp</span>))+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span>(<span class="kw">stat</span><span class="kw">=</span><span class="st">"identity"</span>)</pre></body></html></div>
+<p><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-26-1.png" width="700"></p>
+<p>Some options for modifying the plot:</p>
+<div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">group_means</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">continent</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">mean_lifeExp</span>))+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span>(<span class="kw">stat</span><span class="kw">=</span><span class="st">"identity"</span>)+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Mean Life Expectancy"</span>)+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"Continent"</span>)+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>()+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span>(<span class="st">"Mean Life Expectancy by Continent"</span>)</pre></body></html></div>
+<p><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-27-1.png" width="700"></p>
+</div>
+<div id="line-graph" class="section level3">
+<h3 class="hasAnchor">
+<a href="#line-graph" class="anchor"></a>Line graph</h3>
+<div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">group_means</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">continent</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">mean_lifeExp</span>))+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>()+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>()
+<span class="co">#&gt; geom_path: Each group consists of only one observation. Do you need to adjust</span>
+<span class="co">#&gt; the group aesthetic?</span></pre></body></html></div>
+<p><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-28-1.png" width="700"> Note we get a message about adjusting the group aesthestic, and even though we asked ggplot to draw lines connecting the dots, we get a line graph. This is a good example of unexpected behavior that often requires a quick google. I copied the message the into google and found that setting <code>group=1</code> produced the lines I was expecting:</p>
+<div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">group_means</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">continent</span>,
+                        <span class="kw">y</span> <span class="kw">=</span> <span class="no">mean_lifeExp</span>,
+                        <span class="kw">group</span> <span class="kw">=</span> <span class="fl">1</span>))+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>()+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>()</pre></body></html></div>
+<p><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-29-1.png" width="700"></p>
+</div>
+<div id="error-bars" class="section level3">
+<h3 class="hasAnchor">
+<a href="#error-bars" class="anchor"></a>Error bars</h3>
+<p>It is common to present means in bar graphs or line graphs along with error bars to indicate variability around the mean. To do this with ggplot we need to calculate measures of variability for each condition, and then use those values as error bars. In this example I add a single standard deviation above and below the means as error bars.</p>
+<div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="no">group_means</span> <span class="kw">&lt;-</span> <span class="no">gapminder_data</span> <span class="kw">%&gt;%</span>
+                <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">continent</span>) <span class="kw">%&gt;%</span>
+                <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="kw">mean_lifeExp</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">lifeExp</span>),
+                          <span class="kw">sd_lifeExp</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span>(<span class="no">lifeExp</span>))
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">group_means</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">continent</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">mean_lifeExp</span>))+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span>(<span class="kw">stat</span><span class="kw">=</span><span class="st">"identity"</span>) +
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbar</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">ymin</span> <span class="kw">=</span> <span class="no">mean_lifeExp</span> - <span class="no">sd_lifeExp</span>,
+                    <span class="kw">ymax</span> <span class="kw">=</span> <span class="no">mean_lifeExp</span> + <span class="no">sd_lifeExp</span>),
+                <span class="kw">width</span> <span class="kw">=</span> <span class="fl">.25</span>)</pre></body></html></div>
+<p><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-30-1.png" width="700"></p>
+<div class="sourceCode" id="cb31"><html><body><pre class="r">
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">group_means</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">continent</span>,
+                        <span class="kw">y</span> <span class="kw">=</span> <span class="no">mean_lifeExp</span>,
+                        <span class="kw">group</span> <span class="kw">=</span> <span class="fl">1</span>))+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>() +
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() +
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbar</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">ymin</span> <span class="kw">=</span> <span class="no">mean_lifeExp</span> - <span class="no">sd_lifeExp</span>,
+                    <span class="kw">ymax</span> <span class="kw">=</span> <span class="no">mean_lifeExp</span> + <span class="no">sd_lifeExp</span>),
+                <span class="kw">width</span> <span class="kw">=</span> <span class="fl">.25</span>)</pre></body></html></div>
+<p><img src="Lab2_Descriptives_files/figure-html/unnamed-chunk-30-2.png" width="700"></p>
+</div>
 </div>
 <div id="lab-2-generalization-assignment" class="section level2">
 <h2 class="hasAnchor">
@@ -453,21 +636,39 @@
 <p>In general, labs will present a discussion of problems and issues with example code like above, and then students will be tasked with completing generalization assignments, showing that they can work with the concepts and tools independently.</p>
 <p>Your assignment instructions are the following:</p>
 <ol style="list-style-type: decimal">
-<li>Make a new R project (initialized as a git repository) called "StatsLab1’.</li>
-<li>Create a new R Markdown document called “Lab1.Rmd”</li>
-<li>Upload your StatsLab1 R project to Github.com using Github Desktop</li>
-<li>Use Lab1.Rmd to show your work attempting to solve the following generalization problems. Commit your work regularly so that it appears on your Github repository.</li>
-<li>Submit your github repository link for Lab 1 on blackboard.</li>
+<li>Work inside the R project “StatsLab1” that you made for lab 1.</li>
+<li>Create a new R Markdown document called “Lab2.Rmd”</li>
+<li>Use Lab2.Rmd to show your work attempting to solve the following generalization problems. Commit your work regularly so that it appears on your Github repository.</li>
+<li>Submit your github repository link for Lab 2 on blackboard.</li>
 <li>There are six problems to solve, each worth 1 point.</li>
 </ol>
-<p>Refer to the <a href="https://crumplab.github.io/psyc7709Lab/articles/Getting_Started.html">getting started</a> videos for examples of creating a new R project and uploading it to Github. If you have problems with these steps and they have not been resolved in our first class, then please email me about them, or create an issue on the course github page <a href="https://github.com/CrumpLab/psyc7709Lab/issues" class="uri">https://github.com/CrumpLab/psyc7709Lab/issues</a></p>
 </div>
 <div id="problems" class="section level3">
 <h3 class="hasAnchor">
 <a href="#problems" class="anchor"></a>Problems</h3>
 <ol style="list-style-type: decimal">
-<li>Demonstrate that the mean minimizes the sum of the squared deviations from the mean.</li>
+<li>Use R to demonstrate that the mean minimizes the sum of the squared deviations from the mean. Accomplish the following steps:</li>
 </ol>
+<ol style="list-style-type: lower-alpha">
+<li>Produce a sample of at least 10 or more different numbers</li>
+<li>Produce a simulation following the example from the concepts section</li>
+<li>Use your simulation to test a range of numbers smaller and larger than the mean to show that the mean minimizes the sum of the squared deviations from the mean.</li>
+<li>Plot your results.</li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Write a custom R function for any one of the following descriptive statistics: median, mode, standard deviation, variance. Demonstrate that it produces the same value as the base R function given some set of numbers.</p></li>
+<li><p>Imagine the same instructor taught a morning, afternoon, and evening section of the same course. And, the average scores for each section on a midterm were 85% for the morning, 90% for the afternoon, and 93% for the evening sections. Create a data.frame representing these means for each section. Then, use ggplot2 to plot the means as bar graph. (hint you will need one vector for the class sections, and one vector for the means. Then you can combine them into a data.frame before plotting them)</p></li>
+<li><p>Imagine there were two instructors, and they each taught different sections in the morning, afternoon and evening. The midterm averages for instructor 1 were 75%, 78%, and 80% in the morning, afternoon, and evening. The midterm averages for instructor 2 were 88%, 76%, and 63% for the morning, afternoon, and evening. Create a data.frame representing the means, the time of day, and the instructors (three columns). Then plot data.frame using ggplot2 as a bar graph.</p></li>
+<li><p>Import the <code>WHR2018.csv</code> data file, containing measure from the World Happiness report from 2018. For the years 2010 to 2015, what was the mean “healthy life expectancy at birth” for each year (find the mean for each year across countries). Show your results in a table and in a graph using ggplot.</p></li>
+<li><p>Repeat the above, except in addition to calculating the mean for each year, also calculate the standard deviation for “healthy life expectancy at birth” for each year. Then, add error bars to your graph using the +1 and -1 standard deviations from the means for each year.</p></li>
+</ol>
+</div>
+<div id="advanced" class="section level3">
+<h3 class="hasAnchor">
+<a href="#advanced" class="anchor"></a>Advanced</h3>
+<p>This problem is not officially assigned for points. I’m placing it here for your consideration.</p>
+<p>The mean minimizes the sum of the squared deviations. The median minimizes the sum of the absolute deviations. Demonstrate these properties by simulation in R.</p>
+<p>Create a set of numbers where the mean and median are different. Then show a plot of values around the mean and the median showing that the mean minimizes the sum of the squared deviations. Finally, create a plot of values around the mean and the median showing that the median minimizes the sum of the absolute deviations.</p>
 </div>
 </div>
   </div>
