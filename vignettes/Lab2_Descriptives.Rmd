@@ -30,6 +30,8 @@ General note, I am trying to find a consistent way to structure the lab content.
   - calculating means or other descriptive statistics
   - graphing means with ggplot2
   
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nb8rzxeGbWk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  
 ## Means Demo
 
 This a quick piece of example code showing some steps to calculate and graph means from a data set in R using the [tidyverse](https://www.tidyverse.org). You will need to install the tidyverse libraries on your system before you can run the code below:
@@ -322,6 +324,8 @@ These practical examples will gloss over many important details that we will cov
   2. "Wrangling" the data into a desired format for analysis
   3. Applying calculations to the data
   
+<iframe width="560" height="315" src="https://www.youtube.com/embed/W08mG4PfgrU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  
 ### Importing Data
 
 First, we need to have some "real data" to import. [Download this zip file](https://crumplab.github.io/psyc7709Lab/downloads/open_data.zip). It contains a folder `open_data`, which several data files taken from published psychology papers (whose authors made their data publicly available).
@@ -476,8 +480,9 @@ Your assignment instructions are the following:
 1. Work inside the R project "StatsLab1" that you made for lab 1.
 2. Create a new R Markdown document called "Lab2.Rmd"
 3. Use Lab2.Rmd to show your work attempting to solve the following generalization problems. Commit your work regularly so that it appears on your Github repository.
-4. Submit your github repository link for Lab 2 on blackboard.
-5. There are six problems to solve, each worth 1 point.
+4. **For each problem, make a note about how much of the problem you believe you can solve independently without help**. For example, if you needed to watch the help video and are unable to solve the problem on your own without copying the answers, then your note would be 0. If you are confident you can complete the problem from scratch completely on your own, your note would be 100. It is OK to have all 0s or 100s anything in between. 
+5. Submit your github repository link for Lab 2 on blackboard.
+6. There are six problems to solve, each worth 1 point.
 
 ### Problems
 
