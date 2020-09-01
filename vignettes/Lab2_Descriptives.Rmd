@@ -484,6 +484,8 @@ Your assignment instructions are the following:
 5. Submit your github repository link for Lab 2 on blackboard.
 6. There are six problems to solve, each worth 1 point.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xSLTu1Rt1Zw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ### Problems
 
 1. Use R to demonstrate that the mean minimizes the sum of the squared deviations from the mean. Accomplish the following steps:
