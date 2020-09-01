@@ -46,6 +46,8 @@ navbar:
         href: articles/Getting_Started.html
       - text: Lab 1 Basics
         href: articles/Lab1_Basics.html
+      - text: Lab 2 Descriptives
+        href: articles/Lab2_Descriptives.html
     resources:
       text: R resources
       href: articles/course_docs/resources.html
