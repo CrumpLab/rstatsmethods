@@ -1,0 +1,1128 @@
+---
+title: "Coding Reference"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Coding Reference}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This page contains minimal explanations and examples for common coding patterns in base R and tidyverse. Students can make content requests and contribute to this reference page, just leave a message on the github issues for this course repository.
+
+## Base R
+
+Base R refers to intrinsics capabilities of R that come with a fresh installation of R. No additional libraries are needed.
+
+---
+
+## Variables
+
+`a` is the variable name. `<-` is the assignment operator. In this example, `1` is being assigned into the object named `a`. 
+
+```{r}
+a <- 1
+```
+
+Variables have classes that describe their contents.
+
+```{r}
+x <- 1
+class(x)
+
+y <- "1"
+class(y)
+
+z <- TRUE
+class(z)
+```
+
+Classes allow and disallow some commands. For example, you can't add a numeric to a character:
+
+```{r, error=TRUE}
+x+y
+```
+
+Classes can be converted:
+
+```{r}
+y <- as.numeric(y)
+x+y
+```
+
+### Vectors
+
+Vectors are 1-dimensional objects that have a name, and can hold multiple elements of the same class. The number of elements in the vector is the vector length. Manipulating vectors involves creating them, and storing, retrieving, and changing elements inside of the vector.
+
+#### Vector Creation
+
+There are multiple ways to create a vector
+
+```{r}
+a <- c() # create a NULL vector
+a
+
+a <- 1:5 # assign a sequence to a name
+a
+
+a <- c(1,2,3,4,5) # assign a vector made with combine c()
+a
+
+#pre-assign an empty vector
+a <- vector(mode = "numeric", length=10)
+a
+
+a <- vector(mode = "integer", length=10)
+a
+
+a <- vector(mode = "logical", length=10)
+a
+
+a <- vector(mode = "character", length=10)
+a
+
+```
+
+`length()` returns the number of elements in the vector
+
+```{r}
+a < c(1,4,5)
+length(a)
+```
+
+
+#### Vector Combination
+
+It is possible to combine existing vectors together to make a new vector using `c()`.
+
+```{r}
+x <- 1:5
+y <- 6:10
+
+x
+y
+
+z <- c(x,y)
+z
+```
+
+However, if you attempt to combine vectors of different classes, R will throw an error, or it will coerce (convert) one of the vectors into the class of the other.
+
+```{r}
+x <- 1:5
+y <- c("a","b","c","d","e")
+
+x
+y
+
+z <- c(x,y)
+z
+```
+
+#### Vector Indexing
+
+Vector indexing is the the process of isolating specific positions or elements of a vector. Vector indexing uses the `[]` notation. 
+
+The general syntax is `vector_name[positions]`, where `vector_name` is the name of your vector, and `positions` is a vector of positions to index.
+
+```{r}
+a <- c(23,34,45,56,67,78,89)
+
+a[1] # returns the element in position 1
+
+a[1:3] # returns elements in positions 1 to 3
+
+a[c(4,5,6)]
+
+a[c(1,1,1)]
+```
+
+Logical vectors can indicate positions. In this case, elements in TRUE positions will be returned
+
+```{r}
+a <- c(45,56,78)
+
+a[c(TRUE, FALSE, FALSE)]
+
+a[c(FALSE, TRUE, FALSE)]
+
+a[c(FALSE, FALSE, TRUE)]
+```
+
+#### Vector indexing and assignment
+
+Vector indexing can also be used to assign new elements to the indexed positions.
+
+```{r}
+a <- c(45,56,78)
+a
+
+a[3] <- 100
+a
+
+a[1:3] <- "Hello"
+a
+```
+
+#### Logical indexing
+
+Vectors can be indexing using logical comparisons (see section on logic for further explanation and examples of logical comparisons).
+
+```{r}
+a <- c(1,3,2,4,3,4)
+
+a == 4 # create logical vector of positions containing 4
+
+# inserting the above into a[] finds the elements equal to 4
+a[a == 4] # elements equal to 4
+
+a[a < 4] # elements less than 4
+
+a[a <= 4] # elements less than or equal to 4
+
+a[a != 1] # elements not equal to 1
+```
+
+### Data.frame
+
+Data.frames are 2-d storage objects, like a table (or excel sheet), they have columns and rows. 
+
+```{r}
+a <- data.frame() # make an empty data.frame
+a
+class(a)
+```
+
+#### Data.frame creation
+
+A common method to create a data.frame involves adding existing vectors together. Data.frames are often also created when loading in data files that are 2-d tables. See also the section on using `dplyr` to manipulate data in dataframes. Data.frames are also similar to data.tables, and tibbles, and can usually be interchanged.
+
+```{r}
+x <- c(1,2,3)
+y <- c("a","b","c")
+z <- c(TRUE, TRUE,TRUE)
+
+a <- data.frame(x,y,z)
+a
+```
+
+`dim()` returns the number of rows and columns in the data.frame
+
+```{r}
+dim(a)
+```
+#### Indexing by column name
+
+Each column in a data.frame has a name, and can be accessed using the `$` syntax:
+
+```{r}
+names(a)
+
+a$x
+
+a$y
+
+a$z
+
+#re-name by assigning a new vector 
+names(a) <- c("new_x","Why","Zee")
+a
+
+a$new_x
+a$Why
+a$Zee
+```
+#### Indexing with `[rows,columns]`
+
+Data.frames have rows and columns, and can be indexed using `[rows,columns]` notation, where `rows` is a vector of row numbers, and `columns` is a vector of column numbers
+
+```{r}
+a
+
+a[1,] # row 1
+
+a[,1] # column 1
+
+a[1:2,] # rows 1 to 2
+
+a[,1:2] # columns 1 to 2
+
+a[1:2,1:2] #rows 1 to 2 and columns 1 to 2
+
+a[1:2,'new_x'] # Column names can be used
+
+```
+
+#### row and column binding
+
+It is possible to add more rows using `rbind()`, and add more columns using `cbind()`. 
+
+```{r}
+# row bind a copy of a to itself
+a
+a <- rbind(a,a)
+dim(a)
+
+# create a new vector, add it as a new column
+my_new <- c(1,4,3,2,4,5)
+a <- cbind(a,my_new)
+a
+```
+#### Indexing and assignment
+
+The elements in a data.frame can be re-assigned by `your_dataframe[row:position] <- new stuff`. It is generally necessary that any new elements have the same class as the original elements
+
+```{r}
+a
+
+a[,1] <- 5 #assign column 1 all 5s
+
+a$Why <- c("new","words","are","going","in","here")
+a
+
+a[6,3] <- FALSE # row 6, column 3
+a
+```
+
+#### Logical indexing
+
+It is also possible to index a data.frame with logical comparisons. For example, the following returns rows where the value in column `my_new` equals a 4
+
+```{r}
+a[a$my_new == 4,]
+```
+
+### Lists
+
+Lists are objects that can store more arbitrary elements of any class, including vectors, dataframes, and even more lists. Lists are commonly used to store results from a model, especially when the model returns many different kinds of results in different formats. 
+
+Here we create a list with three elements, a scalar, a vector, and a dataframe.
+
+```{r}
+x <- 1
+y <- c(1,2,3,4,5)
+z <- data.frame(a= 1:5, b=1:5, c=1:5)
+my_list <- list(x, y, z)
+
+my_list
+```
+
+#### List indexing
+
+Access elements in the list using `[[]]`
+
+```{r}
+my_list[[1]]
+
+my_list[[2]]
+
+my_list[[3]]
+```
+
+#### Named elements
+
+Elements in a list can be given names, and indexed by name:
+
+```{r}
+x <- 1
+y <- c(1,2,3,4,5)
+z <- data.frame(a= 1:5, b=1:5, c=1:5)
+my_list <- list(ex = x, why = y,zee=  z)
+
+my_list
+
+my_list$ex
+my_list$why
+my_list$zee
+
+my_list[["ex"]]
+my_list[["why"]]
+my_list[["zee"]]
+
+```
+
+#### Add/Remove elements in lists
+
+It is possible to assign new names elements to a list, e.g.:
+
+```{r}
+my_list[["new_thing"]] <- 12345
+
+my_list
+
+#set an element to NULL removes it
+my_list[["zee"]] <- NULL
+
+my_list
+```
+
+## Logic
+
+Logic statements are used to compare two things, or two sets of things. The output of comparison is a TRUE or FALSE statment. If many things are being compared at once, the output could be many TRUE or FALSE statements for each comparison
+
+### equal to ==
+
+```{r}
+1==1 # is 1 equal to 1?
+1==2 # is 1 equal to 2?
+
+c(1,2,3) == c(2,1,3) # compares each element with each element
+1 == c(2,1,3)
+```
+
+### not equal to !=
+
+```{r}
+1!=1 # is 1 equal to 1?
+1!=2 # is 1 equal to 2?
+
+c(1,2,3) != c(2,1,3) # compares each element with each element
+1 != c(2,1,3)
+```
+
+### Greater than/ less than 
+
+```{r}
+
+1 > 1 # is 1 greater than 1?
+5 > 1 # is 5 greater than 1?
+3 < 2 # is 3 less than 2?
+3 < 1 # is 3 less than 1?
+
+c(1,2,3) > c(2,1,3) # ask the question element by element
+c(1,2,3) < c(2,1,3)
+
+2 > c(1,2,3) # is greater than each of the numbers
+```
+
+### >= <=
+
+Is something greater than or equal to something else
+
+```{r}
+1 >= 1 # is 1 greater than 1?
+5 >= 1 # is 5 greater than 1?
+3 <= 2 # is 3 less than 2?
+3 <= 1 # is 3 less than 1?
+
+c(1,2,3) >= c(2,1,3) # ask the question element by element
+c(1,2,3) <= c(2,1,3)
+
+2 >= c(1,2,3) # is greater than each of the numbers
+```
+
+### AND
+
+The ampersand `&` is used for AND, which allows use to evaluate whether two or more properties are all TRUE.
+
+```{r}
+# is 16 divisible by 4 AND 8
+16%%4 == 0 & 16%%8 ==0
+
+# is 16 divisible by 4 AND 3
+16%%4 == 0 & 16%%3 ==0
+
+# is 16 divisible by 8 and 4 and 2
+16%%4 == 0 & 16%%8 ==0 & 16%%2 ==0
+```
+
+### OR
+
+The `|` is used for OR, which allows use to evaluate at least one of the properties is TRUE.
+
+```{r}
+# is 16 divisible by 4 OR 8
+16%%4 == 0 | 16%%8 ==0
+
+# is 16 divisible by 4 OR 3
+# it is divisible by 4, so the answer is TRUE
+# because at least one of the comparisons is TRUE
+16%%4 == 0 | 16%%3 ==0
+```
+
+### TRUE FALSE
+
+When R returns values as TRUE or FALSE, it return a logical variable. It also treats TRUE as a 1, and FALSE as a 0. In the example below we see it is possible sum up a logical variable with multiple TRUE and FALSE entries.
+
+```{r}
+c(1,2,3) == c(1,2,3)
+sum(c(1,2,3) == c(1,2,3))
+
+c(1,2,3) == c(2,1,3)
+sum(c(1,2,3) == c(2,1,3))
+```
+
+
+## IF ELSE
+
+A roller-coaster operator checks if people are taller than a line to see if they can ride the coaster. This is an IF ELSE control structure. IF the person is taller than the line, then they can go on the ride; ELSE (otherwise) the person can not go on the ride. 
+
+In other words, IF the situation is X, then do something; ELSE (if the situation is not X), then do something different.
+
+IF and ELSE statements let us specify the conditions when specific actions are taken. Generally, IF and ELSE statements are used inside loops (for, or while, or repeat loops), because at each step or iteration of the loop, we want to check something, and then do something.
+
+Consider this:
+
+```{r}
+a <- 1 # define a to be a 1
+if(a==1){  
+  print(a) # this is what happens if a==1
+} else {
+  print("A is not 1") # this is what happens if a is not 1
+}
+
+
+a <- 2 # define a to be a 1
+if(a==1){  
+  print(a) # this is what happens if a==1
+} else {
+  print("A is not 1") # this is what happens if a is not 1
+}
+```
+
+Normally we find IF and ELSE in a loop like this:
+
+```{r}
+a <- c(1,0,1,0,0,0,1) # make a variable contain 1s and 0s
+
+# write a loop to check each element in the variable
+# and do different things depending on the element
+
+for(i in a){
+  if(i == 1){
+    print("I'm a 1") # what to do when i is 1
+  } else {
+    print("I'm not a 1") # what to do when i is not 1
+  }
+}
+
+```
+
+We can have multiple conditions in our if statements. See the next section on loops for more info about using loops.
+
+```{r}
+a <- c(1,2,3,1,2,0,1) # make a variable contain 1s and 0s
+
+# write a loop to check each element in the variable
+# and do different things depending on the element
+
+for(i in a){
+  if(i == 1){
+    print("I'm a 1") # what to do when i is 1
+  } else if (i==2){
+    print("I'm a 2") # what to do when i is 2
+  } else if (i==3){
+    print("I'm a 3") # what to do when i is 3
+  } else {
+    print("I'm not any of the above") #what to do when none are true
+  }
+}
+
+```
+
+## Loops
+
+
+Check R help for on Control Flow `?Control`.
+
+`for(){}`
+`for(loop control){do something each iteration}`
+
+```{r, eval=F}
+for(iterator in vector){
+  #do something
+}
+```
+
+Loop control is defined in between the parentheses. The name of the iterator is placed on the left of `in`(can be assigned any name you want, does not need to be declared in advance). During the execution of the loop, the iterator takes on the values inside the vector which is placed on the right side of `in`. Specifically, the following is happening.
+
+Loop steps: 
+  1. iterator <- vector[1]
+  2. iterator <- vector[2]
+  3. iterator <- vector[3]
+  4. etc.
+  
+The loop will automatically stop once it reaches the last item in the vector. The loop can be stopped before that using the `break` command.
+
+```{r}
+# Make a loop do something 5 times
+# i is the iterator
+# 1:5 creates a vector with 5 numbers in it, 1, 2, 3, 4, 5
+# the loop will run 5 times, because there are five things to assign to i
+for(i in 1:5){
+  print(5)
+}
+```
+
+```{r}
+# show the value of i each step of the loop
+for(i in 1:5){
+  print(i)
+}
+
+```
+
+```{r}
+# define the vector to loop over in advance
+my_sequence <- 1:5
+for(i in my_sequence){
+  print(i)
+}
+```
+
+```{r}
+# Reminder that i becomes the next value in the vector
+# your vector can have any order 
+my_sequence <- c(1,5,2,3,4)
+for(i in my_sequence){
+  print(i)
+}
+```
+
+```{r}
+# index vector does not need to be numbers
+my_things <- c("A","B","C","D")
+for(i in my_things){
+  print(i)
+}
+```
+
+### Breaking a loop
+
+`break` stops a loop. Used with logical statements to define the conditions necessary to cause the break.
+
+```{r}
+for(i in 1:10){
+  if(i <5){
+    print(i)
+  } else{
+    break
+  }
+}
+```
+
+### While loops
+
+While loops run until a logical condition is met. Here there is no iterator, just a logic statement that needs to be met. 
+
+This one prints i while i is less than 6. As soon as i becomes "not less than 6", then the loop stops. Critically, inside the loop, the value of i increases each iteration. 
+
+```{r}
+i <- 1 # create an variable
+while (i < 6) {
+  print(i)
+  i = i+1 #add one eachs step of the loop
+}
+```
+
+### Repeat loops
+
+Similar to while, but let's do things until a condition is met.
+
+```{r}
+i<-0
+repeat{
+  i<-i+1
+  print(i)
+  if(i==5){
+    break
+  }
+}
+```
+
+
+### Examples
+
+Braces are not needed on one line
+
+```{r}
+for(i in 1:5) print(i)
+```
+
+Using the value of the iterator to assign in values systematically to another variable.
+
+```{r}
+# put 1 into the first five positions of x
+x <- c() # create empty vector
+for(i in 1:5){
+  x[i] <- 1  # assign 1 to the ith slot in x
+}
+x
+
+# put the numbers 1-5 in the first 5 positions of x
+x <-c()
+for(i in 1:5){
+  x[i] <- i
+}
+x
+```
+
+Make your own counter, when you need one
+
+```{r}
+a <- c(1,4,3,5,7,6,8,2)
+odd <- c()
+counter <- 0
+for(i in a){  # i will the values of a in each position
+  counter <- counter+1
+  if(i%%2 != 0){
+    odd[counter] <- "odd"
+  } else {
+    odd[counter] <- "even"
+  }
+}
+odd
+
+# An alternative strategy
+
+a <- c(1,4,3,5,7,6,8,2)
+odd <- c()
+# 1:length(a) creates a sequence from 1 to length
+for(i in 1:length(a)){  
+  if(a[i]%%2 != 0){
+    odd[i] <- "odd"
+  } else {
+    odd[i] <- "even"
+  }
+}
+odd
+
+```
+
+Nesting loops
+
+```{r}
+
+for(i in 1:5){
+  for(j in 1:5){
+   print(c(i,j))
+  }
+}
+
+# example of using nested loops to fill the contents
+# of a matrix
+
+my_matrix <- matrix(0,ncol=5,nrow=5)
+for(i in 1:5){
+  for(j in 1:5){
+   my_matrix[i,j] <- i*j
+  }
+}
+my_matrix
+
+```
+
+break exits out of the immediate loop
+
+```{r}
+# the inside loop stops when i+j is greater than 5
+# the outside loop keeps going
+
+sum_of_i_j <- c()
+counter <- 0
+for(i in 1:5){
+  for(j in 1:5){
+    counter <- counter+1
+    sum_of_i_j[counter] <- i+j
+    if(i+j > 5){
+      break
+    }
+  }
+}
+sum_of_i_j
+```
+
+## Functions
+
+
+This section discusses the syntax for writing custom functions in R.
+
+### function syntax
+
+```{r, eval=FALSE}
+function_name <- function(input1,input2){
+  #code here
+  return(something)
+}
+```
+
+### example functions
+
+This function has no input between the `()`. Whenever you run this function, it will simply return whatever is placed inside the `return` statement.
+
+```{r}
+# define the function
+print_hello_world <- function(){
+  return(print("hello world"))
+}
+
+# use the function
+print_hello_world()
+```
+
+This function simply takes an input, and then returns the input without modifying it. 
+
+```{r}
+return_input <- function(input){
+  return(input)
+}
+
+# the variable input is assigned a 1
+# then we return(input), which will result in a 1
+# because the function internally assigns 1 to the input
+return_input(1)
+
+a <- "something"
+return_input(a)
+```
+
+This function takes an input, then creates an internal variable called temp and assigns input+1. Then the contents of temp is returned. Note there, is no checking of the input, so it will return an erro if you input a character (can't add one to a character in R)
+
+```{r, error=TRUE}
+add_one <- function(input){
+  temp <- input+1
+  return(temp)
+}
+
+add_one(1)
+add_one("a")
+```
+
+This function adds some input checking. We only add one if the input is a numeric type. Otheriwse, we use `stop()` to return an error message to the console
+
+```{r, error=TRUE}
+add_one <- function(input){
+  if(class(input) == "numeric"){
+    temp <- input+1
+    return(temp)
+  } else {
+    return(stop("input must be numeric"))
+  }
+}
+
+add_one(1)
+add_one("a")
+```
+
+A function with three inputs
+
+```{r}
+add_multiply <- function(input, x_plus,x_times){
+  temp <- (input+x_plus)*x_times
+  return(temp)
+}
+
+# input is 1
+# x_plus <- 2
+# x_times <- 3
+# will return (1+2)*3 = 9
+add_multiply(1,2,3)
+
+
+```
+
+## Tidyverse
+
+The [tidyverse](https://www.tidyverse.org) is a set of popular R packages that are convenient for many aspects of data-analysis. All of the tidyverse packages can be installed in one go:
+
+```{r, eval=FALSE}
+install.packages("tidyverse")
+```
+
+---
+
+## dplyr
+
+The `dplyr` package has several useful functions for manipulating and summarizing data.frames. To illustrate some dplyr functionality we first create a small fake data.frame. Here is a link to the [dplyr cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
+
+```{r}
+subjects <- rep(1:10)
+grades <- rnorm(n = 10, mean = 65, sd = 5)
+age <- sample(18:20,10,replace=TRUE)
+likes_chocolate <- sample(c(TRUE,FALSE), 10, replace=TRUE)
+favorite_color <- sample(c("r","o","y","g","b","i","v"), 10, replace=TRUE)
+
+fake_data <- data.frame(subjects,
+                        grades,
+                        age,
+                        likes_chocolate,
+                        favorite_color)
+
+knitr::kable(head(fake_data))
+```
+
+### group_by and summarize
+
+`group_by()` allows you to specify columns to split into groups for analysis, these groups are the levels of the column (e.g., unique entries in the column)
+
+`summarize()` conducts an analysis for each group identified in the `group_by` step. The analysis is defined by variable names, and supplying a function that computes a value given the name of a measurement variable.
+
+```{r}
+library(dplyr)
+
+fake_data %>%
+  group_by(likes_chocolate) %>%
+  summarize(mean_grade = mean(grades),
+            sd_grad = sd(grades))
+
+fake_data %>%
+  group_by(likes_chocolate,age) %>%
+  summarize(mean_grade = mean(grades),
+            sd_grad = sd(grades))
+```
+
+### filter
+
+Filter out rows depending on logical comparisons
+
+```{r}
+fake_data %>%
+  filter(grades < 65)
+
+fake_data %>%
+  filter(grades < 65,
+         likes_chocolate == TRUE)
+```
+
+### select
+
+Select specific columns
+
+```{r}
+fake_data %>%
+  select(grades)
+
+fake_data %>%
+  select(grades,likes_chocolate)
+```
+### mutate
+
+`mutate()` can add a column
+
+```{r}
+fake_data <- fake_data %>%
+  mutate(new_thing = 0)
+
+fake_data
+```
+
+## ggplot2
+
+
+```{r}
+library(ggplot2)
+```
+
+
+### Scatterplot
+
+```{r}
+# Create dataframe
+a <- c(1,2,3,2,3,4,5,4)
+b <- c(4,3,4,3,2,1,2,3)
+plot_df <- data.frame(a,b)
+
+# basic scatterplot
+ggplot(plot_df, aes(x=a,y=b))+
+  geom_point()
+
+# customize, add regression line
+ggplot(plot_df, aes(x=a,y=b))+
+  geom_point(size=2)+
+  geom_smooth(method=lm)+
+  coord_cartesian(xlim=c(0,7),ylim=c(0,10))+
+  xlab("x-axis label")+
+  ylab("y-axis label")+
+  ggtitle("I made a scatterplot")+
+  theme_classic(base_size=12)+
+  theme(plot.title = element_text(hjust = 0.5))
+
+```
+
+### bar graph
+
+1 factor
+
+```{r}
+#Create a dataframe
+factor_one <- as.factor(c("A","B","C"))
+dv_means <- c(20,30,40)
+dv_SEs   <- c(4,3.4,4)
+plot_df <- data.frame(factor_one,
+                      dv_means,
+                      dv_SEs)
+
+# basic bar graph
+
+ggplot(plot_df, aes(x=factor_one,y=dv_means))+
+  geom_bar(stat="identity")
+
+# adding error bars, customizing
+
+ggplot(plot_df, aes(x=factor_one,y=dv_means))+
+  geom_bar(stat="identity")+
+  geom_errorbar(aes(ymin=dv_means-dv_SEs,
+                    ymax=dv_means+dv_SEs),
+                width=.2)+
+  coord_cartesian(ylim=c(0,100))+
+  xlab("x-axis label")+
+  ylab("y-axis label")+
+  ggtitle("I made a bar graph")+
+  theme_classic(base_size=12)+
+  theme(plot.title = element_text(hjust = 0.5))
+  
+```
+
+2 factor
+
+```{r}
+#Create a dataframe
+factor_one <- rep(as.factor(c("A","B","C")),2)
+factor_two <- rep(as.factor(c("IIA","IIB")),3)
+dv_means <- c(20,30,40,20,40,40)
+dv_SEs   <- c(4,3.4,4,3,2,4)
+plot_df <- data.frame(factor_one,
+                      factor_two,
+                      dv_means,
+                      dv_SEs)
+
+# basic bar graph
+
+ggplot(plot_df, aes(x=factor_one,y=dv_means,
+                    group=factor_two,
+                    color=factor_two))+
+  geom_bar(stat="identity", position="dodge")
+
+# adding error bars, customizing
+
+ggplot(plot_df, aes(x=factor_one,y=dv_means,
+                    group=factor_two,
+                    color=factor_two,
+                    fill=factor_two))+
+  geom_bar(stat="identity", position="dodge")+
+  geom_errorbar(aes(ymin=dv_means-dv_SEs,
+                    ymax=dv_means+dv_SEs),
+                position=position_dodge(width=0.9),
+                width=.2,
+                color="black")+
+  coord_cartesian(ylim=c(0,100))+
+  xlab("x-axis label")+
+  ylab("y-axis label")+
+  ggtitle("Bar graph 2 factors")+
+  theme_classic(base_size=12)+
+  theme(plot.title = element_text(hjust = 0.5))
+  
+```
+
+3 factor
+
+```{r}
+#Create a dataframe
+factor_one <- rep(rep(as.factor(c("A","B","C")),2),2)
+factor_two <- rep(rep(as.factor(c("IIA","IIB")),3),2)
+factor_three <- rep(as.factor(c("IIIA","IIIB")),each=6)
+dv_means <- c(20,30,40,20,40,40,
+              10,20,50,50,10,10)
+dv_SEs   <- c(4,3.4,4,3,2,4,
+              1,2,1,2,3,2)
+plot_df <- data.frame(factor_one,
+                      factor_two,
+                      factor_three,
+                      dv_means,
+                      dv_SEs)
+
+# basic bar graph
+
+ggplot(plot_df, aes(x=factor_one,y=dv_means,
+                    group=factor_two,
+                    color=factor_two))+
+  geom_bar(stat="identity", position="dodge")+
+  facet_wrap(~factor_three)
+
+```
+
+### Line Graph
+
+1 factor
+
+```{r}
+#Create a dataframe
+factor_one <- as.factor(c("A","B","C"))
+dv_means <- c(20,30,40)
+dv_SEs   <- c(4,3.4,4)
+plot_df <- data.frame(factor_one,
+                      dv_means,
+                      dv_SEs)
+
+# basic line graph
+
+ggplot(plot_df, aes(x=factor_one,y=dv_means, group=1))+
+  geom_point()+
+  geom_line()
+
+# adding error bars, customizing
+
+ggplot(plot_df, aes(x=factor_one,y=dv_means, group=1))+
+  geom_point()+
+  geom_line()+
+  geom_errorbar(aes(ymin=dv_means-dv_SEs,
+                    ymax=dv_means+dv_SEs),
+                width=.2)+
+  coord_cartesian(ylim=c(0,100))+
+  xlab("x-axis label")+
+  ylab("y-axis label")+
+  ggtitle("I made a line graph")+
+  theme_classic(base_size=12)+
+  theme(plot.title = element_text(hjust = 0.5))
+
+```
+
+2 factor
+
+```{r}
+#Create a dataframe
+factor_one <- rep(as.factor(c("A","B","C")),2)
+factor_two <- rep(as.factor(c("IIA","IIB")),3)
+dv_means <- c(20,30,40,20,40,40)
+dv_SEs   <- c(4,3.4,4,3,2,4)
+plot_df <- data.frame(factor_one,
+                      factor_two,
+                      dv_means,
+                      dv_SEs)
+
+# basic line graph
+
+ggplot(plot_df, aes(x=factor_one,y=dv_means,
+                    group=factor_two,
+                    color=factor_two,
+                    linetype=factor_two))+
+  geom_point()+
+  geom_line()
+```
+
+
+### Histogram
+
+base R
+```{r}
+a<-rnorm(100,0,1)
+hist(a)
+```
+
+```{r}
+score <- rnorm(100,0,1)
+n <- 1:100
+plot_df <- data.frame(score,n)
+
+ggplot(plot_df, aes(x=score))+
+  geom_histogram(bins=10,
+                 color="white")
+
+```
+

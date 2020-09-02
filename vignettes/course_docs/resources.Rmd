@@ -24,14 +24,9 @@ There are numerous free resources available online helpful for learning R. I'll 
 5. Danielle Navarro recently made this website for introducing R, it's great, check it out (also made using this R markdown process): [http://compcogscisydney.org/psyr/](http://compcogscisydney.org/psyr/)
 6. Check out my slightly older programming book that also introduces R [https://crumplab.github.io/programmingforpsych/](https://crumplab.github.io/programmingforpsych/)
 7. Another solid and accessible resource for psyc stats using R [https://ademos.people.uic.edu/index.html](https://ademos.people.uic.edu/index.html).
-
-### Reference
-
-1. [https://cran.r-project.org/doc/contrib/Short-refcard.pdf](https://cran.r-project.org/doc/contrib/Short-refcard.pdf) This link takes you to a reference card, that shows a big long list of intrinsic r functions.
-
-2. A really great and really long list of resources for R! [https://paulvanderlaken.com/2017/08/10/r-resources-cheatsheets-tutorials-books/](https://paulvanderlaken.com/2017/08/10/r-resources-cheatsheets-tutorials-books/)
-
-3. There's a bunch of R markdown tricks right here <https://holtzy.github.io/Pimp-my-rmd/>.
+8. [https://cran.r-project.org/doc/contrib/Short-refcard.pdf](https://cran.r-project.org/doc/contrib/Short-refcard.pdf) This link takes you to a reference card, that shows a big long list of intrinsic r functions.
+9. A really great and really long list of resources for R! [https://paulvanderlaken.com/2017/08/10/r-resources-cheatsheets-tutorials-books/](https://paulvanderlaken.com/2017/08/10/r-resources-cheatsheets-tutorials-books/)
+10. There's a bunch of R markdown tricks right here <https://holtzy.github.io/Pimp-my-rmd/>.
 
 
 

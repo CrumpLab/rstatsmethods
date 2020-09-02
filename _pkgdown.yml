@@ -49,8 +49,12 @@ navbar:
       - text: Lab 2 Descriptives
         href: articles/Lab2_Descriptives.html
     resources:
-      text: R resources
-      href: articles/course_docs/resources.html
+      text: R Reference
+      menu:
+      - text: Coding Reference
+        href: articles/course_docs/reference_code.html
+      - text: More resources
+        href: articles/course_docs/resources.html
     reference:
       text:
       href: reference/index.html

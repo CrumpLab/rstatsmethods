@@ -1,3 +1,8 @@
+# psyc7709Lab 0.0.0.9003
+
+- Added a code reference page with base R example code and tidyverse (dplyr and ggplot) examples
+- Added Lab 2
+
 # psyc7709Lab 0.0.0.9002
 
 We had our first online meeting today (Thursday, Aug 27th), if you are a student reading this, Hi Everyone! I'm going to use the news part of this website to keep track of new course content, and do a bit of reflection on how things are going.
