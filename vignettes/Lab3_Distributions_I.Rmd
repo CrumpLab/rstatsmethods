@@ -22,7 +22,7 @@ Vokey & Allen, Chapters 5 & 6 on additional descriptive statistics, and recoveri
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/YQC3QlRNHwI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-We are about to spend three entire labs devoted to understanding and working with distributions. We will cover topics that closely relate to the main statistics lecture, but also take advantage of R to examine distributions in more direct and hands manner that is not possible without a programming environment.
+We are about to spend three entire labs devoted to understanding and working with distributions. We will cover topics that closely relate to the main statistics lecture, but also take advantage of R to examine distributions in a more direct and hands manner that is not possible without a programming environment.
 
 This lab has one practical section and two conceptual sections.
 
@@ -32,7 +32,7 @@ Practical I
 Conceptual I
   - Monte-Carlo simulation
   
-In a research context data is collected in the form of measurements under various conditions. The data is a **sample**, representing only **some** of the outcomes that **did** happen. Generally, researchers recognize that there is **variability** in their measuring process, so the **sample data could have been different**. When analyzing data we are interested both in what did happen, and what could have happened in terms of the pattern of numbers. To really understand the issues at play, we need to take a deep dive into distributions and understand what happens when we take samples from them.
+In a research context data is collected in the form of measurements under various conditions. The data is a **sample**, representing only the outcomes that **did** happen. Generally, researchers recognize that there is **variability** in their measuring process, so the **sample data could have been different**. When analyzing data we are interested both in what did happen, and what could have happened in terms of the pattern of numbers. To really understand the issues at play, we need to take a deep dive into distributions and understand what happens when we take samples from them.
   
 ## Practical I: Sampling from distributions in R
 
