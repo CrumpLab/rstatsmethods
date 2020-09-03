@@ -20,6 +20,8 @@ Vokey & Allen, Chapters 5 & 6 on additional descriptive statistics, and recoveri
 
 ## Overview
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/YQC3QlRNHwI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 We are about to spend three entire labs devoted to understanding and working with distributions. We will cover topics that closely relate to the main statistics lecture, but also take advantage of R to examine distributions in more direct and hands manner that is not possible without a programming environment.
 
 This lab has one practical section and two conceptual sections.
@@ -228,7 +230,7 @@ proportion_heads <- c()
 proportion_tails <- c()
 
 # run the simulation
-for(i in 1:100){
+for(i in 1:1000){
   flip[i] <- i
   outcome[i] <- sample(x= c(1,0), size = 1)
   proportion_heads[i] = sum(outcome)/length(outcome)
@@ -256,7 +258,7 @@ Our parent population will be a normal distribution with mean =100, and sd = 50.
 
 ```{r}
 #initialize variables
-n <- seq(5,5000,50)
+n <- seq(1000,100000,1000)
 sample_mean <- c()
 sample_sd <- c()
 
@@ -316,7 +318,8 @@ Some sample statistics are "biased", and may systematically under or overestimat
 
 - The population is a normal distribution with mean = 10, standard deviation = 5.
 - Test a variety of n (sample size), including n = 2, 5, 10, 50, and 100
-- For each sample size n, your task is to draw 10,000 samples of that size, then for each sample, calculate the sample mean. If the mean is unbiased, then we expect that "on average" the sample means will be the same as the population mean. To determine if this is true, compute the mean of the sample means that you produce to see if it is close to the population mean. - Show the mean of the sample means for each sample size.
+- For each sample size n, your task is to draw 10,000 samples of that size, then for each sample, calculate the sample mean. If the mean is unbiased, then we expect that "on average" the sample means will be the same as the population mean. To determine if this is true, compute the mean of the sample means that you produce to see if it is close to the population mean. 
+- Show the mean of the sample means for each sample size.
 
 4. Use a monte carlo simulation to compare the standard deviation formulas (divide by N vs N-1), and show that the N-1 formula is a better unbiased estimate of the population standard deviation, especially for small n. (2 points)
 

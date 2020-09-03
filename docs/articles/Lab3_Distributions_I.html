@@ -143,6 +143,8 @@
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/YQC3QlRNHwI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <p>We are about to spend three entire labs devoted to understanding and working with distributions. We will cover topics that closely relate to the main statistics lecture, but also take advantage of R to examine distributions in more direct and hands manner that is not possible without a programming environment.</p>
 <p>This lab has one practical section and two conceptual sections.</p>
 <p>Practical I - Sampling from distributions in R</p>
@@ -169,28 +171,28 @@
 <li>Create a distribution with two equally possible numbers, sample from it twice:</li>
 </ol>
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">x</span><span class="kw">=</span> <span class="fl">1</span>:<span class="fl">2</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">2</span>)
-<span class="co">#&gt; [1] 2 1</span></pre></body></html></div>
+<span class="co">#&gt; [1] 1 2</span></pre></body></html></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Create a distribution with two equally possible numbers, sample from it 10 times (note must set replace=TRUE, because we are sampling more items than exist in the vector):</li>
 </ol>
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">x</span><span class="kw">=</span> <span class="fl">1</span>:<span class="fl">2</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">10</span>, <span class="kw">replace</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-<span class="co">#&gt;  [1] 1 1 2 1 2 1 1 2 1 1</span></pre></body></html></div>
+<span class="co">#&gt;  [1] 2 2 2 1 1 1 1 2 2 1</span></pre></body></html></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Create a distribution with where the first number has a probability of 90% of being sampled, and the second number has a probability of 10% of being sampled, sample from it 10 times</li>
 </ol>
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">x</span><span class="kw">=</span> <span class="fl">1</span>:<span class="fl">2</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">10</span>, <span class="kw">replace</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">prob</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">.9</span>,<span class="fl">.1</span>))
-<span class="co">#&gt;  [1] 2 1 1 1 1 1 1 1 2 1</span></pre></body></html></div>
+<span class="co">#&gt;  [1] 1 1 1 1 1 2 1 1 1 2</span></pre></body></html></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Create a distribution to model a coin flip for an unbiased coin, flip the coin 10 times, have the distribution return “heads” or “tails”.</li>
 </ol>
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"heads"</span>,<span class="st">"tails"</span>), <span class="kw">size</span><span class="kw">=</span><span class="fl">10</span>, <span class="kw">replace</span><span class="kw">=</span> <span class="fl">TRUE</span>)
-<span class="co">#&gt;  [1] "tails" "tails" "heads" "tails" "heads" "heads" "heads" "tails" "heads"</span>
+<span class="co">#&gt;  [1] "tails" "heads" "tails" "tails" "heads" "tails" "tails" "heads" "tails"</span>
 <span class="co">#&gt; [10] "tails"</span></pre></body></html></div>
 <ol start="5" style="list-style-type: decimal">
 <li>Create a distribution that has the numbers 1 to 1000, and allows them to be sampled with equal probability. Sample 10 numbers from this distribution without replacement (if you have sampled one number, you are not allowed to sample it again because it has been taken out):</li>
 </ol>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">x</span><span class="kw">=</span> <span class="fl">1</span>:<span class="fl">1000</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">10</span>, <span class="kw">replace</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
-<span class="co">#&gt;  [1] 543 195 383 417 152 339 784 374 809 113</span></pre></body></html></div>
+<span class="co">#&gt;  [1] 149  95 614 538  55 942 161 385 694 123</span></pre></body></html></div>
 </div>
 <div id="normal-distribution" class="section level3">
 <h3 class="hasAnchor">
@@ -200,12 +202,12 @@
 <li>Two ways to sample 10 numbers from a normal distribution with mean = 0, and standard deviation = 1.</li>
 </ol>
 <div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw">n</span><span class="kw">=</span> <span class="fl">10</span>,<span class="kw">mean</span> <span class="kw">=</span> <span class="fl">0</span>, <span class="kw">sd</span> <span class="kw">=</span> <span class="fl">1</span>)
-<span class="co">#&gt;  [1] -0.3063525 -0.3853559  0.1381198  0.2908496  1.6892705  0.4749157</span>
-<span class="co">#&gt;  [7] -0.1426923 -0.9362875 -0.1593517 -0.2290551</span>
+<span class="co">#&gt;  [1]  0.30314382 -0.92765218 -0.79082309  0.92685950  0.84129773 -0.17238892</span>
+<span class="co">#&gt;  [7] -0.54239223  1.15268197  1.03325407  0.06468962</span>
 
 <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span>)
-<span class="co">#&gt;  [1] -0.9873785  0.6349578 -2.0305374  0.5216998  2.4868769 -1.5245351</span>
-<span class="co">#&gt;  [7] -0.5156066  0.5225616  0.7871569 -2.5650981</span></pre></body></html></div>
+<span class="co">#&gt;  [1]  1.4960175  0.6275858  0.2681791 -1.4395936  0.3789818 -0.9190974</span>
+<span class="co">#&gt;  [7] -0.4878409 -0.8755831 -0.4627999  2.0417359</span></pre></body></html></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Visualize the sample quickly with <code><a href="https://rdrr.io/r/graphics/hist.html">hist()</a></code>
 </li>
@@ -258,7 +260,7 @@
 </ol>
 <div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">my_sample</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">1</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">my_sample</span>[<span class="no">my_sample</span> <span class="kw">&lt;</span> <span class="fl">.05</span>])
-<span class="co">#&gt; [1] 4</span></pre></body></html></div>
+<span class="co">#&gt; [1] 2</span></pre></body></html></div>
 </div>
 <div id="other-distributions" class="section level3">
 <h3 class="hasAnchor">
@@ -284,24 +286,24 @@
 <div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">moments</span>)
 <span class="no">my_sample</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">1000</span>,<span class="fl">0</span>,<span class="fl">1</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">my_sample</span>)
-<span class="co">#&gt; [1] 0.01941766</span>
+<span class="co">#&gt; [1] -0.02180096</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span>(<span class="no">my_sample</span>)
-<span class="co">#&gt; [1] 1.025177</span>
+<span class="co">#&gt; [1] 0.9868085</span>
 <span class="fu"><a href="https://rdrr.io/pkg/moments/man/skewness.html">skewness</a></span>(<span class="no">my_sample</span>)
-<span class="co">#&gt; [1] 0.008357607</span>
+<span class="co">#&gt; [1] 0.02384457</span>
 <span class="fu"><a href="https://rdrr.io/pkg/moments/man/kurtosis.html">kurtosis</a></span>(<span class="no">my_sample</span>)
-<span class="co">#&gt; [1] 2.839548</span>
+<span class="co">#&gt; [1] 2.969228</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="no">my_sample</span>)</pre></body></html></div>
 <p><img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-17-1.png" width="700"> 2. Compute the mean, sd, skewness, and kurtosis for a sample of 1000 observations from a right-skewed exponential distribution.</p>
 <div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">my_sample</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">rexp</a></span>(<span class="fl">1000</span>,<span class="fl">2</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">my_sample</span>)
-<span class="co">#&gt; [1] 0.5026567</span>
+<span class="co">#&gt; [1] 0.4819002</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span>(<span class="no">my_sample</span>)
-<span class="co">#&gt; [1] 0.494368</span>
+<span class="co">#&gt; [1] 0.478548</span>
 <span class="fu"><a href="https://rdrr.io/pkg/moments/man/skewness.html">skewness</a></span>(<span class="no">my_sample</span>)
-<span class="co">#&gt; [1] 2.112192</span>
+<span class="co">#&gt; [1] 1.93059</span>
 <span class="fu"><a href="https://rdrr.io/pkg/moments/man/kurtosis.html">kurtosis</a></span>(<span class="no">my_sample</span>)
-<span class="co">#&gt; [1] 10.03378</span>
+<span class="co">#&gt; [1] 8.775718</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="no">my_sample</span>)</pre></body></html></div>
 <p><img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-18-1.png" width="700"></p>
 </div>
@@ -336,7 +338,7 @@
 <span class="no">proportion_tails</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>()
 
 <span class="co"># run the simulation</span>
-<span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="fl">100</span>){
+<span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="fl">1000</span>){
   <span class="no">flip</span>[<span class="no">i</span>] <span class="kw">&lt;-</span> <span class="no">i</span>
   <span class="no">outcome</span>[<span class="no">i</span>] <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">x</span><span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">0</span>), <span class="kw">size</span> <span class="kw">=</span> <span class="fl">1</span>)
   <span class="no">proportion_heads</span>[<span class="no">i</span>] <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">outcome</span>)/<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">outcome</span>)
@@ -362,7 +364,7 @@
 <p>A fundamental concept in sampling is that samples of numbers become increasingly like their parent population (or distribution) as the size of the sample (n or number of observations in the sample) increases. Let’s demonstrate an example of this phenomena.</p>
 <p>Our parent population will be a normal distribution with mean =100, and sd = 50. We want to conduct a simulation that takes a sample across different ranges of n. Then for each sample, we will calculate a sample statistic such as the mean and standard deviation. These sample statistics should become closer and closer to the “true” parent distribution parameters as n increases.</p>
 <div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="co">#initialize variables</span>
-<span class="no">n</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">5</span>,<span class="fl">5000</span>,<span class="fl">50</span>)
+<span class="no">n</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">1000</span>,<span class="fl">100000</span>,<span class="fl">1000</span>)
 <span class="no">sample_mean</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>()
 <span class="no">sample_sd</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>()
 
@@ -426,7 +428,8 @@
 <ul>
 <li>The population is a normal distribution with mean = 10, standard deviation = 5.</li>
 <li>Test a variety of n (sample size), including n = 2, 5, 10, 50, and 100</li>
-<li>For each sample size n, your task is to draw 10,000 samples of that size, then for each sample, calculate the sample mean. If the mean is unbiased, then we expect that “on average” the sample means will be the same as the population mean. To determine if this is true, compute the mean of the sample means that you produce to see if it is close to the population mean. - Show the mean of the sample means for each sample size.</li>
+<li>For each sample size n, your task is to draw 10,000 samples of that size, then for each sample, calculate the sample mean. If the mean is unbiased, then we expect that “on average” the sample means will be the same as the population mean. To determine if this is true, compute the mean of the sample means that you produce to see if it is close to the population mean.</li>
+<li>Show the mean of the sample means for each sample size.</li>
 </ul>
 <ol start="4" style="list-style-type: decimal">
 <li>Use a monte carlo simulation to compare the standard deviation formulas (divide by N vs N-1), and show that the N-1 formula is a better unbiased estimate of the population standard deviation, especially for small n. (2 points)</li>
