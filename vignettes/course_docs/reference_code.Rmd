@@ -556,7 +556,7 @@ The loop will automatically stop once it reaches the last item in the vector. Th
 # 1:5 creates a vector with 5 numbers in it, 1, 2, 3, 4, 5
 # the loop will run 5 times, because there are five things to assign to i
 for(i in 1:5){
-  print(5)
+  print("hello")
 }
 ```
 
@@ -570,8 +570,8 @@ for(i in 1:5){
 
 ```{r}
 # define the vector to loop over in advance
-my_sequence <- 1:5
-for(i in my_sequence){
+x <- 1:5
+for(i in x){
   print(i)
 }
 ```

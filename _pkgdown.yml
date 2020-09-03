@@ -48,6 +48,8 @@ navbar:
         href: articles/Lab1_Basics.html
       - text: Lab 2 Descriptives
         href: articles/Lab2_Descriptives.html
+      - text: Lab 3 Distributions I
+        href: articles/Lab3_Distributions_I.html
     resources:
       text: R Reference
       menu:
