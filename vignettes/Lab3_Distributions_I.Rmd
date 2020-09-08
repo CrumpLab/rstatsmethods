@@ -302,6 +302,8 @@ Your assignment instructions are the following:
 5. Submit your github repository link for Lab 3 on blackboard.
 6. There are four problems to solve
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kvPVWdEWm6k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ### Problems
 
 1. Create five samples of 25 observations from a normal distribution with mean 200, and standard deviation 100. Compute the mean of each sample, and plot the means in a graph using ggplot2. (1 point)
