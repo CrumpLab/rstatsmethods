@@ -914,11 +914,37 @@ fake_data
 
 ## ggplot2
 
+`ggplot2` is a library created by Hadley Wickham for plotting and graphing results, and refers to a "grammar of graphics", or a standardized syntax and organization for graphing.
+
+### ggplot2 additional resources
+
+- <https://ggplot2.tidyverse.org>
+- <https://r4ds.had.co.nz/data-visualisation.html>
+- <https://ggplot2-book.org>
+- <http://r-statistics.co/ggplot2-Tutorial-With-R.html>
+- <https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html>
+
+#### Add-on packages
+
+- [https://www.ggplot2-exts.org](https://www.ggplot2-exts.org) A repository of 50+ add on packages for ggplot2
+- [https://gganimate.com](https://gganimate.com)
+  - allows you to create animated .gifs of ggplots
+  - I made a bunch of animated gifs for a statistics textbook. They are all here along with the code [https://crumplab.github.io/statistics/gifs.html](https://crumplab.github.io/statistics/gifs.html)
+- [ggrepel](https://github.com/slowkow/ggrepel]) allows you to repel overlapping text labels away from each other.
+- [esquisse](https://github.com/dreamRs/esquisse) a GUI (graphic user interface) that allows you make ggplot graphs using drag-drop, and clickable options
+- [ggedit](https://github.com/metrumresearchgroup/ggedit) similar to above, clickable editing of ggplot graphs
+- [plotly](https://plot.ly/r/) a package similar to ggplot, makes a whole variety of graphs, mainly for use in websites. Allows interactive graphs.
+  - As an example, I used plotly on my publications website, if you hover over the dots, info pops up [https://crumplab.github.io/Publications.html](https://crumplab.github.io/Publications.html).
+- **ggpubr** (install from CRAN), many useful things, including the `ggarrange` function which allows you to knit multiple plots together
+- **ggthemes** extra themes, scales, and geoms
+
+### Example code
+
+Remember to load the ggplot2 library before you use ggplot2.
 
 ```{r}
 library(ggplot2)
 ```
-
 
 ### Scatterplot
 
@@ -1126,3 +1152,173 @@ ggplot(plot_df, aes(x=score))+
 
 ```
 
+## knitr
+
+`knitr` is a package used to compile R markdown documents into other formats such as html (webpages) or pdf.
+
+### knitting to pdf
+
+A latex installation is required in order to knit to pdf. Latex is also free and cross-platform, however a complete installation is can be quite large.
+
+I think the advice by Frederick Aust (an author of the `papaja` package) for installing latex is worth following:
+
+- <https://crsh.github.io/papaja_man/introduction.html#getting-started>
+
+Basically, the advice is to install a complete tex distribution (follow the above for links), or to use the `tinytex` package in R. The tinytex package should be sufficient for most knitting to pdf duties.
+
+1. Install the tinytex library:
+
+```
+install.packages("tinytex")
+```
+
+2. Run this command after installing the library
+
+```
+tinytex::install_tex()
+```
+
+### knitr options
+
+When you create a new R Markdown document you will see the following code chunk underneath the yaml, at the beginning of the document. It usually looks like this:
+
+````markdown
+`r ''````{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+````
+
+This chunk is named setup, it is not printed in your output, but **it controls the global setup options** for the whole document. Any option you set here applies to all of the remaining code chunks you create. It's a way of setting defaults. 
+
+Here are some helpful defaults you can add. You turn the option on with `TRUE`, and turn it off with `FALSE`.
+
+- `echo=TRUE` sets the default to print all remaining code blocks to the output, `FALSE` sets the default to not print the code blocks
+- `warning = FALSE` turns off printing of warnings
+- `message = FALSE` turns off printing of messages, these commonly occur when you load a package, where you receive a message that the package was loaded
+- `eval = FALSE` sets the default to **NOT** evaluate the code chunk as R Code. This will not run the code block, but the code block will still print if `echo=TRUE`
+- `error=TRUE` normally the knit fails when there is an error in the code. If you set `error=TRUE` the knit will complete, and return an error message for code blocks with errors.
+
+````markdown
+`r ''````{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      message = FALSE, 
+                      eval = FALSE,
+                      error = TRUE)
+```
+````
+
+### knitr figure output defaults
+
+The following setup options are useful for figure output.
+
+- `fig.width = 3` sets the default width in inches for all figures
+- `fig.height = 3` sets the default height in inches for all figures
+- `fig.path = "myfigs/"` defines folder where figure files will be saved. This will be relative to your current working directoy
+- `dev = c("pdf", "png")` tells knitr to output both .png, and .pdf versions of the figure. The .pdf contains vector graphics, meaning the figure can be resized without pixelization.
+
+````markdown
+`r ''````{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      fig.width = 3,
+                      fig.height = 3,
+                      fig.path = "myfigs/",
+                      dev = c("pdf", "png"))
+```
+````
+
+### figure output per code block
+
+You can set the options for remaining code blocks individually. These will overrule the default options that you specify in the setup chunk.
+
+
+````markdown
+`r ''````{r figurename, fig.width =5, fig.height =7}
+
+# some code that generates a figure
+
+```
+````
+
+## tables
+
+There are several useful (incredible even) packages for making tables in R. Here are a few:
+
+- `knitr` package and it's `kable` function (Create tables in Latex, HTML, Markdown)
+- `xtable` package, lots of functions for tables. [Here are some xtable examples xtable](https://cran.r-project.org/web/packages/xtable/vignettes/xtableGallery.pdf)
+- `kableExtra` lots of additional table functionality
+- `tangram` a grammar of tables approach
+- `papaja` for apa-style tables
+
+### Important table info
+
+Two things to note, tables can be difficult, and there are different output formats.
+
+1. Tables in R can be difficult. For example, if you are comfortable with making tables in Excel, then R will be much more difficult by comparison. In Excel, it is easy to enter information in any cell, merge any cells, add any kind of formatting you want anywhere, just by clicking around and making the changes. In R, every detail of the table is specified by script. Some of the table packages make simple tables easy (hurray!), and some of them make complicated tables possible (also good), but not necessarilly easy.
+
+2. R can output tables in many formats including HTML for the web, Latex for .pdf, and other formats (e.g., word, markdown). Sometimes (depending on the functions you are using) you will run into issues with outputting tables in different formats. Or, you will have to take steps to ensure that you are outputting the table in the format that you want.
+
+### knitr::kable
+
+`kable()` is a function inside the knitr package. To use it you need to load the knitr library, or you can use `knitr::kable()`, which tells R to find kable inside the knitr package if you haven't loaded knitr using `library(knitr)`.
+
+`kable()` is great for quickly rendering data frames as nice tables without much hassle.
+
+```{r}
+df <- data.frame(A=1,
+                 B=2,
+                 C=3,
+                 D=4)
+knitr::kable(df)
+```
+
+### xtable
+
+Look at the xtable examples document for more info. [https://cran.r-project.org/web/packages/xtable/vignettes/xtableGallery.pdf](https://cran.r-project.org/web/packages/xtable/vignettes/xtableGallery.pdf)
+
+```{r}
+library(xtable) # load xtable
+data(tli) # loads a sample data frame
+
+# conduct an ANOVA
+ fm1 <- aov(tlimth ~ sex + ethnicty + grade + disadvg, data = tli)
+ 
+# print the table for HTML using xtable and kable together
+knitr::kable(xtable(fm1))
+
+# Note this will print a table in latex for .pdf
+# xtable(fm1)
+```
+
+### kableExtra
+
+There are many great things about `kableExtra`. One great thing is that `kableExtra` has unique table options for html and for formatting to .pdf through latex. For example, interactive tables are possible in html, but not in .pdf. Another great thing is the ability to add rows of headers on top of each other. For example, data.frames in R only have one row of headers for the columns, `kableExtra` can add more on top.
+
+- [HTML info for kableExtra](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html)
+- [Latex info (pdf) for kableExtra](http://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf)
+
+
+```{r}
+library(kableExtra)
+df <- data.frame(A=1,
+                 B=2,
+                 C=3,
+                 D=4)
+kable(df) %>%
+  kable_styling("striped") %>%
+  add_header_above(c("Group 1" = 2, "Group 2" = 2))
+```
+
+### tangram
+
+This package implements a grammar of tables. Similar to the concept behind `ggplot2`, which implements a grammar of graphics for figures.
+
+- [tangram github](https://github.com/spgarbet/tangram)
+- [tangram html examples](http://htmlpreview.github.io/?https://raw.githubusercontent.com/spgarbet/tangram/master/inst/doc/example.html)
+
+### papaja
+
+`papaja` is a package for rendering APA-style manuscripts in pdf using R Markdown. We will learn more about `papaja` in class. One feature of `papaja` is that it supports APA-style tables.
+
+- [papaja documentation](https://crsh.github.io/papaja_man/)
+- [papaja APA tables](https://crsh.github.io/papaja_man/reporting.html#tables)

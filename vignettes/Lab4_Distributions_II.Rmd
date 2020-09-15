@@ -35,7 +35,7 @@ In this concept section we will use R to generate events with specified probabil
 
 ### Dice Problems
 
-1. Use R to roll a fair six-sided die, and show that each number comes up equally frequently in the long run. Roll the dice 10,000 times, report how many times each number (1-6) was rolled.
+1. Use R to roll a fair six-sided die, and show that each number comes up equally frequently in the long run. Roll the die 10,000 times, report how many times each number (1-6) was rolled.
 
 Each number should come up about 10000/6 = 1666.667 times.
 
@@ -47,21 +47,21 @@ table(rolls)
 2. With a pair of six-sided dice it is possible to roll the numbers 2 to 12. Use a simulation of 10000 rolls (of a pair of dice) in R to calculate the probability of rolling each of the possible numbers.
 
 ```{r}
-one <- sample(1:6,10000, replace=TRUE)
-two <- sample(1:6,10000, replace=TRUE)
+one <- sample(1:6,1000, replace=TRUE)
+two <- sample(1:6,1000, replace=TRUE)
 combined <- one+two
-table(combined)/10000
+table(combined)/1000
 ```
 Let's compare the result of the simulation to the known probabilities. First, we need to determine the number of ways that each number can be obtained by rolling a pair of dice. We can use R to do this as well:
 
 ```{r}
 first <- rep(1:6, each = 6)
-second <- rep(1:6)
+second <- rep(1:6, 6)
 sum_rolls <- first+second
 table(sum_rolls)/length(sum_rolls)
 
 ## compare
-sim_result <- table(combined)/10000
+sim_result <- table(combined)/1000
 true_probs <- table(sum_rolls)/length(sum_rolls)
 
 ## Difference
@@ -151,6 +151,22 @@ for(i in 2:length(flips)){
 
 table(sequence)/10000
 
+## 3 element sequences
+
+flips <- sample(c("H","T"), 10000, replace=TRUE)
+
+sequence <- c()
+for(i in 3:length(flips)){
+  first_element <- flips[i-2]
+  second_element <- flips[i-1]
+  third_element <- flips[i]
+  sequence[i-1] <- paste0(first_element,
+                          second_element,
+                          third_element)
+}
+
+table(sequence)/10000
+
 ```
 
 ## Concept III: Subjective Probability
@@ -173,7 +189,7 @@ Next, imagine that you have no idea what kind of coins were being flipped, and a
 ```{r}
 my_knowledge <- c()
 my_belief <- c()
-for(i in 1: length(simulated_sequence)){
+for(i in 1:length(simulated_sequence)){
   
     my_knowledge[i] <- simulated_sequence[i]
     my_belief[i] <- sum(my_knowledge)/length(my_knowledge)

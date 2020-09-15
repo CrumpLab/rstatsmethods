@@ -125,7 +125,8 @@
 
       
 
-      </header><script src="reference_code_files/header-attrs-2.3/header-attrs.js"></script><script src="reference_code_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="reference_code_files/header-attrs-2.3/header-attrs.js"></script><script src="reference_code_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="reference_code_files/kePrint-0.0.1/kePrint.js"></script><link href="reference_code_files/lightable-0.0.1/lightable.css" rel="stylesheet">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Coding Reference</h1>
@@ -1136,45 +1137,45 @@
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">58.69119</td>
-<td align="right">20</td>
+<td align="right">63.96254</td>
+<td align="right">19</td>
 <td align="left">TRUE</td>
-<td align="left">b</td>
+<td align="left">y</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">68.05774</td>
-<td align="right">19</td>
+<td align="right">56.15848</td>
+<td align="right">20</td>
 <td align="left">FALSE</td>
-<td align="left">o</td>
+<td align="left">v</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">66.43865</td>
+<td align="right">67.39257</td>
 <td align="right">18</td>
-<td align="left">FALSE</td>
+<td align="left">TRUE</td>
 <td align="left">i</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">59.00272</td>
-<td align="right">19</td>
+<td align="right">70.13805</td>
+<td align="right">20</td>
 <td align="left">TRUE</td>
-<td align="left">o</td>
+<td align="left">r</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">63.46000</td>
-<td align="right">20</td>
+<td align="right">65.44086</td>
+<td align="right">19</td>
 <td align="left">TRUE</td>
-<td align="left">o</td>
+<td align="left">b</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">59.91844</td>
-<td align="right">18</td>
+<td align="right">66.75623</td>
+<td align="right">20</td>
 <td align="left">TRUE</td>
-<td align="left">y</td>
+<td align="left">r</td>
 </tr>
 </tbody>
 </table>
@@ -1201,24 +1202,23 @@
 <span class="co">#&gt; # A tibble: 2 x 3</span>
 <span class="co">#&gt;   likes_chocolate mean_grade sd_grad</span>
 <span class="co">#&gt;   &lt;lgl&gt;                &lt;dbl&gt;   &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 FALSE                 66.9   0.955</span>
-<span class="co">#&gt; 2 TRUE                  63.0   4.54</span>
+<span class="co">#&gt; 1 FALSE                 65.7    9.13</span>
+<span class="co">#&gt; 2 TRUE                  65.7    4.12</span>
 
 <span class="no">fake_data</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">likes_chocolate</span>,<span class="no">age</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="kw">mean_grade</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">grades</span>),
             <span class="kw">sd_grad</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span>(<span class="no">grades</span>))
 <span class="co">#&gt; `summarise()` regrouping output by 'likes_chocolate' (override with `.groups` argument)</span>
-<span class="co">#&gt; # A tibble: 6 x 4</span>
+<span class="co">#&gt; # A tibble: 5 x 4</span>
 <span class="co">#&gt; # Groups:   likes_chocolate [2]</span>
 <span class="co">#&gt;   likes_chocolate   age mean_grade sd_grad</span>
 <span class="co">#&gt;   &lt;lgl&gt;           &lt;int&gt;      &lt;dbl&gt;   &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 FALSE              18       66.4  NA    </span>
-<span class="co">#&gt; 2 FALSE              19       67.6   0.587</span>
-<span class="co">#&gt; 3 FALSE              20       65.9  NA    </span>
-<span class="co">#&gt; 4 TRUE               18       64.0   5.74 </span>
-<span class="co">#&gt; 5 TRUE               19       63.9   6.91 </span>
-<span class="co">#&gt; 6 TRUE               20       61.1   3.37</span></pre></body></html></div>
+<span class="co">#&gt; 1 FALSE              18       66.6  NA    </span>
+<span class="co">#&gt; 2 FALSE              20       65.2  12.9  </span>
+<span class="co">#&gt; 3 TRUE               18       68.1   0.979</span>
+<span class="co">#&gt; 4 TRUE               19       64.7   1.05 </span>
+<span class="co">#&gt; 5 TRUE               20       64.8   6.49</span></pre></body></html></div>
 </div>
 <div id="filter" class="section level3">
 <h3 class="hasAnchor">
@@ -1227,19 +1227,16 @@
 <div class="sourceCode" id="cb58"><html><body><pre class="r"><span class="no">fake_data</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">grades</span> <span class="kw">&lt;</span> <span class="fl">65</span>)
 <span class="co">#&gt;   subjects   grades age likes_chocolate favorite_color</span>
-<span class="co">#&gt; 1        1 58.69119  20            TRUE              b</span>
-<span class="co">#&gt; 2        4 59.00272  19            TRUE              o</span>
-<span class="co">#&gt; 3        5 63.46000  20            TRUE              o</span>
-<span class="co">#&gt; 4        6 59.91844  18            TRUE              y</span>
+<span class="co">#&gt; 1        1 63.96254  19            TRUE              y</span>
+<span class="co">#&gt; 2        2 56.15848  20           FALSE              v</span>
+<span class="co">#&gt; 3        8 57.59166  20            TRUE              i</span>
 
 <span class="no">fake_data</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">grades</span> <span class="kw">&lt;</span> <span class="fl">65</span>,
          <span class="no">likes_chocolate</span> <span class="kw">==</span> <span class="fl">TRUE</span>)
 <span class="co">#&gt;   subjects   grades age likes_chocolate favorite_color</span>
-<span class="co">#&gt; 1        1 58.69119  20            TRUE              b</span>
-<span class="co">#&gt; 2        4 59.00272  19            TRUE              o</span>
-<span class="co">#&gt; 3        5 63.46000  20            TRUE              o</span>
-<span class="co">#&gt; 4        6 59.91844  18            TRUE              y</span></pre></body></html></div>
+<span class="co">#&gt; 1        1 63.96254  19            TRUE              y</span>
+<span class="co">#&gt; 2        8 57.59166  20            TRUE              i</span></pre></body></html></div>
 </div>
 <div id="select" class="section level3">
 <h3 class="hasAnchor">
@@ -1248,30 +1245,30 @@
 <div class="sourceCode" id="cb59"><html><body><pre class="r"><span class="no">fake_data</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">grades</span>)
 <span class="co">#&gt;      grades</span>
-<span class="co">#&gt; 1  58.69119</span>
-<span class="co">#&gt; 2  68.05774</span>
-<span class="co">#&gt; 3  66.43865</span>
-<span class="co">#&gt; 4  59.00272</span>
-<span class="co">#&gt; 5  63.46000</span>
-<span class="co">#&gt; 6  59.91844</span>
-<span class="co">#&gt; 7  68.03096</span>
-<span class="co">#&gt; 8  68.77885</span>
-<span class="co">#&gt; 9  65.86316</span>
-<span class="co">#&gt; 10 67.22822</span>
+<span class="co">#&gt; 1  63.96254</span>
+<span class="co">#&gt; 2  56.15848</span>
+<span class="co">#&gt; 3  67.39257</span>
+<span class="co">#&gt; 4  70.13805</span>
+<span class="co">#&gt; 5  65.44086</span>
+<span class="co">#&gt; 6  66.75623</span>
+<span class="co">#&gt; 7  68.77654</span>
+<span class="co">#&gt; 8  57.59166</span>
+<span class="co">#&gt; 9  74.34082</span>
+<span class="co">#&gt; 10 66.62383</span>
 
 <span class="no">fake_data</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">grades</span>,<span class="no">likes_chocolate</span>)
 <span class="co">#&gt;      grades likes_chocolate</span>
-<span class="co">#&gt; 1  58.69119            TRUE</span>
-<span class="co">#&gt; 2  68.05774           FALSE</span>
-<span class="co">#&gt; 3  66.43865           FALSE</span>
-<span class="co">#&gt; 4  59.00272            TRUE</span>
-<span class="co">#&gt; 5  63.46000            TRUE</span>
-<span class="co">#&gt; 6  59.91844            TRUE</span>
-<span class="co">#&gt; 7  68.03096            TRUE</span>
-<span class="co">#&gt; 8  68.77885            TRUE</span>
-<span class="co">#&gt; 9  65.86316           FALSE</span>
-<span class="co">#&gt; 10 67.22822           FALSE</span></pre></body></html></div>
+<span class="co">#&gt; 1  63.96254            TRUE</span>
+<span class="co">#&gt; 2  56.15848           FALSE</span>
+<span class="co">#&gt; 3  67.39257            TRUE</span>
+<span class="co">#&gt; 4  70.13805            TRUE</span>
+<span class="co">#&gt; 5  65.44086            TRUE</span>
+<span class="co">#&gt; 6  66.75623            TRUE</span>
+<span class="co">#&gt; 7  68.77654            TRUE</span>
+<span class="co">#&gt; 8  57.59166            TRUE</span>
+<span class="co">#&gt; 9  74.34082           FALSE</span>
+<span class="co">#&gt; 10 66.62383           FALSE</span></pre></body></html></div>
 </div>
 <div id="mutate" class="section level3">
 <h3 class="hasAnchor">
@@ -1282,22 +1279,71 @@
 
 <span class="no">fake_data</span>
 <span class="co">#&gt;    subjects   grades age likes_chocolate favorite_color new_thing</span>
-<span class="co">#&gt; 1         1 58.69119  20            TRUE              b         0</span>
-<span class="co">#&gt; 2         2 68.05774  19           FALSE              o         0</span>
-<span class="co">#&gt; 3         3 66.43865  18           FALSE              i         0</span>
-<span class="co">#&gt; 4         4 59.00272  19            TRUE              o         0</span>
-<span class="co">#&gt; 5         5 63.46000  20            TRUE              o         0</span>
-<span class="co">#&gt; 6         6 59.91844  18            TRUE              y         0</span>
-<span class="co">#&gt; 7         7 68.03096  18            TRUE              v         0</span>
-<span class="co">#&gt; 8         8 68.77885  19            TRUE              g         0</span>
-<span class="co">#&gt; 9         9 65.86316  20           FALSE              r         0</span>
-<span class="co">#&gt; 10       10 67.22822  19           FALSE              g         0</span></pre></body></html></div>
+<span class="co">#&gt; 1         1 63.96254  19            TRUE              y         0</span>
+<span class="co">#&gt; 2         2 56.15848  20           FALSE              v         0</span>
+<span class="co">#&gt; 3         3 67.39257  18            TRUE              i         0</span>
+<span class="co">#&gt; 4         4 70.13805  20            TRUE              r         0</span>
+<span class="co">#&gt; 5         5 65.44086  19            TRUE              b         0</span>
+<span class="co">#&gt; 6         6 66.75623  20            TRUE              r         0</span>
+<span class="co">#&gt; 7         7 68.77654  18            TRUE              y         0</span>
+<span class="co">#&gt; 8         8 57.59166  20            TRUE              i         0</span>
+<span class="co">#&gt; 9         9 74.34082  20           FALSE              v         0</span>
+<span class="co">#&gt; 10       10 66.62383  18           FALSE              y         0</span></pre></body></html></div>
 </div>
 </div>
 <div id="ggplot2" class="section level2">
 <h2 class="hasAnchor">
 <a href="#ggplot2" class="anchor"></a>ggplot2</h2>
+<p><code>ggplot2</code> is a library created by Hadley Wickham for plotting and graphing results, and refers to a “grammar of graphics”, or a standardized syntax and organization for graphing.</p>
+<div id="ggplot2-additional-resources" class="section level3">
+<h3 class="hasAnchor">
+<a href="#ggplot2-additional-resources" class="anchor"></a>ggplot2 additional resources</h3>
+<ul>
+<li><a href="https://ggplot2.tidyverse.org" class="uri">https://ggplot2.tidyverse.org</a></li>
+<li><a href="https://r4ds.had.co.nz/data-visualisation.html" class="uri">https://r4ds.had.co.nz/data-visualisation.html</a></li>
+<li><a href="https://ggplot2-book.org" class="uri">https://ggplot2-book.org</a></li>
+<li><a href="http://r-statistics.co/ggplot2-Tutorial-With-R.html" class="uri">http://r-statistics.co/ggplot2-Tutorial-With-R.html</a></li>
+<li><a href="https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html" class="uri">https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html</a></li>
+</ul>
+<div id="add-on-packages" class="section level4">
+<h4 class="hasAnchor">
+<a href="#add-on-packages" class="anchor"></a>Add-on packages</h4>
+<ul>
+<li>
+<a href="https://www.ggplot2-exts.org">https://www.ggplot2-exts.org</a> A repository of 50+ add on packages for ggplot2</li>
+<li>
+<a href="https://gganimate.com">https://gganimate.com</a>
+<ul>
+<li>allows you to create animated .gifs of ggplots</li>
+<li>I made a bunch of animated gifs for a statistics textbook. They are all here along with the code <a href="https://crumplab.github.io/statistics/gifs.html">https://crumplab.github.io/statistics/gifs.html</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="https://github.com/slowkow/ggrepel%5D">ggrepel</a> allows you to repel overlapping text labels away from each other.</li>
+<li>
+<a href="https://github.com/dreamRs/esquisse">esquisse</a> a GUI (graphic user interface) that allows you make ggplot graphs using drag-drop, and clickable options</li>
+<li>
+<a href="https://github.com/metrumresearchgroup/ggedit">ggedit</a> similar to above, clickable editing of ggplot graphs</li>
+<li>
+<a href="https://plot.ly/r/">plotly</a> a package similar to ggplot, makes a whole variety of graphs, mainly for use in websites. Allows interactive graphs.
+<ul>
+<li>As an example, I used plotly on my publications website, if you hover over the dots, info pops up <a href="https://crumplab.github.io/Publications.html">https://crumplab.github.io/Publications.html</a>.</li>
+</ul>
+</li>
+<li>
+<strong>ggpubr</strong> (install from CRAN), many useful things, including the <code>ggarrange</code> function which allows you to knit multiple plots together</li>
+<li>
+<strong>ggthemes</strong> extra themes, scales, and geoms</li>
+</ul>
+</div>
+</div>
+<div id="example-code" class="section level3">
+<h3 class="hasAnchor">
+<a href="#example-code" class="anchor"></a>Example code</h3>
+<p>Remember to load the ggplot2 library before you use ggplot2.</p>
 <div class="sourceCode" id="cb61"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)</pre></body></html></div>
+</div>
 <div id="scatterplot" class="section level3">
 <h3 class="hasAnchor">
 <a href="#scatterplot" class="anchor"></a>Scatterplot</h3>
@@ -1488,6 +1534,295 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span>(<span class="kw">bins</span><span class="kw">=</span><span class="fl">10</span>,
                  <span class="kw">color</span><span class="kw">=</span><span class="st">"white"</span>)</pre></body></html></div>
 <p><img src="reference_code_files/figure-html/unnamed-chunk-70-1.png" width="700"></p>
+</div>
+</div>
+<div id="knitr" class="section level2">
+<h2 class="hasAnchor">
+<a href="#knitr" class="anchor"></a>knitr</h2>
+<p><code>knitr</code> is a package used to compile R markdown documents into other formats such as html (webpages) or pdf.</p>
+<div id="knitting-to-pdf" class="section level3">
+<h3 class="hasAnchor">
+<a href="#knitting-to-pdf" class="anchor"></a>knitting to pdf</h3>
+<p>A latex installation is required in order to knit to pdf. Latex is also free and cross-platform, however a complete installation is can be quite large.</p>
+<p>I think the advice by Frederick Aust (an author of the <code>papaja</code> package) for installing latex is worth following:</p>
+<ul>
+<li><a href="https://crsh.github.io/papaja_man/introduction.html#getting-started" class="uri">https://crsh.github.io/papaja_man/introduction.html#getting-started</a></li>
+</ul>
+<p>Basically, the advice is to install a complete tex distribution (follow the above for links), or to use the <code>tinytex</code> package in R. The tinytex package should be sufficient for most knitting to pdf duties.</p>
+<ol style="list-style-type: decimal">
+<li>Install the tinytex library:</li>
+</ol>
+<pre><code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("tinytex")</a></code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Run this command after installing the library</li>
+</ol>
+<pre><code>tinytex::install_tex()</code></pre>
+</div>
+<div id="knitr-options" class="section level3">
+<h3 class="hasAnchor">
+<a href="#knitr-options" class="anchor"></a>knitr options</h3>
+<p>When you create a new R Markdown document you will see the following code chunk underneath the yaml, at the beginning of the document. It usually looks like this:</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb76-1"><a href="#cb76-1"></a><span class="bn">```{r setup, include=FALSE}</span></span>
+<span id="cb76-2"><a href="#cb76-2"></a><span class="bn">knitr::opts_chunk$set(echo = TRUE)</span></span>
+<span id="cb76-3"><a href="#cb76-3"></a><span class="bn">```</span></span></code></pre></div>
+<p>This chunk is named setup, it is not printed in your output, but <strong>it controls the global setup options</strong> for the whole document. Any option you set here applies to all of the remaining code chunks you create. It’s a way of setting defaults.</p>
+<p>Here are some helpful defaults you can add. You turn the option on with <code>TRUE</code>, and turn it off with <code>FALSE</code>.</p>
+<ul>
+<li>
+<code>echo=TRUE</code> sets the default to print all remaining code blocks to the output, <code>FALSE</code> sets the default to not print the code blocks</li>
+<li>
+<code>warning = FALSE</code> turns off printing of warnings</li>
+<li>
+<code>message = FALSE</code> turns off printing of messages, these commonly occur when you load a package, where you receive a message that the package was loaded</li>
+<li>
+<code>eval = FALSE</code> sets the default to <strong>NOT</strong> evaluate the code chunk as R Code. This will not run the code block, but the code block will still print if <code>echo=TRUE</code>
+</li>
+<li>
+<code>error=TRUE</code> normally the knit fails when there is an error in the code. If you set <code>error=TRUE</code> the knit will complete, and return an error message for code blocks with errors.</li>
+</ul>
+<div class="sourceCode" id="cb77"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb77-1"><a href="#cb77-1"></a><span class="bn">```{r setup, include=FALSE}</span></span>
+<span id="cb77-2"><a href="#cb77-2"></a><span class="bn">knitr::opts_chunk$set(echo = TRUE,</span></span>
+<span id="cb77-3"><a href="#cb77-3"></a><span class="bn">                      warning = FALSE,</span></span>
+<span id="cb77-4"><a href="#cb77-4"></a><span class="bn">                      message = FALSE, </span></span>
+<span id="cb77-5"><a href="#cb77-5"></a><span class="bn">                      eval = FALSE,</span></span>
+<span id="cb77-6"><a href="#cb77-6"></a><span class="bn">                      error = TRUE)</span></span>
+<span id="cb77-7"><a href="#cb77-7"></a><span class="bn">```</span></span></code></pre></div>
+</div>
+<div id="knitr-figure-output-defaults" class="section level3">
+<h3 class="hasAnchor">
+<a href="#knitr-figure-output-defaults" class="anchor"></a>knitr figure output defaults</h3>
+<p>The following setup options are useful for figure output.</p>
+<ul>
+<li>
+<code>fig.width = 3</code> sets the default width in inches for all figures</li>
+<li>
+<code>fig.height = 3</code> sets the default height in inches for all figures</li>
+<li>
+<code>fig.path = "myfigs/"</code> defines folder where figure files will be saved. This will be relative to your current working directoy</li>
+<li>
+<code>dev = c("pdf", "png")</code> tells knitr to output both .png, and .pdf versions of the figure. The .pdf contains vector graphics, meaning the figure can be resized without pixelization.</li>
+</ul>
+<div class="sourceCode" id="cb78"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb78-1"><a href="#cb78-1"></a><span class="bn">```{r setup, include=FALSE}</span></span>
+<span id="cb78-2"><a href="#cb78-2"></a><span class="bn">knitr::opts_chunk$set(echo = TRUE,</span></span>
+<span id="cb78-3"><a href="#cb78-3"></a><span class="bn">                      fig.width = 3,</span></span>
+<span id="cb78-4"><a href="#cb78-4"></a><span class="bn">                      fig.height = 3,</span></span>
+<span id="cb78-5"><a href="#cb78-5"></a><span class="bn">                      fig.path = "myfigs/",</span></span>
+<span id="cb78-6"><a href="#cb78-6"></a><span class="bn">                      dev = c("pdf", "png"))</span></span>
+<span id="cb78-7"><a href="#cb78-7"></a><span class="bn">```</span></span></code></pre></div>
+</div>
+<div id="figure-output-per-code-block" class="section level3">
+<h3 class="hasAnchor">
+<a href="#figure-output-per-code-block" class="anchor"></a>figure output per code block</h3>
+<p>You can set the options for remaining code blocks individually. These will overrule the default options that you specify in the setup chunk.</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb79-1"><a href="#cb79-1"></a><span class="bn">```{r figurename, fig.width =5, fig.height =7}</span></span>
+<span id="cb79-2"><a href="#cb79-2"></a></span>
+<span id="cb79-3"><a href="#cb79-3"></a><span class="bn"># some code that generates a figure</span></span>
+<span id="cb79-4"><a href="#cb79-4"></a></span>
+<span id="cb79-5"><a href="#cb79-5"></a><span class="bn">```</span></span></code></pre></div>
+</div>
+</div>
+<div id="tables" class="section level2">
+<h2 class="hasAnchor">
+<a href="#tables" class="anchor"></a>tables</h2>
+<p>There are several useful (incredible even) packages for making tables in R. Here are a few:</p>
+<ul>
+<li>
+<code>knitr</code> package and it’s <code>kable</code> function (Create tables in Latex, HTML, Markdown)</li>
+<li>
+<code>xtable</code> package, lots of functions for tables. <a href="https://cran.r-project.org/web/packages/xtable/vignettes/xtableGallery.pdf">Here are some xtable examples xtable</a>
+</li>
+<li>
+<code>kableExtra</code> lots of additional table functionality</li>
+<li>
+<code>tangram</code> a grammar of tables approach</li>
+<li>
+<code>papaja</code> for apa-style tables</li>
+</ul>
+<div id="important-table-info" class="section level3">
+<h3 class="hasAnchor">
+<a href="#important-table-info" class="anchor"></a>Important table info</h3>
+<p>Two things to note, tables can be difficult, and there are different output formats.</p>
+<ol style="list-style-type: decimal">
+<li><p>Tables in R can be difficult. For example, if you are comfortable with making tables in Excel, then R will be much more difficult by comparison. In Excel, it is easy to enter information in any cell, merge any cells, add any kind of formatting you want anywhere, just by clicking around and making the changes. In R, every detail of the table is specified by script. Some of the table packages make simple tables easy (hurray!), and some of them make complicated tables possible (also good), but not necessarilly easy.</p></li>
+<li><p>R can output tables in many formats including HTML for the web, Latex for .pdf, and other formats (e.g., word, markdown). Sometimes (depending on the functions you are using) you will run into issues with outputting tables in different formats. Or, you will have to take steps to ensure that you are outputting the table in the format that you want.</p></li>
+</ol>
+</div>
+<div id="knitrkable" class="section level3">
+<h3 class="hasAnchor">
+<a href="#knitrkable" class="anchor"></a>knitr::kable</h3>
+<p><code><a href="https://rdrr.io/pkg/kableExtra/man/reexports.html">kable()</a></code> is a function inside the knitr package. To use it you need to load the knitr library, or you can use <code><a href="https://rdrr.io/pkg/knitr/man/kable.html">knitr::kable()</a></code>, which tells R to find kable inside the knitr package if you haven’t loaded knitr using <code><a href="https://rdrr.io/pkg/knitr/man">library(knitr)</a></code>.</p>
+<p><code><a href="https://rdrr.io/pkg/kableExtra/man/reexports.html">kable()</a></code> is great for quickly rendering data frames as nice tables without much hassle.</p>
+<div class="sourceCode" id="cb80"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">A</span><span class="kw">=</span><span class="fl">1</span>,
+                 <span class="kw">B</span><span class="kw">=</span><span class="fl">2</span>,
+                 <span class="kw">C</span><span class="kw">=</span><span class="fl">3</span>,
+                 <span class="kw">D</span><span class="kw">=</span><span class="fl">4</span>)
+<span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="no">df</span>)</pre></body></html></div>
+<table class="table">
+<thead><tr class="header">
+<th align="right">A</th>
+<th align="right">B</th>
+<th align="right">C</th>
+<th align="right">D</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">4</td>
+</tr></tbody>
+</table>
+</div>
+<div id="xtable" class="section level3">
+<h3 class="hasAnchor">
+<a href="#xtable" class="anchor"></a>xtable</h3>
+<p>Look at the xtable examples document for more info. <a href="https://cran.r-project.org/web/packages/xtable/vignettes/xtableGallery.pdf">https://cran.r-project.org/web/packages/xtable/vignettes/xtableGallery.pdf</a></p>
+<div class="sourceCode" id="cb81"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">xtable</span>) <span class="co"># load xtable</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">tli</span>) <span class="co"># loads a sample data frame</span>
+
+<span class="co"># conduct an ANOVA</span>
+ <span class="no">fm1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span>(<span class="no">tlimth</span> ~ <span class="no">sex</span> + <span class="no">ethnicty</span> + <span class="no">grade</span> + <span class="no">disadvg</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">tli</span>)
+
+<span class="co"># print the table for HTML using xtable and kable together</span>
+<span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/xtable/man/xtable.html">xtable</a></span>(<span class="no">fm1</span>))</pre></body></html></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">Df</th>
+<th align="right">Sum Sq</th>
+<th align="right">Mean Sq</th>
+<th align="right">F value</th>
+<th align="right">Pr(&gt;F)</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">sex</td>
+<td align="right">1</td>
+<td align="right">75.37255</td>
+<td align="right">75.37255</td>
+<td align="right">0.3751912</td>
+<td align="right">0.5416830</td>
+</tr>
+<tr class="even">
+<td align="left">ethnicty</td>
+<td align="right">3</td>
+<td align="right">2572.14918</td>
+<td align="right">857.38306</td>
+<td align="right">4.2679008</td>
+<td align="right">0.0071831</td>
+</tr>
+<tr class="odd">
+<td align="left">grade</td>
+<td align="right">1</td>
+<td align="right">36.30740</td>
+<td align="right">36.30740</td>
+<td align="right">0.1807318</td>
+<td align="right">0.6717271</td>
+</tr>
+<tr class="even">
+<td align="left">disadvg</td>
+<td align="right">1</td>
+<td align="right">59.30338</td>
+<td align="right">59.30338</td>
+<td align="right">0.2952017</td>
+<td align="right">0.5882062</td>
+</tr>
+<tr class="odd">
+<td align="left">Residuals</td>
+<td align="right">93</td>
+<td align="right">18682.86749</td>
+<td align="right">200.89105</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb82"><html><body><pre class="r">
+# Note this will print a table in latex for .pdf
+# xtable(fm1)</pre></body></html></div>
+</div>
+<div id="kableextra" class="section level3">
+<h3 class="hasAnchor">
+<a href="#kableextra" class="anchor"></a>kableExtra</h3>
+<p>There are many great things about <code>kableExtra</code>. One great thing is that <code>kableExtra</code> has unique table options for html and for formatting to .pdf through latex. For example, interactive tables are possible in html, but not in .pdf. Another great thing is the ability to add rows of headers on top of each other. For example, data.frames in R only have one row of headers for the columns, <code>kableExtra</code> can add more on top.</p>
+<ul>
+<li><a href="https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html">HTML info for kableExtra</a></li>
+<li><a href="http://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf">Latex info (pdf) for kableExtra</a></li>
+</ul>
+<div class="sourceCode" id="cb83"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">kableExtra</span>)
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Attaching package: 'kableExtra'</span>
+<span class="co">#&gt; The following object is masked from 'package:dplyr':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     group_rows</span>
+<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">A</span><span class="kw">=</span><span class="fl">1</span>,
+                 <span class="kw">B</span><span class="kw">=</span><span class="fl">2</span>,
+                 <span class="kw">C</span><span class="kw">=</span><span class="fl">3</span>,
+                 <span class="kw">D</span><span class="kw">=</span><span class="fl">4</span>)
+<span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/reexports.html">kable</a></span>(<span class="no">df</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html">kable_styling</a></span>(<span class="st">"striped"</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html">add_header_above</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Group 1"</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="st">"Group 2"</span> <span class="kw">=</span> <span class="fl">2</span>))</pre></body></html></div>
+<table class="table table table-striped">
+<thead>
+<tr>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Group 1
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Group 2
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:right;">
+A
+</th>
+<th style="text-align:right;">
+B
+</th>
+<th style="text-align:right;">
+C
+</th>
+<th style="text-align:right;">
+D
+</th>
+</tr>
+</thead>
+<tbody><tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr></tbody>
+</table>
+</div>
+<div id="tangram" class="section level3">
+<h3 class="hasAnchor">
+<a href="#tangram" class="anchor"></a>tangram</h3>
+<p>This package implements a grammar of tables. Similar to the concept behind <code>ggplot2</code>, which implements a grammar of graphics for figures.</p>
+<ul>
+<li><a href="https://github.com/spgarbet/tangram">tangram github</a></li>
+<li><a href="http://htmlpreview.github.io/?https://raw.githubusercontent.com/spgarbet/tangram/master/inst/doc/example.html">tangram html examples</a></li>
+</ul>
+</div>
+<div id="papaja" class="section level3">
+<h3 class="hasAnchor">
+<a href="#papaja" class="anchor"></a>papaja</h3>
+<p><code>papaja</code> is a package for rendering APA-style manuscripts in pdf using R Markdown. We will learn more about <code>papaja</code> in class. One feature of <code>papaja</code> is that it supports APA-style tables.</p>
+<ul>
+<li><a href="https://crsh.github.io/papaja_man/">papaja documentation</a></li>
+<li><a href="https://crsh.github.io/papaja_man/reporting.html#tables">papaja APA tables</a></li>
+</ul>
 </div>
 </div>
   </div>
