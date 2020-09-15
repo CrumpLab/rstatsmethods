@@ -29,6 +29,8 @@ We will look at three conceptual issues with probability, and gain practical ski
 2. Concept II: Experiencing probability
 3. Concept III: Subjective Probability
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/h4EvG2e65O8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Concept I: Probabilisitic event generation
 
 In this concept section we will use R to generate events with specified probabilities. We will mainly use the `sample()` function, which we are already familiar with. This concept section explores probabilistic event generation in a few different ways by examining a few probability problems:
@@ -256,6 +258,8 @@ the_letters
 
 2. Generate "random" strings of letters that are sampled from a distribution where letter occurrence probability is the same as natural English. Use the probabilities for each letter from this [wikipedia article](https://en.wikipedia.org/wiki/Letter_frequency), or use your own estimates from the previous question (2 points).
 
-3. Flip a fair coin a large number of times (say 10000). Count how many flips it took from the beginning until you got five heads in a row. For example: HTHTHHHTTTHHHHH, in this sequence it took 10 flips before HHHHH occurred (1 point).
+3. Generate a random walk of 10,000 steps. In a random walk, you are simulating the process of randomly taking a step up or down, as if you are on an infinite staircase. At each step you flip a coin. If you get heads you go up one step, if you get tails you go down one step. Start on step 0, then simulate a random walk for 10,000 steps. Your vector should preserve the step number for each step. For example, if the the first three steps were all heads, then the vector would begin with 0,1,2,3, which indicates a single step up each time. Plot the first 1,000 steps. (1 point)
 
-4. On average, if you start flipping a coining, how many flips will it take before get five in a row. To solve this problem you will need to repeat the above problem many times, each time getting a new count. Conduct this simulation 10000 times, and report the mean number of flips it takes to get five heads in a row (2 points)
+4. What was the most positive and most negative step reached out of 10,000? (1 point)
+
+5. What was the longest run of steps where all steps were positive numbers. For example, in the sequence: 1,2,3,2,1,0,-1,-2,-1,-2,-1,0,1,2,3; the answer is 5 because the first five values were all positive, and this was the longest sequence of positive values. (1 point).
