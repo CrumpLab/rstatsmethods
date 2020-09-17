@@ -232,9 +232,9 @@ proportion_tails <- c()
 # run the simulation
 for(i in 1:1000){
   flip[i] <- i
-  outcome[i] <- sample(x= c(1,0), size = 1)
-  proportion_heads[i] = sum(outcome)/length(outcome)
-  proportion_tails[i] = 1-proportion_heads[i]
+  outcome[i] <- sample(x = c(1,0), size = 1)
+  proportion_heads[i] <- sum(outcome)/length(outcome)
+  proportion_tails[i] <- 1-proportion_heads[i]
 }
 
 # create a dataframe with saved data
