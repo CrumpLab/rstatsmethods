@@ -16,6 +16,8 @@ knitr::opts_chunk$set(
 
 ## Review
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xbQaPWdKUp0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 In the last two labs we have begun to explore distributions, and have used R to create and sample from distributions. We will continue this exploration in many of the following labs. 
 
 As we continue I want to point out a major conceptual goal that I have for you. This is to have a nuanced understanding of one statement and one question:
@@ -123,6 +125,7 @@ Note, that this probability density function could be consulted to ask a questio
 library(dplyr)
 some_data <- data.frame(density = dnorm(seq(-4,4,.001), mean = 0, sd = 1),
                         x = seq(-4,4,.001))
+
 region_data <- some_data %>%
   filter(x > 2.5)
 
@@ -297,6 +300,8 @@ sd(sample_means)
 
 
 ## Lab 5 Generalization Assignment
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rjp7kmIo2Qk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Instructions
 
