@@ -2,7 +2,7 @@ pandoc: 2.9.1.1
 pkgdown: 1.5.1
 pkgdown_sha: ~
 articles: []
-last_built: 2020-09-10T19:25Z
+last_built: 2020-09-30T15:47Z
 urls:
   reference: https://crumplab.github.io/psyc7709Lab/reference
   article: https://crumplab.github.io/psyc7709Lab/articles

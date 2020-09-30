@@ -52,6 +52,8 @@ navbar:
         href: articles/Lab3_Distributions_I.html
       - text: Lab 4 Distributions II
         href: articles/Lab4_Distributions_II.html
+      - text: Lab 5 Sampling Distributions
+        href: articles/Lab5_Sampling_Distributions.html
     resources:
       text: R Reference
       menu:

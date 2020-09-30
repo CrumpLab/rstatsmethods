@@ -151,7 +151,7 @@ for(i in 2:length(flips)){
   sequence[i-1] <- paste0(first_element,second_element)
 }
 
-table(sequence)/10000
+table(sequence)/sum(table(sequence))
 
 ## 3 element sequences
 
@@ -167,7 +167,7 @@ for(i in 3:length(flips)){
                           third_element)
 }
 
-table(sequence)/10000
+table(sequence)/sum(table(sequence))
 
 ```
 
@@ -241,7 +241,7 @@ Your assignment instructions are the following:
 2. Create a new R Markdown document called "Lab4.Rmd"
 3. Use Lab4.Rmd to show your work attempting to solve the following generalization problems. Commit your work regularly so that it appears on your Github repository.
 4. **For each problem, make a note about how much of the problem you believe you can solve independently without help**. For example, if you needed to watch the help video and are unable to solve the problem on your own without copying the answers, then your note would be 0. If you are confident you can complete the problem from scratch completely on your own, your note would be 100. It is OK to have all 0s or 100s anything in between. 
-5. Submit your github repository link for Lab 3 on blackboard.
+5. Submit your github repository link for Lab 4 on blackboard.
 6. There are five problems to solve
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/cT27lOvn4qk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
