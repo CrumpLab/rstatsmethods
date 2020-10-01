@@ -28,6 +28,7 @@ navbar:
     - articles
     - resources
     - semester
+    - contribute
     right:
     - github
     - news
@@ -64,6 +65,9 @@ navbar:
     semester:
       text: Semester Project
       href: articles/semester_project.html
+    contribute:
+      text: Extra Credit
+      href: articles/course_docs/contribute.html
     reference:
       text:
       href: reference/index.html

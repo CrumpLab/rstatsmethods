@@ -190,7 +190,9 @@ qnorm(.5, mean= 0, sd =1)
 What is the number where 95% of the values are larger than that number?
 
 ```{r}
-qnorm(.05, mean= 0, sd =1, lower.tail = FALSE)
+qnorm(.95, mean= 0, sd =1, lower.tail = FALSE)
+
+qnorm(.05, mean = 0 , sd =1, lower.tail = FALSE)
 ```
 
 ### Summary
