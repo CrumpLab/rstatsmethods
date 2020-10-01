@@ -27,7 +27,7 @@ navbar:
     - Syllabus
     - articles
     - resources
-    - slides
+    - semester
     right:
     - github
     - news
@@ -61,6 +61,9 @@ navbar:
         href: articles/course_docs/reference_code.html
       - text: More resources
         href: articles/course_docs/resources.html
+    semester:
+      text: Semester Project
+      href: articles/semester_project.html
     reference:
       text:
       href: reference/index.html
