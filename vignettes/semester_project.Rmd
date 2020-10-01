@@ -86,14 +86,24 @@ Again, the purpose here is not to write a full-length APA paper, but to get some
 
 In part 3 you will add a simulation-based power analysis to your APA-style manuscript. Specifically, you should report a graph showing a power-curve for the design. We will discuss how to conduct simulation based power analyses in class.
 
-## Example of completed project
+## Example of a completed project
 
 To give you a better idea of what I am looking for I completed the project myself. 
 
-And the source code is located in this github repository [https://github.com/CrumpLab/7709midterm](https://github.com/CrumpLab/7709midterm).
+And the source code is located in this github repository [https://github.com/CrumpLab/psyc7709Lab/tree/master/semester_project](https://github.com/CrumpLab/psyc7709Lab/tree/master/semester_project).
 
 This repository contains:
 
 1. **Part 1**: An .rmd file that reproduces the analysis from Experiment 3 of Rosenbaum, Mama, Algom (2017)
 2. **Part 2**: an APA-style manuscript version of the reproducible report using papaja
 3. **Part 3**: a section at the end of the APA-style manuscript that conducts a simulation based power-analysis of the design.
+
+## Semester Project Submission
+
+1. Create a **new** git-enabled R project for your semester project, and upload it to github
+2. Work in this folder, and complete Parts 1 to 3. When you are finished you should have at a minimum:
+  - a folder for the data that you obtained
+  - A compiled .Rmd and html file for part 1
+  - A compiled .Rmd and .pdf for part 2 and 3
+  - a bib file for your references
+3. Submit the link to your github repository to the Blackboard assignment for the semester long project
