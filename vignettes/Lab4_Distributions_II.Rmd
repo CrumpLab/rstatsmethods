@@ -151,7 +151,7 @@ for(i in 2:length(flips)){
   sequence[i-1] <- paste0(first_element,second_element)
 }
 
-table(sequence)/10000
+table(sequence)/sum(table(sequence))
 
 ## 3 element sequences
 
@@ -167,7 +167,7 @@ for(i in 3:length(flips)){
                           third_element)
 }
 
-table(sequence)/10000
+table(sequence)/sum(table(sequence))
 
 ```
 
