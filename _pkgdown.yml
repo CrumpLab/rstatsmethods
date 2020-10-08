@@ -55,6 +55,8 @@ navbar:
         href: articles/Lab4_Distributions_II.html
       - text: Lab 5 Sampling Distributions
         href: articles/Lab5_Sampling_Distributions.html
+      - text: Lab 6 Statistical Inference
+        href: articles/Lab6_Statistical_Inference.html
     resources:
       text: R Reference
       menu:

@@ -87,6 +87,9 @@
     <li>
       <a href="../../articles/Lab5_Sampling_Distributions.html">Lab 5 Sampling Distributions</a>
     </li>
+    <li>
+      <a href="../../articles/Lab6_Statistical_Inference.html">Lab 6 Statistical Inference</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -1146,45 +1149,45 @@
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">58.17665</td>
-<td align="right">18</td>
-<td align="left">FALSE</td>
-<td align="left">g</td>
+<td align="right">61.06477</td>
+<td align="right">20</td>
+<td align="left">TRUE</td>
+<td align="left">v</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">65.97999</td>
-<td align="right">19</td>
+<td align="right">62.95929</td>
+<td align="right">18</td>
 <td align="left">FALSE</td>
-<td align="left">v</td>
+<td align="left">r</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">63.94499</td>
+<td align="right">67.43567</td>
 <td align="right">20</td>
-<td align="left">TRUE</td>
+<td align="left">FALSE</td>
 <td align="left">o</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">66.29232</td>
-<td align="right">20</td>
+<td align="right">68.63889</td>
+<td align="right">18</td>
 <td align="left">TRUE</td>
-<td align="left">o</td>
+<td align="left">y</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">66.65021</td>
-<td align="right">19</td>
-<td align="left">FALSE</td>
-<td align="left">b</td>
+<td align="right">56.36872</td>
+<td align="right">20</td>
+<td align="left">TRUE</td>
+<td align="left">y</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">70.41993</td>
-<td align="right">20</td>
+<td align="right">61.07368</td>
+<td align="right">19</td>
 <td align="left">TRUE</td>
-<td align="left">o</td>
+<td align="left">g</td>
 </tr>
 </tbody>
 </table>
@@ -1211,22 +1214,24 @@
 <span class="co">#&gt; # A tibble: 2 x 3</span>
 <span class="co">#&gt;   likes_chocolate mean_grade sd_grad</span>
 <span class="co">#&gt;   &lt;lgl&gt;                &lt;dbl&gt;   &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 FALSE                 65.1    4.00</span>
-<span class="co">#&gt; 2 TRUE                  66.2    2.98</span>
+<span class="co">#&gt; 1 FALSE                 65.4    1.95</span>
+<span class="co">#&gt; 2 TRUE                  63.4    5.63</span>
 
 <span class="no">fake_data</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">likes_chocolate</span>,<span class="no">age</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="kw">mean_grade</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">grades</span>),
             <span class="kw">sd_grad</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span>(<span class="no">grades</span>))
 <span class="co">#&gt; `summarise()` regrouping output by 'likes_chocolate' (override with `.groups` argument)</span>
-<span class="co">#&gt; # A tibble: 4 x 4</span>
+<span class="co">#&gt; # A tibble: 6 x 4</span>
 <span class="co">#&gt; # Groups:   likes_chocolate [2]</span>
 <span class="co">#&gt;   likes_chocolate   age mean_grade sd_grad</span>
 <span class="co">#&gt;   &lt;lgl&gt;           &lt;int&gt;      &lt;dbl&gt;   &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 FALSE              18       58.2   NA   </span>
-<span class="co">#&gt; 2 FALSE              19       66.4    2.41</span>
-<span class="co">#&gt; 3 TRUE               18       64.3   NA   </span>
-<span class="co">#&gt; 4 TRUE               20       66.9    3.28</span></pre></body></html></div>
+<span class="co">#&gt; 1 FALSE              18       63.0   NA   </span>
+<span class="co">#&gt; 2 FALSE              19       65.6    1.60</span>
+<span class="co">#&gt; 3 FALSE              20       67.4   NA   </span>
+<span class="co">#&gt; 4 TRUE               18       68.6   NA   </span>
+<span class="co">#&gt; 5 TRUE               19       65.4    6.05</span>
+<span class="co">#&gt; 6 TRUE               20       58.7    3.32</span></pre></body></html></div>
 </div>
 <div id="filter" class="section level3">
 <h3 class="hasAnchor">
@@ -1235,17 +1240,19 @@
 <div class="sourceCode" id="cb58"><html><body><pre class="r"><span class="no">fake_data</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">grades</span> <span class="kw">&lt;</span> <span class="fl">65</span>)
 <span class="co">#&gt;   subjects   grades age likes_chocolate favorite_color</span>
-<span class="co">#&gt; 1        1 58.17665  18           FALSE              g</span>
-<span class="co">#&gt; 2        3 63.94499  20            TRUE              o</span>
-<span class="co">#&gt; 3        7 64.26595  18            TRUE              g</span>
-<span class="co">#&gt; 4        8 63.75213  19           FALSE              g</span>
+<span class="co">#&gt; 1        1 61.06477  20            TRUE              v</span>
+<span class="co">#&gt; 2        2 62.95929  18           FALSE              r</span>
+<span class="co">#&gt; 3        5 56.36872  20            TRUE              y</span>
+<span class="co">#&gt; 4        6 61.07368  19            TRUE              g</span>
+<span class="co">#&gt; 5       10 64.04313  19           FALSE              o</span>
 
 <span class="no">fake_data</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">grades</span> <span class="kw">&lt;</span> <span class="fl">65</span>,
          <span class="no">likes_chocolate</span> <span class="kw">==</span> <span class="fl">TRUE</span>)
 <span class="co">#&gt;   subjects   grades age likes_chocolate favorite_color</span>
-<span class="co">#&gt; 1        3 63.94499  20            TRUE              o</span>
-<span class="co">#&gt; 2        7 64.26595  18            TRUE              g</span></pre></body></html></div>
+<span class="co">#&gt; 1        1 61.06477  20            TRUE              v</span>
+<span class="co">#&gt; 2        5 56.36872  20            TRUE              y</span>
+<span class="co">#&gt; 3        6 61.07368  19            TRUE              g</span></pre></body></html></div>
 </div>
 <div id="select" class="section level3">
 <h3 class="hasAnchor">
@@ -1254,30 +1261,30 @@
 <div class="sourceCode" id="cb59"><html><body><pre class="r"><span class="no">fake_data</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">grades</span>)
 <span class="co">#&gt;      grades</span>
-<span class="co">#&gt; 1  58.17665</span>
-<span class="co">#&gt; 2  65.97999</span>
-<span class="co">#&gt; 3  63.94499</span>
-<span class="co">#&gt; 4  66.29232</span>
-<span class="co">#&gt; 5  66.65021</span>
-<span class="co">#&gt; 6  70.41993</span>
-<span class="co">#&gt; 7  64.26595</span>
-<span class="co">#&gt; 8  63.75213</span>
-<span class="co">#&gt; 9  70.28933</span>
-<span class="co">#&gt; 10 65.50736</span>
+<span class="co">#&gt; 1  61.06477</span>
+<span class="co">#&gt; 2  62.95929</span>
+<span class="co">#&gt; 3  67.43567</span>
+<span class="co">#&gt; 4  68.63889</span>
+<span class="co">#&gt; 5  56.36872</span>
+<span class="co">#&gt; 6  61.07368</span>
+<span class="co">#&gt; 7  65.43326</span>
+<span class="co">#&gt; 8  67.22741</span>
+<span class="co">#&gt; 9  69.63422</span>
+<span class="co">#&gt; 10 64.04313</span>
 
 <span class="no">fake_data</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">grades</span>,<span class="no">likes_chocolate</span>)
 <span class="co">#&gt;      grades likes_chocolate</span>
-<span class="co">#&gt; 1  58.17665           FALSE</span>
-<span class="co">#&gt; 2  65.97999           FALSE</span>
-<span class="co">#&gt; 3  63.94499            TRUE</span>
-<span class="co">#&gt; 4  66.29232            TRUE</span>
-<span class="co">#&gt; 5  66.65021           FALSE</span>
-<span class="co">#&gt; 6  70.41993            TRUE</span>
-<span class="co">#&gt; 7  64.26595            TRUE</span>
-<span class="co">#&gt; 8  63.75213           FALSE</span>
-<span class="co">#&gt; 9  70.28933           FALSE</span>
-<span class="co">#&gt; 10 65.50736           FALSE</span></pre></body></html></div>
+<span class="co">#&gt; 1  61.06477            TRUE</span>
+<span class="co">#&gt; 2  62.95929           FALSE</span>
+<span class="co">#&gt; 3  67.43567           FALSE</span>
+<span class="co">#&gt; 4  68.63889            TRUE</span>
+<span class="co">#&gt; 5  56.36872            TRUE</span>
+<span class="co">#&gt; 6  61.07368            TRUE</span>
+<span class="co">#&gt; 7  65.43326           FALSE</span>
+<span class="co">#&gt; 8  67.22741           FALSE</span>
+<span class="co">#&gt; 9  69.63422            TRUE</span>
+<span class="co">#&gt; 10 64.04313           FALSE</span></pre></body></html></div>
 </div>
 <div id="mutate" class="section level3">
 <h3 class="hasAnchor">
@@ -1288,16 +1295,16 @@
 
 <span class="no">fake_data</span>
 <span class="co">#&gt;    subjects   grades age likes_chocolate favorite_color new_thing</span>
-<span class="co">#&gt; 1         1 58.17665  18           FALSE              g         0</span>
-<span class="co">#&gt; 2         2 65.97999  19           FALSE              v         0</span>
-<span class="co">#&gt; 3         3 63.94499  20            TRUE              o         0</span>
-<span class="co">#&gt; 4         4 66.29232  20            TRUE              o         0</span>
-<span class="co">#&gt; 5         5 66.65021  19           FALSE              b         0</span>
-<span class="co">#&gt; 6         6 70.41993  20            TRUE              o         0</span>
-<span class="co">#&gt; 7         7 64.26595  18            TRUE              g         0</span>
-<span class="co">#&gt; 8         8 63.75213  19           FALSE              g         0</span>
-<span class="co">#&gt; 9         9 70.28933  19           FALSE              b         0</span>
-<span class="co">#&gt; 10       10 65.50736  19           FALSE              g         0</span></pre></body></html></div>
+<span class="co">#&gt; 1         1 61.06477  20            TRUE              v         0</span>
+<span class="co">#&gt; 2         2 62.95929  18           FALSE              r         0</span>
+<span class="co">#&gt; 3         3 67.43567  20           FALSE              o         0</span>
+<span class="co">#&gt; 4         4 68.63889  18            TRUE              y         0</span>
+<span class="co">#&gt; 5         5 56.36872  20            TRUE              y         0</span>
+<span class="co">#&gt; 6         6 61.07368  19            TRUE              g         0</span>
+<span class="co">#&gt; 7         7 65.43326  19           FALSE              r         0</span>
+<span class="co">#&gt; 8         8 67.22741  19           FALSE              g         0</span>
+<span class="co">#&gt; 9         9 69.63422  19            TRUE              y         0</span>
+<span class="co">#&gt; 10       10 64.04313  19           FALSE              o         0</span></pre></body></html></div>
 </div>
 </div>
 <div id="ggplot2" class="section level2">

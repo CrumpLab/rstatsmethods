@@ -1,5 +1,7 @@
 ---
 title: "Lab 1 Basics"
+author: "Matthew J. C. Crump"
+date: "8/27/2020"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Lab 1 Basics}

@@ -1,5 +1,7 @@
 ---
 title: "Lab 5 Sampling Distributions"
+author: "Matthew J. C. Crump"
+date: "10/2/2020"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Lab 5 Sampling Distributions}
