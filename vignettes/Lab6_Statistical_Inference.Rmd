@@ -18,6 +18,8 @@ knitr::opts_chunk$set(
 
 ## Readings and Review
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_mOn3wLjqqA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 This lab marks a departure into the land of statistical inference. We have been working toward these concepts and using R to help us understand basic aspects of distributions and sampling from distributions. These concepts will be applied throughout the remainder of the course as we discuss many different tools and tests and for statistical inference.
 
 As your instructor (Matt Crump), you should know that I have many "feelings" about statistical inference. That is, I have many perspectives, sometimes competing and even inconsistent ones, about the value, goals, and practice of "doing statistical inference". This is partly because there are many well-founded opinions and approaches to statistical inference out there to try out, and also partly because there are many known issues and flawed practices that researchers sometimes engage in, and there also many limitations to the kinds of inferences that can be made depending on what you are doing.
@@ -258,7 +260,7 @@ The histogram shows all of the possible differences we could have obtained by ra
 
 I like to the think of the "distribution of possible differences" as a window of opportunity for chance. That is, we are looking at differences in the data that could have been produced by chance. We also see that some values occur more often than others. For example, the red line, with the observed difference of 8.25 is 1) inside the distribution, which means that chance could have produced this difference, but 2) it is kind of far to the left, so it seems that chance doesn't produce a difference this big very often.
 
-We could be more precise and calculate the odds of getting a difference of 8.25 or larger, which I find to be 10%.
+We could be more precise and calculate the odds of getting a difference of 8.25 or larger, which I find to be 11.4%.
 
 ```{r}
 length(possible_differences[possible_differences >= 8.25]) / length(possible_differences)
@@ -298,6 +300,7 @@ resample <- sample(all_scores)
 new_A_mean <- mean(resample[1:50])
 new_B_mean <- mean(resample[51:100])
 new_difference <- new_A_mean-new_B_mean
+new_difference
 
 # Simulate the above process 10000 times
 mean_differences <- c()
@@ -374,7 +377,7 @@ simulation_data %>%
 new_data <- simulation_data %>%
   mutate(Intellect_Rating = sample(Intellect_Rating)) %>%
   group_by(CONDITION) %>%
-  summarize(new_means = mean(Intellect_Rating))
+  summarize(new_means = mean(Intellect_Rating), .groups="drop")
 
 new_data
 new_data[new_data$CONDITION == 0,]$new_means
@@ -452,6 +455,8 @@ qplot(mean_differences)+
 
 
 ## Lab 6 Generalization Assignment
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-hUdBEn2tUg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Instructions
 
