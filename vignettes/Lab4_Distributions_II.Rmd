@@ -188,7 +188,7 @@ simulated_sequence <- c(rbinom(100,1,.5),
                         rbinom(100,1,.6))
 ```
 
-Next, imagine that you have no idea what kind of coins were being flipped, and all you have is the sequence of flips. You start at the first coin clip, and go through all of them, each time you will use the data to update your belief about the coin.
+Next, imagine that you have no idea what kind of coins were being flipped, and all you have is the sequence of flips. You start at the first coin flip, and go through all of them, each time you will use the data to update your belief about the coin.
 
 ```{r}
 my_knowledge <- c()
