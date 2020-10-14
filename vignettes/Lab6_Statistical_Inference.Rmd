@@ -469,7 +469,7 @@ Your assignment instructions are the following:
 3. Use Lab6.Rmd to show your work attempting to solve the following generalization problems. Commit your work regularly so that it appears on your Github repository.
 4. **For each problem, make a note about how much of the problem you believe you can solve independently without help**. For example, if you needed to watch the help video and are unable to solve the problem on your own without copying the answers, then your note would be 0. If you are confident you can complete the problem from scratch completely on your own, your note would be 100. It is OK to have all 0s or 100s anything in between. 
 5. Submit your github repository link for Lab 6 on blackboard.
-6. There are five problems to solve
+6. There is one problem to solve
 
 ### Problems
 

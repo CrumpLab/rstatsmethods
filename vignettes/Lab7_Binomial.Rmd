@@ -15,12 +15,19 @@ knitr::opts_chunk$set(
 ```
 
 
+Extraordinary claims require extraordinary evidence (ECREE) -  Carl Sagan
+
+Imagine a wise pigeon that you can ask any Yes or No question. You ask the question. The pigeon responds by pecking Yes or No. How many answers would the pigeon need to get correct in row before you were willing to believe the pigeon knew the correct answer to every question?
+
+If someone claimed that they had a magical and wise pigeon that knew the answer to every Yes or No question, how would you put it to the test? How many questions would you ask, when would you would be satisfied that the extraordinary claim was TRUE or FALSE?
+
+We can consider these kinds of questions from the perspective of a binomial test. And, as it happens, binomial tests are often used on pigeons in real research. For example, pigeons are excellent at classifying visual patterns into different categories, and binomial tests are often used as a part of the process of establishing that a pigeon actually possesses some visual skill/ability to make the discrimination, and is not simply getting lucky.
+
 ## Overview
 
 1. Practical I: Conducting a binomial test in R
 2. Concepts I: Binomial model foundations
 3. Concepts II: Task design and binomial models
-
 
 ## Practical I: Conducting a binomial test in R
 
@@ -153,29 +160,67 @@ For example, I showed a pigeon a truck and a car and told it to peck on the truc
 
 My point is 100% correct is not good enough evidence when there is only 1 trial to the experiment. It is obvious that chance will get 100% correct 50% of the time, so the pigeon could have easily been "guessing".
 
-If the pigeon correctly chose the truck 100% of the time over 10 different choices, I would statrt to think maybe the pigeon "knows" something. This is because I know it would be more unlikely to get "10-in-a-row" by chance. 
+If the pigeon correctly chose the truck 100% of the time over 10 different choices, I would start to think maybe the pigeon "knows" something. This is because I know it would be more unlikely to get "10-in-a-row" by chance. 
 
 ### Setting task parameters
 
 There are costs and benefits to changing task design. Some costs could include a longer experiment that takes more time and resources to run. Some benefits include being more confident that you are measuring "non-chance" phenomena.
 
-Consider performance levels in a choice task around 55% correct, which is close to 50%. Just because 55% is close to chance, you might think that chance could easily produce 55% correct. However, the ability of chance to produce 55% correct depends on the number of trials in the experiment. 
+If you were designing a task to evaluate a subject making correct or incorrect decisions, how many trials would you want to have in your experiment? Here are some possibilities:
 
 ```{r}
-dbinom(55:100,)
+# 1 trial
+task_designs <- data.frame( number_of_heads = 0:1,
+                          probability = dbinom(x=0:1,size=1,prob= .5),
+                          cumulative = pbinom(0:1, size = 1, prob = .5),
+                          rev_cumulative = pbinom(-1:0, 1, .5, lower.tail=FALSE))
+knitr::kable(task_designs)
+
+# 2 trials
+task_designs <- data.frame( number_of_heads = 0:2,
+                          probability = dbinom(x=0:2,size=2,prob= .5),
+                          cumulative = pbinom(0:2, size = 2, prob = .5),
+                          rev_cumulative = pbinom(-1:1, 2, .5, lower.tail=FALSE))
+knitr::kable(task_designs)
+
+# 3 trials
+task_designs <- data.frame( number_of_heads = 0:3,
+                          probability = dbinom(x=0:3,size=3,prob= .5),
+                          cumulative = pbinom(0:3, size = 3, prob = .5),
+                          rev_cumulative = pbinom(-1:2, 2, .5, lower.tail=FALSE))
+knitr::kable(task_designs)
+
+# etc...
+```
+
+I could keep listing more tables and increasing the number of trials by 1 each time. And, each time I would generate another binomial model. Each of these tables represent all of the possible outcomes in each of the different designs, as well as the probabilities that each of the outcomes would occur by chance. The general rule of thumb is that as the number of trials increase, the range of possible outcomes by chance narrows toward 50% successes and 50% failures.
+
+Consider a value that is very close to 50%, like 51%. If you found a participant performed at 51% you might want to say that level of performance could easily have been obtained by chance. However, that inference strongly depends on the number of trials.
+
+For example, if there are 100 trials, then the probability of getting 51% correct or greater are pretty good.
+
+```{r}
+binom.test(51,100,.5,alternative="greater")
+```
+
+However, if there are 1000 trials...
+
+```{r}
+binom.test(510,1000,.5,alternative="greater")
+```
+And if there are 10,000 trials...
+
+```{r}
+binom.test(5100,10000,.5,alternative="greater")
 ```
 
 
 
 
-### A parting thought 
-
-A binomial test is often used to reject the possibility that a data pattern could be explained by a binomial process. In human studies, it is worth pointing out that it is
+<!-- A binomial test is often used to reject the possibility that a data pattern could be explained by a binomial process. In human studies, it is worth pointing out that it is -->
 
 
-However, the use of binomial tests for inference, especially in human studies involving choice behavior is questionable. For example, a binomial process has several formal properties, such as independence. Each coin flip in the model is completely independent. However, several studies have shown that people are not very good at generating random sequences--their choices are not independent. So, if we believe that people are not very good at being random like a binomial process, why would we ever care to test the probability that a binomial process could explain human data? We already have very good reasons for rejecting a binomial model in the first place.
-
-
+<!-- However, the use of binomial tests for inference, especially in human studies involving choice behavior is questionable. For example, a binomial process has several formal properties, such as independence. Each coin flip in the model is completely independent. However, several studies have shown that people are not very good at generating random sequences--their choices are not independent. So, if we believe that people are not very good at being random like a binomial process, why would we ever care to test the probability that a binomial process could explain human data? We already have very good reasons for rejecting a binomial model in the first place. -->
 
 ### Instructions
 
@@ -184,10 +229,18 @@ In general, labs will present a discussion of problems and issues with example c
 Your assignment instructions are the following:
 
 1. Work inside the R project "StatsLab1" you have been using
-2. Create a new R Markdown document called "Lab6.Rmd"
-3. Use Lab6.Rmd to show your work attempting to solve the following generalization problems. Commit your work regularly so that it appears on your Github repository.
+2. Create a new R Markdown document called "Lab7.Rmd"
+3. Use Lab7.Rmd to show your work attempting to solve the following generalization problems. Commit your work regularly so that it appears on your Github repository.
 4. **For each problem, make a note about how much of the problem you believe you can solve independently without help**. For example, if you needed to watch the help video and are unable to solve the problem on your own without copying the answers, then your note would be 0. If you are confident you can complete the problem from scratch completely on your own, your note would be 100. It is OK to have all 0s or 100s anything in between. 
-5. Submit your github repository link for Lab 6 on blackboard.
-6. There are five problems to solve
+5. Submit your github repository link for Lab 7 on blackboard.
 
 ### Problems
+
+1. A test-taker answered 50 true/false questions and received a score of 60% correct. Report the results of a binomial test and explain whether you think the test-score could be explained in terms the test-taker randomly guessing on each question. (2 points)
+
+2. An examiner wants to make a TRUE/FALSE test, but is still decided how many questions they will include. They want to make sure that it would be very difficult to simply randomly guess and be able to score any higher than 55% percent. How many questions would the examiner need to use to be confident that scores of 55% or higher were not produced by chance? (2 points)
+
+3. A test has 5 TRUE/FALSE questions (each with one right answer) and 5 multiple choice questions with four choices each (each with only one right answer). 
+
+ - create a sampling distribution or probability distribution to illustrate how a random chance process could perform on this test. (1 point)
+ - What is the probability of that randomly guessing on each question could allow a person to receive 75% or greater on this test? (1 point)

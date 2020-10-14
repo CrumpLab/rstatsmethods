@@ -57,6 +57,8 @@ navbar:
         href: articles/Lab5_Sampling_Distributions.html
       - text: Lab 6 Statistical Inference
         href: articles/Lab6_Statistical_Inference.html
+      - text: Lab 7 Binomial tests
+        href: articles/Lab7_Binomial.html
     resources:
       text: R Reference
       menu:
