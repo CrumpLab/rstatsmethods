@@ -54,6 +54,24 @@ Pigeon A was 65% correct (p < .05, binomial test).
 
 Pigeon A was 65% (p <= .0018, binomial test).
 
+It is also possible to embed the results of a binomial test into the text of an .Rmd document. First, save the results to a variable:
+
+```{r}
+test_results <-binom.test(x = 65,
+           n = 100,
+           p =.5,
+           alternative='greater')
+
+test_results$p.value
+
+# values can embedded using `r test_results$p.value`
+
+```
+
+So, it is now possible to write:
+
+Pigeon A was `r test_results$statistic`% correct (p <= `r test_results$p.value`)
+
 ### Examining the report:
 
 ```

@@ -199,8 +199,8 @@
 <a href="#normal-distribution" class="anchor"></a>Normal Distribution</h3>
 <p>We use <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> to sample numbers from a normal distribution:</p>
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="fl">10</span>, <span class="kw">mean</span> <span class="kw">=</span> <span class="fl">0</span>, <span class="kw">sd</span> <span class="kw">=</span> <span class="fl">1</span>)
-<span class="co">#&gt;  [1]  0.6766613 -0.3288754 -0.5363408 -0.4324400  0.6908056 -0.8534869</span>
-<span class="co">#&gt;  [7]  0.7652625 -0.4857563 -1.1986734  0.2030019</span></pre></body></html></div>
+<span class="co">#&gt;  [1]  1.1511824 -0.1913177  0.1821347  0.9042850  1.7373483  0.7132776</span>
+<span class="co">#&gt;  [7]  1.4181250 -1.8575513 -0.2463052  0.3103684</span></pre></body></html></div>
 <p>We can ‘see’ the distribution by sampling a large number of observations, and plotting them in a histogram:</p>
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
 <span class="no">some_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">observations</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="fl">10000</span>, <span class="kw">mean</span> <span class="kw">=</span> <span class="fl">0</span>, <span class="kw">sd</span> <span class="kw">=</span> <span class="fl">1</span>),
@@ -216,17 +216,20 @@
 <li>We can answer a question like the above through observation. We can look at the sample that we generated, and see how many numbers out of the total are larger than a particular value:</li>
 </ol>
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">some_data</span>$<span class="no">observations</span>[<span class="no">some_data</span>$<span class="no">observations</span> <span class="kw">&gt;</span> <span class="fl">2.5</span>]
-<span class="co">#&gt;  [1] 2.505833 3.582142 3.379409 2.709231 2.675196 2.555492 2.605953 2.705458</span>
-<span class="co">#&gt;  [9] 2.782250 2.546696 3.405755 2.604215 2.692458 2.612085 2.870671 2.839688</span>
-<span class="co">#&gt; [17] 2.786699 3.484054 2.681571 2.986580 3.414014 2.571507 2.637985 2.612066</span>
-<span class="co">#&gt; [25] 2.823419 2.680936 2.939301 3.413895 3.092760 2.670412 2.667021 3.524715</span>
-<span class="co">#&gt; [33] 3.116321 2.857634 2.954399 2.629543 2.577996 3.146380 3.198961 2.918383</span>
-<span class="co">#&gt; [41] 3.277629 2.617059 2.618044 3.058444 2.678312 2.656065 4.130304 2.568911</span>
-<span class="co">#&gt; [49] 2.968057 2.627783 2.573011</span>
+<span class="co">#&gt;  [1] 2.581949 2.529493 2.989564 2.613363 3.375675 2.854872 2.813783 2.623943</span>
+<span class="co">#&gt;  [9] 2.722088 2.537556 3.025052 2.657762 2.840803 2.875099 3.102431 3.403738</span>
+<span class="co">#&gt; [17] 2.980084 2.533961 2.895675 2.683485 2.519128 2.618486 2.683651 2.533671</span>
+<span class="co">#&gt; [25] 2.511941 2.817093 2.789418 2.776388 2.551784 3.045529 3.485477 2.693271</span>
+<span class="co">#&gt; [33] 3.182119 2.738213 2.864526 2.637634 2.627910 2.807269 2.552924 2.557859</span>
+<span class="co">#&gt; [41] 2.860996 2.784167 2.886169 2.795911 2.917464 2.582510 2.608548 2.713292</span>
+<span class="co">#&gt; [49] 2.865546 2.738005 2.544973 2.531754 2.769515 2.633764 3.212389 2.643189</span>
+<span class="co">#&gt; [57] 2.635361 2.923460 2.763631 2.693163 2.682425 2.610021 2.727539 2.945787</span>
+<span class="co">#&gt; [65] 3.065256 3.100637 2.843088 2.543194 2.552024 2.997336 2.638955 2.648543</span>
+<span class="co">#&gt; [73] 2.839572 2.628115 3.296599 2.880532</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">some_data</span>$<span class="no">observations</span>[<span class="no">some_data</span>$<span class="no">observations</span> <span class="kw">&gt;</span> <span class="fl">2.5</span>])
-<span class="co">#&gt; [1] 51</span>
+<span class="co">#&gt; [1] 76</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">some_data</span>$<span class="no">observations</span>[<span class="no">some_data</span>$<span class="no">observations</span> <span class="kw">&gt;</span> <span class="fl">2.5</span>])/<span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.0051</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.0076</span></pre></body></html></div>
 <ol start="2" style="list-style-type: decimal">
 <li>We could also compute the probability directly using analytical formulas. And, these formulas also exist in R. Specifically, distribution formulas begin with <code>d</code>, <code>p</code>, <code>q</code>, and <code>r</code>, so there are <code>dnorm</code>, <code>pnorm</code>, <code>qnorm</code>, and <code>rnorm</code> functions for the normal distribution (and other distributions).</li>
 </ol>
@@ -235,8 +238,8 @@
 <a href="#rnorm" class="anchor"></a>rnorm()</h4>
 <p><code><a href="https://rdrr.io/r/stats/Normal.html">rnorm(n, mean = 0, sd = 1)</a></code> samples observations (or random deviates) from a normal distribution with specified mean and standard deviation.</p>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="fl">10</span>, <span class="kw">mean</span> <span class="kw">=</span> <span class="fl">0</span>, <span class="kw">sd</span> <span class="kw">=</span> <span class="fl">1</span>)
-<span class="co">#&gt;  [1] -0.7989729 -0.9387895 -0.7043151 -1.2307794  0.3662992  1.0165411</span>
-<span class="co">#&gt;  [7]  3.4664694 -0.1223353 -0.5342387  0.1778052</span></pre></body></html></div>
+<span class="co">#&gt;  [1] -1.15391011  1.99626760  0.92285168 -0.71099723  1.22056613  0.04460863</span>
+<span class="co">#&gt;  [7] -0.32960302 -0.05369922  1.00911401  0.93426346</span></pre></body></html></div>
 </div>
 <div id="dnorm" class="section level4">
 <h4 class="hasAnchor">
@@ -388,7 +391,7 @@
 <p>For all of the remaining examples we will use a normal distribution with mean = 0 and sd =1.</p>
 <p>We already know what the sample mean is and how to calculate it in R. Here is an example of calculating a sample mean, where the number of observations (n) in the sample is 10.</p>
 <div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>, <span class="kw">mean</span><span class="kw">=</span><span class="fl">0</span>, <span class="kw">sd</span> <span class="kw">=</span><span class="fl">1</span>))
-<span class="co">#&gt; [1] 0.3251659</span></pre></body></html></div>
+<span class="co">#&gt; [1] -0.2815067</span></pre></body></html></div>
 </div>
 <div id="multiple-sample-means" class="section level3">
 <h3 class="hasAnchor">
@@ -396,15 +399,15 @@
 <p>We can repeat the above process as many times as we like, each time creating a sample of 10 observations and computing the mean.</p>
 <p>Here is an example of creating 5 sample means from 5 sets of 10 observations.</p>
 <div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>, <span class="kw">mean</span><span class="kw">=</span><span class="fl">0</span>, <span class="kw">sd</span> <span class="kw">=</span><span class="fl">1</span>))
-<span class="co">#&gt; [1] -0.2322495</span>
+<span class="co">#&gt; [1] 0.3292174</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>, <span class="kw">mean</span><span class="kw">=</span><span class="fl">0</span>, <span class="kw">sd</span> <span class="kw">=</span><span class="fl">1</span>))
-<span class="co">#&gt; [1] 0.1899088</span>
+<span class="co">#&gt; [1] -0.5042647</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>, <span class="kw">mean</span><span class="kw">=</span><span class="fl">0</span>, <span class="kw">sd</span> <span class="kw">=</span><span class="fl">1</span>))
-<span class="co">#&gt; [1] -0.1174486</span>
+<span class="co">#&gt; [1] -0.5266936</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>, <span class="kw">mean</span><span class="kw">=</span><span class="fl">0</span>, <span class="kw">sd</span> <span class="kw">=</span><span class="fl">1</span>))
-<span class="co">#&gt; [1] 0.285809</span>
+<span class="co">#&gt; [1] -0.6854971</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>, <span class="kw">mean</span><span class="kw">=</span><span class="fl">0</span>, <span class="kw">sd</span> <span class="kw">=</span><span class="fl">1</span>))
-<span class="co">#&gt; [1] -0.1599498</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.3276892</span></pre></body></html></div>
 <p>Notice each of the sample means is different, this is because of the variability introduced by randomly choosing values from the same normal distribution.</p>
 <p>The mean of the distribution that the samples come from is 0, what do we expect the mean of the samples to be? In general, we expect 0, but we can see that not all of the sample means are exactly 0.</p>
 <p>How much variability can we expect for our sample mean? In other words, if we are going to obtain a sample of 10 numbers from this distribution, <strong>what kinds of sample means could we get?</strong>.</p>
@@ -432,7 +435,7 @@
 <p>The standard deviation of the sample means would give us an idea of how much variability we expect from our sample mean. We could do this quickly in R like this:</p>
 <div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="no">sample_means</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span>(<span class="fl">10000</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span>)))
 <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span>(<span class="no">sample_means</span>)
-<span class="co">#&gt; [1] 0.3146501</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.3142535</span></pre></body></html></div>
 <p>The value we calculated is a standardized unit, and it describes the amount of error we expect in general from a sample mean. Specifically, if the true population mean is 0, then when we obtain samples, we expect the sample means will have some error, they should on average be 0, but plus or minus the standard deviation we calculated.</p>
 <p>We do not necessarily have to generate a distribution of sample means to calculate the standard error. If we know the population standard deviation (<span class="math inline">\(\sigma\)</span>), then we can use this formula for the standard error of the mean (SEM) is:</p>
 <p><span class="math inline">\(\text{SEM} = \frac{\sigma}{\sqrt{N}}\)</span></p>
@@ -441,7 +444,7 @@
 <div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="co"># simulation SEM</span>
 <span class="no">sample_means</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span>(<span class="fl">10000</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span>)))
 <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span>(<span class="no">sample_means</span>)
-<span class="co">#&gt; [1] 0.3152618</span>
+<span class="co">#&gt; [1] 0.3138298</span>
 
 <span class="co"># analytic SEM</span>
 
