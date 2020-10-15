@@ -17,6 +17,8 @@ knitr::opts_chunk$set(
 
 Extraordinary claims require extraordinary evidence (ECREE) -  Carl Sagan
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/MNzuV0x5x1w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 Imagine a wise pigeon that you can ask any Yes or No question. You ask the question. The pigeon responds by pecking Yes or No. How many answers would the pigeon need to get correct in row before you were willing to believe the pigeon knew the correct answer to every question?
 
 If someone claimed that they had a magical and wise pigeon that knew the answer to every Yes or No question, how would you put it to the test? How many questions would you ask, when would you would be satisfied that the extraordinary claim was TRUE or FALSE?
@@ -57,7 +59,7 @@ Pigeon A was 65% (p <= .0018, binomial test).
 It is also possible to embed the results of a binomial test into the text of an .Rmd document. First, save the results to a variable:
 
 ```{r}
-test_results <-binom.test(x = 65,
+test_results <- binom.test(x = 65,
            n = 100,
            p =.5,
            alternative='greater')
@@ -242,6 +244,8 @@ binom.test(5100,10000,.5,alternative="greater")
 
 ## Lab 7 Generalization Assignment
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4SAWdBVgy18" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ### Instructions
 
 In general, labs will present a discussion of problems and issues with example code like above, and then students will be tasked with completing generalization assignments, showing that they can work with the concepts and tools independently. 
@@ -256,11 +260,11 @@ Your assignment instructions are the following:
 
 ### Problems
 
-1. A test-taker answered 50 true/false questions and received a score of 60% correct. Report the results of a binomial test and explain whether you think the test-score could be explained in terms the test-taker randomly guessing on each question. (2 points)
+1. A test-taker answered 50 true/false questions and received a score of 60% correct. Report the results of a binomial test and explain whether you think the test-score could be produced by the test-taker randomly guessing on each question. (2 points)
 
-2. An examiner wants to make a TRUE/FALSE test, but is still decided how many questions they will include. They want to make sure that it would be very difficult to simply randomly guess and be able to score any higher than 55% percent. How many questions would the examiner need to use to be confident that scores of 55% or higher were not produced by chance? (2 points)
+2. An examiner wants to make a TRUE/FALSE test, but is still deciding how many questions they will include. They want to make sure that it would be very difficult to simply randomly guess and be able to score any higher than 55% percent. How many questions would the examiner need to use to be confident that scores of 55% or higher were not produced by chance? (2 points)
 
 3. A test has 5 TRUE/FALSE questions (each with one right answer) and 5 multiple choice questions with four choices each (each with only one right answer). 
 
  - create a sampling distribution or probability distribution to illustrate how a random chance process could perform on this test. (1 point)
- - What is the probability of that randomly guessing on each question could allow a person to receive 75% or greater on this test? (1 point)
+ - What is the probability that randomly guessing on each question could allow a person to receive 75% or greater on this test? (1 point)

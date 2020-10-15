@@ -154,6 +154,8 @@
     
     
 <p>Extraordinary claims require extraordinary evidence (ECREE) - Carl Sagan</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/MNzuV0x5x1w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <p>Imagine a wise pigeon that you can ask any Yes or No question. You ask the question. The pigeon responds by pecking Yes or No. How many answers would the pigeon need to get correct in row before you were willing to believe the pigeon knew the correct answer to every question?</p>
 <p>If someone claimed that they had a magical and wise pigeon that knew the answer to every Yes or No question, how would you put it to the test? How many questions would you ask, when would you would be satisfied that the extraordinary claim was TRUE or FALSE?</p>
 <p>We can consider these kinds of questions from the perspective of a binomial test. And, as it happens, binomial tests are often used on pigeons in real research. For example, pigeons are excellent at classifying visual patterns into different categories, and binomial tests are often used as a part of the process of establishing that a pigeon actually possesses some visual skill/ability to make the discrimination, and is not simply getting lucky.</p>
@@ -196,7 +198,7 @@
 <p>Pigeon A was 65% correct (p &lt; .05, binomial test).</p>
 <p>Pigeon A was 65% (p &lt;= .0018, binomial test).</p>
 <p>It is also possible to embed the results of a binomial test into the text of an .Rmd document. First, save the results to a variable:</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">test_results</span> <span class="kw">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/binom.test.html">binom.test</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fl">65</span>,
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">test_results</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/binom.test.html">binom.test</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fl">65</span>,
            <span class="kw">n</span> <span class="kw">=</span> <span class="fl">100</span>,
            <span class="kw">p</span> <span class="kw">=</span><span class="fl">.5</span>,
            <span class="kw">alternative</span><span class="kw">=</span><span class="st">'greater'</span>)
@@ -535,6 +537,8 @@ probability of success
 <div id="lab-7-generalization-assignment" class="section level2">
 <h2 class="hasAnchor">
 <a href="#lab-7-generalization-assignment" class="anchor"></a>Lab 7 Generalization Assignment</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4SAWdBVgy18" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <div id="instructions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#instructions" class="anchor"></a>Instructions</h3>
@@ -553,13 +557,13 @@ probability of success
 <h3 class="hasAnchor">
 <a href="#problems" class="anchor"></a>Problems</h3>
 <ol style="list-style-type: decimal">
-<li><p>A test-taker answered 50 true/false questions and received a score of 60% correct. Report the results of a binomial test and explain whether you think the test-score could be explained in terms the test-taker randomly guessing on each question. (2 points)</p></li>
-<li><p>An examiner wants to make a TRUE/FALSE test, but is still decided how many questions they will include. They want to make sure that it would be very difficult to simply randomly guess and be able to score any higher than 55% percent. How many questions would the examiner need to use to be confident that scores of 55% or higher were not produced by chance? (2 points)</p></li>
+<li><p>A test-taker answered 50 true/false questions and received a score of 60% correct. Report the results of a binomial test and explain whether you think the test-score could be produced by the test-taker randomly guessing on each question. (2 points)</p></li>
+<li><p>An examiner wants to make a TRUE/FALSE test, but is still deciding how many questions they will include. They want to make sure that it would be very difficult to simply randomly guess and be able to score any higher than 55% percent. How many questions would the examiner need to use to be confident that scores of 55% or higher were not produced by chance? (2 points)</p></li>
 <li><p>A test has 5 TRUE/FALSE questions (each with one right answer) and 5 multiple choice questions with four choices each (each with only one right answer).</p></li>
 </ol>
 <ul>
 <li>create a sampling distribution or probability distribution to illustrate how a random chance process could perform on this test. (1 point)</li>
-<li>What is the probability of that randomly guessing on each question could allow a person to receive 75% or greater on this test? (1 point)</li>
+<li>What is the probability that randomly guessing on each question could allow a person to receive 75% or greater on this test? (1 point)</li>
 </ul>
 </div>
 </div>
