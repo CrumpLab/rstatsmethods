@@ -47,7 +47,7 @@ Pigeon A received 100 trials, and pecked the correct circular shape on 65% of th
 ?binom.test
 binom.test(x = 65,
            n = 100,
-           p =.5,
+           p = .5,
            alternative='greater')
 ```
 A researcher might report the results of a binomial test this way:
@@ -71,6 +71,7 @@ test_results$p.value
 ```
 
 So, it is now possible to write:
+
 
 Pigeon A was `r test_results$statistic`% correct (p <= `r test_results$p.value`)
 

@@ -39,7 +39,7 @@ We are scheduled to have synchronous online meetings on a weekly basis. We will 
 
 There will be two forms of assessment, including 12 weekly lab assignments (72%) and a four part semester long project (28%), serving as the final exam for the course. If this class was run in person, we would be in a computer lab, and much of the time would be reserved for completing the lab assignment (after a lab tutorial) during the lab time. So, the lab assignments will be designed with similar expectations in terms of time needed to complete (and we may decide to use our online meeting time in a similar way).
 
-The final project will involve an integrative data-analysis or statistical demonstration project. Multiple options will be given for the format of this exam, and students may request permission to have their own ideas approved for the final project. The main goal of the final project is to demonstrate mastery of the course concepts culminating in the production of a reproducible analysis. The schedule and assignment due dates are below:
+The final project will involve an integrative data-analysis or statistical demonstration project. Multiple options will be given for the format of this exam, and students may request permission to have their own ideas approved for the final project. The main goal of the final project is to demonstrate mastery of the course concepts culminating in the production of a reproducible analysis. The schedule and assignment due dates are shownbelow:
 
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE, eval=TRUE}
