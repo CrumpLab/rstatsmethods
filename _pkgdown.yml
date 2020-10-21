@@ -59,6 +59,8 @@ navbar:
         href: articles/Lab6_Statistical_Inference.html
       - text: Lab 7 Binomial tests
         href: articles/Lab7_Binomial.html
+      - text: Lab 8 Z tests
+        href: articles/Lab8_Normal.html
     resources:
       text: R Reference
       menu:
