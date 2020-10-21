@@ -16,6 +16,8 @@ knitr::opts_chunk$set(
 
 ## Overview
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/m6PedhaOWT4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 1. Review
 2. Practical I: Z-scores
 3. Concept I: Central Limit Theorem
@@ -111,7 +113,7 @@ plot_df %>%
 The above values should approximate the values below from the `pnorm()` function.
 
 ```{r}
-pnorm(2,0,1)- pnorm(1,0,1)
+pnorm(2,0,1) - pnorm(1,0,1)
 
 pnorm(35,25,5)- pnorm(30,25,5)
 
@@ -129,7 +131,7 @@ Let me admit that I am often confused by the metric system and the imperial syst
 
 ### Linear Transformation
 
-I bring these issues up because differences between metric and imperial are essentially inconsquential. No matter whether I use Celsius or Fahrenheit, the temperature that is measured is the same. Similarly, the distance between between two cities is the same no matter whether you use miles or kilometers. The only difference is the measurement scale. In this case, the differences are linear transformations of each other, which means one scale is shifted by a constant amount relative to other scale.
+I bring these issues up because differences between metric and imperial are essentially inconsequential. No matter whether I use Celsius or Fahrenheit, the temperature that is measured is the same. Similarly, the distance between between two cities is the same no matter whether you use miles or kilometers. The only difference is the measurement scale. In this case, the differences are linear transformations of each other, which means one scale is shifted by a constant amount relative to other scale.
 
 For example, the formula to translate celsius to fahrenheit is :
 
@@ -400,6 +402,8 @@ As you can see, the p-value we found by the z-test is basically the same as the 
 
 ## Lab 8 Generalization Assignment
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kymA90bZreo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 ### Instructions
 
@@ -424,5 +428,5 @@ Your assignment instructions are the following:
 
 2. Base R does not have a function for a z-test. Write a function to accomplish a one-sample z-test. Remember, a one-sample z test is used to compare the probability of obtaining the sample mean (or larger or smaller) if it came from a known normal distribution. (2 points).
 
-- Use your z-test function to conduct a test of the following. A sample of 25 scores is taken. The mean of the sample is 50. The sample is assumed to have been taken from a normal distribution with mean 40 and standard deviation 7. Report a one-tailed z-test, examining the probability of obtaining a sample of 50 or greater in this situation. Report the results, and give a brief sentence explaining the result and the inference you make (2 points).
+- Use your z-test function to conduct a test of the following. A sample of 25 scores is taken. The mean of the sample is 50. The sample is assumed to have been taken from a normal distribution with mean 40 and standard deviation 7. Report a one-tailed z-test, examining the probability of obtaining a sample of greater than 50 in this situation. Report the results, and give a brief sentence explaining the result and the inference you make (2 points).
 

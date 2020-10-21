@@ -191,7 +191,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="no">rolls</span>)
 <span class="co">#&gt; rolls</span>
 <span class="co">#&gt;   1   2   3   4   5   6 </span>
-<span class="co">#&gt; 170 149 163 171 168 179</span></pre></body></html></div>
+<span class="co">#&gt; 170 154 161 170 181 164</span></pre></body></html></div>
 <ol start="2" style="list-style-type: decimal">
 <li>With a pair of six-sided dice it is possible to roll the numbers 2 to 12. Use a simulation of 10000 rolls (of a pair of dice) in R to calculate the probability of rolling each of the possible numbers.</li>
 </ol>
@@ -201,7 +201,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="no">combined</span>)/<span class="fl">1000</span>
 <span class="co">#&gt; combined</span>
 <span class="co">#&gt;     2     3     4     5     6     7     8     9    10    11    12 </span>
-<span class="co">#&gt; 0.026 0.058 0.098 0.102 0.139 0.175 0.137 0.103 0.066 0.060 0.036</span></pre></body></html></div>
+<span class="co">#&gt; 0.033 0.063 0.078 0.111 0.131 0.170 0.138 0.110 0.082 0.057 0.027</span></pre></body></html></div>
 <p>Let’s compare the result of the simulation to the known probabilities. First, we need to determine the number of ways that each number can be obtained by rolling a pair of dice. We can use R to do this as well:</p>
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">first</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw">x</span><span class="kw">=</span> <span class="fl">1</span>:<span class="fl">6</span>, <span class="kw">each</span> <span class="kw">=</span> <span class="fl">6</span>)
 <span class="no">second</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw">x</span><span class="kw">=</span> <span class="fl">1</span>:<span class="fl">6</span>, <span class="kw">times</span> <span class="kw">=</span> <span class="fl">6</span>)
@@ -221,11 +221,11 @@
 <span class="no">true_probs</span>-<span class="no">sim_result</span>
 <span class="co">#&gt; sum_rolls</span>
 <span class="co">#&gt;             2             3             4             5             6 </span>
-<span class="co">#&gt;  0.0017777778 -0.0024444444 -0.0146666667  0.0091111111 -0.0001111111 </span>
+<span class="co">#&gt; -0.0052222222 -0.0074444444  0.0053333333  0.0001111111  0.0078888889 </span>
 <span class="co">#&gt;             7             8             9            10            11 </span>
-<span class="co">#&gt; -0.0083333333  0.0018888889  0.0081111111  0.0173333333 -0.0044444444 </span>
+<span class="co">#&gt; -0.0033333333  0.0008888889  0.0011111111  0.0013333333 -0.0014444444 </span>
 <span class="co">#&gt;            12 </span>
-<span class="co">#&gt; -0.0082222222</span></pre></body></html></div>
+<span class="co">#&gt;  0.0007777778</span></pre></body></html></div>
 </div>
 <div id="event-generators" class="section level3">
 <h3 class="hasAnchor">
@@ -235,8 +235,8 @@
 <li>Generate P(“A”) = .8, and P(“B”) =.2, run the generator 20 times.</li>
 </ol>
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"A"</span>,<span class="st">"B"</span>), <span class="fl">20</span>, <span class="kw">replace</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">prob</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">.8</span>, <span class="fl">.2</span>))
-<span class="co">#&gt;  [1] "A" "B" "A" "A" "B" "A" "A" "A" "A" "A" "B" "A" "A" "A" "A" "A" "A" "A" "B"</span>
-<span class="co">#&gt; [20] "B"</span></pre></body></html></div>
+<span class="co">#&gt;  [1] "A" "A" "B" "A" "A" "B" "A" "B" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"</span>
+<span class="co">#&gt; [20] "A"</span></pre></body></html></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Generate letters from the alphabet such that each letter could occur with equal probability. Generate 50 letters:</li>
 </ol>
@@ -249,9 +249,9 @@
 <span class="co">#&gt;  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S"</span>
 <span class="co">#&gt; [20] "T" "U" "V" "W" "X" "Y" "Z"</span></pre></body></html></div>
 <div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="no">letters</span>,<span class="fl">50</span>,<span class="kw">replace</span><span class="kw">=</span><span class="fl">TRUE</span>)
-<span class="co">#&gt;  [1] "f" "t" "x" "g" "x" "d" "y" "b" "q" "t" "z" "p" "q" "p" "t" "t" "t" "j" "e"</span>
-<span class="co">#&gt; [20] "y" "t" "n" "s" "o" "u" "c" "a" "g" "p" "m" "v" "c" "w" "n" "c" "c" "s" "x"</span>
-<span class="co">#&gt; [39] "v" "y" "j" "r" "s" "k" "v" "g" "x" "e" "s" "k"</span></pre></body></html></div>
+<span class="co">#&gt;  [1] "l" "f" "l" "j" "m" "c" "n" "j" "v" "n" "d" "h" "h" "o" "x" "h" "u" "o" "u"</span>
+<span class="co">#&gt; [20] "q" "s" "e" "f" "u" "v" "z" "h" "q" "x" "i" "m" "q" "c" "y" "d" "p" "b" "c"</span>
+<span class="co">#&gt; [39] "a" "l" "n" "d" "j" "j" "b" "e" "y" "b" "u" "t"</span></pre></body></html></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Create a random string generator that creates strings of random letters. For example a string of 5 random letters could look like “fjwud”. Generate 50 random letter strings, each with 5 random letters in it.</li>
 </ol>
@@ -262,7 +262,7 @@
 
 <span class="co"># each row is a word, need to collapse the column to create a string</span>
 <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="no">my_strings</span>[<span class="fl">1</span>,], <span class="kw">collapse</span><span class="kw">=</span><span class="st">""</span>)
-<span class="co">#&gt; [1] "yrnzj"</span>
+<span class="co">#&gt; [1] "rjxbf"</span>
 
 <span class="co"># loop to collapse all of the rows into words</span>
 <span class="no">random_strings</span> <span class="kw">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>()
@@ -271,12 +271,12 @@
 }
 
 <span class="no">random_strings</span>
-<span class="co">#&gt;  [1] "yrnzj" "ubjrk" "sscpy" "lnvwn" "xdcsf" "ozrpx" "qihgs" "oolkv" "mpckp"</span>
-<span class="co">#&gt; [10] "egvit" "owrmo" "bjvif" "bjsfu" "dakdx" "dcqvh" "jyvgi" "sshkt" "xhhng"</span>
-<span class="co">#&gt; [19] "kgvgz" "ehgfj" "pejyo" "ghnob" "uxykr" "hebog" "tqvez" "qexhx" "cmvfi"</span>
-<span class="co">#&gt; [28] "ohyzp" "fbnhl" "mkosd" "emove" "xjmzr" "smifc" "pxpgg" "rnjij" "cvyds"</span>
-<span class="co">#&gt; [37] "cjrwe" "wzdeb" "jrusx" "mrqki" "rhgtr" "ushfx" "jqbnw" "dsxdr" "nzler"</span>
-<span class="co">#&gt; [46] "vwdhc" "zxaqm" "hvlmi" "rpygg" "htfva"</span></pre></body></html></div>
+<span class="co">#&gt;  [1] "rjxbf" "iqrrx" "zpxdf" "gcani" "qnswu" "scpva" "dwwuw" "mdlyy" "rjogx"</span>
+<span class="co">#&gt; [10] "trxhl" "ooico" "ltozw" "drqwy" "msqoi" "btbcb" "tobme" "ejlls" "ybfbp"</span>
+<span class="co">#&gt; [19] "yzmzj" "pfrqi" "eosfx" "qesiz" "ifzxb" "bjtqm" "gqkjj" "pikox" "pjxtr"</span>
+<span class="co">#&gt; [28] "bexpj" "vkkto" "mirdo" "vgmrf" "cgerw" "espfo" "gmjhb" "iwboa" "vafca"</span>
+<span class="co">#&gt; [37] "pdbze" "vzpra" "wchnh" "rtfbt" "negzc" "snezg" "dbrjy" "cctca" "zwkeq"</span>
+<span class="co">#&gt; [46] "dzchl" "olcbp" "htpco" "zxqwn" "dtssr"</span></pre></body></html></div>
 </div>
 </div>
 <div id="concept-ii-experiencing-probability" class="section level2">
@@ -298,7 +298,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="no">number_of_heads</span>)/<span class="fl">10000</span>
 <span class="co">#&gt; number_of_heads</span>
 <span class="co">#&gt;      0      1      2      3      4      5      6      7      8      9     10 </span>
-<span class="co">#&gt; 0.0005 0.0102 0.0429 0.1189 0.1997 0.2509 0.2045 0.1161 0.0442 0.0107 0.0014</span>
+<span class="co">#&gt; 0.0011 0.0081 0.0436 0.1116 0.2030 0.2483 0.2083 0.1185 0.0456 0.0113 0.0006</span>
 
 <span class="co"># alternative solution using rbinom</span>
 
@@ -306,7 +306,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="no">number_of_heads</span>)/<span class="fl">10000</span>
 <span class="co">#&gt; number_of_heads</span>
 <span class="co">#&gt;      0      1      2      3      4      5      6      7      8      9     10 </span>
-<span class="co">#&gt; 0.0013 0.0100 0.0412 0.1160 0.2124 0.2366 0.2045 0.1209 0.0464 0.0097 0.0010</span></pre></body></html></div>
+<span class="co">#&gt; 0.0011 0.0085 0.0420 0.1249 0.2023 0.2380 0.2051 0.1204 0.0464 0.0104 0.0009</span></pre></body></html></div>
 <ol start="2" style="list-style-type: decimal">
 <li>If you flipped a coin 10000 times, you would find many different kinds of short-run sequences. For example, HH, HT, TH, and TT. What is the probability of each of these kinds of sequences?</li>
 </ol>
@@ -322,7 +322,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="no">sequence</span>)/<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="no">sequence</span>))
 <span class="co">#&gt; sequence</span>
 <span class="co">#&gt;        HH        HT        TH        TT </span>
-<span class="co">#&gt; 0.2424242 0.2499250 0.2499250 0.2577258</span>
+<span class="co">#&gt; 0.2587259 0.2458246 0.2458246 0.2496250</span>
 
 <span class="co">## 3 element sequences</span>
 
@@ -341,7 +341,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="no">sequence</span>)/<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="no">sequence</span>))
 <span class="co">#&gt; sequence</span>
 <span class="co">#&gt;       HHH       HHT       HTH       HTT       THH       THT       TTH       TTT </span>
-<span class="co">#&gt; 0.1263253 0.1258252 0.1263253 0.1242248 0.1258252 0.1247249 0.1242248 0.1225245</span></pre></body></html></div>
+<span class="co">#&gt; 0.1261252 0.1254251 0.1264253 0.1236247 0.1255251 0.1246249 0.1236247 0.1246249</span></pre></body></html></div>
 </div>
 </div>
 <div id="concept-iii-subjective-probability" class="section level2">
