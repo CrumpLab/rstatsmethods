@@ -1316,9 +1316,30 @@ This package implements a grammar of tables. Similar to the concept behind `ggpl
 - [tangram github](https://github.com/spgarbet/tangram)
 - [tangram html examples](http://htmlpreview.github.io/?https://raw.githubusercontent.com/spgarbet/tangram/master/inst/doc/example.html)
 
-### papaja
+## papaja
 
 `papaja` is a package for rendering APA-style manuscripts in pdf using R Markdown. We will learn more about `papaja` in class. One feature of `papaja` is that it supports APA-style tables.
 
 - [papaja documentation](https://crsh.github.io/papaja_man/)
 - [papaja APA tables](https://crsh.github.io/papaja_man/reporting.html#tables)
+
+### Installing papaja
+
+papaja requires a latex installation in order to compile .Rmd documents to pdf. The papaja documentation provides some guidance on installing latex and then papaja, see the [getting started section](https://crsh.github.io/papaja_man/introduction.html#getting-started).
+
+You can also watch this video, which goes through some of the same steps below:
+
+```{r, eval=FALSE}
+## install tinytex
+if(!"tinytex" %in% rownames(installed.packages())) install.packages("tinytex")
+
+## initialize tinytex
+tinytex::install_tinytex()
+
+# Install devtools package if necessary
+if(!"devtools" %in% rownames(installed.packages())) install.packages("devtools")
+
+# Install the stable development verions from GitHub
+devtools::install_github("crsh/papaja")
+```
+

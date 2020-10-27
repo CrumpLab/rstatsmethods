@@ -1155,45 +1155,45 @@
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">60.07277</td>
+<td align="right">63.84816</td>
 <td align="right">18</td>
 <td align="left">TRUE</td>
-<td align="left">b</td>
+<td align="left">i</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">70.69369</td>
-<td align="right">19</td>
-<td align="left">TRUE</td>
-<td align="left">r</td>
+<td align="right">73.94977</td>
+<td align="right">18</td>
+<td align="left">FALSE</td>
+<td align="left">b</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">64.28658</td>
+<td align="right">64.17272</td>
 <td align="right">19</td>
-<td align="left">FALSE</td>
-<td align="left">r</td>
+<td align="left">TRUE</td>
+<td align="left">i</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">63.53603</td>
-<td align="right">20</td>
+<td align="right">67.55424</td>
+<td align="right">18</td>
 <td align="left">FALSE</td>
-<td align="left">b</td>
+<td align="left">g</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">54.48119</td>
+<td align="right">55.06292</td>
 <td align="right">20</td>
-<td align="left">TRUE</td>
-<td align="left">b</td>
+<td align="left">FALSE</td>
+<td align="left">o</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">57.91041</td>
-<td align="right">20</td>
-<td align="left">TRUE</td>
-<td align="left">b</td>
+<td align="right">71.65094</td>
+<td align="right">18</td>
+<td align="left">FALSE</td>
+<td align="left">i</td>
 </tr>
 </tbody>
 </table>
@@ -1220,24 +1220,22 @@
 <span class="co">#&gt; # A tibble: 2 x 3</span>
 <span class="co">#&gt;   likes_chocolate mean_grade sd_grad</span>
 <span class="co">#&gt;   &lt;lgl&gt;                &lt;dbl&gt;   &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 FALSE                 64.4    3.00</span>
-<span class="co">#&gt; 2 TRUE                  61.4    5.85</span>
+<span class="co">#&gt; 1 FALSE                 67.3    6.53</span>
+<span class="co">#&gt; 2 TRUE                  67.2    4.39</span>
 
 <span class="no">fake_data</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">likes_chocolate</span>,<span class="no">age</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="kw">mean_grade</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">grades</span>),
             <span class="kw">sd_grad</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span>(<span class="no">grades</span>))
 <span class="co">#&gt; `summarise()` regrouping output by 'likes_chocolate' (override with `.groups` argument)</span>
-<span class="co">#&gt; # A tibble: 6 x 4</span>
+<span class="co">#&gt; # A tibble: 4 x 4</span>
 <span class="co">#&gt; # Groups:   likes_chocolate [2]</span>
 <span class="co">#&gt;   likes_chocolate   age mean_grade sd_grad</span>
 <span class="co">#&gt;   &lt;lgl&gt;           &lt;int&gt;      &lt;dbl&gt;   &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 FALSE              18       68.5  NA    </span>
-<span class="co">#&gt; 2 FALSE              19       64.3  NA    </span>
-<span class="co">#&gt; 3 FALSE              20       62.4   1.61 </span>
-<span class="co">#&gt; 4 TRUE               18       59.7   0.522</span>
-<span class="co">#&gt; 5 TRUE               19       70.7  NA    </span>
-<span class="co">#&gt; 6 TRUE               20       59.4   5.77</span></pre></body></html></div>
+<span class="co">#&gt; 1 FALSE              18       70.2    3.11</span>
+<span class="co">#&gt; 2 FALSE              20       61.4    9.03</span>
+<span class="co">#&gt; 3 TRUE               18       65.6    2.49</span>
+<span class="co">#&gt; 4 TRUE               19       68.7    6.46</span></pre></body></html></div>
 </div>
 <div id="filter" class="section level3">
 <h3 class="hasAnchor">
@@ -1246,22 +1244,16 @@
 <div class="sourceCode" id="cb58"><html><body><pre class="r"><span class="no">fake_data</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">grades</span> <span class="kw">&lt;</span> <span class="fl">65</span>)
 <span class="co">#&gt;   subjects   grades age likes_chocolate favorite_color</span>
-<span class="co">#&gt; 1        1 60.07277  18            TRUE              b</span>
-<span class="co">#&gt; 2        3 64.28658  19           FALSE              r</span>
-<span class="co">#&gt; 3        4 63.53603  20           FALSE              b</span>
-<span class="co">#&gt; 4        5 54.48119  20            TRUE              b</span>
-<span class="co">#&gt; 5        6 57.91041  20            TRUE              b</span>
-<span class="co">#&gt; 6        7 59.33423  18            TRUE              o</span>
-<span class="co">#&gt; 7        8 61.26599  20           FALSE              g</span>
+<span class="co">#&gt; 1        1 63.84816  18            TRUE              i</span>
+<span class="co">#&gt; 2        3 64.17272  19            TRUE              i</span>
+<span class="co">#&gt; 3        5 55.06292  20           FALSE              o</span>
 
 <span class="no">fake_data</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">grades</span> <span class="kw">&lt;</span> <span class="fl">65</span>,
          <span class="no">likes_chocolate</span> <span class="kw">==</span> <span class="fl">TRUE</span>)
 <span class="co">#&gt;   subjects   grades age likes_chocolate favorite_color</span>
-<span class="co">#&gt; 1        1 60.07277  18            TRUE              b</span>
-<span class="co">#&gt; 2        5 54.48119  20            TRUE              b</span>
-<span class="co">#&gt; 3        6 57.91041  20            TRUE              b</span>
-<span class="co">#&gt; 4        7 59.33423  18            TRUE              o</span></pre></body></html></div>
+<span class="co">#&gt; 1        1 63.84816  18            TRUE              i</span>
+<span class="co">#&gt; 2        3 64.17272  19            TRUE              i</span></pre></body></html></div>
 </div>
 <div id="select" class="section level3">
 <h3 class="hasAnchor">
@@ -1270,30 +1262,30 @@
 <div class="sourceCode" id="cb59"><html><body><pre class="r"><span class="no">fake_data</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">grades</span>)
 <span class="co">#&gt;      grades</span>
-<span class="co">#&gt; 1  60.07277</span>
-<span class="co">#&gt; 2  70.69369</span>
-<span class="co">#&gt; 3  64.28658</span>
-<span class="co">#&gt; 4  63.53603</span>
-<span class="co">#&gt; 5  54.48119</span>
-<span class="co">#&gt; 6  57.91041</span>
-<span class="co">#&gt; 7  59.33423</span>
-<span class="co">#&gt; 8  61.26599</span>
-<span class="co">#&gt; 9  68.45850</span>
-<span class="co">#&gt; 10 65.74669</span>
+<span class="co">#&gt; 1  63.84816</span>
+<span class="co">#&gt; 2  73.94977</span>
+<span class="co">#&gt; 3  64.17272</span>
+<span class="co">#&gt; 4  67.55424</span>
+<span class="co">#&gt; 5  55.06292</span>
+<span class="co">#&gt; 6  71.65094</span>
+<span class="co">#&gt; 7  67.78506</span>
+<span class="co">#&gt; 8  67.82885</span>
+<span class="co">#&gt; 9  73.31190</span>
+<span class="co">#&gt; 10 67.37021</span>
 
 <span class="no">fake_data</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">grades</span>,<span class="no">likes_chocolate</span>)
 <span class="co">#&gt;      grades likes_chocolate</span>
-<span class="co">#&gt; 1  60.07277            TRUE</span>
-<span class="co">#&gt; 2  70.69369            TRUE</span>
-<span class="co">#&gt; 3  64.28658           FALSE</span>
-<span class="co">#&gt; 4  63.53603           FALSE</span>
-<span class="co">#&gt; 5  54.48119            TRUE</span>
-<span class="co">#&gt; 6  57.91041            TRUE</span>
-<span class="co">#&gt; 7  59.33423            TRUE</span>
-<span class="co">#&gt; 8  61.26599           FALSE</span>
-<span class="co">#&gt; 9  68.45850           FALSE</span>
-<span class="co">#&gt; 10 65.74669            TRUE</span></pre></body></html></div>
+<span class="co">#&gt; 1  63.84816            TRUE</span>
+<span class="co">#&gt; 2  73.94977           FALSE</span>
+<span class="co">#&gt; 3  64.17272            TRUE</span>
+<span class="co">#&gt; 4  67.55424           FALSE</span>
+<span class="co">#&gt; 5  55.06292           FALSE</span>
+<span class="co">#&gt; 6  71.65094           FALSE</span>
+<span class="co">#&gt; 7  67.78506           FALSE</span>
+<span class="co">#&gt; 8  67.82885           FALSE</span>
+<span class="co">#&gt; 9  73.31190            TRUE</span>
+<span class="co">#&gt; 10 67.37021            TRUE</span></pre></body></html></div>
 </div>
 <div id="mutate" class="section level3">
 <h3 class="hasAnchor">
@@ -1304,16 +1296,16 @@
 
 <span class="no">fake_data</span>
 <span class="co">#&gt;    subjects   grades age likes_chocolate favorite_color new_thing</span>
-<span class="co">#&gt; 1         1 60.07277  18            TRUE              b         0</span>
-<span class="co">#&gt; 2         2 70.69369  19            TRUE              r         0</span>
-<span class="co">#&gt; 3         3 64.28658  19           FALSE              r         0</span>
-<span class="co">#&gt; 4         4 63.53603  20           FALSE              b         0</span>
-<span class="co">#&gt; 5         5 54.48119  20            TRUE              b         0</span>
-<span class="co">#&gt; 6         6 57.91041  20            TRUE              b         0</span>
-<span class="co">#&gt; 7         7 59.33423  18            TRUE              o         0</span>
-<span class="co">#&gt; 8         8 61.26599  20           FALSE              g         0</span>
-<span class="co">#&gt; 9         9 68.45850  18           FALSE              r         0</span>
-<span class="co">#&gt; 10       10 65.74669  20            TRUE              r         0</span></pre></body></html></div>
+<span class="co">#&gt; 1         1 63.84816  18            TRUE              i         0</span>
+<span class="co">#&gt; 2         2 73.94977  18           FALSE              b         0</span>
+<span class="co">#&gt; 3         3 64.17272  19            TRUE              i         0</span>
+<span class="co">#&gt; 4         4 67.55424  18           FALSE              g         0</span>
+<span class="co">#&gt; 5         5 55.06292  20           FALSE              o         0</span>
+<span class="co">#&gt; 6         6 71.65094  18           FALSE              i         0</span>
+<span class="co">#&gt; 7         7 67.78506  18           FALSE              o         0</span>
+<span class="co">#&gt; 8         8 67.82885  20           FALSE              r         0</span>
+<span class="co">#&gt; 9         9 73.31190  19            TRUE              r         0</span>
+<span class="co">#&gt; 10       10 67.37021  18            TRUE              y         0</span></pre></body></html></div>
 </div>
 </div>
 <div id="ggplot2" class="section level2">
@@ -1840,14 +1832,31 @@ D
 <li><a href="http://htmlpreview.github.io/?https://raw.githubusercontent.com/spgarbet/tangram/master/inst/doc/example.html">tangram html examples</a></li>
 </ul>
 </div>
-<div id="papaja" class="section level3">
-<h3 class="hasAnchor">
-<a href="#papaja" class="anchor"></a>papaja</h3>
+</div>
+<div id="papaja" class="section level2">
+<h2 class="hasAnchor">
+<a href="#papaja" class="anchor"></a>papaja</h2>
 <p><code>papaja</code> is a package for rendering APA-style manuscripts in pdf using R Markdown. We will learn more about <code>papaja</code> in class. One feature of <code>papaja</code> is that it supports APA-style tables.</p>
 <ul>
 <li><a href="https://crsh.github.io/papaja_man/">papaja documentation</a></li>
 <li><a href="https://crsh.github.io/papaja_man/reporting.html#tables">papaja APA tables</a></li>
 </ul>
+<div id="installing-papaja" class="section level3">
+<h3 class="hasAnchor">
+<a href="#installing-papaja" class="anchor"></a>Installing papaja</h3>
+<p>papaja requires a latex installation in order to compile .Rmd documents to pdf. The papaja documentation provides some guidance on installing latex and then papaja, see the <a href="https://crsh.github.io/papaja_man/introduction.html#getting-started">getting started section</a>.</p>
+<p>You can also watch this video, which goes through some of the same steps below:</p>
+<div class="sourceCode" id="cb84"><html><body><pre class="r"><span class="co">## install tinytex</span>
+<span class="kw">if</span>(!<span class="st">"tinytex"</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html">installed.packages</a></span>())) <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"tinytex"</span>)
+
+<span class="co">## initialize tinytex</span>
+<span class="kw pkg">tinytex</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/tinytex/man/install_tinytex.html">install_tinytex</a></span>()
+
+<span class="co"># Install devtools package if necessary</span>
+<span class="kw">if</span>(!<span class="st">"devtools"</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html">installed.packages</a></span>())) <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)
+
+<span class="co"># Install the stable development verions from GitHub</span>
+<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"crsh/papaja"</span>)</pre></body></html></div>
 </div>
 </div>
   </div>
