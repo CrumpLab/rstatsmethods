@@ -21,6 +21,8 @@ knitr::opts_chunk$set(
 
 This lab provides a conceptual foundation for understanding the chi square test using R.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/gJ5qR_ebDvk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Background
 
 ### A brief history
@@ -94,6 +96,8 @@ Xsq$observed   # observed counts (same as M)
 Xsq$expected   # expected counts under the null
 Xsq$residuals  # Pearson residuals
 Xsq$stdres     # standardized residuals
+Xsq$p.value
+Xsq$statistic
 ```
 
 
@@ -277,6 +281,13 @@ ggplot(plot_df, aes(x = x, y=values, color=k, group=k))+
 
 1. Let's say you randomly sampled 5 numbers from a unit normal distribution (mean = 0 and sd =1), and then you squared those numbers, and then added them all up. What would you expect this number to be?
 
+```{r}
+a<- replicate(10000,sum(rnorm(5,0,1)^2))
+hist(a)
+
+```
+
+
 The answer is that this number will be distributed as a $\chi^2$ with $k=5$, referring to the situation of summing the squares of 5 samples from a unit normal distribution.
 
 2. Why does the $\chi^2$ distribution change shape as $k$ increases? If $k$ was a big number like 60, what kind of shape could I expect? If I know $k$, what should I expect the mean of the $\chi^2$ distribution to be? Answering these questions requires building intuition about $\chi^2$.
@@ -371,11 +382,11 @@ Your assignment instructions are the following:
 
 ### Problems
 
-1. The following paper links to open data, and describes a design where two chi-square tests are performed for Experiment 1.
+1. The following paper links to open data, and describes a design where two chi-square tests are performed for Experiment 1 (A copy of this paper will be available on blackboard).
 
 Silver, A. M., Stahl, A. E., Loiotile, R., Smith-Flores, A. S., & Feigenson, L. (2020). When Not Choosing Leads to Not Liking: Choice-Induced Preference in Infancy. Psychological Science, 0956797620954491.
 
-Obtain the data from the online repository, show your code for loading it into R, then conduct the same chi-square tests reported in Experiment 1 that the authors conducted. Briefly report your re-analysis, and discuss whether you obtained the same values as the authors did (6 points).
+Obtain the data from the online repository, show your code for loading it into R, then conduct the same chi-square tests reported in Experiment 1 that the authors conducted. Briefly report your re-analysis, and discuss whether you obtained the same values as the authors did (6 points). 
 
 
 
