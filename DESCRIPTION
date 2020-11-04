@@ -2,7 +2,7 @@ Package: psyc7709Lab
 Title: Course website for Psych 7709G Statistical Methods Practicum I Fall 2020
 Version: 0.0.0.9003
 Authors@R: 
-    person(given = "Matthew J. C.",
+    person(given = "Matthew",
            family = "Crump",
            role = c("aut", "cre"),
            email = "mcrump@brooklyn.cuny.edu",
