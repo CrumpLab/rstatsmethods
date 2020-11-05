@@ -161,7 +161,7 @@ Z-scores are linear transformations. They convert the raw values from a normal d
 
 The z-score transformation is:
 
-$z_i = \frac{u - x_i}{\sigma}$ or $z_i = \frac{\text{mean} - \text{score}}{\text{standard deviation}}$
+$z_i = \frac{x_i - u}{\sigma}$ or $z_i = \frac{\text{score} - \text{mean}}{\text{standard deviation}}$
 
 There are two important transformations in the formula. The subtraction centers the scores on the mean. The division expresses the scores in terms of a common unit (which is sometimes why z-scores are also called standard scores, they have been "standardized", in this case by a "standard deviation").
 
