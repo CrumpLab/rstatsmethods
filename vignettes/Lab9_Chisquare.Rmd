@@ -64,7 +64,16 @@ Toss a coin 50 times and receive 20 heads and 30 tails. Conduct a chi-square tes
 
 ```{r}
 my_vals <- c(20,30)
-chisq.test(my_vals)
+(xsq <- chisq.test(my_vals))
+
+xsq$statistic
+xsq$observed
+xsq$expected
+xsq$residuals
+
+
+sum(((xsq$observed - xsq$expected)^2) / xsq$expected)
+
 ```
 
 It is possible to specify different theoretical probabilities:
@@ -367,6 +376,8 @@ chisq.test(c(4900,5100))
 
 ## Lab 9 Generalization Assignment
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/n4RchGANJWg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 ### Instructions
 
@@ -382,11 +393,13 @@ Your assignment instructions are the following:
 
 ### Problems
 
-1. The following paper links to open data, and describes a design where two chi-square tests are performed for Experiment 1 (A copy of this paper will be available on blackboard).
+1. The following paper links to open data, and describes a design where two chi-square tests are performed for Experiment 1 (A copy of this paper will be made available).
 
 Silver, A. M., Stahl, A. E., Loiotile, R., Smith-Flores, A. S., & Feigenson, L. (2020). When Not Choosing Leads to Not Liking: Choice-Induced Preference in Infancy. Psychological Science, 0956797620954491.
 
-Obtain the data from the online repository, show your code for loading it into R, then conduct the same chi-square tests reported in Experiment 1 that the authors conducted. Briefly report your re-analysis, and discuss whether you obtained the same values as the authors did (6 points). 
+Obtain the data from the online repository, show your code for loading it into R, then conduct the same tests reported in Experiment 1 that the authors conducted. These include one binomial test, and two chi-square tests. Briefly report your re-analysis, and discuss whether you obtained the same values as the authors did (6 points). 
+
+**Important Note:** In my own re-analysis I was able to obtain all of the same values that the authors provided in their results section. However, in my view the authors also misused the chi-square test, especially for independent test involving age. So, it is ok if you are unable to reproduce that analysis. However, it is instructive to try and reproduce what the authors did to form an opinion about whether the test applied in a sound manner.
 
 
 
