@@ -1,0 +1,227 @@
+---
+title: "Lab 2"
+author: "Matt Crump"
+date: "8/26/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1. Use R to demonstrate that the mean minimizes the sum of the squared deviations from the mean. Accomplish the following steps:
+
+- Produce a sample of at least 10 or more different numbers
+- Produce a simulation following the example from the concepts section
+
+Use your simulation to test a range of numbers smaller and larger than the mean to show that the mean minimizes the sum of the squared deviations from the mean.
+Plot your results.
+
+```{r}
+
+scores <- c(1,5,4,3,4,3,4,5,6,7,8,7,6,5,4,5,4,3,2,3,4)
+
+#numbers_to_test <- c(1,2,3,4,mean(scores),5,6,7,8)
+numbers_to_test <- c(seq(1,mean(scores),.1), mean(scores), seq(mean(scores),8,.1))
+
+sum_sq_deviations <-c() # create an empty vector to store sums
+for(i in 1:length(numbers_to_test)) {
+  sum_sq_deviations[i] <- sum((scores-numbers_to_test[i])^2)
+}
+
+#sum_sq_deviations
+plot(sum_sq_deviations)
+
+```
+Confidence: 100
+
+2. Write a custom R function for any one of the following descriptive statistics: median, mode, standard deviation, variance. Demonstrate that it produces the same value as the base R function given some set of numbers.
+
+```{r}
+#even
+a <- c(1,5,4,3,4,3,2,3,4,5,6,7)
+sorted_a <- sort(a)
+length(a)/2
+m1 <- length(a)/2
+m2 <- (length(a)/2)+1
+sorted_a[m1]
+sorted_a[m2]
+
+(sorted_a[m1]+sorted_a[m2])/2
+
+#odd
+a <- c(1,5,4,3,4,3,2,3,4,5,6)
+sorted_a <- sort(a)
+ceiling(length(a)/2)
+sorted_a[ceiling(length(a)/2)]
+
+(sorted_a[m1]+sorted_a[m2])/2
+
+my_median <- function(x){
+  x_length <- length(x)
+  if(x_length %% 2 == 0){
+    #even numbers
+    sorted_x <- sort(x)
+    m1 <- length(x)/2
+    m2 <- (length(x)/2)+1
+    return((sorted_x[m1]+sorted_x[m2])/2)
+  } else {
+    sorted_x <- sort(x)
+    return(sorted_x[ceiling(length(x)/2)])
+  }
+}
+
+a <- c(1,5,4,3,4,3,2,3,4,5,6,7)
+my_median(a)
+median(a)
+
+```
+
+```{r}
+# mode
+a <- c(1,5,4,3,4,3,2,3,4,5,6,7,8,8,8,8,8,8,8,8,8,8)
+b <- table(a)
+as.numeric((which(b == max(b))))
+
+my_mode <- function(x){
+  b <- table(x)
+  as.numeric((which(b == max(b))))
+}
+
+my_mode(a)
+
+```
+
+```{r}
+# variance
+my_variance <- function(x){
+  sum( (x-mean(x))^2 ) / (length(x)-1)
+}
+
+a <- c(1,5,4,3,4,3,2,3,4,5,6,7,8,8,8,8,8,8,8,8,8,8)
+my_variance(a)
+var(a)
+
+sum( (a-mean(a))^2 ) / length(a)
+sum( (a-mean(a))^2 ) / (length(a)-1)
+
+```
+
+
+```{r}
+# standard deviations
+my_standard_dev <- function(x){
+  sqrt ( sum( (x-mean(x))^2 ) / (length(x)-1) )
+}
+
+a <- c(1,5,4,3,4,3,2,3,4,5,6,7,8,8,8,8,8,8,8,8,8,8)
+my_standard_dev(a)
+sd(a)
+
+```
+
+
+3. Imagine the same instructor taught a morning, afternoon, and evening section of the same course. And, the average scores for each section on a midterm were 85% for the morning, 90% for the afternoon, and 93% for the evening sections. Create a data.frame representing these means for each section. Then, use ggplot2 to plot the means as bar graph. (hint you will need one vector for the class sections, and one vector for the means. Then you can combine them into a data.frame before plotting them)
+
+```{r}
+sections <- c("morning","afternoon","evening")
+grades <- c(85,90,93)
+
+my_data <- data.frame(sections,grades)
+
+library(ggplot2)
+
+ggplot(my_data, aes(x = sections, y = grades))+
+  geom_bar(stat="identity")
+```
+
+
+4. Imagine there were two instructors, and they each taught different sections in the morning, afternoon and evening. The midterm averages for instructor 1 were 75%, 78%, and 80% in the morning, afternoon, and evening. The midterm averages for instructor 2 were 88%, 76%, and 63% for the morning, afternoon, and evening. Create a data.frame representing the means, the time of day, and the instructors (three columns). Then plot data.frame using ggplot2 as a bar graph.
+
+
+```{r}
+instructor <- c("one","one","one","two","two","two")
+sections <- c("morning","afternoon","evening", "morning","afternoon","evening")
+grades <- c(75,78,90, 88, 76, 63)
+
+my_data <- data.frame(instructor, sections,grades)
+
+ggplot(my_data, aes(x = sections, y = grades, group=instructor , fill=instructor))+
+  geom_bar(stat="identity", position = "dodge")
+
+ggplot(my_data, aes(x = sections, y = grades))+
+  geom_bar(stat="identity", position = "dodge")+
+  facet_wrap(~instructor)
+```
+
+5. Import the WHR2018.csv data file, containing measure from the World Happiness report from 2018. For the years 2010 to 2015, what was the mean “healthy life expectancy at birth” for each year (find the mean for each year across countries). Show your results in a table and in a graph using ggplot.
+
+```{r}
+whr <- read.table("open_data/WHR2018.csv",
+                             sep = ",",
+                             header = TRUE )
+
+library(dplyr)
+
+mean_hle <- whr %>%
+  filter(year >= 2010,
+         year <= 2015) %>%
+  group_by(year) %>%
+  summarize(mean_healthy = mean(Healthy.life.expectancy.at.birth, na.rm = TRUE))
+
+knitr::kable(mean_hle)
+
+ggplot(mean_hle, aes(x = year, y = mean_healthy))+
+  geom_bar(stat="identity")
+
+```
+
+
+6.Repeat the above, except in addition to calculating the mean for each year, also calculate the standard deviation for “healthy life expectancy at birth” for each year. Then, add error bars to your graph using the +1 and -1 standard deviations from the means for each year.
+
+```{r}
+mean_hle <- whr %>%
+  filter(year >= 2010,
+         year <= 2015) %>%
+  group_by(year) %>%
+  summarize(mean_healthy = mean(Healthy.life.expectancy.at.birth, na.rm = TRUE),
+            sd_healthy = sd(Healthy.life.expectancy.at.birth, na.rm = TRUE))
+
+knitr::kable(mean_hle)
+
+ggplot(mean_hle, aes(x = year, y = mean_healthy))+
+  geom_bar(stat="identity") +
+  geom_errorbar(aes(ymin = mean_healthy - sd_healthy,
+                    ymax = mean_healthy + sd_healthy),
+                width = .25)
+```
+
+## Advanced problem
+
+This problem is not officially assigned for points. I’m placing it here for your consideration.
+
+The mean minimizes the sum of the squared deviations. The median minimizes the sum of the absolute deviations. Demonstrate these properties by simulation in R.
+
+Create a set of numbers where the mean and median are different. Then show a plot of values around the mean and the median showing that the mean minimizes the sum of the squared deviations. Finally, create a plot of values around the mean and the median showing that the median minimizes the sum of the absolute deviations.
+
+
+```{r}
+
+a <- rexp(100,2)
+hist(a)
+
+mean(a)
+median(a)
+
+sum((mean(a) - a)^2)
+sum((median(a) - a)^2)
+
+sum(abs(mean(a)-a))
+sum(abs(median(a)-a))
+
+
+```
+
+
+
+

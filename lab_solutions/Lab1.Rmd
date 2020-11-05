@@ -1,0 +1,123 @@
+---
+title: "Lab 1"
+author: "Matt Crump"
+date: "8/26/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+1. Compute the sum of the sequence 100 to 1000, going up by a constant value of 100 (100,200,300,400,500,600,700,800,900,1000).
+
+```{r}
+sum( c(100,200,300,400,500,600,700,800,900,1000) )
+
+sum(seq(100,1000,100))
+```
+
+2. Compute the sum of these numbers (1,3,2,4,3,5,4,3,4,5,6,5,6,7,6,5,6,5,4,3,4,5)
+
+```{r}
+sum(c(1,3,2,4,3,5,4,3,4,5,6,5,6,7,6,5,6,5,4,3,4,5))
+```
+
+
+3. Write a custom sequence generator function using a for loop that generates a sequence from a starting integer value to an ending integer value in steps of 1. Demonstrate that it can produce the sequence 1 to 10.
+
+```{r}
+# without a for loop
+seq_generator <- function(start,end){
+  start:end
+}
+
+seq_generator(start = 1, end = 10)
+
+# with a for loop
+seq_generator <- function(start,end){
+  for(i in start:end){
+    print(i)
+  }
+}
+
+seq_generator(start = 1, end = 10)
+
+# with a for loop
+seq_generator <- function(start,end){
+  sequence <- start:end
+  positions <- 1:length(sequence)
+  
+  computed_sequence <- c()
+    
+  for(i in positions){
+   computed_sequence[i] <- sequence[i]
+  }
+
+  return(computed_sequence)
+}
+
+seq_generator(start = 10, end = 15)
+
+```
+
+
+4. Write a custom function to implement the following general equation to find the sum of any constant series:
+
+Demonstrate that your function correctly produces the sum for the series below:
+
+seq(10,100,10)
+
+```{r}
+analytic_sum <- function(X1, Xn, step){
+  the_sum <- (((Xn-X1)/step) + 1) * ((X1+Xn)/2)
+  return(the_sum)
+}
+
+analytic_sum(X1 = 10, Xn = 100, step = 10)
+
+sum(seq(10,100,10))
+
+# one-liner
+
+analytic_sum <- function(X1, Xn, step) {(((Xn-X1)/step) + 1) * ((X1+Xn)/2)}
+analytic_sum(X1 = 10, Xn = 100, step = 10)
+
+```
+
+
+
+5. Write a custom function that generates a constant series between any start and end values, with any constant, and finds the sum. Have your function output both the sequence and the sum. For this problem, feel free to use the existing seq() and sum() functions in your custom function. Demonstrate the function correctly prints out the above sequence (10 to 100 in steps of 10), and its sum.
+
+```{r}
+seq(1,10,2)
+sum(seq(1,10,2))
+
+sum_seq <- function (start,end,step){
+  sequence <- seq(start,end,step)
+  the_sum <- sum(sequence)
+  
+  my_output <- list(the_sequence = sequence,
+                    sum = the_sum)
+  return(my_output)
+}
+
+sum_seq(10,100,10)
+
+a <- sum_seq(10,100,10)
+a[["the_sequence"]]
+a[["sum"]]
+```
+
+
+6. Use the sum() and the length() functions to calculate the mean (average) of the numbers x = c(1,2,3,4,5).
+
+```{r, error=TRUE}
+x <- c(1,2,3,4,5)
+
+sum(x)/length(x)
+
+q3fdgsger
+```
+

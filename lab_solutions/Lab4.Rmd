@@ -1,0 +1,115 @@
+---
+title: "Lab 4"
+author: "Matt Crump"
+date: "8/26/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
+
+1. Estimate the letter occurrence probabilities of all 26 letters in English by measuring a paragraph of English text from wikipedia. (hint use strsplit() to split a paragraph into individual letters) (1 point).
+
+```{r}
+wikipedia <- "The 2006 Subway 500 was the 32nd stock car race of the 2006 NASCAR Nextel Cup Series and the sixth in the ten-race Chase for the Nextel Cup. It was held on October 22, 2006, before a crowd of 65,000, at Martinsville Speedway (pictured) in Martinsville, Virginia, one of five short tracks to hold NASCAR races. The 500-lap race was won by Jimmie Johnson of Hendrick Motorsports; Denny Hamlin finished second, and Bobby Labonte came in third. Kurt Busch won the pole position with the fastest time in qualifying; Johnson started from ninth position. There were 18 cautions and 16 lead changes by five different drivers during the race. Johnson's win was his fifth of the 2006 season, and the 23rd of his career. The result advanced him to third in the Drivers' Championship, 41 points behind Matt Kenseth, who took over the championship lead after Jeff Burton retired from the race. Chevrolet maintained its lead in the Manufacturers' Championship with four races left in the season."
+
+wikipedia_letters <- unlist(strsplit(wikipedia, split = ""))
+lower_case <- tolower(wikipedia_letters)
+letter_counts <- table(lower_case)
+letter_counts <- data.frame(letter_counts)
+
+library(dplyr)
+
+final <- letter_counts %>%
+  filter(lower_case %in% letters == TRUE)
+
+total_letters <- sum(final$Freq)
+
+final <- final %>%
+  mutate(probabilities = Freq/total_letters)
+
+knitr::kable(final)
+
+```
+
+
+2. Generate “random” strings of letters that are sampled from a distribution where letter occurrence probability is the same as natural English. Use the probabilities for each letter from this wikipedia article, or use your own estimates from the previous question (2 points).
+
+```{r}
+
+my_letters <- sample(final$lower_case,50*5,replace=TRUE, prob = final$probabilities)
+
+# turn the vector into a matrix with 5 columns
+my_strings <- matrix(my_letters, ncol=5)
+
+# each row is a word, need to collapse the column to create a string
+paste(my_strings[1,], collapse="")
+#> [1] "cedec"
+
+# loop to collapse all of the rows into words
+random_strings <-c()
+for(i in 1:dim(my_strings)[1]){
+  random_strings[i] <- paste(my_strings[i,], collapse="")
+}
+
+random_strings
+
+```
+
+
+3. Generate a random walk of 10,000 steps. In a random walk, you are simulating the process of randomly taking a step up or down, as if you are on an infinite staircase. At each step you flip a coin. If you get heads you go up one step, if you get tails you go down one step. Start on step 0, then simulate a random walk for 10,000 steps. Your vector should preserve the step number for each step. For example, if the the first three steps were all heads, then the vector would begin with 0,1,2,3, which indicates a single step up each time. Plot the first 1,000 steps. (1 point)
+
+```{r}
+
+step <- c(0)
+for(i in 1:10000){
+  coin_flip <- sample(c(1,-1),1)
+  step[i+1] <- step[i]+coin_flip
+}
+
+plot(step[1:10000])
+
+```
+
+
+4. What was the most positive and most negative step reached out of 10,000? (1 point)
+
+```{r}
+plot(step)
+max(step)
+min(step)
+```
+
+
+5. What was the longest run of steps where all steps were positive numbers. For example, in the sequence: 1,2,3,2,1,0,-1,-2,-1,-2,-1,0,1,2,3; the answer is 5 because the first five values were all positive, and this was the longest sequence of positive values. (1 point).
+
+```{r}
+logical_step <- sign(step)
+
+sequence <- c()
+counter <- 0
+for(i in 1:length(logical_step)){
+  if(logical_step[i] == 0){
+    sequence <- c(sequence,counter)
+    counter <- 0
+  } else {
+    counter <- counter+logical_step[i]
+  }
+}
+
+max(sequence)
+min(sequence)
+
+```
+
+
+
+
+
+
+
+
+
+
+

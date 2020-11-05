@@ -399,7 +399,7 @@ Silver, A. M., Stahl, A. E., Loiotile, R., Smith-Flores, A. S., & Feigenson, L. 
 
 Obtain the data from the online repository, show your code for loading it into R, then conduct the same tests reported in Experiment 1 that the authors conducted. These include one binomial test, and two chi-square tests. Briefly report your re-analysis, and discuss whether you obtained the same values as the authors did (6 points). 
 
-**Important Note:** In my own re-analysis I was able to obtain all of the same values that the authors provided in their results section. However, in my view the authors also misused the chi-square test, especially for independent test involving age. So, it is ok if you are unable to reproduce that analysis. However, it is instructive to try and reproduce what the authors did to form an opinion about whether the test applied in a sound manner.
+**Important Note:** In my own re-analysis I was able to obtain all of the same values that the authors provided in their results section. However, in my view the authors also misused the chi-square test, especially for the test of independence involving age. So, it is ok if you are unable to reproduce that analysis. However, it is instructive to try and reproduce what the authors did to form an opinion about whether the test was applied in a sound manner.
 
 
 

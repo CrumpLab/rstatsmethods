@@ -1,0 +1,107 @@
+---
+title: "Lab 8"
+author: "Matt Crump"
+date: "10/21/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
+
+
+1. Write a function to convert a vector of raw-scores into z-scores. The function should have inputs for the vector, the mean and sd of the normal distribution, and should return a vector of zscores. (1 point). Also, demonstrate that the function works correctly (1 point). How you make the demonstration is up to you.
+  - Advanced: Have an option so that the function will convert the raw scores to zscores in one of two ways:
+  - using user provided mean and standard deviation
+  - using the calculated mean and standard deviation from the raw scores
+  
+```{r}
+
+to_zscores <- function(raw,mu,sd){
+  zscores <- (raw-mu)/sd
+  return(zscores)
+}
+
+some_numbers <- c(1,2,3,4,5)
+
+to_zscores(some_numbers,5,1)
+
+to_zscores_b <- function(raw,mu=NULL,sdev=NULL){
+  if(is.null(mu) == TRUE) mu <- mean(raw)
+  if(is.null(sdev) == TRUE) sdev <- sd(raw)
+  zscores <- (raw-mu)/sdev
+  return(zscores)
+}
+
+to_zscores_b(some_numbers, mu = 5, sdev=1)
+
+to_zscores_b(some_numbers)
+
+```
+  
+  
+2. Base R does not have a function for a z-test. Write a function to accomplish a one-sample z-test. Remember, a one-sample z test is used to compare the probability of obtaining the sample mean (or larger or smaller) if it came from a known normal distribution. (2 points).
+
+- Use your z-test function to conduct a test of the following. A sample of 25 scores is taken. The mean of the sample is 50. The sample is assumed to have been taken from a normal distribution with mean 40 and standard deviation 7. Report a one-tailed z-test, examining the probability of obtaining a sample of greater than 50 in this situation. Report the results, and give a brief sentence explaining the result and the inference you make (2 points).
+
+```{r}
+
+z.test <- function(sample_mean,sample_size,mu,sigma){
+  smpl_dist_mean <- mu
+  smpl_dist_sd <- sigma/sqrt(sample_size)
+  
+  p_value <- pnorm(sample_mean,smpl_dist_mean,smpl_dist_sd, lower.tail=FALSE)
+  return(p_value)
+}
+
+z.test(sample_mean = 50,
+       sample_size = 25,
+       mu = 40,
+       sigma = 7)
+
+##
+
+
+z.test <- function(sample_mean,sample_size,mu,sigma, two.tailed=TRUE){
+  smpl_dist_mean <- mu
+  smpl_dist_sd <- sigma/sqrt(sample_size)
+  
+  p_value <- pnorm(sample_mean,smpl_dist_mean,smpl_dist_sd, lower.tail=FALSE)
+  
+  if(two.tailed == TRUE) p_value <- p_value*2
+  return(p_value)
+}
+
+z.test(sample_mean = 37,
+       sample_size = 5,
+       mu = 40,
+       sigma = 7,
+       two.tailed=FALSE)
+
+##
+
+z.test <- function(sample_mean,
+                   sample_size,
+                   mu,
+                   sigma, 
+                   two.tailed=TRUE){
+
+    smpl_dist_mean <- mu
+    smpl_dist_sd <- sigma/sqrt(sample_size)
+    
+    abs_difference <- abs(sample_mean - mu)
+    
+    p_value <- pnorm((mu+abs_difference),smpl_dist_mean,smpl_dist_sd, lower.tail=FALSE)
+    
+    if(two.tailed == TRUE) p_value <- p_value*2
+    return(p_value)
+}
+
+z.test(sample_mean = 37,
+       sample_size = 5,
+       mu = 40,
+       sigma = 7,
+       two.tailed=FALSE)
+
+```
+

@@ -1,0 +1,18 @@
+---
+title: "bib example"
+author: "Matt Crump"
+date: "9/24/2020"
+bibliography: references.bib
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+write a sentence.
+
+Another sentence. 
+
+I wish I could cite a really important paper (some author, 1999).
+

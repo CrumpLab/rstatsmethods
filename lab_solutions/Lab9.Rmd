@@ -1,0 +1,84 @@
+---
+title: "Lab 9"
+author: "Matt Crump"
+date: "11/3/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
+
+1. The following paper links to open data, and describes a design where two chi-square tests are performed for Experiment 1 (A copy of this paper will be made available).
+
+Silver, A. M., Stahl, A. E., Loiotile, R., Smith-Flores, A. S., & Feigenson, L. (2020). When Not Choosing Leads to Not Liking: Choice-Induced Preference in Infancy. Psychological Science, 0956797620954491.
+
+Obtain the data from the online repository, show your code for loading it into R, then conduct the same tests reported in Experiment 1 that the authors conducted. These include one binomial test, and two chi-square tests. Briefly report your re-analysis, and discuss whether you obtained the same values as the authors did (6 points). 
+
+**Important Note:** In my own re-analysis I was able to obtain all of the same values that the authors provided in their results section. However, in my view the authors also misused the chi-square test, especially for independent test involving age. So, it is ok if you are unable to reproduce that analysis. However, it is instructive to try and reproduce what the authors did to form an opinion about whether the test applied in a sound manner.
+
+```{r}
+# Read in the data
+
+#library(xlsx)
+#the_data <- xlsx::read.xlsx("lab9/When not choosing leads to not liking_Data.xlsx", sheetIndex = 1)
+
+the_data <- read.csv(file="lab9/infant_choice_data.csv")
+
+# Select only E1A data
+
+library(dplyr)
+
+e1_data <- the_data %>%
+  filter(ExperimentNumber == "1")
+
+# conduct binomial test
+
+sum_C <- sum(e1_data$Infant.Chose.C)
+total_C <- length(e1_data$Infant.Chose.C)
+
+(binomial_p <- pbinom(q = total_C - sum_C,
+                      size = total_C, 
+                      prob = .5, 
+                      lower.tail = TRUE)*2)
+
+# chi-square for gender
+
+library(tidyr)
+
+gender_choice_table <- e1_data %>%
+  group_by(Gender, Infant.Chose.C) %>%
+  summarize(counts = n()) %>%
+  pivot_wider(names_from = c(Gender),
+              values_from = counts)
+
+gender_choice_table <- gender_choice_table[,2:3]
+
+(gender_Xsq <- chisq.test(gender_choice_table))  
+
+uncorrected_Xsq <- sum((gender_Xsq$observed-gender_Xsq$expected)^2/gender_Xsq$expected)
+
+gender_Xsq_unc <- pchisq(uncorrected_Xsq,1,lower.tail = FALSE)
+
+# chi-square for age
+
+age_table <- e1_data %>%
+  group_by(AgeMonths, Infant.Chose.C) %>%
+  summarize(counts = n()) %>%
+  pivot_wider(names_from = c(AgeMonths),
+              values_from = counts)
+
+age_table[is.na(age_table)] <- 0
+age_table <- as.matrix(age_table[,2:21])
+(age_xs <- chisq.test(age_table))
+
+```
+
+
+## Original text from the authors results
+
+However, in the critical test trial that followed, 16 of 21 infants (76.2%) chose the new block (block C; Fig. 1)—a percentage significantly different from chance, according to a two-tailed binomial test, p = .026, 95% exact confidence interval (CI) = [52.83%, 91.78%], relative risk ratio = 1.52. A chi-square test of independence indicated no significant effect of age or gender on infants’ choices, $\chi^2$ (19, N=21)=18.24,p=.506,and $\chi^2$ (1,N=21)=0.15,p= .696, respectively.
+
+## Reproducible report using above re-analysis
+
+However, in the critical test trial that followed, `r sum_C` of `r total_C` infants (`r sum_C/total_C`%) chose the new block (block C; Fig. 1)—a percentage significantly different from chance, according to a two-tailed binomial test, p = `r round(binomial_p,digits=3)`, 95% exact confidence interval (CI) = [52.83%, 91.78%], relative risk ratio = 1.52. A chi-square test of independence indicated no significant effect of age or gender on infants’ choices, $\chi^2$ (`r age_xs$parameter`, N=  `r sum(age_xs$observed)`) =`r age_xs$statistic`,p=`r age_xs$p.value`,and $\chi^2$ (1,N=21)=`r uncorrected_Xsq`,p= `r round(gender_Xsq_unc,digits=3)`, respectively.

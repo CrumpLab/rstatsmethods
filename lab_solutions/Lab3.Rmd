@@ -1,0 +1,162 @@
+---
+title: "Lab 3"
+author: "Matt Crump"
+date: "8/26/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
+
+1. Create five samples of 25 observations from a normal distribution with mean 200, and standard deviation 100. Compute the mean of each sample, and plot the means in a graph using ggplot2. (1 point)
+
+```{r}
+
+observations <- rnorm(5*25,mean=200, sd=100)
+samples <- rep(1:5,each =25)
+my_data <- data.frame(samples,
+                      observations)
+
+library(dplyr)
+
+means <- my_data %>%
+  group_by(samples) %>%
+  summarize(sample_mean = mean(observations))
+
+library(ggplot2)
+
+ggplot(means, aes(x = samples, y =sample_mean))+
+  geom_bar(stat="identity")
+
+```
+
+
+2. Additionally calculate the standard deviation of each sample from above. Use the standard deviations for error bars, and produce another graph with the means along with error bars using ggplot2. (1 point)
+
+```{r}
+# sampling process
+observations <- rnorm(5*25,mean=200, sd=100)
+samples <- rep(1:5,each =25)
+my_data <- data.frame(samples,observations)
+
+# get means
+means <- my_data %>%
+  group_by(samples) %>%
+  summarize(sample_mean = mean(observations),
+            sample_sd = sd(observations))
+
+#plot means
+ggplot(means, aes(x = samples, y =sample_mean))+
+  geom_bar(stat="identity") +
+  geom_errorbar(aes(ymin = sample_mean - sample_sd,
+                    ymax = sample_mean + sample_sd),
+                width = .25)
+
+```
+
+---
+
+The last two problems concern the concept of using a sample to estimate a property of the population or distribution the sample came from. For example, if we know the mean of a sample, can we be confident that the population has the same mean? If we were trying to guess at the population mean, what statistics from the sample should we use?
+
+Some sample statistics are “biased”, and may systematically under or overestimate a population parameter. Others are “unbiased”, in this case the sample statistic tends to correctly estimate the population parameter over the long run.
+
+3. Demonstrate that the sample mean across a range of n, is an unbiased estimator of the population mean using a monte-carlo simulation. (2 points).
+The population is a normal distribution with mean = 10, standard deviation = 5.
+
+- Test a variety of n (sample size), including n = 2, 5, 10, 50, and 100
+- For each sample size n, your task is to draw 10,000 samples of that size, then for each sample, calculate the sample mean. If the mean is unbiased, then we expect that “on average” the sample means will be the same as the population mean. To determine if this is true, compute the mean of the sample means that you produce to see if it is close to the population mean.
+- Show the mean of the sample means for each sample size.
+
+```{r}
+# n 2
+observations <- rnorm(2*10000,mean = 10,sd =5)
+samples <- rep(1:10000, each =2)
+my_data <- data.frame(samples,observations)
+
+summarized_data <- my_data %>%
+  group_by(samples) %>%
+  summarize(sample_means = mean(observations))
+
+mean(summarized_data$sample_means)
+
+#n 5
+observations <- rnorm(5*10000,mean = 10,sd =5)
+samples <- rep(1:10000, each =5)
+my_data <- data.frame(samples,observations)
+
+summarized_data <- my_data %>%
+  group_by(samples) %>%
+  summarize(sample_means = mean(observations))
+
+mean(summarized_data$sample_means)
+
+#######
+sample_sizes <- c(2,5,10,50,100)
+sim_sample_means <- c()
+for(i in 1:length(sample_sizes)){
+  observations <- rnorm(sample_sizes[i]*10000,mean = 10, sd =5)
+  samples <- rep(1:10000, each = sample_sizes[i])
+  my_data <- data.frame(samples,observations)
+  
+  summarized_data <- my_data %>%
+    group_by(samples) %>%
+    summarize(sample_means = mean(observations))
+  
+  sim_sample_means[i] <- mean(summarized_data$sample_means)
+}
+
+sim_data <- data.frame(sample_sizes, sim_sample_means)
+
+ggplot(sim_data, aes(x=sample_sizes, y=sim_sample_means, group=1))+
+  geom_point()+
+  geom_line() +
+  coord_cartesian(ylim = c(0,20) )
+
+```
+
+
+
+4. Use a monte carlo simulation to compare the standard deviation formulas (divide by N vs N-1), and show that the N-1 formula is a better unbiased estimate of the population standard deviation, especially for small n. (2 points)
+
+Use the same normal distribution and samples sizes from above
+Rather than computing the mean for each sample, compute both forms of the standard deviation formula, including the sample standard deviation that divides by N-1, and the regular standard deviation that divides by N
+You should have 10,000 samples for each sample size, and 10,000 standard deviations for each the sample and regular standard deviation. Your task is to find the average of each, for each sample-size.
+
+Which of the standard deviations is more systematically biased? That is, which one is systematically worse at estimating the population standard deviation?
+
+```{r}
+sd_N <- function(x){
+  sqrt(sum((mean(x)-x)^2) / length(x))
+}
+
+#######
+sample_sizes <- c(2,5,10,50,100)
+sim_sample_sd <- c()
+sim_sample_sd_N <- c()
+for(i in 1:length(sample_sizes)){
+  observations <- rnorm(sample_sizes[i]*10000,mean = 10, sd =5)
+  samples <- rep(1:10000, each = sample_sizes[i])
+  my_data <- data.frame(samples,observations)
+  
+  summarized_data <- my_data %>%
+    group_by(samples) %>%
+    summarize(sample_sd = sd(observations),
+              sample_sd_N = sd_N(observations))
+  
+  sim_sample_sd[i] <- mean(summarized_data$sample_sd)
+  sim_sample_sd_N[i] <- mean(summarized_data$sample_sd_N)
+}
+
+sim_data <- data.frame(n = rep(sample_sizes,2) ,
+                       est = c(sim_sample_sd_N,sim_sample_sd),
+                       formula = c(rep("N",5), rep("N-1",5)))
+
+ggplot(sim_data, aes(x=n, y=est, group=formula, color = formula))+
+  geom_point()+
+  geom_line() +
+  coord_cartesian(ylim = c(0,10) )
+
+
+```
+
