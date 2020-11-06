@@ -401,6 +401,54 @@ Obtain the data from the online repository, show your code for loading it into R
 
 **Important Note:** In my own re-analysis I was able to obtain all of the same values that the authors provided in their results section. However, in my view the authors also misused the chi-square test, especially for the test of independence involving age. So, it is ok if you are unable to reproduce that analysis. However, it is instructive to try and reproduce what the authors did to form an opinion about whether the test was applied in a sound manner.
 
+**Solution script**: I am also providing the .rmd for lab 9 that I wrote in the solution video here <https://github.com/CrumpLab/psyc7709Lab/blob/master/lab_solutions/Lab9.Rmd>.
+
+**Update on misuse of chi-square test in the above paper**. As we discussed in class and in the solution video, it appears we accidentally found an example in the recent literature where a chi-square test was used incorrectly. In the solution video I didn't provide a clear reason to demonstrate why the chi-square test was misused. So, I thought I would write an addendum to this lab.
+
+To recap, the authors measured a choice made by 21 infants. The age of each infant was measured in months (to two decimal places). They reported a chi-square test of independence to determine whether age was independent of the choice. For example, they reported: $\chi^2$ (19,N=21) =18.24,p=.506. These values are in some sense correct. For example:
+
+```{r}
+pchisq(18.24, 19, lower.tail = FALSE)
+```
+
+However, it appears that the authors treated the infant's ages, measured a continuous variable, as a categorical variable. And, as it happened, there were two infants who happened to be exactly 11.66 months old. As a result, there were 21 infants, and 20 different age categories. If a contingency table is constructed to represent 20 age categories, and 2 choice options, you get a 20x2 table. This table has (20-1)(2-1) = 19 degrees of freedom. In my solution video I showed an example of how the authors might have constructed that table from their data, and I was able to obtain the same chi-square value that they reported, suggesting that they did construct such a table.
+
+There are several problems here. One of the problems that I will focus on is the conversion of a continuous age variable into a categorical variable. I was expecting the authors to bin ages, say into two categories: younger vs. older. Instead, they used each infant's age as a category level. It happened to be the case that two infants had exactly the same age (11.66 months), but if that hadn't happened, the table would have had 21 levels for age (because there were 21 infants).
+
+Consider what occurs if you treat each subject as a unique level in a contingency table, especially in an experiment that involves the subject making a single choice between two alternatives. We will see that the answer is, you always get the same chi-square value. No matter what the subjects do.
+
+Here is an example contingency table with 5 subjects. In this case, each column represents a subject. Row 1 represents choice A, and row 2 choice 2. Each subject makes a choice, and their choice is counted in the appropriate row.
+
+```{r}
+replicate(5,sample(c(1,0),2))
+```
+
+This is a contingency table, so it is possible to compute a chi-square test on this table.
+
+```{r}
+chisq.test(replicate(5,sample(c(1,0),2)))
+```
+However, look at what happens. We obtain a chi-squared value of 5. And, this is what will always happen, no matter what choices each subject makes:
+
+Every time this function runs, the choices made by each simulated subject are randomized. However, no matter what happens, the chi-square value is always five. 
+
+```{r}
+chisq.test(replicate(5,sample(c(1,0),2)))
+```
+This is effectively what the authors did. For example, consider what would happen to the authors data if they excluded the two infants who had the exact same age. That table would have choices from 19 infants.
+
+We can simulate any possible outcome this way:
+
+```{r}
+chisq.test(replicate(19,sample(c(1,0),2)))
+```
+
+No matter choices the infants make (either A or B), they will always make one of them, and not the other. And, the observed chi-square value will always be the same as the number of subjects. So, this test does more to confirm the number of the infants used in the experiment than it does to assess the independence of age from the choices. 
+
+Finally, if you create a contingency table where each subject has their own category level...and then conduct a chi-square test of independence to see if the subjects are independent from the choices that they made, I would think the major problem there is that the subjects couldn't be independent of the choices they made, because they were the ones making the choices.
+
+
+
 
 
 

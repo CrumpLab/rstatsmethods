@@ -493,14 +493,14 @@
 <p>In the following, I will take random samples from a unit normal distribution:</p>
 <p>What is the expected mean of a unit normal distribution?</p>
 <div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10000</span>,<span class="fl">0</span>,<span class="fl">1</span>))
-<span class="co">#&gt; [1] 0.00552768</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.002116096</span></pre></body></html></div>
 <p>If we square all of the values that we sample from a unit normal distribution (equivalent to <span class="math inline">\(\chi^2\)</span> with <span class="math inline">\(k=1\)</span>), then what would the mean of those squared values be?</p>
 <div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10000</span>,<span class="fl">0</span>,<span class="fl">1</span>)^<span class="fl">2</span>)
-<span class="co">#&gt; [1] 1.005777</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.9900841</span></pre></body></html></div>
 <p>It turns out the answer is 1. There will be no negative values because we are squaring everything. About 68% of the values in a unit normal are between -1 and 1, so squaring all of those will make values between 0 and 1, the rest of the values get increasingly bigger than 1. They all balance out at 1, which is the mean of a squared normal distribution. In other words, the mean of a <span class="math inline">\(\chi^2\)</span> is the same as the <span class="math inline">\(k\)</span> parameter, also called degrees of freedom.</p>
 <p>For example, the mean of 10,000 numbers drawn from a <span class="math inline">\(\chi^2\)</span> with k = 10, is:</p>
 <div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html">rchisq</a></span>(<span class="fl">10000</span>,<span class="fl">10</span>))
-<span class="co">#&gt; [1] 10.02637</span></pre></body></html></div>
+<span class="co">#&gt; [1] 10.00588</span></pre></body></html></div>
 <p>Another way to think about this is to recognize that the expected value (mean) from a squared unit normal distribution is 1. So, if you take 10 values from that distribution (i.e., when k = 10), then you are planning to sum up the 10 values that you get, and the expected value for each is 1…summing up 10 ones, gives you 10. The same expectations can be applied to <span class="math inline">\(\chi^2\)</span> distributions of any <span class="math inline">\(k\)</span>.</p>
 </div>
 </div>
@@ -582,6 +582,44 @@
 <p>Silver, A. M., Stahl, A. E., Loiotile, R., Smith-Flores, A. S., &amp; Feigenson, L. (2020). When Not Choosing Leads to Not Liking: Choice-Induced Preference in Infancy. Psychological Science, 0956797620954491.</p>
 <p>Obtain the data from the online repository, show your code for loading it into R, then conduct the same tests reported in Experiment 1 that the authors conducted. These include one binomial test, and two chi-square tests. Briefly report your re-analysis, and discuss whether you obtained the same values as the authors did (6 points).</p>
 <p><strong>Important Note:</strong> In my own re-analysis I was able to obtain all of the same values that the authors provided in their results section. However, in my view the authors also misused the chi-square test, especially for the test of independence involving age. So, it is ok if you are unable to reproduce that analysis. However, it is instructive to try and reproduce what the authors did to form an opinion about whether the test was applied in a sound manner.</p>
+<p><strong>Solution script</strong>: I am also providing the .rmd for lab 9 that I wrote in the solution video here <a href="https://github.com/CrumpLab/psyc7709Lab/blob/master/lab_solutions/Lab9.Rmd" class="uri">https://github.com/CrumpLab/psyc7709Lab/blob/master/lab_solutions/Lab9.Rmd</a>.</p>
+<p><strong>Update on misuse of chi-square test in the above paper</strong>. As we discussed in class and in the solution video, it appears we accidentally found an example in the recent literature where a chi-square test was used incorrectly. In the solution video I didn’t provide a clear reason to demonstrate why the chi-square test was misused. So, I thought I would write an addendum to this lab.</p>
+<p>To recap, the authors measured a choice made by 21 infants. The age of each infant was measured in months (to two decimal places). They reported a chi-square test of independence to determine whether age was independent of the choice. For example, they reported: <span class="math inline">\(\chi^2\)</span> (19,N=21) =18.24,p=.506. These values are in some sense correct. For example:</p>
+<div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html">pchisq</a></span>(<span class="fl">18.24</span>, <span class="fl">19</span>, <span class="kw">lower.tail</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
+<span class="co">#&gt; [1] 0.5064639</span></pre></body></html></div>
+<p>However, it appears that the authors treated the infant’s ages, measured a continuous variable, as a categorical variable. And, as it happened, there were two infants who happened to be exactly 11.66 months old. As a result, there were 21 infants, and 20 different age categories. If a contingency table is constructed to represent 20 age categories, and 2 choice options, you get a 20x2 table. This table has (20-1)(2-1) = 19 degrees of freedom. In my solution video I showed an example of how the authors might have constructed that table from their data, and I was able to obtain the same chi-square value that they reported, suggesting that they did construct such a table.</p>
+<p>There are several problems here. One of the problems that I will focus on is the conversion of a continuous age variable into a categorical variable. I was expecting the authors to bin ages, say into two categories: younger vs. older. Instead, they used each infant’s age as a category level. It happened to be the case that two infants had exactly the same age (11.66 months), but if that hadn’t happened, the table would have had 21 levels for age (because there were 21 infants).</p>
+<p>Consider what occurs if you treat each subject as a unique level in a contingency table, especially in an experiment that involves the subject making a single choice between two alternatives. We will see that the answer is, you always get the same chi-square value. No matter what the subjects do.</p>
+<p>Here is an example contingency table with 5 subjects. In this case, each column represents a subject. Row 1 represents choice A, and row 2 choice 2. Each subject makes a choice, and their choice is counted in the appropriate row.</p>
+<div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span>(<span class="fl">5</span>,<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">0</span>),<span class="fl">2</span>))
+<span class="co">#&gt;      [,1] [,2] [,3] [,4] [,5]</span>
+<span class="co">#&gt; [1,]    0    0    0    0    0</span>
+<span class="co">#&gt; [2,]    1    1    1    1    1</span></pre></body></html></div>
+<p>This is a contingency table, so it is possible to compute a chi-square test on this table.</p>
+<div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span>(<span class="fl">5</span>,<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">0</span>),<span class="fl">2</span>)))
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  Pearson's Chi-squared test</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; data:  replicate(5, sample(c(1, 0), 2))</span>
+<span class="co">#&gt; X-squared = 5, df = 4, p-value = 0.2873</span></pre></body></html></div>
+<p>However, look at what happens. We obtain a chi-squared value of 5. And, this is what will always happen, no matter what choices each subject makes:</p>
+<p>Every time this function runs, the choices made by each simulated subject are randomized. However, no matter what happens, the chi-square value is always five.</p>
+<div class="sourceCode" id="cb32"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span>(<span class="fl">5</span>,<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">0</span>),<span class="fl">2</span>)))
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  Pearson's Chi-squared test</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; data:  replicate(5, sample(c(1, 0), 2))</span>
+<span class="co">#&gt; X-squared = 5, df = 4, p-value = 0.2873</span></pre></body></html></div>
+<p>This is effectively what the authors did. For example, consider what would happen to the authors data if they excluded the two infants who had the exact same age. That table would have choices from 19 infants.</p>
+<p>We can simulate any possible outcome this way:</p>
+<div class="sourceCode" id="cb33"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span>(<span class="fl">19</span>,<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">0</span>),<span class="fl">2</span>)))
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  Pearson's Chi-squared test</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; data:  replicate(19, sample(c(1, 0), 2))</span>
+<span class="co">#&gt; X-squared = 19, df = 18, p-value = 0.3918</span></pre></body></html></div>
+<p>No matter choices the infants make (either A or B), they will always make one of them, and not the other. And, the observed chi-square value will always be the same as the number of subjects. So, this test does more to confirm the number of the infants used in the experiment than it does to assess the independence of age from the choices.</p>
+<p>Finally, if you create a contingency table where each subject has their own category level…and then conduct a chi-square test of independence to see if the subjects are independent from the choices that they made, I would think the major problem there is that the subjects couldn’t be independent of the choices they made, because they were the ones making the choices.</p>
 <!-- ## Conceptual III: Testing independence -->
 <!-- A common use of $\chi^2$ tests is to examine frequency data and determine whether the obtained frequencies are expected or unexpected, depending on some theoretical expectations for the frequencies. -->
 <!-- It is worth looking at a simple example. Karl Pearson's first example from 1900 involved a dice rolling experiment, which is described in Example II. Let's look an even simpler example: -->
