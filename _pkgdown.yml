@@ -67,6 +67,8 @@ navbar:
         href: articles/Lab8_Normal.html
       - text: Lab 9 Chi Square
         href: articles/Lab9_Chisquare.html
+      - text: Lab 10 t tests
+        href: articles/Lab10_ttest.html
     resources:
       text: R Reference
       menu:
