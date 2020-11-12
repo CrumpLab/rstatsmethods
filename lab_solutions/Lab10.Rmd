@@ -1,0 +1,146 @@
+---
+title: "Lab 10"
+author: "Matt Crump"
+date: "11/3/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
+
+
+1. Your task is to obtain the data from the following paper and conduct a reproducible analysis of their results.
+
+Rosenbaum, D., Mama, Y., & Algom, D. (2017). Stand by Your Stroop: Standing Up Enhances Selective Attention and Cognitive Control. Psychological science, 28(12), 1864-1867.
+
+Note, the paper, the data, and an existing reproducible analysis of this data is available at <https://crumplab.github.io/statisticsLab/lab-10-factorial-anova.html#important-stuff-4>
+
+The re-analysis should focus only on Experiment 3. There are three main goals
+
+1. Reproduce as much of the analysis as possible using only paired-sample t-tests. Note, the authors reported a 2x2 repeated measures ANOVA, but consider how the same questions could be answered by t-tests (2 points)
+2. Reproduce a graph of the means, like shown in the paper (2 points)
+3. Present a power-curve analysis for the design. (2 points)
+
+```{r}
+library(papaja)
+library(dplyr)
+library(ggplot2)
+
+# load data
+
+all_data <- read.csv("open_data/stroop_stand.csv")
+
+# Stand Stroop effect
+
+(stand_stroop <- t.test(all_data$incongruent_stand,
+       all_data$congruent_stand,
+       paired = TRUE))
+
+# Sit Stroop effect
+
+(sit_stroop <- t.test(all_data$incongruent_sit,
+       all_data$congruent_sit,
+       paired = TRUE))
+
+```
+The authors wrote:
+
+The Stroop effects in both the sitting condition, M = 118.9 ms, t(49) = 16.52, p < .01, d = 2.376, and the standing condition, M = 95.9 ms, t(49) = 14.327, p < .01, d = 2.034, were highly reliable...
+
+Our reproduction of the analysis found:
+
+The Stroop effects in both the sitting condition, `r papaja::apa_print(sit_stroop)$full_result`, and the standing condition, `r papaja::apa_print(stand_stroop)$full_result`, were highly reliable...
+
+## Advanced
+
+The major finding in the paper was that the size of the Stroop "shrunk" when people were standing compared to sitting. The above analyses did not address this question, they only showed that the Stroop effect (slower RTs for incongruent than congruent) appeared to be significant in both sitting and standing conditions. According to the means, it looked like the overall effect was larger when people were sitting (118.9) compared to standing (95.9).
+
+Although the authors used a repeated measures ANOVA to provide statistical evidence that the Stroop effect was smaller in the stand than sit condition, they could have used a paired samples t-test, which boils down to a one-sample t-test on the relevant difference scores.
+
+For example:
+
+```{r}
+stand_stroop_scores <- all_data$incongruent_stand-all_data$congruent_stand
+sit_stroop_scores <- all_data$incongruent_sit-all_data$congruent_sit
+
+stroop_differences <- sit_stroop_scores - stand_stroop_scores
+
+(paired_results <- t.test(stand_stroop_scores,
+                         sit_stroop_scores,
+                         paired=TRUE))
+
+(interaction_results <- t.test(stroop_differences))
+
+```
+The authors wrote:
+
+...but the most significant finding again was the shrinkage of the effect when participants were standing, F(1, 49) = 8.964, p = .004, ηp2 = .155. 
+
+We found the same result using a one-sample t-test, `r apa_print(interaction_results)$full_result`.
+
+Notice, we found the same mean difference (22.91), and that we found the same p-value (.004). Finally as we will learn later in the course, $t$ is related to $F$, specifically $t^2 = F$, and $2.9941^2 = 8.964$.
+
+## plot
+
+```{r}
+library(tidyr)
+
+# convert to long
+
+stroop_df <- all_data %>%
+  pivot_longer(cols = 1:4,
+               names_to = c("Congruency","Posture"),
+               names_sep = "_",
+               values_to = "RTs")
+
+# get means
+
+overall_means <- stroop_df %>%
+                  group_by(Posture,Congruency) %>%
+                  summarise(meanRT = mean(RTs),
+                            SEMRT = (sd(RTs)/sqrt(length(RTs))))
+
+# plot
+
+ggplot(overall_means, aes(x=Posture,
+                          y=meanRT, 
+                          group=Congruency,
+                          fill=Congruency))+
+  geom_bar(stat="identity",position="dodge")+
+  theme_classic(base_size=12)+
+  ylab("Mean Reaction Time (ms)")+
+  geom_errorbar(aes(ymin=meanRT-SEMRT,
+                    ymax=meanRT+SEMRT),
+                position=position_dodge(width=0.9),
+                width=.2,
+                color="black")+
+  coord_cartesian(ylim=c(500,1000))
+
+```
+
+## power curve
+
+```{r}
+effect_sizes <- seq(0,1.5,.1)
+prop_significant <-c()
+
+for(i in 1:length(effect_sizes)){
+  sim_ps <- replicate(1000, t.test(replicate(50, rnorm(1, effect_sizes[i], 1)),
+                                   mu = 0)$p.value)
+  
+  prop_significant[i] <- length(sim_ps[sim_ps < .05])/1000
+}
+
+plot_df <- data.frame(effect_sizes,
+                      prop_significant)
+
+ggplot(plot_df, aes(x=effect_sizes,y=prop_significant))+
+  geom_line() +
+  geom_point() +
+  scale_x_continuous(breaks=seq(0,1.5,.1))+
+  scale_y_continuous(breaks=seq(0,1,.1)) +
+  ylab("Proportion Significant")
+```
+
+
