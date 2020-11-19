@@ -102,6 +102,9 @@
     <li>
       <a href="../../articles/Lab10_ttest.html">Lab 10 t tests</a>
     </li>
+    <li>
+      <a href="../../articles/SP_Power.html">Simulation and Power analysis I</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -1161,45 +1164,45 @@
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">72.07350</td>
+<td align="right">69.42953</td>
 <td align="right">20</td>
-<td align="left">FALSE</td>
-<td align="left">i</td>
+<td align="left">TRUE</td>
+<td align="left">r</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">59.71865</td>
-<td align="right">20</td>
-<td align="left">TRUE</td>
-<td align="left">y</td>
+<td align="right">60.23575</td>
+<td align="right">18</td>
+<td align="left">FALSE</td>
+<td align="left">b</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">60.31800</td>
-<td align="right">20</td>
-<td align="left">FALSE</td>
-<td align="left">i</td>
+<td align="right">72.81856</td>
+<td align="right">18</td>
+<td align="left">TRUE</td>
+<td align="left">v</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">59.21119</td>
-<td align="right">20</td>
+<td align="right">60.67758</td>
+<td align="right">18</td>
 <td align="left">TRUE</td>
-<td align="left">g</td>
+<td align="left">r</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">60.34799</td>
-<td align="right">18</td>
-<td align="left">FALSE</td>
-<td align="left">i</td>
+<td align="right">66.23072</td>
+<td align="right">19</td>
+<td align="left">TRUE</td>
+<td align="left">b</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">68.57516</td>
-<td align="right">19</td>
+<td align="right">64.64336</td>
+<td align="right">18</td>
 <td align="left">FALSE</td>
-<td align="left">y</td>
+<td align="left">g</td>
 </tr>
 </tbody>
 </table>
@@ -1226,23 +1229,22 @@
 <span class="co">#&gt; # A tibble: 2 x 3</span>
 <span class="co">#&gt;   likes_chocolate mean_grade sd_grad</span>
 <span class="co">#&gt;   &lt;lgl&gt;                &lt;dbl&gt;   &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 FALSE                 65.3    5.94</span>
-<span class="co">#&gt; 2 TRUE                  60.7    4.65</span>
+<span class="co">#&gt; 1 FALSE                 63.1    2.04</span>
+<span class="co">#&gt; 2 TRUE                  67.8    4.08</span>
 
 <span class="no">fake_data</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">likes_chocolate</span>,<span class="no">age</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="kw">mean_grade</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">grades</span>),
             <span class="kw">sd_grad</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span>(<span class="no">grades</span>))
 <span class="co">#&gt; `summarise()` regrouping output by 'likes_chocolate' (override with `.groups` argument)</span>
-<span class="co">#&gt; # A tibble: 5 x 4</span>
+<span class="co">#&gt; # A tibble: 4 x 4</span>
 <span class="co">#&gt; # Groups:   likes_chocolate [2]</span>
 <span class="co">#&gt;   likes_chocolate   age mean_grade sd_grad</span>
 <span class="co">#&gt;   &lt;lgl&gt;           &lt;int&gt;      &lt;dbl&gt;   &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 FALSE              18       60.3   NA   </span>
-<span class="co">#&gt; 2 FALSE              19       68.6   NA   </span>
-<span class="co">#&gt; 3 FALSE              20       66.2    8.31</span>
-<span class="co">#&gt; 4 TRUE               19       52.9   NA   </span>
-<span class="co">#&gt; 5 TRUE               20       62.2    2.98</span></pre></body></html></div>
+<span class="co">#&gt; 1 FALSE              18       63.1    2.04</span>
+<span class="co">#&gt; 2 TRUE               18       67.3    6.16</span>
+<span class="co">#&gt; 3 TRUE               19       67.7    2.01</span>
+<span class="co">#&gt; 4 TRUE               20       69.4   NA</span></pre></body></html></div>
 </div>
 <div id="filter" class="section level3">
 <h3 class="hasAnchor">
@@ -1251,23 +1253,17 @@
 <div class="sourceCode" id="cb58"><html><body><pre class="r"><span class="no">fake_data</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">grades</span> <span class="kw">&lt;</span> <span class="fl">65</span>)
 <span class="co">#&gt;   subjects   grades age likes_chocolate favorite_color</span>
-<span class="co">#&gt; 1        2 59.71865  20            TRUE              y</span>
-<span class="co">#&gt; 2        3 60.31800  20           FALSE              i</span>
-<span class="co">#&gt; 3        4 59.21119  20            TRUE              g</span>
-<span class="co">#&gt; 4        5 60.34799  18           FALSE              i</span>
-<span class="co">#&gt; 5        8 52.87083  19            TRUE              v</span>
-<span class="co">#&gt; 6        9 63.51496  20            TRUE              b</span>
-<span class="co">#&gt; 7       10 62.05724  20            TRUE              y</span>
+<span class="co">#&gt; 1        2 60.23575  18           FALSE              b</span>
+<span class="co">#&gt; 2        4 60.67758  18            TRUE              r</span>
+<span class="co">#&gt; 3        6 64.64336  18           FALSE              g</span>
+<span class="co">#&gt; 4        9 64.46828  18           FALSE              g</span>
+<span class="co">#&gt; 5       10 62.89276  18           FALSE              i</span>
 
 <span class="no">fake_data</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">grades</span> <span class="kw">&lt;</span> <span class="fl">65</span>,
          <span class="no">likes_chocolate</span> <span class="kw">==</span> <span class="fl">TRUE</span>)
 <span class="co">#&gt;   subjects   grades age likes_chocolate favorite_color</span>
-<span class="co">#&gt; 1        2 59.71865  20            TRUE              y</span>
-<span class="co">#&gt; 2        4 59.21119  20            TRUE              g</span>
-<span class="co">#&gt; 3        8 52.87083  19            TRUE              v</span>
-<span class="co">#&gt; 4        9 63.51496  20            TRUE              b</span>
-<span class="co">#&gt; 5       10 62.05724  20            TRUE              y</span></pre></body></html></div>
+<span class="co">#&gt; 1        4 60.67758  18            TRUE              r</span></pre></body></html></div>
 </div>
 <div id="select" class="section level3">
 <h3 class="hasAnchor">
@@ -1276,30 +1272,30 @@
 <div class="sourceCode" id="cb59"><html><body><pre class="r"><span class="no">fake_data</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">grades</span>)
 <span class="co">#&gt;      grades</span>
-<span class="co">#&gt; 1  72.07350</span>
-<span class="co">#&gt; 2  59.71865</span>
-<span class="co">#&gt; 3  60.31800</span>
-<span class="co">#&gt; 4  59.21119</span>
-<span class="co">#&gt; 5  60.34799</span>
-<span class="co">#&gt; 6  68.57516</span>
-<span class="co">#&gt; 7  66.53094</span>
-<span class="co">#&gt; 8  52.87083</span>
-<span class="co">#&gt; 9  63.51496</span>
-<span class="co">#&gt; 10 62.05724</span>
+<span class="co">#&gt; 1  69.42953</span>
+<span class="co">#&gt; 2  60.23575</span>
+<span class="co">#&gt; 3  72.81856</span>
+<span class="co">#&gt; 4  60.67758</span>
+<span class="co">#&gt; 5  66.23072</span>
+<span class="co">#&gt; 6  64.64336</span>
+<span class="co">#&gt; 7  68.53578</span>
+<span class="co">#&gt; 8  69.07479</span>
+<span class="co">#&gt; 9  64.46828</span>
+<span class="co">#&gt; 10 62.89276</span>
 
 <span class="no">fake_data</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">grades</span>,<span class="no">likes_chocolate</span>)
 <span class="co">#&gt;      grades likes_chocolate</span>
-<span class="co">#&gt; 1  72.07350           FALSE</span>
-<span class="co">#&gt; 2  59.71865            TRUE</span>
-<span class="co">#&gt; 3  60.31800           FALSE</span>
-<span class="co">#&gt; 4  59.21119            TRUE</span>
-<span class="co">#&gt; 5  60.34799           FALSE</span>
-<span class="co">#&gt; 6  68.57516           FALSE</span>
-<span class="co">#&gt; 7  66.53094            TRUE</span>
-<span class="co">#&gt; 8  52.87083            TRUE</span>
-<span class="co">#&gt; 9  63.51496            TRUE</span>
-<span class="co">#&gt; 10 62.05724            TRUE</span></pre></body></html></div>
+<span class="co">#&gt; 1  69.42953            TRUE</span>
+<span class="co">#&gt; 2  60.23575           FALSE</span>
+<span class="co">#&gt; 3  72.81856            TRUE</span>
+<span class="co">#&gt; 4  60.67758            TRUE</span>
+<span class="co">#&gt; 5  66.23072            TRUE</span>
+<span class="co">#&gt; 6  64.64336           FALSE</span>
+<span class="co">#&gt; 7  68.53578            TRUE</span>
+<span class="co">#&gt; 8  69.07479            TRUE</span>
+<span class="co">#&gt; 9  64.46828           FALSE</span>
+<span class="co">#&gt; 10 62.89276           FALSE</span></pre></body></html></div>
 </div>
 <div id="mutate" class="section level3">
 <h3 class="hasAnchor">
@@ -1310,16 +1306,16 @@
 
 <span class="no">fake_data</span>
 <span class="co">#&gt;    subjects   grades age likes_chocolate favorite_color new_thing</span>
-<span class="co">#&gt; 1         1 72.07350  20           FALSE              i         0</span>
-<span class="co">#&gt; 2         2 59.71865  20            TRUE              y         0</span>
-<span class="co">#&gt; 3         3 60.31800  20           FALSE              i         0</span>
-<span class="co">#&gt; 4         4 59.21119  20            TRUE              g         0</span>
-<span class="co">#&gt; 5         5 60.34799  18           FALSE              i         0</span>
-<span class="co">#&gt; 6         6 68.57516  19           FALSE              y         0</span>
-<span class="co">#&gt; 7         7 66.53094  20            TRUE              y         0</span>
-<span class="co">#&gt; 8         8 52.87083  19            TRUE              v         0</span>
-<span class="co">#&gt; 9         9 63.51496  20            TRUE              b         0</span>
-<span class="co">#&gt; 10       10 62.05724  20            TRUE              y         0</span></pre></body></html></div>
+<span class="co">#&gt; 1         1 69.42953  20            TRUE              r         0</span>
+<span class="co">#&gt; 2         2 60.23575  18           FALSE              b         0</span>
+<span class="co">#&gt; 3         3 72.81856  18            TRUE              v         0</span>
+<span class="co">#&gt; 4         4 60.67758  18            TRUE              r         0</span>
+<span class="co">#&gt; 5         5 66.23072  19            TRUE              b         0</span>
+<span class="co">#&gt; 6         6 64.64336  18           FALSE              g         0</span>
+<span class="co">#&gt; 7         7 68.53578  18            TRUE              b         0</span>
+<span class="co">#&gt; 8         8 69.07479  19            TRUE              v         0</span>
+<span class="co">#&gt; 9         9 64.46828  18           FALSE              g         0</span>
+<span class="co">#&gt; 10       10 62.89276  18           FALSE              i         0</span></pre></body></html></div>
 </div>
 </div>
 <div id="ggplot2" class="section level2">
@@ -1873,6 +1869,222 @@ D
 
 <span class="co"># Install the stable development verions from GitHub</span>
 <span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"crsh/papaja"</span>)</pre></body></html></div>
+</div>
+</div>
+<div id="vectorized-approaches" class="section level2">
+<h2 class="hasAnchor">
+<a href="#vectorized-approaches" class="anchor"></a>Vectorized approaches</h2>
+<p>Loops are a common tool for doing something many times. R can accomplish the goal of “doing something many times” without loops, using a vectorized approach.</p>
+<div id="basic-examples" class="section level3">
+<h3 class="hasAnchor">
+<a href="#basic-examples" class="anchor"></a>Basic examples</h3>
+<p>Let’s take a close look at some very basic differences between using a loop, and using R’s vectorized approach</p>
+<p>Consider the problem of adding a single number to all of the numbers in a vector.</p>
+<div class="sourceCode" id="cb85"><html><body><pre class="r"><span class="no">nums</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>)
+
+<span class="co"># vectorized approach</span>
+<span class="co"># R automatically adds 1 to all of the numbers</span>
+<span class="no">nums</span>+<span class="fl">1</span>
+<span class="co">#&gt; [1] 2 3 4 5</span>
+
+<span class="co"># loop approach</span>
+<span class="co"># much longer to write out</span>
+<span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">nums</span>)){
+  <span class="no">nums</span>[<span class="no">i</span>] <span class="kw">&lt;-</span> <span class="no">nums</span>[<span class="no">i</span>]+<span class="fl">1</span>
+}
+<span class="no">nums</span>
+<span class="co">#&gt; [1] 2 3 4 5</span></pre></body></html></div>
+<p>How about adding two vectors together, so we add the first two numbers together, then the second two numbers etc.</p>
+<div class="sourceCode" id="cb86"><html><body><pre class="r"><span class="no">A</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>)
+<span class="no">B</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>)
+
+<span class="co"># vectorized approach</span>
+<span class="no">A</span>+<span class="no">B</span>
+<span class="co">#&gt; [1] 2 4 6 8</span>
+
+<span class="co"># loop approach</span>
+<span class="no">the_sum</span> <span class="kw">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>()
+<span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">A</span>)){
+  <span class="no">the_sum</span>[<span class="no">i</span>] <span class="kw">&lt;-</span> <span class="no">A</span>[<span class="no">i</span>]+<span class="no">B</span>[<span class="no">i</span>]
+}
+<span class="no">the_sum</span>
+<span class="co">#&gt; [1] 2 4 6 8</span></pre></body></html></div>
+<p>How about comparing the identity of the elements in two vectors to see if they are the same or not?</p>
+<div class="sourceCode" id="cb87"><html><body><pre class="r"><span class="no">A</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"c"</span>,<span class="st">"e"</span>,<span class="st">"f"</span>,<span class="st">"g"</span>)
+<span class="no">B</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"d"</span>,<span class="st">"e"</span>,<span class="st">"f"</span>,<span class="st">"g"</span>)
+
+<span class="co">#vectorized approach</span>
+<span class="no">A</span><span class="kw">==</span><span class="no">B</span>
+<span class="co">#&gt; [1] FALSE  TRUE  TRUE  TRUE</span>
+
+<span class="co"># loop approach</span>
+<span class="no">compared</span> <span class="kw">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>()
+<span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">A</span>)){
+  <span class="kw">if</span>(<span class="no">A</span>[<span class="no">i</span>]<span class="kw">==</span><span class="no">B</span>[<span class="no">i</span>]){
+    <span class="no">compared</span>[<span class="no">i</span>] <span class="kw">&lt;-</span> <span class="fl">TRUE</span>
+  } <span class="kw">else</span> {
+    <span class="no">compared</span>[<span class="no">i</span>] <span class="kw">&lt;-</span> <span class="fl">FALSE</span>
+  }
+}
+<span class="no">compared</span>
+<span class="co">#&gt; [1] FALSE  TRUE  TRUE  TRUE</span></pre></body></html></div>
+</div>
+<div id="replicate" class="section level3">
+<h3 class="hasAnchor">
+<a href="#replicate" class="anchor"></a>Replicate</h3>
+<p><code><a href="https://rdrr.io/r/base/lapply.html">replicate(n, expr)</a></code> allows you to repeat a function many times, and return the answer in a vector</p>
+<div class="sourceCode" id="cb88"><html><body><pre class="r"><span class="co"># returns 1 randomly sampled number from 1 to 10</span>
+<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fl">1</span>:<span class="fl">10</span>,<span class="fl">1</span>)
+<span class="co">#&gt; [1] 10</span>
+
+<span class="co"># let's repeat the above 10 times using replicate</span>
+<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span>(<span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fl">1</span>:<span class="fl">10</span>,<span class="fl">1</span>))
+<span class="co">#&gt;  [1] 6 9 3 3 2 8 4 9 4 7</span></pre></body></html></div>
+<p>The next example shows how to write a function to do something, and then use the function inside replicate to repeat the function many times.</p>
+<p>For example, we write a function to run a one-sample t-test on a random sample drawn from a normal distribution</p>
+<div class="sourceCode" id="cb89"><html><body><pre class="r"><span class="no">ttest_result</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(){
+  <span class="no">sample</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span>)
+  <span class="no">t_out</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span>(<span class="no">sample</span>, <span class="kw">mu</span><span class="kw">=</span><span class="fl">0</span>)
+  <span class="fu"><a href="https://rdrr.io/r/base/function.html">return</a></span>(<span class="no">t_out</span>$<span class="no">statistic</span>)
+}
+
+<span class="co"># get 10 t-values from repeating the above 10 times</span>
+<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span>(<span class="fl">10</span>, <span class="fu">ttest_result</span>() )
+<span class="co">#&gt;           t           t           t           t           t           t </span>
+<span class="co">#&gt; -0.11778484 -0.78603890  3.13593584 -0.61003779 -0.22803627 -0.35922781 </span>
+<span class="co">#&gt;           t           t           t           t </span>
+<span class="co">#&gt; -0.02242806  0.01510015 -0.32500168  1.00402013</span></pre></body></html></div>
+</div>
+<div id="apply-family" class="section level3">
+<h3 class="hasAnchor">
+<a href="#apply-family" class="anchor"></a>apply family</h3>
+<p>The <code>apply</code> family of functions can be used to “apply” a function across elements of an object. A general overview can be found <a href="https://www.datacamp.com/community/tutorials/r-tutorial-apply-family">here</a></p>
+<p>Some of the apply functions include: <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code>, <code>lapply</code>, and <code>sapply</code>.</p>
+</div>
+<div id="lapply-and-sapply" class="section level3">
+<h3 class="hasAnchor">
+<a href="#lapply-and-sapply" class="anchor"></a>lapply and sapply</h3>
+<p>Here is part of the definition of lapply from the help file:</p>
+<p>lapply returns a list of the same length as X, each element of which is the result of applying FUN to the corresponding element of X.</p>
+<p>Let’s see some examples:</p>
+<p>Let’s apply a function to each of the elements in a vector. To keep things simple, our function will add 1 to a number</p>
+<div class="sourceCode" id="cb90"><html><body><pre class="r"><span class="no">some_numbers</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>)
+
+<span class="no">add_one</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">x</span>){
+  <span class="fu"><a href="https://rdrr.io/r/base/function.html">return</a></span>(<span class="no">x</span>+<span class="fl">1</span>)
+}
+
+<span class="co"># returns a list, containing the answers</span>
+<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="no">some_numbers</span>, <span class="no">add_one</span>)
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] 2</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] 3</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]]</span>
+<span class="co">#&gt; [1] 4</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]]</span>
+<span class="co">#&gt; [1] 5</span>
+
+<span class="co"># unlists the list</span>
+<span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="no">some_numbers</span>,<span class="no">add_one</span>))
+<span class="co">#&gt; [1] 2 3 4 5</span>
+
+<span class="co"># sapply does the unlisting for you</span>
+<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span>(<span class="no">some_numbers</span>, <span class="no">add_one</span>)
+<span class="co">#&gt; [1] 2 3 4 5</span></pre></body></html></div>
+<p>An alternative syntax for lapply and sapply let’s you define the function you want to apply inside the <code>lapply</code> or <code>sapply</code> function.</p>
+<p>In this case, each element in the vector <code>some_numbers</code> will become the <code>x</code> value in the function.</p>
+<div class="sourceCode" id="cb91"><html><body><pre class="r"><span class="no">some_numbers</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>)
+
+<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="no">some_numbers</span>, <span class="kw">FUN</span> <span class="kw">=</span> <span class="kw">function</span>(<span class="no">x</span>){<span class="no">x</span>+<span class="fl">1</span>})
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] 2</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] 3</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]]</span>
+<span class="co">#&gt; [1] 4</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]]</span>
+<span class="co">#&gt; [1] 5</span>
+<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span>(<span class="no">some_numbers</span>, <span class="kw">FUN</span> <span class="kw">=</span> <span class="kw">function</span>(<span class="no">x</span>){<span class="no">x</span>+<span class="fl">1</span>})
+<span class="co">#&gt; [1] 2 3 4 5</span></pre></body></html></div>
+</div>
+<div id="apply" class="section level3">
+<h3 class="hasAnchor">
+<a href="#apply" class="anchor"></a>apply</h3>
+<p>The <code>apply</code> function can be used on 2-dimensional data, and allows you to apply a function across the rows or the columns of the data.</p>
+<p>Let’s say you had a 5x5 matrix of random numbers. Let’s find the sum of each row</p>
+<div class="sourceCode" id="cb92"><html><body><pre class="r"><span class="no">random_matrix</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fl">1</span>:<span class="fl">10</span>,<span class="fl">25</span>, <span class="kw">replace</span><span class="kw">=</span><span class="fl">TRUE</span>),<span class="kw">ncol</span><span class="kw">=</span><span class="fl">5</span>)
+
+<span class="co"># applies the sum function to each row</span>
+<span class="co"># 1 tells apply to go across rows</span>
+<span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span>(<span class="no">random_matrix</span>,<span class="fl">1</span>,<span class="no">sum</span>)
+<span class="co">#&gt; [1] 36 21 29 23 31</span></pre></body></html></div>
+<p>The sum of each column</p>
+<div class="sourceCode" id="cb93"><html><body><pre class="r"><span class="co"># applies the sum function to each column</span>
+<span class="co"># 2 tells apply to go across columns</span>
+<span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span>(<span class="no">random_matrix</span>, <span class="fl">2</span>, <span class="no">sum</span>)
+<span class="co">#&gt; [1] 30 31 25 30 24</span></pre></body></html></div>
+<p>Let’s say we have a matrix storing 3 samples. Each sample has 10 numbers. Each sample is stored in a column, and each row represents an observation.</p>
+<div class="sourceCode" id="cb94"><html><body><pre class="r"><span class="no">sample_matrix</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">30</span>,<span class="fl">0</span>,<span class="fl">1</span>),<span class="kw">ncol</span><span class="kw">=</span><span class="fl">3</span>)</pre></body></html></div>
+<p>Let’s use apply to conduct 10 one-sample t-tests, one for each column. In this example, we can pass the <code>mu=0</code> parameter into the <code>t.test</code> function. However, we will return the entire ouput of each t-test in a list.</p>
+<div class="sourceCode" id="cb95"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span>(<span class="no">sample_matrix</span>,<span class="fl">2</span>,<span class="no">t.test</span>, <span class="kw">mu</span><span class="kw">=</span><span class="fl">0</span>)
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  One Sample t-test</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; data:  newX[, i]</span>
+<span class="co">#&gt; t = -0.090552, df = 9, p-value = 0.9298</span>
+<span class="co">#&gt; alternative hypothesis: true mean is not equal to 0</span>
+<span class="co">#&gt; 95 percent confidence interval:</span>
+<span class="co">#&gt;  -0.6728285  0.6210360</span>
+<span class="co">#&gt; sample estimates:</span>
+<span class="co">#&gt;   mean of x </span>
+<span class="co">#&gt; -0.02589622 </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  One Sample t-test</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; data:  newX[, i]</span>
+<span class="co">#&gt; t = 0.87667, df = 9, p-value = 0.4035</span>
+<span class="co">#&gt; alternative hypothesis: true mean is not equal to 0</span>
+<span class="co">#&gt; 95 percent confidence interval:</span>
+<span class="co">#&gt;  -0.482985  1.094205</span>
+<span class="co">#&gt; sample estimates:</span>
+<span class="co">#&gt; mean of x </span>
+<span class="co">#&gt; 0.3056099 </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]]</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  One Sample t-test</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; data:  newX[, i]</span>
+<span class="co">#&gt; t = 1.2251, df = 9, p-value = 0.2516</span>
+<span class="co">#&gt; alternative hypothesis: true mean is not equal to 0</span>
+<span class="co">#&gt; 95 percent confidence interval:</span>
+<span class="co">#&gt;  -0.2249697  0.7565035</span>
+<span class="co">#&gt; sample estimates:</span>
+<span class="co">#&gt; mean of x </span>
+<span class="co">#&gt; 0.2657669</span></pre></body></html></div>
+<p>What if we wanted to return only the t-values, rather than whole output?</p>
+<p>You might try this, but it doesn’t work</p>
+<div class="sourceCode" id="cb96"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span>(<span class="no">sample_matrix</span>,<span class="fl">2</span>,<span class="no">t.test</span>$<span class="no">statistic</span>, <span class="kw">mu</span><span class="kw">=</span><span class="fl">0</span>)
+<span class="co">#&gt; Error in t.test$statistic: object of type 'closure' is not subsettable</span></pre></body></html></div>
+<p>So, we write a custom function</p>
+<div class="sourceCode" id="cb97"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span>(<span class="no">sample_matrix</span>, <span class="fl">2</span>,
+      <span class="kw">FUN</span> <span class="kw">=</span> <span class="kw">function</span>(<span class="no">x</span>){
+        <span class="no">t_out</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span>(<span class="no">x</span>,<span class="kw">mu</span><span class="kw">=</span><span class="fl">0</span>)
+        <span class="fu"><a href="https://rdrr.io/r/base/function.html">return</a></span>(<span class="no">t_out</span>$<span class="no">statistic</span>)
+      })
+<span class="co">#&gt; [1] -0.09055247  0.87667020  1.22511028</span></pre></body></html></div>
 </div>
 </div>
   </div>

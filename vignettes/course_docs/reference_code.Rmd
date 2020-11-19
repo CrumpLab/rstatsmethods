@@ -1345,3 +1345,197 @@ if(!"devtools" %in% rownames(installed.packages())) install.packages("devtools")
 devtools::install_github("crsh/papaja")
 ```
 
+## Vectorized approaches
+
+Loops are a common tool for doing something many times. R can accomplish the goal of "doing something many times" without loops, using a vectorized approach. 
+
+### Basic examples
+
+Let's take a close look at some very basic differences between using a loop, and using R's vectorized approach
+
+Consider the problem of adding a single number to all of the numbers in a vector.
+
+```{r}
+nums <- c(1,2,3,4)
+
+# vectorized approach
+# R automatically adds 1 to all of the numbers
+nums+1
+
+# loop approach
+# much longer to write out
+for(i in 1:length(nums)){
+  nums[i] <- nums[i]+1
+}
+nums
+```
+
+How about adding two vectors together, so we add the first two numbers together, then the second two numbers etc.
+
+```{r}
+A <- c(1,2,3,4)
+B <- c(1,2,3,4)
+
+# vectorized approach
+A+B
+
+# loop approach
+the_sum <-c()
+for(i in 1:length(A)){
+  the_sum[i] <- A[i]+B[i]
+}
+the_sum
+```
+
+How about comparing the identity of the elements in two vectors to see if they are the same or not?
+
+```{r}
+A <- c("c","e","f","g")
+B <- c("d","e","f","g")
+
+#vectorized approach
+A==B
+
+# loop approach
+compared <-c()
+for(i in 1:length(A)){
+  if(A[i]==B[i]){
+    compared[i] <- TRUE
+  } else {
+    compared[i] <- FALSE
+  }
+}
+compared
+```
+
+
+
+### Replicate
+
+`replicate(n, expr)` allows you to repeat a function many times, and return the answer in a vector
+
+
+```{r}
+# returns 1 randomly sampled number from 1 to 10
+sample(1:10,1)
+
+# let's repeat the above 10 times using replicate
+replicate(10,sample(1:10,1))
+```
+
+The next example shows how to write a function to do something, and then use the function inside replicate to repeat the function many times. 
+
+For example, we write a function to run a one-sample t-test on a random sample drawn from a normal distribution
+
+```{r}
+ttest_result <- function(){
+  sample <- rnorm(10,0,1)
+  t_out <- t.test(sample, mu=0)
+  return(t_out$statistic)
+}
+
+# get 10 t-values from repeating the above 10 times
+replicate(10, ttest_result() )
+```
+
+### apply family
+
+The `apply` family of functions can be used to "apply" a function across elements of an object. A general overview can be found [here](https://www.datacamp.com/community/tutorials/r-tutorial-apply-family) 
+
+Some of the apply functions include: `apply()`, `lapply`, and `sapply`.
+
+### lapply and sapply
+
+Here is part of the definition of lapply from the help file:
+
+lapply returns a list of the same length as X, each element of which is the result of applying FUN to the corresponding element of X.
+
+Let's see some examples:
+
+Let's apply a function to each of the elements in a vector. To keep things simple, our function will add 1 to a number
+```{r}
+some_numbers <- c(1,2,3,4)
+
+add_one <- function(x){
+  return(x+1)
+}
+
+# returns a list, containing the answers
+lapply(some_numbers, add_one)
+
+# unlists the list
+unlist(lapply(some_numbers,add_one))
+
+# sapply does the unlisting for you
+sapply(some_numbers, add_one)
+```
+
+An alternative syntax for lapply and sapply let's you define the function you want to apply inside the `lapply` or `sapply` function.
+
+In this case, each element in the vector `some_numbers` will become the `x` value in the function.
+
+```{r}
+some_numbers <- c(1,2,3,4)
+
+lapply(some_numbers, FUN = function(x){x+1})
+sapply(some_numbers, FUN = function(x){x+1})
+```
+
+
+### apply
+
+The `apply` function can be used on 2-dimensional data, and allows you to apply a function across the rows or the columns of the data.
+
+Let's say you had a 5x5 matrix of random numbers. Let's find the sum of each row
+
+```{r}
+random_matrix <- matrix(sample(1:10,25, replace=TRUE),ncol=5)
+
+# applies the sum function to each row
+# 1 tells apply to go across rows
+apply(random_matrix,1,sum)
+```
+
+The sum of each column
+
+```{r}
+# applies the sum function to each column
+# 2 tells apply to go across columns
+apply(random_matrix, 2, sum)
+```
+
+Let's say we have a matrix storing 3 samples. Each sample has 10 numbers. Each sample is stored in a column, and each row represents an observation.
+
+```{r}
+sample_matrix <- matrix(rnorm(30,0,1),ncol=3)
+```
+
+Let's use apply to conduct 10 one-sample t-tests, one for each column. In this example, we can pass the `mu=0` parameter into the `t.test` function. However, we will return the entire ouput of each t-test in a list.
+
+```{r}
+apply(sample_matrix,2,t.test, mu=0)
+```
+
+What if we wanted to return only the t-values, rather than whole output?
+
+You might try this, but it doesn't work
+```{r, error=TRUE}
+apply(sample_matrix,2,t.test$statistic, mu=0)
+```
+
+So, we write a custom function
+
+```{r}
+apply(sample_matrix, 2, 
+      FUN = function(x){
+        t_out <- t.test(x,mu=0)
+        return(t_out$statistic)
+      })
+```
+
+
+
+
+
+
+

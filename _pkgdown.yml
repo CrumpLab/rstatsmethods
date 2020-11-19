@@ -69,6 +69,8 @@ navbar:
         href: articles/Lab9_Chisquare.html
       - text: Lab 10 t tests
         href: articles/Lab10_ttest.html
+      - text: Simulation and Power analysis I
+        href: articles/SP_Power.html
     resources:
       text: R Reference
       menu:

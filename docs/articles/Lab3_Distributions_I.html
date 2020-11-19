@@ -102,6 +102,9 @@
     <li>
       <a href="../articles/Lab10_ttest.html">Lab 10 t tests</a>
     </li>
+    <li>
+      <a href="../articles/SP_Power.html">Simulation and Power analysis I</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -205,23 +208,23 @@
 <li>Create a distribution with two equally possible numbers, sample from it 10 times (note must set replace=TRUE, because we are sampling more items than exist in the vector):</li>
 </ol>
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">x</span><span class="kw">=</span> <span class="fl">1</span>:<span class="fl">2</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">10</span>, <span class="kw">replace</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-<span class="co">#&gt;  [1] 1 2 2 1 2 1 2 2 1 2</span></pre></body></html></div>
+<span class="co">#&gt;  [1] 1 2 2 2 2 1 1 2 2 2</span></pre></body></html></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Create a distribution with where the first number has a probability of 90% of being sampled, and the second number has a probability of 10% of being sampled, sample from it 10 times</li>
 </ol>
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">x</span><span class="kw">=</span> <span class="fl">1</span>:<span class="fl">2</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">10</span>, <span class="kw">replace</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">prob</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">.9</span>,<span class="fl">.1</span>))
-<span class="co">#&gt;  [1] 2 1 1 1 1 1 1 1 1 1</span></pre></body></html></div>
+<span class="co">#&gt;  [1] 1 1 1 1 1 1 1 1 1 1</span></pre></body></html></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Create a distribution to model a coin flip for an unbiased coin, flip the coin 10 times, have the distribution return “heads” or “tails”.</li>
 </ol>
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"heads"</span>,<span class="st">"tails"</span>), <span class="kw">size</span><span class="kw">=</span><span class="fl">10</span>, <span class="kw">replace</span><span class="kw">=</span> <span class="fl">TRUE</span>)
-<span class="co">#&gt;  [1] "heads" "heads" "heads" "tails" "heads" "tails" "heads" "tails" "tails"</span>
-<span class="co">#&gt; [10] "tails"</span></pre></body></html></div>
+<span class="co">#&gt;  [1] "heads" "tails" "tails" "tails" "tails" "heads" "heads" "tails" "heads"</span>
+<span class="co">#&gt; [10] "heads"</span></pre></body></html></div>
 <ol start="5" style="list-style-type: decimal">
 <li>Create a distribution that has the numbers 1 to 1000, and allows them to be sampled with equal probability. Sample 10 numbers from this distribution without replacement (if you have sampled one number, you are not allowed to sample it again because it has been taken out):</li>
 </ol>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">x</span><span class="kw">=</span> <span class="fl">1</span>:<span class="fl">1000</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="fl">10</span>, <span class="kw">replace</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
-<span class="co">#&gt;  [1] 749  18 145 426 996 865 864 356 527 195</span></pre></body></html></div>
+<span class="co">#&gt;  [1] 413 258 885 251  78 841 637 407  70 837</span></pre></body></html></div>
 </div>
 <div id="normal-distribution" class="section level3">
 <h3 class="hasAnchor">
@@ -231,12 +234,12 @@
 <li>Two ways to sample 10 numbers from a normal distribution with mean = 0, and standard deviation = 1.</li>
 </ol>
 <div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw">n</span><span class="kw">=</span> <span class="fl">10</span>,<span class="kw">mean</span> <span class="kw">=</span> <span class="fl">0</span>, <span class="kw">sd</span> <span class="kw">=</span> <span class="fl">1</span>)
-<span class="co">#&gt;  [1] -0.7254769 -1.1871637 -1.0207829 -0.7656784  0.6145919  0.8434242</span>
-<span class="co">#&gt;  [7] -1.0599258  1.9184792  2.5642812  1.4347039</span>
+<span class="co">#&gt;  [1] -1.3509551 -0.4716007 -0.1146631  2.6236321 -0.8610586  0.9120038</span>
+<span class="co">#&gt;  [7]  1.3970453 -0.6766327  1.5341140 -0.6342621</span>
 
 <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span>)
-<span class="co">#&gt;  [1] -0.2934929  0.7441775 -1.0085013 -0.3645502 -0.5202322  0.8139688</span>
-<span class="co">#&gt;  [7] -0.1660243  1.2341333  0.3885757  1.5703806</span></pre></body></html></div>
+<span class="co">#&gt;  [1] -0.3211576  2.1218968 -0.6228930  1.1150539 -0.8900339 -1.2276393</span>
+<span class="co">#&gt;  [7] -1.6182925  0.9341300 -0.5215418 -0.5849465</span></pre></body></html></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Visualize the sample quickly with <code><a href="https://rdrr.io/r/graphics/hist.html">hist()</a></code>
 </li>
@@ -289,7 +292,7 @@
 </ol>
 <div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">my_sample</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">1</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">my_sample</span>[<span class="no">my_sample</span> <span class="kw">&lt;</span> <span class="fl">.05</span>])
-<span class="co">#&gt; [1] 3</span></pre></body></html></div>
+<span class="co">#&gt; [1] 6</span></pre></body></html></div>
 </div>
 <div id="other-distributions" class="section level3">
 <h3 class="hasAnchor">
@@ -315,24 +318,24 @@
 <div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">moments</span>)
 <span class="no">my_sample</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">1000</span>,<span class="fl">0</span>,<span class="fl">1</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">my_sample</span>)
-<span class="co">#&gt; [1] -0.04155989</span>
+<span class="co">#&gt; [1] -0.003729436</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span>(<span class="no">my_sample</span>)
-<span class="co">#&gt; [1] 0.9982053</span>
+<span class="co">#&gt; [1] 1.015424</span>
 <span class="fu"><a href="https://rdrr.io/pkg/moments/man/skewness.html">skewness</a></span>(<span class="no">my_sample</span>)
-<span class="co">#&gt; [1] 0.08365442</span>
+<span class="co">#&gt; [1] 0.0564809</span>
 <span class="fu"><a href="https://rdrr.io/pkg/moments/man/kurtosis.html">kurtosis</a></span>(<span class="no">my_sample</span>)
-<span class="co">#&gt; [1] 2.954454</span>
+<span class="co">#&gt; [1] 2.668682</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="no">my_sample</span>)</pre></body></html></div>
 <p><img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-17-1.png" width="700"> 2. Compute the mean, sd, skewness, and kurtosis for a sample of 1000 observations from a right-skewed exponential distribution.</p>
 <div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">my_sample</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">rexp</a></span>(<span class="fl">1000</span>,<span class="fl">2</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">my_sample</span>)
-<span class="co">#&gt; [1] 0.493874</span>
+<span class="co">#&gt; [1] 0.5105247</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span>(<span class="no">my_sample</span>)
-<span class="co">#&gt; [1] 0.4966158</span>
+<span class="co">#&gt; [1] 0.5108981</span>
 <span class="fu"><a href="https://rdrr.io/pkg/moments/man/skewness.html">skewness</a></span>(<span class="no">my_sample</span>)
-<span class="co">#&gt; [1] 1.967082</span>
+<span class="co">#&gt; [1] 1.988529</span>
 <span class="fu"><a href="https://rdrr.io/pkg/moments/man/kurtosis.html">kurtosis</a></span>(<span class="no">my_sample</span>)
-<span class="co">#&gt; [1] 8.676771</span>
+<span class="co">#&gt; [1] 8.758687</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="no">my_sample</span>)</pre></body></html></div>
 <p><img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-18-1.png" width="700"></p>
 </div>

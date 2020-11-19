@@ -102,6 +102,9 @@
     <li>
       <a href="../articles/Lab10_ttest.html">Lab 10 t tests</a>
     </li>
+    <li>
+      <a href="../articles/SP_Power.html">Simulation and Power analysis I</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -217,7 +220,7 @@
 <p>A permutation is a reordering of a sequence. For example, we can easily re-order the sequence in <code>a</code> by using the <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code> function.</p>
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="no">a</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="no">a</span>)
-<span class="co">#&gt; [1] 5 3 2 1 4</span></pre></body></html></div>
+<span class="co">#&gt; [1] 5 2 1 4 3</span></pre></body></html></div>
 <p>The number of permutations (unique re-orderings) for n distinct items is <span class="math inline">\(n!\)</span></p>
 <p>Therefore, if we take 5 numbers from the distinct values 1, 2, 3, 4, 5, we will be able to form 120 distinct orders or permutations of those numbers.</p>
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fl">5</span>*<span class="fl">4</span>*<span class="fl">3</span>*<span class="fl">2</span>*<span class="fl">1</span>
@@ -238,7 +241,7 @@
 }
 
 <span class="no">count_examples</span>/<span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.0081</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.0095</span></pre></body></html></div>
 <p>A quick summary. Permutations are different ways to order numbers. For a given set of numbers, there is always a total number of possible orders. If we assume that any of the orders could have been obtained by chance, then we can calculate the chances of getting a particular order.</p>
 </div>
 <div id="a-permutation-test-example" class="section level3">
@@ -262,42 +265,42 @@
 <tr class="odd">
 <td align="left">A</td>
 <td align="right">1</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">A</td>
+<td align="right">2</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">A</td>
+<td align="right">3</td>
 <td align="right">7</td>
 </tr>
 <tr class="even">
 <td align="left">A</td>
-<td align="right">2</td>
-<td align="right">3</td>
-</tr>
-<tr class="odd">
-<td align="left">A</td>
-<td align="right">3</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td align="left">A</td>
 <td align="right">4</td>
-<td align="right">6</td>
-</tr>
-<tr class="odd">
-<td align="left">B</td>
-<td align="right">1</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">B</td>
-<td align="right">2</td>
-<td align="right">4</td>
-</tr>
-<tr class="odd">
-<td align="left">B</td>
-<td align="right">3</td>
 <td align="right">8</td>
 </tr>
+<tr class="odd">
+<td align="left">B</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">B</td>
+<td align="right">2</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">B</td>
+<td align="right">3</td>
+<td align="right">6</td>
+</tr>
 <tr class="even">
 <td align="left">B</td>
 <td align="right">4</td>
-<td align="right">5</td>
+<td align="right">3</td>
 </tr>
 </tbody>
 </table>
@@ -412,11 +415,11 @@
 <span class="no">group_B</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">50</span>,<span class="fl">65</span>,<span class="fl">10</span>)</pre></body></html></div>
 <p>We can then calculate the mean of each group, and look at the difference.</p>
 <div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">group_A</span>)
-<span class="co">#&gt; [1] 66.40596</span>
+<span class="co">#&gt; [1] 64.33822</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">group_B</span>)
-<span class="co">#&gt; [1] 64.82346</span>
+<span class="co">#&gt; [1] 64.3143</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">group_A</span>)-<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">group_B</span>)
-<span class="co">#&gt; [1] 1.582495</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.02392392</span></pre></body></html></div>
 <p>In some general sense if the manipulation works, that is it <strong>causes a difference</strong>, then we would expect to see a non-zero difference. If the manipulation is ineffective and does nothing, then we expect on average no difference, <strong>however we recognize that we could obtain differences just by chance alone, because of randomly sampling our participants into the different groups</strong>.</p>
 <p>We now want to calculate a <strong>sampling distribution of possible mean differences</strong>. To do this, we take all of the values in Group A and B, and randomly re-assign them across both groups, then recalculate the means and the mean difference. Then we, do this multiple times, as in monte-carlo simulation.</p>
 <div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="co"># creating one random permutation</span>
@@ -426,7 +429,7 @@
 <span class="no">new_B_mean</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">resample</span>[<span class="fl">51</span>:<span class="fl">100</span>])
 <span class="no">new_difference</span> <span class="kw">&lt;-</span> <span class="no">new_A_mean</span>-<span class="no">new_B_mean</span>
 <span class="no">new_difference</span>
-<span class="co">#&gt; [1] -2.473042</span>
+<span class="co">#&gt; [1] 1.73444</span>
 
 <span class="co"># Simulate the above process 10000 times</span>
 <span class="no">mean_differences</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>()
@@ -448,7 +451,7 @@
 <p>In terms of a detective novel, this is <strong>chances alibi</strong>, it shows what chance is capable of doing. In this situation, chance alone could easily produce differences between group A and B as large as 4 or -4. Notice, that chance never produces a difference as large as 20. If you had all the information that we have in this example, then as a researcher you could attempt to rule out the possibility that was chance was involved in producing a difference that you observed.</p>
 <p>We can also use this distribution to calculate specific probabilities concerning chance. For example, what is the probability of getting a 4 or larger by chance alone?</p>
 <div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">mean_differences</span>[<span class="no">mean_differences</span> <span class="kw">&gt;=</span><span class="fl">4</span> ])/<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">mean_differences</span>)
-<span class="co">#&gt; [1] 0.0212</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.0283</span></pre></body></html></div>
 </div>
 <div id="p1-randomization-test-with-real-data" class="section level2">
 <h2 class="hasAnchor">
@@ -497,44 +500,44 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">Intellect_Rating</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="no">Intellect_Rating</span>))
 <span class="co">#&gt;    CONDITION Intellect_Rating</span>
 <span class="co">#&gt; 1          1        6.3333333</span>
-<span class="co">#&gt; 2          1        1.0000000</span>
-<span class="co">#&gt; 3          1        5.0000000</span>
-<span class="co">#&gt; 4          0        7.0000000</span>
-<span class="co">#&gt; 5          0        9.0000000</span>
-<span class="co">#&gt; 6          0        5.3333333</span>
-<span class="co">#&gt; 7          1        9.0000000</span>
-<span class="co">#&gt; 8          0        2.3333333</span>
-<span class="co">#&gt; 9          1        5.6666667</span>
-<span class="co">#&gt; 10         0        4.6666667</span>
-<span class="co">#&gt; 11         0        3.3333333</span>
-<span class="co">#&gt; 12         1        6.0000000</span>
-<span class="co">#&gt; 13         1        3.3333333</span>
-<span class="co">#&gt; 14         0        6.0000000</span>
-<span class="co">#&gt; 15         0        4.6666667</span>
-<span class="co">#&gt; 16         1        3.6666667</span>
+<span class="co">#&gt; 2          1        5.0000000</span>
+<span class="co">#&gt; 3          1        6.6666667</span>
+<span class="co">#&gt; 4          0        5.0000000</span>
+<span class="co">#&gt; 5          0        6.0000000</span>
+<span class="co">#&gt; 6          0        9.0000000</span>
+<span class="co">#&gt; 7          1        3.3333333</span>
+<span class="co">#&gt; 8          0        1.6666667</span>
+<span class="co">#&gt; 9          1        6.6666667</span>
+<span class="co">#&gt; 10         0        2.3333333</span>
+<span class="co">#&gt; 11         0        7.0000000</span>
+<span class="co">#&gt; 12         1        7.6666667</span>
+<span class="co">#&gt; 13         1        2.3333333</span>
+<span class="co">#&gt; 14         0        5.6666667</span>
+<span class="co">#&gt; 15         0        3.6666667</span>
+<span class="co">#&gt; 16         1        1.0000000</span>
 <span class="co">#&gt; 17         1        6.0000000</span>
-<span class="co">#&gt; 18         1        7.6666667</span>
-<span class="co">#&gt; 19         0        6.6666667</span>
-<span class="co">#&gt; 20         0        3.6666667</span>
-<span class="co">#&gt; 21         0        5.6666667</span>
-<span class="co">#&gt; 22         0        1.6666667</span>
-<span class="co">#&gt; 23         0        5.0000000</span>
-<span class="co">#&gt; 24         1        5.6666667</span>
-<span class="co">#&gt; 25         1        3.6666667</span>
-<span class="co">#&gt; 26         1        2.3333333</span>
-<span class="co">#&gt; 27         0        4.6666667</span>
+<span class="co">#&gt; 18         1        2.0000000</span>
+<span class="co">#&gt; 19         0        9.0000000</span>
+<span class="co">#&gt; 20         0        5.6666667</span>
+<span class="co">#&gt; 21         0        3.6666667</span>
+<span class="co">#&gt; 22         0        4.6666667</span>
+<span class="co">#&gt; 23         0        3.6666667</span>
+<span class="co">#&gt; 24         1        3.3333333</span>
+<span class="co">#&gt; 25         1        4.6666667</span>
+<span class="co">#&gt; 26         1        3.6666667</span>
+<span class="co">#&gt; 27         0        5.3333333</span>
 <span class="co">#&gt; 28         1        5.0000000</span>
-<span class="co">#&gt; 29         1        3.6666667</span>
-<span class="co">#&gt; 30         1        1.6666667</span>
-<span class="co">#&gt; 31         0        6.0000000</span>
-<span class="co">#&gt; 32         0        4.6666667</span>
-<span class="co">#&gt; 33         1        2.0000000</span>
-<span class="co">#&gt; 34         1        5.6666667</span>
-<span class="co">#&gt; 35         0        3.6666667</span>
-<span class="co">#&gt; 36         1        6.6666667</span>
-<span class="co">#&gt; 37         0        0.6666667</span>
+<span class="co">#&gt; 29         1        6.0000000</span>
+<span class="co">#&gt; 30         1        4.6666667</span>
+<span class="co">#&gt; 31         0        4.6666667</span>
+<span class="co">#&gt; 32         0        6.0000000</span>
+<span class="co">#&gt; 33         1        3.6666667</span>
+<span class="co">#&gt; 34         1        3.3333333</span>
+<span class="co">#&gt; 35         0        1.6666667</span>
+<span class="co">#&gt; 36         1        5.6666667</span>
+<span class="co">#&gt; 37         0        5.6666667</span>
 <span class="co">#&gt; 38         1        6.0000000</span>
-<span class="co">#&gt; 39         1        3.3333333</span>
+<span class="co">#&gt; 39         1        0.6666667</span>
 
 <span class="co"># example of calculating a new mean difference</span>
 
@@ -547,12 +550,12 @@
 <span class="co">#&gt; # A tibble: 2 x 2</span>
 <span class="co">#&gt;   CONDITION new_means</span>
 <span class="co">#&gt;       &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">#&gt; 1         0      4.37</span>
-<span class="co">#&gt; 2         1      5.02</span>
+<span class="co">#&gt; 1         0      5.11</span>
+<span class="co">#&gt; 2         1      4.38</span>
 <span class="no">new_data</span>[<span class="no">new_data</span>$<span class="no">CONDITION</span> <span class="kw">==</span> <span class="fl">0</span>,]$<span class="no">new_means</span>
-<span class="co">#&gt; [1] 4.37037</span>
+<span class="co">#&gt; [1] 5.111111</span>
 <span class="no">new_data</span>[<span class="no">new_data</span>$<span class="no">CONDITION</span> <span class="kw">==</span> <span class="fl">1</span>,]$<span class="no">new_means</span>
-<span class="co">#&gt; [1] 5.015873</span>
+<span class="co">#&gt; [1] 4.380952</span>
 <span class="no">new_difference</span> <span class="kw">&lt;-</span> <span class="no">new_data</span>[<span class="no">new_data</span>$<span class="no">CONDITION</span> <span class="kw">==</span> <span class="fl">1</span>,]$<span class="no">new_means</span>-<span class="no">new_data</span>[<span class="no">new_data</span>$<span class="no">CONDITION</span> <span class="kw">==</span> <span class="fl">0</span>,]$<span class="no">new_means</span>
 
 <span class="co"># Run a randomization test</span>

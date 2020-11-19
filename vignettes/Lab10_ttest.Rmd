@@ -27,7 +27,7 @@ This lab demonstrates how to conduct one sample, paired sample, and independent 
 
 ## Historical Background
 
-William Sealy Gosset published the t-test under the pseudonym "Student", which is why the test is sometimes called "Student's t-test" [@studentProbableErrorMean1908]. There is dispute about the origin and meaning of $t$. One hypothesis is that $s$ was commonly used at the time to refer to sample statistics, so Gosset chose $t$ as the next letter, perhaps indicating a "step-up" in thinking about sample statistics? Gosset published under a pseudonym because he was an employee of Guinness Breweries at the time, and he was hired to examine issues in making inferences about small samples in brewing beer. The test he developed could have been the intellectual property of Guinness, but Gosset thought the test could be broadly used, so he published it under a pseudonym to protect his job.
+William Sealy Gosset published the t-test under the pseudonym "Student", which is why the test is sometimes called "Student's t-test" [@studentProbableErrorMean1908]. There is dispute about the origin and meaning of $t$. One hypothesis is that $s$ was commonly used at the time to refer to sample statistics, so Gosset chose $t$ as the next letter, perhaps indicating a "step-up" in thinking about sample statistics? Gosset published under a pseudonym because he was an employee of Guinness Breweries at the time, and he was hired to examine issues in making inferences about small samples in brewing beer. The test he developed could have been the intellectual property of Guinness, but Gosset thought the test could be broadly used, so he published it under a pseudonym to protect his job. @pearsonStudentStatistician1939 provides a biography of Gosset. @sawilowskyMoreRealisticLook1992 conduct simulations and examine how robust the t-test is to violations of assumptions.
 
 ## Practical I: t.test()
 
@@ -43,7 +43,7 @@ Here are three quick examples of computing one sample, paired sample and indepen
 
 ```{r}
 some_random_means <- rnorm(10,0,1)
-t.test(x= some_random_means, mu=0)
+t.test(some_random_means, mu=0)
 ```
 
 ### Paired-sample t-test
@@ -61,7 +61,7 @@ t.test(A_means,B_means,paired=TRUE)
 A_means <- rnorm(10,0,1)
 B_means <- rnorm(10,0,1)
 
-t.test(A_means,B_means,var.equal = TRUE)
+t.test(A_means,B_means, var.equal=TRUE)
 ```
 
 ### formula syntax for data frames
@@ -249,6 +249,8 @@ As discussed in lecture, the t-distribution approaches a normal distribution as 
 ```{r}
 qnorm(.95,0,1)
 qt(p=.95,df=c(1,5,10,100,1000))
+
+
 ```
 
 ## Conceptual II: Simulating power curves
