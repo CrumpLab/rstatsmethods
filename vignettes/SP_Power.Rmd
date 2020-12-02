@@ -76,6 +76,10 @@ The very general alternative to the null hypothesis (no differences), is often c
 Consider this. How often will we find a p-value less than .05 if there was a mean difference of 5 between sample A and B. Let's use all of the same parameters as before, except this time we sample from different distributions for A and B.
 
 ```{r}
+  A <- rnorm(n=10,mean=10, sd=5)
+  B <- rnorm(n=10,mean=15, sd=5)
+  t.test(A,B,var.equal=TRUE)$p.value
+
 # make the mean for B 15 (5 more than A)
 sim_alternative <- function(){
   A <- rnorm(n=10,mean=10, sd=5)
@@ -142,7 +146,7 @@ A design's power is in relation to the true effect-size. The same design has dif
 effect_sizes <- seq(.1,2,.1)
 power <- sapply(effect_sizes, 
           FUN = function(x) {
-            pwr.t.test(n=10,
+            pwr.t.test(n=100,
             d=x,
             sig.level=.05,
             type="two.sample",

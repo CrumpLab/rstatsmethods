@@ -105,6 +105,9 @@
     <li>
       <a href="../articles/SP_Power.html">Simulation and Power analysis I</a>
     </li>
+    <li>
+      <a href="../articles/Lab11_Correlation.html">Lab 11 Correlation</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -194,13 +197,13 @@
 <span class="co">#&gt;  One Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  some_random_means</span>
-<span class="co">#&gt; t = 2.9393, df = 9, p-value = 0.01651</span>
+<span class="co">#&gt; t = 1.0671, df = 9, p-value = 0.3137</span>
 <span class="co">#&gt; alternative hypothesis: true mean is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  0.2018369 1.5504802</span>
+<span class="co">#&gt;  -0.3948499  1.0999806</span>
 <span class="co">#&gt; sample estimates:</span>
 <span class="co">#&gt; mean of x </span>
-<span class="co">#&gt; 0.8761585</span></pre></body></html></div>
+<span class="co">#&gt; 0.3525654</span></pre></body></html></div>
 </div>
 <div id="paired-sample-t-test" class="section level3">
 <h3 class="hasAnchor">
@@ -213,13 +216,13 @@
 <span class="co">#&gt;  Paired t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  A_means and B_means</span>
-<span class="co">#&gt; t = -0.73861, df = 9, p-value = 0.479</span>
+<span class="co">#&gt; t = -1.9682, df = 9, p-value = 0.08058</span>
 <span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -1.0010324  0.5082424</span>
+<span class="co">#&gt;  -1.15294151  0.08011521</span>
 <span class="co">#&gt; sample estimates:</span>
 <span class="co">#&gt; mean of the differences </span>
-<span class="co">#&gt;               -0.246395</span></pre></body></html></div>
+<span class="co">#&gt;              -0.5364131</span></pre></body></html></div>
 </div>
 <div id="independent-sample-t-test" class="section level3">
 <h3 class="hasAnchor">
@@ -232,13 +235,13 @@
 <span class="co">#&gt;  Two Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  A_means and B_means</span>
-<span class="co">#&gt; t = -0.26444, df = 18, p-value = 0.7944</span>
+<span class="co">#&gt; t = -1.0008, df = 18, p-value = 0.3302</span>
 <span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -1.0237165  0.7948172</span>
+<span class="co">#&gt;  -1.394198  0.494521</span>
 <span class="co">#&gt; sample estimates:</span>
 <span class="co">#&gt;  mean of x  mean of y </span>
-<span class="co">#&gt; -0.2682761 -0.1538265</span></pre></body></html></div>
+<span class="co">#&gt; -0.3880535  0.0617851</span></pre></body></html></div>
 </div>
 <div id="formula-syntax-for-data-frames" class="section level3">
 <h3 class="hasAnchor">
@@ -252,13 +255,13 @@
 <span class="co">#&gt;  Two Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  means by group</span>
-<span class="co">#&gt; t = 0.039196, df = 18, p-value = 0.9692</span>
+<span class="co">#&gt; t = -0.3645, df = 18, p-value = 0.7197</span>
 <span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -0.9396172  0.9753434</span>
+<span class="co">#&gt;  -1.0594768  0.7461976</span>
 <span class="co">#&gt; sample estimates:</span>
 <span class="co">#&gt; mean in group A mean in group B </span>
-<span class="co">#&gt;       0.3684068       0.3505437</span></pre></body></html></div>
+<span class="co">#&gt;       0.1615335       0.3181731</span></pre></body></html></div>
 </div>
 <div id="one-or-two-sided-test" class="section level3">
 <h3 class="hasAnchor">
@@ -270,37 +273,37 @@
 <span class="co">#&gt;  One Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  some_random_means</span>
-<span class="co">#&gt; t = 0.986, df = 9, p-value = 0.3499</span>
+<span class="co">#&gt; t = 0.089369, df = 9, p-value = 0.9307</span>
 <span class="co">#&gt; alternative hypothesis: true mean is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -0.4831289  1.2296963</span>
+<span class="co">#&gt;  -0.6431835  0.6960933</span>
 <span class="co">#&gt; sample estimates:</span>
-<span class="co">#&gt; mean of x </span>
-<span class="co">#&gt; 0.3732837</span>
+<span class="co">#&gt;  mean of x </span>
+<span class="co">#&gt; 0.02645491</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span>(<span class="no">some_random_means</span>, <span class="kw">mu</span><span class="kw">=</span><span class="fl">0</span>, <span class="kw">alternative</span> <span class="kw">=</span> <span class="st">"less"</span>)
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  One Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  some_random_means</span>
-<span class="co">#&gt; t = 0.986, df = 9, p-value = 0.8251</span>
+<span class="co">#&gt; t = 0.089369, df = 9, p-value = 0.5346</span>
 <span class="co">#&gt; alternative hypothesis: true mean is less than 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;      -Inf 1.067268</span>
+<span class="co">#&gt;       -Inf 0.5690886</span>
 <span class="co">#&gt; sample estimates:</span>
-<span class="co">#&gt; mean of x </span>
-<span class="co">#&gt; 0.3732837</span>
+<span class="co">#&gt;  mean of x </span>
+<span class="co">#&gt; 0.02645491</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span>(<span class="no">some_random_means</span>, <span class="kw">mu</span><span class="kw">=</span><span class="fl">0</span>, <span class="kw">alternative</span> <span class="kw">=</span> <span class="st">"greater"</span>)
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  One Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  some_random_means</span>
-<span class="co">#&gt; t = 0.986, df = 9, p-value = 0.1749</span>
+<span class="co">#&gt; t = 0.089369, df = 9, p-value = 0.4654</span>
 <span class="co">#&gt; alternative hypothesis: true mean is greater than 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -0.3207004        Inf</span>
+<span class="co">#&gt;  -0.5161788        Inf</span>
 <span class="co">#&gt; sample estimates:</span>
-<span class="co">#&gt; mean of x </span>
-<span class="co">#&gt; 0.3732837</span></pre></body></html></div>
+<span class="co">#&gt;  mean of x </span>
+<span class="co">#&gt; 0.02645491</span></pre></body></html></div>
 </div>
 <div id="var-equal-and-welchs-correction" class="section level3">
 <h3 class="hasAnchor">
@@ -313,26 +316,26 @@
 <span class="co">#&gt;  Welch Two Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  A and B</span>
-<span class="co">#&gt; t = -0.74439, df = 17.822, p-value = 0.4663</span>
+<span class="co">#&gt; t = 1.1204, df = 17.696, p-value = 0.2775</span>
 <span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -1.2732915  0.6074103</span>
+<span class="co">#&gt;  -0.4569898  1.4986620</span>
 <span class="co">#&gt; sample estimates:</span>
-<span class="co">#&gt;  mean of x  mean of y </span>
-<span class="co">#&gt; -0.1664916  0.1664490</span></pre></body></html></div>
+<span class="co">#&gt;   mean of x   mean of y </span>
+<span class="co">#&gt;  0.03844824 -0.48238787</span></pre></body></html></div>
 <p>To conduct a t-test without the correction set <code>var.equal=TRUE</code>. This only applies to the independent sample case where there are two variances.</p>
 <div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span>(<span class="no">A</span>,<span class="no">B</span>, <span class="kw">var.equal</span><span class="kw">=</span><span class="fl">TRUE</span>)
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  Two Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  A and B</span>
-<span class="co">#&gt; t = -0.74439, df = 18, p-value = 0.4663</span>
+<span class="co">#&gt; t = 1.1204, df = 18, p-value = 0.2773</span>
 <span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -1.2726175  0.6067363</span>
+<span class="co">#&gt;  -0.4557844  1.4974567</span>
 <span class="co">#&gt; sample estimates:</span>
-<span class="co">#&gt;  mean of x  mean of y </span>
-<span class="co">#&gt; -0.1664916  0.1664490</span></pre></body></html></div>
+<span class="co">#&gt;   mean of x   mean of y </span>
+<span class="co">#&gt;  0.03844824 -0.48238787</span></pre></body></html></div>
 </div>
 <div id="t-test-contents" class="section level3">
 <h3 class="hasAnchor">
@@ -343,25 +346,25 @@
 <span class="co">#&gt;  Two Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  A and B</span>
-<span class="co">#&gt; t = -0.74439, df = 18, p-value = 0.4663</span>
+<span class="co">#&gt; t = 1.1204, df = 18, p-value = 0.2773</span>
 <span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -1.2726175  0.6067363</span>
+<span class="co">#&gt;  -0.4557844  1.4974567</span>
 <span class="co">#&gt; sample estimates:</span>
-<span class="co">#&gt;  mean of x  mean of y </span>
-<span class="co">#&gt; -0.1664916  0.1664490</span></pre></body></html></div>
+<span class="co">#&gt;   mean of x   mean of y </span>
+<span class="co">#&gt;  0.03844824 -0.48238787</span></pre></body></html></div>
 <p>For example:</p>
 <div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">my_results</span>$<span class="no">statistic</span>
-<span class="co">#&gt;         t </span>
-<span class="co">#&gt; -0.744386</span>
+<span class="co">#&gt;        t </span>
+<span class="co">#&gt; 1.120431</span>
 <span class="no">my_results</span>$<span class="no">parameter</span>
 <span class="co">#&gt; df </span>
 <span class="co">#&gt; 18</span>
 <span class="no">my_results</span>$<span class="no">p.value</span>
-<span class="co">#&gt; [1] 0.4662508</span>
+<span class="co">#&gt; [1] 0.2772573</span>
 <span class="no">my_results</span>$<span class="no">estimate</span>
-<span class="co">#&gt;  mean of x  mean of y </span>
-<span class="co">#&gt; -0.1664916  0.1664490</span></pre></body></html></div>
+<span class="co">#&gt;   mean of x   mean of y </span>
+<span class="co">#&gt;  0.03844824 -0.48238787</span></pre></body></html></div>
 </div>
 <div id="papaja-reporting-with-apa_print" class="section level3">
 <h3 class="hasAnchor">
@@ -370,20 +373,20 @@
 <div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">papaja</span>)
 <span class="fu"><a href="https://rdrr.io/pkg/papaja/man/apa_print.html">apa_print</a></span>(<span class="no">my_results</span>)
 <span class="co">#&gt; $estimate</span>
-<span class="co">#&gt; [1] "$\\Delta M = -0.33$, 95\\% CI $[-1.27$, $0.61]$"</span>
+<span class="co">#&gt; [1] "$\\Delta M = 0.52$, 95\\% CI $[-0.46$, $1.50]$"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $statistic</span>
-<span class="co">#&gt; [1] "$t(18) = -0.74$, $p = .466$"</span>
+<span class="co">#&gt; [1] "$t(18) = 1.12$, $p = .277$"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $full_result</span>
-<span class="co">#&gt; [1] "$\\Delta M = -0.33$, 95\\% CI $[-1.27$, $0.61]$, $t(18) = -0.74$, $p = .466$"</span>
+<span class="co">#&gt; [1] "$\\Delta M = 0.52$, 95\\% CI $[-0.46$, $1.50]$, $t(18) = 1.12$, $p = .277$"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $table</span>
 <span class="co">#&gt; NULL</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; attr(,"class")</span>
 <span class="co">#&gt; [1] "apa_results" "list"</span></pre></body></html></div>
-<p>For example, this t-test result, <span class="math inline">\(t(18) = -0.74\)</span>, <span class="math inline">\(p = .466\)</span>, was printed using an r code snippet inserted into the text of this .Rmd.</p>
+<p>For example, this t-test result, <span class="math inline">\(t(18) = 1.12\)</span>, <span class="math inline">\(p = .277\)</span>, was printed using an r code snippet inserted into the text of this .Rmd.</p>
 </div>
 </div>
 <div id="conceptual-i-simulating-the-t-test" class="section level2">
@@ -424,13 +427,13 @@
 <span class="co">#&gt;  Two Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  means by groups</span>
-<span class="co">#&gt; t = 0.89094, df = 18, p-value = 0.3847</span>
+<span class="co">#&gt; t = 0.72788, df = 18, p-value = 0.4761</span>
 <span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -7.37211 18.22856</span>
+<span class="co">#&gt;  -12.26300  25.26468</span>
 <span class="co">#&gt; sample estimates:</span>
 <span class="co">#&gt; mean in group A mean in group B </span>
-<span class="co">#&gt;       101.65352        96.22529</span></pre></body></html></div>
+<span class="co">#&gt;        97.69218        91.19134</span></pre></body></html></div>
 <p>As one alternative, here is another example of the above in a one-liner:</p>
 <div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span>(<span class="no">N</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="no">X</span>, <span class="no">A_mean</span>, <span class="no">A_sd</span>))),
        <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span>(<span class="no">N</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="no">X</span>, <span class="no">B_mean</span>, <span class="no">B_sd</span>))),
@@ -439,13 +442,13 @@
 <span class="co">#&gt;  Two Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  replicate(N, mean(rnorm(X, A_mean, A_sd))) and replicate(N, mean(rnorm(X, B_mean, B_sd)))</span>
-<span class="co">#&gt; t = 0.83481, df = 18, p-value = 0.4148</span>
+<span class="co">#&gt; t = -1.8612, df = 18, p-value = 0.07913</span>
 <span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -8.021965 18.600466</span>
+<span class="co">#&gt;  -28.044493   1.696624</span>
 <span class="co">#&gt; sample estimates:</span>
 <span class="co">#&gt; mean of x mean of y </span>
-<span class="co">#&gt;  108.0981  102.8088</span></pre></body></html></div>
+<span class="co">#&gt;  85.75682  98.93075</span></pre></body></html></div>
 </div>
 <div id="simulating-distributions-of-experiments" class="section level3">
 <h3 class="hasAnchor">
@@ -524,7 +527,7 @@
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="no">sim_ps</span>)</pre></body></html></div>
 <p><img src="Lab10_ttest_files/figure-html/unnamed-chunk-21-1.png" width="700"></p>
 <div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">sim_ps</span>[<span class="no">sim_ps</span> <span class="kw">&lt;</span> <span class="fl">.05</span>])/<span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.055</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.058</span></pre></body></html></div>
 <p>A next question would be something like, what proportion of experiments would be significant if there actually was a difference between the means of group A and B. For example, here we assume that group A has a mean of 0, and group B has a mean of .25, and that both distributions have the same standard deviation (sd=1). In this design, with N = 10 in each group, and 5 scores measured per subject, the probability of getting a p &lt; .05 is much higher than 5%.</p>
 <div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="no">sim_ps</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span>(<span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span>(<span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">1</span>))),
                                  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span>(<span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">5</span>, <span class="fl">.25</span>, <span class="fl">1</span>))),
@@ -532,7 +535,7 @@
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="no">sim_ps</span>)</pre></body></html></div>
 <p><img src="Lab10_ttest_files/figure-html/unnamed-chunk-22-1.png" width="700"></p>
 <div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">sim_ps</span>[<span class="no">sim_ps</span> <span class="kw">&lt;</span> <span class="fl">.05</span>])/<span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.229</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.236</span></pre></body></html></div>
 </div>
 <div id="effect-size" class="section level3">
 <h3 class="hasAnchor">

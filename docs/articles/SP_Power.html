@@ -105,6 +105,9 @@
     <li>
       <a href="../articles/SP_Power.html">Simulation and Power analysis I</a>
     </li>
+    <li>
+      <a href="../articles/Lab11_Correlation.html">Lab 11 Correlation</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -197,7 +200,7 @@
 
 <span class="co"># the pvalue for this one pretend simulation</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span>(<span class="no">A</span>,<span class="no">B</span>,<span class="kw">var.equal</span><span class="kw">=</span><span class="fl">TRUE</span>)$<span class="no">p.value</span>
-<span class="co">#&gt; [1] 0.7329137</span>
+<span class="co">#&gt; [1] 0.6712207</span>
 
 <span class="co"># running the simulation</span>
 <span class="co"># everytime we run this function we do one simulated experiment and return the p-value</span>
@@ -216,7 +219,7 @@
 <div class="sourceCode" id="cb2"><html><body><pre class="r">
 <span class="co"># proportion of simulated experiments had a p-value less than .05</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">outcomes</span>[<span class="no">outcomes</span><span class="kw">&lt;</span><span class="fl">.05</span>])/<span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.06</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.043</span></pre></body></html></div>
 <p>We ran the above simulation 1000 times. By definition, we should get approximately 5% of the simulations returning a p-value less than .05. If we increase the number of simulations, then we will get a more accurate answer that converges on 5% every time.</p>
 </div>
 </div>
@@ -225,7 +228,12 @@
 <a href="#alternative-hypothesis" class="anchor"></a>Alternative hypothesis</h2>
 <p>The very general alternative to the null hypothesis (no differences), is often called the <strong>alternative</strong> hypothesis: that the manipulation does cause a difference. More specifically, there are an infinite number of possible alternative hypotheses, each involving a difference of a specific size.</p>
 <p>Consider this. How often will we find a p-value less than .05 if there was a mean difference of 5 between sample A and B. Let’s use all of the same parameters as before, except this time we sample from different distributions for A and B.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># make the mean for B 15 (5 more than A)</span>
+<div class="sourceCode" id="cb3"><html><body><pre class="r">  <span class="no">A</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="fl">10</span>,<span class="kw">mean</span><span class="kw">=</span><span class="fl">10</span>, <span class="kw">sd</span><span class="kw">=</span><span class="fl">5</span>)
+  <span class="no">B</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="fl">10</span>,<span class="kw">mean</span><span class="kw">=</span><span class="fl">15</span>, <span class="kw">sd</span><span class="kw">=</span><span class="fl">5</span>)
+  <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span>(<span class="no">A</span>,<span class="no">B</span>,<span class="kw">var.equal</span><span class="kw">=</span><span class="fl">TRUE</span>)$<span class="no">p.value</span>
+<span class="co">#&gt; [1] 0.03289873</span>
+
+<span class="co"># make the mean for B 15 (5 more than A)</span>
 <span class="no">sim_alternative</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(){
   <span class="no">A</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="fl">10</span>,<span class="kw">mean</span><span class="kw">=</span><span class="fl">10</span>, <span class="kw">sd</span><span class="kw">=</span><span class="fl">5</span>)
   <span class="no">B</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="fl">10</span>,<span class="kw">mean</span><span class="kw">=</span><span class="fl">15</span>, <span class="kw">sd</span><span class="kw">=</span><span class="fl">5</span>)
@@ -241,7 +249,7 @@
 <div class="sourceCode" id="cb4"><html><body><pre class="r">
 <span class="co"># proportion of simulated experiments had a p-value less than .05</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">outcomes</span>[<span class="no">outcomes</span><span class="kw">&lt;</span><span class="fl">.05</span>])/<span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.55</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.57</span></pre></body></html></div>
 <p>We programmed a mean difference of 5 between our sample for A and B, and we found p-values less than .05 a much higher proportion of the time. This is sensible, as there really was a difference between the samples (we put it there).</p>
 </div>
 <div id="power-and-effect-size" class="section level2">
@@ -293,7 +301,7 @@
 <div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">effect_sizes</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">.1</span>,<span class="fl">2</span>,<span class="fl">.1</span>)
 <span class="no">power</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span>(<span class="no">effect_sizes</span>,
           <span class="kw">FUN</span> <span class="kw">=</span> <span class="kw">function</span>(<span class="no">x</span>) {
-            <span class="fu"><a href="https://rdrr.io/pkg/pwr/man/pwr.t.test.html">pwr.t.test</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="fl">10</span>,
+            <span class="fu"><a href="https://rdrr.io/pkg/pwr/man/pwr.t.test.html">pwr.t.test</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="fl">100</span>,
             <span class="kw">d</span><span class="kw">=</span><span class="no">x</span>,
             <span class="kw">sig.level</span><span class="kw">=</span><span class="fl">.05</span>,
             <span class="kw">type</span><span class="kw">=</span><span class="st">"two.sample"</span>,

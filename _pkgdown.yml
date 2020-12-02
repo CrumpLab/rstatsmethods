@@ -71,6 +71,8 @@ navbar:
         href: articles/Lab10_ttest.html
       - text: Simulation and Power analysis I
         href: articles/SP_Power.html
+      - text: Lab 11 Correlation
+        href: articles/Lab11_Correlation.html
     resources:
       text: R Reference
       menu:
