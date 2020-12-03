@@ -5,10 +5,6 @@ date: "12/2/2020"
 bibliography: references.bib
 csl: apa.csl
 link-citations: yes
-theme:
-  primary: "#972ba6"
-  base_font: !expr bslib::font_google("Work Sans")
-  heading_font: !expr bslib::font_google("Major Mono Display")
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Lab 11 Correlation}
@@ -30,8 +26,8 @@ knitr::opts_chunk$set(
 This lab contains a practical section and two concept sections on correlations in R.
 
  - Practical I: How to compute correlations in R using `cor()` and `cor.test()`
- - Concepts I: the behavior of measures of covariance
- - Concepts II: statistical inference for correlation using permutation tests
+ - Concepts I: Measuring correlation with a simple sum
+ - Concepts II: Statistical inference for correlation using permutation tests
 
 ## Historical Background
 
@@ -101,6 +97,16 @@ cor(A,B)
 A_z <- (A-mean(A))/sd(A)
 B_z <- (B-mean(B))/sd(B)
 sum(A_z * B_z) / 4 # n-1, 5-1 = 4
+
+sd_pop <- function(x){
+  sqrt(sum((x-mean(x))^2)/length(x))
+}
+
+# using population sd
+
+A_z <- (A-mean(A))/sd_pop(A)
+B_z <- (B-mean(B))/sd_pop(B)
+sum(A_z * B_z) / 5
 ```
 
 ### Additional `cor()` functionality
@@ -115,7 +121,7 @@ B <- c(5,2,3,1,NA)
 cor(A,B)
 ```
 
-However, the `use=` option can be set to handle missing data in different ways. For example, the `complete.obs` option removes the fifth pair altogether, and compues the correlation on the remaining pairs that have complete cases.
+However, the `use=` option can be set to handle missing data in different ways. For example, the `complete.obs` option removes the fifth pair altogether, and computes the correlation on the remaining pairs that have complete cases.
 
 ```{r}
 cor(A,B,use="complete.obs")
@@ -149,7 +155,7 @@ results$p.value
 results$estimate
 ```
 
-## Conceptual I: The simple cross product as a measure of correlation
+## Conceptual I: The sum of products as a measure of correlation
 
 ### Correlation basics
 
@@ -190,11 +196,13 @@ plot(X,Y)
 cor(X,Y)
 ```
 
-### Crossproducts and correlation
+### Sum of products and correlation
 
-Pearson's $r$ is also sometimes called a product moment correlation coefficient. This refers to the idea that $r$ is a sum of cross products that are standardized.
+Pearson's $r$ is also sometimes called a product moment correlation coefficient. This refers to the idea that $r$ is a sum of products that are standardized.
 
-In this section we look at the more basic cross-product operation. For example, a cross product involves multiplying the values in two variables X and Y together.
+In this section we look at the more basic operation of summing products. For example, a sum of products has two steps: 
+
+Multiplying the values in two variables X and Y together.
 
 ```{r}
 X <- 1:10
@@ -203,17 +211,17 @@ Y <- 1:10
 X*Y
 ```
 
-The sum of cross products involves adding up all of the values:
+And then summing up the products:
 
 ```{r}
 sum(X*Y)
 ```
 
-The sum of crossproducts is also a measure of correlation or association between variables X and Y. However, the range of values it can take depend on the values in X and Y (they are not standardized).
+The sum of products (also termed the dot product) is an *un*-standardized measure of correlation or association between variables X and Y. It is not standardized because the range of values that the sum of products can take depends on the values in X and Y variables.
 
 Consider these questions, and assume that X contains the values from 1 to 10, and so does Y.
 
-1. What is the largest value that the sum of crossproducts between X and Y can take?
+1. What is the largest value that the sum of products between X and Y can take?
 
 ```{r}
 X <- 1:10
@@ -221,9 +229,9 @@ Y <- 1:10
 sum(X*Y)
 ```
 
-Notice in this arrangement, the smallest value of X and Y (1) are paired together, the next largest value (2) are paired, and so on up until 10. This pairing creates the largest sum of crossproducts. It is also represents a perfect positive correlation.
+Notice in this arrangement, the smallest value of X and Y (1) are paired together, the next largest value (2) are paired, and so on up until 10. This pairing creates the largest sum of products. It is also represents a perfect positive correlation.
 
-2. What is the smallest value that the sum of crossproducts between X and Y can take?
+2. What is the smallest value that the sum of products between X and Y can take?
 
 ```{r}
 X <- 1:10
@@ -231,9 +239,9 @@ Y <- 10:1
 sum(X*Y)
 ```
 
-When the numbers are arranged to produce a perfect negative correlation, the sum of the cross products is at it's minimum possible value.
+When the numbers are arranged to produce a perfect negative correlation, the sum of the products is at it's minimum possible value.
 
-3. If X contains only the number from 1 to 10 in any order, and Y does too, what kinds of sums of cross-products can occur?
+3. If X contains only the numbers from 1 to 10 in any order, and Y does too, what kinds of sums of products can occur?
 
 ```{r}
 sum(sample(1:10)*sample(1:10))
@@ -271,11 +279,13 @@ replicate(10,cor(rnorm(10,0,1),rnorm(10,0,1)))
 How about 1000 times?
 
 ```{r}
-rand_1000 <- replicate(1000,cor(rnorm(10,0,1),rnorm(10,0,1)))
+rand_1000 <- replicate(10000,cor(rnorm(10,0,1),rnorm(10,0,1)))
 hist(rand_1000)
 mean(rand_1000)
 max(rand_1000)
 min(rand_1000)
+
+length(rand_1000[rand_1000 > .54])/10000
 ```
 
 In some sense the above simulation creates a null-distribution of sorts, that is the sampling distribution of $r$ values that could be expected when the number of paired scores is 10, and both are drawn randomly and independently from unit normal distributions. It's clear in this case that by chance alone it is possible to get a wide range of correlation coefficients.
@@ -321,6 +331,7 @@ cor.test(Length,Meanings)
 ```
 
 Instead of using the `cor.test()` function, we can use the concept of a permutation test to construct our own null distribution. The basic idea is to imagine that the values in the `Length` and `Meanings` variables could be randomly repaired, and then a new correlation coefficient measured. If we did this procedure several thousand times we would create a null distribution representing the kinds of $r$ values that could have been obtained by chance. 
+
 ```{r}
 cor(sample(Length),sample(Meanings))
 ```
