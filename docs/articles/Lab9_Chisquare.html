@@ -181,7 +181,7 @@
 <div id="a-brief-history" class="section level3">
 <h3 class="hasAnchor">
 <a href="#a-brief-history" class="anchor"></a>A brief history</h3>
-<p>Karl Pearson described the chi-square test in 1900 <span class="citation">(Pearson 1900)</span>. Also see <span class="citation">Plackett (1983)</span> for additional context about the development of this test. Relatedly, Pearson had an undeniably large impact on the discipline of statistics; although a socio-historical account is beyond the scope of this lab, it is worth pointing out that Pearson (like many of his contemporaries) was heavily involved in the eugenics movement <span class="citation">(Semmel 1958)</span>, and he not only developed statistical techniques, but also applied them to those causes (interested readers could see examples in Pearson’s publications in eugenics journals).</p>
+<p>Karl Pearson described the chi-square test in 1900 <span class="citation">(Pearson, <a href="#ref-pearsonCriterionThatGiven1900" role="doc-biblioref">1900</a>)</span>. Also see <span class="citation">Plackett (<a href="#ref-plackettKarlPearsonChiSquared1983" role="doc-biblioref">1983</a>)</span> for additional context about the development of this test. Relatedly, Pearson had an undeniably large impact on the discipline of statistics; although a socio-historical account is beyond the scope of this lab, it is worth pointing out that Pearson (like many of his contemporaries) was heavily involved in the eugenics movement <span class="citation">(Semmel, <a href="#ref-semmelKarlPearsonSocialist1958" role="doc-biblioref">1958</a>)</span>, and he not only developed statistical techniques, but also applied them to those causes (interested readers could see examples in Pearson’s publications in eugenics journals).</p>
 </div>
 <div id="chi-square-distributions-have-fundamental-properties-that-make-them-widespread-in-statistics" class="section level3">
 <h3 class="hasAnchor">
@@ -191,7 +191,7 @@
 <div id="debate-about-correct-usage" class="section level3">
 <h3 class="hasAnchor">
 <a href="#debate-about-correct-usage" class="anchor"></a>Debate about correct usage</h3>
-<p>The chi-square test has multiple uses in psychology, including tests of independence and goodness of fit. The “correct” usage of chi-square tests is not without debate. For example, roughly 50 years after Pearson, <span class="citation">Lewis and Burke (1949)</span> wrote a lengthy paper describing “uses and misuses” of chi-square tests in psychology. There were several replies by other authors who were identified as “misusing” the chi-square test. More recently, the suggestions of <span class="citation">Lewis and Burke (1949)</span> were revisited by <span class="citation">Delucchi (1983)</span>. These papers scratch the surface of the many uses and misuses of chi-square tests in psychology. An ongoing goal in our labs is to develop your conceptual understanding of the statistics you use so that you can justify why your usage is appropriate to your analysis.</p>
+<p>The chi-square test has multiple uses in psychology, including tests of independence and goodness of fit. The “correct” usage of chi-square tests is not without debate. For example, roughly 50 years after Pearson, <span class="citation">Lewis &amp; Burke (<a href="#ref-lewisUseMisuseChisquare1949" role="doc-biblioref">1949</a>)</span> wrote a lengthy paper describing “uses and misuses” of chi-square tests in psychology. There were several replies by other authors who were identified as “misusing” the chi-square test. More recently, the suggestions of <span class="citation">Lewis &amp; Burke (<a href="#ref-lewisUseMisuseChisquare1949" role="doc-biblioref">1949</a>)</span> were revisited by <span class="citation">Delucchi (<a href="#ref-delucchiUseMisuseChisquare1983" role="doc-biblioref">1983</a>)</span>. These papers scratch the surface of the many uses and misuses of chi-square tests in psychology. An ongoing goal in our labs is to develop your conceptual understanding of the statistics you use so that you can justify why your usage is appropriate to your analysis.</p>
 </div>
 <div id="connection-to-previous-lab-concepts" class="section level3">
 <h3 class="hasAnchor">
@@ -502,14 +502,14 @@
 <p>In the following, I will take random samples from a unit normal distribution:</p>
 <p>What is the expected mean of a unit normal distribution?</p>
 <div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10000</span>,<span class="fl">0</span>,<span class="fl">1</span>))
-<span class="co">#&gt; [1] 0.00591144</span></pre></body></html></div>
+<span class="co">#&gt; [1] -0.01320131</span></pre></body></html></div>
 <p>If we square all of the values that we sample from a unit normal distribution (equivalent to <span class="math inline">\(\chi^2\)</span> with <span class="math inline">\(k=1\)</span>), then what would the mean of those squared values be?</p>
 <div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10000</span>,<span class="fl">0</span>,<span class="fl">1</span>)^<span class="fl">2</span>)
-<span class="co">#&gt; [1] 0.9922545</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.9783786</span></pre></body></html></div>
 <p>It turns out the answer is 1. There will be no negative values because we are squaring everything. About 68% of the values in a unit normal are between -1 and 1, so squaring all of those will make values between 0 and 1, the rest of the values get increasingly bigger than 1. They all balance out at 1, which is the mean of a squared normal distribution. In other words, the mean of a <span class="math inline">\(\chi^2\)</span> is the same as the <span class="math inline">\(k\)</span> parameter, also called degrees of freedom.</p>
 <p>For example, the mean of 10,000 numbers drawn from a <span class="math inline">\(\chi^2\)</span> with k = 10, is:</p>
 <div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html">rchisq</a></span>(<span class="fl">10000</span>,<span class="fl">10</span>))
-<span class="co">#&gt; [1] 9.931759</span></pre></body></html></div>
+<span class="co">#&gt; [1] 9.912976</span></pre></body></html></div>
 <p>Another way to think about this is to recognize that the expected value (mean) from a squared unit normal distribution is 1. So, if you take 10 values from that distribution (i.e., when k = 10), then you are planning to sum up the 10 values that you get, and the expected value for each is 1…summing up 10 ones, gives you 10. The same expectations can be applied to <span class="math inline">\(\chi^2\)</span> distributions of any <span class="math inline">\(k\)</span>.</p>
 </div>
 </div>
@@ -602,8 +602,8 @@
 <p>Here is an example contingency table with 5 subjects. In this case, each column represents a subject. Row 1 represents choice A, and row 2 choice 2. Each subject makes a choice, and their choice is counted in the appropriate row.</p>
 <div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span>(<span class="fl">5</span>,<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">0</span>),<span class="fl">2</span>))
 <span class="co">#&gt;      [,1] [,2] [,3] [,4] [,5]</span>
-<span class="co">#&gt; [1,]    0    1    0    1    1</span>
-<span class="co">#&gt; [2,]    1    0    1    0    0</span></pre></body></html></div>
+<span class="co">#&gt; [1,]    0    0    0    1    0</span>
+<span class="co">#&gt; [2,]    1    1    1    0    1</span></pre></body></html></div>
 <p>This is a contingency table, so it is possible to compute a chi-square test on this table.</p>
 <div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span>(<span class="fl">5</span>,<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">0</span>),<span class="fl">2</span>)))
 <span class="co">#&gt; </span>
@@ -953,19 +953,19 @@
 <a href="#references" class="anchor"></a>References</h2>
 <div id="refs" class="references hanging-indent">
 <div id="ref-delucchiUseMisuseChisquare1983">
-<p>Delucchi, Kevin L. 1983. “The Use and Misuse of Chi-Square: Lewis and Burke Revisited.” <em>Psychological Bulletin</em> 94 (1): 166.</p>
+<p>Delucchi, K. L. (1983). The use and misuse of chi-square: Lewis and Burke revisited. <em>Psychological Bulletin</em>, <em>94</em>(1), 166.</p>
 </div>
 <div id="ref-lewisUseMisuseChisquare1949">
-<p>Lewis, Don, and Cletus J. Burke. 1949. “The Use and Misuse of the Chi-Square Test.” <em>Psychological Bulletin</em> 46 (6): 433. <a href="https://doi.org/10/frkdqw">https://doi.org/10/frkdqw</a>.</p>
+<p>Lewis, D., &amp; Burke, C. J. (1949). The use and misuse of the chi-square test. <em>Psychological Bulletin</em>, <em>46</em>(6), 433. <a href="https://doi.org/10/frkdqw">https://doi.org/10/frkdqw</a></p>
 </div>
 <div id="ref-pearsonCriterionThatGiven1900">
-<p>Pearson, Karl. 1900. “X. On the Criterion That a Given System of Deviations from the Probable in the Case of a Correlated System of Variables Is Such That It Can Be Reasonably Supposed to Have Arisen from Random Sampling.” <em>The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science</em> 50 (302): 157–75. <a href="https://doi.org/10/cpxzh4">https://doi.org/10/cpxzh4</a>.</p>
+<p>Pearson, K. (1900). X. On the criterion that a given system of deviations from the probable in the case of a correlated system of variables is such that it can be reasonably supposed to have arisen from random sampling. <em>The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science</em>, <em>50</em>(302), 157–175. <a href="https://doi.org/10/cpxzh4">https://doi.org/10/cpxzh4</a></p>
 </div>
 <div id="ref-plackettKarlPearsonChiSquared1983">
-<p>Plackett, R. L. 1983. “Karl Pearson and the Chi-Squared Test.” <em>International Statistical Review / Revue Internationale de Statistique</em> 51 (1): 59. <a href="https://doi.org/10/d55k57">https://doi.org/10/d55k57</a>.</p>
+<p>Plackett, R. L. (1983). Karl Pearson and the Chi-Squared Test. <em>International Statistical Review / Revue Internationale de Statistique</em>, <em>51</em>(1), 59. <a href="https://doi.org/10/d55k57">https://doi.org/10/d55k57</a></p>
 </div>
 <div id="ref-semmelKarlPearsonSocialist1958">
-<p>Semmel, Bernard. 1958. “Karl Pearson: Socialist and Darwinist.” <em>The British Journal of Sociology</em> 9 (2): 111. <a href="https://doi.org/10/fs4jbb">https://doi.org/10/fs4jbb</a>.</p>
+<p>Semmel, B. (1958). Karl Pearson: Socialist and Darwinist. <em>The British Journal of Sociology</em>, <em>9</em>(2), 111. <a href="https://doi.org/10/fs4jbb">https://doi.org/10/fs4jbb</a></p>
 </div>
 </div>
 </div>

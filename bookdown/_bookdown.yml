@@ -1,0 +1,9 @@
+delete_merged_file: true
+new_session: true
+
+rmd_files:
+- "index.Rmd"
+
+- "Lab10_ttest.Rmd"
+
+- "References.Rmd"

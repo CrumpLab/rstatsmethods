@@ -1,6 +1,8 @@
 ---
 title: "Lab 9 Chi Square"
 bibliography: references.bib
+csl: apa.csl
+link-citations: yes
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Lab 9 Chi Square}

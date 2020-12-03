@@ -3,6 +3,8 @@ title: "Lab 10 t tests"
 author: "Matthew J. C. Crump"
 date: "11/12/2020"
 bibliography: references.bib
+csl: apa.csl
+link-citations: yes
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Lab 10 t tests}

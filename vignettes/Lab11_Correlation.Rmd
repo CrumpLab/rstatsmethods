@@ -3,6 +3,12 @@ title: "Lab 11 Correlation"
 author: "Matthew J. C. Crump"
 date: "12/2/2020"
 bibliography: references.bib
+csl: apa.csl
+link-citations: yes
+theme:
+  primary: "#972ba6"
+  base_font: !expr bslib::font_google("Work Sans")
+  heading_font: !expr bslib::font_google("Major Mono Display")
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Lab 11 Correlation}
@@ -30,6 +36,8 @@ This lab contains a practical section and two concept sections on correlations i
 ## Historical Background
 
 Sir Francis Galton is often credited with inventing measures of correlation [@galtonKinshipCorrelation1890;@galtonCorelationsTheirMeasurement1889], which developed out of his interests in eugenics and quantifying heritability of traits from parents to offspring [@galtonHereditaryTalentCharacter1865;@galtonHereditaryGenius1869]. Galton's protege, Karl Pearson, is credited with popularizing and formalizing measures of correlation; for example, the correlation coefficient, $r$, is often referred to as Pearson's $r$ (AKA Pearson's correlation coefficient, and Pearson's product-moment correlation coefficient). Pearson published his work in a brief note to the Royal Society [@pearsonNotesRegressionInheritance1895]. Despite the recognition that Galton and Pearson receive, it seems that August Bravais had described correlation coefficients before both of them [@bravaisAnalyseMathematiqueProbabilites1844]. Pearson recounts the history of his development of the correlation coefficient, and discusses how he missed Bravais' work [@pearsonNOTESHISTORYCORRELATION1920]. More recently, Stigler discussed some of the history about Galton's account of his development of the correlation coefficient [@stiglerFrancisGaltonAccount1989]. *note: these papers are included in the class zotero group*.
+
+Finally, @leerodgersThirteenWaysLook1988 have a fantastic article on thirteen ways of conceptualizing the correlation coefficient. They also begin the article with a brief discussion of the history of the development of ideas around correlation.
 
 ## Additional Reading
 
@@ -323,6 +331,32 @@ hist(sim_rs)
 
 length(sim_rs[sim_rs <= cor(Length,Meanings)])/1000
 ```
+## Additional Concepts
+
+### Point-by-serial correlation
+
+Briefly, correlation coefficients can be computed between a continuous variable and a dichotomous variable. In this case, the outcome is related to a t-test. For example, in an independent sample design with two groups, the $r$ value can be converted to a $t$ value using:
+
+$t_{n-2} = r \sqrt{\frac{n-2}{1-r^2}}$
+
+Where n is the total number of subjects in both groups.
+
+
+```{r}
+# independent samples t-test
+A <- sample(1:10)
+B <- sample(3:12)
+t.test(A,B, var.equal=TRUE)
+
+# X is continuous, Y is dichotomous for groups A & B
+X <- c(A,B)
+Y <- rep(c(0,1), each = 10)
+cor.test(X,Y)
+
+# convert r to t
+cor(X,Y) * sqrt((20-2)/(1-cor(X,Y)^2))
+```
+
 
 ## Lab 11 Generalization Assignment
 

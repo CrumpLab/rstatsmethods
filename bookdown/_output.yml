@@ -1,0 +1,8 @@
+bookdown::bs4_book:
+  theme:
+    primary: "#972ba6"
+    base_font: !expr bslib::font_google("Work Sans")
+    heading_font: !expr bslib::font_google("Major Mono Display")
+  repo: https://github.com/CrumpLab/psyc7709Lab/bookdown
+  includes:
+    in_header: [ga_script.html]
