@@ -1,5 +1,11 @@
 # Correlation
 
+```{r, include=FALSE}
+knitr::opts_chunk$set(cache=TRUE)
+```
+
+"10/8/2020 | Last Compiled: `r Sys.Date()`"
+
 ## Overview
 
 This lab contains a practical section and two concept sections on correlations in R.
@@ -339,8 +345,4 @@ Y <- c(1,3,6,7,8,2,8,7,6,9)
    A. the smallest possible sum of cross-products (1 point)
 
    B. the largest possible sum of cross-products (1 point)
-
-
-
-## References
 

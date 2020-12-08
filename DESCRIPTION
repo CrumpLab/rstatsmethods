@@ -1,6 +1,6 @@
 Package: psyc7709Lab
 Title: Course website for Psych 7709G Statistical Methods Practicum I Fall 2020
-Version: 0.0.0.9003
+Version: 0.0.0.9004
 Authors@R: 
     person(given = "Matthew",
            family = "Crump",

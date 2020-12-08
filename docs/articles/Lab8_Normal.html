@@ -47,7 +47,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">psyc7709Lab</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.0.9003</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.0.9004</span>
       </span>
     </div>
 
@@ -55,7 +55,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -108,6 +108,9 @@
     <li>
       <a href="../articles/Lab11_Correlation.html">Lab 11 Correlation</a>
     </li>
+    <li>
+      <a href="../articles/Lab12_Regression.html">Lab 12 Regression</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -135,7 +138,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/CrumpLab/psyc7709Lab">
-    <span class="fa fa-lg fa-github"></span>
+    <span class="fas fa-lg fa-github"></span>
      
   </a>
 </li>
@@ -155,7 +158,7 @@
 
       
 
-      </header><script src="Lab8_Normal_files/header-attrs-2.3/header-attrs.js"></script><script src="Lab8_Normal_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="Lab8_Normal_files/header-attrs-2.5.3/header-attrs.js"></script><script src="Lab8_Normal_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Lab 8 Z tests</h1>
@@ -354,7 +357,7 @@
 <p>We could ask if we find the same proportion of numbers falling between 0 and 1 standard deviations in the sampling distribution that we created…and we see the value is pretty close.</p>
 <div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">to_z</span> <span class="kw">&lt;-</span> (<span class="no">sample_means</span>-<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">sample_means</span>))/<span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span>(<span class="no">sample_means</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">to_z</span>[<span class="no">to_z</span> <span class="kw">&gt;</span> <span class="fl">0</span> <span class="kw">&amp;</span> <span class="no">to_z</span> <span class="kw">&lt;</span> <span class="fl">1</span>])/<span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.3336</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.3372</span></pre></body></html></div>
 <p>We’ve just done some rough checking and found that the sampling distribution of the mean seems to be approximately normal (based on the above very minimal comparison). Because this relationship often holds, it is common to use the math of normal distributions to work with sampling distributions of the mean.</p>
 <p>As we will see later, not all sampling distributions create normal distributions, this is a special property of sampling distributions of sample means. In later tests, we will look at sampling distributions of other statistics such as the t-statistic, and F-statistic. These are not distributed normally, and so different distributions (t and F distributions) are used in place of the normal.</p>
 </div>
@@ -394,9 +397,9 @@
 <p><img src="Lab8_Normal_files/figure-html/unnamed-chunk-16-1.png" width="700"> Now, we are one step removed from the original distribution. The original distribution has a mean of 55 and standard deviation of 5. The distribution in the histogram is the sampling distribution of sample means. From the central limit theorem we expect this distribution of sample means to be approximately normal. What are the parameters (mean and standard deviation) of this distribution?</p>
 <p>We can estimate them from the simulation:</p>
 <div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">sample_means</span>)
-<span class="co">#&gt; [1] 55.02309</span>
+<span class="co">#&gt; [1] 55.01346</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span>(<span class="no">sample_means</span>)
-<span class="co">#&gt; [1] 1.572399</span></pre></body></html></div>
+<span class="co">#&gt; [1] 1.61117</span></pre></body></html></div>
 <p>Or, we could use analytic formulas to “know” what they should be (at least in the long). For example, we expect that the most likely sample mean will the mean of the population (remember the sample mean is an unbiased estimator of the population mean). So, the mean of sampling distribution is expected to 55.</p>
 <p>Remember in the previous lab on sampling distributions I mentioned that “the standard deviation of the sampling distribution of the sample means is the standard error of the mean”. In this case, the <strong>standard error of the mean</strong> can be computed directly:</p>
 <p><span class="math inline">\(\text{SEM} = \frac{\sigma}{\sqrt{N}}\)</span></p>
@@ -418,7 +421,7 @@
 
 <span class="co"># this is similar to what the simulation showed:</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">sample_means</span>[<span class="no">sample_means</span> <span class="kw">&gt;</span> <span class="fl">60</span>])/<span class="fl">10000</span>
-<span class="co">#&gt; [1] 9e-04</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.001</span></pre></body></html></div>
 </div>
 <div id="example-3-differences-between-groups" class="section level3">
 <h3 class="hasAnchor">
@@ -438,10 +441,10 @@
 <p><img src="Lab8_Normal_files/figure-html/unnamed-chunk-20-1.png" width="700"></p>
 <p>When we assume that sample means from group A and B come from the exact same distribution, and when we subtract the means from group A and B to create the above sampling distribution of mean differences, we create a null-distribution, or null-hypothesis, that shows the kinds of mean differences that could be observed due to random sampling. This is what chance could do in your experiment. Without getting more specific, if you thought your “special training” would improve the test scores in this scenario by 30%, that is way outside the window, there is no way that chance alone could do that (30% would be ABOVE AND BEYOND what chance can do). On other hand, if you ran your experiment and you found that your training improved test performance by 3%…well, how often do you get a difference of 3% or better by chance? The answer can be found by evaluating the above distribution:</p>
 <div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">mean_differences</span>[<span class="no">mean_differences</span> <span class="kw">&gt;</span> <span class="fl">3</span>])/<span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.0922</span></pre></body></html></div>
-<p>According to a simulation, scores of 3% or greater occur with p &lt;= 0.0922. This would be a “one-tailed” test. If you wanted to know how often you get a score as large as 3% away from the mean in either direction, that would be a two-tailed test:</p>
+<span class="co">#&gt; [1] 0.0902</span></pre></body></html></div>
+<p>According to a simulation, scores of 3% or greater occur with p &lt;= 0.0902. This would be a “one-tailed” test. If you wanted to know how often you get a score as large as 3% away from the mean in either direction, that would be a two-tailed test:</p>
 <div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">mean_differences</span>[<span class="no">mean_differences</span> <span class="kw">&gt;</span> <span class="fl">3</span> <span class="kw">|</span> <span class="no">mean_differences</span> <span class="kw">&lt;</span> -<span class="fl">3</span>])/<span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.1777</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.1823</span></pre></body></html></div>
 <p>These two p-values are close estimates of the p-values you would get from a z-test. They are off by a little bit because the simulation is slightly imperfect.</p>
 <p>To do a z-test for real, we need some observed mean difference between our two groups. Let’s say that is a 3% difference on the test. We also need the mean and standard deviation of the normal distribution where the 3% difference came from. Then we can calculate the probability of obtaining a 3% difference or larger by chance. IMPORTANTLY, the mean and standard deviation we need is for the null-distribution specific to a difference between two sample means, not the original parent distribution where the scores come from.</p>
 <ol style="list-style-type: decimal">
@@ -455,7 +458,7 @@
 </ol>
 <p>We could estimate this value from our simulation by calculating the standard deviation:</p>
 <div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span>(<span class="no">mean_differences</span>)
-<span class="co">#&gt; [1] 2.231283</span></pre></body></html></div>
+<span class="co">#&gt; [1] 2.239359</span></pre></body></html></div>
 <p>It turns out there is a slightly different analytic formula for the standard error of the mean in this situation:</p>
 <p><span class="math inline">\(\text{SEM} = \frac{\sqrt{2}\sigma}{\sqrt{N}}\)</span></p>
 <p>This formula is required because the distribution of mean differences is a subtraction of the mean for group A and B, each with n=10. And, the expected variation changes a little bit, which we account for with the added <span class="math inline">\(\sqrt{2}\)</span> in the formula.</p>

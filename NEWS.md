@@ -1,3 +1,8 @@
+# psyc7709Lab 0.0.0.9004
+
+- Added labs up to Linear Regression
+- beginning to restructure content into a web-book <https://crumplab.github.io/rstatsforpsych/>, current plan is to keep this website for the course, but link to the book, and continue to develop new labs on the other repo, or something like that
+
 # psyc7709Lab 0.0.0.9003
 
 - Added a code reference page with base R example code and tidyverse (dplyr and ggplot) examples

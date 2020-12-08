@@ -1,4 +1,10 @@
-# Chi-Square
+# Chi Square
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(cache=TRUE)
+```
+
+"10/8/2020 | Last Compiled: `r Sys.Date()`"
 
 ## Overview
 
@@ -918,6 +924,4 @@ Finally, if you create a contingency table where each subject has their own cate
 <!-- ``` -->
 
 
-
-## References
 

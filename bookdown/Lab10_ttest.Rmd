@@ -1,5 +1,11 @@
 # T-tests
 
+```{r, include=FALSE}
+knitr::opts_chunk$set(cache=TRUE)
+```
+
+"10/8/2020 | Last Compiled: `r Sys.Date()`"
+
 ## Overview
 
 This lab demonstrates how to conduct one sample, paired sample, and independent sample t-tests in R, and uses R as a tool to develop insight into the conceptual foundations of the t-test.
@@ -104,7 +110,7 @@ my_results$estimate
 
 The `papaja` package has convenient functions for automating the writing of t-test results.
 
-```{r}
+```{r, cache=FALSE}
 library(papaja)
 apa_print(my_results)
 ```
@@ -337,6 +343,3 @@ The re-analysis should focus only on Experiment 3. There are three main goals
 3. Present a power-curve analysis for the design. (2 points)
 
 Note a copy of the R markdown document described in the solution video can be found in the github repository for this course: <https://github.com/CrumpLab/psyc7709Lab/tree/master/lab_solutions>
-
-## References
-

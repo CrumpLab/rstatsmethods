@@ -73,6 +73,8 @@ navbar:
         href: articles/SP_Power.html
       - text: Lab 11 Correlation
         href: articles/Lab11_Correlation.html
+      - text: Lab 12 Regression
+        href: articles/Lab12_Regression.html
     resources:
       text: R Reference
       menu:

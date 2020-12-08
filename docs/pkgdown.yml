@@ -1,8 +1,27 @@
 pandoc: 2.9.1.1
 pkgdown: 1.5.1
 pkgdown_sha: ~
-articles: []
-last_built: 2020-12-02T16:05Z
+articles:
+  Getting_Started: Getting_Started.html
+  Lab10_ttest: Lab10_ttest.html
+  Lab11_Correlation: Lab11_Correlation.html
+  Lab12_Regression: Lab12_Regression.html
+  Lab1_Basics: Lab1_Basics.html
+  Lab2_Descriptives: Lab2_Descriptives.html
+  Lab3_Distributions_I: Lab3_Distributions_I.html
+  Lab4_Distributions_II: Lab4_Distributions_II.html
+  Lab5_Sampling_Distributions: Lab5_Sampling_Distributions.html
+  Lab6_Statistical_Inference: Lab6_Statistical_Inference.html
+  Lab7_Binomial: Lab7_Binomial.html
+  Lab8_Normal: Lab8_Normal.html
+  Lab9_Chisquare: Lab9_Chisquare.html
+  SP_Power: SP_Power.html
+  Syllabus: course_docs/Syllabus.html
+  contribute: course_docs/contribute.html
+  reference_code: course_docs/reference_code.html
+  resources: course_docs/resources.html
+  semester_project: semester_project.html
+last_built: 2020-12-08T22:05Z
 urls:
   reference: https://crumplab.github.io/psyc7709Lab/reference
   article: https://crumplab.github.io/psyc7709Lab/articles

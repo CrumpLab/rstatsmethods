@@ -47,7 +47,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">psyc7709Lab</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.0.9003</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.0.9004</span>
       </span>
     </div>
 
@@ -55,7 +55,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -108,6 +108,9 @@
     <li>
       <a href="../../articles/Lab11_Correlation.html">Lab 11 Correlation</a>
     </li>
+    <li>
+      <a href="../../articles/Lab12_Regression.html">Lab 12 Regression</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -135,7 +138,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/CrumpLab/psyc7709Lab">
-    <span class="fa fa-lg fa-github"></span>
+    <span class="fas fa-lg fa-github"></span>
      
   </a>
 </li>
@@ -155,7 +158,7 @@
 
       
 
-      </header><script src="reference_code_files/header-attrs-2.3/header-attrs.js"></script><script src="reference_code_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="reference_code_files/kePrint-0.0.1/kePrint.js"></script><link href="reference_code_files/lightable-0.0.1/lightable.css" rel="stylesheet">
+      </header><script src="reference_code_files/header-attrs-2.5.3/header-attrs.js"></script><script src="reference_code_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="reference_code_files/kePrint-0.0.1/kePrint.js"></script><link href="reference_code_files/lightable-0.0.1/lightable.css" rel="stylesheet">
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
@@ -1167,45 +1170,45 @@
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">69.11078</td>
-<td align="right">19</td>
-<td align="left">FALSE</td>
-<td align="left">v</td>
-</tr>
-<tr class="even">
-<td align="right">2</td>
-<td align="right">69.70327</td>
+<td align="right">64.48069</td>
 <td align="right">18</td>
 <td align="left">TRUE</td>
-<td align="left">g</td>
-</tr>
-<tr class="odd">
-<td align="right">3</td>
-<td align="right">66.72350</td>
-<td align="right">18</td>
-<td align="left">FALSE</td>
 <td align="left">r</td>
 </tr>
 <tr class="even">
+<td align="right">2</td>
+<td align="right">60.35197</td>
+<td align="right">18</td>
+<td align="left">FALSE</td>
+<td align="left">i</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">67.40059</td>
+<td align="right">20</td>
+<td align="left">TRUE</td>
+<td align="left">i</td>
+</tr>
+<tr class="even">
 <td align="right">4</td>
-<td align="right">71.64269</td>
+<td align="right">66.89136</td>
+<td align="right">18</td>
+<td align="left">TRUE</td>
+<td align="left">r</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">66.45187</td>
 <td align="right">20</td>
 <td align="left">TRUE</td>
 <td align="left">o</td>
 </tr>
-<tr class="odd">
-<td align="right">5</td>
-<td align="right">59.11406</td>
-<td align="right">20</td>
-<td align="left">FALSE</td>
-<td align="left">b</td>
-</tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">70.89067</td>
-<td align="right">19</td>
+<td align="right">64.06002</td>
+<td align="right">18</td>
 <td align="left">FALSE</td>
-<td align="left">y</td>
+<td align="left">r</td>
 </tr>
 </tbody>
 </table>
@@ -1232,23 +1235,24 @@
 <span class="co">#&gt; # A tibble: 2 x 3</span>
 <span class="co">#&gt;   likes_chocolate mean_grade sd_grad</span>
 <span class="co">#&gt;   &lt;lgl&gt;                &lt;dbl&gt;   &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 FALSE                 68.7    6.03</span>
-<span class="co">#&gt; 2 TRUE                  71.3    1.06</span>
+<span class="co">#&gt; 1 FALSE                 62.9    2.76</span>
+<span class="co">#&gt; 2 TRUE                  65.8    1.65</span>
 
 <span class="no">fake_data</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">likes_chocolate</span>,<span class="no">age</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="kw">mean_grade</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">grades</span>),
             <span class="kw">sd_grad</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span>(<span class="no">grades</span>))
 <span class="co">#&gt; `summarise()` regrouping output by 'likes_chocolate' (override with `.groups` argument)</span>
-<span class="co">#&gt; # A tibble: 5 x 4</span>
+<span class="co">#&gt; # A tibble: 6 x 4</span>
 <span class="co">#&gt; # Groups:   likes_chocolate [2]</span>
 <span class="co">#&gt;   likes_chocolate   age mean_grade sd_grad</span>
 <span class="co">#&gt;   &lt;lgl&gt;           &lt;int&gt;      &lt;dbl&gt;   &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 FALSE              18       67.8   1.47 </span>
-<span class="co">#&gt; 2 FALSE              19       70.0   1.26 </span>
-<span class="co">#&gt; 3 FALSE              20       68.4  13.2  </span>
-<span class="co">#&gt; 4 TRUE               18       69.7  NA    </span>
-<span class="co">#&gt; 5 TRUE               20       71.8   0.243</span></pre></body></html></div>
+<span class="co">#&gt; 1 FALSE              18       62.2   2.62 </span>
+<span class="co">#&gt; 2 FALSE              19       60.5  NA    </span>
+<span class="co">#&gt; 3 FALSE              20       64.8   3.09 </span>
+<span class="co">#&gt; 4 TRUE               18       65.7   1.70 </span>
+<span class="co">#&gt; 5 TRUE               19       63.6  NA    </span>
+<span class="co">#&gt; 6 TRUE               20       66.9   0.671</span></pre></body></html></div>
 </div>
 <div id="filter" class="section level3">
 <h3 class="hasAnchor">
@@ -1257,14 +1261,19 @@
 <div class="sourceCode" id="cb58"><html><body><pre class="r"><span class="no">fake_data</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">grades</span> <span class="kw">&lt;</span> <span class="fl">65</span>)
 <span class="co">#&gt;   subjects   grades age likes_chocolate favorite_color</span>
-<span class="co">#&gt; 1        5 59.11406  20           FALSE              b</span>
+<span class="co">#&gt; 1        1 64.48069  18            TRUE              r</span>
+<span class="co">#&gt; 2        2 60.35197  18           FALSE              i</span>
+<span class="co">#&gt; 3        6 64.06002  18           FALSE              r</span>
+<span class="co">#&gt; 4        7 63.57650  19            TRUE              i</span>
+<span class="co">#&gt; 5        8 62.63474  20           FALSE              o</span>
+<span class="co">#&gt; 6       10 60.50384  19           FALSE              v</span>
 
 <span class="no">fake_data</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">grades</span> <span class="kw">&lt;</span> <span class="fl">65</span>,
          <span class="no">likes_chocolate</span> <span class="kw">==</span> <span class="fl">TRUE</span>)
-<span class="co">#&gt; [1] subjects        grades          age             likes_chocolate</span>
-<span class="co">#&gt; [5] favorite_color </span>
-<span class="co">#&gt; &lt;0 rows&gt; (or 0-length row.names)</span></pre></body></html></div>
+<span class="co">#&gt;   subjects   grades age likes_chocolate favorite_color</span>
+<span class="co">#&gt; 1        1 64.48069  18            TRUE              r</span>
+<span class="co">#&gt; 2        7 63.57650  19            TRUE              i</span></pre></body></html></div>
 </div>
 <div id="select" class="section level3">
 <h3 class="hasAnchor">
@@ -1273,30 +1282,30 @@
 <div class="sourceCode" id="cb59"><html><body><pre class="r"><span class="no">fake_data</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">grades</span>)
 <span class="co">#&gt;      grades</span>
-<span class="co">#&gt; 1  69.11078</span>
-<span class="co">#&gt; 2  69.70327</span>
-<span class="co">#&gt; 3  66.72350</span>
-<span class="co">#&gt; 4  71.64269</span>
-<span class="co">#&gt; 5  59.11406</span>
-<span class="co">#&gt; 6  70.89067</span>
-<span class="co">#&gt; 7  77.71859</span>
-<span class="co">#&gt; 8  71.65614</span>
-<span class="co">#&gt; 9  72.06964</span>
-<span class="co">#&gt; 10 68.80120</span>
+<span class="co">#&gt; 1  64.48069</span>
+<span class="co">#&gt; 2  60.35197</span>
+<span class="co">#&gt; 3  67.40059</span>
+<span class="co">#&gt; 4  66.89136</span>
+<span class="co">#&gt; 5  66.45187</span>
+<span class="co">#&gt; 6  64.06002</span>
+<span class="co">#&gt; 7  63.57650</span>
+<span class="co">#&gt; 8  62.63474</span>
+<span class="co">#&gt; 9  67.00709</span>
+<span class="co">#&gt; 10 60.50384</span>
 
 <span class="no">fake_data</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">grades</span>,<span class="no">likes_chocolate</span>)
 <span class="co">#&gt;      grades likes_chocolate</span>
-<span class="co">#&gt; 1  69.11078           FALSE</span>
-<span class="co">#&gt; 2  69.70327            TRUE</span>
-<span class="co">#&gt; 3  66.72350           FALSE</span>
-<span class="co">#&gt; 4  71.64269            TRUE</span>
-<span class="co">#&gt; 5  59.11406           FALSE</span>
-<span class="co">#&gt; 6  70.89067           FALSE</span>
-<span class="co">#&gt; 7  77.71859           FALSE</span>
-<span class="co">#&gt; 8  71.65614            TRUE</span>
-<span class="co">#&gt; 9  72.06964            TRUE</span>
-<span class="co">#&gt; 10 68.80120           FALSE</span></pre></body></html></div>
+<span class="co">#&gt; 1  64.48069            TRUE</span>
+<span class="co">#&gt; 2  60.35197           FALSE</span>
+<span class="co">#&gt; 3  67.40059            TRUE</span>
+<span class="co">#&gt; 4  66.89136            TRUE</span>
+<span class="co">#&gt; 5  66.45187            TRUE</span>
+<span class="co">#&gt; 6  64.06002           FALSE</span>
+<span class="co">#&gt; 7  63.57650            TRUE</span>
+<span class="co">#&gt; 8  62.63474           FALSE</span>
+<span class="co">#&gt; 9  67.00709           FALSE</span>
+<span class="co">#&gt; 10 60.50384           FALSE</span></pre></body></html></div>
 </div>
 <div id="mutate" class="section level3">
 <h3 class="hasAnchor">
@@ -1307,16 +1316,16 @@
 
 <span class="no">fake_data</span>
 <span class="co">#&gt;    subjects   grades age likes_chocolate favorite_color new_thing</span>
-<span class="co">#&gt; 1         1 69.11078  19           FALSE              v         0</span>
-<span class="co">#&gt; 2         2 69.70327  18            TRUE              g         0</span>
-<span class="co">#&gt; 3         3 66.72350  18           FALSE              r         0</span>
-<span class="co">#&gt; 4         4 71.64269  20            TRUE              o         0</span>
-<span class="co">#&gt; 5         5 59.11406  20           FALSE              b         0</span>
-<span class="co">#&gt; 6         6 70.89067  19           FALSE              y         0</span>
-<span class="co">#&gt; 7         7 77.71859  20           FALSE              i         0</span>
-<span class="co">#&gt; 8         8 71.65614  20            TRUE              y         0</span>
-<span class="co">#&gt; 9         9 72.06964  20            TRUE              i         0</span>
-<span class="co">#&gt; 10       10 68.80120  18           FALSE              r         0</span></pre></body></html></div>
+<span class="co">#&gt; 1         1 64.48069  18            TRUE              r         0</span>
+<span class="co">#&gt; 2         2 60.35197  18           FALSE              i         0</span>
+<span class="co">#&gt; 3         3 67.40059  20            TRUE              i         0</span>
+<span class="co">#&gt; 4         4 66.89136  18            TRUE              r         0</span>
+<span class="co">#&gt; 5         5 66.45187  20            TRUE              o         0</span>
+<span class="co">#&gt; 6         6 64.06002  18           FALSE              r         0</span>
+<span class="co">#&gt; 7         7 63.57650  19            TRUE              i         0</span>
+<span class="co">#&gt; 8         8 62.63474  20           FALSE              o         0</span>
+<span class="co">#&gt; 9         9 67.00709  20           FALSE              b         0</span>
+<span class="co">#&gt; 10       10 60.50384  19           FALSE              v         0</span></pre></body></html></div>
 </div>
 </div>
 <div id="ggplot2" class="section level2">
@@ -1936,11 +1945,11 @@ D
 <p><code><a href="https://rdrr.io/r/base/lapply.html">replicate(n, expr)</a></code> allows you to repeat a function many times, and return the answer in a vector</p>
 <div class="sourceCode" id="cb88"><html><body><pre class="r"><span class="co"># returns 1 randomly sampled number from 1 to 10</span>
 <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fl">1</span>:<span class="fl">10</span>,<span class="fl">1</span>)
-<span class="co">#&gt; [1] 7</span>
+<span class="co">#&gt; [1] 2</span>
 
 <span class="co"># let's repeat the above 10 times using replicate</span>
 <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span>(<span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fl">1</span>:<span class="fl">10</span>,<span class="fl">1</span>))
-<span class="co">#&gt;  [1]  1 10  4  4  2 10  4  4  7  2</span></pre></body></html></div>
+<span class="co">#&gt;  [1]  2  7  8 10  3  1  2  4  1  3</span></pre></body></html></div>
 <p>The next example shows how to write a function to do something, and then use the function inside replicate to repeat the function many times.</p>
 <p>For example, we write a function to run a one-sample t-test on a random sample drawn from a normal distribution</p>
 <div class="sourceCode" id="cb89"><html><body><pre class="r"><span class="no">ttest_result</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(){
@@ -1952,9 +1961,9 @@ D
 <span class="co"># get 10 t-values from repeating the above 10 times</span>
 <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span>(<span class="fl">10</span>, <span class="fu">ttest_result</span>() )
 <span class="co">#&gt;          t          t          t          t          t          t          t </span>
-<span class="co">#&gt; -1.4594560 -0.4198871  0.5117926  0.9061890  0.6729595  0.2078153 -0.9720652 </span>
+<span class="co">#&gt;  0.5819717 -0.5691059  1.2261109  0.2257518  0.4323406  1.9506239 -0.7867970 </span>
 <span class="co">#&gt;          t          t          t </span>
-<span class="co">#&gt; -0.3165867  2.1070338  1.1896777</span></pre></body></html></div>
+<span class="co">#&gt; -0.4202162 -1.5499994 -0.3789020</span></pre></body></html></div>
 </div>
 <div id="apply-family" class="section level3">
 <h3 class="hasAnchor">
@@ -2025,12 +2034,12 @@ D
 <span class="co"># applies the sum function to each row</span>
 <span class="co"># 1 tells apply to go across rows</span>
 <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span>(<span class="no">random_matrix</span>,<span class="fl">1</span>,<span class="no">sum</span>)
-<span class="co">#&gt; [1] 26 32 20 32 29</span></pre></body></html></div>
+<span class="co">#&gt; [1] 28 28 27 26 37</span></pre></body></html></div>
 <p>The sum of each column</p>
 <div class="sourceCode" id="cb93"><html><body><pre class="r"><span class="co"># applies the sum function to each column</span>
 <span class="co"># 2 tells apply to go across columns</span>
 <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span>(<span class="no">random_matrix</span>, <span class="fl">2</span>, <span class="no">sum</span>)
-<span class="co">#&gt; [1] 29 26 33 25 26</span></pre></body></html></div>
+<span class="co">#&gt; [1] 28 20 31 38 29</span></pre></body></html></div>
 <p>Let’s say we have a matrix storing 3 samples. Each sample has 10 numbers. Each sample is stored in a column, and each row represents an observation.</p>
 <div class="sourceCode" id="cb94"><html><body><pre class="r"><span class="no">sample_matrix</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">30</span>,<span class="fl">0</span>,<span class="fl">1</span>),<span class="kw">ncol</span><span class="kw">=</span><span class="fl">3</span>)</pre></body></html></div>
 <p>Let’s use apply to conduct 10 one-sample t-tests, one for each column. In this example, we can pass the <code>mu=0</code> parameter into the <code>t.test</code> function. However, we will return the entire ouput of each t-test in a list.</p>
@@ -2040,13 +2049,13 @@ D
 <span class="co">#&gt;  One Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  newX[, i]</span>
-<span class="co">#&gt; t = 0.34594, df = 9, p-value = 0.7373</span>
+<span class="co">#&gt; t = 2.118, df = 9, p-value = 0.06324</span>
 <span class="co">#&gt; alternative hypothesis: true mean is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -0.3906258  0.5316652</span>
+<span class="co">#&gt;  -0.01726939  0.52479111</span>
 <span class="co">#&gt; sample estimates:</span>
-<span class="co">#&gt;  mean of x </span>
-<span class="co">#&gt; 0.07051968 </span>
+<span class="co">#&gt; mean of x </span>
+<span class="co">#&gt; 0.2537609 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]</span>
@@ -2054,13 +2063,13 @@ D
 <span class="co">#&gt;  One Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  newX[, i]</span>
-<span class="co">#&gt; t = 0.39195, df = 9, p-value = 0.7042</span>
+<span class="co">#&gt; t = 0.22848, df = 9, p-value = 0.8244</span>
 <span class="co">#&gt; alternative hypothesis: true mean is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -0.6294532  0.8932935</span>
+<span class="co">#&gt;  -0.9866809  1.2083879</span>
 <span class="co">#&gt; sample estimates:</span>
 <span class="co">#&gt; mean of x </span>
-<span class="co">#&gt; 0.1319201 </span>
+<span class="co">#&gt; 0.1108535 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[3]]</span>
@@ -2068,13 +2077,13 @@ D
 <span class="co">#&gt;  One Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  newX[, i]</span>
-<span class="co">#&gt; t = 0.8855, df = 9, p-value = 0.3989</span>
+<span class="co">#&gt; t = 0.71143, df = 9, p-value = 0.4948</span>
 <span class="co">#&gt; alternative hypothesis: true mean is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -0.3655191  0.8357387</span>
+<span class="co">#&gt;  -0.6178777  1.1848059</span>
 <span class="co">#&gt; sample estimates:</span>
 <span class="co">#&gt; mean of x </span>
-<span class="co">#&gt; 0.2351098</span></pre></body></html></div>
+<span class="co">#&gt; 0.2834641</span></pre></body></html></div>
 <p>What if we wanted to return only the t-values, rather than whole output?</p>
 <p>You might try this, but it doesn’t work</p>
 <div class="sourceCode" id="cb96"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span>(<span class="no">sample_matrix</span>,<span class="fl">2</span>,<span class="no">t.test</span>$<span class="no">statistic</span>, <span class="kw">mu</span><span class="kw">=</span><span class="fl">0</span>)
@@ -2085,7 +2094,7 @@ D
         <span class="no">t_out</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span>(<span class="no">x</span>,<span class="kw">mu</span><span class="kw">=</span><span class="fl">0</span>)
         <span class="fu"><a href="https://rdrr.io/r/base/function.html">return</a></span>(<span class="no">t_out</span>$<span class="no">statistic</span>)
       })
-<span class="co">#&gt; [1] 0.3459355 0.3919550 0.8854973</span></pre></body></html></div>
+<span class="co">#&gt; [1] 2.1180180 0.2284831 0.7114286</span></pre></body></html></div>
 </div>
 </div>
   </div>
