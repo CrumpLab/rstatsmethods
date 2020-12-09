@@ -22,7 +22,9 @@ Vokey & Allen, Chapters 1
 
 Here is a walkthrough lecture on this lab (sorry the volume is a little low on this one):
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/FuRD0HAIfBc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="100%" height="auto" src="https://www.youtube.com/embed/FuRD0HAIfBc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 ## Overview
 

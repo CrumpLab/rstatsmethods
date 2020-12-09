@@ -158,7 +158,7 @@
 
       
 
-      </header><script src="Lab12_Regression_files/header-attrs-2.5.3/header-attrs.js"></script><script src="Lab12_Regression_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="Lab12_Regression_files/header-attrs-2.5.3/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Lab 12 Regression</h1>
@@ -176,14 +176,14 @@
 <div id="readings" class="section level2">
 <h2 class="hasAnchor">
 <a href="#readings" class="anchor"></a>Readings</h2>
-<p><span class="citation">Vokey &amp; Allen (<a href="#ref-vokeyThinkingData7th2018" role="doc-biblioref">2018</a>)</span>, Chapter 8; <span class="citation">Abdi et al. (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>, Chapters 3 and 4; <span class="citation">Crump et al. (<a href="#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">2018</a>)</span>, <a href="https://crumplab.github.io/statistics/Correlation.html#regression-a-mini-intro">3.5</a>.</p>
+<p><span class="citation"><a href="#ref-vokeyThinkingData7th2018" role="doc-biblioref">Vokey &amp; Allen</a> (<a href="#ref-vokeyThinkingData7th2018" role="doc-biblioref">2018</a>)</span>, Chapter 8; <span class="citation"><a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al.</a> (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>, Chapters 3 and 4; <span class="citation"><a href="#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">Crump et al.</a> (<a href="#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">2018</a>)</span>, <a href="https://crumplab.github.io/statistics/Correlation.html#regression-a-mini-intro">3.5</a>.</p>
 </div>
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h2>
 <ol style="list-style-type: decimal">
 <li>Practical: Performing linear regressions with R</li>
-<li>Concept I: Visualizing best fit</li>
+<li>Concept I: The best fit line and least squares</li>
 <li>Concept II: <span class="math inline">\(R^2\)</span> and <span class="math inline">\(F\)</span>
 </li>
 <li>Advanced Concept: Best fit line by brute force search</li>
@@ -323,7 +323,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>()+
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span>(<span class="kw">method</span><span class="kw">=</span><span class="st">'lm'</span>, <span class="kw">se</span><span class="kw">=</span><span class="fl">FALSE</span>)</pre></body></html></div>
 <p><img src="Lab12_Regression_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
-<p>If you happened to have several sets of X and Y data specified in a data frame, it’s not too much extra effort to plot multiple scatterplots, each with their own best fit line.</p>
+<p>If you had many sets of X Y data specified in a data frame you can create multiple scatterplots, each with their own best fit line, using <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code>.</p>
 <div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">some_data2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">Y</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">4</span>*<span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span>),
                          <span class="kw">X</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">4</span>*<span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span>),
                         <span class="kw">set</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fl">1</span>:<span class="fl">4</span>,<span class="kw">each</span><span class="kw">=</span><span class="fl">10</span>))
@@ -337,8 +337,8 @@
 <div id="add-equations-and-model-info" class="section level4">
 <h4 class="hasAnchor">
 <a href="#add-equations-and-model-info" class="anchor"></a>Add equations and model info</h4>
-<p>The above methods for plotting a regression line on a scatterplot do not show the regression equation or <span class="math inline">\(R^2\)</span> values. These could be added using <a href="https://ggplot2-book.org/annotations.html">annotations</a>. Or, you could try to find an extension package that might do the thing you are looking for. For example, there are numerous extensions to ggplot2, <a href="https://exts.ggplot2.tidyverse.org/gallery/" class="uri">https://exts.ggplot2.tidyverse.org/gallery/</a>. One of them is <a href="https://docs.r4photobiology.info/ggpmisc/">ggpmisc</a>, which apparently can help automate adding these kinds of details to a plot.</p>
-<p>For example, the <code>stat_poly_eq</code> function can add the <span class="math inline">\(R^2\)</span> value.</p>
+<p><code>ggplot2</code> does not automatically show the regression equation or <span class="math inline">\(R^2\)</span> values, but they can be added with <a href="https://ggplot2-book.org/annotations.html">annotations</a>. Or, you could find an extension package that might do the thing you are looking for. For example, there are numerous extensions to ggplot2, <a href="https://exts.ggplot2.tidyverse.org/gallery/" class="uri">https://exts.ggplot2.tidyverse.org/gallery/</a>. One of them is <a href="https://docs.r4photobiology.info/ggpmisc/">ggpmisc</a>, which can help with adding these details to a plot.</p>
+<p><code><a href="https://docs.r4photobiology.info/ggpmisc//reference/stat_poly_eq.html">ggpmisc::stat_poly_eq()</a></code> can add the <span class="math inline">\(R^2\)</span> value to the plot.</p>
 <div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggpmisc</span>)
 <span class="no">formula</span> <span class="kw">&lt;-</span> <span class="no">y</span> ~ <span class="no">x</span>
 <span class="fu"><a href="https://docs.r4photobiology.info/ggpmisc//reference/ggplot.html">ggplot</a></span>(<span class="no">some_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span> <span class="no">X_iv</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">Y_dv</span>)) +
@@ -356,9 +356,9 @@
 </div>
 </div>
 </div>
-<div id="concept-i-visualizing-best-fit" class="section level2">
+<div id="concept-i-the-best-fit-line-and-least-squares" class="section level2">
 <h2 class="hasAnchor">
-<a href="#concept-i-visualizing-best-fit" class="anchor"></a>Concept I: Visualizing best fit</h2>
+<a href="#concept-i-the-best-fit-line-and-least-squares" class="anchor"></a>Concept I: The best fit line and least squares</h2>
 <p>The code chunk below generates a linear regression animation using ggplot2 and <a href="https://gganimate.com/index.html">gganimate</a>.</p>
 <div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">gganimate</span>)
@@ -414,12 +414,12 @@
 
 <span class="fu"><a href="https://gganimate.com/reference/animate.html">animate</a></span>(<span class="no">anim</span>,<span class="kw">fps</span><span class="kw">=</span><span class="fl">5</span>)</pre></body></html></div>
 <p><img src="Lab12_Regression_files/figure-html/unnamed-chunk-12-1.gif"><!-- --></p>
-<p>This animation shows two key concepts we will reinforce. First, the regression line is the “best fit line”. And, the “best fit line” is the one that minimizes the sum of the squared deviations between each point and the line.</p>
+<p>This animation shows two key concepts we will reinforce. First, the regression line is the “best fit line.” And, the “best fit line” is the one that minimizes the sum of the squared deviations between each point and the line.</p>
 <p>The blue line represents the best fit line found by linear regression. The roving black line represents other possible lines. For simplicity, the black line has the same slope, but the intercept changes so it moves up and down. As the black line moves, the little red lines show the error between the black line and each data point. The shaded rectangle for each dot represents the squared error. I shaded the the error squares…as the black line moves away from the true regression line, the error squares get bigger and bigger, and redder and redder. This indicates the fit between the line is getting worse (because the error is getting bigger), as the line moves away from the best line. As the black line moves toward the best fit line, you can see the error squares getting smaller, and I shaded them less red, to visually indicate less overall error. When the black line converges on the blue line, we have found the best fit line, the one that minimizes the sum of the squared deviations.</p>
 <div id="illustrating-regression-concepts-with-r" class="section level3">
 <h3 class="hasAnchor">
 <a href="#illustrating-regression-concepts-with-r" class="anchor"></a>Illustrating regression concepts with R</h3>
-<p>The <a href="https://crumplab.github.io/statistics/Correlation.html#regression-a-mini-intr">animation example</a> is modified from <span class="citation">Crump et al. (<a href="#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">2018</a>)</span> (I added the little rectangles to indicate the squared error).</p>
+<p>The <a href="https://crumplab.github.io/statistics/Correlation.html#regression-a-mini-intr">animation example</a> is modified from <span class="citation"><a href="#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">Crump et al.</a> (<a href="#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">2018</a>)</span> (I added the little rectangles to indicate the squared error).</p>
 <p>In this concept section we will use R to create a graph like the above animation. Our goal is to see if we can use R to visually illustrate concepts of linear regression. For example, we can already plot data points as a scatterplot, and we can plot the regression line. It would be nice if we could visualize the error between each data point and the line, and perhaps also see that this error is smallest when we use the best fit line, and not some other line.</p>
 </div>
 <div id="create-a-scatterplot" class="section level3">
@@ -590,28 +590,58 @@
 <span class="co">#&gt; [1] 648</span></pre></body></html></div>
 </div>
 </div>
-<div id="concept-ii-f-r2-and-accounting-for-error" class="section level2">
+<div id="concept-ii-r2-f-and-variance-explained" class="section level2">
 <h2 class="hasAnchor">
-<a href="#concept-ii-f-r2-and-accounting-for-error" class="anchor"></a>Concept II: F, R^2, and accounting for error</h2>
-<p><span class="citation">Wright (<a href="#ref-wrightCorrelationCausation" role="doc-biblioref">n.d.</a>)</span> is credited <a href="https://en.wikipedia.org/wiki/Coefficient_of_determination">on wikipedia</a> with coining the term coefficient of determination that is used for <span class="math inline">\(R^2\)</span>. It was interesting to read that paper and think about the term “coefficient of determination”. Wright discussed how plain old correlations could obviously be caused by multiple causal variables, which is one reason why correlation does not equal causation. He was looking for a method to breakdown a correlation into terms of component causes or paths, and this seems to inspire the rather loaded inspirational term “coefficient of determination”. I say this term is inspirational because squaring an <span class="math inline">\(r\)</span>-value and using deterministic language doesn’t magically allow one to identify causal forces from a correlation. Instead, the general underlying concept or problem is the task of “accounting” for variation in one measure with other variables. I put “accounting” in quotes to raise a meta-issue for consideration throughout this course…e.g., what does it mean to ‘account for’, or ‘to explain’ variance? Under what conditions can we say that one variable explained, caused, or determined variation in another?</p>
-<p>In chapter 3, <span class="citation">Abdi et al. (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span> introduces F values in terms of a squared <span class="math inline">\(r\)</span> coefficient. This is a natural progression because the previous chapter was on correlation.</p>
-<p><span class="math inline">\(F = \frac{r^2}{(1-r^2)} \times (S-2)\)</span></p>
-<p>At the very least this sets up an expectation that <span class="math inline">\(F\)</span> values are related to <span class="math inline">\(r\)</span> and <span class="math inline">\(R^2\)</span> values. However, in my opinion, this formula hides a conceptual linkage about ‘explained’ variance. Both <span class="math inline">\(F\)</span> and <span class="math inline">\(R^2\)</span> are sample statistics that provide a measure of “explained” variance.</p>
+<a href="#concept-ii-r2-f-and-variance-explained" class="anchor"></a>Concept II: <span class="math inline">\(R^2\)</span>, F, and variance explained</h2>
+<p><span class="citation"><a href="#ref-wrightCorrelationCausation" role="doc-biblioref">Wright</a> (<a href="#ref-wrightCorrelationCausation" role="doc-biblioref">n.d.</a>)</span> is credited <a href="https://en.wikipedia.org/wiki/Coefficient_of_determination">on wikipedia</a> with coining the term <em>coefficient of determination</em> for <span class="math inline">\(R^2\)</span>. It was interesting to read that paper and think about the term coefficient of determination. Wright discussed how plain old correlations could obviously be caused by multiple causal variables, which is one reason why correlation does not equal causation. He sought methods to break a correlation into component causes or paths, and this seems to inspire the rather loaded inspirational term <em>coefficient of determination</em>. I say this term is inspirational because squaring an <span class="math inline">\(r\)</span>-value and using deterministic language doesn’t magically allow one to identify causal forces from a correlation. Nevertheless, the concept of <span class="math inline">\(R^2\)</span> does involve a systematic process of categorizing components of correlation into different parts, usually parts that can be explained and a leftover part that can’t be explained.</p>
+<p>The word “explained” doesn’t have the common meaning that we actually understand anything, say about the causal relationship between one thing and another. It has a limited statistical meaning. Something like some variation in Y can be expressed in terms of a limited geometric relationship derived from variation in X, and we call some of that relationship “explained,” and call another part “unexplained.” Or, something like, if we have some 2-d points in a scatterplot, we can choose to say that each point is composed of three parts. The mean of Y, plus a prediction from a line that we drew through the points, plus some extra part that has nothing to do with the line.</p>
 <div id="explaining-variance" class="section level3">
 <h3 class="hasAnchor">
 <a href="#explaining-variance" class="anchor"></a>Explaining variance</h3>
-<p>Imagine you are trying to explain some complicated thing, and you write this formula to help you keep track of your explanation:</p>
+<p>Imagine you are trying to explain some complicated thing, and you want to keep track of how much of that thing you have explained. You could use a formula like this:</p>
 <p><span class="math inline">\(\text{Total stuff to explain} = \text{Explained stuff} + \text{Unexplained stuff}\)</span></p>
-<p>We could also write in terms of proportions:</p>
+<p>This conceptual formula partitions the <em>total stuff needing explanation</em> into two parts, explained and unexplained. If you could assign numbers to this formula, then you could keep track of quantities of explanation. <span class="math inline">\(R^2\)</span> and <span class="math inline">\(F\)</span> values are related statistics that give a ratio quantity relating the amount of explained stuff to unexplained stuff.</p>
+</div>
+<div id="r2-proportion-of-variance-explained" class="section level3">
+<h3 class="hasAnchor">
+<a href="#r2-proportion-of-variance-explained" class="anchor"></a><span class="math inline">\(R^2\)</span> proportion of variance explained</h3>
+<p>Imagine you wanted to know a proportion of explained stuff, or a ratio of much you have explained in relation to the total amount of stuff that could be explained. The proportion would be 0 when you haven’t explained anything, and go to 1 as you explain everything that could be explained.</p>
 <p><span class="math inline">\(1 = \frac{\text{Explained} + \text{Unexplained}}{\text{Total stuff to explain}}\)</span></p>
-<p>Now imagine you have some explanation, and you wanted a number that quantified the amount of explanation that you have…Assuming you could put numbers into the formula to represent any two of the terms you could have (where <span class="math inline">\(\text{Total}\)</span> is the total amount of stuff to explain).</p>
-<p><span class="math inline">\(\text{Proportion explained} = (1- \frac{\text{Unexplained}}{\text{Total}}) = \frac{\text{Explained}}{\text{Total}}\)</span></p>
-<p>My point in being very general here is to say that <span class="math inline">\(R^2\)</span> and <span class="math inline">\(F\)</span> are both ratios that represent a quantity for explained variance. <span class="math inline">\(R^2\)</span> is very similar to the above ratio and is bounded from 0 (explained no variance), and 1 (explained all of the variance).</p>
+<p><span class="math inline">\(\text{Proportion explained} = \frac{\text{Explained}}{\text{Total}} =(1- \frac{\text{Unexplained}}{\text{Total}})\)</span></p>
+<p>This is how <span class="math inline">\(R^2\)</span> is calculated. The quantities are replaced with a sum of squares (<span class="math inline">\(SS\)</span>) representing the total amount of variance to be explained. <span class="math inline">\(SS_{Total}\)</span> is split up into parts that “can be explained” (e.g., by the regression line), and parts that remain “unexplained” (residual error).</p>
+<p><span class="math inline">\(R^2 = 1 - \frac{SS_{unexplained}}{SS_{Total}} = \frac{SS_{explained}}{SS_{Total}}\)</span></p>
+<p>Note, that <span class="math inline">\(R^2\)</span> must go from 0 to 1, because it is set up as a ratio between a part of a whole (the explained part), and a whole (all of the things needing explaining). The explained part can go anywhere from 0 (explaining nothing) to 100% (explaining everything), so the proportion must go from 0 to 1.</p>
+</div>
+<div id="f-statistic-explained-over-unexplained" class="section level3">
+<h3 class="hasAnchor">
+<a href="#f-statistic-explained-over-unexplained" class="anchor"></a>F-statistic, explained over unexplained</h3>
+<p>The F statistic is another way to use the general formula to create a ratio that gets larger as you are able to explain more than you can’t.</p>
+<p><span class="math inline">\(F = \frac{Explained}{Unexplained}\)</span></p>
+<p>Consider how the F ratio works. It is not bounded by 0 and 1. But, the number 1 is still important, it is a tipping point for your explanation.</p>
+<ul>
+<li><p>If <span class="math inline">\(explained = unexplained\)</span> then, <span class="math inline">\(F =1\)</span>.</p></li>
+<li><p>If <span class="math inline">\(explained &gt; unexplained\)</span> then, <span class="math inline">\(F &gt; 1\)</span>;</p></li>
+<li><p>and if <span class="math inline">\(explained &lt; unexplained\)</span> then, <span class="math inline">\(F &lt; 1\)</span>.</p></li>
+</ul>
+<p>F-statistics use measures of variance, which are sums of squares divided by relevant degrees of freedom.</p>
+<p><span class="math inline">\(F = \frac{SS_{Explained}/df1}{SS_{Unexplained}/df2} = \frac{MS_{Explained}}{MS_{Unexplained}}\)</span></p>
+</div>
+<div id="transforming-r2-to-f" class="section level3">
+<h3 class="hasAnchor">
+<a href="#transforming-r2-to-f" class="anchor"></a>Transforming <span class="math inline">\(R^2\)</span> to <span class="math inline">\(F\)</span>
+</h3>
+<p><span class="citation"><a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al.</a> (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span> provide a formula (chapter 3) that shows Fs can be converted from <span class="math inline">\(R^2\)</span>.</p>
+<p><span class="math inline">\(F = \frac{R^2}{1-R^2} \times (S-2)\)</span></p>
+<p>The numerator is <span class="math inline">\(R^2\)</span>, which we have previously defined as the proportion of variance <strong>explained</strong>; and the denominator is the proporition of variance <strong>unexplained</strong>. So, this formula again presents F as a ratio of explained over unexplained variance.</p>
+</div>
+<div id="visualizing-the-sums-of-squares" class="section level3">
+<h3 class="hasAnchor">
+<a href="#visualizing-the-sums-of-squares" class="anchor"></a>Visualizing the sums of squares</h3>
 <p>Let’s try to fill in the blanks so that we can see <span class="math inline">\(R^2\)</span> in this way:</p>
 <p><span class="math inline">\(R^2 = (1- \frac{\text{Unexplained}}{\text{Total}}) = \frac{\text{Explained}}{\text{Total}}\)</span></p>
 <p>We begin with a Y variable and X variable. We are going to use the variability in X as an “explanation” of the variability in Y.</p>
-<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="no">Y</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">5</span>)
-<span class="no">X</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="no">Y</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">5</span>)
+<span class="no">X</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span>)</pre></body></html></div>
 <p>How does this data relate to the formula and to the task of explanation? What are we trying to explain? In this case, the Y variable is taking the place of the dependent measure. The Y variable has numbers that are different, it has variation. So in general language, we are trying to “explain” the variation in Y.</p>
 </div>
 <div id="ss-total" class="section level3">
@@ -622,7 +652,7 @@
 <div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="no">SS_total</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>((<span class="no">Y</span>-<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">Y</span>))^<span class="fl">2</span>)
 <span class="no">SS_total</span>
 <span class="co">#&gt; [1] 19.5</span></pre></body></html></div>
-<p>The scatterplot below visualizes <span class="math inline">\(SS_total\)</span>; but, instead of a regression line as we saw earlier, the red line represents the mean of Y. So, the deviations between each dot and the red line represent the components that are added up to produce <span class="math inline">\(SS_total\)</span> for Y. Specifically, the sum of the area in all the error squares is taken as the total amount of stuff that needs to be explained. Slightly more formally, the squared deviations represent departures from the mean of Y. If all of the data in Y had the same number, there would be no departures from the mean, and the mean would “explain everything”, leaving nothing left for any other variable to explain.</p>
+<p>The scatterplot below visualizes <span class="math inline">\(SS_total\)</span>; but, instead of a regression line as we saw earlier, the red line represents the mean of Y. So, the deviations between each dot and the red line represent the components that are added up to produce <span class="math inline">\(SS_total\)</span> for Y. Specifically, the sum of the area in all the error squares is taken as the total amount of stuff that needs to be explained. Slightly more formally, the squared deviations represent departures from the mean of Y. If all of the data in Y had the same number, there would be no departures from the mean, and the mean would “explain everything,” leaving nothing left for any other variable to explain.</p>
 <div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="no">some_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">Y</span><span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">5</span>),
                         <span class="kw">X</span><span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span>)) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">Y_pred</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">Y</span>)) <span class="kw">%&gt;%</span>
@@ -683,7 +713,14 @@
 
 <span class="no">SS_residuals</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>((<span class="no">Y</span>-<span class="no">Y_predicted</span>)^<span class="fl">2</span>)
 <span class="no">SS_residuals</span>
-<span class="co">#&gt; [1] 9</span></pre></body></html></div>
+<span class="co">#&gt; [1] 9</span>
+
+<span class="fl">1</span>- ((<span class="no">SS_residuals</span>/(<span class="fl">8</span>-<span class="fl">2</span>)) / (<span class="no">SS_total</span>/(<span class="fl">7</span>)))
+<span class="co">#&gt; [1] 0.4615385</span>
+
+
+<span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span>(<span class="no">Y</span>,<span class="no">X</span>)^<span class="fl">2</span>
+<span class="co">#&gt; [1] 0.5384615</span></pre></body></html></div>
 <p>We can do a quick check to show that we can compute <span class="math inline">\(R^2\)</span> from</p>
 <p><span class="math inline">\(R^2 = (1- \frac{\text{Unexplained}}{\text{Total}}) = \frac{\text{Explained}}{\text{Total}}\)</span></p>
 <p><span class="math inline">\(R^2 = (1- \frac{\text{SS_residual}}{\text{SS_total}})\)</span></p>
@@ -696,10 +733,10 @@
 <div id="ss-explained-regression" class="section level3">
 <h3 class="hasAnchor">
 <a href="#ss-explained-regression" class="anchor"></a>SS explained (regression)</h3>
-<p>Let’s finally look at the idea of explained variance. Previously we found <span class="math inline">\(SS_total\)</span> and <span class="math inline">\(SS_residual\)</span>, but we haven’t directly computed <span class="math inline">\(SS_explained\)</span>:</p>
+<p>Let’s finally look at the idea of explained variance. Previously we found <span class="math inline">\(SS_{total}\)</span> and <span class="math inline">\(SS_{residual}\)</span>, but we haven’t directly computed <span class="math inline">\(SS_{explained}\)</span>:</p>
 <p><span class="math inline">\(R^2 = (1- \frac{\text{Unexplained}}{\text{Total}}) = \frac{\text{Explained}}{\text{Total}}\)</span></p>
 <p><span class="math inline">\(R^2 = (1- \frac{\text{SS}_{residuals}}{\text{SS}_{Total}}) = \frac{\text{SS}_{Explained}}{\text{SS}_{Total}}\)</span></p>
-<p>We could use algebra to find <span class="math inline">\(SS_Explained\)</span>:</p>
+<p>We could use algebra to find <span class="math inline">\(SS_{Explained}\)</span>:</p>
 <p><span class="math inline">\(SS_{Total} = \text{SS}_{Explained} + \text{SS}_{residuals}\)</span></p>
 <p><span class="math inline">\(\text{SS}_{Explained} = SS_{Total} -\text{SS}_{residuals}\)</span></p>
 <p><span class="math inline">\(\text{SS}_{Explained} = 19.5 - 9 = 10.5\)</span></p>
@@ -730,7 +767,7 @@
 <p>The sum of these squares refers to variance in Y that is “explained” by the combination of using the mean of Y as a predictor, and the regression line from X as a predictor.</p>
 <p>Previously, we said that <span class="math inline">\(R^2\)</span> is the proportion of variance explained. Or:</p>
 <p><span class="math inline">\(R^2 = \frac{SS_{Explained}}{SS_{Total}}\)</span></p>
-<p>The sum of the blue squares is equivalent to <span class="math inline">\(SS_explained\)</span>. We could also write:</p>
+<p>The sum of the blue squares is equivalent to <span class="math inline">\(SS_{explained}\)</span>. We could also write:</p>
 <p><span class="math inline">\(SS_{Explained} = \sum (Y'_i - \bar{Y})^2\)</span></p>
 <p>which means the sum of the squared differences between the predicted Y values based on the regression line and the mean of Y (e..g, the sum of the area of blue squares).</p>
 <div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="no">SS_explained</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>((<span class="fu"><a href="https://rdrr.io/r/stats/predict.lm.html">predict.lm</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">Y</span>~<span class="no">X</span>)) - <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">Y</span>))^<span class="fl">2</span>)
@@ -745,6 +782,9 @@
 <span class="no">SS_explained</span>/<span class="no">SS_total</span>
 <span class="co">#&gt; [1] 0.5384615</span>
 
+(<span class="no">SS_explained</span>/<span class="fl">8</span>) / (<span class="no">SS_total</span>/<span class="fl">8</span>)
+<span class="co">#&gt; [1] 0.5384615</span>
+
 <span class="co"># compare to r^2</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span>(<span class="no">Y</span>,<span class="no">X</span>)^<span class="fl">2</span>
 <span class="co">#&gt; [1] 0.5384615</span></pre></body></html></div>
@@ -752,7 +792,7 @@
 <div id="all-together" class="section level3">
 <h3 class="hasAnchor">
 <a href="#all-together" class="anchor"></a>All together</h3>
-<p>We have just created three different scatterplots illustrating that <span class="math inline">\(SS_{total} = SS_{explained} + SS_{unexplained}\)</span>. For ease of looking, I’d like to see them all in one place. We could accomplish this goal in multiple ways, but I’d like to do it by introducing a handy ggplot library called <code>patchwork</code> that makes it easy to combine multiple plots together.</p>
+<p>We have just created three different scatterplots illustrating that <span class="math inline">\(SS_{total} = SS_{explained} + SS_{unexplained}\)</span>. For ease of looking, I’d like to see them all in one place. We could accomplish this goal in multiple ways, but I’d like to do it by introducing a handy ggplot library called <a href="https://patchwork.data-imaginist.com/index.html">patchwork</a> that makes it easy to combine multiple plots together.</p>
 <div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">patchwork</span>)
 
 (<span class="no">total_plot</span> +<span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_spacer.html">plot_spacer</a></span>())/(<span class="no">exp_plot</span>+<span class="no">res_plot</span>)+
@@ -763,6 +803,18 @@
 <div id="advanced-concept-best-fit-line-by-brute-force-search" class="section level2">
 <h2 class="hasAnchor">
 <a href="#advanced-concept-best-fit-line-by-brute-force-search" class="anchor"></a>Advanced Concept: Best fit line by brute force search</h2>
+<p>What if you didn’t know the formulas to compute the slope and y-intercept for the best fit line? If you knew the definition of the best fit line, that it is the line the minimizes the sum of squared deviations between each point and the line (<span class="math inline">\(SS_{residual}\)</span>), then you could potentially find the best line through trial and error.</p>
+<p>For example, you could pick any slope and y-intercept and calculate <span class="math inline">\(SS_{residual}\)</span>, then change the slope of the intercept up or down, and see if <span class="math inline">\(SS_{residual}\)</span> get’s smaller…you could keep doing this over and over until you can’t make <span class="math inline">\(SS_{residual}\)</span> any smaller. At the end you would have found the correct parameters for the best fit line.</p>
+<p>Below is a quick example of forcing R to try and find correct values for the slope and intercept through trial and error. Sometimes it converges on the right answer in 1000 attempts, and sometimes it doesn’t. The basic idea is:</p>
+<ol style="list-style-type: decimal">
+<li>choose any starting slope and intercept (b)</li>
+<li>compute <span class="math inline">\(SS_{residual}\)</span> between all points and line</li>
+<li>randomly change slope and intercept up or down by a small value (.01)</li>
+<li>compute <span class="math inline">\(SS_{residual}\)</span> again.</li>
+<li>If <span class="math inline">\(SS_{residual}\)</span> is smaller than before, then save the new slope and intercept, and keep repeating</li>
+<li>If <span class="math inline">\(SS_{residual}\)</span> is larger than before, then forget the new slope and intercept, and keep randomly changing them until they produce smaller <span class="math inline">\(SS_{residual}\)</span>.</li>
+<li>Do this for a long time…the algorithm only allows changes to slope and intercept that make <span class="math inline">\(SS_{residual}\)</span> smaller, so over time, this value should converge on its minimum possible value…which is the one you get for the best fit line.</li>
+</ol>
 <div class="sourceCode" id="cb32"><html><body><pre class="r"><span class="no">step_size</span> <span class="kw">&lt;-</span> <span class="fl">.01</span>
 
 <span class="no">slope</span> <span class="kw">=</span> <span class="fl">2</span>
@@ -795,9 +847,9 @@
 }
 
 <span class="no">slope</span>
-<span class="co">#&gt; [1] 0.52</span>
+<span class="co">#&gt; [1] 0.49</span>
 <span class="no">b</span>
-<span class="co">#&gt; [1] 0.88</span></pre></body></html></div>
+<span class="co">#&gt; [1] 1.09</span></pre></body></html></div>
 </div>
 <div id="lab-12-generalization-assignment" class="section level2">
 <h2 class="hasAnchor">
@@ -819,23 +871,28 @@
 <div id="problems" class="section level3">
 <h3 class="hasAnchor">
 <a href="#problems" class="anchor"></a>Problems</h3>
+<ol style="list-style-type: decimal">
+<li>Should you do a linear regression on this data? Explain.</li>
+</ol>
+<div class="sourceCode" id="cb33"><html><body><pre class="r"><span class="no">Y</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">10</span>,<span class="fl">9</span>,<span class="fl">8</span>,<span class="fl">7</span>,<span class="fl">6</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span>,<span class="fl">10</span>)
+<span class="no">X</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span>,<span class="fl">10</span>,<span class="fl">11</span>,<span class="fl">12</span>,<span class="fl">13</span>,<span class="fl">14</span>,<span class="fl">15</span>,<span class="fl">16</span>,<span class="fl">17</span>,<span class="fl">18</span>,<span class="fl">19</span>)</pre></body></html></div>
 </div>
 </div>
 <div id="references" class="section level2 unnumbered">
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
-<div id="refs" class="references hanging-indent">
-<div id="ref-abdiExperimentalDesignAnalysis2009">
-<p>Abdi, H., Edelman, B., Dowling, W. J., &amp; Valentin, D. (2009). <em>Experimental design and analysis for psychology</em>. Oxford University Press.</p>
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-abdiExperimentalDesignAnalysis2009" class="csl-entry">
+Abdi, H., Edelman, B., Dowling, W. J., &amp; Valentin, D. (2009). <em>Experimental design and analysis for psychology</em>. <span>Oxford University Press</span>.
 </div>
-<div id="ref-crumpAnsweringQuestionsData2018">
-<p>Crump, M. J. C., Navarro, D., &amp; Suzuki, J. (2018). <em>Answering questions with data: Introductory Statistics For Psychology Students</em>. <a href="https://crumplab.github.io/statistics/">https://crumplab.github.io/statistics/</a></p>
+<div id="ref-crumpAnsweringQuestionsData2018" class="csl-entry">
+Crump, M. J. C., Navarro, D., &amp; Suzuki, J. (2018). <em>Answering questions with data: <span>Introductory Statistics For Psychology Students</span></em>. <a href="https://crumplab.github.io/statistics/">https://crumplab.github.io/statistics/</a>
 </div>
-<div id="ref-vokeyThinkingData7th2018">
-<p>Vokey, J. R., &amp; Allen, S. W. (2018). <em>Thinking with Data (7th Edition - Revised)</em>. Psyence Publishing Society. <a href="http://people.uleth.ca/~vokey/pdf/thinking.pdf">http://people.uleth.ca/~vokey/pdf/thinking.pdf</a></p>
+<div id="ref-vokeyThinkingData7th2018" class="csl-entry">
+Vokey, J. R., &amp; Allen, S. W. (2018). <em>Thinking with <span>Data</span> (7th <span>Edition</span> - <span>Revised</span>)</em>. <span>Psyence Publishing Society</span>. <a href="http://people.uleth.ca/%C2%A0vokey/pdf/thinking.pdf">http://people.uleth.ca/ vokey/pdf/thinking.pdf</a>
 </div>
-<div id="ref-wrightCorrelationCausation">
-<p>Wright, S. (n.d.). Correlation and Causation. <em>Journal of Agricultural Research</em>, <em>20</em>, 557–585.</p>
+<div id="ref-wrightCorrelationCausation" class="csl-entry">
+Wright, S. (n.d.). Correlation and <span>Causation</span>. <em>Journal of Agricultural Research</em>, <em>20</em>, 557–585.
 </div>
 </div>
 </div>
