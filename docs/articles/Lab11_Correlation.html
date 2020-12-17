@@ -158,7 +158,7 @@
 
       
 
-      </header><script src="Lab11_Correlation_files/header-attrs-2.5.3/header-attrs.js"></script><script src="Lab11_Correlation_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="Lab11_Correlation_files/header-attrs-2.5.3/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Lab 11 Correlation</h1>
@@ -187,8 +187,8 @@
 <div id="historical-background" class="section level2">
 <h2 class="hasAnchor">
 <a href="#historical-background" class="anchor"></a>Historical Background</h2>
-<p>Sir Francis Galton is often credited with inventing measures of correlation <span class="citation">(Galton, <a href="#ref-galtonCorelationsTheirMeasurement1889" role="doc-biblioref">1889</a>, <a href="#ref-galtonKinshipCorrelation1890" role="doc-biblioref">1890</a>)</span>, which developed out of his interests in eugenics and quantifying heritability of traits from parents to offspring <span class="citation">(Galton, <a href="#ref-galtonHereditaryTalentCharacter1865" role="doc-biblioref">1865</a>, <a href="#ref-galtonHereditaryGenius1869" role="doc-biblioref">1869</a>)</span>. Galton’s protege, Karl Pearson, is credited with popularizing and formalizing measures of correlation; for example, the correlation coefficient, <span class="math inline">\(r\)</span>, is often referred to as Pearson’s <span class="math inline">\(r\)</span> (AKA Pearson’s correlation coefficient, and Pearson’s product-moment correlation coefficient). Pearson published his work in a brief note to the Royal Society <span class="citation">(Pearson, <a href="#ref-pearsonNotesRegressionInheritance1895" role="doc-biblioref">1895</a>)</span>. Despite the recognition that Galton and Pearson receive, it seems that August Bravais had described correlation coefficients before both of them <span class="citation">(Bravais, <a href="#ref-bravaisAnalyseMathematiqueProbabilites1844" role="doc-biblioref">1844</a>)</span>. Pearson recounts the history of his development of the correlation coefficient, and discusses how he missed Bravais’ work <span class="citation">(Pearson, <a href="#ref-pearsonNOTESHISTORYCORRELATION1920" role="doc-biblioref">1920</a>)</span>. More recently, Stigler discussed some of the history about Galton’s account of his development of the correlation coefficient <span class="citation">(Stigler, <a href="#ref-stiglerFrancisGaltonAccount1989" role="doc-biblioref">1989</a>)</span>. <em>note: these papers are included in the class zotero group</em>.</p>
-<p>Finally, <span class="citation">Lee Rodgers &amp; Nicewander (<a href="#ref-leerodgersThirteenWaysLook1988" role="doc-biblioref">1988</a>)</span> have a fantastic article on thirteen ways of conceptualizing the correlation coefficient. They also begin the article with a brief discussion of the history of the development of ideas around correlation.</p>
+<p>Sir Francis Galton is often credited with inventing measures of correlation <span class="citation">(<a href="#ref-galtonCorelationsTheirMeasurement1889" role="doc-biblioref">Galton, 1889</a>, <a href="#ref-galtonKinshipCorrelation1890" role="doc-biblioref">1890</a>)</span>, which developed out of his interests in eugenics and quantifying heritability of traits from parents to offspring <span class="citation">(<a href="#ref-galtonHereditaryTalentCharacter1865" role="doc-biblioref">Galton, 1865</a>, <a href="#ref-galtonHereditaryGenius1869" role="doc-biblioref">1869</a>)</span>. Galton’s protege, Karl Pearson, is credited with popularizing and formalizing measures of correlation; for example, the correlation coefficient, <span class="math inline">\(r\)</span>, is often referred to as Pearson’s <span class="math inline">\(r\)</span> (AKA Pearson’s correlation coefficient, and Pearson’s product-moment correlation coefficient). Pearson published his work in a brief note to the Royal Society <span class="citation">(<a href="#ref-pearsonNotesRegressionInheritance1895" role="doc-biblioref">K. Pearson, 1895</a>)</span>. Despite the recognition that Galton and Pearson receive, it seems that August Bravais had described correlation coefficients before both of them <span class="citation">(<a href="#ref-bravaisAnalyseMathematiqueProbabilites1844" role="doc-biblioref">Bravais, 1844</a>)</span>. Pearson recounts the history of his development of the correlation coefficient, and discusses how he missed Bravais’ work <span class="citation">(<a href="#ref-pearsonNOTESHISTORYCORRELATION1920" role="doc-biblioref">Karl Pearson, 1920</a>)</span>. More recently, Stigler discussed some of the history about Galton’s account of his development of the correlation coefficient <span class="citation">(<a href="#ref-stiglerFrancisGaltonAccount1989" role="doc-biblioref">Stigler, 1989</a>)</span>. <em>note: these papers are included in the class zotero group</em>.</p>
+<p>Finally, <span class="citation"><a href="#ref-leerodgersThirteenWaysLook1988" role="doc-biblioref">Lee Rodgers &amp; Nicewander</a> (<a href="#ref-leerodgersThirteenWaysLook1988" role="doc-biblioref">1988</a>)</span> have a fantastic article on thirteen ways of conceptualizing the correlation coefficient. They also begin the article with a brief discussion of the history of the development of ideas around correlation.</p>
 </div>
 <div id="additional-reading" class="section level2">
 <h2 class="hasAnchor">
@@ -218,27 +218,27 @@
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">A</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">1</span>),<span class="kw">ncol</span><span class="kw">=</span><span class="fl">10</span>,<span class="kw">nrow</span><span class="kw">=</span><span class="fl">10</span>)
 <span class="no">B</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span>)
 <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span>(<span class="no">A</span>,<span class="no">B</span>)
-<span class="co">#&gt;              [,1]</span>
-<span class="co">#&gt;  [1,]  0.04106302</span>
-<span class="co">#&gt;  [2,]  0.17389485</span>
-<span class="co">#&gt;  [3,]  0.46114003</span>
-<span class="co">#&gt;  [4,] -0.20778655</span>
-<span class="co">#&gt;  [5,]  0.26026826</span>
-<span class="co">#&gt;  [6,] -0.56739867</span>
-<span class="co">#&gt;  [7,]  0.29001450</span>
-<span class="co">#&gt;  [8,]  0.34757286</span>
-<span class="co">#&gt;  [9,] -0.04882320</span>
-<span class="co">#&gt; [10,] -0.14460265</span></pre></body></html></div>
+<span class="co">#&gt;               [,1]</span>
+<span class="co">#&gt;  [1,] -0.511197592</span>
+<span class="co">#&gt;  [2,]  0.071559647</span>
+<span class="co">#&gt;  [3,]  0.332815262</span>
+<span class="co">#&gt;  [4,]  0.275829618</span>
+<span class="co">#&gt;  [5,] -0.455277929</span>
+<span class="co">#&gt;  [6,]  0.043047544</span>
+<span class="co">#&gt;  [7,] -0.115221861</span>
+<span class="co">#&gt;  [8,]  0.270927185</span>
+<span class="co">#&gt;  [9,]  0.045119582</span>
+<span class="co">#&gt; [10,] -0.002564029</span></pre></body></html></div>
 <p>If both x and y are matrices, then the correlation between each column of X and Y are computed.</p>
 <div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">A</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">25</span>,<span class="fl">0</span>,<span class="fl">1</span>),<span class="kw">ncol</span><span class="kw">=</span><span class="fl">5</span>,<span class="kw">nrow</span><span class="kw">=</span><span class="fl">5</span>)
 <span class="no">B</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">25</span>,<span class="fl">0</span>,<span class="fl">1</span>),<span class="kw">ncol</span><span class="kw">=</span><span class="fl">5</span>,<span class="kw">nrow</span><span class="kw">=</span><span class="fl">5</span>)
 <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span>(<span class="no">A</span>,<span class="no">B</span>)
-<span class="co">#&gt;            [,1]         [,2]       [,3]       [,4]         [,5]</span>
-<span class="co">#&gt; [1,]  0.3122179 -0.006017569 -0.3560795 -0.5827021  0.779627406</span>
-<span class="co">#&gt; [2,] -0.4570157 -0.361414616  0.6452698  0.1333821 -0.506129358</span>
-<span class="co">#&gt; [3,]  0.5290596  0.283089859 -0.2387782 -0.1944213 -0.006285958</span>
-<span class="co">#&gt; [4,]  0.1686346 -0.091269479 -0.3533242 -0.5786032  0.908271447</span>
-<span class="co">#&gt; [5,]  0.8033978  0.746505739 -0.5242934  0.3587188 -0.264904397</span></pre></body></html></div>
+<span class="co">#&gt;            [,1]        [,2]        [,3]       [,4]       [,5]</span>
+<span class="co">#&gt; [1,]  0.1405860 -0.34404211  0.26771792  0.9703143  0.6969704</span>
+<span class="co">#&gt; [2,] -0.3826330 -0.29124370  0.07129523 -0.4965665 -0.7988511</span>
+<span class="co">#&gt; [3,]  0.8748492  0.08838382  0.43684160 -0.3391450 -0.3490540</span>
+<span class="co">#&gt; [4,]  0.7930784  0.07829561  0.48072861  0.2623661 -0.1176044</span>
+<span class="co">#&gt; [5,] -0.7856109  0.74079083 -0.96731965 -0.1600162  0.4850216</span></pre></body></html></div>
 </div>
 <div id="cor-and-n-1" class="section level3">
 <h3 class="hasAnchor">
@@ -316,6 +316,7 @@
 <span class="no">results</span>$<span class="no">estimate</span>
 <span class="co">#&gt;  cor </span>
 <span class="co">#&gt; -0.3</span></pre></body></html></div>
+<p>Using papaja to report an r-value, <span class="math inline">\(r = -.30\)</span>, 95% CI <span class="math inline">\([-.93\)</span>, <span class="math inline">\(.79]\)</span>, <span class="math inline">\(t(3) = -0.54\)</span>, <span class="math inline">\(p = .624\)</span>.</p>
 </div>
 </div>
 <div id="conceptual-i-the-sum-of-products-as-a-measure-of-correlation" class="section level2">
@@ -351,7 +352,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">X</span>,<span class="no">Y</span>)</pre></body></html></div>
 <p><img src="Lab11_Correlation_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
 <div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span>(<span class="no">X</span>,<span class="no">Y</span>)
-<span class="co">#&gt; [1] -0.2121212</span></pre></body></html></div>
+<span class="co">#&gt; [1] -0.4545455</span></pre></body></html></div>
 </div>
 <div id="sum-of-products-and-correlation" class="section level3">
 <h3 class="hasAnchor">
@@ -389,46 +390,46 @@
 <li>If X contains only the numbers from 1 to 10 in any order, and Y does too, what kinds of sums of products can occur?</li>
 </ol>
 <div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fl">1</span>:<span class="fl">10</span>)*<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fl">1</span>:<span class="fl">10</span>))
-<span class="co">#&gt; [1] 334</span></pre></body></html></div>
+<span class="co">#&gt; [1] 326</span></pre></body></html></div>
 <div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="no">sim_sums</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span>(<span class="fl">1000</span>,<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fl">1</span>:<span class="fl">10</span>)*<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fl">1</span>:<span class="fl">10</span>)))
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="no">sim_sums</span>)</pre></body></html></div>
 <p><img src="Lab11_Correlation_files/figure-html/unnamed-chunk-21-1.png" width="700"></p>
 <div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(<span class="no">sim_sums</span>)
-<span class="co">#&gt; [1] 228</span>
+<span class="co">#&gt; [1] 226</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="no">sim_sums</span>)
-<span class="co">#&gt; [1] 379</span></pre></body></html></div>
+<span class="co">#&gt; [1] 377</span></pre></body></html></div>
 </div>
 </div>
 <div id="conceptual-ii-statistical-inference-for-correlation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#conceptual-ii-statistical-inference-for-correlation" class="anchor"></a>Conceptual II: Statistical inference for correlation</h2>
-<p>We will look at the concept of a null-distribution for correlation co-efficients in two different ways, first by randomly samply values from normal distributions, and second by a permutation test.</p>
+<p>We will look at the concept of a null-distribution for correlation co-efficients in two different ways, first by randomly sampling values from normal distributions, and second by a permutation test.</p>
 <div id="random-correlations" class="section level3">
 <h3 class="hasAnchor">
 <a href="#random-correlations" class="anchor"></a>“Random” correlations</h3>
-<p>It is totally possible to apply the Pearson’s <span class="math inline">\(r\)</span> formula to two variables that are conceptually 100% uncorrelated and independent from each other, and still find “correlations”, or largish values of <span class="math inline">\(r\)</span>.</p>
+<p>It is totally possible to apply the Pearson’s <span class="math inline">\(r\)</span> formula to two variables that are conceptually 100% uncorrelated and independent from each other, and still find “correlations,” or largish values of <span class="math inline">\(r\)</span>.</p>
 <p>For example, if we randomly sample 10 values from a normal distribution into X, and another 10 values from a normal distribution in Y, then we expect on average there should be 0 correlation between X and Y. After all, we selected our values completely at random.</p>
 <div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="no">X</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span>)
 <span class="no">Y</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span>)
 <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span>(<span class="no">X</span>,<span class="no">Y</span>)
-<span class="co">#&gt; [1] 0.1826869</span></pre></body></html></div>
+<span class="co">#&gt; [1] -0.5378086</span></pre></body></html></div>
 <p>What happens if we do the above 10 times?</p>
 <div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span>(<span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span>),<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span>)))
-<span class="co">#&gt;  [1] -0.15091752 -0.18492891 -0.41190308  0.47464375  0.32556757 -0.09635200</span>
-<span class="co">#&gt;  [7] -0.05919283 -0.06140468 -0.22055086  0.25092510</span></pre></body></html></div>
+<span class="co">#&gt;  [1] -0.383982234 -0.261292543  0.559184625  0.148114839  0.361442040</span>
+<span class="co">#&gt;  [6] -0.562400049  0.252759213 -0.576966903  0.006467845  0.560340318</span></pre></body></html></div>
 <p>How about 1000 times?</p>
 <div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="no">rand_1000</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span>(<span class="fl">10000</span>,<span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span>),<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span>)))
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="no">rand_1000</span>)</pre></body></html></div>
 <p><img src="Lab11_Correlation_files/figure-html/unnamed-chunk-24-1.png" width="700"></p>
 <div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">rand_1000</span>)
-<span class="co">#&gt; [1] 0.001776678</span>
+<span class="co">#&gt; [1] -0.005465857</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="no">rand_1000</span>)
-<span class="co">#&gt; [1] 0.8926571</span>
+<span class="co">#&gt; [1] 0.9430999</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(<span class="no">rand_1000</span>)
-<span class="co">#&gt; [1] -0.9287332</span>
+<span class="co">#&gt; [1] -0.9758438</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">rand_1000</span>[<span class="no">rand_1000</span> <span class="kw">&gt;</span> <span class="fl">.54</span>])/<span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.054</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.0507</span></pre></body></html></div>
 <p>In some sense the above simulation creates a null-distribution of sorts, that is the sampling distribution of <span class="math inline">\(r\)</span> values that could be expected when the number of paired scores is 10, and both are drawn randomly and independently from unit normal distributions. It’s clear in this case that by chance alone it is possible to get a wide range of correlation coefficients.</p>
 </div>
 <div id="sample-size-matters" class="section level3">
@@ -439,11 +440,11 @@
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="no">rand_1000</span>)</pre></body></html></div>
 <p><img src="Lab11_Correlation_files/figure-html/unnamed-chunk-25-1.png" width="700"></p>
 <div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">rand_1000</span>)
-<span class="co">#&gt; [1] -3.216342e-05</span>
+<span class="co">#&gt; [1] -0.000462115</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="no">rand_1000</span>)
-<span class="co">#&gt; [1] 0.2735918</span>
+<span class="co">#&gt; [1] 0.2922995</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span>(<span class="no">rand_1000</span>)
-<span class="co">#&gt; [1] -0.3146894</span></pre></body></html></div>
+<span class="co">#&gt; [1] -0.3107717</span></pre></body></html></div>
 </div>
 <div id="permutation-test" class="section level3">
 <h3 class="hasAnchor">
@@ -588,7 +589,7 @@
 <span class="co">#&gt; -0.7324543</span></pre></body></html></div>
 <p>Instead of using the <code><a href="https://rdrr.io/r/stats/cor.test.html">cor.test()</a></code> function, we can use the concept of a permutation test to construct our own null distribution. The basic idea is to imagine that the values in the <code>Length</code> and <code>Meanings</code> variables could be randomly repaired, and then a new correlation coefficient measured. If we did this procedure several thousand times we would create a null distribution representing the kinds of <span class="math inline">\(r\)</span> values that could have been obtained by chance.</p>
 <div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="no">Length</span>),<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="no">Meanings</span>))
-<span class="co">#&gt; [1] -0.0893237</span></pre></body></html></div>
+<span class="co">#&gt; [1] -0.01190983</span></pre></body></html></div>
 <div class="sourceCode" id="cb36"><html><body><pre class="r"><span class="no">sim_rs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span>(<span class="fl">1000</span>,<span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="no">Length</span>),<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="no">Meanings</span>)))
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="no">sim_rs</span>)</pre></body></html></div>
 <p><img src="Lab11_Correlation_files/figure-html/unnamed-chunk-29-1.png" width="700"></p>
@@ -646,6 +647,8 @@
 <div id="lab-11-generalization-assignment" class="section level2">
 <h2 class="hasAnchor">
 <a href="#lab-11-generalization-assignment" class="anchor"></a>Lab 11 Generalization Assignment</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/elFmc01cpmA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <div id="instructions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#instructions" class="anchor"></a>Instructions</h3>
@@ -682,33 +685,33 @@
 <div id="references" class="section level2 unnumbered">
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
-<div id="refs" class="references hanging-indent">
-<div id="ref-bravaisAnalyseMathematiqueProbabilites1844">
-<p>Bravais, A. (1844). <em>Analyse mathématique sur les probabilités des erreurs de situation d’un point</em>. Impr. Royale.</p>
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-bravaisAnalyseMathematiqueProbabilites1844" class="csl-entry">
+Bravais, A. (1844). <em>Analyse mathématique sur les probabilités des erreurs de situation d’un point</em>. <span>Impr. Royale</span>.
 </div>
-<div id="ref-galtonHereditaryTalentCharacter1865">
-<p>Galton, F. (1865). Hereditary talent and character. <em>Macmillan’s Magazine</em>, <em>12</em>(157-166), 318–327.</p>
+<div id="ref-galtonHereditaryTalentCharacter1865" class="csl-entry">
+Galton, F. (1865). Hereditary talent and character. <em>Macmillan’s Magazine</em>, <em>12</em>(157-166), 318–327.
 </div>
-<div id="ref-galtonHereditaryGenius1869">
-<p>Galton, F. (1869). <em>Hereditary genius</em>. Macmillan.</p>
+<div id="ref-galtonHereditaryGenius1869" class="csl-entry">
+Galton, F. (1869). <em>Hereditary genius</em>. <span>Macmillan</span>.
 </div>
-<div id="ref-galtonCorelationsTheirMeasurement1889">
-<p>Galton, F. (1889). I. Co-relations and their measurement, chiefly from anthropometric data. <em>Proceedings of the Royal Society of London</em>, <em>45</em>(273-279), 135–145. <a href="https://doi.org/10/dz5sd6">https://doi.org/10/dz5sd6</a></p>
+<div id="ref-galtonCorelationsTheirMeasurement1889" class="csl-entry">
+Galton, F. (1889). I. <span>Co</span>-relations and their measurement, chiefly from anthropometric data. <em>Proceedings of the Royal Society of London</em>, <em>45</em>(273-279), 135–145. <a href="https://doi.org/dz5sd6">https://doi.org/dz5sd6</a>
 </div>
-<div id="ref-galtonKinshipCorrelation1890">
-<p>Galton, F. (1890). Kinship and correlation. <em>The North American Review</em>, <em>150</em>(401), 419–431.</p>
+<div id="ref-galtonKinshipCorrelation1890" class="csl-entry">
+Galton, F. (1890). Kinship and correlation. <em>The North American Review</em>, <em>150</em>(401), 419–431.
 </div>
-<div id="ref-leerodgersThirteenWaysLook1988">
-<p>Lee Rodgers, J., &amp; Nicewander, W. A. (1988). Thirteen ways to look at the correlation coefficient. <em>The American Statistician</em>, <em>42</em>(1), 59–66.</p>
+<div id="ref-leerodgersThirteenWaysLook1988" class="csl-entry">
+Lee Rodgers, J., &amp; Nicewander, W. A. (1988). Thirteen ways to look at the correlation coefficient. <em>The American Statistician</em>, <em>42</em>(1), 59–66.
 </div>
-<div id="ref-pearsonNotesRegressionInheritance1895">
-<p>Pearson, K. (1895). <em>Notes on Regression and Inheritance in the Case of Two Parents Proceedings of the Royal Society of London, 58, 240-242</em>. ed.</p>
+<div id="ref-pearsonNotesRegressionInheritance1895" class="csl-entry">
+Pearson, K. (1895). <em>Notes on <span>Regression</span> and <span>Inheritance</span> in the <span>Case</span> of <span>Two Parents Proceedings</span> of the <span>Royal Society</span> of <span>London</span>, 58, 240-242</em>. <span>ed</span>.
 </div>
-<div id="ref-pearsonNOTESHISTORYCORRELATION1920">
-<p>Pearson, K. (1920). NOTES ON THE HISTORY OF CORRELATION. <em>Biometrika</em>, <em>13</em>(1), 25–45. <a href="https://doi.org/10/c2z3nz">https://doi.org/10/c2z3nz</a></p>
+<div id="ref-pearsonNOTESHISTORYCORRELATION1920" class="csl-entry">
+Pearson, Karl. (1920). <span>NOTES ON THE HISTORY OF CORRELATION</span>. <em>Biometrika</em>, <em>13</em>(1), 25–45. <a href="https://doi.org/c2z3nz">https://doi.org/c2z3nz</a>
 </div>
-<div id="ref-stiglerFrancisGaltonAccount1989">
-<p>Stigler, S. M. (1989). Francis Galton’s account of the invention of correlation. <em>Statistical Science</em>, 73–79. <a href="https://doi.org/10/dg8nxj">https://doi.org/10/dg8nxj</a></p>
+<div id="ref-stiglerFrancisGaltonAccount1989" class="csl-entry">
+Stigler, S. M. (1989). Francis <span>Galton</span>’s account of the invention of correlation. <em>Statistical Science</em>, 73–79. <a href="https://doi.org/dg8nxj">https://doi.org/dg8nxj</a>
 </div>
 </div>
 </div>

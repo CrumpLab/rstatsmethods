@@ -221,8 +221,25 @@
 
 <span class="co"># saving and output</span>
 <span class="no">save_model</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">Y_dv</span> ~ <span class="no">X_iv</span>, <span class="kw">data</span><span class="kw">=</span><span class="no">some_data</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">save_model</span>)$<span class="no">r.squared</span>
-<span class="co">#&gt; [1] 0.5384615</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">save_model</span>)
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Call:</span>
+<span class="co">#&gt; lm(formula = Y_dv ~ X_iv, data = some_data)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Residuals:</span>
+<span class="co">#&gt;    Min     1Q Median     3Q    Max </span>
+<span class="co">#&gt;  -1.50  -0.75   0.25   1.00   1.00 </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Coefficients:</span>
+<span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)  </span>
+<span class="co">#&gt; (Intercept)    1.000      1.126   0.888   0.4087  </span>
+<span class="co">#&gt; X_iv           0.500      0.189   2.646   0.0382 *</span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Residual standard error: 1.225 on 6 degrees of freedom</span>
+<span class="co">#&gt; Multiple R-squared:  0.5385, Adjusted R-squared:  0.4615 </span>
+<span class="co">#&gt; F-statistic:     7 on 1 and 6 DF,  p-value: 0.03825</span>
 
 <span class="co"># r and r^2</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/cor.test.html">cor.test</a></span>(<span class="no">some_data</span>$<span class="no">Y_dv</span>,<span class="no">some_data</span>$<span class="no">X_iv</span>)
@@ -276,6 +293,9 @@
 <span class="co">#&gt; sample estimates:</span>
 <span class="co">#&gt;       cor </span>
 <span class="co">#&gt; 0.7337994</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/cor.test.html">cor.test</a></span>(<span class="no">some_data</span>$<span class="no">Y_dv</span>,<span class="no">some_data</span>$<span class="no">X_iv</span>)$<span class="no">estimate</span>^<span class="fl">2</span>
+<span class="co">#&gt;       cor </span>
+<span class="co">#&gt; 0.5384615</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">save_model</span>)$<span class="no">r.squared</span>
 <span class="co">#&gt; [1] 0.5384615</span>
 <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">save_model</span>)$<span class="no">r.squared</span>)
@@ -632,7 +652,7 @@
 </h3>
 <p><span class="citation"><a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al.</a> (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span> provide a formula (chapter 3) that shows Fs can be converted from <span class="math inline">\(R^2\)</span>.</p>
 <p><span class="math inline">\(F = \frac{R^2}{1-R^2} \times (S-2)\)</span></p>
-<p>The numerator is <span class="math inline">\(R^2\)</span>, which we have previously defined as the proportion of variance <strong>explained</strong>; and the denominator is the proporition of variance <strong>unexplained</strong>. So, this formula again presents F as a ratio of explained over unexplained variance.</p>
+<p>The numerator is <span class="math inline">\(R^2\)</span>, which we have previously defined as the proportion of variance <strong>explained</strong>; and the denominator is the proportion of variance <strong>unexplained</strong>. So, this formula again presents F as a ratio of explained over unexplained variance.</p>
 </div>
 <div id="visualizing-the-sums-of-squares" class="section level3">
 <h3 class="hasAnchor">
@@ -847,9 +867,9 @@
 }
 
 <span class="no">slope</span>
-<span class="co">#&gt; [1] 0.49</span>
+<span class="co">#&gt; [1] 0.48</span>
 <span class="no">b</span>
-<span class="co">#&gt; [1] 1.09</span></pre></body></html></div>
+<span class="co">#&gt; [1] 1.12</span></pre></body></html></div>
 </div>
 <div id="lab-12-generalization-assignment" class="section level2">
 <h2 class="hasAnchor">
@@ -875,7 +895,10 @@
 <li>Should you do a linear regression on this data? Explain.</li>
 </ol>
 <div class="sourceCode" id="cb33"><html><body><pre class="r"><span class="no">Y</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">10</span>,<span class="fl">9</span>,<span class="fl">8</span>,<span class="fl">7</span>,<span class="fl">6</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span>,<span class="fl">10</span>)
-<span class="no">X</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span>,<span class="fl">10</span>,<span class="fl">11</span>,<span class="fl">12</span>,<span class="fl">13</span>,<span class="fl">14</span>,<span class="fl">15</span>,<span class="fl">16</span>,<span class="fl">17</span>,<span class="fl">18</span>,<span class="fl">19</span>)</pre></body></html></div>
+<span class="no">X</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span>,<span class="fl">10</span>,<span class="fl">11</span>,<span class="fl">12</span>,<span class="fl">13</span>,<span class="fl">14</span>,<span class="fl">15</span>,<span class="fl">16</span>,<span class="fl">17</span>,<span class="fl">18</span>,<span class="fl">19</span>)
+
+<span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">X</span>,<span class="no">Y</span>)</pre></body></html></div>
+<p><img src="Lab12_Regression_files/figure-html/unnamed-chunk-34-1.png" width="700"></p>
 </div>
 </div>
 <div id="references" class="section level2 unnumbered">

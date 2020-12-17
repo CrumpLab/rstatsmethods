@@ -25,13 +25,13 @@ knitr::opts_chunk$set(
 
 This lab contains a practical section and two concept sections on correlations in R.
 
- - Practical I: How to compute correlations in R using `cor()` and `cor.test()`
- - Concepts I: Measuring correlation with a simple sum
- - Concepts II: Statistical inference for correlation using permutation tests
+-   Practical I: How to compute correlations in R using `cor()` and `cor.test()`
+-   Concepts I: Measuring correlation with a simple sum
+-   Concepts II: Statistical inference for correlation using permutation tests
 
 ## Historical Background
 
-Sir Francis Galton is often credited with inventing measures of correlation [@galtonKinshipCorrelation1890;@galtonCorelationsTheirMeasurement1889], which developed out of his interests in eugenics and quantifying heritability of traits from parents to offspring [@galtonHereditaryTalentCharacter1865;@galtonHereditaryGenius1869]. Galton's protege, Karl Pearson, is credited with popularizing and formalizing measures of correlation; for example, the correlation coefficient, $r$, is often referred to as Pearson's $r$ (AKA Pearson's correlation coefficient, and Pearson's product-moment correlation coefficient). Pearson published his work in a brief note to the Royal Society [@pearsonNotesRegressionInheritance1895]. Despite the recognition that Galton and Pearson receive, it seems that August Bravais had described correlation coefficients before both of them [@bravaisAnalyseMathematiqueProbabilites1844]. Pearson recounts the history of his development of the correlation coefficient, and discusses how he missed Bravais' work [@pearsonNOTESHISTORYCORRELATION1920]. More recently, Stigler discussed some of the history about Galton's account of his development of the correlation coefficient [@stiglerFrancisGaltonAccount1989]. *note: these papers are included in the class zotero group*.
+Sir Francis Galton is often credited with inventing measures of correlation [@galtonKinshipCorrelation1890; @galtonCorelationsTheirMeasurement1889], which developed out of his interests in eugenics and quantifying heritability of traits from parents to offspring [@galtonHereditaryTalentCharacter1865; @galtonHereditaryGenius1869]. Galton's protege, Karl Pearson, is credited with popularizing and formalizing measures of correlation; for example, the correlation coefficient, $r$, is often referred to as Pearson's $r$ (AKA Pearson's correlation coefficient, and Pearson's product-moment correlation coefficient). Pearson published his work in a brief note to the Royal Society [@pearsonNotesRegressionInheritance1895]. Despite the recognition that Galton and Pearson receive, it seems that August Bravais had described correlation coefficients before both of them [@bravaisAnalyseMathematiqueProbabilites1844]. Pearson recounts the history of his development of the correlation coefficient, and discusses how he missed Bravais' work [@pearsonNOTESHISTORYCORRELATION1920]. More recently, Stigler discussed some of the history about Galton's account of his development of the correlation coefficient [@stiglerFrancisGaltonAccount1989]. *note: these papers are included in the class zotero group*.
 
 Finally, @leerodgersThirteenWaysLook1988 have a fantastic article on thirteen ways of conceptualizing the correlation coefficient. They also begin the article with a brief discussion of the history of the development of ideas around correlation.
 
@@ -49,9 +49,9 @@ The animated gif above shows examples of observing random correlations by chance
 
 ### cor()
 
-Base R comes with the `cor()` function for computing Pearson's correlation coefficients. 
+Base R comes with the `cor()` function for computing Pearson's correlation coefficients.
 
-```{r}
+```{r, eval=FALSE}
 ?cor
 ```
 
@@ -74,15 +74,15 @@ cor(A,B)
 
 
 ```
+
 If both x and y are matrices, then the correlation between each column of X and Y are computed.
 
 ```{r}
 A <- matrix(rnorm(25,0,1),ncol=5,nrow=5) 
 B <- matrix(rnorm(25,0,1),ncol=5,nrow=5) 
 cor(A,B)
-
-
 ```
+
 ### cor and n-1
 
 It's worth noting that `cor()` divides by n-1, so it is a function for computing the correlation coefficient for a sample.
@@ -111,7 +111,7 @@ sum(A_z * B_z) / 5
 
 ### Additional `cor()` functionality
 
-A review of the help file for `cor()` shows that it has a number of other uses. For example, the default method is to compute a Pearson correlation coefficient, but the same function could also be used to compute a kendall or spearman's coefficient (not yet discussed in class). 
+A review of the help file for `cor()` shows that it has a number of other uses. For example, the default method is to compute a Pearson correlation coefficient, but the same function could also be used to compute a kendall or spearman's coefficient (not yet discussed in class).
 
 Another more advanced feature is handling of missing values. For example, below the variable B contains an `NA`, or a missing value in the fifth position. By default, `cor()` will return NA in this situation.
 
@@ -142,6 +142,7 @@ A <- c(1,2,3,4,5)
 B <- c(5,2,3,1,4)
 cor.test(A,B)
 ```
+
 `cor.test()` also return a list object that can be saved and accessed at a later point.
 
 ```{r}
@@ -155,15 +156,17 @@ results$p.value
 results$estimate
 ```
 
+Using papaja to report an r-value, `r papaja::apa_print(results)$full_result`.
+
 ## Conceptual I: The sum of products as a measure of correlation
 
 ### Correlation basics
 
 A correlation coefficient is a convenient measure of association between two variables. One convenient aspect is that the resulting value is limited to the range of -1 to 1, which can aid in interpreting the value. +1 means perfect positive correlation, 0 means no correlation, and -1 means perfect negative correlation.
 
-In this section we use R to look at the basic math behind the correlation coefficient, as a way to focus on the more general concept. 
+In this section we use R to look at the basic math behind the correlation coefficient, as a way to focus on the more general concept.
 
-For example, the general concept of positive correlation is that a pair of measures tends go up and down together. When a value of X is small, a paired value on Y is usually small. When a value of X is large, a paired value on Y is usually large. In other words, the variation in X matches well with the variation in Y;or,  X and Y *co-vary* together in the same way.
+For example, the general concept of positive correlation is that a pair of measures tends go up and down together. When a value of X is small, a paired value on Y is usually small. When a value of X is large, a paired value on Y is usually large. In other words, the variation in X matches well with the variation in Y;or, X and Y *co-vary* together in the same way.
 
 A perfect positive example of this is:
 
@@ -174,6 +177,7 @@ Y <- 1:10
 plot(X,Y)
 cor(X,Y)
 ```
+
 A negative correlation is when a pair of measures tends go in opposite directions from each other. When a value of X is small, a paired value on Y is usually large. When a value of X is large, a paired value on Y is usually small. Here, X and Y again co-vary, except in opposite ways. A perfect negative example of this is:
 
 ```{r}
@@ -200,7 +204,7 @@ cor(X,Y)
 
 Pearson's $r$ is also sometimes called a product moment correlation coefficient. This refers to the idea that $r$ is a sum of products that are standardized.
 
-In this section we look at the more basic operation of summing products. For example, a sum of products has two steps: 
+In this section we look at the more basic operation of summing products. For example, a sum of products has two steps:
 
 Multiplying the values in two variables X and Y together.
 
@@ -221,7 +225,7 @@ The sum of products (also termed the dot product) is an *un*-standardized measur
 
 Consider these questions, and assume that X contains the values from 1 to 10, and so does Y.
 
-1. What is the largest value that the sum of products between X and Y can take?
+1.  What is the largest value that the sum of products between X and Y can take?
 
 ```{r}
 X <- 1:10
@@ -231,7 +235,7 @@ sum(X*Y)
 
 Notice in this arrangement, the smallest value of X and Y (1) are paired together, the next largest value (2) are paired, and so on up until 10. This pairing creates the largest sum of products. It is also represents a perfect positive correlation.
 
-2. What is the smallest value that the sum of products between X and Y can take?
+2.  What is the smallest value that the sum of products between X and Y can take?
 
 ```{r}
 X <- 1:10
@@ -241,7 +245,7 @@ sum(X*Y)
 
 When the numbers are arranged to produce a perfect negative correlation, the sum of the products is at it's minimum possible value.
 
-3. If X contains only the numbers from 1 to 10 in any order, and Y does too, what kinds of sums of products can occur?
+3.  If X contains only the numbers from 1 to 10 in any order, and Y does too, what kinds of sums of products can occur?
 
 ```{r}
 sum(sample(1:10)*sample(1:10))
@@ -256,7 +260,7 @@ max(sim_sums)
 
 ## Conceptual II: Statistical inference for correlation
 
-We will look at the concept of a null-distribution for correlation co-efficients in two different ways, first by randomly samply values from normal distributions, and second by a permutation test.
+We will look at the concept of a null-distribution for correlation co-efficients in two different ways, first by randomly sampling values from normal distributions, and second by a permutation test.
 
 ### "Random" correlations
 
@@ -302,7 +306,7 @@ max(rand_1000)
 min(rand_1000)
 ```
 
-### Permutation test 
+### Permutation test
 
 In class we discussed some sample data suggesting that the length of a word is negatively correlated with the number of meanings of a word. Example data showing a negative correlation is shown below (taken from the R workbook from the Abdi textbook).
 
@@ -323,14 +327,13 @@ ggplot(all,aes(x=Length,y=Meanings))+
   geom_text_repel(aes(label=Words))
 ```
 
-
 According to the `cor.test()` function, the correlation in the sample data is unlikely to have been produced by chance alone.
 
 ```{r}
 cor.test(Length,Meanings)
 ```
 
-Instead of using the `cor.test()` function, we can use the concept of a permutation test to construct our own null distribution. The basic idea is to imagine that the values in the `Length` and `Meanings` variables could be randomly repaired, and then a new correlation coefficient measured. If we did this procedure several thousand times we would create a null distribution representing the kinds of $r$ values that could have been obtained by chance. 
+Instead of using the `cor.test()` function, we can use the concept of a permutation test to construct our own null distribution. The basic idea is to imagine that the values in the `Length` and `Meanings` variables could be randomly repaired, and then a new correlation coefficient measured. If we did this procedure several thousand times we would create a null distribution representing the kinds of $r$ values that could have been obtained by chance.
 
 ```{r}
 cor(sample(Length),sample(Meanings))
@@ -342,6 +345,7 @@ hist(sim_rs)
 
 length(sim_rs[sim_rs <= cor(Length,Meanings)])/1000
 ```
+
 ## Additional Concepts
 
 ### Point-by-serial correlation
@@ -351,7 +355,6 @@ Briefly, correlation coefficients can be computed between a continuous variable 
 $t_{n-2} = r \sqrt{\frac{n-2}{1-r^2}}$
 
 Where n is the total number of subjects in both groups.
-
 
 ```{r}
 # independent samples t-test
@@ -368,20 +371,23 @@ cor.test(X,Y)
 cor(X,Y) * sqrt((20-2)/(1-cor(X,Y)^2))
 ```
 
-
 ## Lab 11 Generalization Assignment
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/elFmc01cpmA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+
+</iframe>
 
 ### Instructions
 
-In general, labs will present a discussion of problems and issues with example code like above, and then students will be tasked with completing generalization assignments, showing that they can work with the concepts and tools independently. 
+In general, labs will present a discussion of problems and issues with example code like above, and then students will be tasked with completing generalization assignments, showing that they can work with the concepts and tools independently.
 
 Your assignment instructions are the following:
 
-1. Work inside the R project "StatsLab1" you have been using
-2. Create a new R Markdown document called "Lab11.Rmd"
-3. Use Lab11.Rmd to show your work attempting to solve the following generalization problems. Commit your work regularly so that it appears on your Github repository.
-4. **For each problem, make a note about how much of the problem you believe you can solve independently without help**. For example, if you needed to watch the help video and are unable to solve the problem on your own without copying the answers, then your note would be 0. If you are confident you can complete the problem from scratch completely on your own, your note would be 100. It is OK to have all 0s or 100s anything in between. 
-5. Submit your github repository link for Lab 11 on blackboard.
+1.  Work inside the R project "StatsLab1" you have been using
+2.  Create a new R Markdown document called "Lab11.Rmd"
+3.  Use Lab11.Rmd to show your work attempting to solve the following generalization problems. Commit your work regularly so that it appears on your Github repository.
+4.  **For each problem, make a note about how much of the problem you believe you can solve independently without help**. For example, if you needed to watch the help video and are unable to solve the problem on your own without copying the answers, then your note would be 0. If you are confident you can complete the problem from scratch completely on your own, your note would be 100. It is OK to have all 0s or 100s anything in between.
+5.  Submit your github repository link for Lab 11 on blackboard.
 
 ### Problems
 
@@ -390,19 +396,16 @@ X <- c(1,4,3,2,5,4,3,6,7,8)
 Y <- c(1,3,6,7,8,2,8,7,6,9)
 ```
 
-1. An X and Y variable contain the above numbers.
+1.  An X and Y variable contain the above numbers.
 
-   A. Compute Pearson's $r$ and report the associated p-value using the `cor.test()` function. (2 points)
+    A. Compute Pearson's $r$ and report the associated p-value using the `cor.test()` function. (2 points)
 
-   B. Use a permutation test to create a null-distribution, and report the p-value for getting the observed correlation or larger using your simulated null-distribution. (2 points)
+    B. Use a permutation test to create a null-distribution, and report the p-value for getting the observed correlation or larger using your simulated null-distribution. (2 points)
 
-2. Using the variables X and Y above, and assuming that the values could be re-ordered in any way, report the following:
+2.  Using the variables X and Y above, and assuming that the values could be re-ordered in any way, report the following:
 
-   A. the smallest possible sum of cross-products (1 point)
+    A. the smallest possible sum of cross-products (1 point)
 
-   B. the largest possible sum of cross-products (1 point)
-
-
+    B. the largest possible sum of cross-products (1 point)
 
 ## References
-
