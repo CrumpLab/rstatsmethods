@@ -60,7 +60,7 @@ lm(Y_dv ~ X_iv, data=some_data)
 
 # saving and output
 save_model <- lm(Y_dv ~ X_iv, data=some_data)
-summary(save_model)$r.squared
+summary(save_model)
 
 # r and r^2
 cor.test(some_data$Y_dv,some_data$X_iv)
@@ -92,6 +92,7 @@ In class we learned that Pearson's correlation coefficient, $r$, is related to t
 ```{r}
 # r and r^2
 cor.test(some_data$Y_dv,some_data$X_iv)
+cor.test(some_data$Y_dv,some_data$X_iv)$estimate^2
 summary(save_model)$r.squared
 sqrt(summary(save_model)$r.squared)
 ```
@@ -460,7 +461,7 @@ $F = \frac{SS_{Explained}/df1}{SS_{Unexplained}/df2} = \frac{MS_{Explained}}{MS_
 
 $F = \frac{R^2}{1-R^2} \times (S-2)$
 
-The numerator is $R^2$, which we have previously defined as the proportion of variance **explained**; and the denominator is the proporition of variance **unexplained**. So, this formula again presents F as a ratio of explained over unexplained variance.
+The numerator is $R^2$, which we have previously defined as the proportion of variance **explained**; and the denominator is the proportion of variance **unexplained**. So, this formula again presents F as a ratio of explained over unexplained variance.
 
 ### Visualizing the sums of squares
 
@@ -673,13 +674,13 @@ For example, you could pick any slope and y-intercept and calculate $SS_{residua
 
 Below is a quick example of forcing R to try and find correct values for the slope and intercept through trial and error. Sometimes it converges on the right answer in 1000 attempts, and sometimes it doesn't. The basic idea is:
 
-1. choose any starting slope and intercept (b)
-2. compute $SS_{residual}$ between all points and line
-3. randomly change slope and intercept up or down by a small value (.01)
-4. compute $SS_{residual}$ again.
-5. If $SS_{residual}$ is smaller than before, then save the new slope and intercept, and keep repeating
-6. If $SS_{residual}$ is larger than before, then forget the new slope and intercept, and keep randomly changing them until they produce smaller $SS_{residual}$.
-7. Do this for a long time...the algorithm only allows changes to slope and intercept that make $SS_{residual}$ smaller, so over time, this value should converge on its minimum possible value...which is the one you get for the best fit line.
+1.  choose any starting slope and intercept (b)
+2.  compute $SS_{residual}$ between all points and line
+3.  randomly change slope and intercept up or down by a small value (.01)
+4.  compute $SS_{residual}$ again.
+5.  If $SS_{residual}$ is smaller than before, then save the new slope and intercept, and keep repeating
+6.  If $SS_{residual}$ is larger than before, then forget the new slope and intercept, and keep randomly changing them until they produce smaller $SS_{residual}$.
+7.  Do this for a long time...the algorithm only allows changes to slope and intercept that make $SS_{residual}$ smaller, so over time, this value should converge on its minimum possible value...which is the one you get for the best fit line.
 
 ```{r}
 step_size <- .01
@@ -739,6 +740,8 @@ Your assignment instructions are the following:
 ```{r}
 Y <- c(10,9,8,7,6,5,4,3,2,1,2,3,4,5,6,7,8,9,10)
 X <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19)
+
+plot(X,Y)
 ```
 
 ## References
