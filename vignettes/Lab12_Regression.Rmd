@@ -80,7 +80,7 @@ some_data <- data.frame(Y_dv= c(1,2,4,3,5,4,6,5),
 
 #### Specify the formula
 
-The linear regression is performed below. There two basic inputs `lm(formula = , data=)`. The formula supplied below is `Y_dv ~ X_iv`. The dependent variable is always placed on the left side (`Y_dv`), and the independent variable is placed on the right side (`X_dv`). Order matters. In this case, we are explaining/predicting variation in `Y_dv` as a function of variation in `X_dv`.
+The linear regression is performed below. There are two basic inputs `lm(formula = , data=)`. The formula supplied below is `Y_dv ~ X_iv`. The dependent variable is always placed on the left side (`Y_dv`), and the independent variable is placed on the right side (`X_dv`). Order matters. In this case, we are explaining/predicting variation in `Y_dv` as a function of variation in `X_dv`.
 
 ```{r}
 #compute linear regression,
@@ -111,7 +111,7 @@ summary(save_model)$r.squared
 
 ### ggplot2
 
-Best fit lines can easily be displayed on scatterplots with ggplot2, here is a basic example. Note that I have only supplied the dataframe with the X and Y variables. `geom_point()` adds the dots, and `geom_smooth()` computes the regression and adds the line using the `lm()` method we described above. It is possible to add confidence intervals by setting `se=TRUE`, but if it's not clear to you how the intervals are computed, you might not decide to use this default.
+Best fit lines can easily be displayed on scatterplots with ggplot2, here is a basic example. Note that I have only supplied the dataframe with the X and Y variables. `geom_point()` adds the dots, and `geom_smooth()` computes the regression and adds the line using the `lm()` method we described above. It is possible to add confidence intervals by setting `se=TRUE`, but if it's not clear to you how the intervals are computed, you might decide not to use this default.
 
 #### geom_smooth
 
@@ -219,7 +219,7 @@ animate(anim,fps=5)
 
 This animation shows two key concepts we will reinforce. First, the regression line is the "best fit line". And, the "best fit line" is the one that minimizes the sum of the squared deviations between each point and the line.
 
-The blue line represents the best fit line found by linear regression. The roving black line represents other possible lines. For simplicity, the black line has the same slope, but the intercept changes so it moves up and down. As the black line moves, the little red lines show the error between the black line and each data point. The shaded rectangle for each dot represents the squared error. I shaded the the error squares...as the black line moves away from the true regression line, the error squares get bigger and bigger, and redder and redder. This indicates the fit between the line is getting worse (because the error is getting bigger), as the line moves away from the best line. As the black line moves toward the best fit line, you can see the error squares getting smaller, and I shaded them less red, to visually indicate less overall error. When the black line converges on the blue line, we have found the best fit line, the one that minimizes the sum of the squared deviations.
+The blue line represents the best fit line found by linear regression. The roving black line represents other possible lines. For simplicity, the black line has the same slope, but the intercept changes so it moves up and down. As the black line moves, the little red lines show the error between the black line and each data point. The shaded rectangle for each dot represents the squared error. I shaded the error squares...as the black line moves away from the true regression line, the error squares get bigger and bigger, and redder and redder. This indicates the fit between the line is getting worse (because the error is getting bigger), as the line moves away from the best fit line. As the black line moves toward the best fit line, you can see the error squares getting smaller, and I shaded them less red, to visually indicate less overall error. When the black line converges on the blue line, we have found the best fit line, the one that minimizes the sum of the squared deviations.
 
 ### Illustrating regression concepts with R
 
@@ -321,7 +321,7 @@ ggplot(some_data, aes(x=X, y=Y))+
             alpha = .2)
 ```
 
-These should look like squares, but they don't because the X and Y axes aren't exactly the same scale, and the figure height and width aren't exactly square :
+These should look like squares, but they don't because the X and Y axes aren't exactly the same scale, and the figure height and width aren't exactly square:
 
 ```{r, fig.width=5, fig.height=5}
 ggplot(some_data, aes(x=X, y=Y))+
@@ -425,7 +425,7 @@ This conceptual formula partitions the *total stuff needing explanation* into tw
 
 ### $R^2$ proportion of variance explained
 
-Imagine you wanted to know a proportion of explained stuff, or a ratio of much you have explained in relation to the total amount of stuff that could be explained. The proportion would be 0 when you haven't explained anything, and go to 1 as you explain everything that could be explained.
+Imagine you wanted to know a proportion of explained stuff, or a ratio of how much you have explained in relation to the total amount of stuff that could be explained. The proportion would be 0 when you haven't explained anything, and go to 1 as you explain everything that could be explained.
 
 $1 = \frac{\text{Explained} + \text{Unexplained}}{\text{Total stuff to explain}}$
 
@@ -489,7 +489,7 @@ SS_total = sum((Y-mean(Y))^2)
 SS_total
 ```
 
-The scatterplot below visualizes $SS_total$; but, instead of a regression line as we saw earlier, the red line represents the mean of Y. So, the deviations between each dot and the red line represent the components that are added up to produce $SS_total$ for Y. Specifically, the sum of the area in all the error squares is taken as the total amount of stuff that needs to be explained. Slightly more formally, the squared deviations represent departures from the mean of Y. If all of the data in Y had the same number, there would be no departures from the mean, and the mean would "explain everything", leaving nothing left for any other variable to explain.
+The scatterplot below visualizes $SS_{total}$; but, instead of a regression line as we saw earlier, the red line represents the mean of Y. So, the deviations between each dot and the red line represent the components that are added up to produce $SS_{total}$ for Y. Specifically, the sum of the area in all the error squares is taken as the total amount of stuff that needs to be explained. Slightly more formally, the squared deviations represent departures from the mean of Y. If all of the data in Y had the same number, there would be no departures from the mean, and the mean would "explain everything", leaving nothing left for any other variable to explain.
 
 ```{r, fig.width = 5, fig.height = 5}
 some_data <- data.frame(Y= c(1,2,4,3,5,4,6,5),
