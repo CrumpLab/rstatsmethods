@@ -33,7 +33,7 @@ For example, as a reminder, the normal distribution has two parameters, the mean
 
 $f(x) = \frac{1}{\sigma \sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x-u}{\sigma})^2}$
 
-and, the only two free parameters are $u$ (mean), and $sigma$ (standard deviation). Below I calculating probability density for a particular score using this formula in R, and I show the answer is the same as `dnorm()`.
+and, the only two free parameters are $u$ (mean), and $sigma$ (standard deviation). Below I calculate probability density for a particular score using this formula in R, and I show the answer is the same as `dnorm()`.
 
 ```{r}
 x <- 1
@@ -127,7 +127,7 @@ Here is one convenience. We described above that all normal distributions have t
 
 ## Practical I: z-scores
 
-Let me admit that I am often confused by the metric system and the imperial system, this partly because I grew up in Canada and live in the USA, but also because those systems are used inconsistently in my personal experience. For example, even though I grew up with the metric system, I only know my weight in pounds, not in kilograms. Also, I know my height in feet and inches, but not in meters. Temperature is even more confusing. I'm very good with cold temperatures in celsius, but I use Fahrenheit for hot temperatures. I'm still better with kilometers than miles. Oh well.
+Let me admit that I am often confused by the metric system and the imperial system, this is partly because I grew up in Canada and live in the USA, but also because those systems are used inconsistently in my personal experience. For example, even though I grew up with the metric system, I only know my weight in pounds, not in kilograms. Also, I know my height in feet and inches, but not in meters. Temperature is even more confusing. I'm very good with cold temperatures in celsius, but I use Fahrenheit for hot temperatures. I'm still better with kilometers than miles. Oh well.
 
 ### Linear Transformation
 
@@ -169,7 +169,7 @@ To elaborate, the top part of the formula **centers** the scores around the mean
 
 How about a score of 30? a score of 30 is 5 above the mean (30-25 = 5). A score of 10 is -15 from the mean. The **centering transformation** causes all values below the mean to receive a negative z-score, and all values above the mean to have a positive z-score.
 
-The next step in the formula is to **divide**. We have already centered the scores using the mean, so the division allows the centered value to be brought into a common frame of reference, or unit. This process is also commonly termed "standardizing" or "normalizing". For example, in our example, if we had a score of 30, we know that is 5 above the mean of 25. However, I have said nothing about the standard deviation. Is 5 above the mean a large deviation? Is it a small deviation? This depends on the how much spread there is in the normal distribution, which is controlled by the standard deviation or $\sigma$ parameter of the normal distribution. If the standard deviation is 1, then how far away is a score of 30 from the mean (25)? It is five standard deviations, which is very far away from most of the values in the distribution. If the standard deviation is 10, then how far away is a score of 30 from the mean (25)? That would only be .5 of a standard deviation, which is fairly close to many of the numbers in the distribution.
+The next step in the formula is to **divide**. We have already centered the scores using the mean, so the division allows the centered value to be brought into a common frame of reference, or unit. This process is also commonly termed "standardizing" or "normalizing". For example, in our example, if we had a score of 30, we know that it is 5 above the mean of 25. However, I have said nothing about the standard deviation. Is 5 above the mean a large deviation? Is it a small deviation? This depends on the how much spread there is in the normal distribution, which is controlled by the standard deviation or $\sigma$ parameter of the normal distribution. If the standard deviation is 1, then how far away is a score of 30 from the mean (25)? It is five standard deviations, which is very far away from most of the values in the distribution. If the standard deviation is 10, then how far away is a score of 30 from the mean (25)? That would only be .5 of a standard deviation, which is fairly close to many of the numbers in the distribution.
 
 Let's say we have a normal distribution with mean = 25, and standard deviation = 5. Any score from this distribution can be converted into a unit normal distribution by 1) subtracting the mean, and then dividing by the standard deviation. The graph below has an x-axis on the top representing scores from the raw distribution (centered on 25), and an x axis on the bottom representing **the same scores as a unit normal** or z-distribution.
 
@@ -213,7 +213,7 @@ Remember, a sampling distribution is when you 1) take multiple samples, 2) calcu
 
 ### Claim: sampling distributions of the mean are normally distributed
 
-The central limit theorem roughly has two parts. The main part is that sampling distributions of the mean are normally distributed. The second part is "most of the time". The central limit theorem therefore mostly let's you treat sampling distributions of the mean as normal distributions. Because sampling distributions, especially sampling distributions of the mean, are extremely common and fundamental to statistical inference, and the math behind normal distributions is well understood, you can blame the central limit theorem for the frequency with which you will have to deal with normal distributions in statistics. 
+The central limit theorem roughly has two parts. The main part is that sampling distributions of the mean are normally distributed. The second part is "most of the time". The central limit theorem therefore mostly lets you treat sampling distributions of the mean as normal distributions. Because sampling distributions, especially sampling distributions of the mean, are extremely common and fundamental to statistical inference, and the math behind normal distributions is well understood, you can blame the central limit theorem for the frequency with which you will have to deal with normal distributions in statistics. 
 
 ### Implication
 
@@ -228,7 +228,7 @@ First, imagine that some measurement involves taking scores from a uniform distr
 raw_scores <- runif(10000,min = 0,100)
 hist(raw_scores)
 ```
-Now, rather than plotting individual scores. We create a sampling distribution of the mean. We will take 10,000 samples (say of n = 5 for each) and compute the mean for each, and then plot the distribution of sample means.
+Now, rather than plotting individual scores, we create a sampling distribution of the mean. We will take 10,000 samples (say of n = 5 for each) and compute the mean for each, and then plot the distribution of sample means.
 
 ```{r}
 sample_means <- replicate(10000,mean(runif(5,0,100)))
@@ -281,7 +281,7 @@ pnorm(5,1,3, lower.tail=FALSE)*2
 
 Z-tests become more complicated when the sample-size is greater than 1. For example, imagine you take 10 scores (n=10) from a normal distribution with mean = 55, and sd  = 5. What kinds of things could happen here?
 
-Let's focus on a question of the sample mean. Your sample has n=10, what could the sample mean be? Would a sample mean of 60 be strange? what can randomly sampling numbers do in this case?
+Let's focus on a question of the sample mean. Your sample has n=10, what could the sample mean be? Would a sample mean of 60 be strange? What can randomly sampling numbers do in this case?
 
 We first need to compute a sampling distribution of the mean, this will tell us the kinds of sample means (of n=10) that could be observed by randomly sampling from a normal with mean =55 and sd =5.
 
@@ -419,14 +419,14 @@ Your assignment instructions are the following:
 
 ### Problems
 
-1. Write a function to convert a vector of raw-scores into z-scores. The function should have inputs for the vector, the mean and sd of the normal distribution, and should return a vector of zscores. (1 point). Also, demonstrate that the function works correctly (1 point). How you make the demonstration is up to you.
+1. Write a function to convert a vector of raw-scores into z-scores. The function should have inputs for the vector, the mean and sd of the normal distribution, and should return a vector of z-scores. (1 point). Also, demonstrate that the function works correctly (1 point). How you make the demonstration is up to you.
   - Advanced: Have an option so that the function will convert the raw scores to zscores in one of two ways:
   - using user provided mean and standard deviation
   - using the calculated mean and standard deviation from the raw scores
   
 
 
-2. Base R does not have a function for a z-test. Write a function to accomplish a one-sample z-test. Remember, a one-sample z test is used to compare the probability of obtaining the sample mean (or larger or smaller) if it came from a known normal distribution. (2 points).
+2. Base R does not have a function for a z-test. Write a function to accomplish a one-sample z-test. Remember, a one-sample z-test is used to compare the probability of obtaining the sample mean (or larger or smaller) if it came from a known normal distribution. (2 points).
 
 - Use your z-test function to conduct a test of the following. A sample of 25 scores is taken. The mean of the sample is 50. The sample is assumed to have been taken from a normal distribution with mean 40 and standard deviation 7. Report a one-tailed z-test, examining the probability of obtaining a sample of greater than 50 in this situation. Report the results, and give a brief sentence explaining the result and the inference you make (2 points).
 
