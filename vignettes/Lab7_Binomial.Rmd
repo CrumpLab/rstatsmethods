@@ -268,4 +268,4 @@ Your assignment instructions are the following:
 3. A test has 5 TRUE/FALSE questions (each with one right answer) and 5 multiple choice questions with four choices each (each with only one right answer). 
 
  - create a sampling distribution or probability distribution to illustrate how a random chance process could perform on this test. (1 point)
- - What is the probability that randomly guessing on each question could allow a person to receive 75% or greater on this test? (1 point)
+ - What is the probability that randomly guessing on each question could allow a person to receive greater than 75% on this test? (1 point)
