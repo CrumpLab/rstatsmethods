@@ -158,7 +158,7 @@
 
       
 
-      </header><script src="SP_Power_files/header-attrs-2.5.3/header-attrs.js"></script><script src="SP_Power_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="SP_Power_files/header-attrs-2.5.3/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Simulation and Power Analysis</h1>
@@ -203,7 +203,7 @@
 
 <span class="co"># the pvalue for this one pretend simulation</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span>(<span class="no">A</span>,<span class="no">B</span>,<span class="kw">var.equal</span><span class="kw">=</span><span class="fl">TRUE</span>)$<span class="no">p.value</span>
-<span class="co">#&gt; [1] 0.688837</span>
+<span class="co">#&gt; [1] 0.4671679</span>
 
 <span class="co"># running the simulation</span>
 <span class="co"># everytime we run this function we do one simulated experiment and return the p-value</span>
@@ -222,7 +222,7 @@
 <div class="sourceCode" id="cb2"><html><body><pre class="r">
 <span class="co"># proportion of simulated experiments had a p-value less than .05</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">outcomes</span>[<span class="no">outcomes</span><span class="kw">&lt;</span><span class="fl">.05</span>])/<span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.055</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.053</span></pre></body></html></div>
 <p>We ran the above simulation 1000 times. By definition, we should get approximately 5% of the simulations returning a p-value less than .05. If we increase the number of simulations, then we will get a more accurate answer that converges on 5% every time.</p>
 </div>
 </div>
@@ -234,7 +234,7 @@
 <div class="sourceCode" id="cb3"><html><body><pre class="r">  <span class="no">A</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="fl">10</span>,<span class="kw">mean</span><span class="kw">=</span><span class="fl">10</span>, <span class="kw">sd</span><span class="kw">=</span><span class="fl">5</span>)
   <span class="no">B</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="fl">10</span>,<span class="kw">mean</span><span class="kw">=</span><span class="fl">15</span>, <span class="kw">sd</span><span class="kw">=</span><span class="fl">5</span>)
   <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span>(<span class="no">A</span>,<span class="no">B</span>,<span class="kw">var.equal</span><span class="kw">=</span><span class="fl">TRUE</span>)$<span class="no">p.value</span>
-<span class="co">#&gt; [1] 0.002552306</span>
+<span class="co">#&gt; [1] 0.1492177</span>
 
 <span class="co"># make the mean for B 15 (5 more than A)</span>
 <span class="no">sim_alternative</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(){
@@ -252,7 +252,7 @@
 <div class="sourceCode" id="cb4"><html><body><pre class="r">
 <span class="co"># proportion of simulated experiments had a p-value less than .05</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">outcomes</span>[<span class="no">outcomes</span><span class="kw">&lt;</span><span class="fl">.05</span>])/<span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.556</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.529</span></pre></body></html></div>
 <p>We programmed a mean difference of 5 between our sample for A and B, and we found p-values less than .05 a much higher proportion of the time. This is sensible, as there really was a difference between the samples (we put it there).</p>
 </div>
 <div id="power-and-effect-size" class="section level2">
@@ -279,21 +279,35 @@
 <a href="#pwr-package" class="anchor"></a>pwr package</h3>
 <p>Here is an example of using the <code>pwr</code> package to find the power for an independent sample t-test, with n=10, to detect an effect-size of 1. This answer is similar to our simulations answer. The simulation would converge on this answer if we increased the number of simulations.</p>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">pwr</span>)
-<span class="fu"><a href="https://rdrr.io/pkg/pwr/man/pwr.t.test.html">pwr.t.test</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="fl">10</span>,
-           <span class="kw">d</span><span class="kw">=</span><span class="fl">1</span>,
+<span class="fu"><a href="https://rdrr.io/pkg/pwr/man/pwr.t.test.html">pwr.t.test</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="fl">9</span>,
+           <span class="kw">d</span><span class="kw">=</span><span class="fl">.2</span>,
            <span class="kw">sig.level</span><span class="kw">=</span><span class="fl">.05</span>,
            <span class="kw">type</span><span class="kw">=</span><span class="st">"two.sample"</span>,
            <span class="kw">alternative</span><span class="kw">=</span><span class="st">"two.sided"</span>)
 <span class="co">#&gt; </span>
 <span class="co">#&gt;      Two-sample t test power calculation </span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;               n = 10</span>
-<span class="co">#&gt;               d = 1</span>
+<span class="co">#&gt;               n = 9</span>
+<span class="co">#&gt;               d = 0.2</span>
 <span class="co">#&gt;       sig.level = 0.05</span>
-<span class="co">#&gt;           power = 0.5620066</span>
+<span class="co">#&gt;           power = 0.06846584</span>
 <span class="co">#&gt;     alternative = two.sided</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; NOTE: n is number in *each* group</span></pre></body></html></div>
+<span class="co">#&gt; NOTE: n is number in *each* group</span>
+
+<span class="co">## for an r test</span>
+<span class="fu"><a href="https://rdrr.io/pkg/pwr/man/pwr.r.test.html">pwr.r.test</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="fl">10</span>,
+           <span class="kw">r</span><span class="kw">=</span><span class="fl">.2</span>,
+           <span class="kw">sig.level</span><span class="kw">=</span><span class="fl">.05</span>,
+           <span class="kw">alternative</span><span class="kw">=</span><span class="st">"two.sided"</span>)
+<span class="co">#&gt; </span>
+<span class="co">#&gt;      approximate correlation power calculation (arctangh transformation) </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;               n = 10</span>
+<span class="co">#&gt;               r = 0.2</span>
+<span class="co">#&gt;       sig.level = 0.05</span>
+<span class="co">#&gt;           power = 0.08574594</span>
+<span class="co">#&gt;     alternative = two.sided</span></pre></body></html></div>
 <p>As I mentioned there are many functions for directly computing power in R. Feel free to use them. In this class, we learn how to use simulation to conduct power analyses. This can be a redundant approach that is not necessary, given there are other functions we can use. Additionally, we will not get exact solutions (but approximate ones). Nevertheless, the existing power functions can be limited and may not apply to your design. The simulation approach can be extended to any design. Learning how to run the simulations will also improve your statistical sensibilities, and power calculations will become less of a black box.</p>
 <p>Two more things before moving onto simulation: power-curves, and sample-size planning.</p>
 </div>
@@ -304,7 +318,7 @@
 <div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">effect_sizes</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">.1</span>,<span class="fl">2</span>,<span class="fl">.1</span>)
 <span class="no">power</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span>(<span class="no">effect_sizes</span>,
           <span class="kw">FUN</span> <span class="kw">=</span> <span class="kw">function</span>(<span class="no">x</span>) {
-            <span class="fu"><a href="https://rdrr.io/pkg/pwr/man/pwr.t.test.html">pwr.t.test</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="fl">100</span>,
+            <span class="fu"><a href="https://rdrr.io/pkg/pwr/man/pwr.t.test.html">pwr.t.test</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="fl">9</span>,
             <span class="kw">d</span><span class="kw">=</span><span class="no">x</span>,
             <span class="kw">sig.level</span><span class="kw">=</span><span class="fl">.05</span>,
             <span class="kw">type</span><span class="kw">=</span><span class="st">"two.sample"</span>,
@@ -317,6 +331,25 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>()+
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>()</pre></body></html></div>
 <p><img src="SP_Power_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
+<div class="sourceCode" id="cb7"><html><body><pre class="r">
+<span class="co">## r test power curve</span>
+
+<span class="no">r_sizes</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">.1</span>)
+<span class="no">power</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span>(<span class="no">r_sizes</span>,
+          <span class="kw">FUN</span> <span class="kw">=</span> <span class="kw">function</span>(<span class="no">x</span>) {
+            <span class="fu"><a href="https://rdrr.io/pkg/pwr/man/pwr.r.test.html">pwr.r.test</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="fl">9</span>,
+            <span class="kw">r</span><span class="kw">=</span><span class="no">x</span>,
+            <span class="kw">sig.level</span><span class="kw">=</span><span class="fl">.05</span>,
+            <span class="kw">alternative</span><span class="kw">=</span><span class="st">"two.sided"</span>)$<span class="no">power</span>})
+
+<span class="no">plot_df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="no">r_sizes</span>,<span class="no">power</span>)
+
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="no">r_sizes</span>,
+                    <span class="kw">y</span><span class="kw">=</span><span class="no">power</span>))+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>()+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>()</pre></body></html></div>
+<p><img src="SP_Power_files/figure-html/unnamed-chunk-5-2.png" width="700"></p>
 <p>This power curve applies to all independent-sample t-tests with n=10. It is a property, or fact about those designs. Every design has it’s own power curve. The power curve shows us what <strong>should</strong> happen (on average), when the <strong>true</strong> state of the world involves effects of different sizes.</p>
 <p>If you do not know the power-curve for your design, then you do not know how sensitive your design is for detecting effects of particular sizes. You might accidentally be using an under powered design, with only a very small chance of detecting an effect of a size you are interested in.</p>
 <p>If you do know the power-curve for your design, you will be in a better position to plan your experiment, for example by modifying the number of subjects that you run.</p>
@@ -331,7 +364,7 @@
 </ol>
 <p>It’s not clear how you establish a smallest effect-size of interest. But let’s say you are interested in detecting an effect of at least d = .2. This means that two conditions would differ by at least a .2 standard deviation shift. If you find something smaller than that, let’s say you wouldn’t care about it because it wouldn’t be big enough for you to care. How many subjects do you need to have a high powered design, one that would almost always reject the null-hypothesis?</p>
 <p>This is for an independent samples t-test:</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">num_subjects</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">10</span>,<span class="fl">1000</span>,<span class="fl">10</span>)
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">num_subjects</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">10</span>,<span class="fl">1000</span>,<span class="fl">10</span>)
 <span class="no">power</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span>(<span class="no">num_subjects</span>,
           <span class="kw">FUN</span> <span class="kw">=</span> <span class="kw">function</span>(<span class="no">x</span>) {
             <span class="fu"><a href="https://rdrr.io/pkg/pwr/man/pwr.t.test.html">pwr.t.test</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="no">x</span>,
@@ -366,12 +399,17 @@
 <h3 class="hasAnchor">
 <a href="#simulated-power-for-a-t-test" class="anchor"></a>Simulated power for a t-test</h3>
 <p>A power curve for n=10.</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="co"># function to run a simulated t-test</span>
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="co"># function to run a simulated t-test</span>
 <span class="no">sim_power</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">x</span>){
   <span class="no">A</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="fl">10</span>,<span class="kw">mean</span><span class="kw">=</span><span class="fl">0</span>, <span class="kw">sd</span><span class="kw">=</span><span class="fl">1</span>)
   <span class="no">B</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="fl">10</span>,<span class="kw">mean</span><span class="kw">=</span>(<span class="fl">0</span>+<span class="no">x</span>), <span class="kw">sd</span><span class="kw">=</span><span class="fl">1</span>)
   <span class="fu"><a href="https://rdrr.io/r/base/function.html">return</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span>(<span class="no">A</span>,<span class="no">B</span>,<span class="kw">var.equal</span><span class="kw">=</span><span class="fl">TRUE</span>)$<span class="no">p.value</span>)
 }
+
+<span class="no">x</span> <span class="kw">&lt;-</span> <span class="fl">.3</span>
+<span class="no">sims</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span>(<span class="fl">1000</span>,<span class="fu">sim_power</span>(<span class="no">x</span>))
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">sims</span>[<span class="no">sims</span><span class="kw">&lt;</span><span class="fl">.05</span>])/<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">sims</span>)
+<span class="co">#&gt; [1] 0.117</span>
 
 <span class="co"># vector of effect sizes</span>
 <span class="no">effect_sizes</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">.1</span>,<span class="fl">2</span>,<span class="fl">.1</span>)
@@ -398,7 +436,7 @@
 <a href="#simulating-cell-size" class="anchor"></a>Simulating cell-size</h3>
 <p>Many experimental designs involve multiple measurements, or trials, for each subject in each condition. How many trials should we require for each subject in each condition? Traditional power analysis doesn’t make it easy to answer this question. However, the power of a design will depend not only on the number subjects, but also the number trials used to estimate the mean for each subject in each condition.</p>
 <p>Consider a simple Stroop experiment. The researcher is interested in measuring a Stroop effect of at least d=.1 (e.g., the difference between mean congruent trials is .1 standard deviations smaller than mean incongruent trials). How many subjects are required? And, how many trials should each subject perform in the congruent and incongruent conditions? Let’s use simulation to find out.</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="co"># function to run a simulated t-test</span>
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="co"># function to run a simulated t-test</span>
 <span class="co"># nsubs sets number of subjects</span>
 <span class="co"># ntrials to change number of trials</span>
 <span class="co"># d sets effect size</span>
@@ -439,7 +477,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>()+
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>()</pre></body></html></div>
 <p><img src="SP_Power_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r">
+<div class="sourceCode" id="cb11"><html><body><pre class="r">
 # a vectorized version of the loop
 # run simulation for each effect size 1000 times
 
@@ -466,7 +504,7 @@
 <h3 class="hasAnchor">
 <a href="#one-way-anova" class="anchor"></a>One-Way ANOVA</h3>
 <p>Let’s extend our simulation based approach to the one-way ANOVA. Let’s assume a between-subjects design, with one factor that has four levels: A, B, C, and D. There will be 20 subjects in each group. What is the power curve for this design to detect effects of various size? Immediately, the situation becomes complicated, there are numerous ways that the means for A, B, C, and D could vary. Let’s assume the simplest case, three of them are the same, and one of them is different by some amount of standard deviations. We will compute the main effect, and report the proportion of significant experiments as we increase the effect size for the fourth group.</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="co"># function to run a simulated t-test</span>
+<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="co"># function to run a simulated t-test</span>
 <span class="no">sim_power_anova</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">x</span>){
   <span class="no">A</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="fl">20</span>,<span class="kw">mean</span><span class="kw">=</span><span class="fl">0</span>, <span class="kw">sd</span><span class="kw">=</span><span class="fl">1</span>)
   <span class="no">B</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="fl">20</span>,<span class="kw">mean</span><span class="kw">=</span><span class="fl">0</span>, <span class="kw">sd</span><span class="kw">=</span><span class="fl">1</span>)
@@ -498,7 +536,7 @@
 <p><img src="SP_Power_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 <p>It looks like this design (1 factor, between-subjects, 20 subjects per group) has high power to detect an effect of d=1, specifically when one of the groups differs from the others by d=1.</p>
 <p>However, most effects in psychology are smalls, d=.2 is very common. How, many subjects does this design require to have high power (let’s say above .95, although most people use .8) to detect that small effect?</p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">sim_power_anova</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">x</span>){
+<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">sim_power_anova</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">x</span>){
   <span class="no">A</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="no">x</span>,<span class="kw">mean</span><span class="kw">=</span><span class="fl">0</span>, <span class="kw">sd</span><span class="kw">=</span><span class="fl">1</span>)
   <span class="no">B</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="no">x</span>,<span class="kw">mean</span><span class="kw">=</span><span class="fl">0</span>, <span class="kw">sd</span><span class="kw">=</span><span class="fl">1</span>)
   <span class="no">C</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="no">x</span>,<span class="kw">mean</span><span class="kw">=</span><span class="fl">0</span>, <span class="kw">sd</span><span class="kw">=</span><span class="fl">1</span>)
@@ -535,7 +573,7 @@
 <p>A common research strategy is to measure putative correlations between people’s traits and their behavior. For example, a researcher might prepare a questionnaire with several questions. Perhaps the questions are about their political views, or about their life satisfaction, or anything else. The research might ask some group of people to answer the questions, and to also perform some task. At the end of the experiment, they might ask if different kinds of people (measured by the questionnaire) perform differently on the behavioral measure. For example, we might have people answer several questions about their openness to new experiences, we might also measure their performance on a working memory task. A research question might be, do people who are more open to experience perform better on a working memory task? The answer would lie in a correlation between the answers on the questions, and the performance on the task. Let’s simulate this kind of situation, say for 20 subjects. Each subject answers 20 questions, and they perform a behavioral task. At the end of the experiment, we correlate the answers on each question, with the performance on the task. What kind of correlations would we expect by chance alone? Let’s say the participants are all random robots. They answer each question randomly, and their performance on the behavioral task is sampled randomly from some normal distribution. If everything is random, shouldn’t we expect to find no correlations?</p>
 <p>Details:</p>
 <p>Let’s assume that each question involves a likert scale from 1 to 7. Each person randomly picks a number from 1 to 7 for each question. Let’s assume performance on the behavioral task is sampled from a normal distribution with mean = 0, and sd = 1.</p>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="co"># get 20 random answers for all 20 subjects and 20 questions</span>
+<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="co"># get 20 random answers for all 20 subjects and 20 questions</span>
 <span class="co"># columns will be individual subjects 1 to 20</span>
 <span class="co"># rows will be questions 1 to 20</span>
 <span class="no">questionnaire</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fl">1</span>:<span class="fl">7</span>,<span class="fl">20</span>*<span class="fl">20</span>, <span class="kw">replace</span><span class="kw">=</span><span class="fl">TRUE</span>),<span class="kw">ncol</span><span class="kw">=</span><span class="fl">20</span>)
@@ -554,7 +592,7 @@
 <p>The histogram shows that a range of correlations between individual questions and behavior can emerge just by chance alone. If you run the above code a few times, you will see that the histogram changes a bit because of random chance.</p>
 <p>Oftentimes researchers might not know which question on the questionnaire is the best question. That is, the one that best correlates with behavior. Consider a researcher who computes all of the correlations between each question and behavior, and then chooses the question with highest correlation (positive or negative) as the best question. After all, it has the highest correlation. After choosing this question, they might suggest that behavior is strongly correlated with how people answer this question.</p>
 <p>Let’s try to find out by simulation what kinds of large correlations can occur just by chance alone. We will run the above many times, and each time we will save the absolute value of the largest correlation between a question and behavior. Just how large can these correlations be by chance alone?</p>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">save_max</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>()
+<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="no">save_max</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>()
 <span class="kw">for</span>( <span class="no">j</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="fl">10000</span>){
   <span class="no">questionnaire</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fl">1</span>:<span class="fl">7</span>,<span class="fl">20</span>*<span class="fl">20</span>, <span class="kw">replace</span><span class="kw">=</span><span class="fl">TRUE</span>),<span class="kw">ncol</span><span class="kw">=</span><span class="fl">20</span>)
   <span class="no">behavioral_task</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span>)
@@ -570,7 +608,7 @@
 <p><img src="SP_Power_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
 <p>The simulation shows that chance alone in this situation can produce very large correlations, as large as .8 or .9 (although not very often).</p>
 <p>The situation changes somewhat if many more subjects are run. Let’s do the same as above, but run 200 subjects, rather than 20.</p>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="no">save_max</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>()
+<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">save_max</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>()
 <span class="kw">for</span>( <span class="no">j</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="fl">10000</span>){
   <span class="no">questionnaire</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fl">1</span>:<span class="fl">7</span>,<span class="fl">200</span>*<span class="fl">20</span>, <span class="kw">replace</span><span class="kw">=</span><span class="fl">TRUE</span>),<span class="kw">ncol</span><span class="kw">=</span><span class="fl">200</span>)
   <span class="no">behavioral_task</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">200</span>,<span class="fl">0</span>,<span class="fl">1</span>)

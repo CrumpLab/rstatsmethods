@@ -129,10 +129,16 @@ Here is an example of using the `pwr` package to find the power for an independe
 
 ```{r}
 library(pwr)
-pwr.t.test(n=10,
-           d=1,
+pwr.t.test(n=9,
+           d=.2,
            sig.level=.05,
            type="two.sample",
+           alternative="two.sided")
+
+## for an r test
+pwr.r.test(n=10,
+           r=.2,
+           sig.level=.05,
            alternative="two.sided")
 ```
 
@@ -148,7 +154,7 @@ A design's power is in relation to the true effect-size. The same design has dif
 effect_sizes <- seq(.1,2,.1)
 power <- sapply(effect_sizes, 
           FUN = function(x) {
-            pwr.t.test(n=100,
+            pwr.t.test(n=9,
             d=x,
             sig.level=.05,
             type="two.sample",
@@ -160,6 +166,26 @@ ggplot(plot_df, aes(x=effect_sizes,
                     y=power))+
   geom_point()+
   geom_line()
+
+## r test power curve
+
+r_sizes <- seq(0,1,.1)
+power <- sapply(r_sizes, 
+          FUN = function(x) {
+            pwr.r.test(n=9,
+            r=x,
+            sig.level=.05,
+            alternative="two.sided")$power})
+
+plot_df <- data.frame(r_sizes,power)
+
+library(ggplot2)
+ggplot(plot_df, aes(x=r_sizes,
+                    y=power))+
+  geom_point()+
+  geom_line()
+
+
 ```
 
 This power curve applies to all independent-sample t-tests with n=10. It is a property, or fact about those designs. Every design has it's own power curve. The power curve shows us what **should** happen (on average), when the **true** state of the world involves effects of different sizes.
@@ -222,6 +248,10 @@ sim_power <- function(x){
   B <- rnorm(n=10,mean=(0+x), sd=1)
   return(t.test(A,B,var.equal=TRUE)$p.value)
 }
+
+x <- .3 
+sims <- replicate(1000,sim_power(x))
+length(sims[sims<.05])/length(sims)
 
 # vector of effect sizes
 effect_sizes <- seq(.1,2,.1)
