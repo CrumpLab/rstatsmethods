@@ -4,9 +4,14 @@
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
+
+## Statistical Methods Practicum II
+
+This is the course website for Psyc 7709G: Statistical Methods Practicum II (Spring 2021), offered through the Experimental Psychology Master’s program, Department of Psychology, Brooklyn College of CUNY. Note that labs will be released on a weekly basis throughout the semester.
+
 ## Statistical Methods Practicum I
 
-This is the course website for Psyc 7709G: Statistical Methods Practicum I (Fall 2020), offered through the Experimental Psychology Master’s program, Department of Psychology, Brooklyn College of CUNY.
+This website also contains the labs for Psyc 7709G: Statistical Methods Practicum I (Fall 2020), offered through the Experimental Psychology Master’s program, Department of Psychology, Brooklyn College of CUNY.
 
 Instructor: Matthew Crump
 [mcrump@brooklyn.cuny.edu](mcrump@brooklyn.cuny.edu)

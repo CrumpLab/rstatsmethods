@@ -1,3 +1,8 @@
+# psyc7709Lab 0.0.0.9010
+
+- Beginning Semester 2
+- Created template vignettes for all labs
+
 # psyc7709Lab 0.0.0.9004
 
 - Added labs up to Linear Regression
