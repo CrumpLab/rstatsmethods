@@ -1,27 +1,40 @@
-pandoc: 2.9.1.1
+pandoc: 2.11.2
 pkgdown: 1.5.1
 pkgdown_sha: ~
 articles:
-  Getting_Started: Getting_Started.html
-  Lab10_ttest: Lab10_ttest.html
-  Lab11_Correlation: Lab11_Correlation.html
-  Lab12_Regression: Lab12_Regression.html
-  Lab1_Basics: Lab1_Basics.html
-  Lab2_Descriptives: Lab2_Descriptives.html
-  Lab3_Distributions_I: Lab3_Distributions_I.html
-  Lab4_Distributions_II: Lab4_Distributions_II.html
-  Lab5_Sampling_Distributions: Lab5_Sampling_Distributions.html
-  Lab6_Statistical_Inference: Lab6_Statistical_Inference.html
-  Lab7_Binomial: Lab7_Binomial.html
-  Lab8_Normal: Lab8_Normal.html
-  Lab9_Chisquare: Lab9_Chisquare.html
-  SP_Power: SP_Power.html
+  Getting_Started: Stats1/Getting_Started.html
+  Lab10_ttest: Stats1/Lab10_ttest.html
+  Lab11_Correlation: Stats1/Lab11_Correlation.html
+  Lab12_Regression: Stats1/Lab12_Regression.html
+  Lab1_Basics: Stats1/Lab1_Basics.html
+  Lab2_Descriptives: Stats1/Lab2_Descriptives.html
+  Lab3_Distributions_I: Stats1/Lab3_Distributions_I.html
+  Lab4_Distributions_II: Stats1/Lab4_Distributions_II.html
+  Lab5_Sampling_Distributions: Stats1/Lab5_Sampling_Distributions.html
+  Lab6_Statistical_Inference: Stats1/Lab6_Statistical_Inference.html
+  Lab7_Binomial: Stats1/Lab7_Binomial.html
+  Lab8_Normal: Stats1/Lab8_Normal.html
+  Lab9_Chisquare: Stats1/Lab9_Chisquare.html
+  SP_Power: Stats1/SP_Power.html
+  semester_project: Stats1/semester_project.html
+  Lab10_Nested_Designs: Stats2/Lab10_Nested_Designs.html
+  Lab11_WYOR: Stats2/Lab11_WYOR.html
+  Lab1_Shape: Stats2/Lab1_Shape.html
+  Lab2_Multiple_regression_I: Stats2/Lab2_Multiple_regression_I.html
+  Lab3_Multiple_regression_II: Stats2/Lab3_Multiple_regression_II.html
+  Lab4_ANOVA: Stats2/Lab4_ANOVA.html
+  Lab5_ANOVA_Regression: Stats2/Lab5_ANOVA_Regression.html
+  Lab6_Comparisons: Stats2/Lab6_Comparisons.html
+  Lab7_Factorial_ANOVA: Stats2/Lab7_Factorial_ANOVA.html
+  Lab8_Contrasts: Stats2/Lab8_Contrasts.html
+  Lab9_RM_ANOVA: Stats2/Lab9_RM_ANOVA.html
+  semester_project: Stats2/semester_project.html
+  Spring_syllabus: course_docs/Spring_syllabus.html
   Syllabus: course_docs/Syllabus.html
   contribute: course_docs/contribute.html
   reference_code: course_docs/reference_code.html
   resources: course_docs/resources.html
-  semester_project: semester_project.html
-last_built: 2020-12-08T22:05Z
+last_built: 2021-02-01T20:53Z
 urls:
   reference: https://crumplab.github.io/psyc7709Lab/reference
   article: https://crumplab.github.io/psyc7709Lab/articles

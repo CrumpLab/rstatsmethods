@@ -43,38 +43,66 @@ navbar:
       href: index.html
     Syllabus:
       text: Syllabus
-      href: articles/course_docs/Syllabus.html
+      menu:
+      - text: Spring 2021
+        href: articles/course_docs/Spring_syllabus.html
+      - text: Fall 2020
+        href: articles/course_docs/Syllabus.html
     articles:
       text: Labs
       menu:
+      - text: STATS 2 Spring 2021
+      - text: Lab 1 Shaping Data
+        href: articles/Stats2/Lab1_Shape.html
+      - text: Lab 2 Multiple Regression
+        href: articles/Stats2/Lab2_Multiple_regression_I.html
+      - text: Lab 3 Multiple Regression II
+        href: articles/Stats2/Lab3_Multiple_regression_II.html
+      - text: Lab 4 ANOVA
+        href: articles/Stats2/Lab4_ANOVA.html
+      - text: Lab 5 ANOVA as Regression
+        href: articles/Stats2/Lab5_ANOVA_regression.html
+      - text: Lab 6 Comparisons
+        href: articles/Stats2/Lab6_Comparisons.html
+      - text: Lab 7 Factorial ANOVA
+        href: articles/Stats2/Lab7_Factorial_ANOVA.html
+      - text: Lab 8 Contrast Analyses
+        href: articles/Stats2/Lab8_Contrasts.html
+      - text: Lab 9 RM ANOVA
+        href: articles/Stats2/Lab9_RM_ANOVA.html
+      - text: Lab 10 Nested Designs
+        href: articles/Stats2/Lab10_Nested_Designs.html
+      - text: Lab 11 WYOR
+        href: articles/Stats2/Lab11_WYOR.html
+      - text: STATS 1 FALL 2020
       - text: Getting Started
-        href: articles/Getting_Started.html
+        href: articles/Stats1/Getting_Started.html
       - text: Lab 1 Basics
-        href: articles/Lab1_Basics.html
+        href: articles/Stats1/Lab1_Basics.html
       - text: Lab 2 Descriptives
-        href: articles/Lab2_Descriptives.html
+        href: articles/Stats1/Lab2_Descriptives.html
       - text: Lab 3 Distributions I
-        href: articles/Lab3_Distributions_I.html
+        href: articles/Stats1/Lab3_Distributions_I.html
       - text: Lab 4 Distributions II
-        href: articles/Lab4_Distributions_II.html
+        href: articles/Stats1/Lab4_Distributions_II.html
       - text: Lab 5 Sampling Distributions
-        href: articles/Lab5_Sampling_Distributions.html
+        href: articles/Stats1/Lab5_Sampling_Distributions.html
       - text: Lab 6 Statistical Inference
-        href: articles/Lab6_Statistical_Inference.html
+        href: articles/Stats1/Lab6_Statistical_Inference.html
       - text: Lab 7 Binomial tests
-        href: articles/Lab7_Binomial.html
+        href: articles/Stats1/Lab7_Binomial.html
       - text: Lab 8 Z tests
-        href: articles/Lab8_Normal.html
+        href: articles/Stats1/Lab8_Normal.html
       - text: Lab 9 Chi Square
-        href: articles/Lab9_Chisquare.html
+        href: articles/Stats1/Lab9_Chisquare.html
       - text: Lab 10 t tests
-        href: articles/Lab10_ttest.html
+        href: articles/Stats1/Lab10_ttest.html
       - text: Simulation and Power analysis I
-        href: articles/SP_Power.html
+        href: articles/Stats1/SP_Power.html
       - text: Lab 11 Correlation
-        href: articles/Lab11_Correlation.html
+        href: articles/Stats1/Lab11_Correlation.html
       - text: Lab 12 Regression
-        href: articles/Lab12_Regression.html
+        href: articles/Stats1/Lab12_Regression.html
     resources:
       text: R Reference
       menu:
@@ -84,7 +112,11 @@ navbar:
         href: articles/course_docs/resources.html
     semester:
       text: Semester Project
-      href: articles/semester_project.html
+      menu:
+      - text: Spring 2021
+        href: articles/Stats2/semester_project.html
+      - text: Fall 2020
+        href: articles/Stats1/semester_project.html
     contribute:
       text: Extra Credit
       href: articles/course_docs/contribute.html

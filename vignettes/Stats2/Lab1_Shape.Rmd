@@ -1,0 +1,50 @@
+---
+title: "Lab 1 Shaping Data"
+author: "Matthew J. C. Crump"
+date: "2/1/2021"
+bibliography: references.bib
+csl: apa.csl
+link-citations: yes
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Lab 1 Shaping Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+## Reading
+
+## Overview
+
+## Practical
+
+One vector
+
+one-sample t-test
+paired sample
+
+Two-vector
+
+two-sample t-test
+correlation
+regression
+
+Multi-vector
+
+ANOVA
+Regression
+
+
+
+
+
+

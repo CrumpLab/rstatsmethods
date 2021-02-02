@@ -1,0 +1,24 @@
+---
+title: "Lab 11 WYOR"
+author: "Matthew J. C. Crump"
+date: "2/1/2021"
+bibliography: references.bib
+csl: apa.csl
+link-citations: yes
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Lab 11 WYOR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+TBD
