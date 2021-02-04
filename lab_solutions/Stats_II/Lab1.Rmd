@@ -1,0 +1,132 @@
+---
+title: "Lab 1"
+author: "Matt Crump"
+date: "8/26/2020"
+bibliography: BCStats.bib
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Written QALMRI
+
+This is a QALMRI for @slameckaRetroactiveInhibitionConnected1960.
+
+### Q
+
+ - asdljfnadskjhf
+
+### A
+
+- asdljfnadskjhf
+- asdljfnadskjhf
+
+### L
+
+- asdljfnadskjhf
+
+### M
+
+- asdljfnadskjhf
+
+### R
+
+- asdljfnadskjhf
+
+### I
+
+- asdljfnadskjhf
+
+## Coding Problem
+
+1. Create a dataframe that capable of representing the design, in as complete a way as you can, in the @slameckaRetroactiveInhibitionConnected1960 paper.
+
+
+```{r}
+library(tibble)
+
+n <- 36
+OL <- 3
+IL <- 3
+
+design <- matrix(4,ncol=3, nrow=3)
+colnames(design) <- c("OL_2","OL_4","OL_8")
+row.names(design) <- c("IL_0","IL_4","IL_8") 
+
+36/9
+
+# between-subjects version
+
+subjects <- 1:36
+OL <- rep(c(2,4,8),12)
+IL <- rep(c(0,4,8), each=12)
+recall <- sample(0:20,36, replace=TRUE)
+
+long_design <- tibble(subjects,
+                      OL,
+                      IL,
+                      recall)
+
+library(dplyr)
+long_design %>%
+  group_by(OL,IL)%>%
+  count()
+
+# mixed design
+
+mixed_design <- tribble(
+  ~Subjects, ~OL, ~IL,
+  #--|--|----
+  1, 2, 0,
+  1, 4, 4,
+  1, 8, 8,
+  2, 4, 0,
+  2, 8, 4,
+  2, 2, 8,
+  3, 8, 0,
+  3, 2, 4,
+  3, 4, 8,
+  4, 2, 4,
+  4, 4, 0,
+  4, 8, 8,
+  5, 4, 4,
+  5, 2, 8,
+  5, 8, 0,
+  6, 8, 4,
+  6, 4, 8,
+  6, 2, 0,
+  7, 2, 8,
+  7, 4, 0,
+  7, 8, 4,
+  8, 4, 8,
+  8, 2, 4,
+  8, 8, 0,
+  9, 8, 8,
+  9, 4, 4,
+  9, 2, 0
+)
+
+mixed_design %>%
+  group_by(OL,IL)%>%
+  count()
+
+full_mixed_design <- rbind(mixed_design,
+                           mixed_design,
+                           mixed_design,
+                           mixed_design) %>%
+  mutate(Subjects = rep(1:36, each=3),
+         recall = sample(0:20,36*3, replace=TRUE))
+
+full_mixed_design %>%
+  group_by(OL,IL) %>%
+  summarize(mean_recall = mean(recall), .groups="drop")
+
+```
+
+
+
+## References
+
+

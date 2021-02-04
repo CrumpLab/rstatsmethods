@@ -28,6 +28,12 @@ Welcome back. This lab overviews practical aspects about the form or shape that 
 1.  [dplyr](https://dplyr.tidyverse.org)
 2.  [Data-transformation Chapter](https://r4ds.had.co.nz/transform.html)
 
+Apologies that the videos are in two parts...I couldn't compete with a vacuum cleaner.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/WRk20lrFhWw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/l9KG15RS_iY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Background
 
 The structure of research designs imply that produced data will particular properties, the data can be saved in different formats, data can arrive in different shapes and sizes, and it must be transformed into specific shapes in order to conduct specific analyses. Thus, the shape of data, and the shaping of data, are part and parcel of research, from the beginning to the end. We could spend a good deal of time discussing data organization and manipulation. Most of this conversation will unfold over the semester. In the remaining part of this background section I'm going to identify a few places where data organization is important. Each of these topics could easily be expanded to a whole chapter. For now, my goal is to alert you to them. We will cover some of these topics in more detail in this lab.
@@ -88,6 +94,13 @@ long_data <- data.frame(person = rep(1:5, each=3),
                         time_of_day = rep(c("Morning", "Afternoon", "Evening"),5),
                         counts = c(1,3,7,3,4,8,2,5,7,4,4,6,3,7,9))
 knitr::kable(long_data)
+
+
+person <- rep(1:5,3)
+time_of_day <- rep(c("Morning", "Afternoon", "Evening"),each =5)
+counts <- c(1,3,7,3,4,8,2,5,7,4,4,6,3,7,9)
+
+test <- data.frame(person,time_of_day,counts)
 
 ```
 
@@ -198,7 +211,7 @@ Consider a design with 50 participants. Each participant takes a TRUE/FALSE quiz
 ```{r}
 subject_data <- matrix( rbinom(50*10,1,.5), ncol=10, nrow=50)
 subject_means <- rowMeans(subject_data)
-t.test(subject_means,, mu=.5)
+t.test(subject_means, mu=.5)
 ```
 
 ### Paired sample t-test
@@ -300,7 +313,7 @@ t.test(number_correct~room, var.equal=TRUE, data=count_data)
 
 ### Simple linear regression
 
-100 people write down their height in centimeters, and the day of the month they were born. Conduct a linear regression to see if day of month explains variation in height
+100 people write down their height in centimeters, and the day of the month they were born. Conduct a linear regression to see if day of month explains variation in height.
 
 ```{r}
 
@@ -368,7 +381,8 @@ We modify the example include a time of day factor. For example, we will have pe
 weight_data <- tibble(subject_number = rep(1:25, each=4*7),
                           day = rep(rep(c("S","M","T","W","Th","F","Sa"),
                                       each = 4), 25),
-                          time_of_day = rep(c("Morning","Evening"),2*7*25),
+                          time_of_day = rep(c("Morning","Morning",
+                                              "Evening","Evening"),7*25),
                           measurement_number = rep(rep(1:2, 2), 7*25),
                           weights = rnorm(25*4*7, 100, 25))
 
@@ -404,6 +418,8 @@ anova(lm.out)
 ```
 
 ## Lab 1 Generalization Assignment
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pwxqxTlDHHo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 NOTE: Create a new github repository and R project for stats II, this way you can start fresh. Please save all of your labs in this repository.
 
