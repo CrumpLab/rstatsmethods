@@ -223,7 +223,7 @@
       <h1 data-toc-skip>Lab 2 Multiple Regression I</h1>
                         <h4 class="author">Matthew J. C. Crump</h4>
             
-            <h4 class="date">2/1/2021</h4>
+            <h4 class="date">2/10/2021</h4>
       
       
       <div class="hidden name"><code>Lab2_Multiple_regression_I.Rmd</code></div>
@@ -232,12 +232,377 @@
 
     
     
-<p>TBD</p>
+<div id="readings" class="section level2">
+<h2 class="hasAnchor">
+<a href="#readings" class="anchor"></a>Readings</h2>
+<p>Chapters 4 and 5 from <span class="citation"><a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al.</a> (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>.</p>
+</div>
+<div id="overview" class="section level2">
+<h2 class="hasAnchor">
+<a href="#overview" class="anchor"></a>Overview</h2>
+<p><strong>The purpose of this lab</strong> is to show how simple linear regression (using a line) can be extended into multiple linear regression (using a plane or hyperplane).</p>
+<p><img src="imgs/multiple_regression/multiple_regression.002.jpeg" width="100%"></p>
+<p>Before we begin, let’s take stock of how far we got last semester. Remember, the entire purpose of this course is to understand how statistical inference is applied to experimental designs. In experimental designs, researchers are interested in whether manipulations to one experimental variable cause change in a measured dependent variable. Last semester we considered very simple situations involving <em>one independent variable (manipulation) with two levels</em>, and <em>one dependent variable (measure</em>. A design like this could be analyzed with a t-test.</p>
+<p><img src="imgs/multiple_regression/multiple_regression.003.jpeg" width="100%"></p>
+<p>Note also, that by the end of last semester we began discussing another relatively simple situation involving two variables, a <em>predictor</em> variable and a <em>dependent variable</em>; and, we saw how linear regression could be applied to examine potential linear relationships between a predictor variable and dependent variable. As the above figure implies, there can be a relationship between both of the simple situations. In this lab, we will show that a t-test and a simple linear regression can be equivalent. This equivalence also exists for more complicated designs, and throughout the semester we will show that ANOVAs and Multiple Linear Regression are different expressions of the same analysis.</p>
+<p>The entire rest of this semester focuses on expansions of the simplest experimental design (one independent variable with two levels, and one dependent variable). For example, one way to expand on this design is to <em>increase the number of levels</em> of a single independent variable. We will see that designs with multiple levels can be analyzed with ANOVA (Analysis of Variance) or Linear Regression, and both with produce the same results.</p>
+<p><img src="imgs/multiple_regression/multiple_regression.004.jpeg" width="100%"></p>
+<p>Another way to expand the simple design is to <em>increase the number of manipulations, or independent variables</em>. Designs with multiple IVs, each with multiple levels, can all be analyzed with ANOVA and Multiple Linear Regression, to produce the same results.</p>
+<p><img src="imgs/multiple_regression/multiple_regression.005.jpeg" width="100%"></p>
+</div>
+<div id="concept-i-t-tests-and-simple-regression" class="section level2">
+<h2 class="hasAnchor">
+<a href="#concept-i-t-tests-and-simple-regression" class="anchor"></a>Concept I: t-tests and simple regression</h2>
+<p>Throughout the course we will be mostly focusing on extensions to the t-test in the form of ANOVA (Analysis of Variance). These extensions allow for analyses of more complicated designs with multiple independent variables each with multiple levels. However, <em>before</em> we discuss ANOVA, we spend this lab and the next one discussing multiple linear regression. This is because linear regression can also be extended to handle the same more complicated designs. The extension is termed multiple linear regression. Last, ANOVA and multiple linear regression are fundamentally the same analysis, they produce the same results.</p>
+<p>The relationship holds true for simple designs too. So, before we head into multiple linear regression, let’s quickly revisit simple linear regression and see how it can be the same as a t-test.</p>
+<div id="independent-sample-t-test-for-two-groups" class="section level3">
+<h3 class="hasAnchor">
+<a href="#independent-sample-t-test-for-two-groups" class="anchor"></a>Independent sample t-test for two groups</h3>
+<p>Let’s quickly make some sample data for an experiment with two groups that could be analyzed with a t-test.</p>
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">tibble</span>)
+<span class="no">simple_design</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span>(<span class="kw">group</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">1</span>), <span class="kw">each</span><span class="kw">=</span><span class="fl">10</span>),
+                        <span class="kw">DV</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">8</span>,<span class="fl">9</span>))</pre></body></html></div>
+<p>Here’s a table of the data (arranged in long-format):</p>
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="no">simple_design</span>)</pre></body></html></div>
+<table class="table">
+<thead><tr class="header">
+<th align="right">group</th>
+<th align="right">DV</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">0</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="right">0</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">0</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="right">0</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="right">0</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="right">0</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="right">0</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="right">0</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="right">0</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">9</td>
+</tr>
+</tbody>
+</table>
+<p>Here’s a bar graph showing the means for each group, and the data-points for each subject overlaid on top of the bars.</p>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">simple_design</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="no">group</span>, <span class="kw">y</span><span class="kw">=</span><span class="no">DV</span>))+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span>(<span class="kw">stat</span> <span class="kw">=</span> <span class="st">"summary"</span>, <span class="kw">fun</span> <span class="kw">=</span> <span class="st">"mean"</span>, <span class="kw">position</span><span class="kw">=</span><span class="st">"dodge"</span>)+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>()</pre></body></html></div>
+<p><img src="Lab2_Multiple_regression_I_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
+<p>Here’s the t-test results:</p>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span>(<span class="no">DV</span>~<span class="no">group</span>, <span class="kw">var.equal</span><span class="kw">=</span><span class="fl">TRUE</span>, <span class="kw">data</span><span class="kw">=</span><span class="no">simple_design</span>)
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  Two Sample t-test</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; data:  DV by group</span>
+<span class="co">#&gt; t = -1.412, df = 18, p-value = 0.175</span>
+<span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span>
+<span class="co">#&gt; 95 percent confidence interval:</span>
+<span class="co">#&gt;  -2.9854404  0.5854404</span>
+<span class="co">#&gt; sample estimates:</span>
+<span class="co">#&gt; mean in group 0 mean in group 1 </span>
+<span class="co">#&gt;             3.7             4.9</span></pre></body></html></div>
+</div>
+<div id="linear-regression-for-two-groups" class="section level3">
+<h3 class="hasAnchor">
+<a href="#linear-regression-for-two-groups" class="anchor"></a>Linear regression for two groups</h3>
+<p>It is common to apply linear regression to a situation involving two continuous variables. However, we can also apply simple linear regression to the above situation. For example, the predictor variable is ‘group,’ and it ranges from 0 to 1. The dependent variable is ‘DV.’</p>
+<p>We can add a regression line to the graph. Notice that the regression line goes across the boundaries from 0 to 1 (even though there is no data in between 0 and 1). Also, notice that the regression line crosses exactly at the mean for group. This is because the regression line is the line that goes through the means of the two levels.</p>
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">simple_design</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="no">group</span>, <span class="kw">y</span><span class="kw">=</span><span class="no">DV</span>))+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span>(<span class="kw">stat</span> <span class="kw">=</span> <span class="st">"summary"</span>, <span class="kw">fun</span> <span class="kw">=</span> <span class="st">"mean"</span>, <span class="kw">position</span><span class="kw">=</span><span class="st">"dodge"</span>)+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>()+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span>(<span class="kw">method</span><span class="kw">=</span><span class="st">"lm"</span>, <span class="kw">se</span><span class="kw">=</span><span class="fl">FALSE</span>)</pre></body></html></div>
+<p><img src="Lab2_Multiple_regression_I_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
+<p>Next, we conduct a linear regression on the same data.</p>
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">DV</span>~<span class="no">group</span>, <span class="kw">data</span><span class="kw">=</span><span class="no">simple_design</span>)
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Call:</span>
+<span class="co">#&gt; lm(formula = DV ~ group, data = simple_design)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Coefficients:</span>
+<span class="co">#&gt; (Intercept)        group  </span>
+<span class="co">#&gt;         3.7          1.2</span></pre></body></html></div>
+<p>Notice the intercept is 3.7. This is value of DV on the line when group = 0, and it is also the mean value of DV for group 0. Notice that the coefficient for group is 1.2. This represents the idea that as the line goes up by 1, the value of DV will go up by 1.2. So, if we go from group = 0, to group =1, we should go from 3.7 to 3.7+1.2 = 4.9. Notice, that 4.9 is the mean of group 1.</p>
+<p>Last, we can look at a summary of the linear regression. Notice that the p-value is .175, the same as the t-test from above. Notice that there is no t-value here, however the square root of the F-value 1.994 is 1.412, which is the same as the t-value from the t-test.</p>
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">DV</span>~<span class="no">group</span>, <span class="kw">data</span><span class="kw">=</span><span class="no">simple_design</span>))
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Call:</span>
+<span class="co">#&gt; lm(formula = DV ~ group, data = simple_design)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Residuals:</span>
+<span class="co">#&gt;    Min     1Q Median     3Q    Max </span>
+<span class="co">#&gt;  -2.90  -1.10   0.10   1.15   4.10 </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Coefficients:</span>
+<span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span class="co">#&gt; (Intercept)   3.7000     0.6009   6.157 8.18e-06 ***</span>
+<span class="co">#&gt; group         1.2000     0.8498   1.412    0.175    </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Residual standard error: 1.9 on 18 degrees of freedom</span>
+<span class="co">#&gt; Multiple R-squared:  0.09972,    Adjusted R-squared:  0.04971 </span>
+<span class="co">#&gt; F-statistic: 1.994 on 1 and 18 DF,  p-value: 0.175</span></pre></body></html></div>
+</div>
+</div>
+<div id="concept-ii-adding-more-levels-is-still-simple-linear-regression" class="section level2">
+<h2 class="hasAnchor">
+<a href="#concept-ii-adding-more-levels-is-still-simple-linear-regression" class="anchor"></a>Concept II: Adding more levels is still simple linear regression</h2>
+<p>We ended last lab with an assignment to read <span class="citation"><a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">Slamecka</a> (<a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">1960</a>)</span>. The research design from that paper is used in chapter 5 <span class="citation">(<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al., 2009</a>)</span> to explain multiple orthogonal linear regression. We are working toward explaining this example. The full design has two independent variables, each with three levels. Before we take a look at that, let’s consider the issue of extending the number of levels for one independent variable.</p>
+<div id="a-simplified-memory-experiment" class="section level3">
+<h3 class="hasAnchor">
+<a href="#a-simplified-memory-experiment" class="anchor"></a>A simplified memory experiment</h3>
+<p>Let’s simplify the <span class="citation"><a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">Slamecka</a> (<a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">1960</a>)</span> experiment for the moment. Read the following sentence one time:</p>
+<p>“We must postulate that from strictly semantic points of vantage, most confusions in communication revolve about inadequate stipulation of meaning.”</p>
+<p>Now, imagine that in 5 minutes you try to recall the entire sentence from memory. The original sentence has 20 words. How many do you think you can correctly recall?</p>
+<p>In <span class="citation"><a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">Slamecka</a> (<a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">1960</a>)</span>, subjects were given sentences with 20 words in them, and they had different amounts of practice, termed Original Learning (OL). Some subjects got 2, 4, or 8 trials of practice on sentence. Thus, the first Independent variable is OL (or amount of practice), and it had three levels, 2, 4, and 8.</p>
+<p>The expectation is that manipulating amount of practice will change memory performance. Specifically, the more you practice the sentence, the more you will be able to remember it. I created a quick sketch to illustrate the basic predictions.</p>
+<p><img src="imgs/multiple_regression/multiple_regression.008.jpeg" width="100%"></p>
+<p>Notice this prediction graph is not terribly different from the t-test graph from the previous example. Instead of groups 0 and 1 on the x-axis, we have three levels of practice, 2, 4, and 8. If we ran this experiment, we might expect that memory performance goes up as the amount of practice goes up, and we could put line on the data as a basic way to see if the amount of practice actually has an effect. If practice has no effect, then the line would be flat. If there is an effect, then the line would go up like the yellow line in the graph.</p>
+<p>So, let’s quickly reproduce this situation in R. I’ll imagine we have data for 3 subjects in each practice condition. And, I make up some numbers to reflect the idea that more practice will lead to more words recalled. Finally, we fit a regression line.</p>
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">recall_design</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span>(<span class="kw">practice</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">8</span>), <span class="kw">each</span><span class="kw">=</span><span class="fl">3</span>),
+                        <span class="kw">subjects</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">9</span>,
+                        <span class="kw">recall</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">5</span>,<span class="fl">7</span>,<span class="fl">8</span>,
+                                   <span class="fl">8</span>,<span class="fl">10</span>,<span class="fl">12</span>,
+                                   <span class="fl">12</span>,<span class="fl">15</span>,<span class="fl">17</span>))
+<span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="no">recall_design</span>)</pre></body></html></div>
+<table class="table">
+<thead><tr class="header">
+<th align="right">practice</th>
+<th align="right">subjects</th>
+<th align="right">recall</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">7</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">6</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="right">7</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">8</td>
+<td align="right">15</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="right">9</td>
+<td align="right">17</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb9"><html><body><pre class="r">
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">recall_design</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="no">practice</span>, <span class="kw">y</span><span class="kw">=</span><span class="no">recall</span>))+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span>(<span class="kw">stat</span> <span class="kw">=</span> <span class="st">"summary"</span>, <span class="kw">fun</span> <span class="kw">=</span> <span class="st">"mean"</span>, <span class="kw">position</span><span class="kw">=</span><span class="st">"dodge"</span>)+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>()+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span>(<span class="kw">method</span><span class="kw">=</span><span class="st">"lm"</span>, <span class="kw">formula</span> <span class="kw">=</span> <span class="no">y</span>~<span class="no">x</span>, <span class="kw">se</span><span class="kw">=</span><span class="fl">FALSE</span>)</pre></body></html></div>
+<p><img src="Lab2_Multiple_regression_I_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
+<p>There are some tiny wrinkles here to note. If you look closely, the regression line does not go exactly through the means for each level of practice. Also, the bar for 8 trials of practice is far away from the bar for 4 trials of practice.</p>
+<p>What is happening here is that the levels of practice variable is being treated as a continuous variable. When the independent variable is treated like a continuous predictor variable, the regression and ANOVA will be the same, but the regression line may not go through the means in each level.</p>
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">recall</span>~<span class="no">practice</span>, <span class="kw">data</span><span class="kw">=</span><span class="no">recall_design</span>))
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Call:</span>
+<span class="co">#&gt; lm(formula = recall ~ practice, data = recall_design)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Residuals:</span>
+<span class="co">#&gt;     Min      1Q  Median      3Q     Max </span>
+<span class="co">#&gt; -2.8095 -1.5714  0.1905  1.0476  2.4286 </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Coefficients:</span>
+<span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)   </span>
+<span class="co">#&gt; (Intercept)   4.3333     1.3678   3.168  0.01575 * </span>
+<span class="co">#&gt; practice      1.3095     0.2585   5.066  0.00145 **</span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Residual standard error: 1.934 on 7 degrees of freedom</span>
+<span class="co">#&gt; Multiple R-squared:  0.7857, Adjusted R-squared:  0.7551 </span>
+<span class="co">#&gt; F-statistic: 25.67 on 1 and 7 DF,  p-value: 0.001453</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span>(<span class="no">recall</span>~<span class="no">practice</span>, <span class="kw">data</span><span class="kw">=</span><span class="no">recall_design</span>))
+<span class="co">#&gt;             Df Sum Sq Mean Sq F value  Pr(&gt;F)   </span>
+<span class="co">#&gt; practice     1  96.03   96.03   25.67 0.00145 **</span>
+<span class="co">#&gt; Residuals    7  26.19    3.74                   </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></pre></body></html></div>
+<p>It is also possible to treat the independent variable as a categorical variable. We can do this be redefining the <code>practice</code> variable as factor in R. This has a couple different consequences. First, the bar for 8 trials of practice is now located beside the 4. It is now considered to be one category away, and not four steps away, from 4. Also, ggplot2 does not show the regression line even though we asked it to draw one. And, the results of the linear regression and ANOVA are different than before (although they are the same as each other).</p>
+<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">recall_design</span>$<span class="no">practice</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="no">recall_design</span>$<span class="no">practice</span>)
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">recall_design</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="no">practice</span>, <span class="kw">y</span><span class="kw">=</span><span class="no">recall</span>))+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span>(<span class="kw">stat</span> <span class="kw">=</span> <span class="st">"summary"</span>, <span class="kw">fun</span> <span class="kw">=</span> <span class="st">"mean"</span>, <span class="kw">position</span><span class="kw">=</span><span class="st">"dodge"</span>)+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>()+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span>(<span class="kw">method</span><span class="kw">=</span><span class="st">"lm"</span>, <span class="kw">formula</span> <span class="kw">=</span> <span class="no">y</span>~<span class="no">x</span>, <span class="kw">se</span><span class="kw">=</span><span class="fl">FALSE</span>)</pre></body></html></div>
+<p><img src="Lab2_Multiple_regression_I_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
+<div class="sourceCode" id="cb12"><html><body><pre class="r">
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">recall</span>~<span class="no">practice</span>, <span class="kw">data</span><span class="kw">=</span><span class="no">recall_design</span>))
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Call:</span>
+<span class="co">#&gt; lm(formula = recall ~ practice, data = recall_design)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Residuals:</span>
+<span class="co">#&gt;     Min      1Q  Median      3Q     Max </span>
+<span class="co">#&gt; -2.6667 -1.6667  0.3333  1.3333  2.3333 </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Coefficients:</span>
+<span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)   </span>
+<span class="co">#&gt; (Intercept)    6.667      1.186   5.620  0.00136 **</span>
+<span class="co">#&gt; practice4      3.333      1.678   1.987  0.09413 . </span>
+<span class="co">#&gt; practice8      8.000      1.678   4.768  0.00310 **</span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Residual standard error: 2.055 on 6 degrees of freedom</span>
+<span class="co">#&gt; Multiple R-squared:  0.7927, Adjusted R-squared:  0.7236 </span>
+<span class="co">#&gt; F-statistic: 11.47 on 2 and 6 DF,  p-value: 0.008905</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span>(<span class="no">recall</span>~<span class="no">practice</span>, <span class="kw">data</span><span class="kw">=</span><span class="no">recall_design</span>))
+<span class="co">#&gt;             Df Sum Sq Mean Sq F value Pr(&gt;F)   </span>
+<span class="co">#&gt; practice     2  96.89   48.44   11.47 0.0089 **</span>
+<span class="co">#&gt; Residuals    6  25.33    4.22                  </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></pre></body></html></div>
+</div>
+</div>
+<div id="concept-iii-multiple-orthogonal-linear-regression" class="section level2">
+<h2 class="hasAnchor">
+<a href="#concept-iii-multiple-orthogonal-linear-regression" class="anchor"></a>Concept III: Multiple orthogonal linear regression</h2>
+<p><span class="citation"><a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">Slamecka</a> (<a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">1960</a>)</span> manipulated a second independent variable in addition to practice. The second variable was called interpolated learning (IL), and it also had three levels (0,4,8). Here’s what happened. After subjects practiced learning a sentence they had to learn some MORE sentences. These additional sentences would likely have a distracting effect.</p>
+<p>How well would you remember this sentence…</p>
+<p>“We must postulate that from strictly semantic points of vantage, most confusions in communication revolve about inadequate stipulation of meaning.”</p>
+<p>If that’s all you had to do (0 distraction sentences afterwards). How well would you remember the above sentence if you had to practice this new sentence four times:</p>
+<p>“Communicators can exercise latitude in specifying meaning however they choose, provided that such definitions correspond somewhat closely to customary usage.”</p>
+<p>What if you had to practice the new sentence 8 times? The expectation was that your memory for the first sentence would get worse as you practiced additional sentences that would probably distract you from the first one.</p>
+<p>The design was a 3x3 design. The first independent variable was amount of practice on the first sentence (2,4,8 trials of original learning). The second independent variable we’ll call amount of distraction sentences (interpolated learning: 0,4,8). The design was fully crossed, which means that each level of the first independent variable was paired with each level of the second. There are 3x3 = 9 total cells in the design. Here are some general expectations for the data:</p>
+<p>Notice there are 9 dots representing rough predictions for memory recall in each of the 9 conditions (cells) in the design. The practice variable is indicated on the x-axis. The distraction variable is indicated by different colors and connected lines.</p>
+<p><img src="imgs/multiple_regression/multiple_regression.009.jpeg" width="100%"></p>
+<p>Just like in Concept section II, we expect that increasing practice will increase the number of words recalled. We can see the prediction for the practice variable (IV) in all of the colored lines. They all move up to the right, indicating that the more you practice a sentence, the more we expect you to remember more words from the sentence.</p>
+<p><img src="imgs/multiple_regression/multiple_regression.010.jpeg" width="100%"></p>
+<p>The predictions for the second IV, the distraction variable can be see by looking at the colored lines. When there is 0 distraction, we expect the best performance overall, so the blue line representing 0 distraction is at the top. When there is 4 trials of distraction, we expect memory performance to go down, so the green line is lower than the blue line. Finally, when there is 8 trials of distraction, we expect memory performance to go down even more. So, the yellow lines is below the green line.</p>
+<p><img src="imgs/multiple_regression/multiple_regression.011.jpeg" width="100%"></p>
+<p>These trends are referred to as “main effects.” We expect the main effect of practice to increase memory performance. We expect the main effect distraction to decrease memory performance. We expect that both things can happen at the same time, so the total memory performance is basically the sum of your practice minus the distraction.</p>
+<p>To follow along with your textbook, we can visualize predictions for performance in this design in terms of 3-D space. One dimension represents the DV (more or less memory recall), and the other two dimensions represent the IVs (more or less practice, and more or less distraction).</p>
+<p><img src="imgs/multiple_regression/multiple_regression.012.jpeg" width="100%"></p>
+</div>
+<div id="practical-i" class="section level2">
+<h2 class="hasAnchor">
+<a href="#practical-i" class="anchor"></a>Practical I</h2>
+</div>
+<div id="references" class="section level2 unnumbered">
+<h2 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-abdiExperimentalDesignAnalysis2009" class="csl-entry">
+Abdi, H., Edelman, B., Dowling, W. J., &amp; Valentin, D. (2009). <em>Experimental design and analysis for psychology</em>. <span>Oxford University Press</span>.
+</div>
+<div id="ref-slameckaRetroactiveInhibitionConnected1960" class="csl-entry">
+Slamecka, N. J. (1960). Retroactive inhibition of connected discourse as a function of practice level. <em>Journal of Experimental Psychology</em>, <em>59</em>(2), 104–108. <a href="https://doi.org/b5z2nt">https://doi.org/b5z2nt</a>
+</div>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
 
 </div>
 
