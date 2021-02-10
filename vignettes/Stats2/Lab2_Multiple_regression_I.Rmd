@@ -226,7 +226,7 @@ Multiple linear regression can be extended to as many IVs as you like. However, 
 
 **Summary**: The main purpose of the preceding section was to illustrate that multiple linear regression has a geometric interpretation, and that the geometric interpretation can be extended from a simple 2-D space involving one IV and one DV, to a 3-D space involving 2 IVs and one DV, and beyond.
 
-## Practical I
+## Practical I: Simulating Slamecka (1960)
 
 The purpose of this section is to conduct the @slameckaRetroactiveInhibitionConnected1960 example from the textbook in R. Note, that in the original design the IL (number of interpolated lists) had three levels 0, 4, and 8. In the textbook, the 0 is a 2. To align with the textbook, we use a 2 here too.
 

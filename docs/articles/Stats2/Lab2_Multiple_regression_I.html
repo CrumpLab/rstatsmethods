@@ -577,12 +577,426 @@
 <p>The predictions for the second IV, the distraction variable can be see by looking at the colored lines. When there is 0 distraction, we expect the best performance overall, so the blue line representing 0 distraction is at the top. When there is 4 trials of distraction, we expect memory performance to go down, so the green line is lower than the blue line. Finally, when there is 8 trials of distraction, we expect memory performance to go down even more. So, the yellow lines is below the green line.</p>
 <p><img src="imgs/multiple_regression/multiple_regression.011.jpeg" width="100%"></p>
 <p>These trends are referred to as “main effects.” We expect the main effect of practice to increase memory performance. We expect the main effect distraction to decrease memory performance. We expect that both things can happen at the same time, so the total memory performance is basically the sum of your practice minus the distraction.</p>
-<p>To follow along with your textbook, we can visualize predictions for performance in this design in terms of 3-D space. One dimension represents the DV (more or less memory recall), and the other two dimensions represent the IVs (more or less practice, and more or less distraction).</p>
+<p>To follow along with your textbook, we can visualize predictions for performance in this design in terms of 3-D space. One dimension represents the DV (more or less memory recall), and the other two dimensions represent the IVs (more or less practice, and more or less distraction). When we only had one IV, we could look for the best fit line relating the IV to the DV. Now, that we have two IVs we have to add a dimension to our line. A two-dimensional line is a plane. So, when we have two IVs, we can find the best fit plane that runs through the means in each cell in the design.</p>
 <p><img src="imgs/multiple_regression/multiple_regression.012.jpeg" width="100%"></p>
+<p>Multiple linear regression can be extended to as many IVs as you like. However, it becomes difficult to visualize the extensions. We can go from a line to a plane, but it’s harder to visualize what happens when you add a third IV to the mix. This would require a four-dimensional graph that is hard to draw. But, we would extend the plane just like we did before, and there would be some best fit cube. As we keep adding more IVs, we need more and more geometrical dimensions that we can’t visualize. To keep things “simple,” in those situations we say that we are fitting a “hyperplane” to the data.</p>
+<p><strong>Summary</strong>: The main purpose of the preceding section was to illustrate that multiple linear regression has a geometric interpretation, and that the geometric interpretation can be extended from a simple 2-D space involving one IV and one DV, to a 3-D space involving 2 IVs and one DV, and beyond.</p>
 </div>
-<div id="practical-i" class="section level2">
+<div id="practical-i-simulating-slamecka-1960" class="section level2">
 <h2 class="hasAnchor">
-<a href="#practical-i" class="anchor"></a>Practical I</h2>
+<a href="#practical-i-simulating-slamecka-1960" class="anchor"></a>Practical I: Simulating Slamecka (1960)</h2>
+<p>The purpose of this section is to conduct the <span class="citation"><a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">Slamecka</a> (<a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">1960</a>)</span> example from the textbook in R. Note, that in the original design the IL (number of interpolated lists) had three levels 0, 4, and 8. In the textbook, the 0 is a 2. To align with the textbook, we use a 2 here too.</p>
+<div id="representing-the-data-in-long-form" class="section level3">
+<h3 class="hasAnchor">
+<a href="#representing-the-data-in-long-form" class="anchor"></a>Representing the data in long-form</h3>
+<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">slamecka_design</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span>(<span class="kw">number_of_learning_trials</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">8</span>), <span class="kw">each</span><span class="kw">=</span><span class="fl">6</span>),
+                          <span class="kw">number_of_IL</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">8</span>), <span class="fl">2</span>), <span class="fl">3</span>),
+                          <span class="kw">subjects</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">18</span>,
+                          <span class="kw">recall</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">35</span>,<span class="fl">21</span>,<span class="fl">6</span>,
+                                   <span class="fl">39</span>,<span class="fl">31</span>,<span class="fl">8</span>,
+                                   <span class="fl">40</span>,<span class="fl">34</span>,<span class="fl">18</span>,
+                                   <span class="fl">52</span>,<span class="fl">42</span>,<span class="fl">26</span>,
+                                   <span class="fl">61</span>,<span class="fl">58</span>,<span class="fl">46</span>,
+                                   <span class="fl">73</span>,<span class="fl">66</span>,<span class="fl">52</span>
+                                   )
+                          )
+
+<span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="no">slamecka_design</span>)</pre></body></html></div>
+<table class="table">
+<thead><tr class="header">
+<th align="right">number_of_learning_trials</th>
+<th align="right">number_of_IL</th>
+<th align="right">subjects</th>
+<th align="right">recall</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">35</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">21</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">8</td>
+<td align="right">3</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="right">39</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="right">31</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">8</td>
+<td align="right">6</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">7</td>
+<td align="right">40</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">8</td>
+<td align="right">34</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">8</td>
+<td align="right">9</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">10</td>
+<td align="right">52</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">11</td>
+<td align="right">42</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">8</td>
+<td align="right">12</td>
+<td align="right">26</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="right">2</td>
+<td align="right">13</td>
+<td align="right">61</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">4</td>
+<td align="right">14</td>
+<td align="right">58</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="right">8</td>
+<td align="right">15</td>
+<td align="right">46</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">2</td>
+<td align="right">16</td>
+<td align="right">73</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="right">4</td>
+<td align="right">17</td>
+<td align="right">66</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">8</td>
+<td align="right">18</td>
+<td align="right">52</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="visualizing-the-data" class="section level3">
+<h3 class="hasAnchor">
+<a href="#visualizing-the-data" class="anchor"></a>Visualizing the data</h3>
+<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">slamecka_design</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="no">number_of_IL</span>,
+                           <span class="kw">group</span> <span class="kw">=</span> <span class="no">number_of_learning_trials</span>,
+                           <span class="kw">y</span><span class="kw">=</span><span class="no">recall</span>))+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>(<span class="kw">stat</span> <span class="kw">=</span> <span class="st">"summary"</span>, <span class="kw">fun</span> <span class="kw">=</span> <span class="st">"mean"</span>)+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="kw">stat</span> <span class="kw">=</span> <span class="st">"summary"</span>, <span class="kw">fun</span> <span class="kw">=</span> <span class="st">"mean"</span>,)+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>()</pre></body></html></div>
+<p><img src="Lab2_Multiple_regression_I_files/figure-html/unnamed-chunk-22-1.png" width="700"></p>
+</div>
+<div id="running-the-multiple-regression-in-r" class="section level3">
+<h3 class="hasAnchor">
+<a href="#running-the-multiple-regression-in-r" class="anchor"></a>Running the multiple regression in R</h3>
+<p>Note, the main purpose of this example is to show correspondence between the fully worked out example in the textbook, and output from R.</p>
+<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">recall</span>~ <span class="no">number_of_learning_trials</span> + <span class="no">number_of_IL</span>,<span class="kw">data</span> <span class="kw">=</span> <span class="no">slamecka_design</span>)
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Call:</span>
+<span class="co">#&gt; lm(formula = recall ~ number_of_learning_trials + number_of_IL, </span>
+<span class="co">#&gt;     data = slamecka_design)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Coefficients:</span>
+<span class="co">#&gt;               (Intercept)  number_of_learning_trials  </span>
+<span class="co">#&gt;                        30                          6  </span>
+<span class="co">#&gt;              number_of_IL  </span>
+<span class="co">#&gt;                        -4</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">recall</span>~ <span class="no">number_of_learning_trials</span> + <span class="no">number_of_IL</span>,<span class="kw">data</span> <span class="kw">=</span> <span class="no">slamecka_design</span>))
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Call:</span>
+<span class="co">#&gt; lm(formula = recall ~ number_of_learning_trials + number_of_IL, </span>
+<span class="co">#&gt;     data = slamecka_design)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Residuals:</span>
+<span class="co">#&gt;    Min     1Q Median     3Q    Max </span>
+<span class="co">#&gt;   -9.0   -4.0    0.5    4.0    6.0 </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Coefficients:</span>
+<span class="co">#&gt;                           Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span class="co">#&gt; (Intercept)                30.0000     3.3993   8.825 2.52e-07 ***</span>
+<span class="co">#&gt; number_of_learning_trials   6.0000     0.4818  12.453 2.60e-09 ***</span>
+<span class="co">#&gt; number_of_IL               -4.0000     0.4818  -8.302 5.44e-07 ***</span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Residual standard error: 5.099 on 15 degrees of freedom</span>
+<span class="co">#&gt; Multiple R-squared:  0.9372, Adjusted R-squared:  0.9289 </span>
+<span class="co">#&gt; F-statistic:   112 on 2 and 15 DF,  p-value: 9.609e-10</span></pre></body></html></div>
+</div>
+</div>
+<div id="practical-ii-graphing-designs-with-multiple-ivs-and-levels" class="section level2">
+<h2 class="hasAnchor">
+<a href="#practical-ii-graphing-designs-with-multiple-ivs-and-levels" class="anchor"></a>Practical II: Graphing designs with multiple IVs and levels</h2>
+<p>This section provides several example code snippets of using ggplot2 to graph means from designs with multiple IVs and levels.</p>
+<p>Notice the textbook version the Slamecka results plotted number of interpolated learning trials on the x-axis, whereas in concept section III, we had plotted amount of practice on the x-axis. It’s easy to swap this around, by assigning different variables to <code>x</code> or <code>group</code>.</p>
+<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">slamecka_design</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="no">number_of_IL</span>,
+                           <span class="kw">group</span> <span class="kw">=</span> <span class="no">number_of_learning_trials</span>,
+                           <span class="kw">y</span><span class="kw">=</span><span class="no">recall</span>))+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>(<span class="kw">stat</span> <span class="kw">=</span> <span class="st">"summary"</span>, <span class="kw">fun</span> <span class="kw">=</span> <span class="st">"mean"</span>)+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="kw">stat</span> <span class="kw">=</span> <span class="st">"summary"</span>, <span class="kw">fun</span> <span class="kw">=</span> <span class="st">"mean"</span>,)+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>()</pre></body></html></div>
+<p><img src="Lab2_Multiple_regression_I_files/figure-html/unnamed-chunk-24-1.png" width="700"></p>
+<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">slamecka_design</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span> <span class="no">number_of_learning_trials</span>,
+                           <span class="kw">group</span> <span class="kw">=</span> <span class="no">number_of_IL</span>,
+                           <span class="kw">y</span><span class="kw">=</span><span class="no">recall</span>))+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>(<span class="kw">stat</span> <span class="kw">=</span> <span class="st">"summary"</span>, <span class="kw">fun</span> <span class="kw">=</span> <span class="st">"mean"</span>)+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="kw">stat</span> <span class="kw">=</span> <span class="st">"summary"</span>, <span class="kw">fun</span> <span class="kw">=</span> <span class="st">"mean"</span>,)+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>()</pre></body></html></div>
+<p><img src="Lab2_Multiple_regression_I_files/figure-html/unnamed-chunk-25-1.png" width="700"></p>
+<div id="facet-wrapping" class="section level3">
+<h3 class="hasAnchor">
+<a href="#facet-wrapping" class="anchor"></a>facet-wrapping</h3>
+<p><code>ggplot2</code> has a very useful function called <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code> that can be used to graph complicated designs in different ways.</p>
+<p>Facets are created for each level of an independent variable. Below, we at facets for each level of the distraction (IL) variable.</p>
+<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">slamecka_design</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span> <span class="no">number_of_learning_trials</span>,
+                           <span class="kw">y</span><span class="kw">=</span><span class="no">recall</span>))+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>(<span class="kw">stat</span> <span class="kw">=</span> <span class="st">"summary"</span>, <span class="kw">fun</span> <span class="kw">=</span> <span class="st">"mean"</span>)+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="kw">stat</span> <span class="kw">=</span> <span class="st">"summary"</span>, <span class="kw">fun</span> <span class="kw">=</span> <span class="st">"mean"</span>,)+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>() +
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(~<span class="no">number_of_IL</span>)</pre></body></html></div>
+<p><img src="Lab2_Multiple_regression_I_files/figure-html/unnamed-chunk-26-1.png" width="700"></p>
+<p>Let’s imagine that there were 6 subjects in the experiment, and they were assigned to the conditions in the following manner:</p>
+<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="no">slamecka_design</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span>(<span class="kw">number_of_learning_trials</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">8</span>), <span class="kw">each</span><span class="kw">=</span><span class="fl">6</span>),
+                          <span class="kw">number_of_IL</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">8</span>), <span class="fl">2</span>), <span class="fl">3</span>),
+                          <span class="kw">subjects</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fl">1</span>:<span class="fl">6</span>, <span class="kw">each</span><span class="kw">=</span><span class="fl">3</span>),
+                          <span class="kw">recall</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">35</span>,<span class="fl">21</span>,<span class="fl">6</span>,
+                                   <span class="fl">39</span>,<span class="fl">31</span>,<span class="fl">8</span>,
+                                   <span class="fl">40</span>,<span class="fl">34</span>,<span class="fl">18</span>,
+                                   <span class="fl">52</span>,<span class="fl">42</span>,<span class="fl">26</span>,
+                                   <span class="fl">61</span>,<span class="fl">58</span>,<span class="fl">46</span>,
+                                   <span class="fl">73</span>,<span class="fl">66</span>,<span class="fl">52</span>
+                                   )
+                          )
+
+<span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="no">slamecka_design</span>)</pre></body></html></div>
+<table class="table">
+<thead><tr class="header">
+<th align="right">number_of_learning_trials</th>
+<th align="right">number_of_IL</th>
+<th align="right">subjects</th>
+<th align="right">recall</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">35</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">21</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">8</td>
+<td align="right">1</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">39</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">31</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">8</td>
+<td align="right">2</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">40</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">34</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">8</td>
+<td align="right">3</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="right">52</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">42</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">8</td>
+<td align="right">4</td>
+<td align="right">26</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">61</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="right">58</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="right">8</td>
+<td align="right">5</td>
+<td align="right">46</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">2</td>
+<td align="right">6</td>
+<td align="right">73</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="right">4</td>
+<td align="right">6</td>
+<td align="right">66</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">8</td>
+<td align="right">6</td>
+<td align="right">52</td>
+</tr>
+</tbody>
+</table>
+<p>I made this change to illustrate that <code>facet_wrap</code> can create facets that combine two variables, in this practice and individual subjects:</p>
+<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">slamecka_design</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span> <span class="no">number_of_IL</span>,
+                           <span class="kw">y</span><span class="kw">=</span><span class="no">recall</span>))+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>()+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>()+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>() +
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(~<span class="no">number_of_learning_trials</span>*<span class="no">subjects</span>, <span class="kw">ncol</span><span class="kw">=</span><span class="fl">2</span>)</pre></body></html></div>
+<p><img src="Lab2_Multiple_regression_I_files/figure-html/unnamed-chunk-28-1.png" width="700"></p>
+</div>
+</div>
+<div id="lab-2-generalization-assignment" class="section level2">
+<h2 class="hasAnchor">
+<a href="#lab-2-generalization-assignment" class="anchor"></a>Lab 2 Generalization Assignment</h2>
+<div id="instructions" class="section level3">
+<h3 class="hasAnchor">
+<a href="#instructions" class="anchor"></a>Instructions</h3>
+<p>Your assignment instructions are the following:</p>
+<ol style="list-style-type: decimal">
+<li>Work inside the new R project for stats II that you created</li>
+<li>Create a new R Markdown document called “Lab2.Rmd”</li>
+<li>Use Lab2.Rmd to show your work attempting to solve the following generalization problems. Commit your work regularly so that it appears on your Github repository.</li>
+<li>
+<strong>For each problem, make a note about how much of the problem you believe you can solve independently without help</strong>. For example, if you needed to watch the help video and are unable to solve the problem on your own without copying the answers, then your note would be 0. If you are confident you can complete the problem from scratch completely on your own, your note would be 100. It is OK to have all 0s or 100s anything in between.</li>
+<li>Submit your github repository link for Lab 1 on blackboard.</li>
+</ol>
+</div>
+<div id="problems" class="section level3">
+<h3 class="hasAnchor">
+<a href="#problems" class="anchor"></a>Problems</h3>
+<ol style="list-style-type: decimal">
+<li>(3 points) The following code roughly reproduces figure 5.5 from the textbook <span class="citation">(<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al., 2009</a>)</span>. Modify the ggplot code so that the graph looks as close as possible to the figure from textbook:</li>
+</ol>
+<ul>
+<li>change the x-axis title</li>
+<li>change the y-axis title</li>
+<li>make the x-axis and y axis ticks the same</li>
+<li>include different symbols to differentiate the lines</li>
+</ul>
+<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="no">slamecka_design</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span>(<span class="kw">number_of_learning_trials</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">8</span>), <span class="kw">each</span><span class="kw">=</span><span class="fl">6</span>),
+                          <span class="kw">number_of_IL</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">8</span>), <span class="fl">2</span>), <span class="fl">3</span>),
+                          <span class="kw">subjects</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">18</span>,
+                          <span class="kw">recall</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">35</span>,<span class="fl">21</span>,<span class="fl">6</span>,
+                                   <span class="fl">39</span>,<span class="fl">31</span>,<span class="fl">8</span>,
+                                   <span class="fl">40</span>,<span class="fl">34</span>,<span class="fl">18</span>,
+                                   <span class="fl">52</span>,<span class="fl">42</span>,<span class="fl">26</span>,
+                                   <span class="fl">61</span>,<span class="fl">58</span>,<span class="fl">46</span>,
+                                   <span class="fl">73</span>,<span class="fl">66</span>,<span class="fl">52</span>
+                                   )
+                          )
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">slamecka_design</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="no">number_of_IL</span>,
+                           <span class="kw">group</span> <span class="kw">=</span> <span class="no">number_of_learning_trials</span>,
+                           <span class="kw">y</span><span class="kw">=</span><span class="no">recall</span>))+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>(<span class="kw">stat</span> <span class="kw">=</span> <span class="st">"summary"</span>, <span class="kw">fun</span> <span class="kw">=</span> <span class="st">"mean"</span>)+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="kw">stat</span> <span class="kw">=</span> <span class="st">"summary"</span>, <span class="kw">fun</span> <span class="kw">=</span> <span class="st">"mean"</span>,)+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>()</pre></body></html></div>
+<ol start="2" style="list-style-type: decimal">
+<li>(3 points) The Slamecka design was a 3x3 design. The practice variable had three levels (2, 4, and 8), and was assumed to increase memory recall with increasing amount of practice. The interpolated learning (IL or distraction) variable had three levels (0, 4, and 8), and was assumed to decrease memory recall with increasing amounts of distraction.</li>
+</ol>
+<p>Imagine Slamecka had included a third independent variable that also had three levels. This new IV is expected to increase memory recall. For example, maybe the third IV is amount of reward given to subjects (0, 50 dollars, 1 million dollars) for completing the study. As the amount of expected reward is increased, subjects are more motivated so they remember more words.</p>
+<p>Use R to create a dataframe to represent predictions for this new 3x3x3 design. Then use ggplot and facet wrapping to show predicted means for each condition. As a hint, I have provided a drawing and I expect your ggplot graph will look something like this drawing.</p>
+<p><img src="imgs/multiple_regression/multiple_regression.013.jpeg" width="100%"></p>
+</div>
 </div>
 <div id="references" class="section level2 unnumbered">
 <h2 class="hasAnchor">
