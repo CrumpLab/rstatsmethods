@@ -25,6 +25,8 @@ knitr::opts_chunk$set(
 
 Chapters 4 and 5 from @abdiExperimentalDesignAnalysis2009.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qvpNGAMFZ0o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Overview
 
 **The purpose of this lab** is to show how simple linear regression (using a line) can be extended into multiple linear regression (using a plane or hyperplane).
