@@ -164,33 +164,33 @@ Finally, consider for the moment what a confounded design would look like. For e
 slamecka_confounded <- tribble(
   ~Subjects, ~OL, ~IL,
   #--|--|----
-  1, 2, 2,
+  1, 2, 0,
   1, 4, 4,
   1, 8, 8,
   2, 4, 4,
   2, 8, 8,
-  2, 2, 2,
+  2, 2, 0,
   3, 8, 8,
-  3, 2, 2,
+  3, 2, 0,
   3, 4, 4,
-  4, 2, 2,
+  4, 2, 0,
   4, 4, 4,
   4, 8, 8,
   5, 4, 4,
-  5, 2, 2,
+  5, 2, 0,
   5, 8, 8,
   6, 8, 8,
   6, 4, 4,
-  6, 2, 2,
-  7, 2, 2,
+  6, 2, 0,
+  7, 2, 0,
   7, 4, 4,
   7, 8, 8,
   8, 4, 4,
-  8, 2, 2,
+  8, 2, 0,
   8, 8, 8,
   9, 8, 8,
   9, 4, 4,
-  9, 2, 2
+  9, 2, 0
 )
 ```
 
@@ -294,9 +294,9 @@ library(patchwork)
 A+B+C
 ```
 
-Notice that the residuals have a flat line. The process of decomposing Y into one part that is on the regression line, and a residual part reflecting deviation or error from the line, is a process of **de-correlation**. Specifically, the residual part of X is the part that does not correlate with Y. In other words, the residuals are what the pattern looks like when the correlation has been subtracted out. When you subtract out the linear correlation, the leftover part by definition has no correlation left, so the residuals forced to be statistically independent from the dependent measure.
+Notice that the residuals have a flat line. The process of decomposing Y into one part that is on the regression line, and a residual part reflecting deviation or error from the line, is a process of **de-correlation**. Specifically, the residual part of X is the part that does not correlate with Y. In other words, the residuals are what the pattern looks like when the correlation has been subtracted out. When you subtract out the linear correlation, the leftover part by definition has no correlation left, so the residuals are forced to be statistically independent from the dependent measure.
 
-We can show the same thing using the other predictory variable T. If we predict Y from T, then we can plot the residuals and show that they too have the correlation removed.
+We can show the same thing using the other predictor variable T. If we predict Y from T, then we can plot the residuals and show that they too have the correlation removed.
 
 ```{r}
 
@@ -392,7 +392,35 @@ spcor(data, method = "pearson")
 Note that `spcor()` returns correlations ($r$ values). Square them to produce coefficients of determination ($R^2$).
 
 ```{r}
-spcor(data[,1:3], method = "pearson")$estimate^2
+spcor(data[], method = "pearson")$estimate^2
 ```
 
 
+
+## Lab 3 Generalization Assignment
+
+
+### Instructions
+
+Your assignment instructions are the following:
+
+1.  Work inside the new R project for stats II that you created
+2.  Create a new R Markdown document called "Lab3.Rmd"
+3.  Use Lab3.Rmd to show your work attempting to solve the following generalization problems. Commit your work regularly so that it appears on your Github repository.
+5.  Submit your github repository link for Lab 3 on blackboard.
+
+### Problems
+
+1. The problem for this week is to develop a little bit of content (tutorial material) that could be added to this lab. (6 points)
+
+As I mentioned in lab, I ran out of time a little bit this week, so I didn't get a chance to provide lots of examples of doing semi-partial correlation in R. I also didn't cover everything in Chapter 6, for example, I didn't talk about the difference between partial and semi-partial correlation. On the whole, I am assuming that there are many ways the tutorial content in this lab could be improved.
+
+The purpose of this lab is for you to try and create something that could in principle be added to the content of this lab. For example, maybe you think there is another way to explain semi-partial correlation, or the concept of orthogonality, or you would like to provide a different example computing semi-partial correlation.
+
+This is a fairly open lab assignment. Your task is to develop a little tutorial or example that could be inserted into this lab. I'm not going to give guidelines on how long this should be. It probably shouldn't be as long as an entire lab, and it probably shouldn't be as short as 1 line of code and one sentence. I'm thinking a paragraph or two of explanation, and a code snippet or two to illustrate your example. Imagine you are trying to explain these concepts or practical tips, and see what you come up with. 
+
+When you submit your assignment **please let me know if you are OK with me putting your example up on this course website for this lab.** It is totally OK if you do not want to do this. If you are OK with this, then I will add a new section to this lab called "Student contributed examples"; and, you will be recognized as a contributing author to this lab. Note also, that I am sharing this lab on a creative commons license (CC BY SA 4.0), which basically means that other people can copy, edit, and re-use this material as they wish, but they do have to credit the content creators if they do this. If you choose to have your example displayed, then your content will also be on this license. We can discuss the license in more detail next week if you have questions.
+
+Good luck!
+
+## References
