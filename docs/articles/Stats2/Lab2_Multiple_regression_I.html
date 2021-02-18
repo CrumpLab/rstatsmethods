@@ -217,7 +217,7 @@
 
       
 
-      </header><script src="Lab2_Multiple_regression_I_files/header-attrs-2.6/header-attrs.js"></script><div class="row">
+      </header><script src="Lab2_Multiple_regression_I_files/header-attrs-2.6/header-attrs.js"></script><script src="Lab2_Multiple_regression_I_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Lab 2 Multiple Regression I</h1>
@@ -235,7 +235,7 @@
 <div id="readings" class="section level2">
 <h2 class="hasAnchor">
 <a href="#readings" class="anchor"></a>Readings</h2>
-<p>Chapters 4 and 5 from <span class="citation"><a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al.</a> (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>.</p>
+<p>Chapters 4 and 5 from <span class="citation">Abdi et al. (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/qvpNGAMFZ0o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
@@ -378,7 +378,7 @@
 <div id="linear-regression-for-two-groups" class="section level3">
 <h3 class="hasAnchor">
 <a href="#linear-regression-for-two-groups" class="anchor"></a>Linear regression for two groups</h3>
-<p>It is common to apply linear regression to a situation involving two continuous variables. However, we can also apply simple linear regression to the above situation. For example, the predictor variable is ‘group,’ and it ranges from 0 to 1. The dependent variable is ‘DV.’</p>
+<p>It is common to apply linear regression to a situation involving two continuous variables. However, we can also apply simple linear regression to the above situation. For example, the predictor variable is ‘group’, and it ranges from 0 to 1. The dependent variable is ‘DV’.</p>
 <p>We can add a regression line to the graph. Notice that the regression line goes across the boundaries from 0 to 1 (even though there is no data in between 0 and 1). Also, notice that the regression line crosses exactly at the mean for group. This is because the regression line is the line that goes through the means of the two levels.</p>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">simple_design</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="no">group</span>, <span class="kw">y</span><span class="kw">=</span><span class="no">DV</span>))+
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span>(<span class="kw">stat</span> <span class="kw">=</span> <span class="st">"summary"</span>, <span class="kw">fun</span> <span class="kw">=</span> <span class="st">"mean"</span>, <span class="kw">position</span><span class="kw">=</span><span class="st">"dodge"</span>)+
@@ -420,14 +420,14 @@
 <div id="concept-ii-adding-more-levels-is-still-simple-linear-regression" class="section level2">
 <h2 class="hasAnchor">
 <a href="#concept-ii-adding-more-levels-is-still-simple-linear-regression" class="anchor"></a>Concept II: Adding more levels is still simple linear regression</h2>
-<p>We ended last lab with an assignment to read <span class="citation"><a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">Slamecka</a> (<a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">1960</a>)</span>. The research design from that paper is used in chapter 5 <span class="citation">(<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al., 2009</a>)</span> to explain multiple orthogonal linear regression. We are working toward explaining this example. The full design has two independent variables, each with three levels. Before we take a look at that, let’s consider the issue of extending the number of levels for one independent variable.</p>
+<p>We ended last lab with an assignment to read <span class="citation">Slamecka (<a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">1960</a>)</span>. The research design from that paper is used in chapter 5 <span class="citation">(Abdi et al., <a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span> to explain multiple orthogonal linear regression. We are working toward explaining this example. The full design has two independent variables, each with three levels. Before we take a look at that, let’s consider the issue of extending the number of levels for one independent variable.</p>
 <div id="a-simplified-memory-experiment" class="section level3">
 <h3 class="hasAnchor">
 <a href="#a-simplified-memory-experiment" class="anchor"></a>A simplified memory experiment</h3>
-<p>Let’s simplify the <span class="citation"><a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">Slamecka</a> (<a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">1960</a>)</span> experiment for the moment. Read the following sentence one time:</p>
+<p>Let’s simplify the <span class="citation">Slamecka (<a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">1960</a>)</span> experiment for the moment. Read the following sentence one time:</p>
 <p>“We must postulate that from strictly semantic points of vantage, most confusions in communication revolve about inadequate stipulation of meaning.”</p>
 <p>Now, imagine that in 5 minutes you try to recall the entire sentence from memory. The original sentence has 20 words. How many do you think you can correctly recall?</p>
-<p>In <span class="citation"><a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">Slamecka</a> (<a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">1960</a>)</span>, subjects were given sentences with 20 words in them, and they had different amounts of practice, termed Original Learning (OL). Some subjects got 2, 4, or 8 trials of practice on sentence. Thus, the first Independent variable is OL (or amount of practice), and it had three levels, 2, 4, and 8.</p>
+<p>In <span class="citation">Slamecka (<a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">1960</a>)</span>, subjects were given sentences with 20 words in them, and they had different amounts of practice, termed Original Learning (OL). Some subjects got 2, 4, or 8 trials of practice on sentence. Thus, the first Independent variable is OL (or amount of practice), and it had three levels, 2, 4, and 8.</p>
 <p>The expectation is that manipulating amount of practice will change memory performance. Specifically, the more you practice the sentence, the more you will be able to remember it. I created a quick sketch to illustrate the basic predictions.</p>
 <p><img src="imgs/multiple_regression/multiple_regression.008.jpeg" width="100%"></p>
 <p>Notice this prediction graph is not terribly different from the t-test graph from the previous example. Instead of groups 0 and 1 on the x-axis, we have three levels of practice, 2, 4, and 8. If we ran this experiment, we might expect that memory performance goes up as the amount of practice goes up, and we could put line on the data as a basic way to see if the amount of practice actually has an effect. If practice has no effect, then the line would be flat. If there is an effect, then the line would go up like the yellow line in the graph.</p>
@@ -565,7 +565,7 @@
 <div id="concept-iii-multiple-orthogonal-linear-regression" class="section level2">
 <h2 class="hasAnchor">
 <a href="#concept-iii-multiple-orthogonal-linear-regression" class="anchor"></a>Concept III: Multiple orthogonal linear regression</h2>
-<p><span class="citation"><a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">Slamecka</a> (<a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">1960</a>)</span> manipulated a second independent variable in addition to practice. The second variable was called interpolated learning (IL), and it also had three levels (0,4,8). Here’s what happened. After subjects practiced learning a sentence they had to learn some MORE sentences. These additional sentences would likely have a distracting effect.</p>
+<p><span class="citation">Slamecka (<a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">1960</a>)</span> manipulated a second independent variable in addition to practice. The second variable was called interpolated learning (IL), and it also had three levels (0,4,8). Here’s what happened. After subjects practiced learning a sentence they had to learn some MORE sentences. These additional sentences would likely have a distracting effect.</p>
 <p>How well would you remember this sentence…</p>
 <p>“We must postulate that from strictly semantic points of vantage, most confusions in communication revolve about inadequate stipulation of meaning.”</p>
 <p>If that’s all you had to do (0 distraction sentences afterwards). How well would you remember the above sentence if you had to practice this new sentence four times:</p>
@@ -578,16 +578,16 @@
 <p><img src="imgs/multiple_regression/multiple_regression.010.jpeg" width="100%"></p>
 <p>The predictions for the second IV, the distraction variable can be see by looking at the colored lines. When there is 0 distraction, we expect the best performance overall, so the blue line representing 0 distraction is at the top. When there is 4 trials of distraction, we expect memory performance to go down, so the green line is lower than the blue line. Finally, when there is 8 trials of distraction, we expect memory performance to go down even more. So, the yellow lines is below the green line.</p>
 <p><img src="imgs/multiple_regression/multiple_regression.011.jpeg" width="100%"></p>
-<p>These trends are referred to as “main effects.” We expect the main effect of practice to increase memory performance. We expect the main effect distraction to decrease memory performance. We expect that both things can happen at the same time, so the total memory performance is basically the sum of your practice minus the distraction.</p>
+<p>These trends are referred to as “main effects”. We expect the main effect of practice to increase memory performance. We expect the main effect distraction to decrease memory performance. We expect that both things can happen at the same time, so the total memory performance is basically the sum of your practice minus the distraction.</p>
 <p>To follow along with your textbook, we can visualize predictions for performance in this design in terms of 3-D space. One dimension represents the DV (more or less memory recall), and the other two dimensions represent the IVs (more or less practice, and more or less distraction). When we only had one IV, we could look for the best fit line relating the IV to the DV. Now, that we have two IVs we have to add a dimension to our line. A two-dimensional line is a plane. So, when we have two IVs, we can find the best fit plane that runs through the means in each cell in the design.</p>
 <p><img src="imgs/multiple_regression/multiple_regression.012.jpeg" width="100%"></p>
-<p>Multiple linear regression can be extended to as many IVs as you like. However, it becomes difficult to visualize the extensions. We can go from a line to a plane, but it’s harder to visualize what happens when you add a third IV to the mix. This would require a four-dimensional graph that is hard to draw. But, we would extend the plane just like we did before, and there would be some best fit cube. As we keep adding more IVs, we need more and more geometrical dimensions that we can’t visualize. To keep things “simple,” in those situations we say that we are fitting a “hyperplane” to the data.</p>
+<p>Multiple linear regression can be extended to as many IVs as you like. However, it becomes difficult to visualize the extensions. We can go from a line to a plane, but it’s harder to visualize what happens when you add a third IV to the mix. This would require a four-dimensional graph that is hard to draw. But, we would extend the plane just like we did before, and there would be some best fit cube. As we keep adding more IVs, we need more and more geometrical dimensions that we can’t visualize. To keep things “simple”, in those situations we say that we are fitting a “hyperplane” to the data.</p>
 <p><strong>Summary</strong>: The main purpose of the preceding section was to illustrate that multiple linear regression has a geometric interpretation, and that the geometric interpretation can be extended from a simple 2-D space involving one IV and one DV, to a 3-D space involving 2 IVs and one DV, and beyond.</p>
 </div>
 <div id="practical-i-simulating-slamecka-1960" class="section level2">
 <h2 class="hasAnchor">
 <a href="#practical-i-simulating-slamecka-1960" class="anchor"></a>Practical I: Simulating Slamecka (1960)</h2>
-<p>The purpose of this section is to conduct the <span class="citation"><a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">Slamecka</a> (<a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">1960</a>)</span> example from the textbook in R. Note, that in the original design the IL (number of interpolated lists) had three levels 0, 4, and 8. In the textbook, the 0 is a 2. To align with the textbook, we use a 2 here too.</p>
+<p>The purpose of this section is to conduct the <span class="citation">Slamecka (<a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">1960</a>)</span> example from the textbook in R. Note, that in the original design the IL (number of interpolated lists) had three levels 0, 4, and 8. In the textbook, the 0 is a 2. To align with the textbook, we use a 2 here too.</p>
 <div id="representing-the-data-in-long-form" class="section level3">
 <h3 class="hasAnchor">
 <a href="#representing-the-data-in-long-form" class="anchor"></a>Representing the data in long-form</h3>
@@ -785,11 +785,13 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="kw">stat</span> <span class="kw">=</span> <span class="st">"summary"</span>, <span class="kw">fun</span> <span class="kw">=</span> <span class="st">"mean"</span>,)+
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>()</pre></body></html></div>
 <p><img src="Lab2_Multiple_regression_I_files/figure-html/unnamed-chunk-24-1.png" width="700"></p>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">slamecka_design</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span> <span class="no">number_of_learning_trials</span>,
+<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">slamecka_design</span>$<span class="no">number_of_IL</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="no">slamecka_design</span>$<span class="no">number_of_IL</span>)
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">slamecka_design</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span> <span class="no">number_of_learning_trials</span>,
                            <span class="kw">group</span> <span class="kw">=</span> <span class="no">number_of_IL</span>,
                            <span class="kw">y</span><span class="kw">=</span><span class="no">recall</span>))+
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>(<span class="kw">stat</span> <span class="kw">=</span> <span class="st">"summary"</span>, <span class="kw">fun</span> <span class="kw">=</span> <span class="st">"mean"</span>)+
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="kw">stat</span> <span class="kw">=</span> <span class="st">"summary"</span>, <span class="kw">fun</span> <span class="kw">=</span> <span class="st">"mean"</span>,)+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="kw">stat</span> <span class="kw">=</span> <span class="st">"summary"</span>, <span class="kw">fun</span> <span class="kw">=</span> <span class="st">"mean"</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">shape</span><span class="kw">=</span><span class="no">number_of_IL</span>))+
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>()</pre></body></html></div>
 <p><img src="Lab2_Multiple_regression_I_files/figure-html/unnamed-chunk-25-1.png" width="700"></p>
 <div id="facet-wrapping" class="section level3">
@@ -800,7 +802,7 @@
 <div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">slamecka_design</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span> <span class="no">number_of_learning_trials</span>,
                            <span class="kw">y</span><span class="kw">=</span><span class="no">recall</span>))+
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>(<span class="kw">stat</span> <span class="kw">=</span> <span class="st">"summary"</span>, <span class="kw">fun</span> <span class="kw">=</span> <span class="st">"mean"</span>)+
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="kw">stat</span> <span class="kw">=</span> <span class="st">"summary"</span>, <span class="kw">fun</span> <span class="kw">=</span> <span class="st">"mean"</span>,)+
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="kw">stat</span> <span class="kw">=</span> <span class="st">"summary"</span>, <span class="kw">fun</span> <span class="kw">=</span> <span class="st">"mean"</span>)+
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span>() +
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(~<span class="no">number_of_IL</span>)</pre></body></html></div>
 <p><img src="Lab2_Multiple_regression_I_files/figure-html/unnamed-chunk-26-1.png" width="700"></p>
@@ -968,7 +970,7 @@
 <h3 class="hasAnchor">
 <a href="#problems" class="anchor"></a>Problems</h3>
 <ol style="list-style-type: decimal">
-<li>(3 points) The following code roughly reproduces figure 5.5 from the textbook <span class="citation">(<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al., 2009</a>)</span>. Modify the ggplot code so that the graph looks as close as possible to the figure from textbook:</li>
+<li>(3 points) The following code roughly reproduces figure 5.5 from the textbook <span class="citation">(Abdi et al., <a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>. Modify the ggplot code so that the graph looks as close as possible to the figure from textbook:</li>
 </ol>
 <ul>
 <li>change the x-axis title</li>
@@ -1005,12 +1007,12 @@
 <div id="references" class="section level2 unnumbered">
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
-<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
-<div id="ref-abdiExperimentalDesignAnalysis2009" class="csl-entry">
-Abdi, H., Edelman, B., Dowling, W. J., &amp; Valentin, D. (2009). <em>Experimental design and analysis for psychology</em>. <span>Oxford University Press</span>.
+<div id="refs" class="references hanging-indent">
+<div id="ref-abdiExperimentalDesignAnalysis2009">
+<p>Abdi, H., Edelman, B., Dowling, W. J., &amp; Valentin, D. (2009). <em>Experimental design and analysis for psychology</em>. Oxford University Press.</p>
 </div>
-<div id="ref-slameckaRetroactiveInhibitionConnected1960" class="csl-entry">
-Slamecka, N. J. (1960). Retroactive inhibition of connected discourse as a function of practice level. <em>Journal of Experimental Psychology</em>, <em>59</em>(2), 104–108. <a href="https://doi.org/b5z2nt">https://doi.org/b5z2nt</a>
+<div id="ref-slameckaRetroactiveInhibitionConnected1960">
+<p>Slamecka, N. J. (1960). Retroactive inhibition of connected discourse as a function of practice level. <em>Journal of Experimental Psychology</em>, <em>59</em>(2), 104–108. <a href="https://doi.org/10/b5z2nt">https://doi.org/10/b5z2nt</a></p>
 </div>
 </div>
 </div>

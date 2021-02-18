@@ -288,11 +288,13 @@ ggplot(slamecka_design,aes(x=number_of_IL,
 ```
 
 ```{r}
+slamecka_design$number_of_IL <- as.factor(slamecka_design$number_of_IL)
+
 ggplot(slamecka_design,aes(x= number_of_learning_trials,
                            group = number_of_IL,
                            y=recall))+
   geom_line(stat = "summary", fun = "mean")+
-  geom_point(stat = "summary", fun = "mean",)+
+  geom_point(stat = "summary", fun = "mean", aes(shape=number_of_IL))+
   theme_classic()
 ```
 
@@ -306,7 +308,7 @@ Facets are created for each level of an independent variable. Below, we at facet
 ggplot(slamecka_design,aes(x= number_of_learning_trials,
                            y=recall))+
   geom_line(stat = "summary", fun = "mean")+
-  geom_point(stat = "summary", fun = "mean",)+
+  geom_point(stat = "summary", fun = "mean")+
   theme_classic() +
   facet_wrap(~number_of_IL)
 ```
