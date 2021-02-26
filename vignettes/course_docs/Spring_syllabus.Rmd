@@ -20,7 +20,7 @@ Prerequisites: PSYC 7705G: Statistical Methods in Psychology – I
 
 Recommended Prerequisites: Undergraduate Statistics, College Algebra
 
-**Course objectives**: in this course you will develop the following skills in relation to content learning objectives in 7706.
+**Course objectives**: develop the following skills in relation to content learning objectives in 7706.
 
 1.	Basic scripting in R: use of variables, logic, loops, functions, intrinsics, packages.
 2.	Data transformation: processing data-files into a desired form for a desired analysis.
