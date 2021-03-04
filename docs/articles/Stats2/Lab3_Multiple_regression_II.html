@@ -217,7 +217,7 @@
 
       
 
-      </header><script src="Lab3_Multiple_regression_II_files/header-attrs-2.6/header-attrs.js"></script><script src="Lab3_Multiple_regression_II_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="Lab3_Multiple_regression_II_files/header-attrs-2.6/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Lab 3 Multiple Regression II</h1>
@@ -235,7 +235,9 @@
 <div id="readings" class="section level2">
 <h2 class="hasAnchor">
 <a href="#readings" class="anchor"></a>Readings</h2>
-<p>Chapters 6 on semi-partial correlation from <span class="citation">Abdi et al. (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>.</p>
+<p>Chapters 6 on semi-partial correlation from <span class="citation"><a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al.</a> (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/56hUV8Gvyrk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 </div>
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
@@ -257,7 +259,7 @@
 <span class="no">random_vectors</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">20</span>*<span class="fl">26</span>,<span class="fl">0</span>,<span class="fl">1</span>), <span class="kw">nrow</span><span class="kw">=</span><span class="fl">20</span>, <span class="kw">ncol</span><span class="kw">=</span><span class="fl">26</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(<span class="no">random_vectors</span>) <span class="kw">&lt;-</span> <span class="no">letters</span>
 <span class="no">random_vectors</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>(<span class="no">random_vectors</span>)</pre></body></html></div>
-<p>First, because everything is random, the variables are “ortho-normal in expectation”. That is, we expect that the variables are not correlated with each other. Let’s find out if that is true:</p>
+<p>First, because everything is random, the variables are “ortho-normal in expectation.” That is, we expect that the variables are not correlated with each other. Let’s find out if that is true:</p>
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span>(<span class="no">random_vectors</span>))</pre></body></html></div>
 <p><img src="Lab3_Multiple_regression_II_files/figure-html/unnamed-chunk-3-1.png" width="700"> In general, the distribution of correlations is centered on 0. And, the other “correlations” are all caused by chance (except for the identities, which must be one…<code>a</code> correlated with itself is 1, and so on).</p>
 <p>Now, let’s try to predict the values of <code>a</code> from the random vectors in <code>b</code> to <code>z</code>, and see what happens… notice that the total <span class="math inline">\(R^2\)</span> keeps increasing.</p>
@@ -269,40 +271,40 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Residuals:</span>
 <span class="co">#&gt;     Min      1Q  Median      3Q     Max </span>
-<span class="co">#&gt; -1.7608 -0.8001  0.1766  0.5985  2.0198 </span>
+<span class="co">#&gt; -2.0116 -0.5829 -0.1942  0.5962  1.7787 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Coefficients:</span>
 <span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)</span>
-<span class="co">#&gt; (Intercept)   0.1156     0.2541   0.455    0.654</span>
-<span class="co">#&gt; b             0.1328     0.2697   0.492    0.628</span>
+<span class="co">#&gt; (Intercept) -0.17812    0.23288  -0.765    0.454</span>
+<span class="co">#&gt; b           -0.08545    0.21090  -0.405    0.690</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; Residual standard error: 0.9935 on 18 degrees of freedom</span>
-<span class="co">#&gt; Multiple R-squared:  0.01329,    Adjusted R-squared:  -0.04152 </span>
-<span class="co">#&gt; F-statistic: 0.2425 on 1 and 18 DF,  p-value: 0.6283</span>
+<span class="co">#&gt; Residual standard error: 1.041 on 18 degrees of freedom</span>
+<span class="co">#&gt; Multiple R-squared:  0.009038,   Adjusted R-squared:  -0.04602 </span>
+<span class="co">#&gt; F-statistic: 0.1642 on 1 and 18 DF,  p-value: 0.6901</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">a</span>~<span class="no">b</span>,<span class="kw">data</span><span class="kw">=</span><span class="no">random_vectors</span>))$<span class="no">r.squared</span>
-<span class="co">#&gt; [1] 0.01329498</span>
+<span class="co">#&gt; [1] 0.009037687</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">a</span>~<span class="no">b</span>+<span class="no">c</span>,<span class="kw">data</span><span class="kw">=</span><span class="no">random_vectors</span>))$<span class="no">r.squared</span>
-<span class="co">#&gt; [1] 0.03284214</span>
+<span class="co">#&gt; [1] 0.2083049</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">a</span>~<span class="no">b</span>+<span class="no">c</span>+<span class="no">d</span>,<span class="kw">data</span><span class="kw">=</span><span class="no">random_vectors</span>))$<span class="no">r.squared</span>
-<span class="co">#&gt; [1] 0.0964248</span>
+<span class="co">#&gt; [1] 0.2086604</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">a</span>~<span class="no">b</span>+<span class="no">c</span>+<span class="no">d</span>+<span class="no">e</span>,<span class="kw">data</span><span class="kw">=</span><span class="no">random_vectors</span>))$<span class="no">r.squared</span>
-<span class="co">#&gt; [1] 0.1272713</span>
+<span class="co">#&gt; [1] 0.2090641</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">a</span>~<span class="no">b</span>+<span class="no">c</span>+<span class="no">d</span>+<span class="no">e</span>+<span class="no">f</span>,<span class="kw">data</span><span class="kw">=</span><span class="no">random_vectors</span>))$<span class="no">r.squared</span>
-<span class="co">#&gt; [1] 0.1278761</span>
+<span class="co">#&gt; [1] 0.2363815</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">a</span>~<span class="no">b</span>+<span class="no">c</span>+<span class="no">d</span>+<span class="no">e</span>+<span class="no">f</span>+<span class="no">g</span>,<span class="kw">data</span><span class="kw">=</span><span class="no">random_vectors</span>))$<span class="no">r.squared</span>
-<span class="co">#&gt; [1] 0.164106</span>
+<span class="co">#&gt; [1] 0.3711583</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">a</span>~<span class="no">b</span>+<span class="no">c</span>+<span class="no">d</span>+<span class="no">e</span>+<span class="no">f</span>+<span class="no">g</span>+<span class="no">h</span>,<span class="kw">data</span><span class="kw">=</span><span class="no">random_vectors</span>))$<span class="no">r.squared</span>
-<span class="co">#&gt; [1] 0.1705481</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.3720429</span></pre></body></html></div>
 <p>The above example uses <code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code> to add new variables in the linear regression formula. This adds each variable as its own predictor and does not add in potential interactions with other variables. We have not discussed the concept of statistical interaction yet in this course, and we do that in coming lectures. Nevertheless, consider what happens to <span class="math inline">\(R^2\)</span> when the <code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code> is used in the formula.</p>
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">a</span>~<span class="no">b</span>,<span class="kw">data</span><span class="kw">=</span><span class="no">random_vectors</span>))$<span class="no">r.squared</span>
-<span class="co">#&gt; [1] 0.01329498</span>
+<span class="co">#&gt; [1] 0.009037687</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">a</span>~<span class="no">b</span>*<span class="no">c</span>,<span class="kw">data</span><span class="kw">=</span><span class="no">random_vectors</span>))$<span class="no">r.squared</span>
-<span class="co">#&gt; [1] 0.04374471</span>
+<span class="co">#&gt; [1] 0.2380882</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">a</span>~<span class="no">b</span>*<span class="no">c</span>*<span class="no">d</span>,<span class="kw">data</span><span class="kw">=</span><span class="no">random_vectors</span>))$<span class="no">r.squared</span>
-<span class="co">#&gt; [1] 0.4071319</span>
+<span class="co">#&gt; [1] 0.2850116</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">a</span>~<span class="no">b</span>*<span class="no">c</span>*<span class="no">d</span>*<span class="no">e</span>,<span class="kw">data</span><span class="kw">=</span><span class="no">random_vectors</span>))$<span class="no">r.squared</span>
-<span class="co">#&gt; [1] 0.7672118</span>
+<span class="co">#&gt; [1] 0.6543388</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">a</span>~<span class="no">b</span>*<span class="no">c</span>*<span class="no">d</span>*<span class="no">e</span>*<span class="no">f</span>,<span class="kw">data</span><span class="kw">=</span><span class="no">random_vectors</span>))$<span class="no">r.squared</span>
 <span class="co">#&gt; [1] 1</span></pre></body></html></div>
 <p>The <code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code> adds interactions of variables, which effectively increases the number of random predictor variables in this regression. As you can see, with only 5 predictor variables, when we include the potential interactions, this grows to many linearly independent variables (15 in this case):</p>
@@ -312,35 +314,35 @@
 <span class="co">#&gt; lm(formula = a ~ b * c * d * e, data = random_vectors)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Residuals:</span>
-<span class="co">#&gt;        1        2        3        4        5        6        7        8 </span>
-<span class="co">#&gt; -0.22332  0.24931  0.36590  1.16874  0.03330 -0.16919 -0.09306 -0.45130 </span>
-<span class="co">#&gt;        9       10       11       12       13       14       15       16 </span>
-<span class="co">#&gt;  0.17408 -0.21062 -0.46736  0.03612 -0.66952  0.05852  0.36505  0.34736 </span>
-<span class="co">#&gt;       17       18       19       20 </span>
-<span class="co">#&gt;  0.15800 -0.65354 -0.67464  0.65616 </span>
+<span class="co">#&gt;         1         2         3         4         5         6         7         8 </span>
+<span class="co">#&gt; -0.080578  0.194485  0.127609  0.177985  0.029247  1.260131  0.106116  0.008261 </span>
+<span class="co">#&gt;         9        10        11        12        13        14        15        16 </span>
+<span class="co">#&gt; -0.945091 -0.011432  0.572422  0.191611  0.205326 -0.194329 -0.079838 -0.299543 </span>
+<span class="co">#&gt;        17        18        19        20 </span>
+<span class="co">#&gt;  0.076684 -0.644694 -1.576082  0.881709 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Coefficients:</span>
 <span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)</span>
-<span class="co">#&gt; (Intercept)  0.38884    1.14346   0.340    0.751</span>
-<span class="co">#&gt; b           -0.02818    1.27134  -0.022    0.983</span>
-<span class="co">#&gt; c           -0.66783    0.96622  -0.691    0.527</span>
-<span class="co">#&gt; d           -0.05423    2.14151  -0.025    0.981</span>
-<span class="co">#&gt; e            1.70324    1.55642   1.094    0.335</span>
-<span class="co">#&gt; b:c          0.88545    2.46155   0.360    0.737</span>
-<span class="co">#&gt; b:d          0.06105    2.23037   0.027    0.979</span>
-<span class="co">#&gt; c:d          1.95900    2.94779   0.665    0.543</span>
-<span class="co">#&gt; b:e          0.53022    1.84192   0.288    0.788</span>
-<span class="co">#&gt; c:e         -1.45522    1.83592  -0.793    0.472</span>
-<span class="co">#&gt; d:e         -0.09727    3.21379  -0.030    0.977</span>
-<span class="co">#&gt; b:c:d        0.08069    3.09728   0.026    0.980</span>
-<span class="co">#&gt; b:c:e       -1.73541    3.62326  -0.479    0.657</span>
-<span class="co">#&gt; b:d:e        0.89520    4.29537   0.208    0.845</span>
-<span class="co">#&gt; c:d:e        4.48128    5.29820   0.846    0.445</span>
-<span class="co">#&gt; b:c:d:e      4.76927    8.66080   0.551    0.611</span>
+<span class="co">#&gt; (Intercept) -0.57255    0.91508  -0.626    0.565</span>
+<span class="co">#&gt; b           -0.37992    0.83915  -0.453    0.674</span>
+<span class="co">#&gt; c           -0.25735    0.54909  -0.469    0.664</span>
+<span class="co">#&gt; d            0.89087    1.59817   0.557    0.607</span>
+<span class="co">#&gt; e           -0.06966    0.73943  -0.094    0.929</span>
+<span class="co">#&gt; b:c          0.95361    0.67557   1.412    0.231</span>
+<span class="co">#&gt; b:d         -1.96890    1.54657  -1.273    0.272</span>
+<span class="co">#&gt; c:d         -1.50625    1.28798  -1.169    0.307</span>
+<span class="co">#&gt; b:e         -0.66719    0.95185  -0.701    0.522</span>
+<span class="co">#&gt; c:e          0.33494    0.61847   0.542    0.617</span>
+<span class="co">#&gt; d:e         -0.75612    1.23374  -0.613    0.573</span>
+<span class="co">#&gt; b:c:d        1.98603    1.58207   1.255    0.278</span>
+<span class="co">#&gt; b:c:e       -0.08332    0.76249  -0.109    0.918</span>
+<span class="co">#&gt; b:d:e       -0.20627    1.47042  -0.140    0.895</span>
+<span class="co">#&gt; c:d:e       -0.03966    1.44542  -0.027    0.979</span>
+<span class="co">#&gt; b:c:d:e     -0.19461    1.02677  -0.190    0.859</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; Residual standard error: 1.024 on 4 degrees of freedom</span>
-<span class="co">#&gt; Multiple R-squared:  0.7672, Adjusted R-squared:  -0.1057 </span>
-<span class="co">#&gt; F-statistic: 0.8789 on 15 and 4 DF,  p-value: 0.6237</span></pre></body></html></div>
+<span class="co">#&gt; Residual standard error: 1.305 on 4 degrees of freedom</span>
+<span class="co">#&gt; Multiple R-squared:  0.6543, Adjusted R-squared:  -0.6419 </span>
+<span class="co">#&gt; F-statistic: 0.5048 on 15 and 4 DF,  p-value: 0.8508</span></pre></body></html></div>
 <p>When you have more predictor variables than you have rows of data in the DV, you will overfit the data because you will have more ways of explaining the data with lines than you have data points. So, when we have 6 predictor variables, and their interactions, the multiple <span class="math inline">\(R^2\)</span> value goes to 1.</p>
 <div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">a</span>~<span class="no">b</span>*<span class="no">c</span>*<span class="no">d</span>*<span class="no">e</span>*<span class="no">f</span>,<span class="kw">data</span><span class="kw">=</span><span class="no">random_vectors</span>))
 <span class="co">#&gt; </span>
@@ -352,26 +354,26 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Coefficients: (12 not defined because of singularities)</span>
 <span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)</span>
-<span class="co">#&gt; (Intercept)   0.3230         NA      NA       NA</span>
-<span class="co">#&gt; b             1.3940         NA      NA       NA</span>
-<span class="co">#&gt; c            -5.7680         NA      NA       NA</span>
-<span class="co">#&gt; d             2.0022         NA      NA       NA</span>
-<span class="co">#&gt; e             0.9503         NA      NA       NA</span>
-<span class="co">#&gt; f            -0.6628         NA      NA       NA</span>
-<span class="co">#&gt; b:c           7.9879         NA      NA       NA</span>
-<span class="co">#&gt; b:d           3.5298         NA      NA       NA</span>
-<span class="co">#&gt; c:d           9.6906         NA      NA       NA</span>
-<span class="co">#&gt; b:e          -8.0869         NA      NA       NA</span>
-<span class="co">#&gt; c:e          13.6559         NA      NA       NA</span>
-<span class="co">#&gt; d:e          -2.4731         NA      NA       NA</span>
-<span class="co">#&gt; b:f           6.4779         NA      NA       NA</span>
-<span class="co">#&gt; c:f           9.7582         NA      NA       NA</span>
-<span class="co">#&gt; d:f           8.2094         NA      NA       NA</span>
-<span class="co">#&gt; e:f           7.6096         NA      NA       NA</span>
-<span class="co">#&gt; b:c:d        -8.0890         NA      NA       NA</span>
-<span class="co">#&gt; b:c:e        12.5191         NA      NA       NA</span>
-<span class="co">#&gt; b:d:e        17.6149         NA      NA       NA</span>
-<span class="co">#&gt; c:d:e        11.2012         NA      NA       NA</span>
+<span class="co">#&gt; (Intercept)  0.41034         NA      NA       NA</span>
+<span class="co">#&gt; b            0.92534         NA      NA       NA</span>
+<span class="co">#&gt; c           -1.27912         NA      NA       NA</span>
+<span class="co">#&gt; d           -1.56123         NA      NA       NA</span>
+<span class="co">#&gt; e           -0.02471         NA      NA       NA</span>
+<span class="co">#&gt; f            1.16523         NA      NA       NA</span>
+<span class="co">#&gt; b:c         -1.54361         NA      NA       NA</span>
+<span class="co">#&gt; b:d          0.22844         NA      NA       NA</span>
+<span class="co">#&gt; c:d          0.54035         NA      NA       NA</span>
+<span class="co">#&gt; b:e          0.45708         NA      NA       NA</span>
+<span class="co">#&gt; c:e         -0.72164         NA      NA       NA</span>
+<span class="co">#&gt; d:e          1.66154         NA      NA       NA</span>
+<span class="co">#&gt; b:f          2.01083         NA      NA       NA</span>
+<span class="co">#&gt; c:f         -0.05561         NA      NA       NA</span>
+<span class="co">#&gt; d:f         -0.98812         NA      NA       NA</span>
+<span class="co">#&gt; e:f         -2.37101         NA      NA       NA</span>
+<span class="co">#&gt; b:c:d       -0.66875         NA      NA       NA</span>
+<span class="co">#&gt; b:c:e       -0.23428         NA      NA       NA</span>
+<span class="co">#&gt; b:d:e       -0.41513         NA      NA       NA</span>
+<span class="co">#&gt; c:d:e       -3.35053         NA      NA       NA</span>
 <span class="co">#&gt; b:c:f             NA         NA      NA       NA</span>
 <span class="co">#&gt; b:d:f             NA         NA      NA       NA</span>
 <span class="co">#&gt; c:d:f             NA         NA      NA       NA</span>
@@ -394,7 +396,7 @@
 <h2 class="hasAnchor">
 <a href="#review-concept-slamecka-and-orthogonality" class="anchor"></a>Review Concept: Slamecka and orthogonality</h2>
 <p>In the last lab we discussed <strong>orthogonal</strong> multiple regression. We defined orthogonal as a geometric concept, whereby one dimension is orthogonal to another when they are perpendicular, or connected at a 90 degree angle. Whenever this occurs, it is possible to move along one dimension without also moving along any other dimensions (e.g., you can go back and forth on an X-axis without going anywhere on a Y-axis, so those are orthogonal dimensions). Another way of saying this is that variation along one dimension does not influence variation along another. In other words, dimensions are orthogonal when they are un-correlated with each other.</p>
-<p>We also described the <span class="citation">Slamecka (<a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">1960</a>)</span> design as an orthogonal design. In chapter 6, we see an example of non-orthogonal multiple regression, where the research design involved non-orthogonal independent variables. Specifically, the IVs are correlated with each other, so they are not orthogonal</p>
+<p>We also described the <span class="citation"><a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">Slamecka</a> (<a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">1960</a>)</span> design as an orthogonal design. In chapter 6, we see an example of non-orthogonal multiple regression, where the research design involved non-orthogonal independent variables. Specifically, the IVs are correlated with each other, so they are not orthogonal</p>
 <p>Before we discuss that design, it is worth clarifying how it was that the Slamecka design was orthogonal. For example, how exactly is it the case that the IVs in that design were uncorrelated with each other?</p>
 <p>Remember that the Slamecka design had two IVs, with three levels each. Original learning had 3 levels (2, 4, &amp; 8); and interpolated learning had 3 levels (0, 4, and 8). At first glance it might seem that these two IVs are highly correlated:</p>
 <div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">OL</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">8</span>)
@@ -481,7 +483,7 @@
 <span class="co">#&gt; Subjects        1 0.0000000 0.0000000</span>
 <span class="co">#&gt; OL              0 1.0000000 0.9819805</span>
 <span class="co">#&gt; IL              0 0.9819805 1.0000000</span></pre></body></html></div>
-<p>Research designs like Slamecka’s <span class="citation">(Slamecka, <a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">1960</a>)</span> that employ experimental manipulations of orthogonal variables are, in principle, capable of making causal claims. Specifically, results showing some DV (like recall) clearly changed as a function of the levels of the IVs support a causal claim that something about the IVs caused the change. When we conclude that a manipulation does cause change (and reject the null hypothesis that it was chance causing the change), we are saying that some of the variation in the dependent variable can be “explained” in terms of changes in the IV.</p>
+<p>Research designs like Slamecka’s <span class="citation">(<a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">Slamecka, 1960</a>)</span> that employ experimental manipulations of orthogonal variables are, in principle, capable of making causal claims. Specifically, results showing some DV (like recall) clearly changed as a function of the levels of the IVs support a causal claim that something about the IVs caused the change. When we conclude that a manipulation does cause change (and reject the null hypothesis that it was chance causing the change), we are saying that some of the variation in the dependent variable can be “explained” in terms of changes in the IV.</p>
 <p>To connect back to my earlier venting about explanation, even in this case the statistical explanation is a very thin kind of explanation. For example, consider a researcher who has no idea about magnetism. They find themselves at a table with a bunch of metal filings. And they move a rock toward and away from the table, and the metal filings don’t move. This rock isn’t magnetic, it doesn’t do anything to the position of the metal filings. The researcher then accidentally grabs a magnet and moves it toward the table. They notice that the metal filings move more and more as the magnet moves closer to the table. It appears to be like magic. The researcher then very systematically measure metal filing displacement as a function of magnet distance, and produces clear results that the the IV (magnet distance) appears to cause metal filings to move. They then publish a paper titled the effect of this weird rock on moving metal filings on my table.</p>
 <p>I made up this example to highlight two levels of explanation, statistical and theoretical. At a statistical level the position of the magnet “explains” variance in the displacement of metal filings. However, this level of explanation says nothing about how the cause works, it is not an explanation of magnetism. The statistical level of explanation produces a phenomena or effect (the effect of magnets on moving metal filings) that itself still needs to be explained (e.g., by a theory of magnetism). So, although we take about manipulations in terms of whether they explain our measurements, at the theoretical level manipulations never explain anything. Instead they produce phenomena that require theoretical (an account of how the causes work to produce the phenomena) and not statistical explanation.</p>
 </div>
@@ -490,12 +492,12 @@
 <a href="#concept-ii-semi-partial-correlation" class="anchor"></a>Concept II: Semi-partial Correlation</h2>
 <p>Above I tried to briefly develop the idea that explanation is hard, even when you are using the best in class tools like orthogonal experimental designs. For example, even when we have a really powerful manipulation like a magnet that can move metal, just running the experiment doesn’t explain why magnetism works, that part requires a theory of magnetism.</p>
 <p>In non-experimental designs the prospect of explanation is even more remote and in my opinion extremely difficult. For example, in correlational research, a typical strategy is to take many measurements and then see what correlates with what. This strategy can find patterns in data, but as we saw in the first concept section it is possible to “explain” variance with completely random vectors too.</p>
-<p>In Chapter 6, <span class="citation">Abdi et al. (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span> contrasts orthogonal multiple regression suitable for experimental designs with non-orthogonal multiple regression typical of correlation research. In both cases the research design has multiple variables that could “explain” variance in some dependent measure. Most measures of human behavior are complex and multiply determined, so it is natural consider the idea that different variables may or may not have a causal influence on the measure, and if they do cause change, then each variable may cause different amounts of change. As a result, when there are multiple variables, researchers might be interested in figuring out, for each variable, how much it causes change in the measure.</p>
+<p>In Chapter 6, <span class="citation"><a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al.</a> (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span> contrasts orthogonal multiple regression suitable for experimental designs with non-orthogonal multiple regression typical of correlation research. In both cases the research design has multiple variables that could “explain” variance in some dependent measure. Most measures of human behavior are complex and multiply determined, so it is natural consider the idea that different variables may or may not have a causal influence on the measure, and if they do cause change, then each variable may cause different amounts of change. As a result, when there are multiple variables, researchers might be interested in figuring out, for each variable, how much it causes change in the measure.</p>
 <p>In the case of experimental research with orthogonal designs, the determination of the action of causal variables is done by independently manipulating a variable of interest, and measuring whether the manipulation has an effect on the measure. In the case of non-orthogonal correlational research it is not possible make any causal claims. However, it is possible to add variables of interest into a regression, and this will raise many more questions about possible causes. Let’s consider some of the issues by looking at the textbook example.</p>
 <div id="age-speech-rate-and-memory" class="section level3">
 <h3 class="hasAnchor">
 <a href="#age-speech-rate-and-memory" class="anchor"></a>Age, speech rate, and memory</h3>
-<p><span class="citation">Abdi et al. (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span> discusses a research design by <span class="citation">Hulme et al. (<a href="#ref-hulmeSpeechRateDevelopment1984" role="doc-biblioref">1984</a>)</span> who were interested in whether the variables of age and speech rate were involve in memory ability. The basic claim was that older children who can talk faster will have better memory abilities compared to younger children who talk slower, perhaps because faster speech rate would help one rehearse more information.</p>
+<p><span class="citation"><a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al.</a> (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span> discusses a research design by <span class="citation"><a href="#ref-hulmeSpeechRateDevelopment1984" role="doc-biblioref">Hulme et al.</a> (<a href="#ref-hulmeSpeechRateDevelopment1984" role="doc-biblioref">1984</a>)</span> who were interested in whether the variables of age and speech rate were involve in memory ability. The basic claim was that older children who can talk faster will have better memory abilities compared to younger children who talk slower, perhaps because faster speech rate would help one rehearse more information.</p>
 <p>It is not possible to randomly assign people to different ages or different speech rate abilities, so this kind of research can not employ an experimental design with orthogonal variables. As a result, the “Independent Variables” of Age (X) and speech rate (T) are not independent from each other, they are confounded and correlated with one another. For example, as children age they also talk faster, so the age variable is positively correlated with talking faster.</p>
 <p>Example data from the textbook is below:</p>
 <div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">tibble</span>)
@@ -541,7 +543,7 @@
 <p>Here we see that X explains .64 of the variation in Y, and T explains .97 of the variation in Y. Notice this adds up to .97+.64 = 1.61, which is greater than 1. In other words we are explaining more than 100% of the variation, which is nonsensical. How could this happen?</p>
 <p>The assumption is that X and T are correlated with each other, and we can see in the correlation matrix that this is true, the correlation is <span class="math inline">\(r=.75\)</span>. As a result, we consider the idea that there are three parts of the puzzle. The unique potential influence of X, the unique potential influence T, and the shared part between X and T. In other words, part of the age and speech rate variables are measuring the same underlying thing (we call this the shared part), but they are also each measuring some unique things.</p>
 <p>The <span class="math inline">\(R^2\)</span> for X and Y is .64, and this includes the unique part of X and the shared part with T. The <span class="math inline">\(R^2\)</span> for T and Y is .97 and includes the unique part of T, and the shared part with X. If we add the two together, we add the shared part twice, which causes the total <span class="math inline">\(R^2\)</span> to be greater than 1. <strong>Using the technique of semi-partial correlation, it is possible to re-express the two confounded variables into three sources of variation, the unique parts of each, and the shared part.</strong></p>
-<p>Semi-partial correlation involves a process of “de-correlation”, or “taking the line out the data”. Let’s take a closer look at the de-correlation process before using it for semi-partial correlation.</p>
+<p>Semi-partial correlation involves a process of “de-correlation,” or “taking the line out the data.” Let’s take a closer look at the de-correlation process before using it for semi-partial correlation.</p>
 </div>
 <div id="the-residuals-are-de-correlated" class="section level3">
 <h3 class="hasAnchor">
@@ -738,7 +740,7 @@
 <span class="co">#&gt; $method</span>
 <span class="co">#&gt; [1] "pearson"</span></pre></body></html></div>
 <p>Note that <code><a href="https://rdrr.io/pkg/ppcor/man/spcor.html">spcor()</a></code> returns correlations (<span class="math inline">\(r\)</span> values). Square them to produce coefficients of determination (<span class="math inline">\(R^2\)</span>).</p>
-<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/ppcor/man/spcor.html">spcor</a></span>(<span class="no">data</span>[], <span class="kw">method</span> <span class="kw">=</span> <span class="st">"pearson"</span>)$<span class="no">estimate</span>^<span class="fl">2</span>
+<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/ppcor/man/spcor.html">spcor</a></span>(<span class="no">data</span>, <span class="kw">method</span> <span class="kw">=</span> <span class="st">"pearson"</span>)$<span class="no">estimate</span>^<span class="fl">2</span>
 <span class="co">#&gt;             X          T         Y</span>
 <span class="co">#&gt; X 1.000000000 0.08780798 0.1697895</span>
 <span class="co">#&gt; T 0.005427400 1.00000000 0.4209528</span>
@@ -774,15 +776,15 @@
 <div id="references" class="section level2 unnumbered">
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
-<div id="refs" class="references hanging-indent">
-<div id="ref-abdiExperimentalDesignAnalysis2009">
-<p>Abdi, H., Edelman, B., Dowling, W. J., &amp; Valentin, D. (2009). <em>Experimental design and analysis for psychology</em>. Oxford University Press.</p>
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-abdiExperimentalDesignAnalysis2009" class="csl-entry">
+Abdi, H., Edelman, B., Dowling, W. J., &amp; Valentin, D. (2009). <em>Experimental design and analysis for psychology</em>. <span>Oxford University Press</span>.
 </div>
-<div id="ref-hulmeSpeechRateDevelopment1984">
-<p>Hulme, C., Thomson, N., Muir, C., &amp; Lawrence, A. (1984). Speech rate and the development of short-term memory span. <em>Journal of Experimental Child Psychology</em>, <em>38</em>(2), 241–253. <a href="https://doi.org/10/cs58jc">https://doi.org/10/cs58jc</a></p>
+<div id="ref-hulmeSpeechRateDevelopment1984" class="csl-entry">
+Hulme, C., Thomson, N., Muir, C., &amp; Lawrence, A. (1984). Speech rate and the development of short-term memory span. <em>Journal of Experimental Child Psychology</em>, <em>38</em>(2), 241–253. <a href="https://doi.org/cs58jc">https://doi.org/cs58jc</a>
 </div>
-<div id="ref-slameckaRetroactiveInhibitionConnected1960">
-<p>Slamecka, N. J. (1960). Retroactive inhibition of connected discourse as a function of practice level. <em>Journal of Experimental Psychology</em>, <em>59</em>(2), 104–108. <a href="https://doi.org/10/b5z2nt">https://doi.org/10/b5z2nt</a></p>
+<div id="ref-slameckaRetroactiveInhibitionConnected1960" class="csl-entry">
+Slamecka, N. J. (1960). Retroactive inhibition of connected discourse as a function of practice level. <em>Journal of Experimental Psychology</em>, <em>59</em>(2), 104–108. <a href="https://doi.org/b5z2nt">https://doi.org/b5z2nt</a>
 </div>
 </div>
 </div>

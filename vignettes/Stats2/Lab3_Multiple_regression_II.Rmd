@@ -25,6 +25,8 @@ knitr::opts_chunk$set(
 
 Chapters 6 on semi-partial correlation from @abdiExperimentalDesignAnalysis2009.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/56hUV8Gvyrk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Overview
 
 An overarching goal of this semester is to discuss how experimental research designs and statistical tools are combined together to test causal hypotheses about psychological phenomena. For the most part, we will use ANOVA as the statistical tool for experimental research designs with multiple IVs. Currently, we are discussing regression en route to discussing ANOVA. One reason is that ANOVA and regression are fundamentally the same analyses, and it is important to recognize that equivalence. A focus of today's lab is the concept of semi-partial correlation in the context of non-orthogonal multiple regression. This is a statistical tool that is often is used in non-experimental research, and it is useful to discuss some its uses and limitations as we prepare for ANOVA next week.
@@ -392,7 +394,7 @@ spcor(data, method = "pearson")
 Note that `spcor()` returns correlations ($r$ values). Square them to produce coefficients of determination ($R^2$).
 
 ```{r}
-spcor(data[], method = "pearson")$estimate^2
+spcor(data, method = "pearson")$estimate^2
 ```
 
 
