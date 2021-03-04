@@ -26,6 +26,8 @@ knitr::opts_chunk$set(
 
 Chapters 7 and 8 from [@abdiExperimentalDesignAnalysis2009]. You can also check out my chapter on ANOVA [@crumpAnsweringQuestionsData2018] here [https://crumplab.github.io/statistics/anova.html](https://crumplab.github.io/statistics/anova.html).
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HPPH3Jgn0nk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Overview
 
 The next three weeks discuss one-factor Analysis of Variance (ANOVA). We can think of ANOVA as an extension of the t-test idea, that can be applied to designs where the independent variable (IV) has more than two levels, or to even more complicated designs involving multiple IVs (possibly with many levels each).
