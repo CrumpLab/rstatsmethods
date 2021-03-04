@@ -793,7 +793,7 @@ You could also write this as:
 summary(aov(Comprehension ~ Group, data = romeo_juliet))
 ```
 
-### `model.table()`
+### `model.tables()`
 
 Another helpful function is `model.table()`, which extracts the means of each level in the analysis (from the `aov()` object), and prints them to the console.
 
@@ -832,6 +832,8 @@ Check out all of the reporting options you have by using `apa_print()`, and inpu
 ```{r}
 library(papaja)
 
+apa_print(anova.out)
+
 apa_print(anova.out)$full_result$Group
 ```
 To give an example, current APA style for reporting an F-test is something like the following, F(dfb, dfb) = F-value, MSE = MS_within, p = p-value, and maybe a partial-eta squared value. All of this information is available in `apa_print(anova.out)$full_result$Group`, and if you insert it as an inline chunk, you get this `r apa_print(anova.out)$full_result$Group`.
@@ -845,6 +847,8 @@ apa_table(apa_print(anova.out)$table)
 
 
 ## Lab 4 Generalization Assignment
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Y04e14wWh78" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 ### Instructions

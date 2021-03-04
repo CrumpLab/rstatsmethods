@@ -1,0 +1,70 @@
+---
+title: "Lab 4"
+author: "Matt Crump"
+date: "3/4/2021"
+bibliography: BCStats.bib
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+1. Consider the following example data for a between-subjects experiment with two groups, A and B:
+
+```{r}
+library(tibble)
+example_data <- tibble(Group = rep(c("A","B"), each = 5),
+                       DV = c(2,4,3,5,4,7,6,5,6,7))
+```
+
+Use R to conduct a t.test and ANOVA on this data. Then use R to prove that the results of both analyses are the same. For example, prove that the p-values are the same, and prove that the F-value and T-value are related. (3 points)
+
+```{r}
+my_t <- t.test(DV~Group, var.equal=TRUE, data = example_data)
+my_aov <- summary(aov(DV~Group, data = example_data))
+
+my_t$p.value
+my_aov[[1]]$`Pr(>F)`[1]
+
+round(my_t$p.value, digits=5) == round(my_aov[[1]]$`Pr(>F)`[1], digits =5)
+
+my_t$statistic^2
+my_aov[[1]]$`F value`[1]
+
+round(my_t$statistic^2, digits=1) == round(my_aov[[1]]$`F value`[1], digits=1)
+```
+
+2. Look at the lab on ANOVA that I wrote for our undergraduate statistics OER lab manual <https://crumplab.github.io/statisticsLab/lab-8-one-way-anova.html>. That lab shows an example of obtaining data from a published paper in psych science where a one-factor ANOVA was used as a part of the analysis. Load the data, conduct the ANOVA, report a ggplot of the means, and use papaja to help you write a short results section reporting the ANOVA result. (3 points).
+
+```{r}
+library(data.table)
+all_data <- fread("data/Jamesetal2015Experiment2.csv")
+
+# re-labelling
+
+all_data$Condition <- as.factor(all_data$Condition)
+levels(all_data$Condition) <- c("Control",
+                                "Reactivation+Tetris", 
+                                "Tetris_only",
+                                "Reactivation_only")
+
+library(ggplot2)
+
+ggplot(all_data, aes(x=Condition, y=Days_One_to_Seven_Number_of_Intrusions))+
+  geom_bar(stat="summary", fun= "mean", position="dodge")+
+  geom_point()
+
+my_aov <- aov(Days_One_to_Seven_Number_of_Intrusions~Condition, data = all_data)
+summary(my_aov)
+
+
+library(papaja)
+#apa_print(my_aov)$full_result$Condition
+```
+
+
+We submitted the mean intrusive memories for the week from each subject in each condition to a one-factor between-subjects ANOVA, with Intervention type (No-task control, Reactivation Plus tetris, Tetris only, Reactivation only) as the sole independent variable. We found a main effect of Intervention type, `r apa_print(my_aov)$full_result$Condition`.
+
+

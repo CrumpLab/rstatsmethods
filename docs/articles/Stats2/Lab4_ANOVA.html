@@ -346,7 +346,7 @@ We could simply take all of the data points, across all subjects in both groups 
 
 ```r
 var(sample_data$DV)
-#> [1] 1.096746
+#> [1] 1.180788
 ```
 
 Now, let's repeat the above experiment, but this time we will simulate the idea that the IV does actually change measurement. For example, let's say the manipulation in group 2 causes scores to raise dramatically by three whole standard deviations relative to group 1.
@@ -379,7 +379,7 @@ We can confirm that the the total amount of variation has increased by computing
 
 ```r
 var(sample_data$DV)
-#> [1] 3.037875
+#> [1] 3.230127
 ```
 
 I will leave it to you to determine what happens to the total variation if the manipulation caused a mean shift in the negative direction. For example, in the example above, group 2 was programmed to have larger more positive values than group 1. We could have made group 2 receive smaller more negative values than group 1. In general, no matter what direction the change is, if the IV causes changes in the means between the levels, then the presence of the IV should increase the total amount of variation relative control conditions where the IV is not manipulated (but a similar number of groups are measured).
@@ -422,7 +422,7 @@ What is the grand mean? The grand mean is the mean across all of the data ignori
 
 ```r
 mean(sample_data$DV)
-#> [1] 1.536069
+#> [1] 1.483979
 ```
 
 This is the same mean that we use to compute the total variance:
@@ -430,7 +430,7 @@ This is the same mean that we use to compute the total variance:
 
 ```r
 var(sample_data$DV)
-#> [1] 3.368834
+#> [1] 3.473474
 ```
 
 We could add the grand mean as a blue line to the graph:
@@ -482,7 +482,7 @@ The grand mean is the same as before:
 
 ```r
 mean(mean_data$mean_dv)
-#> [1] 1.536069
+#> [1] 1.483979
 ```
 
 And, the total variance is:
@@ -490,7 +490,7 @@ And, the total variance is:
 
 ```r
 var(mean_data$mean_dv)
-#> [1] 2.407911
+#> [1] 2.727083
 ```
 
 Note, here we are computing the variance in the subject means with respect to the grand mean. Before, we computed the variance in all of the raw data with respect to the grand mean.
@@ -511,32 +511,32 @@ knitr::kable(mean_data)
 
 |group | subjects|    mean_dv| grand_mean| squared_error|
 |:-----|--------:|----------:|----------:|-------------:|
-|1     |        1|  0.5814733|   1.536069|     0.9112523|
-|1     |        2|  0.0240411|   1.536069|     2.2862274|
-|1     |        3|  0.0143114|   1.536069|     2.3157452|
-|1     |        4| -0.4380709|   1.536069|     3.8972270|
-|1     |        5| -0.1103194|   1.536069|     2.7105936|
-|1     |        6| -0.0715733|   1.536069|     2.5845128|
-|1     |        7| -0.0247967|   1.536069|     2.4363006|
-|1     |        8| -0.0083666|   1.536069|     2.3852803|
-|1     |        9| -0.4084004|   1.536069|     3.7809602|
-|1     |       10|  1.0466672|   1.536069|     0.2395138|
-|2     |       11|  3.1391644|   1.536069|     2.5699158|
-|2     |       12|  2.8308673|   1.536069|     1.6765035|
-|2     |       13|  2.8862992|   1.536069|     1.8231226|
-|2     |       14|  3.1624565|   1.536069|     2.6451373|
-|2     |       15|  2.8608872|   1.536069|     1.7551441|
-|2     |       16|  2.9213263|   1.536069|     1.9189387|
-|2     |       17|  2.9711031|   1.536069|     2.0593239|
-|2     |       18|  3.3385081|   1.536069|     3.2487877|
-|2     |       19|  2.6845792|   1.536069|     1.3190764|
-|2     |       20|  3.3212167|   1.536069|     3.1867533|
+|1     |        1| -0.2745063|   1.483979|      3.092269|
+|1     |        2| -0.3739820|   1.483979|      3.452018|
+|1     |        3| -0.3441131|   1.483979|      3.341920|
+|1     |        4| -0.0003598|   1.483979|      2.203261|
+|1     |        5|  0.2532068|   1.483979|      1.514800|
+|1     |        6|  0.1542344|   1.483979|      1.768220|
+|1     |        7| -0.0023166|   1.483979|      2.209074|
+|1     |        8| -0.2275355|   1.483979|      2.929281|
+|1     |        9| -0.2286760|   1.483979|      2.933186|
+|1     |       10| -0.0098062|   1.483979|      2.231393|
+|2     |       11|  3.3766908|   1.483979|      3.582359|
+|2     |       12|  2.9408870|   1.483979|      2.122582|
+|2     |       13|  2.7880180|   1.483979|      1.700518|
+|2     |       14|  2.9416223|   1.483979|      2.124725|
+|2     |       15|  3.4516181|   1.483979|      3.871605|
+|2     |       16|  3.2934534|   1.483979|      3.274199|
+|2     |       17|  2.8035412|   1.483979|      1.741245|
+|2     |       18|  3.4570414|   1.483979|      3.892976|
+|2     |       19|  3.1140108|   1.483979|      2.657005|
+|2     |       20|  2.5665452|   1.483979|      1.171950|
 The variance is:
 
 
 ```r
 var(mean_data$mean_dv)
-#> [1] 2.407911
+#> [1] 2.727083
 ```
 
 And, the average of the sum of the squared error is the same thing.
@@ -544,7 +544,7 @@ And, the average of the sum of the squared error is the same thing.
 
 ```r
 sum(mean_data$squared_error)/(20-1)
-#> [1] 2.407911
+#> [1] 2.727083
 ```
 
 #### The means from each level of the IV
@@ -569,35 +569,35 @@ knitr::kable(IV_mean_data)
 
 
 
-|group | subjects|    mean_dv| grand_mean| squared_error|  IV_means| IV_squared_error|
-|:-----|--------:|----------:|----------:|-------------:|---------:|----------------:|
-|1     |        1|  0.5814733|   1.536069|     0.9112523| 0.0604966|         2.177313|
-|1     |        2|  0.0240411|   1.536069|     2.2862274| 0.0604966|         2.177313|
-|1     |        3|  0.0143114|   1.536069|     2.3157452| 0.0604966|         2.177313|
-|1     |        4| -0.4380709|   1.536069|     3.8972270| 0.0604966|         2.177313|
-|1     |        5| -0.1103194|   1.536069|     2.7105936| 0.0604966|         2.177313|
-|1     |        6| -0.0715733|   1.536069|     2.5845128| 0.0604966|         2.177313|
-|1     |        7| -0.0247967|   1.536069|     2.4363006| 0.0604966|         2.177313|
-|1     |        8| -0.0083666|   1.536069|     2.3852803| 0.0604966|         2.177313|
-|1     |        9| -0.4084004|   1.536069|     3.7809602| 0.0604966|         2.177313|
-|1     |       10|  1.0466672|   1.536069|     0.2395138| 0.0604966|         2.177313|
-|2     |       11|  3.1391644|   1.536069|     2.5699158| 3.0116408|         2.177313|
-|2     |       12|  2.8308673|   1.536069|     1.6765035| 3.0116408|         2.177313|
-|2     |       13|  2.8862992|   1.536069|     1.8231226| 3.0116408|         2.177313|
-|2     |       14|  3.1624565|   1.536069|     2.6451373| 3.0116408|         2.177313|
-|2     |       15|  2.8608872|   1.536069|     1.7551441| 3.0116408|         2.177313|
-|2     |       16|  2.9213263|   1.536069|     1.9189387| 3.0116408|         2.177313|
-|2     |       17|  2.9711031|   1.536069|     2.0593239| 3.0116408|         2.177313|
-|2     |       18|  3.3385081|   1.536069|     3.2487877| 3.0116408|         2.177313|
-|2     |       19|  2.6845792|   1.536069|     1.3190764| 3.0116408|         2.177313|
-|2     |       20|  3.3212167|   1.536069|     3.1867533| 3.0116408|         2.177313|
+|group | subjects|    mean_dv| grand_mean| squared_error|   IV_means| IV_squared_error|
+|:-----|--------:|----------:|----------:|-------------:|----------:|----------------:|
+|1     |        1| -0.2745063|   1.483979|      3.092269| -0.1053854|         2.526078|
+|1     |        2| -0.3739820|   1.483979|      3.452018| -0.1053854|         2.526078|
+|1     |        3| -0.3441131|   1.483979|      3.341920| -0.1053854|         2.526078|
+|1     |        4| -0.0003598|   1.483979|      2.203261| -0.1053854|         2.526078|
+|1     |        5|  0.2532068|   1.483979|      1.514800| -0.1053854|         2.526078|
+|1     |        6|  0.1542344|   1.483979|      1.768220| -0.1053854|         2.526078|
+|1     |        7| -0.0023166|   1.483979|      2.209074| -0.1053854|         2.526078|
+|1     |        8| -0.2275355|   1.483979|      2.929281| -0.1053854|         2.526078|
+|1     |        9| -0.2286760|   1.483979|      2.933186| -0.1053854|         2.526078|
+|1     |       10| -0.0098062|   1.483979|      2.231393| -0.1053854|         2.526078|
+|2     |       11|  3.3766908|   1.483979|      3.582359|  3.0733428|         2.526078|
+|2     |       12|  2.9408870|   1.483979|      2.122582|  3.0733428|         2.526078|
+|2     |       13|  2.7880180|   1.483979|      1.700518|  3.0733428|         2.526078|
+|2     |       14|  2.9416223|   1.483979|      2.124725|  3.0733428|         2.526078|
+|2     |       15|  3.4516181|   1.483979|      3.871605|  3.0733428|         2.526078|
+|2     |       16|  3.2934534|   1.483979|      3.274199|  3.0733428|         2.526078|
+|2     |       17|  2.8035412|   1.483979|      1.741245|  3.0733428|         2.526078|
+|2     |       18|  3.4570414|   1.483979|      3.892976|  3.0733428|         2.526078|
+|2     |       19|  3.1140108|   1.483979|      2.657005|  3.0733428|         2.526078|
+|2     |       20|  2.5665452|   1.483979|      1.171950|  3.0733428|         2.526078|
 
 If we treat each score as if the only thing we knew about it was the group mean it came from, then we could measure how much variance is associated with this perspective. For example:
 
 
 ```r
 var(IV_mean_data$IV_means)
-#> [1] 2.291908
+#> [1] 2.65903
 ```
 
 This is the same as the average of the squared errors between the group means and the grand mean.
@@ -605,7 +605,7 @@ This is the same as the average of the squared errors between the group means an
 
 ```r
 sum(IV_mean_data$IV_squared_error)/19
-#> [1] 2.291908
+#> [1] 2.65903
 ```
 
 
@@ -878,7 +878,7 @@ sum(IV_mean_data$IV_squared_error)/19
 <p>We can compute <span class="math inline">\(\text{SS}_\text{Total}\)</span> for the simulated data from above.</p>
 <div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">SS_total</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>( (<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">sim_data</span>) - <span class="no">sim_data</span>)^<span class="fl">2</span> )
 <span class="no">SS_total</span>
-<span class="co">#&gt; [1] 23.92543</span></pre></body></html></div>
+<span class="co">#&gt; [1] 18.99731</span></pre></body></html></div>
 <p>But, that is just what <span class="math inline">\(\text{SS}_\text{Total}\)</span> happens to look like for that one random sample of 20 values from the normal distribution. Under the null, every time we sample 20 values we would expect slightly different values for <span class="math inline">\(\text{SS}_\text{Total}\)</span>. Let’s generate the sampling distribution of <span class="math inline">\(\text{SS}_\text{Total}\)</span>. We would expect <span class="math inline">\(\text{SS}_\text{Total}\)</span> to take on a value from this distribution if the Null is TRUE.</p>
 <div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">SS_total_distribution</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>()
 <span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="fl">1000</span>){
@@ -1071,7 +1071,7 @@ sum(IV_mean_data$IV_squared_error)/19
 <div class="sourceCode" id="cb28"><html><body><pre class="r">
 <span class="co"># get the p-value associated with 7.22</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">save_F_values</span>[<span class="no">save_F_values</span><span class="kw">&gt;</span><span class="fl">7.22</span>])/<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">save_F_values</span>)
-<span class="co">#&gt; [1] 0.0027</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.0021</span></pre></body></html></div>
 </div>
 <div id="practical-2-one-way-anova-with-aov-function" class="section level2">
 <h2 class="hasAnchor">
@@ -1134,9 +1134,9 @@ sum(IV_mean_data$IV_squared_error)/19
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></pre></body></html></div>
 </div>
-<div id="model-table" class="section level3">
+<div id="model-tables" class="section level3">
 <h3 class="hasAnchor">
-<a href="#model-table" class="anchor"></a><code>model.table()</code>
+<a href="#model-tables" class="anchor"></a><code>model.tables()</code>
 </h3>
 <p>Another helpful function is <code>model.table()</code>, which extracts the means of each level in the analysis (from the <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> object), and prints them to the console.</p>
 <div class="sourceCode" id="cb34"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/stats/model.tables.html">model.tables</a></span>(<span class="no">anova.out</span>)
@@ -1187,6 +1187,37 @@ sum(IV_mean_data$IV_squared_error)/19
 <p>Check out all of the reporting options you have by using <code><a href="https://rdrr.io/pkg/papaja/man/apa_print.html">apa_print()</a></code>, and inputting an ANOVA object.</p>
 <div class="sourceCode" id="cb37"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">papaja</span>)
 
+<span class="fu"><a href="https://rdrr.io/pkg/papaja/man/apa_print.html">apa_print</a></span>(<span class="no">anova.out</span>)
+<span class="co">#&gt; $estimate</span>
+<span class="co">#&gt; $estimate$Group</span>
+<span class="co">#&gt; [1] "$\\hat{\\eta}^2_G = .575$"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $statistic</span>
+<span class="co">#&gt; $statistic$Group</span>
+<span class="co">#&gt; [1] "$F(3, 16) = 7.23$, $\\mathit{MSE} = 2.35$, $p = .003$"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $full_result</span>
+<span class="co">#&gt; $full_result$Group</span>
+<span class="co">#&gt; [1] "$F(3, 16) = 7.23$, $\\mathit{MSE} = 2.35$, $p = .003$, $\\hat{\\eta}^2_G = .575$"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $table</span>
+<span class="co">#&gt; A data.frame with 7 labelled columns:</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;   Effect    F df1 df2  MSE    p  ges</span>
+<span class="co">#&gt; 1  Group 7.23   3  16 2.35 .003 .575</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Effect: Effect </span>
+<span class="co">#&gt; F     : $F$ </span>
+<span class="co">#&gt; df1   : $\mathit{df}_1$ </span>
+<span class="co">#&gt; df2   : $\mathit{df}_2$ </span>
+<span class="co">#&gt; MSE   : $\mathit{MSE}$ </span>
+<span class="co">#&gt; ... (2 more labels)</span>
+<span class="co">#&gt; attr(,"class")</span>
+<span class="co">#&gt; [1] "apa_results" "list"</span>
+
 <span class="fu"><a href="https://rdrr.io/pkg/papaja/man/apa_print.html">apa_print</a></span>(<span class="no">anova.out</span>)$<span class="no">full_result</span>$<span class="no">Group</span>
 <span class="co">#&gt; [1] "$F(3, 16) = 7.23$, $\\mathit{MSE} = 2.35$, $p = .003$, $\\hat{\\eta}^2_G = .575$"</span></pre></body></html></div>
 <p>To give an example, current APA style for reporting an F-test is something like the following, F(dfb, dfb) = F-value, MSE = MS_within, p = p-value, and maybe a partial-eta squared value. All of this information is available in <code>apa_print(anova.out)$full_result$Group</code>, and if you insert it as an inline chunk, you get this <span class="math inline">\(F(3, 16) = 7.23\)</span>, <span class="math inline">\(\mathit{MSE} = 2.35\)</span>, <span class="math inline">\(p = .003\)</span>, <span class="math inline">\(\hat{\eta}^2_G = .575\)</span>.</p>
@@ -1223,6 +1254,8 @@ sum(IV_mean_data$IV_squared_error)/19
 <div id="lab-4-generalization-assignment" class="section level2">
 <h2 class="hasAnchor">
 <a href="#lab-4-generalization-assignment" class="anchor"></a>Lab 4 Generalization Assignment</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Y04e14wWh78" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <div id="instructions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#instructions" class="anchor"></a>Instructions</h3>
