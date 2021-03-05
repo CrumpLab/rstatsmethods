@@ -44,7 +44,11 @@ ggplot(slamecka_design,aes(x=number_of_IL,
   xlab("Number of interpolated lists")+
   ylab("Number of words correct")+
   scale_y_continuous(breaks=c(20,40,60,80), limits=c(0,80))+
-  scale_x_continuous(breaks=c(2,4,8))
+  scale_x_continuous(breaks=c(2,4,8), limits = c(1,12))+
+  theme(legend.position = "none")+
+  annotate("text", x = 10, y = 50, label = "8 learning trials")+
+  annotate("text", x = 10, y = 22, label = "4 learning trials")+
+  annotate("text", x = 10, y = 8, label = "2 learning trials")
 ```
 
 2. (3 points) The Slamecka design was a 3x3 design. The practice variable had three levels (2, 4, and 8), and was assumed to increase memory recall with increasing amount of practice. The interpolated learning (IL or distraction) variable had three levels (0, 4, and 8), and was assumed to decrease memory recall with increasing amounts of distraction.
