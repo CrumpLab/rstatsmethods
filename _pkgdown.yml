@@ -60,8 +60,8 @@ navbar:
         href: articles/Stats2/Lab3_Multiple_regression_II.html
       - text: Lab 4 ANOVA
         href: articles/Stats2/Lab4_ANOVA.html
-      - text: Lab 5 ANOVA as Regression
-        href: articles/Stats2/Lab5_ANOVA_regression.html
+      - text: Lab 5 ANOVA and Randomization
+        href: articles/Stats2/Lab5_ANOVA_Randomization.html
       - text: Lab 6 Comparisons
         href: articles/Stats2/Lab6_Comparisons.html
       - text: Lab 7 Factorial ANOVA

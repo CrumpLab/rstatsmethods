@@ -1,0 +1,46 @@
+---
+title: "Lab 5 ANOVA and Randomization"
+author: "Matthew J. C. Crump"
+date: "3/5/2021"
+bibliography: references.bib
+csl: apa.csl
+link-citations: yes
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Lab 5 ANOVA and Randomization}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+## Reading
+
+## Overview
+
+Throughout this course we reiterate that ANOVA and regression are fundamentally the same analysis. For example, the readings from the textbook for this week show ANOVA from a linear regression perspective. The purpose of this lab is to develop another similarity, between ANOVA and randomization tests. The plan for the lab is to walk through the conceptual issues involved in detecting causal influences from experiments with one independent variable and multiple issues. We will see how ANOVA is one approach to detecting causal influences. In this lab we will attempt to expose the assumptions made in ANOVA, and also show how Randomization tests could be employed as a non-parametric alternative (a test that doesn't depend on the assumptions inherent to ANOVA).
+
+## How can you know if your experiment works?
+
+1. You are planning to run an Experiment with one independent variable, with multiple levels (let's say four).
+
+
+1. Our experimental design, 1 IV, multiple levels...let's say 4.
+2. We are randomly assigning participants to groups...How can we control for this influence?
+  -simulate null-hypothesis
+  -show bar plots of mean differences that could happen
+  - f-distributions
+  - show F-distribution doesn't depend on mean and standard deviation of normal..
+3. We don't know exactly what will happen...run some simulations to make some guesses
+  -simulate some alternatives
+4. Rough power analysis...number of subjects needed to detect an average of effect of x
+
+5. Do the above with a Randomization test.
+

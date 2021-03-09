@@ -95,7 +95,7 @@
       <a href="../../articles/Stats2/Lab4_ANOVA.html">Lab 4 ANOVA</a>
     </li>
     <li>
-      <a href="../../articles/Stats2/Lab5_ANOVA_regression.html">Lab 5 ANOVA as Regression</a>
+      <a href="../../articles/Stats2/Lab5_ANOVA_Randomization.html">Lab 5 ANOVA and Randomization</a>
     </li>
     <li>
       <a href="../../articles/Stats2/Lab6_Comparisons.html">Lab 6 Comparisons</a>
@@ -262,7 +262,7 @@
 
 <span class="co"># the pvalue for this one pretend simulation</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span>(<span class="no">A</span>,<span class="no">B</span>,<span class="kw">var.equal</span><span class="kw">=</span><span class="fl">TRUE</span>)$<span class="no">p.value</span>
-<span class="co">#&gt; [1] 0.9669027</span>
+<span class="co">#&gt; [1] 0.9490702</span>
 
 <span class="co"># running the simulation</span>
 <span class="co"># everytime we run this function we do one simulated experiment and return the p-value</span>
@@ -281,7 +281,7 @@
 <div class="sourceCode" id="cb2"><html><body><pre class="r">
 <span class="co"># proportion of simulated experiments had a p-value less than .05</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">outcomes</span>[<span class="no">outcomes</span><span class="kw">&lt;</span><span class="fl">.05</span>])/<span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.06</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.057</span></pre></body></html></div>
 <p>We ran the above simulation 1000 times. By definition, we should get approximately 5% of the simulations returning a p-value less than .05. If we increase the number of simulations, then we will get a more accurate answer that converges on 5% every time.</p>
 </div>
 </div>
@@ -293,7 +293,7 @@
 <div class="sourceCode" id="cb3"><html><body><pre class="r">  <span class="no">A</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="fl">10</span>,<span class="kw">mean</span><span class="kw">=</span><span class="fl">10</span>, <span class="kw">sd</span><span class="kw">=</span><span class="fl">5</span>)
   <span class="no">B</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw">n</span><span class="kw">=</span><span class="fl">10</span>,<span class="kw">mean</span><span class="kw">=</span><span class="fl">15</span>, <span class="kw">sd</span><span class="kw">=</span><span class="fl">5</span>)
   <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span>(<span class="no">A</span>,<span class="no">B</span>,<span class="kw">var.equal</span><span class="kw">=</span><span class="fl">TRUE</span>)$<span class="no">p.value</span>
-<span class="co">#&gt; [1] 0.0005099333</span>
+<span class="co">#&gt; [1] 0.0006847675</span>
 
 <span class="co"># make the mean for B 15 (5 more than A)</span>
 <span class="no">sim_alternative</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(){
@@ -468,7 +468,7 @@
 <span class="no">x</span> <span class="kw">&lt;-</span> <span class="fl">.3</span>
 <span class="no">sims</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span>(<span class="fl">1000</span>,<span class="fu">sim_power</span>(<span class="no">x</span>))
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">sims</span>[<span class="no">sims</span><span class="kw">&lt;</span><span class="fl">.05</span>])/<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">sims</span>)
-<span class="co">#&gt; [1] 0.092</span>
+<span class="co">#&gt; [1] 0.108</span>
 
 <span class="co"># vector of effect sizes</span>
 <span class="no">effect_sizes</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">.1</span>,<span class="fl">2</span>,<span class="fl">.1</span>)

@@ -23,7 +23,7 @@ articles:
   Lab2_Multiple_regression_I: Stats2/Lab2_Multiple_regression_I.html
   Lab3_Multiple_regression_II: Stats2/Lab3_Multiple_regression_II.html
   Lab4_ANOVA: Stats2/Lab4_ANOVA.html
-  Lab5_ANOVA_Regression: Stats2/Lab5_ANOVA_Regression.html
+  Lab5_ANOVA_Randomization: Stats2/Lab5_ANOVA_Randomization.html
   Lab6_Comparisons: Stats2/Lab6_Comparisons.html
   Lab7_Factorial_ANOVA: Stats2/Lab7_Factorial_ANOVA.html
   Lab8_Contrasts: Stats2/Lab8_Contrasts.html
@@ -34,7 +34,7 @@ articles:
   contribute: course_docs/contribute.html
   reference_code: course_docs/reference_code.html
   resources: course_docs/resources.html
-last_built: 2021-02-01T20:53Z
+last_built: 2021-03-05T15:44Z
 urls:
   reference: https://crumplab.github.io/psyc7709Lab/reference
   article: https://crumplab.github.io/psyc7709Lab/articles
