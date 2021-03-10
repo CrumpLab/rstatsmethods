@@ -7,8 +7,11 @@ output: pdf_document
 
 Spring 2021
 
+Section: R12
+Code: 16799
 Location: online (zoom links provided on blackboard)
 Time: Thursdays 12:30pm-2:00pm
+Office Hours: T 12:15-1:15pm, TH 2-3pm (by appointment on zoom)
 
 Instructor:  Matthew Crump, [mcrump@brooklyn.cuny.edu](mcrump@brooklyn.cuny.edu)
 
@@ -79,7 +82,7 @@ Students are expected to attend all classes. In the event of an emergency, conta
 
 ### Accessibility
 
-It is important to me that the course be accessible to all students. The Center for Student Disability Services (CSDS) will be working remotely for the fall semester. In order to receive disability-related academic accommodations students must first be registered with CSDS. Students who have a documented disability or suspect they may have a disability are invited to schedule an interview by calling (718) 951-5538 or emailing <testingcsds@brooklyn.cuny.edu>. If you have already registered with CSDS, email <Josephine.Patterson@brooklyn.cuny.edu> or <testingcsds@brooklyn.cuny.edu> to ensure the accommodation email is sent to your professor.
+It is important to me that the course be accessible to all students. In order to receive disability-related academic accommodations students must first be registered with the Center for Student Disability Services. Students who have a documented disability or suspect they may have a disability are invited to set up an appointment with the Director of the Center for Student Disability Services, at 718-951-5538. If you have already registered with the Center for Student Disability Services please provide your professor with the course accommodation form and discuss your specific accommodation with him/her.
 
 ---
 
