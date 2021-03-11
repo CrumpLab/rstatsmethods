@@ -144,6 +144,7 @@ ggplot(F_comparison, aes(x=F_value))+
   facet_wrap(~type)
 
 ```
+
 A common term to describe the above assumption is **i.i.d**, which stands for independent and identically distributed. That is, we assume that each score in the data is sampled **independently** (or randomly) from all of the other scores, and each score is sampled from the **identical** distribution as all other scores. In the two simulated F-distributions above, we implemented the **iid** assumption both times. In one case, we sampled values from a normal with mean = 0 , and sd = 1, and the in the other we sampled scores from a normal with mean = 50, and sd = 25. As an aside, it is worth considering whether this assumption is ever true in the real world. For example, could you run a control experiment where you sample people into different groups, do no manipulation beyond assigning people to different groups, and then be confident that the mean of your measurement of each person is the same as sampling from a **iid** normal distribution?
 
 Even though in practice we routinely violate assumptions of ANOVA, it is also the case that F-distributions are fairly resistant to violations of assumptions. For example, let's assume that individual scores are sampled from a bimodal distribution, that is very obviously not normal. The result is that F-distribution is roughly similar to our previous ones based on the normal distribution.
@@ -173,6 +174,7 @@ ggplot(F_comparison, aes(x=F_value))+
   facet_wrap(~type)
 
 ```
+
 ### p-values
 
 Let's consider p-values for a moment. The graph above shows several simulations of the "ultimate control experiment" for our design. All of the $F-values$ are the values that can be obtained by chance alone. Remember, we introduce randomness by assigning different people randomly to different groups, and we assume there is inherent variability in our measurement that is also unpredictable.
@@ -251,17 +253,17 @@ Instead of using the provided p-value, we can conduct a randomization test. This
 ```{r}
 save_F_values <- length(1000)
 for(i in 1:1000){
-some_data <- some_data <- tibble(subjects = 1:(levels*n_per_level),
-                      IV = as.factor(rep(1:levels, each = n_per_level)),
-                      DV = sample(c(11,12,11,11,12,
-                             10,8,10,9,10,
-                             8,9,10,10,10,
-                             10,8,10,9,10
-                             ))
-                      )
-aov.out <- aov(DV ~ IV, data =some_data)
-simulated_F <- summary(aov.out)[[1]]$`F value`[1]
-save_F_values[i] <- simulated_F
+  some_data <- tibble(subjects = 1:(levels*n_per_level),
+                        IV = as.factor(rep(1:levels, each = n_per_level)),
+                        DV = sample(c(11,12,11,11,12,
+                               10,8,10,9,10,
+                               8,9,10,10,10,
+                               10,8,10,9,10
+                               ))
+                        )
+  aov.out <- aov(DV ~ IV, data =some_data)
+  simulated_F <- summary(aov.out)[[1]]$`F value`[1]
+  save_F_values[i] <- simulated_F
 }
 
 F_comparison <- tibble(type = rep(c("analytic","randomization"), each = 1000), 
@@ -527,19 +529,28 @@ ggplot(power_curve, aes(x=num_subjects,
 ```
 
 
+## Lab 5 Generalization Assignment
 
 
+### Instructions
 
+Your assignment instructions are the following:
 
+1.  Work inside the new R project for stats II that you created
+2.  Create a new R Markdown document called "Lab5.Rmd"
+3.  Use Lab5.Rmd to show your work attempting to solve the following generalization problems. Commit your work regularly so that it appears on your Github repository.
+4.  **For each problem, make a note about how much of the problem you believe you can solve independently without help**. For example, if you needed to watch the help video and are unable to solve the problem on your own without copying the answers, then your note would be 0. If you are confident you can complete the problem from scratch completely on your own, your note would be 100. It is OK to have all 0s or 100s anything in between.
+5.  Submit your github repository link for Lab 5 on blackboard.
 
-<!--
-### The score model
+### Problems
 
-Your textbook describes the notion of the score model. Briefly, this is the idea that a single subjects score can be described in terms of a series of components that are added together. 
+In the context of making decisions about whether or not observed data is consistent or inconsistent with a Null hypothesis, it is possible to make errors. The questions below ask you to create simulated data containing patterns that could lead to correct and incorrect decisions about the role of the null hypothesis.
 
-For example, let's say the score for subject 1 is 11. We can describe the score as the sum of the grand mean, the group mean, and the leftover error. If the grand mean was 7, the group mean was 8, then this score would be 7 (the influence of the grand mean), +1 (the influence of the group mean...to get to 8), and +4 (the leftover part) to get to 11=7+1+4.
+Consider a design with 3 groups, and 10 people per group. Assume that the dependent variable is assumed to be normally distributed, and use unit normal distributions with mean = 0, and sd = 1 in your simulations. 
 
--->
+1. Create simulated data for the above design that could be produced by the null hypothesis, and that results in a $F$ value that is **smaller** than the critical value for $F$ in this design (assume alpha = .05). Report the ANOVA, and show a ggplot of the means in the simulated data. Furthermore, display the individual data points on top of the means. Would you reject the null hypothesis in this situation, and would you be incorrect or correct in rejecting the null? (3 points)
 
+2. Create simulated data for the above design that could be produced by the null hypothesis, and that results in a $F$ value that is **larger** than the critical value for $F$ in this design (assume alpha = .05). Report the ANOVA, and show a ggplot of the means in the simulated data. Furthermore, display the individual data points on top of the means. Would you reject the null hypothesis in this situation, and would you be incorrect or correct in rejecting the null? (3 points)
 
+## References
 
