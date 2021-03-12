@@ -240,6 +240,12 @@
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h2>
+<p>Simulating the Null and Randomization test</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3a0OHVuxoMI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<p>Alternative Hypotheses</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LWbHLPw3hKA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <p>Throughout this course we reiterate that ANOVA and regression are fundamentally the same analysis. For example, the readings from the textbook for this week show ANOVA from a linear regression perspective. The purpose of this lab is to develop another similarity, between ANOVA and randomization/permutation tests (remember we discussed these last semester in <a href="https://crumplab.github.io/psyc7709Lab/articles/Stats1/Lab6_Statistical_Inference.html">lab 6</a>). The plan for the lab is to walk through the conceptual issues involved in detecting causal influences from experiments with one independent variable and multiple levels. We will see how ANOVA is one approach to detecting causal influences. In this lab we will attempt to expose the assumptions made in ANOVA, and also show how Randomization tests could be employed as a non-parametric alternative (a test that doesn’t depend on the assumptions inherent to ANOVA).</p>
 </div>
 <div id="how-can-you-know-if-your-experiment-works" class="section level2">
@@ -315,7 +321,7 @@
 <h3 class="hasAnchor">
 <a href="#anova-assumptions" class="anchor"></a>ANOVA assumptions</h3>
 <p>A major purpose of running these simulations is to find ways to inspect the underlying assumptions of ANOVA. You can see that the simulation above produced the same F-distribution as the one obtained by the analytic solution for the F-distribution.</p>
-<p>The basic assumption in the simulation, which also apepar in ANOVA, is that the score for each subject (that is used to compute the F-ratio) is <strong>randomly sampled from a normal distribution</strong>. In our simulation, we randomly sampled numbers for each subject from a unit normal distribution with mean = 0, and standard deviation = 1.</p>
+<p>The basic assumption in the simulation, which also appear in ANOVA, is that the score for each subject (that is used to compute the F-ratio) is <strong>randomly sampled from a normal distribution</strong>. In our simulation, we randomly sampled numbers for each subject from a unit normal distribution with mean = 0, and standard deviation = 1.</p>
 <p>A first point to make is that the parameters in our simulated normal distribution do not influence the F-distribution. Remember, that a normal distribution has the same overall shape no matter what the mean and standard deviation is. As a result, we will always get the same F-distribution if we assume that all of our samples are coming from the same normal distribution. To illustrate the point, let’s re-run our simulation, but take values from normal distribution with mean = 50, and standard deviation = 25.</p>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">save_new_F_values</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="fl">1000</span>)
 <span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="fl">1000</span>){
@@ -377,25 +383,25 @@
 <span class="no">Fs</span> <span class="kw">&lt;-</span> <span class="no">F_comparison</span>[<span class="no">F_comparison</span>$<span class="no">type</span><span class="kw">==</span><span class="st">"analytic"</span>,]$<span class="no">F_value</span>
 <span class="no">sorted_Fs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span>(<span class="no">Fs</span>)
 <span class="no">sorted_Fs</span>[<span class="fl">950</span>]
-<span class="co">#&gt; [1] 3.404484</span>
+<span class="co">#&gt; [1] 3.392226</span>
 
 <span class="co">## 1000 deviates samples from normal sim_0_1</span>
 <span class="no">Fs</span> <span class="kw">&lt;-</span> <span class="no">F_comparison</span>[<span class="no">F_comparison</span>$<span class="no">type</span><span class="kw">==</span><span class="st">"sim_0_1"</span>,]$<span class="no">F_value</span>
 <span class="no">sorted_Fs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span>(<span class="no">Fs</span>)
 <span class="no">sorted_Fs</span>[<span class="fl">950</span>]
-<span class="co">#&gt; [1] 3.270155</span>
+<span class="co">#&gt; [1] 3.45819</span>
 
 <span class="co">## 1000 deviates samples from normal sim_50_25</span>
 <span class="no">Fs</span> <span class="kw">&lt;-</span> <span class="no">F_comparison</span>[<span class="no">F_comparison</span>$<span class="no">type</span><span class="kw">==</span><span class="st">"sim_50_25"</span>,]$<span class="no">F_value</span>
 <span class="no">sorted_Fs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span>(<span class="no">Fs</span>)
 <span class="no">sorted_Fs</span>[<span class="fl">950</span>]
-<span class="co">#&gt; [1] 3.095952</span>
+<span class="co">#&gt; [1] 3.072317</span>
 
 <span class="co">## 1000 deviates samples from bimodal sim</span>
 <span class="no">Fs</span> <span class="kw">&lt;-</span> <span class="no">F_comparison</span>[<span class="no">F_comparison</span>$<span class="no">type</span><span class="kw">==</span><span class="st">"sim_bimodal"</span>,]$<span class="no">F_value</span>
 <span class="no">sorted_Fs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span>(<span class="no">Fs</span>)
 <span class="no">sorted_Fs</span>[<span class="fl">950</span>]
-<span class="co">#&gt; [1] 3.485455</span></pre></body></html></div>
+<span class="co">#&gt; [1] 3.031675</span></pre></body></html></div>
 <p>Blurring your eyes a bit, we see that control experiments where the manipulation does nothing produce F values that are smaller than 3.2 to 3.4ish 95% of the time. Looking at the distributions, themselves, you can see that they never produce values much larger than 10.</p>
 <p>If you were to conduct a real experiment, then you might want to observe an F value that was larger than 3.2ish. If you found an F-value larger than 10, you could be pretty confident that the null-distribution did not cause the F-value. Instead, it would seem more plausible that your experimental manipulation actually caused some change in the means of your measured variable.</p>
 </div>
@@ -452,12 +458,12 @@
 <p>As you can see, the distribution of possible F values that we obtained by randomly reshuffling the data isn’t terribly different from the analytic F distribution based on the normal distribution.</p>
 <p>Using the F distribution from the Randomization test, we can compute a p-value for the observed F-value and find a similar result.</p>
 <div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">save_F_values</span>[<span class="no">save_F_values</span><span class="kw">&gt;</span><span class="fl">7.407</span>])/<span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.002</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.004</span></pre></body></html></div>
 </div>
 <div id="the-alternative-hypotheses" class="section level2">
 <h2 class="hasAnchor">
 <a href="#the-alternative-hypotheses" class="anchor"></a>The alternative hypotheses</h2>
-<p>The above section showed an example of simulating the null-hypothesis for a design with one independent variable and multiuple levels. The basic set-up was pretty straightforward. You randomly sample numbers from the same distribution into your different groups. Thus, the null hypothesis is that every group mean should be on average be the same, because they should all be the same as the mean of the distribution that they came from.</p>
+<p>The above section showed an example of simulating the null-hypothesis for a design with one independent variable and multiple levels. The basic set-up was pretty straightforward. You randomly sample numbers from the same distribution into your different groups. Thus, the null hypothesis is that every group mean should be on average be the same, because they should all be the same as the mean of the distribution that they came from.</p>
 <p>What if we want to simulate a situation where your experimental manipulation is presumed to actually do something to the measurement? If your manipulation causes some change in the measurement, then by definition we must be violating the <strong>iid</strong> assumption. It will no longer be the case that the scores sampled into different groups are taken randomly from identical distributions. Instead, we think of the manipulation as effectively causing multiple distributions to exist. If one level causes a large increase to the mean, then we think of the scores in that group as coming from a distribution with a shifted mean, relative to scores in the other groups.</p>
 <div id="simulating-alternative-hypotheses" class="section level3">
 <h3 class="hasAnchor">
@@ -465,7 +471,7 @@
 <p>The null-hypothesis is easy to simulate because of the <strong>iid</strong> assumption. However, alternative hypotheses in general are more difficult because there are an infinity of them.</p>
 <p>Let’s begin by simulating one specific alternative hypothesis. The method for doing this is just to declare what distributions your data are being sampled from for each group. Any scenario that is not the null, is a possible alternative.</p>
 <p>Let’s imagine that we are measuring performance on a standardized test, with mean = 100, and sd = 25. There are four groups that manipulate the kind of music people listen to when they take the test. Let’s say that for some reason listening to 1970s sitcom music causally changes test performance, and it increases the mean for that group by 1 one whole standard deviation. Let’s declare this exact situation in R.</p>
-<p>The tibble represents random values for four groups sampled from two different distributions. Group one gets rnorm(n,125,25), and the other three groups get rnorm(n,100,25).</p>
+<p>The tibble represents random values for four groups sampled from two different distributions. Group one gets <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm(n,125,25)</a></code>, and the other three groups get <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm(n,100,25)</a></code>.</p>
 <div class="sourceCode" id="cb14"><html><body><pre class="r">
 <span class="no">levels</span> <span class="kw">&lt;-</span> <span class="fl">4</span>
 <span class="no">n_per_level</span> <span class="kw">&lt;-</span> <span class="fl">5</span>
@@ -508,7 +514,7 @@
 <span class="co">#&gt; [1] 3.238872</span></pre></body></html></div>
 <p>How many times was F higher than 3.23 in the alternative distribution?</p>
 <div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">save_altF_values</span>[<span class="no">save_altF_values</span> <span class="kw">&gt;</span> <span class="fl">3.23</span>])
-<span class="co">#&gt; [1] 281</span></pre></body></html></div>
+<span class="co">#&gt; [1] 290</span></pre></body></html></div>
 <p>This is a pretty low number, and it means that the true effect is not detected very often even when it is actually there. In other words, the design has low power to detect to detect the effect.</p>
 </div>
 <div id="number-of-subjects-needed" class="section level3">
@@ -569,7 +575,7 @@
 }
 
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">save_altF_values</span>[<span class="no">save_altF_values</span> <span class="kw">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">qf</a></span>(<span class="fl">.95</span>,<span class="fl">3</span>,(<span class="no">n_per_level</span>*<span class="fl">4</span>)-<span class="fl">4</span>)])/<span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.956</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.955</span></pre></body></html></div>
 <p>Instead of wiggling the n by hand, we could run a set of simulations for different n, and plot a curve power-curve:</p>
 <div class="sourceCode" id="cb22"><html><body><pre class="r">
 <span class="no">num_subjects</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">5</span>,<span class="fl">10</span>,<span class="fl">15</span>,<span class="fl">20</span>,<span class="fl">25</span>,<span class="fl">30</span>)
@@ -611,27 +617,27 @@
 <tbody>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.289</td>
+<td align="right">0.298</td>
 </tr>
 <tr class="even">
 <td align="right">10</td>
-<td align="right">0.579</td>
+<td align="right">0.616</td>
 </tr>
 <tr class="odd">
 <td align="right">15</td>
-<td align="right">0.785</td>
+<td align="right">0.784</td>
 </tr>
 <tr class="even">
 <td align="right">20</td>
-<td align="right">0.916</td>
+<td align="right">0.905</td>
 </tr>
 <tr class="odd">
 <td align="right">25</td>
-<td align="right">0.961</td>
+<td align="right">0.950</td>
 </tr>
 <tr class="even">
 <td align="right">30</td>
-<td align="right">0.977</td>
+<td align="right">0.988</td>
 </tr>
 </tbody>
 </table>
@@ -690,35 +696,35 @@
 <tbody>
 <tr class="odd">
 <td align="right">10</td>
-<td align="right">0.123</td>
+<td align="right">0.121</td>
 </tr>
 <tr class="even">
 <td align="right">50</td>
-<td align="right">0.457</td>
+<td align="right">0.460</td>
 </tr>
 <tr class="odd">
 <td align="right">75</td>
-<td align="right">0.584</td>
+<td align="right">0.562</td>
 </tr>
 <tr class="even">
 <td align="right">100</td>
-<td align="right">0.685</td>
+<td align="right">0.653</td>
 </tr>
 <tr class="odd">
 <td align="right">125</td>
-<td align="right">0.731</td>
+<td align="right">0.724</td>
 </tr>
 <tr class="even">
 <td align="right">150</td>
-<td align="right">0.769</td>
+<td align="right">0.761</td>
 </tr>
 <tr class="odd">
 <td align="right">175</td>
-<td align="right">0.811</td>
+<td align="right">0.814</td>
 </tr>
 <tr class="even">
 <td align="right">200</td>
-<td align="right">0.827</td>
+<td align="right">0.861</td>
 </tr>
 </tbody>
 </table>
@@ -733,6 +739,8 @@
 <div id="lab-5-generalization-assignment" class="section level2">
 <h2 class="hasAnchor">
 <a href="#lab-5-generalization-assignment" class="anchor"></a>Lab 5 Generalization Assignment</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/btX3h8y-6IQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <div id="instructions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#instructions" class="anchor"></a>Instructions</h3>
@@ -755,6 +763,113 @@
 <li><p>Create simulated data for the above design that could be produced by the null hypothesis, and that results in a <span class="math inline">\(F\)</span> value that is <strong>smaller</strong> than the critical value for <span class="math inline">\(F\)</span> in this design (assume alpha = .05). Report the ANOVA, and show a ggplot of the means in the simulated data. Furthermore, display the individual data points on top of the means. Would you reject the null hypothesis in this situation, and would you be incorrect or correct in rejecting the null? (3 points)</p></li>
 <li><p>Create simulated data for the above design that could be produced by the null hypothesis, and that results in a <span class="math inline">\(F\)</span> value that is <strong>larger</strong> than the critical value for <span class="math inline">\(F\)</span> in this design (assume alpha = .05). Report the ANOVA, and show a ggplot of the means in the simulated data. Furthermore, display the individual data points on top of the means. Would you reject the null hypothesis in this situation, and would you be incorrect or correct in rejecting the null? (3 points)</p></li>
 </ol>
+<p>Bonus Question</p>
+<ol start="3" style="list-style-type: decimal">
+<li>In the lab we saw that F-distribution is robust to violations of the assumptions of ANOVA. For example, the simulation of the null based on a bi-modal distribution was very similar to the true F distribution. For this bonus question, show that you can “break” the F-distribution. Specifically, can you run a simulation that samples numbers from a non-normal distribution that does produce a very different looking F-distribution? (3 points)</li>
+</ol>
+<!--
+## Extra
+
+More simulations to break the ANOVA
+
+Simulated Normal
+
+
+```r
+levels <- 4
+n_per_level <- 5
+
+save_F_values <- length(10000)
+
+for(i in 1:10000){
+  
+  random_data <- tibble(subjects = 1:(levels*n_per_level),
+                        IV = as.factor(rep(1:levels, each = n_per_level)),
+                        DV = rnorm(levels*n_per_level, 0, 1)
+                        )
+  
+  aov.out <- aov(DV ~ IV, data = random_data)
+  
+  simulated_F <- summary(aov.out)[[1]]$`F value`[1]
+  
+  save_F_values[i] <- simulated_F
+}
+
+F_comparison <- tibble(type = rep(c("analytic","sim_normal"), each = 10000), 
+                       F_value = c(rf(10000,3,16),
+                                   save_F_values))
+
+ggplot(F_comparison, aes(x=F_value, color=type))+
+  geom_freqpoly(bins=100)
+```
+
+<img src="Lab5_ANOVA_Randomization_files/figure-html/unnamed-chunk-24-1.png" width="700" />
+
+
+
+Simulated Poisson
+
+
+
+```r
+
+levels <- 4
+n_per_level <- 100
+
+save_F_values <- length(10000)
+
+for(i in 1:10000){
+  
+  random_data <- tibble(subjects = 1:(levels*n_per_level),
+                        IV = as.factor(rep(1:levels, each = n_per_level)),
+                        DV = rpois(levels*n_per_level, .1)
+                        )
+  
+  save_F_values[i] <- summary(aov(DV ~ IV, data = random_data))[[1]]$`F value`[1]
+  
+}
+
+F_comparison <- tibble(type = rep(c("analytic","sim_pois"), each = 10000), 
+                       F_value = c(rf(10000,levels-1,(n_per_level*levels)-levels),
+                                   save_F_values))
+
+ggplot(F_comparison, aes(x=F_value, color=type))+
+  geom_freqpoly(bins=100)
+```
+
+<img src="Lab5_ANOVA_Randomization_files/figure-html/unnamed-chunk-25-1.png" width="700" />
+
+
+
+```r
+
+levels <- 4
+n_per_level <- 100
+
+save_F_values <- length(10000)
+
+for(i in 1:10000){
+  
+  random_data <- tibble(subjects = 1:(levels*n_per_level),
+                        IV = as.factor(rep(1:levels, each = n_per_level)),
+                        DV = rt(levels*n_per_level, 1)
+                        )
+  
+  save_F_values[i] <- summary(aov(DV ~ IV, data = random_data))[[1]]$`F value`[1]
+  
+}
+
+F_comparison <- tibble(type = rep(c("analytic","sim_cauchy"), each = 10000), 
+                       F_value = c(rf(10000,levels-1,(n_per_level*levels)-levels),
+                                   save_F_values))
+
+ggplot(F_comparison, aes(x=F_value, color=type))+
+  geom_freqpoly(bins=100)
+```
+
+<img src="Lab5_ANOVA_Randomization_files/figure-html/unnamed-chunk-26-1.png" width="700" />
+
+-->
 </div>
 </div>
 <div id="references" class="section level2 unnumbered">

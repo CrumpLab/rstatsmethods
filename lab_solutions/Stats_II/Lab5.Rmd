@@ -1,0 +1,116 @@
+---
+title: "Lab 5"
+author: "Matt Crump"
+date: "3/12/2021"
+bibliography: BCStats.bib
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Consider a design with 3 groups, and 10 people per group. Assume that the dependent variable is assumed to be normally distributed, and use unit normal distributions with mean = 0, and sd = 1 in your simulations. 
+
+1. Create simulated data for the above design that could be produced by the null hypothesis, and that results in a $F$ value that is **smaller** than the critical value for $F$ in this design (assume alpha = .05). Report the ANOVA, and show a ggplot of the means in the simulated data. Furthermore, display the individual data points on top of the means. Would you reject the null hypothesis in this situation, and would you be incorrect or correct in rejecting the null? (3 points)
+
+```{r}
+library(tibble)
+
+levels <- 3
+n_per_level <- 10
+
+critical_F <- qf(.95,2,27)
+
+# repeat until we find the data that meets the criterion
+for(i in 1:1000){
+  random_data <- tibble(subjects = 1:(levels*n_per_level),
+                        IV = as.factor(rep(1:levels, each = n_per_level)),
+                        DV = rnorm(levels*n_per_level, 0, 1)
+                        )
+  aov.out <- aov(DV ~ IV, data = random_data)
+  simulated_F <- summary(aov.out)[[1]]$`F value`[1]
+  
+  if(simulated_F < critical_F) break
+}
+
+# report the ANOVA
+summary(aov.out)
+
+# show a graph
+library(ggplot2)
+
+ggplot(random_data, aes(x=IV, y=DV))+
+  geom_bar(stat="summary", fun="mean")+
+  geom_point()
+
+
+```
+
+
+2. Create simulated data for the above design that could be produced by the null hypothesis, and that results in a $F$ value that is **larger** than the critical value for $F$ in this design (assume alpha = .05). Report the ANOVA, and show a ggplot of the means in the simulated data. Furthermore, display the individual data points on top of the means. Would you reject the null hypothesis in this situation, and would you be incorrect or correct in rejecting the null? (3 points)
+
+```{r}
+library(tibble)
+
+levels <- 3
+n_per_level <- 10
+
+critical_F <- qf(.95,2,27)
+
+# repeat until we find the data that meets the criterion
+for(i in 1:1000){
+  random_data <- tibble(subjects = 1:(levels*n_per_level),
+                        IV = as.factor(rep(1:levels, each = n_per_level)),
+                        DV = rnorm(levels*n_per_level, 0, 1)
+                        )
+  aov.out <- aov(DV ~ IV, data = random_data)
+  simulated_F <- summary(aov.out)[[1]]$`F value`[1]
+  
+  if(simulated_F > critical_F) break
+}
+
+simulated_F > critical_F
+
+# report the ANOVA
+summary(aov.out)
+
+# show a graph
+library(ggplot2)
+
+ggplot(random_data, aes(x=IV, y=DV))+
+  geom_bar(stat="summary", fun="mean")+
+  geom_point()
+
+
+```
+
+Bonus Question
+
+3. In the lab we saw that F-distribution is robust to violations of the assumptions of ANOVA. For example, the simulation of the null based on a bi-modal distribution was very similar to the true F distribution. For this bonus question, show that you can "break" the F-distribution. Specifically, can you run a simulation that samples numbers from a non-normal distribution that does produce a very different looking F-distribution? (3 points)
+
+```{r}
+levels <- 3
+n_per_level <- 10
+
+save_F_values <- length(1000)
+for(i in 1:1000){
+  random_data <- tibble(subjects = 1:(levels*n_per_level),
+                        IV = as.factor(rep(1:levels, each = n_per_level)),
+                        DV = rt(levels*n_per_level, 1)
+                        )
+  aov.out <- aov(DV ~ IV, data = random_data)
+  simulated_F <- summary(aov.out)[[1]]$`F value`[1]
+  save_F_values[i] <- simulated_F
+}
+
+library(ggplot2)
+
+F_comparison <- tibble(type = rep(c("analytic","simulated_t1"), each = 1000),
+                        F_value = c(rf(1000,levels-1,(levels*n_per_level)-levels),save_F_values))
+
+ggplot(F_comparison, aes(x=F_value, color=type))+
+  geom_freqpoly(bins=50)
+
+```
+

@@ -27,6 +27,14 @@ Chapters 9 and 10 from [@abdiExperimentalDesignAnalysis2009].
 
 ## Overview
 
+Simulating the Null and Randomization test
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3a0OHVuxoMI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Alternative Hypotheses
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LWbHLPw3hKA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 Throughout this course we reiterate that ANOVA and regression are fundamentally the same analysis. For example, the readings from the textbook for this week show ANOVA from a linear regression perspective. The purpose of this lab is to develop another similarity, between ANOVA and randomization/permutation tests (remember we discussed these last semester in [lab 6](https://crumplab.github.io/psyc7709Lab/articles/Stats1/Lab6_Statistical_Inference.html)). 
 The plan for the lab is to walk through the conceptual issues involved in detecting causal influences from experiments with one independent variable and multiple levels. We will see how ANOVA is one approach to detecting causal influences. In this lab we will attempt to expose the assumptions made in ANOVA, and also show how Randomization tests could be employed as a non-parametric alternative (a test that doesn't depend on the assumptions inherent to ANOVA).
 
@@ -120,7 +128,7 @@ ggplot(F_comparison, aes(x=F_value))+
 
 A major purpose of running these simulations is to find ways to inspect the underlying assumptions of ANOVA. You can see that the simulation above produced the same F-distribution as the one obtained by the analytic solution for the F-distribution. 
 
-The basic assumption in the simulation, which also apepar in ANOVA, is that the score for each subject (that is used to compute the F-ratio) is **randomly sampled from a normal distribution**. In our simulation, we randomly sampled numbers for each subject from a unit normal distribution with mean  = 0, and standard deviation = 1.
+The basic assumption in the simulation, which also appear in ANOVA, is that the score for each subject (that is used to compute the F-ratio) is **randomly sampled from a normal distribution**. In our simulation, we randomly sampled numbers for each subject from a unit normal distribution with mean  = 0, and standard deviation = 1.
 
 A first point to make is that the parameters in our simulated normal distribution do not influence the F-distribution. Remember, that a normal distribution has the same overall shape no matter what the mean and standard deviation is. As a result, we will always get the same F-distribution if we assume that all of our samples are coming from the same normal distribution. To illustrate the point, let's re-run our simulation, but take values from normal distribution with mean  = 50, and standard deviation = 25. 
 
@@ -285,7 +293,7 @@ length(save_F_values[save_F_values>7.407])/1000
 
 ## The alternative hypotheses
 
-The above section showed an example of simulating the null-hypothesis for a design with one independent variable and multiuple levels. The basic set-up was pretty straightforward. You randomly sample numbers from the same distribution into your different groups. Thus, the null hypothesis is that every group mean should be on average be the same, because they should all be the same as the mean of the distribution that they came from.
+The above section showed an example of simulating the null-hypothesis for a design with one independent variable and multiple levels. The basic set-up was pretty straightforward. You randomly sample numbers from the same distribution into your different groups. Thus, the null hypothesis is that every group mean should be on average be the same, because they should all be the same as the mean of the distribution that they came from.
 
 What if we want to simulate a situation where your experimental manipulation is presumed to actually do something to the measurement? If your manipulation causes some change in the measurement, then by definition we must be violating the **iid** assumption. It will no longer be the case that the scores sampled into different groups are taken randomly from identical distributions. Instead, we think of the manipulation as effectively causing multiple distributions to exist. If one level causes a large increase to the mean, then we think of the scores in that group as coming from a distribution with a shifted mean, relative to scores in the other groups. 
 
@@ -297,7 +305,7 @@ Let's begin by simulating one specific alternative hypothesis. The method for do
 
 Let's imagine that we are measuring performance on a standardized test, with mean  = 100, and sd = 25. There are four groups that manipulate the kind of music people listen to when they take the test. Let's say that for some reason listening to 1970s sitcom music causally changes test performance, and it increases the mean for that group by 1 one whole standard deviation. Let's declare this exact situation in R.
 
-The tibble represents random values for four groups sampled from two different distributions. Group one gets rnorm(n,125,25), and the other three groups get rnorm(n,100,25).
+The tibble represents random values for four groups sampled from two different distributions. Group one gets `rnorm(n,125,25)`, and the other three groups get `rnorm(n,100,25)`.
 
 ```{r}
 
@@ -531,6 +539,7 @@ ggplot(power_curve, aes(x=num_subjects,
 
 ## Lab 5 Generalization Assignment
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/btX3h8y-6IQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Instructions
 
@@ -551,6 +560,106 @@ Consider a design with 3 groups, and 10 people per group. Assume that the depend
 1. Create simulated data for the above design that could be produced by the null hypothesis, and that results in a $F$ value that is **smaller** than the critical value for $F$ in this design (assume alpha = .05). Report the ANOVA, and show a ggplot of the means in the simulated data. Furthermore, display the individual data points on top of the means. Would you reject the null hypothesis in this situation, and would you be incorrect or correct in rejecting the null? (3 points)
 
 2. Create simulated data for the above design that could be produced by the null hypothesis, and that results in a $F$ value that is **larger** than the critical value for $F$ in this design (assume alpha = .05). Report the ANOVA, and show a ggplot of the means in the simulated data. Furthermore, display the individual data points on top of the means. Would you reject the null hypothesis in this situation, and would you be incorrect or correct in rejecting the null? (3 points)
+
+Bonus Question
+
+3. In the lab we saw that F-distribution is robust to violations of the assumptions of ANOVA. For example, the simulation of the null based on a bi-modal distribution was very similar to the true F distribution. For this bonus question, show that you can "break" the F-distribution. Specifically, can you run a simulation that samples numbers from a non-normal distribution that does produce a very different looking F-distribution? (3 points)
+
+
+<!--
+## Extra
+
+More simulations to break the ANOVA
+
+Simulated Normal
+
+```{r}
+levels <- 4
+n_per_level <- 5
+
+save_F_values <- length(10000)
+
+for(i in 1:10000){
+  
+  random_data <- tibble(subjects = 1:(levels*n_per_level),
+                        IV = as.factor(rep(1:levels, each = n_per_level)),
+                        DV = rnorm(levels*n_per_level, 0, 1)
+                        )
+  
+  aov.out <- aov(DV ~ IV, data = random_data)
+  
+  simulated_F <- summary(aov.out)[[1]]$`F value`[1]
+  
+  save_F_values[i] <- simulated_F
+}
+
+F_comparison <- tibble(type = rep(c("analytic","sim_normal"), each = 10000), 
+                       F_value = c(rf(10000,3,16),
+                                   save_F_values))
+
+ggplot(F_comparison, aes(x=F_value, color=type))+
+  geom_freqpoly(bins=100)
+```
+
+
+
+Simulated Poisson
+
+
+```{r}
+
+levels <- 4
+n_per_level <- 100
+
+save_F_values <- length(10000)
+
+for(i in 1:10000){
+  
+  random_data <- tibble(subjects = 1:(levels*n_per_level),
+                        IV = as.factor(rep(1:levels, each = n_per_level)),
+                        DV = rpois(levels*n_per_level, .1)
+                        )
+  
+  save_F_values[i] <- summary(aov(DV ~ IV, data = random_data))[[1]]$`F value`[1]
+  
+}
+
+F_comparison <- tibble(type = rep(c("analytic","sim_pois"), each = 10000), 
+                       F_value = c(rf(10000,levels-1,(n_per_level*levels)-levels),
+                                   save_F_values))
+
+ggplot(F_comparison, aes(x=F_value, color=type))+
+  geom_freqpoly(bins=100)
+```
+
+
+```{r}
+
+levels <- 4
+n_per_level <- 100
+
+save_F_values <- length(10000)
+
+for(i in 1:10000){
+  
+  random_data <- tibble(subjects = 1:(levels*n_per_level),
+                        IV = as.factor(rep(1:levels, each = n_per_level)),
+                        DV = rt(levels*n_per_level, 1)
+                        )
+  
+  save_F_values[i] <- summary(aov(DV ~ IV, data = random_data))[[1]]$`F value`[1]
+  
+}
+
+F_comparison <- tibble(type = rep(c("analytic","sim_cauchy"), each = 10000), 
+                       F_value = c(rf(10000,levels-1,(n_per_level*levels)-levels),
+                                   save_F_values))
+
+ggplot(F_comparison, aes(x=F_value, color=type))+
+  geom_freqpoly(bins=100)
+```
+
+-->
 
 ## References
 
