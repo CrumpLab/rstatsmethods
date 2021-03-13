@@ -244,7 +244,7 @@
 <iframe width="560" height="315" src="https://www.youtube.com/embed/3a0OHVuxoMI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 <p>Alternative Hypotheses</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/LWbHLPw3hKA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/b54D5Ryc_xk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 <p>Throughout this course we reiterate that ANOVA and regression are fundamentally the same analysis. For example, the readings from the textbook for this week show ANOVA from a linear regression perspective. The purpose of this lab is to develop another similarity, between ANOVA and randomization/permutation tests (remember we discussed these last semester in <a href="https://crumplab.github.io/psyc7709Lab/articles/Stats1/Lab6_Statistical_Inference.html">lab 6</a>). The plan for the lab is to walk through the conceptual issues involved in detecting causal influences from experiments with one independent variable and multiple levels. We will see how ANOVA is one approach to detecting causal influences. In this lab we will attempt to expose the assumptions made in ANOVA, and also show how Randomization tests could be employed as a non-parametric alternative (a test that doesn’t depend on the assumptions inherent to ANOVA).</p>
 </div>
@@ -383,25 +383,25 @@
 <span class="no">Fs</span> <span class="kw">&lt;-</span> <span class="no">F_comparison</span>[<span class="no">F_comparison</span>$<span class="no">type</span><span class="kw">==</span><span class="st">"analytic"</span>,]$<span class="no">F_value</span>
 <span class="no">sorted_Fs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span>(<span class="no">Fs</span>)
 <span class="no">sorted_Fs</span>[<span class="fl">950</span>]
-<span class="co">#&gt; [1] 3.392226</span>
+<span class="co">#&gt; [1] 3.182533</span>
 
 <span class="co">## 1000 deviates samples from normal sim_0_1</span>
 <span class="no">Fs</span> <span class="kw">&lt;-</span> <span class="no">F_comparison</span>[<span class="no">F_comparison</span>$<span class="no">type</span><span class="kw">==</span><span class="st">"sim_0_1"</span>,]$<span class="no">F_value</span>
 <span class="no">sorted_Fs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span>(<span class="no">Fs</span>)
 <span class="no">sorted_Fs</span>[<span class="fl">950</span>]
-<span class="co">#&gt; [1] 3.45819</span>
+<span class="co">#&gt; [1] 3.146511</span>
 
 <span class="co">## 1000 deviates samples from normal sim_50_25</span>
 <span class="no">Fs</span> <span class="kw">&lt;-</span> <span class="no">F_comparison</span>[<span class="no">F_comparison</span>$<span class="no">type</span><span class="kw">==</span><span class="st">"sim_50_25"</span>,]$<span class="no">F_value</span>
 <span class="no">sorted_Fs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span>(<span class="no">Fs</span>)
 <span class="no">sorted_Fs</span>[<span class="fl">950</span>]
-<span class="co">#&gt; [1] 3.072317</span>
+<span class="co">#&gt; [1] 3.469596</span>
 
 <span class="co">## 1000 deviates samples from bimodal sim</span>
 <span class="no">Fs</span> <span class="kw">&lt;-</span> <span class="no">F_comparison</span>[<span class="no">F_comparison</span>$<span class="no">type</span><span class="kw">==</span><span class="st">"sim_bimodal"</span>,]$<span class="no">F_value</span>
 <span class="no">sorted_Fs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span>(<span class="no">Fs</span>)
 <span class="no">sorted_Fs</span>[<span class="fl">950</span>]
-<span class="co">#&gt; [1] 3.031675</span></pre></body></html></div>
+<span class="co">#&gt; [1] 3.536346</span></pre></body></html></div>
 <p>Blurring your eyes a bit, we see that control experiments where the manipulation does nothing produce F values that are smaller than 3.2 to 3.4ish 95% of the time. Looking at the distributions, themselves, you can see that they never produce values much larger than 10.</p>
 <p>If you were to conduct a real experiment, then you might want to observe an F value that was larger than 3.2ish. If you found an F-value larger than 10, you could be pretty confident that the null-distribution did not cause the F-value. Instead, it would seem more plausible that your experimental manipulation actually caused some change in the means of your measured variable.</p>
 </div>
@@ -458,7 +458,7 @@
 <p>As you can see, the distribution of possible F values that we obtained by randomly reshuffling the data isn’t terribly different from the analytic F distribution based on the normal distribution.</p>
 <p>Using the F distribution from the Randomization test, we can compute a p-value for the observed F-value and find a similar result.</p>
 <div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">save_F_values</span>[<span class="no">save_F_values</span><span class="kw">&gt;</span><span class="fl">7.407</span>])/<span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.004</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.006</span></pre></body></html></div>
 </div>
 <div id="the-alternative-hypotheses" class="section level2">
 <h2 class="hasAnchor">
@@ -514,7 +514,7 @@
 <span class="co">#&gt; [1] 3.238872</span></pre></body></html></div>
 <p>How many times was F higher than 3.23 in the alternative distribution?</p>
 <div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">save_altF_values</span>[<span class="no">save_altF_values</span> <span class="kw">&gt;</span> <span class="fl">3.23</span>])
-<span class="co">#&gt; [1] 290</span></pre></body></html></div>
+<span class="co">#&gt; [1] 253</span></pre></body></html></div>
 <p>This is a pretty low number, and it means that the true effect is not detected very often even when it is actually there. In other words, the design has low power to detect to detect the effect.</p>
 </div>
 <div id="number-of-subjects-needed" class="section level3">
@@ -551,7 +551,7 @@
 <span class="co">#&gt; [1] 2.650677</span></pre></body></html></div>
 <p>Now, we can ask how many experiments out of 1000 surpassed the critical value?</p>
 <div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">save_altF_values</span>[<span class="no">save_altF_values</span> <span class="kw">&gt;</span> <span class="fl">2.65</span>])
-<span class="co">#&gt; [1] 1000</span></pre></body></html></div>
+<span class="co">#&gt; [1] 999</span></pre></body></html></div>
 <p>In this case, the design is very sensitive, 100% of the experiments would have yielded an F-value larger than the critical value. From a cost-benefit perspective, increasing n to 50 for each group might be waste of resources. For example, what is the least amount of subjects you would need to have power of around 95%?</p>
 <p>One solution is fidget with n until you find about 95%…</p>
 <p>For example, I wiggled <code>n_per_level</code> until I was getting about 95% of experiments passing the critical value, and I landed on n = 25 per group. Note, that this simulation is a little noisy because we are only conducting 1000 simulations, we would get a more precise and stable estimate by increasing the number of simulations.</p>
@@ -575,7 +575,7 @@
 }
 
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">save_altF_values</span>[<span class="no">save_altF_values</span> <span class="kw">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">qf</a></span>(<span class="fl">.95</span>,<span class="fl">3</span>,(<span class="no">n_per_level</span>*<span class="fl">4</span>)-<span class="fl">4</span>)])/<span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.955</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.969</span></pre></body></html></div>
 <p>Instead of wiggling the n by hand, we could run a set of simulations for different n, and plot a curve power-curve:</p>
 <div class="sourceCode" id="cb22"><html><body><pre class="r">
 <span class="no">num_subjects</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">5</span>,<span class="fl">10</span>,<span class="fl">15</span>,<span class="fl">20</span>,<span class="fl">25</span>,<span class="fl">30</span>)
@@ -617,27 +617,27 @@
 <tbody>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.298</td>
+<td align="right">0.264</td>
 </tr>
 <tr class="even">
 <td align="right">10</td>
-<td align="right">0.616</td>
+<td align="right">0.581</td>
 </tr>
 <tr class="odd">
 <td align="right">15</td>
-<td align="right">0.784</td>
+<td align="right">0.780</td>
 </tr>
 <tr class="even">
 <td align="right">20</td>
-<td align="right">0.905</td>
+<td align="right">0.895</td>
 </tr>
 <tr class="odd">
 <td align="right">25</td>
-<td align="right">0.950</td>
+<td align="right">0.964</td>
 </tr>
 <tr class="even">
 <td align="right">30</td>
-<td align="right">0.988</td>
+<td align="right">0.983</td>
 </tr>
 </tbody>
 </table>
@@ -696,7 +696,7 @@
 <tbody>
 <tr class="odd">
 <td align="right">10</td>
-<td align="right">0.121</td>
+<td align="right">0.118</td>
 </tr>
 <tr class="even">
 <td align="right">50</td>
@@ -704,27 +704,27 @@
 </tr>
 <tr class="odd">
 <td align="right">75</td>
-<td align="right">0.562</td>
+<td align="right">0.602</td>
 </tr>
 <tr class="even">
 <td align="right">100</td>
-<td align="right">0.653</td>
+<td align="right">0.657</td>
 </tr>
 <tr class="odd">
 <td align="right">125</td>
-<td align="right">0.724</td>
+<td align="right">0.728</td>
 </tr>
 <tr class="even">
 <td align="right">150</td>
-<td align="right">0.761</td>
+<td align="right">0.793</td>
 </tr>
 <tr class="odd">
 <td align="right">175</td>
-<td align="right">0.814</td>
+<td align="right">0.807</td>
 </tr>
 <tr class="even">
 <td align="right">200</td>
-<td align="right">0.861</td>
+<td align="right">0.821</td>
 </tr>
 </tbody>
 </table>

@@ -33,7 +33,7 @@ Simulating the Null and Randomization test
 
 Alternative Hypotheses
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/LWbHLPw3hKA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/b54D5Ryc_xk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Throughout this course we reiterate that ANOVA and regression are fundamentally the same analysis. For example, the readings from the textbook for this week show ANOVA from a linear regression perspective. The purpose of this lab is to develop another similarity, between ANOVA and randomization/permutation tests (remember we discussed these last semester in [lab 6](https://crumplab.github.io/psyc7709Lab/articles/Stats1/Lab6_Statistical_Inference.html)). 
 The plan for the lab is to walk through the conceptual issues involved in detecting causal influences from experiments with one independent variable and multiple levels. We will see how ANOVA is one approach to detecting causal influences. In this lab we will attempt to expose the assumptions made in ANOVA, and also show how Randomization tests could be employed as a non-parametric alternative (a test that doesn't depend on the assumptions inherent to ANOVA).
