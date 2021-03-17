@@ -727,16 +727,14 @@ do a monte-carlo simulation...familywise etc.
                                                 <span class="st">"c4"</span><span class="kw">=</span> <span class="fl">4</span>,
                                                 <span class="st">"c5"</span> <span class="kw">=</span> <span class="fl">5</span>)
                                         ))
-<span class="co">#&gt;              Df Sum Sq Mean Sq F value Pr(&gt;F)  </span>
-<span class="co">#&gt; IV            5    5.2   1.030   1.087 0.3662  </span>
-<span class="co">#&gt;   IV: c1      1    0.4   0.441   0.465 0.4955  </span>
-<span class="co">#&gt;   IV: c2      1    0.1   0.051   0.054 0.8158  </span>
-<span class="co">#&gt;   IV: c3      1    0.0   0.048   0.051 0.8216  </span>
-<span class="co">#&gt;   IV: c4      1    3.3   3.348   3.532 0.0607 .</span>
-<span class="co">#&gt;   IV: c5      1    1.3   1.264   1.334 0.2486  </span>
-<span class="co">#&gt; Residuals   594  563.0   0.948                 </span>
-<span class="co">#&gt; ---</span>
-<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></pre></body></html></div>
+<span class="co">#&gt;              Df Sum Sq Mean Sq F value Pr(&gt;F)</span>
+<span class="co">#&gt; IV            5    2.6  0.5219   0.522  0.760</span>
+<span class="co">#&gt;   IV: c1      1    1.1  1.1361   1.136  0.287</span>
+<span class="co">#&gt;   IV: c2      1    0.1  0.1266   0.127  0.722</span>
+<span class="co">#&gt;   IV: c3      1    0.2  0.2345   0.234  0.628</span>
+<span class="co">#&gt;   IV: c4      1    0.1  0.1229   0.123  0.726</span>
+<span class="co">#&gt;   IV: c5      1    1.0  0.9895   0.989  0.320</span>
+<span class="co">#&gt; Residuals   594  594.1  1.0001</span></pre></body></html></div>
 <p>When we conduct the simulation we want to count type I errors. Specifically, let’s count type I errors for the omnibus test, as well as for the linear contrasts. Our simulation will be similar to the one reported in Table 12.1 from the textbook.</p>
 <p>In terms of organizing the code, I will adopt a strategy of saving the necessary data from the simulation into a dataframe that can then be analyzed to produce a summary table.</p>
 <div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="co">#create a tibble to store all the results</span>
@@ -791,32 +789,27 @@ do a monte-carlo simulation...familywise etc.
 <tr class="even">
 <td align="left">contrast</td>
 <td align="right">1</td>
-<td align="right">2047</td>
+<td align="right">2067</td>
 </tr>
 <tr class="odd">
 <td align="left">contrast</td>
 <td align="right">2</td>
-<td align="right">410</td>
+<td align="right">418</td>
 </tr>
 <tr class="even">
 <td align="left">contrast</td>
 <td align="right">3</td>
-<td align="right">39</td>
+<td align="right">51</td>
 </tr>
 <tr class="odd">
-<td align="left">contrast</td>
-<td align="right">4</td>
-<td align="right">4</td>
+<td align="left">omnibus</td>
+<td align="right">0</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
 <td align="left">omnibus</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">omnibus</td>
 <td align="right">1</td>
-<td align="right">486</td>
+<td align="right">516</td>
 </tr>
 </tbody>
 </table>
@@ -825,21 +818,21 @@ do a monte-carlo simulation...familywise etc.
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">type</span> <span class="kw">==</span> <span class="st">'omnibus'</span>,
          <span class="no">counts</span> <span class="kw">==</span> <span class="fl">1</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">type_I_frequency</span>)/<span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.0486</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.0516</span></pre></body></html></div>
 <p>Similarly, we conducted 50000 total linear contrasts. Looking at individual contrasts, the type I error rate is also close to .05:</p>
 <div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="no">type_I_errors</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">type</span> <span class="kw">==</span> <span class="st">'contrast'</span>,
          <span class="no">counts</span> <span class="kw">&gt;</span> <span class="fl">0</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">type_I_frequency</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>()/<span class="fl">50000</span>
-<span class="co">#&gt; [1] 0.05</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.05072</span></pre></body></html></div>
 <p>However, <strong>the family-wise</strong> type I error rate is larger. We conducted 10,000 simulated experiments, if asked the question, what was the probability of rejecting the null if any of the linear contrasts were significant, then we find:</p>
 <div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="no">type_I_errors</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">type</span> <span class="kw">==</span> <span class="st">'contrast'</span>,
          <span class="no">counts</span> <span class="kw">&gt;</span> <span class="fl">0</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">type_I_frequency</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>()/<span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.25</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.2536</span></pre></body></html></div>
 </div>
 </div>
 <div id="concept-3-correcting-for-multiple-comparisons" class="section level2">
@@ -1053,12 +1046,58 @@ do a monte-carlo simulation...familywise etc.
 <span class="co">#&gt; c3               0.00132626 0.30499118 0.15947322 1.000000000</span></pre></body></html></div>
 </div>
 </div>
+<div id="lab-6-generalization-assignment" class="section level2">
+<h2 class="hasAnchor">
+<a href="#lab-6-generalization-assignment" class="anchor"></a>Lab 6 Generalization Assignment</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UkpAGiO1ic4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<div id="instructions" class="section level3">
+<h3 class="hasAnchor">
+<a href="#instructions" class="anchor"></a>Instructions</h3>
+<p>Your assignment instructions are the following:</p>
+<ol style="list-style-type: decimal">
+<li>Work inside the new R project for stats II that you created</li>
+<li>Create a new R Markdown document called “Lab6.Rmd”</li>
+<li>Use Lab6.Rmd to show your work attempting to solve the following generalization problems. Commit your work regularly so that it appears on your Github repository.</li>
+<li>
+<strong>For each problem, make a note about how much of the problem you believe you can solve independently without help</strong>. For example, if you needed to watch the help video and are unable to solve the problem on your own without copying the answers, then your note would be 0. If you are confident you can complete the problem from scratch completely on your own, your note would be 100. It is OK to have all 0s or 100s anything in between.</li>
+<li>Submit your github repository link for Lab 6 on blackboard.</li>
+</ol>
+</div>
+<div id="problems" class="section level3">
+<h3 class="hasAnchor">
+<a href="#problems" class="anchor"></a>Problems</h3>
+<ol style="list-style-type: decimal">
+<li>Section 12.3.3 from your textbook refers to: The problem with replications of a meaningless experiment: ‘alpha and the captain’s age.’ The issue here is that if you run an ineffectual experiment enough times you can always find a significant result by chance. The textbook mentions that if you repeat an experiment 20 times, you are guaranteed to find a significant result with .64 probability, and the probability is .92 if you repeat the experiment 50 times.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>Make use of the <code><a href="https://rdrr.io/r/stats/Binomial.html">rbinom()</a></code> function to show you can reproduce both probabilities. (1 point)</p></li>
+<li><p>If the ineffectual experiment was conducted 20 times, and there were four groups, and the experimenter would accept a significant result from any of the orthogonal linear contrasts, what would be the probability of finding a significant result here? (1 point)</p></li>
+</ol>
+<p>The next two questions draw a connection to a technique we have not yet discussed called p-curve analysis <span class="citation"><a href="#ref-wallisCompoundingProbabilitiesIndependent1942" role="doc-biblioref">Wallis</a> (<a href="#ref-wallisCompoundingProbabilitiesIndependent1942" role="doc-biblioref">1942</a>)</span>. P-curve analysis is sometimes used for purposes of meta-analyses to determine whether there is “good” evidence for an effect in the literature.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Consider that a researcher publishes a study showing a significant effect, p &lt;. 05; but, in reality the researcher makes a type I error, and the manipulation did not cause any difference. If many other researchers replicated the study, what kind of p-values would they find? Use R to create a sampling distribution of p-values that would be expected in this situation. What shape does this distribution have? (2 points)</p></li>
+<li><p>Now assume that the published result reflects a true effect. Specifically, let’s imagine the study had two groups (between-subjects), with 20 subjects in each group. Assume that scores for subjects are all sampled from a normal distribution, and that group A has larger mean than group B by .5 standard deviations (e.g., Cohen’s d = .5). If many other researchers replicated the study, what kind of p-values would they find? Use R to create a sampling distribution of p-values that would be expected in this situation. What shape does this distribution have? (2 points)</p></li>
+</ol>
+<p>Bonus Questions</p>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Same as #3, except that we now assume the design has four groups (between-subjects). Assume that group A has a mean that is .5 standard deviations larger than groups B, C, and D. Use R to create a sampling distribution of p-values that would be expected for the linear contrast evaluating the research hypothesis that A &gt; B = C = D. (1 point)</p></li>
+<li><p>Consider a one-factor between subjects ANOVA with four groups. Run two simulations of the null-hypothesis, one for the omnibus test, and one for the specific linear contrast mentioned above A &gt; B = C = D. Is the probability of rejecting a type I error (for rejecting the null with alpha &lt; .05) the same for the omnibus test versus a specific contrast? (1 point)</p></li>
+</ol>
+</div>
+</div>
 <div id="references" class="section level2 unnumbered">
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 <div id="ref-abdiExperimentalDesignAnalysis2009" class="csl-entry">
 Abdi, H., Edelman, B., Dowling, W. J., &amp; Valentin, D. (2009). <em>Experimental design and analysis for psychology</em>. <span>Oxford University Press</span>.
+</div>
+<div id="ref-simonsohnPcurveKeyFiledrawer2014" class="csl-entry">
+Simonsohn, U., Nelson, L. D., &amp; Simmons, J. P. (2014). P-curve: A key to the file-drawer. <em>Journal of Experimental Psychology: General</em>, <em>143</em>(2), 534–547. <a href="https://doi.org/gffnn9">https://doi.org/gffnn9</a>
+</div>
+<div id="ref-wallisCompoundingProbabilitiesIndependent1942" class="csl-entry">
+Wallis, W. A. (1942). Compounding <span>Probabilities</span> from <span>Independent Significance Tests</span>. <em>Econometrica</em>, <em>10</em>(3/4), 229. <a href="https://doi.org/c43vv7">https://doi.org/c43vv7</a>
 </div>
 </div>
 </div>

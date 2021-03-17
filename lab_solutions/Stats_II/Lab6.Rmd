@@ -1,0 +1,159 @@
+---
+title: "Lab 6"
+author: "Matt Crump"
+date: "3/17/2021"
+bibliography: BCStats.bib
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+1. Section 12.3.3 from your textbook refers to: The problem with replications of a meaningless experiment: 'alpha and the captain's age'. The issue here is that if you run an ineffectual experiment enough times you can always find a significant result by chance. The textbook mentions that if you repeat an experiment 20 times, you are guaranteed to find a significant result with .64 probability, and the probability is .92 if you repeat the experiment 50 times.
+
+a. Make use of the `rbinom()` function to show you can reproduce both probabilities. (1 point)
+
+```{r}
+
+A <- replicate(10000,sum(rbinom(20,1,.05)))
+hist(A)
+
+length(A[A > 0])/10000
+
+B <- replicate(10000,sum(rbinom(50,1,.05)))
+hist(B)
+
+length(B[B > 0])/10000
+
+```
+
+
+
+b. If the ineffectual experiment was conducted 20 times, and there were four groups, and the experimenter would accept a significant result from any of the orthogonal linear contrasts, what would be the probability of finding a significant result here? (1 point)
+
+```{r}
+
+D <- replicate(10000,sum(rbinom(20,3,.05)))
+
+length(D[D > 0])/10000
+
+```
+
+The next two questions draw a connection to a technique we have not yet discussed called p-curve analysis. P-curve analysis is sometimes used for purposes of meta-analyses to determine whether there is "good" evidence for an effect in the literature.
+
+2. Consider that a researcher publishes a study showing a significant effect, p <. 05; but, in reality the researcher makes a type I error, and the manipulation did not cause any difference. If many other researchers replicated the study, what kind of p-values would they find? Use R to create a sampling distribution of p-values that would be expected in this situation. What shape does this distribution have? (2 points)
+
+```{r}
+library(tibble)
+
+# my_pvalues <- c()
+# 
+# for(i in 1:10000){
+# 
+#   IV <- rep(1:2,each=20)
+#   DV <- c(rnorm(20,0,1),rnorm(20,0,1))
+#   
+#   sim_data <- tibble(IV,DV)
+#   
+#   my_pvalues[i] <- t.test(DV~IV, var.equal=TRUE,  data = sim_data)$p.value
+#   
+# }
+# 
+# hist(my_pvalues)
+
+my_pvalues <- replicate(10000,t.test(rnorm(20,0,1),rnorm(20,0,1), var.equal=TRUE)$p.value)
+
+hist(my_pvalues)
+
+```
+
+
+3. Now assume that the published result reflects a true effect. Specifically, let's imagine the study had two groups (between-subjects), with 20 subjects in each group. Assume that scores for subjects are all sampled from a normal distribution, and that group A has larger mean than group B by .5 standard deviations (e.g., Cohen's d = .5). If many other researchers replicated the study, what kind of p-values would they find? Use R to create a sampling distribution of p-values that would be expected in this situation. What shape does this distribution have? (2 points) 
+
+```{r}
+my_pvalues <- replicate(10000,t.test(rnorm(20,0.5,1),rnorm(20,0,1), var.equal=TRUE)$p.value)
+
+hist(my_pvalues)
+```
+
+Bonus Questions
+
+4. Same as #3, except that we now assume the design has four groups (between-subjects). Assume that group A has a mean that is .5 standard deviations larger than groups B, C, and D. Use R to create a sampling distribution of p-values that would be expected for the linear contrast evaluating the research hypothesis that A > B = C = D. (1 point)
+
+
+```{r}
+my_pvalues <- c()
+
+for(i in 1:1000){
+
+  IV <- factor(rep(1:4,each=20))
+  DV <- c(rnorm(20,0.5,1),rnorm(20,0,1),rnorm(20,0,1),rnorm(20,0,1))
+
+  sim_data <- tibble(IV,DV)
+  
+  c1 <- c(3, -1,-1,-1)
+  
+  contrasts(sim_data$IV) <- c1
+  
+  aov.out <- aov(DV~IV, sim_data)
+  
+  save_results <- summary.aov(aov.out, split = list(IV=list("c1" =1)))
+
+  my_pvalues[i] <- save_results[[1]]$`Pr(>F)`[2]
+
+}
+
+hist(my_pvalues)
+```
+
+
+5. Consider a one-factor between subjects ANOVA with four groups. Run two simulations of the null-hypothesis, one for the omnibus test, and one for the specific linear contrast mentioned above A > B = C = D. Is the probability of making a type I error (for rejecting the null with alpha < .05) the same for the omnibus test versus a specific contrast? (1 point)
+
+```{r}
+
+omnibus_pvalues <- c()
+contrast_pvalues <- c()
+
+for(i in 1:1000){
+
+  IV <- factor(rep(1:4,each=20))
+  DV <- c(rnorm(20,0,1),rnorm(20,0,1),rnorm(20,0,1),rnorm(20,0,1))
+
+  sim_data <- tibble(IV,DV)
+  
+  c1 <- c(3, -1,-1,-1)
+  
+  contrasts(sim_data$IV) <- c1
+  
+  aov.out <- aov(DV~IV, sim_data)
+  
+  save_results <- summary.aov(aov.out, split = list(IV=list("c1" =1)))
+
+  omnibus_pvalues[i] <- save_results[[1]]$`Pr(>F)`[1]
+  contrast_pvalues[i] <- save_results[[1]]$`Pr(>F)`[2]
+
+}
+
+length(omnibus_pvalues[omnibus_pvalues < .05])/1000
+length(contrast_pvalues[contrast_pvalues < .05])/1000
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
