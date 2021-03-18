@@ -728,13 +728,13 @@ do a monte-carlo simulation...familywise etc.
                                                 <span class="st">"c5"</span> <span class="kw">=</span> <span class="fl">5</span>)
                                         ))
 <span class="co">#&gt;              Df Sum Sq Mean Sq F value Pr(&gt;F)</span>
-<span class="co">#&gt; IV            5    2.6  0.5219   0.522  0.760</span>
-<span class="co">#&gt;   IV: c1      1    1.1  1.1361   1.136  0.287</span>
-<span class="co">#&gt;   IV: c2      1    0.1  0.1266   0.127  0.722</span>
-<span class="co">#&gt;   IV: c3      1    0.2  0.2345   0.234  0.628</span>
-<span class="co">#&gt;   IV: c4      1    0.1  0.1229   0.123  0.726</span>
-<span class="co">#&gt;   IV: c5      1    1.0  0.9895   0.989  0.320</span>
-<span class="co">#&gt; Residuals   594  594.1  1.0001</span></pre></body></html></div>
+<span class="co">#&gt; IV            5    3.9  0.7892   0.752  0.584</span>
+<span class="co">#&gt;   IV: c1      1    0.0  0.0376   0.036  0.850</span>
+<span class="co">#&gt;   IV: c2      1    0.4  0.3621   0.345  0.557</span>
+<span class="co">#&gt;   IV: c3      1    1.4  1.4326   1.366  0.243</span>
+<span class="co">#&gt;   IV: c4      1    0.5  0.4942   0.471  0.493</span>
+<span class="co">#&gt;   IV: c5      1    1.6  1.6197   1.544  0.214</span>
+<span class="co">#&gt; Residuals   594  623.0  1.0489</span></pre></body></html></div>
 <p>When we conduct the simulation we want to count type I errors. Specifically, let’s count type I errors for the omnibus test, as well as for the linear contrasts. Our simulation will be similar to the one reported in Table 12.1 from the textbook.</p>
 <p>In terms of organizing the code, I will adopt a strategy of saving the necessary data from the simulation into a dataframe that can then be analyzed to produce a summary table.</p>
 <div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="co">#create a tibble to store all the results</span>
@@ -789,17 +789,17 @@ do a monte-carlo simulation...familywise etc.
 <tr class="even">
 <td align="left">contrast</td>
 <td align="right">1</td>
-<td align="right">2067</td>
+<td align="right">2022</td>
 </tr>
 <tr class="odd">
 <td align="left">contrast</td>
 <td align="right">2</td>
-<td align="right">418</td>
+<td align="right">390</td>
 </tr>
 <tr class="even">
 <td align="left">contrast</td>
 <td align="right">3</td>
-<td align="right">51</td>
+<td align="right">33</td>
 </tr>
 <tr class="odd">
 <td align="left">omnibus</td>
@@ -809,7 +809,7 @@ do a monte-carlo simulation...familywise etc.
 <tr class="even">
 <td align="left">omnibus</td>
 <td align="right">1</td>
-<td align="right">516</td>
+<td align="right">491</td>
 </tr>
 </tbody>
 </table>
@@ -818,21 +818,21 @@ do a monte-carlo simulation...familywise etc.
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">type</span> <span class="kw">==</span> <span class="st">'omnibus'</span>,
          <span class="no">counts</span> <span class="kw">==</span> <span class="fl">1</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">type_I_frequency</span>)/<span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.0516</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.0491</span></pre></body></html></div>
 <p>Similarly, we conducted 50000 total linear contrasts. Looking at individual contrasts, the type I error rate is also close to .05:</p>
 <div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="no">type_I_errors</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">type</span> <span class="kw">==</span> <span class="st">'contrast'</span>,
          <span class="no">counts</span> <span class="kw">&gt;</span> <span class="fl">0</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">type_I_frequency</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>()/<span class="fl">50000</span>
-<span class="co">#&gt; [1] 0.05072</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.0489</span></pre></body></html></div>
 <p>However, <strong>the family-wise</strong> type I error rate is larger. We conducted 10,000 simulated experiments, if asked the question, what was the probability of rejecting the null if any of the linear contrasts were significant, then we find:</p>
 <div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="no">type_I_errors</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">type</span> <span class="kw">==</span> <span class="st">'contrast'</span>,
          <span class="no">counts</span> <span class="kw">&gt;</span> <span class="fl">0</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">type_I_frequency</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>()/<span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.2536</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.2445</span></pre></body></html></div>
 </div>
 </div>
 <div id="concept-3-correcting-for-multiple-comparisons" class="section level2">
@@ -1074,7 +1074,7 @@ do a monte-carlo simulation...familywise etc.
 <li><p>Make use of the <code><a href="https://rdrr.io/r/stats/Binomial.html">rbinom()</a></code> function to show you can reproduce both probabilities. (1 point)</p></li>
 <li><p>If the ineffectual experiment was conducted 20 times, and there were four groups, and the experimenter would accept a significant result from any of the orthogonal linear contrasts, what would be the probability of finding a significant result here? (1 point)</p></li>
 </ol>
-<p>The next two questions draw a connection to a technique we have not yet discussed called p-curve analysis <span class="citation"><a href="#ref-wallisCompoundingProbabilitiesIndependent1942" role="doc-biblioref">Wallis</a> (<a href="#ref-wallisCompoundingProbabilitiesIndependent1942" role="doc-biblioref">1942</a>)</span>. P-curve analysis is sometimes used for purposes of meta-analyses to determine whether there is “good” evidence for an effect in the literature.</p>
+<p>The next two questions draw a connection to a technique we have not yet discussed called p-curve analysis <span class="citation">(<a href="#ref-simonsohnPcurveKeyFiledrawer2014" role="doc-biblioref">Simonsohn et al., 2014</a>; <a href="#ref-wallisCompoundingProbabilitiesIndependent1942" role="doc-biblioref">Wallis, 1942</a>)</span>. P-curve analysis is sometimes used for purposes of meta-analyses to determine whether there is “good” evidence for an effect in the literature.</p>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Consider that a researcher publishes a study showing a significant effect, p &lt;. 05; but, in reality the researcher makes a type I error, and the manipulation did not cause any difference. If many other researchers replicated the study, what kind of p-values would they find? Use R to create a sampling distribution of p-values that would be expected in this situation. What shape does this distribution have? (2 points)</p></li>
 <li><p>Now assume that the published result reflects a true effect. Specifically, let’s imagine the study had two groups (between-subjects), with 20 subjects in each group. Assume that scores for subjects are all sampled from a normal distribution, and that group A has larger mean than group B by .5 standard deviations (e.g., Cohen’s d = .5). If many other researchers replicated the study, what kind of p-values would they find? Use R to create a sampling distribution of p-values that would be expected in this situation. What shape does this distribution have? (2 points)</p></li>

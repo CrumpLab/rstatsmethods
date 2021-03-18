@@ -650,7 +650,7 @@ a. Make use of the `rbinom()` function to show you can reproduce both probabilit
 
 b. If the ineffectual experiment was conducted 20 times, and there were four groups, and the experimenter would accept a significant result from any of the orthogonal linear contrasts, what would be the probability of finding a significant result here? (1 point)
 
-The next two questions draw a connection to a technique we have not yet discussed called p-curve analysis [@simonsohnPcurveKeyFiledrawer2014,@wallisCompoundingProbabilitiesIndependent1942]. P-curve analysis is sometimes used for purposes of meta-analyses to determine whether there is "good" evidence for an effect in the literature.
+The next two questions draw a connection to a technique we have not yet discussed called p-curve analysis [@simonsohnPcurveKeyFiledrawer2014;@wallisCompoundingProbabilitiesIndependent1942]. P-curve analysis is sometimes used for purposes of meta-analyses to determine whether there is "good" evidence for an effect in the literature.
 
 2. Consider that a researcher publishes a study showing a significant effect, p <. 05; but, in reality the researcher makes a type I error, and the manipulation did not cause any difference. If many other researchers replicated the study, what kind of p-values would they find? Use R to create a sampling distribution of p-values that would be expected in this situation. What shape does this distribution have? (2 points)
 
