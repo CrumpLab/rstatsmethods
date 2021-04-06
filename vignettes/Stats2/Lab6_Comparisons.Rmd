@@ -41,7 +41,6 @@ library(dplyr)
 options(dplyr.summarise.inform = FALSE)
 
 # create the example data
-
 smith_example <- tribble(
   ~Same, ~Different, ~Imagery, ~Photo, ~Placebo,
   #--|--|--|--|----
@@ -92,6 +91,7 @@ contrasts(smith_example$IV) <- my_contrasts
 
 # rerun ANOVA
 aov.out <- aov(DV~IV, smith_example)
+summary(aov.out)
 
 # use summary.aov and split to print out contrast info
 # define your contrast labels that will get printed to the table
@@ -192,6 +192,7 @@ grand_mean
 
 # A has to be four, if the others are 3, 10, and 11)
 mean(c(4, 3, 10, 11))
+
 ```
 
 ### Other orthogonal contrasts
@@ -268,6 +269,7 @@ Let's try adding, remember we start with the grand means. So, the question will 
 
 ```{r}
 grand_means <- c(7,7,7,7)
+grand_means
 ```
 
 First, note that we need all of the contrasts to do this. For example, there is now way we can add just the first linear contrast and somehow get the original means back...
@@ -286,9 +288,9 @@ I could fiddle about by hand and try different coefficients...
 
 ```{r}
 grand_means+
-(contrasts(fake_data$IV)[,1]*1)+
-(contrasts(fake_data$IV)[,2]*1)+
-(contrasts(fake_data$IV)[,3]*1)  
+(contrasts(fake_data$IV)[,1]*3.5)+
+(contrasts(fake_data$IV)[,2]*.5)+
+(contrasts(fake_data$IV)[,3]*.5)  
 ```
 
 Or, we could connect this issue with the concept of linear regression. Effectively, we are trying to explain the pattern of means (4,3,10,11), in terms of the multiple *linear* regression of the three different linear contrasts. Our question is what are the weights for each?
@@ -335,6 +337,7 @@ fake_data_2 <- cbind(fake_data,contrasts(fake_data$IV))
 
 lm(DV ~ c1 + c2 + c3, data = fake_data_2 )
 summary(lm(DV ~ c1 + c2 + c3, data = fake_data_2 ))
+
 ```
 
 
