@@ -253,7 +253,6 @@
 <span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="kw">dplyr.summarise.inform</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
 
 <span class="co"># create the example data</span>
-
 <span class="no">smith_example</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span>(
   ~<span class="no">Same</span>, ~<span class="no">Different</span>, ~<span class="no">Imagery</span>, ~<span class="no">Photo</span>, ~<span class="no">Placebo</span>,
   <span class="co">#--|--|--|--|----</span>
@@ -315,6 +314,12 @@
 
 <span class="co"># rerun ANOVA</span>
 <span class="no">aov.out</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span>(<span class="no">DV</span>~<span class="no">IV</span>, <span class="no">smith_example</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">aov.out</span>)
+<span class="co">#&gt;             Df Sum Sq Mean Sq F value  Pr(&gt;F)   </span>
+<span class="co">#&gt; IV           4    700     175   5.469 0.00112 **</span>
+<span class="co">#&gt; Residuals   45   1440      32                   </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 
 <span class="co"># use summary.aov and split to print out contrast info</span>
 <span class="co"># define your contrast labels that will get printed to the table</span>
@@ -555,7 +560,9 @@
 <span class="co">#&gt; D  1  0  1</span></pre></body></html></div>
 <p>The claim is that if I add these contrasts up in the right way, I can get back the original pattern of means.</p>
 <p>Let’s try adding, remember we start with the grand means. So, the question will be, “can we add some combination of the linear contrasts in such a way that we can get the original pattern of means back?”</p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">grand_means</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">7</span>,<span class="fl">7</span>,<span class="fl">7</span>,<span class="fl">7</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">grand_means</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">7</span>,<span class="fl">7</span>,<span class="fl">7</span>,<span class="fl">7</span>)
+<span class="no">grand_means</span>
+<span class="co">#&gt; [1] 7 7 7 7</span></pre></body></html></div>
 <p>First, note that we need all of the contrasts to do this. For example, there is now way we can add just the first linear contrast and somehow get the original means back…</p>
 <div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">grand_means</span> + <span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span>(<span class="no">fake_data</span>$<span class="no">IV</span>)[,<span class="fl">1</span>]
 <span class="co">#&gt; A B C D </span>
@@ -570,11 +577,11 @@
 <p>Check this out, I add three of the first contrast, and 1 each of the second and third contrasts. I’m getting something close to the pattern of original means. But, it’s not clear to me exactly how much of each to add. The claim is that there is some combination that will produce the original means, what is it? what are the “coefficients” telling me how much of each contrast to add?</p>
 <p>I could fiddle about by hand and try different coefficients…</p>
 <div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="no">grand_means</span>+
-(<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span>(<span class="no">fake_data</span>$<span class="no">IV</span>)[,<span class="fl">1</span>]*<span class="fl">1</span>)+
-(<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span>(<span class="no">fake_data</span>$<span class="no">IV</span>)[,<span class="fl">2</span>]*<span class="fl">1</span>)+
-(<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span>(<span class="no">fake_data</span>$<span class="no">IV</span>)[,<span class="fl">3</span>]*<span class="fl">1</span>)
-<span class="co">#&gt; A B C D </span>
-<span class="co">#&gt; 7 5 7 9</span></pre></body></html></div>
+(<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span>(<span class="no">fake_data</span>$<span class="no">IV</span>)[,<span class="fl">1</span>]*<span class="fl">3.5</span>)+
+(<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span>(<span class="no">fake_data</span>$<span class="no">IV</span>)[,<span class="fl">2</span>]*<span class="fl">.5</span>)+
+(<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span>(<span class="no">fake_data</span>$<span class="no">IV</span>)[,<span class="fl">3</span>]*<span class="fl">.5</span>)
+<span class="co">#&gt;  A  B  C  D </span>
+<span class="co">#&gt;  4  3 10 11</span></pre></body></html></div>
 <p>Or, we could connect this issue with the concept of linear regression. Effectively, we are trying to explain the pattern of means (4,3,10,11), in terms of the multiple <em>linear</em> regression of the three different linear contrasts. Our question is what are the weights for each?</p>
 <div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="no">fake_data_2</span> <span class="kw">&lt;-</span> <span class="no">fake_data</span>
 <span class="no">fake_data_2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="no">fake_data</span>,<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span>(<span class="no">fake_data</span>$<span class="no">IV</span>))
@@ -728,13 +735,13 @@ do a monte-carlo simulation...familywise etc.
                                                 <span class="st">"c5"</span> <span class="kw">=</span> <span class="fl">5</span>)
                                         ))
 <span class="co">#&gt;              Df Sum Sq Mean Sq F value Pr(&gt;F)</span>
-<span class="co">#&gt; IV            5    3.9  0.7892   0.752  0.584</span>
-<span class="co">#&gt;   IV: c1      1    0.0  0.0376   0.036  0.850</span>
-<span class="co">#&gt;   IV: c2      1    0.4  0.3621   0.345  0.557</span>
-<span class="co">#&gt;   IV: c3      1    1.4  1.4326   1.366  0.243</span>
-<span class="co">#&gt;   IV: c4      1    0.5  0.4942   0.471  0.493</span>
-<span class="co">#&gt;   IV: c5      1    1.6  1.6197   1.544  0.214</span>
-<span class="co">#&gt; Residuals   594  623.0  1.0489</span></pre></body></html></div>
+<span class="co">#&gt; IV            5    4.1  0.8201   0.843  0.519</span>
+<span class="co">#&gt;   IV: c1      1    1.6  1.6108   1.656  0.199</span>
+<span class="co">#&gt;   IV: c2      1    0.1  0.0529   0.054  0.816</span>
+<span class="co">#&gt;   IV: c3      1    0.0  0.0023   0.002  0.961</span>
+<span class="co">#&gt;   IV: c4      1    1.8  1.7871   1.837  0.176</span>
+<span class="co">#&gt;   IV: c5      1    0.6  0.6475   0.666  0.415</span>
+<span class="co">#&gt; Residuals   594  577.8  0.9728</span></pre></body></html></div>
 <p>When we conduct the simulation we want to count type I errors. Specifically, let’s count type I errors for the omnibus test, as well as for the linear contrasts. Our simulation will be similar to the one reported in Table 12.1 from the textbook.</p>
 <p>In terms of organizing the code, I will adopt a strategy of saving the necessary data from the simulation into a dataframe that can then be analyzed to produce a summary table.</p>
 <div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="co">#create a tibble to store all the results</span>
@@ -789,17 +796,17 @@ do a monte-carlo simulation...familywise etc.
 <tr class="even">
 <td align="left">contrast</td>
 <td align="right">1</td>
-<td align="right">2022</td>
+<td align="right">2057</td>
 </tr>
 <tr class="odd">
 <td align="left">contrast</td>
 <td align="right">2</td>
-<td align="right">390</td>
+<td align="right">410</td>
 </tr>
 <tr class="even">
 <td align="left">contrast</td>
 <td align="right">3</td>
-<td align="right">33</td>
+<td align="right">39</td>
 </tr>
 <tr class="odd">
 <td align="left">omnibus</td>
@@ -809,7 +816,7 @@ do a monte-carlo simulation...familywise etc.
 <tr class="even">
 <td align="left">omnibus</td>
 <td align="right">1</td>
-<td align="right">491</td>
+<td align="right">501</td>
 </tr>
 </tbody>
 </table>
@@ -818,21 +825,21 @@ do a monte-carlo simulation...familywise etc.
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">type</span> <span class="kw">==</span> <span class="st">'omnibus'</span>,
          <span class="no">counts</span> <span class="kw">==</span> <span class="fl">1</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">type_I_frequency</span>)/<span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.0491</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.0501</span></pre></body></html></div>
 <p>Similarly, we conducted 50000 total linear contrasts. Looking at individual contrasts, the type I error rate is also close to .05:</p>
 <div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="no">type_I_errors</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">type</span> <span class="kw">==</span> <span class="st">'contrast'</span>,
          <span class="no">counts</span> <span class="kw">&gt;</span> <span class="fl">0</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">type_I_frequency</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>()/<span class="fl">50000</span>
-<span class="co">#&gt; [1] 0.0489</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.05012</span></pre></body></html></div>
 <p>However, <strong>the family-wise</strong> type I error rate is larger. We conducted 10,000 simulated experiments, if asked the question, what was the probability of rejecting the null if any of the linear contrasts were significant, then we find:</p>
 <div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="no">type_I_errors</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">type</span> <span class="kw">==</span> <span class="st">'contrast'</span>,
          <span class="no">counts</span> <span class="kw">&gt;</span> <span class="fl">0</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">type_I_frequency</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>()/<span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.2445</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.2506</span></pre></body></html></div>
 </div>
 </div>
 <div id="concept-3-correcting-for-multiple-comparisons" class="section level2">
