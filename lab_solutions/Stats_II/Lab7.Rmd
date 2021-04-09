@@ -1,0 +1,169 @@
+---
+title: "Lab 7"
+author: "Matt Crump"
+date: "3/17/2021"
+bibliography: BCStats.bib
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+1. Explain the concept of main effects and interactions with an example using R. For example, this could include a definition of main effects and interactions and a figure depicting main effects and an interaction along with an explanation of the patterns for each. A major point of this problem is for you to to engage in the task of developing an explanation of these concepts that would 1) be helpful for you to understand the concepts, and 2) could be helpful for others to understand these concepts. (3 points)
+
+2. Complete the 2x2 factorial lab found here <https://crumplab.github.io/statisticsLab/lab-10-factorial-anova.html>, up to section 10.4.8. More specifically, your task is to follow that lab exercise to load in the data, transform the data into long-format, conduct a 2x2 between subjects ANOVA, and write a short results section reporting the main effects and interaction. (3 points)
+
+```{r}
+library(data.table)
+all_data <- fread("data/stroop_stand.csv")
+
+RTs <- c(as.numeric(unlist(all_data[,1])),
+         as.numeric(unlist(all_data[,2])),
+         as.numeric(unlist(all_data[,3])),
+         as.numeric(unlist(all_data[,4]))
+         )
+
+Congruency <- rep(rep(c("Congruent","Incongruent"),each=50),2)
+Posture <- rep(c("Stand","Sit"),each=100)
+Subject <- rep(1:50,4)
+
+stroop_df <- data.frame(Subject,Congruency,Posture,RTs)
+
+library(tidyr)
+
+stroop_long<- gather(all_data, key=Condition, value=RTs, 
+                     congruent_stand, incongruent_stand,
+                     congruent_sit, incongruent_sit)
+
+new_columns <- tstrsplit(stroop_long$Condition, "_", names=c("Congruency","Posture"))
+stroop_long <- cbind(stroop_long,new_columns)
+stroop_long <- cbind(stroop_long,Subject=rep(1:50,4))
+
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+
+plot_means <- stroop_long %>%
+            group_by(Congruency,Posture) %>%
+            summarise(mean_RT = mean(RTs),
+                      SEM = sd(RTs)/sqrt(length(RTs)))
+
+ggplot(plot_means, aes(x=Posture, y=mean_RT, group=Congruency, fill=Congruency))+
+  geom_bar(stat="identity", position="dodge")+
+  geom_errorbar(aes(ymin=mean_RT-SEM, ymax=mean_RT+SEM), 
+                position=position_dodge(width=0.9),
+                width=.2)+
+  theme_classic()+
+  coord_cartesian(ylim=c(700,1000))
+
+```
+
+```{r}
+aov_out<-aov(RTs ~ Congruency*Posture, stroop_long)
+summary_out<-summary(aov_out)
+summary_out
+```
+
+
+3. In chapter 10 of @crumpAnsweringQuestionsData2018, there is a discussion of patterns of main effects and interactions that can occur in a 2x2 design, which represents perhaps the simplest factorial design. There are 8 possible outcomes discussed <https://crumplab.github.io/statistics/more-on-factorial-designs.html#looking-at-main-effects-and-interactions>. Examples of these 8 outcomes are shown in two figures, one with bar graphs, and one with line graphs. Reproduce either of these figures using ggplot2. (3 points)
+
+```{r}
+p1<- data.frame(IV1 = c("A","A","B","B"),
+                IV2 = c("1","2","1","2"),
+                means = c(6,6,6,6))
+p2<- data.frame(IV1 = c("A","A","B","B"),
+                IV2 = c("1","2","1","2"),
+                means = c(10,10,5,5))
+p3<- data.frame(IV1 = c("A","A","B","B"),
+                IV2 = c("1","2","1","2"),
+                means = c(10,13,5,2))
+p4<- data.frame(IV1 = c("A","A","B","B"),
+                IV2 = c("1","2","1","2"),
+                means = c(5,10,10,15))
+p5<- data.frame(IV1 = c("A","A","B","B"),
+                IV2 = c("1","2","1","2"),
+                means = c(10,18,5,7))
+p6<- data.frame(IV1 = c("A","A","B","B"),
+                IV2 = c("1","2","1","2"),
+                means = c(10,2,10,2))
+p7<- data.frame(IV1 = c("A","A","B","B"),
+                IV2 = c("1","2","1","2"),
+                means = c(2,12,5,9))
+p8<- data.frame(IV1 = c("A","A","B","B"),
+                IV2 = c("1","2","1","2"),
+                means = c(5,10,10,5))
+all_22s <- rbind(p1,p2,p3,p4,p5,p6,p7,p8)
+type <- c(rep("~1, ~2, ~1x2",4),
+          rep("1, ~2, ~1x2",4),
+          rep("1, ~2, 1x2",4),
+          rep("1, 2, ~1x2",4),
+          rep("1, 2, 1x2",4),
+          rep("~1, 2, ~1x2",4),
+          rep("~1, 2, 1x2",4),
+          rep("~1, ~2, 1x2",4))
+type<-as.factor(type)
+all_22s <- cbind(all_22s,type)
+ggplot(all_22s, aes(x=IV1, y=means, group=IV2, fill=IV2))+
+  geom_bar(stat="identity", position="dodge")+
+  theme_classic()+
+  facet_wrap(~type, nrow=2)+
+  theme(legend.position = "top")
+
+ggplot(all_22s, aes(x=IV1, y=means, group=IV2, color=IV2))+
+  geom_point()+
+  geom_line()+
+  theme_classic()+
+  facet_wrap(~type, nrow=2)+
+  theme(legend.position = "top")
+```
+
+
+4. In the conceptual section of this lab we used an R simulation to find the family-wise type I error rate for a simple factorial design with 2 independent variables. Use an R simulation to find the family-wise type I error rate for a factorial design with 3 independent variables. (3 points)
+
+```{r}
+sims <- rbinom(10000,7,.05)
+length(sims[sims > 0])/10000
+
+save_sim <- tibble()
+
+# loop to conduct i number of simulations
+for(i in 1:10000){
+
+  #simulate null data for a 2x2
+  n <- 12
+  factorial_data <- tibble(A = factor(rep(c("L1","L2"), each = n)),
+                         B = factor(rep(rep(c("L1","L2"), each = n/2),2)),
+                         C = factor(rep(c("L1","L2"), n)),
+                         DV = rnorm(n*2,0,1))
+  # compute ANOVA
+  output <- summary(aov(DV ~ A*B*C, data = factorial_data))
+
+  #save p-values for each effect
+  sim_tibble <- tibble(p_vals = output[[1]]$`Pr(>F)`[1:7],
+                       effect = c("A","B","C","AxB","AxC","BxC","AxBxC"),
+                       sim = rep(i,7))
+
+  #add the saved values to the overall tibble
+  save_sim <-rbind(save_sim,sim_tibble)
+}
+
+type_I_errors <- save_sim %>%
+  filter(p_vals < .05) %>%
+  group_by(sim) %>%
+  count()
+
+dim(type_I_errors)[1]/10000
+
+```
+
+
+
+
+
+
+
+
+
+
