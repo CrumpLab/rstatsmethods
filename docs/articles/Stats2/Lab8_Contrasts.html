@@ -254,9 +254,9 @@
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">patchwork</span>)
 
 <span class="co"># define 2-factor score model</span>
-<span class="no">grand_mean</span> <span class="kw">&lt;-</span> <span class="fl">0</span>
-<span class="no">A</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>)
-<span class="no">B</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>)
+<span class="no">grand_mean</span> <span class="kw">&lt;-</span> <span class="fl">50</span>
+<span class="no">A</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">5</span>,<span class="fl">10</span>,<span class="fl">15</span>,<span class="fl">20</span>,<span class="fl">25</span>,<span class="fl">50</span>)
+<span class="no">B</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">5</span>,-<span class="fl">15</span>)
 <span class="no">AB</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">A</span>)*<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">B</span>))
 
 <span class="co"># create design table</span>
@@ -291,8 +291,8 @@
 <tr class="odd">
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="right">0</td>
-<td align="right">0</td>
+<td align="right">50</td>
+<td align="right">50</td>
 <td align="right">0</td>
 <td align="right">0</td>
 <td align="right">0</td>
@@ -300,73 +300,181 @@
 <tr class="even">
 <td align="right">1</td>
 <td align="right">2</td>
+<td align="right">55</td>
+<td align="right">50</td>
 <td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
+<td align="right">5</td>
 <td align="right">0</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
 <td align="right">3</td>
+<td align="right">35</td>
+<td align="right">50</td>
 <td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
+<td align="right">-15</td>
 <td align="right">0</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="right">1</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
+<td align="right">55</td>
+<td align="right">50</td>
+<td align="right">5</td>
 <td align="right">0</td>
 <td align="right">0</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
 <td align="right">2</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
+<td align="right">60</td>
+<td align="right">50</td>
+<td align="right">5</td>
+<td align="right">5</td>
 <td align="right">0</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
+<td align="right">40</td>
+<td align="right">50</td>
+<td align="right">5</td>
+<td align="right">-15</td>
 <td align="right">0</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
 <td align="right">1</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
+<td align="right">60</td>
+<td align="right">50</td>
+<td align="right">10</td>
 <td align="right">0</td>
 <td align="right">0</td>
 </tr>
 <tr class="even">
 <td align="right">3</td>
 <td align="right">2</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
+<td align="right">65</td>
+<td align="right">50</td>
+<td align="right">10</td>
+<td align="right">5</td>
 <td align="right">0</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
 <td align="right">3</td>
+<td align="right">45</td>
+<td align="right">50</td>
+<td align="right">10</td>
+<td align="right">-15</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">65</td>
+<td align="right">50</td>
+<td align="right">15</td>
 <td align="right">0</td>
 <td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">70</td>
+<td align="right">50</td>
+<td align="right">15</td>
+<td align="right">5</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">50</td>
+<td align="right">50</td>
+<td align="right">15</td>
+<td align="right">-15</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">1</td>
+<td align="right">70</td>
+<td align="right">50</td>
+<td align="right">20</td>
 <td align="right">0</td>
 <td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">5</td>
+<td align="right">2</td>
+<td align="right">75</td>
+<td align="right">50</td>
+<td align="right">20</td>
+<td align="right">5</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">55</td>
+<td align="right">50</td>
+<td align="right">20</td>
+<td align="right">-15</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">1</td>
+<td align="right">75</td>
+<td align="right">50</td>
+<td align="right">25</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">6</td>
+<td align="right">2</td>
+<td align="right">80</td>
+<td align="right">50</td>
+<td align="right">25</td>
+<td align="right">5</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">3</td>
+<td align="right">60</td>
+<td align="right">50</td>
+<td align="right">25</td>
+<td align="right">-15</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">1</td>
+<td align="right">100</td>
+<td align="right">50</td>
+<td align="right">50</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="right">2</td>
+<td align="right">105</td>
+<td align="right">50</td>
+<td align="right">50</td>
+<td align="right">5</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">3</td>
+<td align="right">85</td>
+<td align="right">50</td>
+<td align="right">50</td>
+<td align="right">-15</td>
 <td align="right">0</td>
 </tr>
 </tbody>
@@ -395,9 +503,9 @@
 <p>For example, consider the following toy example. We will conduct an experiment, and the first IV will have three levels (0,5,10), indicating how much money participants are paid when they complete the experiment. The second IV will also have three levels (0,5,10), indicating how much bonus money participants are paid when they complete the experiment. The DV will be how much money in total the participant is given by the experimenter at the end of the experiment.</p>
 <p>Consider how we would represent this experiment using the code from above. First, we program in the expected means for each level of the first and second IV. Second, we do not program an interaction term.</p>
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># define 2-factor score model</span>
-<span class="no">grand_mean</span> <span class="kw">&lt;-</span> <span class="fl">0</span>
-<span class="no">A</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">5</span>,<span class="fl">10</span>)
-<span class="no">B</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">5</span>,<span class="fl">10</span>)
+<span class="no">grand_mean</span> <span class="kw">&lt;-</span> <span class="fl">10</span>
+<span class="no">A</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(-<span class="fl">5</span>,<span class="fl">0</span>,<span class="fl">5</span>)
+<span class="no">B</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(-<span class="fl">5</span>,<span class="fl">0</span>,<span class="fl">5</span>)
 <span class="no">AB</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">A</span>)*<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">B</span>))
 
 <span class="co"># create design table</span>
@@ -433,81 +541,81 @@
 <td align="right">1</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
+<td align="right">10</td>
+<td align="right">-5</td>
+<td align="right">-5</td>
 <td align="right">0</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
 <td align="right">2</td>
 <td align="right">5</td>
+<td align="right">10</td>
+<td align="right">-5</td>
 <td align="right">0</td>
-<td align="right">0</td>
-<td align="right">5</td>
 <td align="right">0</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
 <td align="right">3</td>
 <td align="right">10</td>
-<td align="right">0</td>
-<td align="right">0</td>
 <td align="right">10</td>
+<td align="right">-5</td>
+<td align="right">5</td>
 <td align="right">0</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="right">1</td>
 <td align="right">5</td>
+<td align="right">10</td>
 <td align="right">0</td>
-<td align="right">5</td>
-<td align="right">0</td>
+<td align="right">-5</td>
 <td align="right">0</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
 <td align="right">2</td>
 <td align="right">10</td>
+<td align="right">10</td>
 <td align="right">0</td>
-<td align="right">5</td>
-<td align="right">5</td>
+<td align="right">0</td>
 <td align="right">0</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="right">3</td>
 <td align="right">15</td>
+<td align="right">10</td>
 <td align="right">0</td>
 <td align="right">5</td>
-<td align="right">10</td>
 <td align="right">0</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
 <td align="right">1</td>
 <td align="right">10</td>
-<td align="right">0</td>
 <td align="right">10</td>
-<td align="right">0</td>
+<td align="right">5</td>
+<td align="right">-5</td>
 <td align="right">0</td>
 </tr>
 <tr class="even">
 <td align="right">3</td>
 <td align="right">2</td>
 <td align="right">15</td>
-<td align="right">0</td>
 <td align="right">10</td>
 <td align="right">5</td>
+<td align="right">0</td>
 <td align="right">0</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">20</td>
-<td align="right">0</td>
 <td align="right">10</td>
-<td align="right">10</td>
+<td align="right">5</td>
+<td align="right">5</td>
 <td align="right">0</td>
 </tr>
 </tbody>
@@ -653,7 +761,7 @@
 <p><img src="Lab8_Contrasts_files/figure-html/unnamed-chunk-5-1.png" width="700"> ## Concept II: Simulated power analysis</p>
 <p>The following code block gives an example of simulating data for a 2x2 design that can be used to estimate power (proportion of experiments returning a significant result) for each main effect and interaction.</p>
 <div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="co"># N per group</span>
-<span class="no">N</span> <span class="kw">&lt;-</span> <span class="fl">10</span>
+<span class="no">N</span> <span class="kw">&lt;-</span> <span class="fl">40</span>
 
 <span class="no">A_pvalue</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>()
 <span class="no">B_pvalue</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>()
@@ -663,21 +771,21 @@
   <span class="no">IVB</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"1"</span>,<span class="st">"2"</span>), <span class="fl">2</span>),<span class="no">N</span>)
   <span class="no">DV</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span>(<span class="no">N</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span>), <span class="co"># means A1B1</span>
                         <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span>), <span class="co"># means A1B2</span>
-                        <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span>), <span class="co"># means A2B1</span>
-                        <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span>)  <span class="co"># means A2B2</span>
+                        <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">1</span>,<span class="fl">.5</span>,<span class="fl">1</span>), <span class="co"># means A2B1</span>
+                        <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">1</span>,<span class="fl">.5</span>,<span class="fl">1</span>)  <span class="co"># means A2B2</span>
           )))
   <span class="no">sim_df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="no">IVA</span>,<span class="no">IVB</span>,<span class="no">DV</span>)
 
   <span class="no">aov_results</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span>(<span class="no">DV</span>~<span class="no">IVA</span>*<span class="no">IVB</span>, <span class="no">sim_df</span>))
   <span class="no">A_pvalue</span>[<span class="no">i</span>]<span class="kw">&lt;-</span><span class="no">aov_results</span><span class="kw">[[</span><span class="fl">1</span>]]$<span class="no">`Pr(&gt;F)`</span>[<span class="fl">1</span>]
-  <span class="no">B_pvalue</span>[<span class="no">i</span>]<span class="kw">&lt;-</span><span class="no">aov_results</span><span class="kw">[[</span><span class="fl">1</span>]]$<span class="no">`Pr(&gt;F)`</span>[<span class="fl">1</span>]
-  <span class="no">AB_pvalue</span>[<span class="no">i</span>]<span class="kw">&lt;-</span><span class="no">aov_results</span><span class="kw">[[</span><span class="fl">1</span>]]$<span class="no">`Pr(&gt;F)`</span>[<span class="fl">1</span>]
+  <span class="no">B_pvalue</span>[<span class="no">i</span>]<span class="kw">&lt;-</span><span class="no">aov_results</span><span class="kw">[[</span><span class="fl">1</span>]]$<span class="no">`Pr(&gt;F)`</span>[<span class="fl">2</span>]
+  <span class="no">AB_pvalue</span>[<span class="no">i</span>]<span class="kw">&lt;-</span><span class="no">aov_results</span><span class="kw">[[</span><span class="fl">1</span>]]$<span class="no">`Pr(&gt;F)`</span>[<span class="fl">3</span>]
 }
 
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">A_pvalue</span>[<span class="no">A_pvalue</span><span class="kw">&lt;</span><span class="fl">0.05</span>])/<span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.053</span>
+<span class="co">#&gt; [1] 0.855</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">B_pvalue</span>[<span class="no">B_pvalue</span><span class="kw">&lt;</span><span class="fl">0.05</span>])/<span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.053</span>
+<span class="co">#&gt; [1] 0.064</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">AB_pvalue</span>[<span class="no">AB_pvalue</span><span class="kw">&lt;</span><span class="fl">0.05</span>])/<span class="fl">1000</span>
 <span class="co">#&gt; [1] 0.053</span></pre></body></html></div>
 </div>
@@ -707,6 +815,8 @@
 <p>Conduct simulation-based power analyses to answer the questions.</p>
 <p>B. How many subjects are needed to detect the main effect of A with power = .8? (2 points)</p>
 <p>C. How many subjects are needed to detect the interaction effect with power = .8? (2 points)</p>
+<p>Bonus point question:</p>
+<p>B1. Create a power curve showing how power for the interaction effect in this example is influenced by number of subjects. Choose a range of N from 25 to 800 (per cell) and run a simulation-based power analysis for increments of 25 subjects. Then plot the results using ggplot2 (2 points).</p>
 </div>
 </div>
 <div id="references" class="section level2 unnumbered">
