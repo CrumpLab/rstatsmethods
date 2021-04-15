@@ -638,10 +638,9 @@
 (<span class="no">bar_graph</span>/<span class="no">line_graph</span>)</pre></body></html></div>
 <p><img src="Lab8_Contrasts_files/figure-html/unnamed-chunk-3-1.png" width="700"> This is a silly design where an interaction should, by definition, be impossible. There are two independent sources of money, and the total amount of money received by each subject is the sum of both sources. In this scenario, the concept of an interaction would occur if one of the combinations of IVA and IVB levels somehow produces more or less than the sum of the levels. For example, if the subjects who received 5 dollars in level 2 of IVA, and 5 dollars bonus from level 2 of IVB, somehow were paid more than 10 dollars in total, or less than 10 dollars in total, there would be an interaction. However, in our mock scenario, we are stipulating that 5+5 = 10, so we have created a situation where an interaction is not possible.</p>
 </div>
-</div>
-<div id="two-main-effects-and-an-interaction" class="section level2">
-<h2 class="hasAnchor">
-<a href="#two-main-effects-and-an-interaction" class="anchor"></a>Two main effects and an interaction</h2>
+<div id="two-main-effects-and-an-interaction" class="section level3">
+<h3 class="hasAnchor">
+<a href="#two-main-effects-and-an-interaction" class="anchor"></a>Two main effects and an interaction</h3>
 <p>Let’s consider an example from a classic demonstration in visual search. In a visual search task subjects are shown a visual display and asked to find a target among distractors.</p>
 <p>For example, the task could be to find the T, and report whether it is rotated to the left or to the right. Some example displays are shown below.</p>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span>(<span class="st">'imgs/Factorial/visual_search.png'</span>)</pre></body></html></div>
@@ -758,7 +757,12 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>()
 
 (<span class="no">bar_graph</span>/<span class="no">line_graph</span>)</pre></body></html></div>
-<p><img src="Lab8_Contrasts_files/figure-html/unnamed-chunk-5-1.png" width="700"> ## Concept II: Simulated power analysis</p>
+<p><img src="Lab8_Contrasts_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
+</div>
+</div>
+<div id="concept-ii-simulated-power-analysis" class="section level2">
+<h2 class="hasAnchor">
+<a href="#concept-ii-simulated-power-analysis" class="anchor"></a>Concept II: Simulated power analysis</h2>
 <p>The following code block gives an example of simulating data for a 2x2 design that can be used to estimate power (proportion of experiments returning a significant result) for each main effect and interaction.</p>
 <div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="co"># N per group</span>
 <span class="no">N</span> <span class="kw">&lt;-</span> <span class="fl">40</span>
@@ -783,11 +787,11 @@
 }
 
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">A_pvalue</span>[<span class="no">A_pvalue</span><span class="kw">&lt;</span><span class="fl">0.05</span>])/<span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.855</span>
+<span class="co">#&gt; [1] 0.867</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">B_pvalue</span>[<span class="no">B_pvalue</span><span class="kw">&lt;</span><span class="fl">0.05</span>])/<span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.064</span>
+<span class="co">#&gt; [1] 0.053</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">AB_pvalue</span>[<span class="no">AB_pvalue</span><span class="kw">&lt;</span><span class="fl">0.05</span>])/<span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.053</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.041</span></pre></body></html></div>
 </div>
 <div id="lab-8-generalization-assignment" class="section level2">
 <h2 class="hasAnchor">

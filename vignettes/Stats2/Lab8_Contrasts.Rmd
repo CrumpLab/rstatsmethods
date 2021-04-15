@@ -139,7 +139,7 @@ line_graph <- ggplot(model_data,
 ```
 This is a silly design where an interaction should, by definition, be impossible. There are two independent sources of money, and the total amount of money received by each subject is the sum of both sources. In this scenario, the concept of an interaction would occur if one of the combinations of IVA and IVB levels somehow produces more or less than the sum of the levels. For example, if the subjects who received 5 dollars in level 2 of IVA, and 5 dollars bonus from level 2 of IVB, somehow were paid more than 10 dollars in total, or less than 10 dollars in total, there would be an interaction. However, in our mock scenario, we are stipulating that 5+5 = 10, so we have created a situation where an interaction is not possible.
 
-## Two main effects and an interaction
+### Two main effects and an interaction
 
 Let's consider an example from a classic demonstration in visual search. In a visual search task subjects are shown a visual display and asked to find a target among distractors. 
 
@@ -201,6 +201,7 @@ line_graph <- ggplot(model_data,
 (bar_graph/line_graph)
 
 ```
+
 ## Concept II: Simulated power analysis
 
 The following code block gives an example of simulating data for a 2x2 design that can be used to estimate power (proportion of experiments returning a significant result) for each main effect and interaction.
