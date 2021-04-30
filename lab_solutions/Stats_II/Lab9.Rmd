@@ -1,0 +1,285 @@
+---
+title: "Lab 9"
+author: "Matt Crump"
+date: "3/17/2021"
+bibliography: BCStats.bib
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+1. Create an R script that can generate simulated data for the following repeated measures design. (2 points)
+
+  A. The dependent variable is assumed to come from a normal distribution with mean = 0 and standard deviation = 1.
+
+  B. There is one repeated measures factor with 5 levels (Down2, Down1, Control, Up1, Up2). The control group is assumed to have no effect. The Down1 and Down2 levels shift the mean down by 1 and 2 standard deviations, respectively. The Up1 and Up2 levels shift the mean up by 1 and 2 standard deviations, respectively.
+
+  C. There are 6 subjects in the experiment, and they are each measured once in each condition. The 6 subjects are assumed to be different from one another (e.g., they will  have different baseline means in the control condition), but they will all be influenced by the IV in the exact same way (e.g., no interaction).
+  
+```{r}
+# mean = 0, sd =1
+
+library(tibble)
+library(dplyr)
+
+sim_data <- tibble(
+  subjects = rep(1:6,each=5),
+  IV = rep(c("Down2","Down1","Control","Up1","Up2"),6),
+  DV = rnorm(6*5,c(-2,-1,0,1,2),1)
+) %>%
+  mutate(DV = DV+rep(rnorm(6,0,1), each=5))
+
+sim_data$IV <- factor(sim_data$IV, levels = c("Down2","Down1","Control","Up1","Up2"))
+
+sim_data$subjects <- as.factor(sim_data$subjects)
+
+ggplot(sim_data, aes(x=IV, y=DV, group=subjects,
+                     color=subjects))+
+  geom_point()+
+  geom_line()
+
+
+
+```
+  
+
+2. Run a simulation to determine the proportion of experiments that would return a significant result for the above design. Assume that the effect of the levels of the IV are increments of .1 of a standard deviation, rather than increments of 1 as in the above design.
+
+Assume alpha = .05. (2 points)
+
+
+```{r}
+
+save_p <- c()
+for( i in 1:1000){
+
+sim_data <- tibble(
+  subjects = rep(1:6,each=5),
+  IV = rep(c("Down2","Down1","Control","Up1","Up2"),6),
+  DV = rnorm(6*5,c(-.2,-.1,0,.1,.2),1)
+) %>%
+  mutate(DV = DV+rep(rnorm(6,0,1), each=5))
+
+sim_data$IV <- factor(sim_data$IV, levels = c("Down2","Down1","Control","Up1","Up2"))
+
+sim_data$subjects <- as.factor(sim_data$subjects)
+
+aov_out <- summary(aov(DV ~ IV + Error(subjects), sim_data))
+save_p[i] <- aov_out[2]$`Error: Within`[[1]]$`Pr(>F)`[1]
+}
+
+length(save_p[save_p < .05])/1000
+
+```
+
+
+3. Demonstrate that the Godden and Baddeley example data from the textbook (19.5), which used a 2x2 repeated measures design, can be analyzed with one-sample t-tests to return the same results. Specifically, show the one-sample t-tests for each main effect and the interaction. (2 points)
+
+```{r}
+godden_baddeley <- tribble(~Subjects,~LearningPlace,~TestingPlace,~Recall,
+        "s1","On Land","On Land",34,
+        "s2","On Land","On Land",37,
+        "s3","On Land","On Land",27,
+        "s4","On Land","On Land",43,
+        "s5","On Land","On Land",44,
+        "s1","On Land","Under Sea",18,
+        "s2","On Land","Under Sea",21,
+        "s3","On Land","Under Sea",25,
+        "s4","On Land","Under Sea",37,
+        "s5","On Land","Under Sea",34,
+        "s1","Under Sea","On Land",14,
+        "s2","Under Sea","On Land",21,
+        "s3","Under Sea","On Land",31,
+        "s4","Under Sea","On Land",27,
+        "s5","Under Sea","On Land",32,
+        "s1","Under Sea","Under Sea",22,
+        "s2","Under Sea","Under Sea",25,
+        "s3","Under Sea","Under Sea",33,
+        "s4","Under Sea","Under Sea",33,
+        "s5","Under Sea","Under Sea",42
+        )
+
+# convert IVs to factors
+godden_baddeley <- godden_baddeley %>%
+  mutate(Subjects = as.factor(Subjects),
+         LearningPlace = as.factor(LearningPlace),
+         TestingPlace = as.factor(TestingPlace))
+
+# run ANOVA
+aov_out <- aov(Recall ~ LearningPlace*TestingPlace + Error(Subjects/(LearningPlace*TestingPlace)), godden_baddeley)
+
+# print out ANOVA summary table
+summary(aov_out)
+
+# generate plot of means
+library(ggplot2)
+
+ggplot(godden_baddeley, aes(x=TestingPlace,
+                            y=Recall,
+                            shape=LearningPlace,
+                            group=LearningPlace))+
+  geom_point(stat="summary",fun="mean")+
+  geom_line(stat="summary",fun="mean")+
+  theme_classic(base_size=12)
+
+#### one-sample t test solutions
+
+# main effect of learning place
+
+learning_place_means <- godden_baddeley %>%
+  group_by(Subjects,LearningPlace) %>%
+  summarize(mean_recall = mean(Recall))
+
+t.test(mean_recall ~ LearningPlace, paired=TRUE, data=learning_place_means)
+
+Learning_land <- learning_place_means %>%
+  filter(LearningPlace == "On Land") %>%
+  select(mean_recall)
+
+Learning_sea <- learning_place_means %>%
+  filter(LearningPlace == "Under Sea") %>%
+  select(mean_recall)
+
+t.test(Learning_land$mean_recall - Learning_sea$mean_recall, mu=0)
+
+# main effect of testing place
+
+testing_place_means <- godden_baddeley %>%
+  group_by(Subjects,TestingPlace) %>%
+  summarize(mean_recall = mean(Recall))
+
+t.test(mean_recall ~ TestingPlace, paired=TRUE, data=testing_place_means)
+
+Testing_land <- testing_place_means %>%
+  filter(TestingPlace == "On Land") %>%
+  select(mean_recall)
+
+Testing_sea <- testing_place_means %>%
+  filter(TestingPlace == "Under Sea") %>%
+  select(mean_recall)
+
+t.test(Testing_land$mean_recall - Testing_sea$mean_recall, mu=0)
+
+## interaction
+
+LL <- godden_baddeley %>%
+  filter(LearningPlace == "On Land",
+         TestingPlace == "On Land") %>%
+  pull(Recall)
+
+LS <- godden_baddeley %>%
+  filter(LearningPlace == "On Land",
+         TestingPlace == "Under Sea") %>%
+  pull(Recall)
+
+LL - LS
+
+SL <- godden_baddeley %>%
+  filter(LearningPlace == "Under Sea",
+         TestingPlace == "On Land") %>%
+  pull(Recall)
+
+SS <- godden_baddeley %>%
+  filter(LearningPlace == "Under Sea",
+         TestingPlace == "Under Sea") %>%
+  pull(Recall)
+
+SL - SS
+
+t.test((LL - LS) - (SL - SS), mu=0)
+
+```
+
+
+Bonus Points
+
+These bonus questions are about the sphericity concept, and they will involve modifying the example data from the textbook (same as used in concept section 1). The data is reprinted here for your convenience:
+
+```{r}
+sphericity <- tribble(~S, ~a1, ~a2, ~a3, ~a4,
+        "s1",76,64,34,26,
+        "s2",60,48,46,30,
+        "s3",58,34,32,28,
+        "s4",46,46,32,28,
+        "s5",30,18,36,28
+        ) 
+```
+
+
+4. Create a line plot showing how each of the 5 subjects perform across the levels of the IV. Discuss how the line plot visually shows the sphericity problem in the data (1 point)
+
+```{r}
+library(tidyr)
+sphericity <- pivot_longer(sphericity,
+                           cols = !S,
+                           names_to = "IV",
+                           values_to = "DV")
+ggplot(sphericity, aes(x=IV, y=DV, color=S, group=S))+
+  geom_point()+
+  geom_line()
+
+```
+
+
+5. Modify the above data to remove the sphericity problem. Specifically, ensure that all subjects are different from another (their overall means are different), and that the IV has the same effect for each level and each subject (no interaction). Then, plot the new data and discuss how the graph shows the sphericity problem has been removed. (1 point)
+
+```{r}
+sphericity <- tribble(~S, ~a1, ~a2, ~a3, ~a4,
+        "s1",76,64,34,26,
+        "s2",60,48,18,10,
+        "s3",58,46,16,8,
+        "s4",46,34,4,-4,
+        "s5",30,18,-12,-20
+        ) 
+
+sphericity <- pivot_longer(sphericity,
+                           cols = !S,
+                           names_to = "IV",
+                           values_to = "DV")
+ggplot(sphericity, aes(x=IV, y=DV, color=S, group=S))+
+  geom_point()+
+  geom_line()
+```
+
+
+6. Calculate the Greenhouse-Geisser estimate of epsilon for your modified data to demonstrate you have removed the sphericity problem. (1 point)
+
+```{r}
+sphericity <- tribble(~S, ~a1, ~a2, ~a3, ~a4,
+        "s1",76,64,34,26,
+        "s2",60,48,18,10,
+        "s3",58,46,16,8,
+        "s4",46,34,4,-4,
+        "s5",30,18,-12,-20
+        ) 
+
+textbook <- sphericity
+
+## selecting the table of values in each column
+textbook[,2:5]
+
+## computing the covariation matrix
+cov(textbook[,2:5])
+
+## ta
+colMeans(cov(textbook[,2:5]))
+
+## sa-s
+colMeans(cov(textbook[,2:5])) - mean(cov(textbook[,2:5]))
+
+## double-centering
+
+cov_matrix <- cov(textbook[,2:5])
+col_mean_matrix <- cov_matrix*0 + colMeans(cov_matrix)
+row_mean_matrix <- t(cov_matrix*0 + rowMeans(cov_matrix))
+dc_matrix <- cov_matrix - col_mean_matrix -row_mean_matrix + mean(cov_matrix)
+
+## greenhouse-geisser
+sum(diag(dc_matrix))^2 / ((dim(dc_matrix)[1]-1)*sum(dc_matrix^2))
+```
+
+
+

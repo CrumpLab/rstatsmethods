@@ -15,6 +15,10 @@ knitr::opts_chunk$set(echo = TRUE)
 A. create a ggplot2 figure that depicts the expected results from this design (2 points)
 
 ```{r}
+library(tibble)
+library(ggplot2)
+library(patchwork)
+
 # define 2-factor score model
 grand_mean <- 0
 A <- c(0,.5)
@@ -56,16 +60,43 @@ line_graph <- ggplot(model_data,
   geom_point()
 
 (bar_graph/line_graph)
+
+## alternative solution
+
+model_data <- tibble(IVA = c(1, 1, 2, 2),
+                     IVB = c(1,2,1,2),
+                     DV = c(0,0,.5,.25))
+
+ggplot(model_data, aes(y=DV,
+                         x=IVA,
+                         linetype=as.factor(IVB)))+
+  geom_line()+
+  geom_point()
+
+## alternative solution
+
+model_data <- tibble(IVA = c(1, 2, 1, 2),
+                     IVB = c(1,1,2,2),
+                     DV = c(0,.5,0,0.25))
+
+ggplot(model_data, aes(y=DV,
+                         x=IVA,
+                         linetype=as.factor(IVB)))+
+  geom_line()+
+  geom_point()
+
+
+
 ```
 
 
-Conduct simulation-based power analyses to answer the questions.
+Conduct a simulation-based power analysis to answer the questions.
 
 B. How many subjects are needed to detect the main effect of A with power = .8? (2 points)
 
 ```{r}
 # N per group
-N <- 56
+N <- 57
 
 A_pvalue <- c()
 B_pvalue <- c()
@@ -87,41 +118,98 @@ for(i in 1:1000){
 }
 
 length(A_pvalue[A_pvalue<0.05])/1000
-length(B_pvalue[B_pvalue<0.05])/1000
-length(AB_pvalue[AB_pvalue<0.05])/1000
+
+```
+
+```{r}
+###
+N <- 57
+
+A_pvalue <- c()
+
+for(i in 1:1000){
+  
+  sim_df <- tibble(
+    IVA = rep(rep(c("1","2"), each=2),N),
+    IVB = rep(rep(c("1","2"), 2),N),
+    DV = rnorm(4*N,c(0,0,.5,.25),1)
+  )
+
+  aov_results <- summary(aov(DV~IVA*IVB, sim_df))
+  A_pvalue[i]<-aov_results[[1]]$`Pr(>F)`[1]
+}
+
+length(A_pvalue[A_pvalue<0.05])/1000
 ```
 
 C. How many subjects are needed to detect the interaction effect with power  = .8? (2 points)
 
 ```{r}
 
-# N per group
-N <- 450
+N <- 500
 
-A_pvalue <- c()
-B_pvalue <- c()
 AB_pvalue <- c()
+
 for(i in 1:1000){
-  IVA <- rep(rep(c("1","2"), each=2),N)
-  IVB <- rep(rep(c("1","2"), 2),N)
-  DV <- c(replicate(N,c(rnorm(1,0,1), # means A1B1
-                        rnorm(1,0,1), # means A1B2
-                        rnorm(1,.5,1), # means A2B1
-                        rnorm(1,.25,1)  # means A2B2
-          )))
-  sim_df <- data.frame(IVA,IVB,DV)
   
+  sim_df <- tibble(
+    IVA = rep(rep(c("1","2"), each=2),N),
+    IVB = rep(rep(c("1","2"), 2),N),
+    DV = rnorm(4*N,c(0,0,.5,.25),1)
+  )
+
   aov_results <- summary(aov(DV~IVA*IVB, sim_df))
-  A_pvalue[i]<-aov_results[[1]]$`Pr(>F)`[1]
-  B_pvalue[i]<-aov_results[[1]]$`Pr(>F)`[2]
   AB_pvalue[i]<-aov_results[[1]]$`Pr(>F)`[3]
 }
 
-length(A_pvalue[A_pvalue<0.05])/1000
-length(B_pvalue[B_pvalue<0.05])/1000
 length(AB_pvalue[AB_pvalue<0.05])/1000
 
 ```
+
+Bonus point question:
+
+B1. Create a power curve showing how power for the interaction effect in this example is influenced by number of subjects. Choose a range of N from 25 to 800 (per cell) and run a simulation-based power analysis for increments of 25 subjects. Then plot the results using ggplot2 (2 points).
+
+```{r}
+
+subject_increments <- seq(25,800,25)
+power_estimate <- c()
+
+for(si in 1:length(subject_increments)) {
+
+  N <- subject_increments[si]
+  AB_pvalue <- c()
+  for(i in 1:1000){
+    
+    sim_df <- tibble(
+      IVA = rep(rep(c("1","2"), each=2),N),
+      IVB = rep(rep(c("1","2"), 2),N),
+      DV = rnorm(4*N,c(0,0,.5,.25),1)
+    )
+  
+    aov_results <- summary(aov(DV~IVA*IVB, sim_df))
+    AB_pvalue[i]<-aov_results[[1]]$`Pr(>F)`[3]
+  }
+  
+  power_estimate[si] <- length(AB_pvalue[AB_pvalue<0.05])/1000
+
+}
+
+power_curve <- tibble(subject_increments,
+                      power_estimate)
+
+ggplot(power_curve, aes(x=subject_increments,
+                        y=power_estimate))+
+  geom_point()+
+  geom_line()+
+  scale_x_continuous(breaks=seq(25,800,50))+
+  scale_y_continuous(breaks=seq(0,1,.1))+
+  theme_classic(base_size = 12)+
+  geom_hline(yintercept=.8)
+
+```
+
+
 
 
 

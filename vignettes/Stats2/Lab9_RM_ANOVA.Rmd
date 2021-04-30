@@ -49,7 +49,8 @@ e1 <- tribble(~Subject, ~Drug_A, ~Placebo, ~Drug_B,
         "s6",121,71,84) 
 
 # convert to long
-e1 <- pivot_longer(e1,cols = !Subject,
+e1 <- pivot_longer(e1,
+                   cols = !Subject,
                    names_to = "IV",
                    values_to = "Latency")
 
@@ -268,6 +269,8 @@ summary(aov_out)
 
 ## Lab 9 Generalization Assignment
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/C_FB5dgoSB4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ### Instructions
 
 Your assignment instructions are the following:
@@ -288,7 +291,7 @@ Your assignment instructions are the following:
 
   C. There are 6 subjects in the experiment, and they are each measured once in each condition. The 6 subjects are assumed to be different from one another (e.g., they will  have different baseline means in the control condition), but they will all be influenced by the IV in the exact same way (e.g., no interaction).
 
-2. Run a simulation to determine the proportion of experiments that would return a significant result for the above design. Assume alpha = .05. (2 points)
+2. Run a simulation to determine the proportion of experiments that would return a significant result for the above design. Assume that the effect of the levels of the IV are increments of .1 of a standard deviation, rather than increments of 1 as in the above design.
 
 3. Demonstrate that the Godden and Baddeley example data from the textbook (19.5), which used a 2x2 repeated measures design, can be be analyzed with one-sample t-tests to return the same results. Specifically, show the one-sample t-tests for each main effect and the interaction. (2 points)
 

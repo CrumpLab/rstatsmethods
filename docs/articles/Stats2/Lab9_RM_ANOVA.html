@@ -259,7 +259,8 @@
         <span class="st">"s6"</span>,<span class="fl">121</span>,<span class="fl">71</span>,<span class="fl">84</span>)
 
 <span class="co"># convert to long</span>
-<span class="no">e1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span>(<span class="no">e1</span>,<span class="kw">cols</span> <span class="kw">=</span> !<span class="no">Subject</span>,
+<span class="no">e1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span>(<span class="no">e1</span>,
+                   <span class="kw">cols</span> <span class="kw">=</span> !<span class="no">Subject</span>,
                    <span class="kw">names_to</span> <span class="kw">=</span> <span class="st">"IV"</span>,
                    <span class="kw">values_to</span> <span class="kw">=</span> <span class="st">"Latency"</span>)
 
@@ -551,6 +552,8 @@
 <div id="lab-9-generalization-assignment" class="section level2">
 <h2 class="hasAnchor">
 <a href="#lab-9-generalization-assignment" class="anchor"></a>Lab 9 Generalization Assignment</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/C_FB5dgoSB4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <div id="instructions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#instructions" class="anchor"></a>Instructions</h3>
@@ -574,7 +577,7 @@
 <p>B. There is one repeated measures factor with 5 levels (Down1, Down2, Control, Up1, Up2). The control group is assumed to have no effect. The Down1 and Down2 levels shift the mean down by 1 and 2 standard deviations, respectively. The Up1 and Up2 levels shift the mean up by 1 and 2 standard deviations, respectively.</p>
 <p>C. There are 6 subjects in the experiment, and they are each measured once in each condition. The 6 subjects are assumed to be different from one another (e.g., they will have different baseline means in the control condition), but they will all be influenced by the IV in the exact same way (e.g., no interaction).</p>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Run a simulation to determine the proportion of experiments that would return a significant result for the above design. Assume alpha = .05. (2 points)</p></li>
+<li><p>Run a simulation to determine the proportion of experiments that would return a significant result for the above design. Assume that the effect of the levels of the IV are increments of .1 of a standard deviation, rather than increments of 1 as in the above design.</p></li>
 <li><p>Demonstrate that the Godden and Baddeley example data from the textbook (19.5), which used a 2x2 repeated measures design, can be be analyzed with one-sample t-tests to return the same results. Specifically, show the one-sample t-tests for each main effect and the interaction. (2 points)</p></li>
 </ol>
 <p>Bonus Points</p>
