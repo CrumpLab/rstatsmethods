@@ -270,41 +270,43 @@
 <span class="co">#&gt; lm(formula = a ~ b, data = random_vectors)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Residuals:</span>
-<span class="co">#&gt;     Min      1Q  Median      3Q     Max </span>
-<span class="co">#&gt; -2.1756 -0.3228 -0.0756  0.6220  1.6307 </span>
+<span class="co">#&gt;      Min       1Q   Median       3Q      Max </span>
+<span class="co">#&gt; -1.86529 -0.41437  0.05158  0.33735  1.48233 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Coefficients:</span>
-<span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)</span>
-<span class="co">#&gt; (Intercept)  -0.1012     0.2169  -0.466    0.646</span>
-<span class="co">#&gt; b            -0.2085     0.3307  -0.630    0.536</span>
+<span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)  </span>
+<span class="co">#&gt; (Intercept)   0.1559     0.1849   0.843   0.4103  </span>
+<span class="co">#&gt; b             0.3101     0.1752   1.770   0.0936 .</span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; Residual standard error: 0.9671 on 18 degrees of freedom</span>
-<span class="co">#&gt; Multiple R-squared:  0.0216, Adjusted R-squared:  -0.03276 </span>
-<span class="co">#&gt; F-statistic: 0.3973 on 1 and 18 DF,  p-value: 0.5364</span>
+<span class="co">#&gt; Residual standard error: 0.8218 on 18 degrees of freedom</span>
+<span class="co">#&gt; Multiple R-squared:  0.1483, Adjusted R-squared:  0.101 </span>
+<span class="co">#&gt; F-statistic: 3.134 on 1 and 18 DF,  p-value: 0.09363</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">a</span>~<span class="no">b</span>,<span class="kw">data</span><span class="kw">=</span><span class="no">random_vectors</span>))$<span class="no">r.squared</span>
-<span class="co">#&gt; [1] 0.02159789</span>
+<span class="co">#&gt; [1] 0.1482769</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">a</span>~<span class="no">b</span>+<span class="no">c</span>,<span class="kw">data</span><span class="kw">=</span><span class="no">random_vectors</span>))$<span class="no">r.squared</span>
-<span class="co">#&gt; [1] 0.08811732</span>
+<span class="co">#&gt; [1] 0.183245</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">a</span>~<span class="no">b</span>+<span class="no">c</span>+<span class="no">d</span>,<span class="kw">data</span><span class="kw">=</span><span class="no">random_vectors</span>))$<span class="no">r.squared</span>
-<span class="co">#&gt; [1] 0.2751599</span>
+<span class="co">#&gt; [1] 0.2273767</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">a</span>~<span class="no">b</span>+<span class="no">c</span>+<span class="no">d</span>+<span class="no">e</span>,<span class="kw">data</span><span class="kw">=</span><span class="no">random_vectors</span>))$<span class="no">r.squared</span>
-<span class="co">#&gt; [1] 0.2872396</span>
+<span class="co">#&gt; [1] 0.2287138</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">a</span>~<span class="no">b</span>+<span class="no">c</span>+<span class="no">d</span>+<span class="no">e</span>+<span class="no">f</span>,<span class="kw">data</span><span class="kw">=</span><span class="no">random_vectors</span>))$<span class="no">r.squared</span>
-<span class="co">#&gt; [1] 0.3158363</span>
+<span class="co">#&gt; [1] 0.2963192</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">a</span>~<span class="no">b</span>+<span class="no">c</span>+<span class="no">d</span>+<span class="no">e</span>+<span class="no">f</span>+<span class="no">g</span>,<span class="kw">data</span><span class="kw">=</span><span class="no">random_vectors</span>))$<span class="no">r.squared</span>
-<span class="co">#&gt; [1] 0.3324766</span>
+<span class="co">#&gt; [1] 0.2968343</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">a</span>~<span class="no">b</span>+<span class="no">c</span>+<span class="no">d</span>+<span class="no">e</span>+<span class="no">f</span>+<span class="no">g</span>+<span class="no">h</span>,<span class="kw">data</span><span class="kw">=</span><span class="no">random_vectors</span>))$<span class="no">r.squared</span>
-<span class="co">#&gt; [1] 0.354333</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.3110107</span></pre></body></html></div>
 <p>The above example uses <code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code> to add new variables in the linear regression formula. This adds each variable as its own predictor and does not add in potential interactions with other variables. We have not discussed the concept of statistical interaction yet in this course, and we do that in coming lectures. Nevertheless, consider what happens to <span class="math inline">\(R^2\)</span> when the <code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code> is used in the formula.</p>
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">a</span>~<span class="no">b</span>,<span class="kw">data</span><span class="kw">=</span><span class="no">random_vectors</span>))$<span class="no">r.squared</span>
-<span class="co">#&gt; [1] 0.02159789</span>
+<span class="co">#&gt; [1] 0.1482769</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">a</span>~<span class="no">b</span>*<span class="no">c</span>,<span class="kw">data</span><span class="kw">=</span><span class="no">random_vectors</span>))$<span class="no">r.squared</span>
-<span class="co">#&gt; [1] 0.0930208</span>
+<span class="co">#&gt; [1] 0.1919283</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">a</span>~<span class="no">b</span>*<span class="no">c</span>*<span class="no">d</span>,<span class="kw">data</span><span class="kw">=</span><span class="no">random_vectors</span>))$<span class="no">r.squared</span>
-<span class="co">#&gt; [1] 0.2982144</span>
+<span class="co">#&gt; [1] 0.360481</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">a</span>~<span class="no">b</span>*<span class="no">c</span>*<span class="no">d</span>*<span class="no">e</span>,<span class="kw">data</span><span class="kw">=</span><span class="no">random_vectors</span>))$<span class="no">r.squared</span>
-<span class="co">#&gt; [1] 0.604924</span>
+<span class="co">#&gt; [1] 0.9324676</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">a</span>~<span class="no">b</span>*<span class="no">c</span>*<span class="no">d</span>*<span class="no">e</span>*<span class="no">f</span>,<span class="kw">data</span><span class="kw">=</span><span class="no">random_vectors</span>))$<span class="no">r.squared</span>
 <span class="co">#&gt; [1] 1</span></pre></body></html></div>
 <p>The <code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code> adds interactions of variables, which effectively increases the number of random predictor variables in this regression. As you can see, with only 5 predictor variables, when we include the potential interactions, this grows to many linearly independent variables (15 in this case):</p>
@@ -314,35 +316,37 @@
 <span class="co">#&gt; lm(formula = a ~ b * c * d * e, data = random_vectors)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Residuals:</span>
-<span class="co">#&gt;        1        2        3        4        5        6        7        8 </span>
-<span class="co">#&gt; -0.16628  0.16796  0.48146  0.03128  0.50269  0.01534  0.23476 -0.23111 </span>
-<span class="co">#&gt;        9       10       11       12       13       14       15       16 </span>
-<span class="co">#&gt;  0.01715  0.25260 -0.03955 -0.76327  0.45013  0.82159 -0.05435 -2.12473 </span>
-<span class="co">#&gt;       17       18       19       20 </span>
-<span class="co">#&gt;  0.02754  0.14570 -0.05213  0.28323 </span>
+<span class="co">#&gt;         1         2         3         4         5         6         7         8 </span>
+<span class="co">#&gt; -0.021225  0.348942 -0.007826 -0.139963 -0.031448 -0.475233  0.035562  0.268192 </span>
+<span class="co">#&gt;         9        10        11        12        13        14        15        16 </span>
+<span class="co">#&gt; -0.031591  0.090096  0.149460 -0.049428  0.031872  0.019695 -0.581457  0.052415 </span>
+<span class="co">#&gt;        17        18        19        20 </span>
+<span class="co">#&gt;  0.292428 -0.062903  0.214394 -0.101982 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Coefficients:</span>
-<span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)</span>
-<span class="co">#&gt; (Intercept)  0.21058    0.94003   0.224    0.834</span>
-<span class="co">#&gt; b           -0.02328    1.98993  -0.012    0.991</span>
-<span class="co">#&gt; c            0.46051    0.75222   0.612    0.573</span>
-<span class="co">#&gt; d           -0.25334    0.98964  -0.256    0.811</span>
-<span class="co">#&gt; e           -0.25860    1.13022  -0.229    0.830</span>
-<span class="co">#&gt; b:c          1.69923    6.64334   0.256    0.811</span>
-<span class="co">#&gt; b:d          0.12099    0.55978   0.216    0.839</span>
-<span class="co">#&gt; c:d          0.22517    0.66648   0.338    0.752</span>
-<span class="co">#&gt; b:e         -1.12943    2.00106  -0.564    0.603</span>
-<span class="co">#&gt; c:e          0.02998    2.08599   0.014    0.989</span>
-<span class="co">#&gt; d:e          0.74456    1.08534   0.686    0.530</span>
-<span class="co">#&gt; b:c:d       -0.92671    7.52065  -0.123    0.908</span>
-<span class="co">#&gt; b:c:e       -0.73158    4.33471  -0.169    0.874</span>
-<span class="co">#&gt; b:d:e       -0.65531    1.55232  -0.422    0.695</span>
-<span class="co">#&gt; c:d:e        0.72504    2.24079   0.324    0.762</span>
-<span class="co">#&gt; b:c:d:e     -1.24952    2.92195  -0.428    0.691</span>
+<span class="co">#&gt;              Estimate Std. Error t value Pr(&gt;|t|)  </span>
+<span class="co">#&gt; (Intercept) -0.004632   0.215137  -0.022   0.9839  </span>
+<span class="co">#&gt; b           -0.265505   0.485132  -0.547   0.6133  </span>
+<span class="co">#&gt; c           -0.409509   0.347660  -1.178   0.3041  </span>
+<span class="co">#&gt; d           -0.599154   0.587446  -1.020   0.3654  </span>
+<span class="co">#&gt; e            0.320900   0.247273   1.298   0.2641  </span>
+<span class="co">#&gt; b:c         -0.619792   1.213807  -0.511   0.6365  </span>
+<span class="co">#&gt; b:d         -0.336867   0.749059  -0.450   0.6762  </span>
+<span class="co">#&gt; c:d          0.059122   0.713636   0.083   0.9380  </span>
+<span class="co">#&gt; b:e         -0.820779   0.287090  -2.859   0.0460 *</span>
+<span class="co">#&gt; c:e          0.156529   0.240197   0.652   0.5502  </span>
+<span class="co">#&gt; d:e          0.682869   0.370811   1.842   0.1393  </span>
+<span class="co">#&gt; b:c:d       -0.052849   0.826725  -0.064   0.9521  </span>
+<span class="co">#&gt; b:c:e       -0.518921   0.619238  -0.838   0.4492  </span>
+<span class="co">#&gt; b:d:e        0.437511   1.818974   0.241   0.8217  </span>
+<span class="co">#&gt; c:d:e        1.521076   0.373423   4.073   0.0152 *</span>
+<span class="co">#&gt; b:c:d:e      1.493043   2.323695   0.643   0.5555  </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; Residual standard error: 1.304 on 4 degrees of freedom</span>
-<span class="co">#&gt; Multiple R-squared:  0.6049, Adjusted R-squared:  -0.8766 </span>
-<span class="co">#&gt; F-statistic: 0.4083 on 15 and 4 DF,  p-value: 0.9086</span></pre></body></html></div>
+<span class="co">#&gt; Residual standard error: 0.4909 on 4 degrees of freedom</span>
+<span class="co">#&gt; Multiple R-squared:  0.9325, Adjusted R-squared:  0.6792 </span>
+<span class="co">#&gt; F-statistic: 3.682 on 15 and 4 DF,  p-value: 0.1083</span></pre></body></html></div>
 <p>When you have more predictor variables than you have rows of data in the DV, you will overfit the data because you will have more ways of explaining the data with lines than you have data points. So, when we have 6 predictor variables, and their interactions, the multiple <span class="math inline">\(R^2\)</span> value goes to 1.</p>
 <div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span>(<span class="no">a</span>~<span class="no">b</span>*<span class="no">c</span>*<span class="no">d</span>*<span class="no">e</span>*<span class="no">f</span>,<span class="kw">data</span><span class="kw">=</span><span class="no">random_vectors</span>))
 <span class="co">#&gt; </span>
@@ -354,26 +358,26 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Coefficients: (12 not defined because of singularities)</span>
 <span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)</span>
-<span class="co">#&gt; (Intercept)   0.9008         NA      NA       NA</span>
-<span class="co">#&gt; b           -12.7173         NA      NA       NA</span>
-<span class="co">#&gt; c           -17.8003         NA      NA       NA</span>
-<span class="co">#&gt; d            29.1355         NA      NA       NA</span>
-<span class="co">#&gt; e           -12.4592         NA      NA       NA</span>
-<span class="co">#&gt; f           -24.7054         NA      NA       NA</span>
-<span class="co">#&gt; b:c         -74.8756         NA      NA       NA</span>
-<span class="co">#&gt; b:d         -14.3311         NA      NA       NA</span>
-<span class="co">#&gt; c:d          15.2345         NA      NA       NA</span>
-<span class="co">#&gt; b:e         -33.3481         NA      NA       NA</span>
-<span class="co">#&gt; c:e          16.9204         NA      NA       NA</span>
-<span class="co">#&gt; d:e          10.5486         NA      NA       NA</span>
-<span class="co">#&gt; b:f         -43.4753         NA      NA       NA</span>
-<span class="co">#&gt; c:f         -56.0355         NA      NA       NA</span>
-<span class="co">#&gt; d:f          40.3967         NA      NA       NA</span>
-<span class="co">#&gt; e:f          -8.6008         NA      NA       NA</span>
-<span class="co">#&gt; b:c:d       197.2493         NA      NA       NA</span>
-<span class="co">#&gt; b:c:e        12.2967         NA      NA       NA</span>
-<span class="co">#&gt; b:d:e       105.2278         NA      NA       NA</span>
-<span class="co">#&gt; c:d:e         8.8518         NA      NA       NA</span>
+<span class="co">#&gt; (Intercept)  0.35799         NA      NA       NA</span>
+<span class="co">#&gt; b            0.58529         NA      NA       NA</span>
+<span class="co">#&gt; c           -1.59723         NA      NA       NA</span>
+<span class="co">#&gt; d           -2.60824         NA      NA       NA</span>
+<span class="co">#&gt; e            1.65806         NA      NA       NA</span>
+<span class="co">#&gt; f           -0.49105         NA      NA       NA</span>
+<span class="co">#&gt; b:c          0.95311         NA      NA       NA</span>
+<span class="co">#&gt; b:d         -0.25017         NA      NA       NA</span>
+<span class="co">#&gt; c:d          1.57200         NA      NA       NA</span>
+<span class="co">#&gt; b:e         -1.62993         NA      NA       NA</span>
+<span class="co">#&gt; c:e         -1.15025         NA      NA       NA</span>
+<span class="co">#&gt; d:e         -0.06795         NA      NA       NA</span>
+<span class="co">#&gt; b:f          0.03881         NA      NA       NA</span>
+<span class="co">#&gt; c:f          0.88563         NA      NA       NA</span>
+<span class="co">#&gt; d:f         -2.71591         NA      NA       NA</span>
+<span class="co">#&gt; e:f          0.13305         NA      NA       NA</span>
+<span class="co">#&gt; b:c:d       -1.74386         NA      NA       NA</span>
+<span class="co">#&gt; b:c:e        0.04894         NA      NA       NA</span>
+<span class="co">#&gt; b:d:e       -0.29187         NA      NA       NA</span>
+<span class="co">#&gt; c:d:e        1.13259         NA      NA       NA</span>
 <span class="co">#&gt; b:c:f             NA         NA      NA       NA</span>
 <span class="co">#&gt; b:d:f             NA         NA      NA       NA</span>
 <span class="co">#&gt; c:d:f             NA         NA      NA       NA</span>

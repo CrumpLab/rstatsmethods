@@ -564,14 +564,14 @@
 <p>In the following, I will take random samples from a unit normal distribution:</p>
 <p>What is the expected mean of a unit normal distribution?</p>
 <div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10000</span>,<span class="fl">0</span>,<span class="fl">1</span>))
-<span class="co">#&gt; [1] 0.007025935</span></pre></body></html></div>
+<span class="co">#&gt; [1] -0.00533189</span></pre></body></html></div>
 <p>If we square all of the values that we sample from a unit normal distribution (equivalent to <span class="math inline">\(\chi^2\)</span> with <span class="math inline">\(k=1\)</span>), then what would the mean of those squared values be?</p>
 <div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">10000</span>,<span class="fl">0</span>,<span class="fl">1</span>)^<span class="fl">2</span>)
-<span class="co">#&gt; [1] 1.020208</span></pre></body></html></div>
+<span class="co">#&gt; [1] 1.004131</span></pre></body></html></div>
 <p>It turns out the answer is 1. There will be no negative values because we are squaring everything. About 68% of the values in a unit normal are between -1 and 1, so squaring all of those will make values between 0 and 1, the rest of the values get increasingly bigger than 1. They all balance out at 1, which is the mean of a squared normal distribution. In other words, the mean of a <span class="math inline">\(\chi^2\)</span> is the same as the <span class="math inline">\(k\)</span> parameter, also called degrees of freedom.</p>
 <p>For example, the mean of 10,000 numbers drawn from a <span class="math inline">\(\chi^2\)</span> with k = 10, is:</p>
 <div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html">rchisq</a></span>(<span class="fl">10000</span>,<span class="fl">10</span>))
-<span class="co">#&gt; [1] 9.974229</span></pre></body></html></div>
+<span class="co">#&gt; [1] 10.03039</span></pre></body></html></div>
 <p>Another way to think about this is to recognize that the expected value (mean) from a squared unit normal distribution is 1. So, if you take 10 values from that distribution (i.e., when k = 10), then you are planning to sum up the 10 values that you get, and the expected value for each is 1…summing up 10 ones, gives you 10. The same expectations can be applied to <span class="math inline">\(\chi^2\)</span> distributions of any <span class="math inline">\(k\)</span>.</p>
 </div>
 </div>
@@ -664,8 +664,8 @@
 <p>Here is an example contingency table with 5 subjects. In this case, each column represents a subject. Row 1 represents choice A, and row 2 choice 2. Each subject makes a choice, and their choice is counted in the appropriate row.</p>
 <div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span>(<span class="fl">5</span>,<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">0</span>),<span class="fl">2</span>))
 <span class="co">#&gt;      [,1] [,2] [,3] [,4] [,5]</span>
-<span class="co">#&gt; [1,]    1    1    1    0    1</span>
-<span class="co">#&gt; [2,]    0    0    0    1    0</span></pre></body></html></div>
+<span class="co">#&gt; [1,]    0    1    1    1    0</span>
+<span class="co">#&gt; [2,]    1    0    0    0    1</span></pre></body></html></div>
 <p>This is a contingency table, so it is possible to compute a chi-square test on this table.</p>
 <div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/stats/chisq.test.html">chisq.test</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span>(<span class="fl">5</span>,<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">0</span>),<span class="fl">2</span>)))
 <span class="co">#&gt; </span>

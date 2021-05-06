@@ -1,0 +1,110 @@
+---
+title: "Lab 10"
+author: "Matt Crump"
+date: "3/17/2021"
+bibliography: BCStats.bib
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1. From Chapter 20, reproduce the bat and hat example (20.2) in R. Your code should represent the data in long-form, conduct the ANOVA, and report the ANOVA table. You will know if you did it correctly if you can reproduce the ANOVA table from the textbook. (3 points)
+
+```{r}
+# option 1
+# write the whole thing by hand as a tribble
+
+library(tibble)
+
+bat_hat_data <- tribble(~Subject, ~Phonological_Similarity, ~Age, ~num_correct,
+        "s1","b1","a1",15,
+        "s2","b1","a1",23,
+        "s3","b1","a1",12,
+        "s4","b1","a1",16,
+        "s5","b1","a1",14,
+        "s1","b2","a1",13,
+        "s2","b2","a1",19,
+        "s3","b2","a1",10,
+        "s4","b2","a1",16,
+        "s5","b2","a1",12,
+        "s6","b1","a2",39,
+        "s7","b1","a2",31,
+        "s8","b1","a2",40,
+        "s9","b1","a2",32,
+        "s10","b1","a2",38,
+        "s6","b2","a2",29,
+        "s7","b2","a2",15,
+        "s8","b2","a2",30,
+        "s9","b2","a2",26,
+        "s10","b2","a2",30,
+        )
+
+## conduct ANOVA
+
+aov_out <- aov( num_correct ~ Phonological_Similarity*Age + Error(Subject/Phonological_Similarity), data = bat_hat_data)
+summary(aov_out)
+
+## Option 2
+# construct the data frame with functions
+
+Subject <- c(rep(c("s1","s2","s3","s4","s5"),2),
+             rep(c("s6","s7","s8","s9","s10"),2))
+Phonological_Similarity <- rep(rep(c("b1","b2"), each=5),2)
+Age <- rep(c("a1","a2"), each=10)
+num_correct <- c(15,23,12,16,14,
+                 13,19,10,16,12,
+                 39,31,40,32,38,
+                 29,15,30,26,30)
+
+bat_hat_data <- tibble(Subject,
+                       Phonological_Similarity,
+                       Age,
+                       num_correct)
+
+# run ANOVA
+aov_out <- aov( num_correct ~ Phonological_Similarity*Age + Error(Subject/Phonological_Similarity), data = bat_hat_data)
+summary(aov_out)
+
+```
+
+2. From Chapter 21, reproduce the phonological similarity example (21.2.1) in R. Your code should represent the data in long-form, conduct the ANOVA, and report the ANOVA table. You will know if you did it correctly if you can reproduce the ANOVA table from the textbook. (3 points) Note, the F-value for the phonological similarity factor that you find with R may not be the same as the textbook. The textbook produces the quasi-F, and it is OK if you do not.
+
+```{r}
+# get the data into R in long format
+subject <- rep(c("s1","s2","s3","s4"), each=10)
+Typicality_B <- rep(rep(c("b1","b2"), each=5),4)
+Faces_A <- rep(c("a1","a2","a3","a4","a5"),8)
+
+#Faces_A <- rep(c("a1","a2","a3","a4","a5",
+#                 "a6","a7","a8","a9","a10"),4)
+
+centiseconds <- c(20,22,25,24,19,37,37,43,48,45,
+                   9,8,21,21,21,34,35,35,37,39,
+                   18,20,18,21,33,35,39,39,37,40,
+                   5,14,16,22,23,38,49,51,50,52)
+
+face_data <-  tibble(subject,
+                     Typicality_B,
+                     Faces_A,
+                     centiseconds)
+
+# run the anova
+aov_out <- aov(centiseconds  ~ (subject + 
+                                Faces_A%in%Typicality_B + 
+                                Typicality_B + 
+                                Typicality_B:subject),
+               data = face_data)
+
+summary(aov_out)
+```
+
+Bonus points:
+
+3. Use R to produce the missing quasi_F value for problem 2. 
+
+```{r}
+
+```
+
