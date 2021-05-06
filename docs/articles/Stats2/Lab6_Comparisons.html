@@ -734,14 +734,16 @@ do a monte-carlo simulation...familywise etc.
                                                 <span class="st">"c4"</span><span class="kw">=</span> <span class="fl">4</span>,
                                                 <span class="st">"c5"</span> <span class="kw">=</span> <span class="fl">5</span>)
                                         ))
-<span class="co">#&gt;              Df Sum Sq Mean Sq F value Pr(&gt;F)</span>
-<span class="co">#&gt; IV            5    4.1  0.8201   0.843  0.519</span>
-<span class="co">#&gt;   IV: c1      1    1.6  1.6108   1.656  0.199</span>
-<span class="co">#&gt;   IV: c2      1    0.1  0.0529   0.054  0.816</span>
-<span class="co">#&gt;   IV: c3      1    0.0  0.0023   0.002  0.961</span>
-<span class="co">#&gt;   IV: c4      1    1.8  1.7871   1.837  0.176</span>
-<span class="co">#&gt;   IV: c5      1    0.6  0.6475   0.666  0.415</span>
-<span class="co">#&gt; Residuals   594  577.8  0.9728</span></pre></body></html></div>
+<span class="co">#&gt;              Df Sum Sq Mean Sq F value Pr(&gt;F)  </span>
+<span class="co">#&gt; IV            5    8.8   1.763   1.831 0.1048  </span>
+<span class="co">#&gt;   IV: c1      1    1.1   1.069   1.111 0.2924  </span>
+<span class="co">#&gt;   IV: c2      1    1.2   1.187   1.233 0.2673  </span>
+<span class="co">#&gt;   IV: c3      1    3.4   3.439   3.573 0.0592 .</span>
+<span class="co">#&gt;   IV: c4      1    3.0   3.037   3.155 0.0762 .</span>
+<span class="co">#&gt;   IV: c5      1    0.1   0.081   0.085 0.7713  </span>
+<span class="co">#&gt; Residuals   594  571.8   0.963                 </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></pre></body></html></div>
 <p>When we conduct the simulation we want to count type I errors. Specifically, let’s count type I errors for the omnibus test, as well as for the linear contrasts. Our simulation will be similar to the one reported in Table 12.1 from the textbook.</p>
 <p>In terms of organizing the code, I will adopt a strategy of saving the necessary data from the simulation into a dataframe that can then be analyzed to produce a summary table.</p>
 <div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="co">#create a tibble to store all the results</span>
@@ -796,12 +798,12 @@ do a monte-carlo simulation...familywise etc.
 <tr class="even">
 <td align="left">contrast</td>
 <td align="right">1</td>
-<td align="right">2057</td>
+<td align="right">2016</td>
 </tr>
 <tr class="odd">
 <td align="left">contrast</td>
 <td align="right">2</td>
-<td align="right">410</td>
+<td align="right">464</td>
 </tr>
 <tr class="even">
 <td align="left">contrast</td>
@@ -816,7 +818,7 @@ do a monte-carlo simulation...familywise etc.
 <tr class="even">
 <td align="left">omnibus</td>
 <td align="right">1</td>
-<td align="right">501</td>
+<td align="right">541</td>
 </tr>
 </tbody>
 </table>
@@ -825,21 +827,21 @@ do a monte-carlo simulation...familywise etc.
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">type</span> <span class="kw">==</span> <span class="st">'omnibus'</span>,
          <span class="no">counts</span> <span class="kw">==</span> <span class="fl">1</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">type_I_frequency</span>)/<span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.0501</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.0541</span></pre></body></html></div>
 <p>Similarly, we conducted 50000 total linear contrasts. Looking at individual contrasts, the type I error rate is also close to .05:</p>
 <div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="no">type_I_errors</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">type</span> <span class="kw">==</span> <span class="st">'contrast'</span>,
          <span class="no">counts</span> <span class="kw">&gt;</span> <span class="fl">0</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">type_I_frequency</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>()/<span class="fl">50000</span>
-<span class="co">#&gt; [1] 0.05012</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.05038</span></pre></body></html></div>
 <p>However, <strong>the family-wise</strong> type I error rate is larger. We conducted 10,000 simulated experiments, if asked the question, what was the probability of rejecting the null if any of the linear contrasts were significant, then we find:</p>
 <div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="no">type_I_errors</span> <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">type</span> <span class="kw">==</span> <span class="st">'contrast'</span>,
          <span class="no">counts</span> <span class="kw">&gt;</span> <span class="fl">0</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">type_I_frequency</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>()/<span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.2506</span></pre></body></html></div>
+<span class="co">#&gt; [1] 0.2519</span></pre></body></html></div>
 </div>
 </div>
 <div id="concept-3-correcting-for-multiple-comparisons" class="section level2">
