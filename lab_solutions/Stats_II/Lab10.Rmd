@@ -98,6 +98,36 @@ aov_out <- aov(centiseconds  ~ (subject +
                data = face_data)
 
 summary(aov_out)
+
+aov_out <- aov(centiseconds  ~ Typicality_B + (Faces_A%in%Typicality_B) +
+                       Error(subject + subject:Faces_A + subject:Typicality_B),
+               data = face_data)
+
+summary(aov_out)
+
+## using lme4
+library(lme4)
+aov.out <- lmer(centiseconds ~ subject + 
+                                (1|(Faces_A%in%Typicality_B)) + 
+                                Typicality_B + 
+                                (1|(Typicality_B:subject)), 
+                data = face_data)
+
+aov.out <- lmer(centiseconds ~  
+                                Typicality_B +
+                        (1 | subject) +
+                        (1 | Faces_A:Typicality_B)
+                        , 
+                data = face_data,
+                REML = FALSE,
+                control=lmerControl(check.nobs.vs.nRE="ignore"))
+summary(aov.out)
+anova(aov.out)
+lmerTest::ranova(aov.out)
+
+lmer(Obs ~ Day + Treatment + Day:Treatment + (Day | Subject)
+
+Treatment*Tone+(Treatment|Word)+(Tone|Subject)
 ```
 
 Bonus points:

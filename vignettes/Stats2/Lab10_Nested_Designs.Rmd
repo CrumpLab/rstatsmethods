@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 
 ## Reading
 
-Chapters 20 and 121 from @abdiExperimentalDesignAnalysis2009.
+Chapters 20 and 21 from @abdiExperimentalDesignAnalysis2009.
 
 ## Surprise
 
@@ -50,5 +50,7 @@ Your assignment instructions are the following:
 Bonus points:
 
 3. Use R to produce the missing quasi_F value for problem 2. 
+
+## References
 
 
