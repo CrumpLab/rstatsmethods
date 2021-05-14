@@ -27,7 +27,7 @@ Chapter 22 from @abdiExperimentalDesignAnalysis2009.
 
 ## Overview
 
-WYOR refers to "writing your own statistics". A goal of this course has been to explore principles of statistical analysis to the point where you would be able to use those general principles to craft statistical analyses that are tailored to your designs of interest. In this final lab, the practical section discusses some of the general aspects of R formula for declaring ANOVA and linear regression models. This can help you analyze many designs similar to those discussed in class throughout the last two semesters. The conceptual section is a final example of a simulated statistical analysis, and a few parting thoughts.
+WYOR refers to "Writing Your own statistical Recipes". A goal of this course has been to explore principles of statistical analysis to the point where you would be able to use those general principles to craft statistical analyses that are tailored to your designs of interest. In this final lab, the practical section discusses some of the general aspects of R formula for declaring ANOVA and linear regression models. This can help you analyze many designs similar to those discussed in class throughout the last two semesters. The conceptual section is a final example of a simulated statistical analysis, and a few parting thoughts.
 
 ## Practical I: R formula
 
@@ -39,6 +39,7 @@ It turns out that there is a help file for the formula syntax that is actually p
 
 ```{r}
 ?formula()
+?formula
 ```
 
 ### Formula basics
@@ -180,7 +181,7 @@ DV ~ A*B*C - A:B - A:C - B:C
 The `%in%` operator is used to declare nesting, such as `A%in%B`, where the term on the left is nested in the term on the right. The `/` operator can also be used to indicate nesting.
 
 ```{r}
-DV ~ A+ A%in%B
+DV ~ A + A%in%B
 attributes(terms(DV ~ A + A%in%B))$factors
 
 DV ~ A+ A/B
@@ -270,14 +271,20 @@ for(i in 1:iterations){
   MS_IV <- aov_summary[[1]]$`Mean Sq`[1]
   MS_residuals <- aov_summary[[1]]$`Mean Sq`[2]
   F_val <- aov_summary[[1]]$`F value`[1] 
+  
   means <- null_data %>%
     group_by(IV) %>%
     summarize(meanDV = mean(DV),
               sdDV = sd(DV))
+  
   mean_difference <- means[means$IV == "B",]$meanDV - means[means$IV == "A",]$meanDV 
+  
   abs_mean_diff <- abs(mean_difference)
+  
   cohens_D <- mean_difference / sqrt((sum(means$sdDV)/2))
+  
   t <- t.test(DV~IV, var.equal=TRUE, null_data)$statistic
+  
   abs_t <- abs(t)
   
   # save all test-statistics
@@ -300,7 +307,7 @@ for(i in 1:iterations){
 }
 ```
 
-We have now created seperate null-distributions for each of the statistics that we saved. Each null-distribution has 10,000 values. 
+We have now created separate null-distributions for each of the statistics that we saved. Each null-distribution has 10,000 values. 
 
 Consider the simulated F-distribution that we created. Let's get the critical value from the simulated distribution, and compare it to the known critical value of F.
 
