@@ -236,8 +236,11 @@ colSums(contrasts(fake_data$IV) * group_means)
 # Square the sums
 colSums(contrasts(fake_data$IV) * group_means)^2
 
+# Multiply by the sample size per group
+1 * colSums(contrasts(fake_data$IV) * group_means)^2
+
 # divide by the SS for the contrast weights
-(colSums(contrasts(fake_data$IV) * group_means)^2)/ colSums(contrasts(fake_data$IV)^2)
+1 * ((colSums(contrasts(fake_data$IV) * group_means)^2)/ colSums(contrasts(fake_data$IV)^2))
 ```
 
 
@@ -272,7 +275,7 @@ grand_means <- c(7,7,7,7)
 grand_means
 ```
 
-First, note that we need all of the contrasts to do this. For example, there is now way we can add just the first linear contrast and somehow get the original means back...
+First, note that we need all of the contrasts to do this. For example, there is no way we can add just the first linear contrast and somehow get the original means back...
 
 ```{r}
 grand_means + contrasts(fake_data$IV)[,1]
@@ -494,7 +497,7 @@ type_I_errors %>%
 
 ## Concept 3: Correcting for multiple comparisons
 
-Your textbook describes several methods for "correcting" p-values for multiple comparisons to protect against the family-wise type I error rate. Some of these corrections include the Sidak, Bonferroni, Boole, and Dunn. I going to purposefully leave this concept section mostly blank; and, discuss why in class. 
+Your textbook describes several methods for "correcting" p-values for multiple comparisons to protect against the family-wise type I error rate. Some of these corrections include the Sidak, Bonferroni, Boole, and Dunn. I am going to purposefully leave this concept section mostly blank; and, discuss why in class. 
 
 As a blunt perspective, I think it is generally useful to report how many tests you conducted, along with the uncorrected p-values for each. In my experience, many different people have different perspectives on what ought to be done. Most of the corrections can be done to the uncorrected p-values, so if a reader has a preference, you have supplied them with the necessary information for them to do the corrections that they think are necessary.
 
