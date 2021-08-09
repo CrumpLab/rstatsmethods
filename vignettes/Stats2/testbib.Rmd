@@ -1,0 +1,35 @@
+---
+title: "Untitled"
+author: "Matt Crump"
+date: "5/20/2021"
+bibliography: BCStats.bib
+csl: chicago-annotated-bibliography.csl
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## a title
+
+adsfasdf
+adsf
+asd
+fads
+f
+adsf
+adsf
+ads
+
+
+asdf adskjfasdkjfhkjasd sdkjfasdk jfadskjfads [@chowNullhypothesisSignificancetestProcedure1998]
+ads
+fa
+dsf
+a
+
+## Reference
+
+
+
