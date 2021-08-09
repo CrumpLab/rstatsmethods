@@ -1,3 +1,8 @@
+# rstatsmethods
+
+- Rename repository
+- Rebuild for Fall 2021
+
 # psyc7709Lab 0.0.0.9010
 
 - Beginning Semester 2

@@ -1,17 +1,16 @@
-# psyc7709Lab <a href='https:/crumplab.github.io/psyc7709Lab'><img src='man/figures/logo.png' align="right" height="120.5" /></a>
+# rstatsmethods <a href='https:/crumplab.github.io/rstatsmethods'><img src='man/figures/logo.png' align="right" height="120.5" /></a>
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
+## PSYC 7765/66 Statistical Methods Application I
 
-## Statistical Methods Practicum II
+This is the course website for PSYC 7765/66: Statistical Methods Applications I (Fall 2021), offered through the Experimental Psychology Master’s program, Department of Psychology, Brooklyn College of CUNY. 
 
-This is the course website for Psyc 7709G: Statistical Methods Practicum II (Spring 2021), offered through the Experimental Psychology Master’s program, Department of Psychology, Brooklyn College of CUNY. Note that labs will be released on a weekly basis throughout the semester.
+## PSYC 7765/66 Statistical Methods Application II
 
-## Statistical Methods Practicum I
-
-This website also contains the labs for Psyc 7709G: Statistical Methods Practicum I (Fall 2020), offered through the Experimental Psychology Master’s program, Department of Psychology, Brooklyn College of CUNY.
+This website also contains the labs for Statistical Methods Applications II, to be offered in Spring 2022
 
 Instructor: Matthew Crump
 [mcrump@brooklyn.cuny.edu](mcrump@brooklyn.cuny.edu)
