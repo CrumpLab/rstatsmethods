@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lab 4 ANOVA • psyc7709Lab</title>
+<title>Lab 4 ANOVA • rstatsmethods</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../../apple-touch-icon.png">
@@ -18,8 +18,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
 <script src="../../pkgdown.js"></script><meta property="og:title" content="Lab 4 ANOVA">
-<meta property="og:description" content="psyc7709Lab">
-<meta property="og:image" content="https://crumplab.github.io/psyc7709Lab/logo.png">
+<meta property="og:description" content="rstatsmethods">
+<meta property="og:image" content="https://crumplab.github.io/rstatsmethods/logo.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:creator" content="@MattCrump_">
 <meta name="twitter:site" content="@MattCrump_">
@@ -46,7 +46,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../../index.html">psyc7709Lab</a>
+        <a class="navbar-link" href="../../index.html">rstatsmethods</a>
         <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.0.9004</span>
       </span>
     </div>
@@ -55,7 +55,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../../index.html">
-    <span class="fas fa-home fa-lg"></span>
+    <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -67,10 +67,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../../articles/course_docs/Spring_syllabus.html">Spring 2021</a>
+      <a href="../../articles/course_docs/Syllabus.html">Fall 2021</a>
     </li>
     <li>
-      <a href="../../articles/course_docs/Syllabus.html">Fall 2020</a>
+      <a href="../../articles/course_docs/Spring_syllabus.html">Spring 2022</a>
     </li>
   </ul>
 </li>
@@ -81,41 +81,7 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-<li class="dropdown-header">STATS 2 Spring 2021</li>
-    <li>
-      <a href="../../articles/Stats2/Lab1_Shape.html">Lab 1 Shaping Data</a>
-    </li>
-    <li>
-      <a href="../../articles/Stats2/Lab2_Multiple_regression_I.html">Lab 2 Multiple Regression</a>
-    </li>
-    <li>
-      <a href="../../articles/Stats2/Lab3_Multiple_regression_II.html">Lab 3 Multiple Regression II</a>
-    </li>
-    <li>
-      <a href="../../articles/Stats2/Lab4_ANOVA.html">Lab 4 ANOVA</a>
-    </li>
-    <li>
-      <a href="../../articles/Stats2/Lab5_ANOVA_Randomization.html">Lab 5 ANOVA and Randomization</a>
-    </li>
-    <li>
-      <a href="../../articles/Stats2/Lab6_Comparisons.html">Lab 6 Comparisons</a>
-    </li>
-    <li>
-      <a href="../../articles/Stats2/Lab7_Factorial_ANOVA.html">Lab 7 Factorial ANOVA</a>
-    </li>
-    <li>
-      <a href="../../articles/Stats2/Lab8_Contrasts.html">Lab 8 Contrast Analyses</a>
-    </li>
-    <li>
-      <a href="../../articles/Stats2/Lab9_RM_ANOVA.html">Lab 9 RM ANOVA</a>
-    </li>
-    <li>
-      <a href="../../articles/Stats2/Lab10_Nested_Designs.html">Lab 10 Nested Designs</a>
-    </li>
-    <li>
-      <a href="../../articles/Stats2/Lab11_WYOR.html">Lab 11 WYOR</a>
-    </li>
-    <li class="dropdown-header">STATS 1 FALL 2020</li>
+<li class="dropdown-header">STATS 1 FALL 2021</li>
     <li>
       <a href="../../articles/Stats1/Getting_Started.html">Getting Started</a>
     </li>
@@ -158,6 +124,40 @@
     <li>
       <a href="../../articles/Stats1/Lab12_Regression.html">Lab 12 Regression</a>
     </li>
+    <li class="dropdown-header">STATS 2 Spring 2022</li>
+    <li>
+      <a href="../../articles/Stats2/Lab1_Shape.html">Lab 1 Shaping Data</a>
+    </li>
+    <li>
+      <a href="../../articles/Stats2/Lab2_Multiple_regression_I.html">Lab 2 Multiple Regression</a>
+    </li>
+    <li>
+      <a href="../../articles/Stats2/Lab3_Multiple_regression_II.html">Lab 3 Multiple Regression II</a>
+    </li>
+    <li>
+      <a href="../../articles/Stats2/Lab4_ANOVA.html">Lab 4 ANOVA</a>
+    </li>
+    <li>
+      <a href="../../articles/Stats2/Lab5_ANOVA_Randomization.html">Lab 5 ANOVA and Randomization</a>
+    </li>
+    <li>
+      <a href="../../articles/Stats2/Lab6_Comparisons.html">Lab 6 Comparisons</a>
+    </li>
+    <li>
+      <a href="../../articles/Stats2/Lab7_Factorial_ANOVA.html">Lab 7 Factorial ANOVA</a>
+    </li>
+    <li>
+      <a href="../../articles/Stats2/Lab8_Contrasts.html">Lab 8 Contrast Analyses</a>
+    </li>
+    <li>
+      <a href="../../articles/Stats2/Lab9_RM_ANOVA.html">Lab 9 RM ANOVA</a>
+    </li>
+    <li>
+      <a href="../../articles/Stats2/Lab10_Nested_Designs.html">Lab 10 Nested Designs</a>
+    </li>
+    <li>
+      <a href="../../articles/Stats2/Lab11_WYOR.html">Lab 11 WYOR</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -183,10 +183,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../../articles/Stats2/semester_project.html">Spring 2021</a>
+      <a href="../../articles/Stats1/semester_project.html">Fall 2021</a>
     </li>
     <li>
-      <a href="../../articles/Stats1/semester_project.html">Fall 2020</a>
+      <a href="../../articles/Stats2/semester_project.html">Spring 2022</a>
     </li>
   </ul>
 </li>
@@ -196,8 +196,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/CrumpLab/psyc7709Lab">
-    <span class="fas fa-lg fa-github"></span>
+  <a href="https://github.com/CrumpLab/rstatsmethods">
+    <span class="fa fa-lg fa-github"></span>
      
   </a>
 </li>
@@ -217,7 +217,7 @@
 
       
 
-      </header><script src="Lab4_ANOVA_files/header-attrs-2.6/header-attrs.js"></script><div class="row">
+      </header><script src="Lab4_ANOVA_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Lab 4 ANOVA</h1>
@@ -246,26 +246,26 @@
 <p>We begin with the one-factor ANOVA for designs with a single independent variable that has two or more levels. As we will see shortly, if we use ANOVA for a design with two levels, the result will be the same as a t-test. However, unlike a t-test, we can also use the ANOVA for designs with more than two levels.</p>
 <p>This lab has three major concept sections to help firm up ANOVA concepts, and a practical section on using the <code>aov</code> function to compute ANOVAs in R.</p>
 <p>Let’s consider a few pictures first, and then move onto the lab:</p>
-<p><img src="imgs/ANOVA/ANOVA.004.jpeg" width="960"></p>
+<p><img src="imgs/ANOVA/ANOVA.004.jpeg"><!-- --></p>
 <div id="grand-mean" class="section level3">
 <h3 class="hasAnchor">
 <a href="#grand-mean" class="anchor"></a>Grand mean</h3>
-<p><img src="imgs/ANOVA/ANOVA.005.jpeg" width="960"></p>
+<p><img src="imgs/ANOVA/ANOVA.005.jpeg"><!-- --></p>
 </div>
 <div id="within-group-variation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#within-group-variation" class="anchor"></a>Within group variation</h3>
-<p><img src="imgs/ANOVA/ANOVA.006.jpeg" width="960"></p>
+<p><img src="imgs/ANOVA/ANOVA.006.jpeg"><!-- --></p>
 </div>
 <div id="between-group-variation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#between-group-variation" class="anchor"></a>Between group variation</h3>
-<p><img src="imgs/ANOVA/ANOVA.007.jpeg" width="960"></p>
+<p><img src="imgs/ANOVA/ANOVA.007.jpeg"><!-- --></p>
 </div>
 <div id="f-ratio" class="section level3">
 <h3 class="hasAnchor">
 <a href="#f-ratio" class="anchor"></a>F Ratio</h3>
-<p><img src="imgs/ANOVA/ANOVA.008.jpeg" width="960"></p>
+<p><img src="imgs/ANOVA/ANOVA.008.jpeg"><!-- --></p>
 <!--
 ## Concept 1: Manipulations and using means to explain variance
 
@@ -348,7 +348,7 @@ We could simply take all of the data points, across all subjects in both groups 
 
 ```r
 var(sample_data$DV)
-#> [1] 1.019827
+#> [1] 0.8730851
 ```
 
 Now, let's repeat the above experiment, but this time we will simulate the idea that the IV does actually change measurement. For example, let's say the manipulation in group 2 causes scores to raise dramatically by three whole standard deviations relative to group 1.
@@ -381,7 +381,7 @@ We can confirm that the the total amount of variation has increased by computing
 
 ```r
 var(sample_data$DV)
-#> [1] 2.962473
+#> [1] 2.948113
 ```
 
 I will leave it to you to determine what happens to the total variation if the manipulation caused a mean shift in the negative direction. For example, in the example above, group 2 was programmed to have larger more positive values than group 1. We could have made group 2 receive smaller more negative values than group 1. In general, no matter what direction the change is, if the IV causes changes in the means between the levels, then the presence of the IV should increase the total amount of variation relative control conditions where the IV is not manipulated (but a similar number of groups are measured).
@@ -424,7 +424,7 @@ What is the grand mean? The grand mean is the mean across all of the data ignori
 
 ```r
 mean(sample_data$DV)
-#> [1] 1.525683
+#> [1] 1.597185
 ```
 
 This is the same mean that we use to compute the total variance:
@@ -432,7 +432,7 @@ This is the same mean that we use to compute the total variance:
 
 ```r
 var(sample_data$DV)
-#> [1] 3.629562
+#> [1] 3.583858
 ```
 
 We could add the grand mean as a blue line to the graph:
@@ -484,7 +484,7 @@ The grand mean is the same as before:
 
 ```r
 mean(mean_data$mean_dv)
-#> [1] 1.525683
+#> [1] 1.597185
 ```
 
 And, the total variance is:
@@ -492,7 +492,7 @@ And, the total variance is:
 
 ```r
 var(mean_data$mean_dv)
-#> [1] 2.742667
+#> [1] 2.842014
 ```
 
 Note, here we are computing the variance in the subject means with respect to the grand mean. Before, we computed the variance in all of the raw data with respect to the grand mean.
@@ -513,32 +513,32 @@ knitr::kable(mean_data)
 
 |group | subjects|    mean_dv| grand_mean| squared_error|
 |:-----|--------:|----------:|----------:|-------------:|
-|1     |        1|  0.2116745|   1.525683|      1.726618|
-|1     |        2|  0.1738925|   1.525683|      1.827337|
-|1     |        3| -0.1139772|   1.525683|      2.688485|
-|1     |        4| -0.2769061|   1.525683|      3.249327|
-|1     |        5|  0.0482134|   1.525683|      2.182916|
-|1     |        6| -0.2856394|   1.525683|      3.280888|
-|1     |        7|  0.1092746|   1.525683|      2.006212|
-|1     |        8|  0.0977482|   1.525683|      2.038997|
-|1     |        9| -0.0839157|   1.525683|      2.590807|
-|1     |       10| -0.5670514|   1.525683|      4.379536|
-|2     |       11|  3.4988285|   1.525683|      3.893304|
-|2     |       12|  2.8226425|   1.525683|      1.682104|
-|2     |       13|  3.0627313|   1.525683|      2.362518|
-|2     |       14|  3.5357171|   1.525683|      4.040238|
-|2     |       15|  3.0314971|   1.525683|      2.267477|
-|2     |       16|  2.8438114|   1.525683|      1.737463|
-|2     |       17|  3.0048622|   1.525683|      2.187972|
-|2     |       18|  3.0922954|   1.525683|      2.454275|
-|2     |       19|  3.4791712|   1.525683|      3.816117|
-|2     |       20|  2.8287864|   1.525683|      1.698079|
+|1     |        1|  0.1012444|   1.597185|      2.237838|
+|1     |        2| -0.6380420|   1.597185|      4.996238|
+|1     |        3| -0.1906783|   1.597185|      3.196454|
+|1     |        4|  0.0280496|   1.597185|      2.462185|
+|1     |        5| -0.1005273|   1.597185|      2.882226|
+|1     |        6| -0.1810230|   1.597185|      3.162023|
+|1     |        7|  0.2416616|   1.597185|      1.837443|
+|1     |        8|  0.4625423|   1.597185|      1.287413|
+|1     |        9|  0.1800727|   1.597185|      2.008207|
+|1     |       10| -0.1355881|   1.597185|      3.002502|
+|2     |       11|  3.1816667|   1.597185|      2.510583|
+|2     |       12|  3.3037699|   1.597185|      2.912433|
+|2     |       13|  2.9249790|   1.597185|      1.763038|
+|2     |       14|  3.3488056|   1.597185|      3.068176|
+|2     |       15|  2.8633497|   1.597185|      1.603174|
+|2     |       16|  3.1476302|   1.597185|      2.403881|
+|2     |       17|  2.8860156|   1.597185|      1.661085|
+|2     |       18|  3.5106114|   1.597185|      3.661201|
+|2     |       19|  3.6860571|   1.597185|      4.363388|
+|2     |       20|  3.3230979|   1.597185|      2.978776|
 The variance is:
 
 
 ```r
 var(mean_data$mean_dv)
-#> [1] 2.742667
+#> [1] 2.842014
 ```
 
 And, the average of the sum of the squared error is the same thing.
@@ -546,7 +546,7 @@ And, the average of the sum of the squared error is the same thing.
 
 ```r
 sum(mean_data$squared_error)/(20-1)
-#> [1] 2.742667
+#> [1] 2.842014
 ```
 
 #### The means from each level of the IV
@@ -573,33 +573,33 @@ knitr::kable(IV_mean_data)
 
 |group | subjects|    mean_dv| grand_mean| squared_error|   IV_means| IV_squared_error|
 |:-----|--------:|----------:|----------:|-------------:|----------:|----------------:|
-|1     |        1|  0.2116745|   1.525683|      1.726618| -0.0686687|         2.541957|
-|1     |        2|  0.1738925|   1.525683|      1.827337| -0.0686687|         2.541957|
-|1     |        3| -0.1139772|   1.525683|      2.688485| -0.0686687|         2.541957|
-|1     |        4| -0.2769061|   1.525683|      3.249327| -0.0686687|         2.541957|
-|1     |        5|  0.0482134|   1.525683|      2.182916| -0.0686687|         2.541957|
-|1     |        6| -0.2856394|   1.525683|      3.280888| -0.0686687|         2.541957|
-|1     |        7|  0.1092746|   1.525683|      2.006212| -0.0686687|         2.541957|
-|1     |        8|  0.0977482|   1.525683|      2.038997| -0.0686687|         2.541957|
-|1     |        9| -0.0839157|   1.525683|      2.590807| -0.0686687|         2.541957|
-|1     |       10| -0.5670514|   1.525683|      4.379536| -0.0686687|         2.541957|
-|2     |       11|  3.4988285|   1.525683|      3.893304|  3.1200343|         2.541957|
-|2     |       12|  2.8226425|   1.525683|      1.682104|  3.1200343|         2.541957|
-|2     |       13|  3.0627313|   1.525683|      2.362518|  3.1200343|         2.541957|
-|2     |       14|  3.5357171|   1.525683|      4.040238|  3.1200343|         2.541957|
-|2     |       15|  3.0314971|   1.525683|      2.267477|  3.1200343|         2.541957|
-|2     |       16|  2.8438114|   1.525683|      1.737463|  3.1200343|         2.541957|
-|2     |       17|  3.0048622|   1.525683|      2.187972|  3.1200343|         2.541957|
-|2     |       18|  3.0922954|   1.525683|      2.454275|  3.1200343|         2.541957|
-|2     |       19|  3.4791712|   1.525683|      3.816117|  3.1200343|         2.541957|
-|2     |       20|  2.8287864|   1.525683|      1.698079|  3.1200343|         2.541957|
+|1     |        1|  0.1012444|   1.597185|      2.237838| -0.0232288|          2.62574|
+|1     |        2| -0.6380420|   1.597185|      4.996238| -0.0232288|          2.62574|
+|1     |        3| -0.1906783|   1.597185|      3.196454| -0.0232288|          2.62574|
+|1     |        4|  0.0280496|   1.597185|      2.462185| -0.0232288|          2.62574|
+|1     |        5| -0.1005273|   1.597185|      2.882226| -0.0232288|          2.62574|
+|1     |        6| -0.1810230|   1.597185|      3.162023| -0.0232288|          2.62574|
+|1     |        7|  0.2416616|   1.597185|      1.837443| -0.0232288|          2.62574|
+|1     |        8|  0.4625423|   1.597185|      1.287413| -0.0232288|          2.62574|
+|1     |        9|  0.1800727|   1.597185|      2.008207| -0.0232288|          2.62574|
+|1     |       10| -0.1355881|   1.597185|      3.002502| -0.0232288|          2.62574|
+|2     |       11|  3.1816667|   1.597185|      2.510583|  3.2175983|          2.62574|
+|2     |       12|  3.3037699|   1.597185|      2.912433|  3.2175983|          2.62574|
+|2     |       13|  2.9249790|   1.597185|      1.763038|  3.2175983|          2.62574|
+|2     |       14|  3.3488056|   1.597185|      3.068176|  3.2175983|          2.62574|
+|2     |       15|  2.8633497|   1.597185|      1.603174|  3.2175983|          2.62574|
+|2     |       16|  3.1476302|   1.597185|      2.403881|  3.2175983|          2.62574|
+|2     |       17|  2.8860156|   1.597185|      1.661085|  3.2175983|          2.62574|
+|2     |       18|  3.5106114|   1.597185|      3.661201|  3.2175983|          2.62574|
+|2     |       19|  3.6860571|   1.597185|      4.363388|  3.2175983|          2.62574|
+|2     |       20|  3.3230979|   1.597185|      2.978776|  3.2175983|          2.62574|
 
 If we treat each score as if the only thing we knew about it was the group mean it came from, then we could measure how much variance is associated with this perspective. For example:
 
 
 ```r
 var(IV_mean_data$IV_means)
-#> [1] 2.675744
+#> [1] 2.763937
 ```
 
 This is the same as the average of the squared errors between the group means and the grand mean.
@@ -607,7 +607,7 @@ This is the same as the average of the squared errors between the group means an
 
 ```r
 sum(IV_mean_data$IV_squared_error)/19
-#> [1] 2.675744
+#> [1] 2.763937
 ```
 
 
@@ -617,26 +617,27 @@ sum(IV_mean_data$IV_squared_error)/19
 <div id="practical-1-by-hand-anova-using-r" class="section level2">
 <h2 class="hasAnchor">
 <a href="#practical-1-by-hand-anova-using-r" class="anchor"></a>Practical 1: By hand ANOVA using R</h2>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">tibble</span>)
-<span class="no">romeo_juliet</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span>(<span class="kw">subjects</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">20</span>,
-                       <span class="kw">Group</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"No Context"</span>,
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span>
+<span class="va">romeo_juliet</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>subjects <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>,
+                       Group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No Context"</span>,
                                  <span class="st">"Context Before"</span>,
                                  <span class="st">"Context After"</span>,
-                                 <span class="st">"Partial Context"</span>), <span class="kw">each</span> <span class="kw">=</span> <span class="fl">5</span>),
-                       <span class="kw">Comprehension</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,
+                                 <span class="st">"Partial Context"</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>,
+                       Comprehension <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,
                                          <span class="fl">5</span>,<span class="fl">9</span>,<span class="fl">8</span>,<span class="fl">4</span>,<span class="fl">9</span>,
                                          <span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">1</span>,
                                          <span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>
-                                   )
-                          )
+                                   <span class="op">)</span>
+                          <span class="op">)</span>
 
-<span class="no">romeo_juliet</span>$<span class="no">Group</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="no">romeo_juliet</span>$<span class="no">Group</span>,
-                             <span class="kw">levels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"No Context"</span>,
+<span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span>,
+                             levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No Context"</span>,
                                  <span class="st">"Context Before"</span>,
                                  <span class="st">"Context After"</span>,
-                                 <span class="st">"Partial Context"</span>))
+                                 <span class="st">"Partial Context"</span><span class="op">)</span><span class="op">)</span>
 
-<span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="no">romeo_juliet</span>)</pre></body></html></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">subjects</th>
@@ -749,121 +750,128 @@ sum(IV_mean_data$IV_squared_error)/19
 <div id="grand-mean-and-total-sums-of-squares" class="section level3">
 <h3 class="hasAnchor">
 <a href="#grand-mean-and-total-sums-of-squares" class="anchor"></a>Grand Mean and total sums of squares</h3>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="co"># get grand mean</span>
-<span class="no">grand_mean</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">romeo_juliet</span>$<span class="no">Comprehension</span>)
+<span class="va">grand_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Comprehension</span><span class="op">)</span>
 
 <span class="co"># get squared deviations from grand mean</span>
-<span class="no">SS_total_table</span> <span class="kw">&lt;-</span> <span class="no">romeo_juliet</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">grand_mean</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">romeo_juliet</span>$<span class="no">Comprehension</span>)) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">deviations</span> <span class="kw">=</span> <span class="no">Comprehension</span> - <span class="no">grand_mean</span>,
-         <span class="kw">sq_deviations</span> <span class="kw">=</span> (<span class="no">Comprehension</span> - <span class="no">grand_mean</span>)^<span class="fl">2</span>)
+<span class="va">SS_total_table</span> <span class="op">&lt;-</span> <span class="va">romeo_juliet</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>grand_mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Comprehension</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>deviations <span class="op">=</span> <span class="va">Comprehension</span> <span class="op">-</span> <span class="va">grand_mean</span>,
+         sq_deviations <span class="op">=</span> <span class="op">(</span><span class="va">Comprehension</span> <span class="op">-</span> <span class="va">grand_mean</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
 
 <span class="co">#sum them</span>
-<span class="no">SS_total</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">SS_total_table</span>$<span class="no">sq_deviations</span>)</pre></body></html></div>
+<span class="va">SS_total</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">SS_total_table</span><span class="op">$</span><span class="va">sq_deviations</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="ss-between" class="section level3">
 <h3 class="hasAnchor">
 <a href="#ss-between" class="anchor"></a>SS Between</h3>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># get group means</span>
-<span class="no">group_means</span> <span class="kw">&lt;-</span> <span class="no">romeo_juliet</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">Group</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="kw">mean_Comprehension</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">Comprehension</span>),<span class="kw">.groups</span> <span class="kw">=</span> <span class="st">'drop'</span>)
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># get group means</span>
+<span class="va">group_means</span> <span class="op">&lt;-</span> <span class="va">romeo_juliet</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Group</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean_Comprehension <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Comprehension</span><span class="op">)</span>,.groups <span class="op">=</span> <span class="st">'drop'</span><span class="op">)</span>
 
 <span class="co"># get squared deviations between grand mean and group means</span>
-<span class="no">SS_between_table</span> <span class="kw">&lt;-</span> <span class="no">romeo_juliet</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">grand_mean</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">romeo_juliet</span>$<span class="no">Comprehension</span>),
-         <span class="kw">group_means</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="no">group_means</span>$<span class="no">mean_Comprehension</span>, <span class="kw">each</span> <span class="kw">=</span> <span class="fl">5</span>)) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">deviations</span> <span class="kw">=</span> <span class="no">group_means</span> - <span class="no">grand_mean</span>,
-         <span class="kw">sq_deviations</span> <span class="kw">=</span> (<span class="no">group_means</span> - <span class="no">grand_mean</span>)^<span class="fl">2</span>)
+<span class="va">SS_between_table</span> <span class="op">&lt;-</span> <span class="va">romeo_juliet</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>grand_mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Comprehension</span><span class="op">)</span>,
+         group_means <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">group_means</span><span class="op">$</span><span class="va">mean_Comprehension</span>, each <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>deviations <span class="op">=</span> <span class="va">group_means</span> <span class="op">-</span> <span class="va">grand_mean</span>,
+         sq_deviations <span class="op">=</span> <span class="op">(</span><span class="va">group_means</span> <span class="op">-</span> <span class="va">grand_mean</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
 
-<span class="no">SS_between</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">SS_between_table</span>$<span class="no">sq_deviations</span>)</pre></body></html></div>
+<span class="va">SS_between</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">SS_between_table</span><span class="op">$</span><span class="va">sq_deviations</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="ss-within" class="section level3">
 <h3 class="hasAnchor">
 <a href="#ss-within" class="anchor"></a>SS Within</h3>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co"># get group means</span>
-<span class="no">group_means</span> <span class="kw">&lt;-</span> <span class="no">romeo_juliet</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">Group</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="kw">mean_Comprehension</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">Comprehension</span>), <span class="kw">.groups</span> <span class="kw">=</span> <span class="st">'drop'</span>)
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># get group means</span>
+<span class="va">group_means</span> <span class="op">&lt;-</span> <span class="va">romeo_juliet</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Group</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>mean_Comprehension <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Comprehension</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">'drop'</span><span class="op">)</span>
 
 <span class="co"># get squared deviations between group means and original data points</span>
-<span class="no">SS_within_table</span> <span class="kw">&lt;-</span> <span class="no">romeo_juliet</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">group_means</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="no">group_means</span>$<span class="no">mean_Comprehension</span>, <span class="kw">each</span> <span class="kw">=</span> <span class="fl">5</span>)) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">deviations</span> <span class="kw">=</span> <span class="no">group_means</span> - <span class="no">Comprehension</span>,
-         <span class="kw">sq_deviations</span> <span class="kw">=</span> (<span class="no">group_means</span> - <span class="no">Comprehension</span>)^<span class="fl">2</span>)
+<span class="va">SS_within_table</span> <span class="op">&lt;-</span> <span class="va">romeo_juliet</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>group_means <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">group_means</span><span class="op">$</span><span class="va">mean_Comprehension</span>, each <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>deviations <span class="op">=</span> <span class="va">group_means</span> <span class="op">-</span> <span class="va">Comprehension</span>,
+         sq_deviations <span class="op">=</span> <span class="op">(</span><span class="va">group_means</span> <span class="op">-</span> <span class="va">Comprehension</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
 
-<span class="no">SS_within</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">SS_within_table</span>$<span class="no">sq_deviations</span>)</pre></body></html></div>
+<span class="va">SS_within</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">SS_within_table</span><span class="op">$</span><span class="va">sq_deviations</span><span class="op">)</span></code></pre></div>
 <p>Check that SS total = SS Between + SS Within:</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">SS_total</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">SS_total</span>
 <span class="co">#&gt; [1] 88.55</span>
 
-<span class="no">SS_between</span>+<span class="no">SS_within</span>
+<span class="va">SS_between</span><span class="op">+</span><span class="va">SS_within</span>
 <span class="co">#&gt; [1] 88.55</span>
 
-<span class="no">SS_total</span> <span class="kw">==</span> <span class="no">SS_between</span>+<span class="no">SS_within</span>
-<span class="co">#&gt; [1] TRUE</span></pre></body></html></div>
+<span class="va">SS_total</span> <span class="op">==</span> <span class="va">SS_between</span><span class="op">+</span><span class="va">SS_within</span>
+<span class="co">#&gt; [1] TRUE</span></code></pre></div>
 </div>
 <div id="f-is-a-ratio-of-variances" class="section level3">
 <h3 class="hasAnchor">
 <a href="#f-is-a-ratio-of-variances" class="anchor"></a>F is a ratio of variances</h3>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="co"># Between groups variance</span>
-<span class="no">dfb</span> <span class="kw">&lt;-</span> <span class="fl">4</span>-<span class="fl">1</span>
-<span class="no">MS_Between</span> <span class="kw">&lt;-</span> <span class="no">SS_between</span>/<span class="no">dfb</span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Between groups variance</span>
+<span class="va">dfb</span> <span class="op">&lt;-</span> <span class="fl">4</span><span class="op">-</span><span class="fl">1</span> 
+<span class="va">MS_Between</span> <span class="op">&lt;-</span> <span class="va">SS_between</span><span class="op">/</span><span class="va">dfb</span>
 
 <span class="co"># Within groups variance</span>
-<span class="no">dfw</span> <span class="kw">&lt;-</span> <span class="fl">20</span>-<span class="fl">4</span>
-<span class="no">MS_Within</span> <span class="kw">&lt;-</span> <span class="no">SS_within</span>/<span class="no">dfw</span>
+<span class="va">dfw</span> <span class="op">&lt;-</span> <span class="fl">20</span><span class="op">-</span><span class="fl">4</span>
+<span class="va">MS_Within</span> <span class="op">&lt;-</span> <span class="va">SS_within</span><span class="op">/</span><span class="va">dfw</span>
 
 <span class="co"># compute F, a ratio of variances</span>
-<span class="no">F_ratio</span> <span class="kw">&lt;-</span> <span class="no">MS_Between</span>/<span class="no">MS_Within</span></pre></body></html></div>
+<span class="va">F_ratio</span> <span class="op">&lt;-</span> <span class="va">MS_Between</span><span class="op">/</span><span class="va">MS_Within</span></code></pre></div>
 </div>
 <div id="alternative-example-using-matrix" class="section level3">
 <h3 class="hasAnchor">
 <a href="#alternative-example-using-matrix" class="anchor"></a>Alternative example using matrix</h3>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="co"># represent data in a wide-format matrix</span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># represent data in a wide-format matrix</span>
 
-<span class="no">matrix_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,
+<span class="va">matrix_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,
                         <span class="fl">5</span>,<span class="fl">9</span>,<span class="fl">8</span>,<span class="fl">4</span>,<span class="fl">9</span>,
                         <span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">1</span>,
-                        <span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>),
-                      <span class="kw">ncol</span><span class="kw">=</span><span class="fl">4</span>,
-                      <span class="kw">nrow</span><span class="kw">=</span><span class="fl">5</span>)
+                        <span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span><span class="op">)</span>,
+                      ncol<span class="op">=</span><span class="fl">4</span>,
+                      nrow<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span>(<span class="no">matrix_data</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"No Context"</span>,
+<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">matrix_data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No Context"</span>,
                                  <span class="st">"Context Before"</span>,
                                  <span class="st">"Context After"</span>,
-                                 <span class="st">"Partial Context"</span>)
+                                 <span class="st">"Partial Context"</span><span class="op">)</span>
 
 <span class="co">## Sums of Squares</span>
 
-<span class="no">SS_total</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>( (<span class="no">matrix_data</span> - <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">matrix_data</span>))^<span class="fl">2</span> )
-<span class="no">SS_between</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>( (<span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span>(<span class="no">matrix_data</span>) - <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">matrix_data</span>))^<span class="fl">2</span> )*<span class="fl">5</span>
-<span class="no">SS_within</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>( (<span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span>(<span class="no">matrix_data</span>) - <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span>(<span class="no">matrix_data</span>))^<span class="fl">2</span> )
+<span class="va">SS_total</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span> <span class="op">(</span><span class="va">matrix_data</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">matrix_data</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">)</span>
+<span class="va">SS_between</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span><span class="op">(</span><span class="va">matrix_data</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">matrix_data</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">)</span><span class="op">*</span><span class="fl">5</span>
+<span class="va">SS_within</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span><span class="op">(</span><span class="va">matrix_data</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">matrix_data</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">)</span>
 
 <span class="co">## Mean squared errors</span>
 
-<span class="no">dfb</span> <span class="kw">&lt;-</span> <span class="fl">4</span>-<span class="fl">1</span>
-<span class="no">MS_Between</span> <span class="kw">&lt;-</span> <span class="no">SS_between</span>/<span class="no">dfb</span>
+<span class="va">dfb</span> <span class="op">&lt;-</span> <span class="fl">4</span><span class="op">-</span><span class="fl">1</span> 
+<span class="va">MS_Between</span> <span class="op">&lt;-</span> <span class="va">SS_between</span><span class="op">/</span><span class="va">dfb</span>
 
-<span class="no">dfw</span> <span class="kw">&lt;-</span> <span class="fl">20</span>-<span class="fl">4</span>
-<span class="no">MS_Within</span> <span class="kw">&lt;-</span> <span class="no">SS_within</span>/<span class="no">dfw</span>
+<span class="va">dfw</span> <span class="op">&lt;-</span> <span class="fl">20</span><span class="op">-</span><span class="fl">4</span>
+<span class="va">MS_Within</span> <span class="op">&lt;-</span> <span class="va">SS_within</span><span class="op">/</span><span class="va">dfw</span>
 
 <span class="co"># compute F, a ratio of variances</span>
-<span class="no">F_ratio</span> <span class="kw">&lt;-</span> <span class="no">MS_Between</span>/<span class="no">MS_Within</span></pre></body></html></div>
+<span class="va">F_ratio</span> <span class="op">&lt;-</span> <span class="va">MS_Between</span><span class="op">/</span><span class="va">MS_Within</span></code></pre></div>
 </div>
 <div id="using-the-built-in-aov" class="section level3">
 <h3 class="hasAnchor">
 <a href="#using-the-built-in-aov" class="anchor"></a>Using the built-in <code>aov</code>
 </h3>
 <p>Note, we go into more detail about aov` in the practical section.</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">anova.out</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span>(<span class="no">Comprehension</span> ~ <span class="no">Group</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">romeo_juliet</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">anova.out</span>)
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">anova.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Comprehension</span> <span class="op">~</span> <span class="va">Group</span>, data <span class="op">=</span> <span class="va">romeo_juliet</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">anova.out</span><span class="op">)</span>
 <span class="co">#&gt;             Df Sum Sq Mean Sq F value  Pr(&gt;F)   </span>
 <span class="co">#&gt; Group        3  50.95   16.98   7.227 0.00278 **</span>
 <span class="co">#&gt; Residuals   16  37.60    2.35                   </span>
 <span class="co">#&gt; ---</span>
-<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></pre></body></html></div>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
 </div>
 </div>
 <div id="concept-1-understanding-the-pieces-of-the-anova-table" class="section level2">
@@ -875,94 +883,105 @@ sum(IV_mean_data$IV_squared_error)/19
 <h3 class="hasAnchor">
 <a href="#ss-total" class="anchor"></a>SS Total</h3>
 <p>If the null is TRUE, then all of the individual subject means in all of the groups, are all assumed to be randomly sampled from the very same normal distribution. For example, this could be one random sample of 20 subject means for the above design. We will use a unit normal distribution throughout.</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">sim_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span>),<span class="kw">ncol</span><span class="kw">=</span><span class="fl">4</span>,<span class="kw">nrow</span><span class="kw">=</span><span class="fl">5</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">sim_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">4</span>,nrow<span class="op">=</span><span class="fl">5</span><span class="op">)</span></code></pre></div>
 <p><span class="math inline">\(\text{SS}_\text{Total}\)</span> is the sum of squared deviations between the grand mean (mean of all the data) and each data point. Assuming we are sampling from a unit normal distribution, how should <span class="math inline">\(\text{SS}_\text{Total}\)</span> behave if the Null hypothesis is true?</p>
 <p>We can compute <span class="math inline">\(\text{SS}_\text{Total}\)</span> for the simulated data from above.</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">SS_total</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>( (<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">sim_data</span>) - <span class="no">sim_data</span>)^<span class="fl">2</span> )
-<span class="no">SS_total</span>
-<span class="co">#&gt; [1] 15.60321</span></pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">SS_total</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">sim_data</span><span class="op">)</span> <span class="op">-</span> <span class="va">sim_data</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">)</span>
+<span class="va">SS_total</span>
+<span class="co">#&gt; [1] 23.39725</span></code></pre></div>
 <p>But, that is just what <span class="math inline">\(\text{SS}_\text{Total}\)</span> happens to look like for that one random sample of 20 values from the normal distribution. Under the null, every time we sample 20 values we would expect slightly different values for <span class="math inline">\(\text{SS}_\text{Total}\)</span>. Let’s generate the sampling distribution of <span class="math inline">\(\text{SS}_\text{Total}\)</span>. We would expect <span class="math inline">\(\text{SS}_\text{Total}\)</span> to take on a value from this distribution if the Null is TRUE.</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">SS_total_distribution</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>()
-<span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="fl">1000</span>){
-<span class="no">sim_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span>),<span class="kw">ncol</span><span class="kw">=</span><span class="fl">4</span>,<span class="kw">nrow</span><span class="kw">=</span><span class="fl">5</span>)
-<span class="no">SS_total</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>( (<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">sim_data</span>) - <span class="no">sim_data</span>)^<span class="fl">2</span> )
-<span class="no">SS_total_distribution</span>[<span class="no">i</span>] <span class="kw">&lt;-</span> <span class="no">SS_total</span>
-}
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="no">SS_total_distribution</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">SS_total_distribution</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span><span class="op">)</span><span class="op">{</span>
+<span class="va">sim_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">4</span>,nrow<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
+<span class="va">SS_total</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">sim_data</span><span class="op">)</span> <span class="op">-</span> <span class="va">sim_data</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">)</span>
+<span class="va">SS_total_distribution</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">SS_total</span>
+<span class="op">}</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">SS_total_distribution</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab4_ANOVA_files/figure-html/unnamed-chunk-35-1.png" width="700"></p>
 <p>What would happen to <span class="math inline">\(\text{SS}_\text{Total}\)</span> is the Null hypothesis is false? There are an infinity of ways that the null hypothesis could be false, but let’s simulate one of them to see what could happen to <span class="math inline">\(\text{SS}_\text{Total}\)</span>.</p>
 <p>Specifically, let’s imagine that manipulation works and it cause the first group to have a shifted mean of two standard deviations compared to the other groups.</p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">SS_total_distribution_alt</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>()
-<span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="fl">1000</span>){
-<span class="no">sim_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span>),<span class="kw">ncol</span><span class="kw">=</span><span class="fl">4</span>,<span class="kw">nrow</span><span class="kw">=</span><span class="fl">5</span>)
-<span class="no">sim_data</span>[,<span class="fl">1</span>] <span class="kw">&lt;-</span> <span class="no">sim_data</span>[,<span class="fl">1</span>]+<span class="fl">2</span> <span class="co">#add effect for group 1</span>
-<span class="no">SS_total</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>( (<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">sim_data</span>) - <span class="no">sim_data</span>)^<span class="fl">2</span> )
-<span class="no">SS_total_distribution_alt</span>[<span class="no">i</span>] <span class="kw">&lt;-</span> <span class="no">SS_total</span>
-}
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="no">SS_total_distribution_alt</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">SS_total_distribution_alt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span><span class="op">)</span><span class="op">{</span>
+<span class="va">sim_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">4</span>,nrow<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
+<span class="va">sim_data</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">sim_data</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">+</span><span class="fl">2</span> <span class="co">#add effect for group 1</span>
+<span class="va">SS_total</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">sim_data</span><span class="op">)</span> <span class="op">-</span> <span class="va">sim_data</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">)</span>
+<span class="va">SS_total_distribution_alt</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">SS_total</span>
+<span class="op">}</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">SS_total_distribution_alt</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab4_ANOVA_files/figure-html/unnamed-chunk-36-1.png" width="700"></p>
 <p>The distribution of <span class="math inline">\(\text{SS}_\text{Total}\)</span> includes a smaller range values when the Null is TRUE, compared to distribution of <span class="math inline">\(\text{SS}_\text{Total}\)</span> for this one alternative scenario. <strong>The big concept here is that a manipulation that causes changes in the means, should increase the overall variance in the data relative to the grand mean</strong>. Thus, <span class="math inline">\(\text{SS}_\text{Total}\)</span> should tend to be larger when the null is false, compared to when it is true.</p>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
-<span class="no">SS_total_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">SS_total</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">SS_total_distribution</span>,
-                                         <span class="no">SS_total_distribution_alt</span>),
-                            <span class="kw">type</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Null"</span>,<span class="st">"Alternative"</span>), <span class="kw">each</span><span class="kw">=</span><span class="fl">1000</span>))
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="va">SS_total_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>SS_total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">SS_total_distribution</span>,
+                                         <span class="va">SS_total_distribution_alt</span><span class="op">)</span>,
+                            type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Null"</span>,<span class="st">"Alternative"</span><span class="op">)</span>, each<span class="op">=</span><span class="fl">1000</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">SS_total_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="no">SS_total</span>, <span class="kw">group</span><span class="kw">=</span><span class="no">type</span>, <span class="kw">fill</span><span class="kw">=</span><span class="no">type</span>))+
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span>(<span class="kw">position</span><span class="kw">=</span><span class="st">"dodge"</span>)</pre></body></html></div>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">SS_total_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">SS_total</span>, group<span class="op">=</span><span class="va">type</span>, fill<span class="op">=</span><span class="va">type</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>position<span class="op">=</span><span class="st">"dodge"</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab4_ANOVA_files/figure-html/unnamed-chunk-37-1.png" width="700"></p>
 </div>
 <div id="ss-between-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#ss-between-1" class="anchor"></a>SS Between</h3>
 <p><span class="math inline">\(\text{SS}_\text{Between}\)</span> treats each score as if it was the group mean, and sums the squared deviations between the group mean and grand mean. According to the null, the group means should all be the same (on average), but they will have some variance because of random sampling. Thus, we can simulate a sampling distribution of <span class="math inline">\(\text{SS}_\text{Between}\)</span> that we would expect under the null.</p>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">SS_between_distribution</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>()
-<span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="fl">1000</span>){
-  <span class="no">sim_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span>),<span class="kw">ncol</span><span class="kw">=</span><span class="fl">4</span>,<span class="kw">nrow</span><span class="kw">=</span><span class="fl">5</span>)
-  <span class="no">SS_between</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>( (<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">sim_data</span>) - <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span>(<span class="no">sim_data</span>))^<span class="fl">2</span> )*<span class="fl">5</span>
-  <span class="no">SS_between_distribution</span>[<span class="no">i</span>] <span class="kw">&lt;-</span> <span class="no">SS_between</span>
-}</pre></body></html></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">SS_between_distribution</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">sim_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">4</span>,nrow<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
+  <span class="va">SS_between</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">sim_data</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span><span class="op">(</span><span class="va">sim_data</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">)</span><span class="op">*</span><span class="fl">5</span>
+  <span class="va">SS_between_distribution</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">SS_between</span>
+<span class="op">}</span></code></pre></div>
 <p>Let’s also create a distribution of <span class="math inline">\(\text{SS}_\text{Between}\)</span> that would happen if our first group had a two standard deviation shift in the mean.</p>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="no">SS_between_distribution_alt</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>()
-<span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="fl">1000</span>){
-  <span class="no">sim_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span>),<span class="kw">ncol</span><span class="kw">=</span><span class="fl">4</span>,<span class="kw">nrow</span><span class="kw">=</span><span class="fl">5</span>)
-  <span class="no">sim_data</span>[,<span class="fl">1</span>] <span class="kw">&lt;-</span> <span class="no">sim_data</span>[,<span class="fl">1</span>]+<span class="fl">2</span> <span class="co">#add effect for group 1</span>
-  <span class="no">SS_between</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>( (<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">sim_data</span>) - <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span>(<span class="no">sim_data</span>))^<span class="fl">2</span> )*<span class="fl">5</span>
-  <span class="no">SS_between_distribution_alt</span>[<span class="no">i</span>] <span class="kw">&lt;-</span> <span class="no">SS_between</span>
-}</pre></body></html></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">SS_between_distribution_alt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">sim_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">4</span>,nrow<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
+  <span class="va">sim_data</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">sim_data</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">+</span><span class="fl">2</span> <span class="co">#add effect for group 1</span>
+  <span class="va">SS_between</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">sim_data</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span><span class="op">(</span><span class="va">sim_data</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">)</span><span class="op">*</span><span class="fl">5</span>
+  <span class="va">SS_between_distribution_alt</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">SS_between</span>
+<span class="op">}</span></code></pre></div>
 <p>It’s clear by plotting the distributions together that <span class="math inline">\(\text{SS}_\text{Between}\)</span> will have larger numbers as the variation between the means gets larger.</p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">SS_between_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">SS_between</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">SS_between_distribution</span>,
-                                         <span class="no">SS_between_distribution_alt</span>),
-                            <span class="kw">type</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Null"</span>,<span class="st">"Alternative"</span>), <span class="kw">each</span><span class="kw">=</span><span class="fl">1000</span>))
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">SS_between_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>SS_between <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">SS_between_distribution</span>,
+                                         <span class="va">SS_between_distribution_alt</span><span class="op">)</span>,
+                            type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Null"</span>,<span class="st">"Alternative"</span><span class="op">)</span>, each<span class="op">=</span><span class="fl">1000</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">SS_between_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="no">SS_between</span>, <span class="kw">group</span><span class="kw">=</span><span class="no">type</span>, <span class="kw">fill</span><span class="kw">=</span><span class="no">type</span>))+
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span>(<span class="kw">position</span><span class="kw">=</span><span class="st">"dodge"</span>)</pre></body></html></div>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">SS_between_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">SS_between</span>, group<span class="op">=</span><span class="va">type</span>, fill<span class="op">=</span><span class="va">type</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>position<span class="op">=</span><span class="st">"dodge"</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab4_ANOVA_files/figure-html/unnamed-chunk-40-1.png" width="700"></p>
 </div>
 <div id="ss-within-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#ss-within-1" class="anchor"></a>SS Within</h3>
 <p><span class="math inline">\(\text{SS}_\text{Within}\)</span> sums the squared deviations between each score and its group mean. We can simulate a sampling distribution of <span class="math inline">\(\text{SS}_\text{Within}\)</span> that we would expect under the null.</p>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">SS_Within_distribution</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>()
-<span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="fl">1000</span>){
-  <span class="no">sim_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span>),<span class="kw">ncol</span><span class="kw">=</span><span class="fl">4</span>,<span class="kw">nrow</span><span class="kw">=</span><span class="fl">5</span>)
-  <span class="no">SS_Within</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>( (<span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span>(<span class="no">sim_data</span>) - <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span>(<span class="no">sim_data</span>))^<span class="fl">2</span> )
-  <span class="no">SS_Within_distribution</span>[<span class="no">i</span>] <span class="kw">&lt;-</span> <span class="no">SS_Within</span>
-}</pre></body></html></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">SS_Within_distribution</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">sim_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">4</span>,nrow<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
+  <span class="va">SS_Within</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span><span class="op">(</span><span class="va">sim_data</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">sim_data</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">)</span>
+  <span class="va">SS_Within_distribution</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">SS_Within</span>
+<span class="op">}</span></code></pre></div>
 <p>Let’s also create a distribution of <span class="math inline">\(\text{SS}_\text{Within}\)</span> that would happen if our first group had a two standard deviation shift in the mean.</p>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="no">SS_Within_distribution_alt</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>()
-<span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="fl">1000</span>){
-  <span class="no">sim_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span>),<span class="kw">ncol</span><span class="kw">=</span><span class="fl">4</span>,<span class="kw">nrow</span><span class="kw">=</span><span class="fl">5</span>)
-  <span class="no">sim_data</span>[,<span class="fl">1</span>] <span class="kw">&lt;-</span> <span class="no">sim_data</span>[,<span class="fl">1</span>]+<span class="fl">2</span> <span class="co">#add effect for group 1</span>
-  <span class="no">SS_Within</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>( (<span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span>(<span class="no">sim_data</span>) - <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span>(<span class="no">sim_data</span>))^<span class="fl">2</span>)
-  <span class="no">SS_Within_distribution_alt</span>[<span class="no">i</span>] <span class="kw">&lt;-</span> <span class="no">SS_Within</span>
-}</pre></body></html></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">SS_Within_distribution_alt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">sim_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">4</span>,nrow<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
+  <span class="va">sim_data</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">sim_data</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">+</span><span class="fl">2</span> <span class="co">#add effect for group 1</span>
+  <span class="va">SS_Within</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span><span class="op">(</span><span class="va">sim_data</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">sim_data</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
+  <span class="va">SS_Within_distribution_alt</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">SS_Within</span>
+<span class="op">}</span></code></pre></div>
 <p>Remember, we have created an alternative distribution by violating the null with a shift in the mean for the first group. We did not assume the manipulation had any effect on the variances. Thus, <span class="math inline">\(\text{SS}_\text{Within}\)</span> should be the same when the null is true or false (for mean shifts).</p>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="no">SS_Within_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">SS_Within</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">SS_Within_distribution</span>,
-                                         <span class="no">SS_Within_distribution_alt</span>),
-                            <span class="kw">type</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Null"</span>,<span class="st">"Alternative"</span>), <span class="kw">each</span><span class="kw">=</span><span class="fl">1000</span>))
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">SS_Within_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>SS_Within <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">SS_Within_distribution</span>,
+                                         <span class="va">SS_Within_distribution_alt</span><span class="op">)</span>,
+                            type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Null"</span>,<span class="st">"Alternative"</span><span class="op">)</span>, each<span class="op">=</span><span class="fl">1000</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">SS_Within_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="no">SS_Within</span>, <span class="kw">group</span><span class="kw">=</span><span class="no">type</span>, <span class="kw">fill</span><span class="kw">=</span><span class="no">type</span>))+
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span>(<span class="kw">position</span><span class="kw">=</span><span class="st">"dodge"</span>)</pre></body></html></div>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">SS_Within_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">SS_Within</span>, group<span class="op">=</span><span class="va">type</span>, fill<span class="op">=</span><span class="va">type</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>position<span class="op">=</span><span class="st">"dodge"</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab4_ANOVA_files/figure-html/unnamed-chunk-43-1.png" width="700"></p>
 </div>
 <div id="ms-between" class="section level3">
@@ -971,12 +990,13 @@ sum(IV_mean_data$IV_squared_error)/19
 <p><span class="math inline">\(\text{MS}_\text{Between}\)</span> is a variance, and remember variances are average sums of squares. In our case, we are “estimating” the variance due to the effect of the manipulation, so we divide by the degrees of freedom <span class="math inline">\(\text{SS}_\text{Between}/df_B\)</span>.</p>
 <p>There are four group means, and we are estimating them with respect to the grand mean, so the number of means free to vary are 4-1 = 3.</p>
 <p>We can plot distributions of <span class="math inline">\(\text{MS}_\text{Between}\)</span> that we would when the null is true, and when it is false (using our alternative example). We can re-use the <span class="math inline">\(\text{SS}_\text{Between}\)</span> distributions and simply divide the values by <span class="math inline">\(df_B\)</span>.</p>
-<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="no">MS_between_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">MS_between</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">SS_between_distribution</span>/<span class="fl">3</span>,
-                                         <span class="no">SS_between_distribution_alt</span>/<span class="fl">3</span>),
-                            <span class="kw">type</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Null"</span>,<span class="st">"Alternative"</span>), <span class="kw">each</span><span class="kw">=</span><span class="fl">1000</span>))
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">MS_between_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>MS_between <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">SS_between_distribution</span><span class="op">/</span><span class="fl">3</span>,
+                                         <span class="va">SS_between_distribution_alt</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span>,
+                            type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Null"</span>,<span class="st">"Alternative"</span><span class="op">)</span>, each<span class="op">=</span><span class="fl">1000</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">MS_between_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="no">MS_between</span>, <span class="kw">group</span><span class="kw">=</span><span class="no">type</span>, <span class="kw">fill</span><span class="kw">=</span><span class="no">type</span>))+
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span>(<span class="kw">position</span><span class="kw">=</span><span class="st">"dodge"</span>)</pre></body></html></div>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">MS_between_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">MS_between</span>, group<span class="op">=</span><span class="va">type</span>, fill<span class="op">=</span><span class="va">type</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>position<span class="op">=</span><span class="st">"dodge"</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab4_ANOVA_files/figure-html/unnamed-chunk-44-1.png" width="700"></p>
 </div>
 <div id="ms-within" class="section level3">
@@ -986,12 +1006,13 @@ sum(IV_mean_data$IV_squared_error)/19
 <p>We are again “estimating” the variance so we divide by the degrees of freedom <span class="math inline">\(\text{SS}_\text{Within}/df_W\)</span>.</p>
 <p>There are 20 subject means, and we are estimating them with respect to the four group means, so the number of means free to vary are 20-4 = 16.</p>
 <p>We can plot distributions of <span class="math inline">\(\text{MS}_\text{Within}\)</span> that we would expect when the null is true, and when it is false (using our alternative example). Again, we can re-use the <span class="math inline">\(\text{SS}_\text{Within}\)</span> distributions and simply divide the values by <span class="math inline">\(df_W\)</span>.</p>
-<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="no">MS_Within_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">MS_Within</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">SS_Within_distribution</span>/<span class="fl">16</span>,
-                                         <span class="no">SS_Within_distribution_alt</span>/<span class="fl">16</span>),
-                            <span class="kw">type</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Null"</span>,<span class="st">"Alternative"</span>), <span class="kw">each</span><span class="kw">=</span><span class="fl">1000</span>))
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">MS_Within_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>MS_Within <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">SS_Within_distribution</span><span class="op">/</span><span class="fl">16</span>,
+                                         <span class="va">SS_Within_distribution_alt</span><span class="op">/</span><span class="fl">16</span><span class="op">)</span>,
+                            type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Null"</span>,<span class="st">"Alternative"</span><span class="op">)</span>, each<span class="op">=</span><span class="fl">1000</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">MS_Within_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="no">MS_Within</span>, <span class="kw">group</span><span class="kw">=</span><span class="no">type</span>, <span class="kw">fill</span><span class="kw">=</span><span class="no">type</span>))+
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span>(<span class="kw">position</span><span class="kw">=</span><span class="st">"dodge"</span>)</pre></body></html></div>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">MS_Within_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">MS_Within</span>, group<span class="op">=</span><span class="va">type</span>, fill<span class="op">=</span><span class="va">type</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>position<span class="op">=</span><span class="st">"dodge"</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab4_ANOVA_files/figure-html/unnamed-chunk-45-1.png" width="700"></p>
 </div>
 <div id="f" class="section level3">
@@ -999,32 +1020,35 @@ sum(IV_mean_data$IV_squared_error)/19
 <a href="#f" class="anchor"></a>F</h3>
 <p>The last component of the ANOVA table is <span class="math inline">\(F\)</span>, which is a ratio of the variances <span class="math inline">\(\text{MS}_\text{Between} / \text{MS}_\text{Within}\)</span>.</p>
 <p>Let’s re-simulate the F-distribution we would expect under the null.</p>
-<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="no">F_distribution</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>()
-<span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="fl">1000</span>){
-  <span class="no">sim_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span>),<span class="kw">ncol</span><span class="kw">=</span><span class="fl">4</span>,<span class="kw">nrow</span><span class="kw">=</span><span class="fl">5</span>)
-  <span class="no">SS_between</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>( (<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">sim_data</span>) - <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span>(<span class="no">sim_data</span>))^<span class="fl">2</span> )*<span class="fl">5</span>
-  <span class="no">SS_Within</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>( (<span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span>(<span class="no">sim_data</span>) - <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span>(<span class="no">sim_data</span>))^<span class="fl">2</span> )
-  <span class="no">sim_F</span> <span class="kw">&lt;-</span> (<span class="no">SS_between</span>/<span class="fl">3</span>) / (<span class="no">SS_Within</span>/<span class="fl">16</span>)
-  <span class="no">F_distribution</span>[<span class="no">i</span>] <span class="kw">&lt;-</span> <span class="no">sim_F</span>
-}</pre></body></html></div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">F_distribution</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">sim_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">4</span>,nrow<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
+  <span class="va">SS_between</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">sim_data</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span><span class="op">(</span><span class="va">sim_data</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">)</span><span class="op">*</span><span class="fl">5</span>
+  <span class="va">SS_Within</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span><span class="op">(</span><span class="va">sim_data</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">sim_data</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">)</span>
+  <span class="va">sim_F</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">SS_between</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">SS_Within</span><span class="op">/</span><span class="fl">16</span><span class="op">)</span>
+  <span class="va">F_distribution</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">sim_F</span>
+<span class="op">}</span></code></pre></div>
 <p>And, re-simulate the F-distribution we would expect for our alternative (that group one has a mean shift of two standard deviations).</p>
-<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="no">F_distribution_alt</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>()
-<span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="fl">1000</span>){
-  <span class="no">sim_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span>),<span class="kw">ncol</span><span class="kw">=</span><span class="fl">4</span>,<span class="kw">nrow</span><span class="kw">=</span><span class="fl">5</span>)
-  <span class="no">sim_data</span>[,<span class="fl">1</span>] <span class="kw">&lt;-</span> <span class="no">sim_data</span>[,<span class="fl">1</span>]+<span class="fl">2</span> <span class="co">#add effect for group 1</span>
-  <span class="no">SS_between</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>( (<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">sim_data</span>) - <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span>(<span class="no">sim_data</span>))^<span class="fl">2</span> )*<span class="fl">5</span>
-  <span class="no">SS_Within</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>( (<span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span>(<span class="no">sim_data</span>) - <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span>(<span class="no">sim_data</span>))^<span class="fl">2</span> )
-  <span class="no">sim_F</span> <span class="kw">&lt;-</span> (<span class="no">SS_between</span>/<span class="fl">3</span>) / (<span class="no">SS_Within</span>/<span class="fl">16</span>)
-  <span class="no">F_distribution_alt</span>[<span class="no">i</span>] <span class="kw">&lt;-</span> <span class="no">sim_F</span>
-}</pre></body></html></div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">F_distribution_alt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">sim_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">4</span>,nrow<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
+  <span class="va">sim_data</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">sim_data</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">+</span><span class="fl">2</span> <span class="co">#add effect for group 1</span>
+  <span class="va">SS_between</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">sim_data</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span><span class="op">(</span><span class="va">sim_data</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">)</span><span class="op">*</span><span class="fl">5</span>
+  <span class="va">SS_Within</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span><span class="op">(</span><span class="va">sim_data</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">sim_data</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">)</span>
+  <span class="va">sim_F</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">SS_between</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">SS_Within</span><span class="op">/</span><span class="fl">16</span><span class="op">)</span>
+  <span class="va">F_distribution_alt</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">sim_F</span>
+<span class="op">}</span></code></pre></div>
 <p>And, then plot the F-distributions.</p>
-<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="no">F_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">F</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="no">F_distribution</span>,
-                           <span class="no">F_distribution_alt</span>),
-                           <span class="kw">type</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Null"</span>,<span class="st">"Alternative"</span>),
-                           <span class="kw">each</span><span class="kw">=</span><span class="fl">1000</span>))
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">F_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>F <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">F_distribution</span>,
+                           <span class="va">F_distribution_alt</span><span class="op">)</span>,
+                           type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Null"</span>,<span class="st">"Alternative"</span><span class="op">)</span>,
+                           each<span class="op">=</span><span class="fl">1000</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">F_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="no">F</span>, <span class="kw">group</span><span class="kw">=</span><span class="no">type</span>, <span class="kw">fill</span><span class="kw">=</span><span class="no">type</span>))+
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span>(<span class="kw">position</span><span class="kw">=</span><span class="st">"dodge"</span>)</pre></body></html></div>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">F_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="cn">F</span>, group<span class="op">=</span><span class="va">type</span>, fill<span class="op">=</span><span class="va">type</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>position<span class="op">=</span><span class="st">"dodge"</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab4_ANOVA_files/figure-html/unnamed-chunk-48-1.png" width="700"></p>
 </div>
 </div>
@@ -1032,80 +1056,87 @@ sum(IV_mean_data$IV_squared_error)/19
 <h2 class="hasAnchor">
 <a href="#concept-2-simulating-the-f-distribution" class="anchor"></a>Concept 2: Simulating the F-distribution</h2>
 <p>Where did the p-value come from? We have seen that the <code>aov</code> function does all of the work of computing the degrees of freedom, the sums of squares, the mean squares and the F-value directly from the provided data frame. Remember, that the F-value is essentially a descriptive statistic. The summary function shows that this F-value is associated with a fairly small p-value (.00278). The <code>aov</code> function looks up the p-value using the F-distribution function.</p>
-<div class="sourceCode" id="cb25"><html><body><pre class="r">?<span class="no">pf</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">pf</a></span>(<span class="fl">7.227</span>,<span class="fl">3</span>,<span class="fl">16</span>, <span class="kw">lower.tail</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
-<span class="co">#&gt; [1] 0.002782149</span></pre></body></html></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">?</span><span class="va">pf</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html">pf</a></span><span class="op">(</span><span class="fl">7.227</span>,<span class="fl">3</span>,<span class="fl">16</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.002782149</span></code></pre></div>
 <p>However, where did the <code>F</code> distribution come from? The <code>F</code> distribution is just another <strong>sampling distribution</strong>. It is a hypothetical distribution of F values that would be obtained under the null hypothesis for this situation. We can obtain our own F-distribution using monte-carlo simulation. Let’s see if we get clsoe.</p>
-<div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="co"># replace the example data with random numbers from a unit normal</span>
-<span class="no">romeo_juliet</span>$<span class="no">Comprehension</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span>)
-<span class="no">aov.out</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span>(<span class="no">Comprehension</span> ~ <span class="no">Group</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">romeo_juliet</span>)
-<span class="no">simulated_F</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">aov.out</span>)<span class="kw">[[</span><span class="fl">1</span>]]$<span class="no">`F value`</span>[<span class="fl">1</span>]
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># replace the example data with random numbers from a unit normal</span>
+<span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Comprehension</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
+<span class="va">aov.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Comprehension</span> <span class="op">~</span> <span class="va">Group</span>, data <span class="op">=</span> <span class="va">romeo_juliet</span><span class="op">)</span>
+<span class="va">simulated_F</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">aov.out</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`F value`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
 
 <span class="co"># do the above a bunch of times</span>
-<span class="no">save_F_values</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="fl">100</span>)
-<span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="fl">100</span>){
-<span class="no">romeo_juliet</span>$<span class="no">Comprehension</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span>)
-<span class="no">aov.out</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span>(<span class="no">Comprehension</span> ~ <span class="no">Group</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">romeo_juliet</span>)
-<span class="no">simulated_F</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">aov.out</span>)<span class="kw">[[</span><span class="fl">1</span>]]$<span class="no">`F value`</span>[<span class="fl">1</span>]
-<span class="no">save_F_values</span>[<span class="no">i</span>] <span class="kw">&lt;-</span> <span class="no">simulated_F</span>
-}
+<span class="va">save_F_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span><span class="op">{</span>
+<span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Comprehension</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
+<span class="va">aov.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Comprehension</span> <span class="op">~</span> <span class="va">Group</span>, data <span class="op">=</span> <span class="va">romeo_juliet</span><span class="op">)</span>
+<span class="va">simulated_F</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">aov.out</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`F value`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
+<span class="va">save_F_values</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">simulated_F</span>
+<span class="op">}</span>
 
 <span class="co"># look at the F distribution</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="no">save_F_values</span>)</pre></body></html></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">save_F_values</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab4_ANOVA_files/figure-html/unnamed-chunk-50-1.png" width="700"></p>
-<div class="sourceCode" id="cb27"><html><body><pre class="r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
 <span class="co"># get the p-value associated with 7.22</span>
-<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">save_F_values</span>[<span class="no">save_F_values</span><span class="kw">&gt;</span><span class="fl">7.22</span>])/<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">save_F_values</span>)
-<span class="co">#&gt; [1] 0</span>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">save_F_values</span><span class="op">[</span><span class="va">save_F_values</span><span class="op">&gt;</span><span class="fl">7.22</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">save_F_values</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.01</span>
 
 <span class="co"># do the above 10000 times</span>
-<span class="no">save_F_values</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="fl">10000</span>)
-<span class="kw">for</span>(<span class="no">i</span> <span class="kw">in</span> <span class="fl">1</span>:<span class="fl">10000</span>){
-<span class="no">romeo_juliet</span>$<span class="no">Comprehension</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span>)
-<span class="no">aov.out</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span>(<span class="no">Comprehension</span> ~ <span class="no">Group</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">romeo_juliet</span>)
-<span class="no">simulated_F</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">aov.out</span>)<span class="kw">[[</span><span class="fl">1</span>]]$<span class="no">`F value`</span>[<span class="fl">1</span>]
-<span class="no">save_F_values</span>[<span class="no">i</span>] <span class="kw">&lt;-</span> <span class="no">simulated_F</span>
-}
+<span class="va">save_F_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fl">10000</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10000</span><span class="op">)</span><span class="op">{</span>
+<span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Comprehension</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
+<span class="va">aov.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Comprehension</span> <span class="op">~</span> <span class="va">Group</span>, data <span class="op">=</span> <span class="va">romeo_juliet</span><span class="op">)</span>
+<span class="va">simulated_F</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">aov.out</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`F value`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
+<span class="va">save_F_values</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">simulated_F</span>
+<span class="op">}</span>
 
 <span class="co"># look at the F distribution</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="no">save_F_values</span>)</pre></body></html></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">save_F_values</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab4_ANOVA_files/figure-html/unnamed-chunk-50-2.png" width="700"></p>
-<div class="sourceCode" id="cb28"><html><body><pre class="r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
 <span class="co"># get the p-value associated with 7.22</span>
-<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">save_F_values</span>[<span class="no">save_F_values</span><span class="kw">&gt;</span><span class="fl">7.22</span>])/<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">save_F_values</span>)
-<span class="co">#&gt; [1] 0.0031</span></pre></body></html></div>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">save_F_values</span><span class="op">[</span><span class="va">save_F_values</span><span class="op">&gt;</span><span class="fl">7.22</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">save_F_values</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.0018</span></code></pre></div>
 </div>
 <div id="practical-2-one-way-anova-with-aov-function" class="section level2">
 <h2 class="hasAnchor">
 <a href="#practical-2-one-way-anova-with-aov-function" class="anchor"></a>Practical 2: One-way ANOVA with <code>aov</code> function</h2>
 <p>We will use the <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> function many times throughout the remainder of this course to perform various ANOVAs. This is a very brief practical section to show you a few bells and whistles useful for conducting ANOVAs in R.</p>
 <p>We will continue to use the same example data from the textbook:</p>
-<div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="no">romeo_juliet</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">tibble</a></span>(<span class="kw">subjects</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">20</span>,
-                       <span class="kw">Group</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"No Context"</span>,
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">romeo_juliet</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>subjects <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>,
+                       Group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No Context"</span>,
                                  <span class="st">"Context Before"</span>,
                                  <span class="st">"Context After"</span>,
-                                 <span class="st">"Partial Context"</span>), <span class="kw">each</span> <span class="kw">=</span> <span class="fl">5</span>),
-                       <span class="kw">Comprehension</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,
+                                 <span class="st">"Partial Context"</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>,
+                       Comprehension <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,
                                          <span class="fl">5</span>,<span class="fl">9</span>,<span class="fl">8</span>,<span class="fl">4</span>,<span class="fl">9</span>,
                                          <span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">1</span>,
                                          <span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>
-                                   )
-                          )
+                                   <span class="op">)</span>
+                          <span class="op">)</span>
 
-<span class="no">romeo_juliet</span>$<span class="no">Group</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="no">romeo_juliet</span>$<span class="no">Group</span>,
-                             <span class="kw">levels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"No Context"</span>,
+<span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span>,
+                             levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No Context"</span>,
                                  <span class="st">"Context Before"</span>,
                                  <span class="st">"Context After"</span>,
-                                 <span class="st">"Partial Context"</span>))</pre></body></html></div>
+                                 <span class="st">"Partial Context"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div id="aov" class="section level3">
 <h3 class="hasAnchor">
 <a href="#aov" class="anchor"></a><code>aov()</code>
 </h3>
 <p>The <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> function has two main inputs, the formula (<code>Comprehension ~ Group</code>), and the data frame (<code>data = romeo_juliet</code>). The dataframe must be organized in long-format.</p>
-<p>The column name of the dependent variable (Comprehension) is placed on the left side of the <code>~</code>, and the column name of the factor (independent variable) is placed on the right (Group). So the formula <code>Comprehension ~ Group</code> can be read as, “analyze the means of Comprehension as a function of the levels of Group.”</p>
-<div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="no">anova.out</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span>(<span class="no">Comprehension</span> ~ <span class="no">Group</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">romeo_juliet</span>)</pre></body></html></div>
+<p>The column name of the dependent variable (Comprehension) is placed on the left side of the <code><a href="https://rdrr.io/r/base/tilde.html">~</a></code>, and the column name of the factor (independent variable) is placed on the right (Group). So the formula <code>Comprehension ~ Group</code> can be read as, “analyze the means of Comprehension as a function of the levels of Group.”</p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">anova.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Comprehension</span> <span class="op">~</span> <span class="va">Group</span>, data <span class="op">=</span> <span class="va">romeo_juliet</span><span class="op">)</span></code></pre></div>
 <p>The <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> function produces a list object containing the pieces of the ANOVA model. Printing this to the console usually does not give you information you are looking for:</p>
-<div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="no">anova.out</span>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">anova.out</span>
 <span class="co">#&gt; Call:</span>
 <span class="co">#&gt;    aov(formula = Comprehension ~ Group, data = romeo_juliet)</span>
 <span class="co">#&gt; </span>
@@ -1115,70 +1146,75 @@ sum(IV_mean_data$IV_squared_error)/19
 <span class="co">#&gt; Deg. of Freedom     3        16</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Residual standard error: 1.532971</span>
-<span class="co">#&gt; Estimated effects may be unbalanced</span></pre></body></html></div>
+<span class="co">#&gt; Estimated effects may be unbalanced</span></code></pre></div>
 </div>
 <div id="summary" class="section level3">
 <h3 class="hasAnchor">
 <a href="#summary" class="anchor"></a><code>summary()</code>
 </h3>
 <p>The ANOVA table can be printed to the console using <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>. The <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> function takes an <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> model as it’s input, and returns the ANOVA table as an output.</p>
-<div class="sourceCode" id="cb32"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">anova.out</span>)
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">anova.out</span><span class="op">)</span>
 <span class="co">#&gt;             Df Sum Sq Mean Sq F value  Pr(&gt;F)   </span>
 <span class="co">#&gt; Group        3  50.95   16.98   7.227 0.00278 **</span>
 <span class="co">#&gt; Residuals   16  37.60    2.35                   </span>
 <span class="co">#&gt; ---</span>
-<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></pre></body></html></div>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
 <p>You could also write this as:</p>
-<div class="sourceCode" id="cb33"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span>(<span class="no">Comprehension</span> ~ <span class="no">Group</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">romeo_juliet</span>))
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Comprehension</span> <span class="op">~</span> <span class="va">Group</span>, data <span class="op">=</span> <span class="va">romeo_juliet</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;             Df Sum Sq Mean Sq F value  Pr(&gt;F)   </span>
 <span class="co">#&gt; Group        3  50.95   16.98   7.227 0.00278 **</span>
 <span class="co">#&gt; Residuals   16  37.60    2.35                   </span>
 <span class="co">#&gt; ---</span>
-<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></pre></body></html></div>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
 </div>
 <div id="model-tables" class="section level3">
 <h3 class="hasAnchor">
 <a href="#model-tables" class="anchor"></a><code>model.tables()</code>
 </h3>
 <p>Another helpful function is <code>model.table()</code>, which extracts the means of each level in the analysis (from the <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> object), and prints them to the console.</p>
-<div class="sourceCode" id="cb34"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/stats/model.tables.html">model.tables</a></span>(<span class="no">anova.out</span>)
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/model.tables.html">model.tables</a></span><span class="op">(</span><span class="va">anova.out</span><span class="op">)</span>
 <span class="co">#&gt; Tables of effects</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  Group </span>
 <span class="co">#&gt; Group</span>
 <span class="co">#&gt;      No Context  Context Before   Context After Partial Context </span>
-<span class="co">#&gt;           -1.35            2.65           -1.15           -0.15</span></pre></body></html></div>
+<span class="co">#&gt;           -1.35            2.65           -1.15           -0.15</span></code></pre></div>
 </div>
 <div id="extracting-model-terms" class="section level3">
 <h3 class="hasAnchor">
 <a href="#extracting-model-terms" class="anchor"></a>Extracting model terms</h3>
 <p>In practice, you might use <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code>, <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>, and <code><a href="https://rdrr.io/r/stats/model.tables.html">model.tables()</a></code> to quickly print out an ANOVA and look at it. For example, let’s I wanted to run an ANOVA on the example data and look at it in R, I could do this:</p>
-<div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="no">anova.out</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span>(<span class="no">Comprehension</span> ~ <span class="no">Group</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">romeo_juliet</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">anova.out</span>)
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">anova.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Comprehension</span> <span class="op">~</span> <span class="va">Group</span>, data <span class="op">=</span> <span class="va">romeo_juliet</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">anova.out</span><span class="op">)</span>
 <span class="co">#&gt;             Df Sum Sq Mean Sq F value  Pr(&gt;F)   </span>
 <span class="co">#&gt; Group        3  50.95   16.98   7.227 0.00278 **</span>
 <span class="co">#&gt; Residuals   16  37.60    2.35                   </span>
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/model.tables.html">model.tables</a></span>(<span class="no">anova.out</span>)
+<span class="fu"><a href="https://rdrr.io/r/stats/model.tables.html">model.tables</a></span><span class="op">(</span><span class="va">anova.out</span><span class="op">)</span>
 <span class="co">#&gt; Tables of effects</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  Group </span>
 <span class="co">#&gt; Group</span>
 <span class="co">#&gt;      No Context  Context Before   Context After Partial Context </span>
-<span class="co">#&gt;           -1.35            2.65           -1.15           -0.15</span></pre></body></html></div>
+<span class="co">#&gt;           -1.35            2.65           -1.15           -0.15</span></code></pre></div>
 <p>Great, but what if I wanted to access specific values in the ANOV table. You can extract these values by finding the correct indices into the list objects generated by <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> and <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>.</p>
-<div class="sourceCode" id="cb36"><html><body><pre class="r"><span class="no">my_summary</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">anova.out</span>)
-<span class="no">my_summary</span><span class="kw">[[</span><span class="fl">1</span>]]$<span class="no">Df</span>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">anova.out</span><span class="op">)</span>
+<span class="va">my_summary</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">Df</span>
 <span class="co">#&gt; [1]  3 16</span>
-<span class="no">my_summary</span><span class="kw">[[</span><span class="fl">1</span>]]$<span class="no">`Sum Sq`</span>
+<span class="va">my_summary</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`Sum Sq`</span>
 <span class="co">#&gt; [1] 50.95 37.60</span>
-<span class="no">my_summary</span><span class="kw">[[</span><span class="fl">1</span>]]$<span class="no">`Mean Sq`</span>
+<span class="va">my_summary</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`Mean Sq`</span>
 <span class="co">#&gt; [1] 16.98333  2.35000</span>
-<span class="no">my_summary</span><span class="kw">[[</span><span class="fl">1</span>]]$<span class="no">`F value`</span>
+<span class="va">my_summary</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`F value`</span>
 <span class="co">#&gt; [1] 7.22695      NA</span>
-<span class="no">my_summary</span><span class="kw">[[</span><span class="fl">1</span>]]$<span class="no">`Pr(&gt;F)`</span>
-<span class="co">#&gt; [1] 0.002782234          NA</span></pre></body></html></div>
+<span class="va">my_summary</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`Pr(&gt;F)`</span>
+<span class="co">#&gt; [1] 0.002782234          NA</span></code></pre></div>
 <p>You could use the above strategy to help you insert specific values into your R markdown document.</p>
 </div>
 <div id="reporting-with-papaja" class="section level3">
@@ -1187,9 +1223,10 @@ sum(IV_mean_data$IV_squared_error)/19
 </h3>
 <p>The <code>papaja</code> package has many useful functions that allow you to extract pieces of the ANOVA that you want to report in a document, such as in a results section.</p>
 <p>Check out all of the reporting options you have by using <code><a href="https://rdrr.io/pkg/papaja/man/apa_print.html">apa_print()</a></code>, and inputting an ANOVA object.</p>
-<div class="sourceCode" id="cb37"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">papaja</span>)
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/crsh/papaja">papaja</a></span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/papaja/man/apa_print.html">apa_print</a></span>(<span class="no">anova.out</span>)
+<span class="fu"><a href="https://rdrr.io/pkg/papaja/man/apa_print.html">apa_print</a></span><span class="op">(</span><span class="va">anova.out</span><span class="op">)</span>
 <span class="co">#&gt; $estimate</span>
 <span class="co">#&gt; $estimate$Group</span>
 <span class="co">#&gt; [1] "$\\hat{\\eta}^2_G = .575$"</span>
@@ -1220,11 +1257,12 @@ sum(IV_mean_data$IV_squared_error)/19
 <span class="co">#&gt; attr(,"class")</span>
 <span class="co">#&gt; [1] "apa_results" "list"</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/papaja/man/apa_print.html">apa_print</a></span>(<span class="no">anova.out</span>)$<span class="no">full_result</span>$<span class="no">Group</span>
-<span class="co">#&gt; [1] "$F(3, 16) = 7.23$, $\\mathit{MSE} = 2.35$, $p = .003$, $\\hat{\\eta}^2_G = .575$"</span></pre></body></html></div>
+<span class="fu"><a href="https://rdrr.io/pkg/papaja/man/apa_print.html">apa_print</a></span><span class="op">(</span><span class="va">anova.out</span><span class="op">)</span><span class="op">$</span><span class="va">full_result</span><span class="op">$</span><span class="va">Group</span>
+<span class="co">#&gt; [1] "$F(3, 16) = 7.23$, $\\mathit{MSE} = 2.35$, $p = .003$, $\\hat{\\eta}^2_G = .575$"</span></code></pre></div>
 <p>To give an example, current APA style for reporting an F-test is something like the following, F(dfb, dfb) = F-value, MSE = MS_within, p = p-value, and maybe a partial-eta squared value. All of this information is available in <code>apa_print(anova.out)$full_result$Group</code>, and if you insert it as an inline chunk, you get this <span class="math inline">\(F(3, 16) = 7.23\)</span>, <span class="math inline">\(\mathit{MSE} = 2.35\)</span>, <span class="math inline">\(p = .003\)</span>, <span class="math inline">\(\hat{\eta}^2_G = .575\)</span>.</p>
 <p>You can also created tables that are formatted to APA style. In this case I print out the ANOVA table to the document in slightly nicer way than the console print out.</p>
-<div class="sourceCode" id="cb38"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/pkg/papaja/man/apa_table.html">apa_table</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/papaja/man/apa_print.html">apa_print</a></span>(<span class="no">anova.out</span>)$<span class="no">table</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/papaja/man/apa_table.html">apa_table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/papaja/man/apa_print.html">apa_print</a></span><span class="op">(</span><span class="va">anova.out</span><span class="op">)</span><span class="op">$</span><span class="va">table</span><span class="op">)</span></code></pre></div>
 <caption>
 (#tab:unnamed-chunk-60)
 </caption>
@@ -1277,9 +1315,10 @@ sum(IV_mean_data$IV_squared_error)/19
 <ol style="list-style-type: decimal">
 <li>Consider the following example data for a between-subjects experiment with two groups, A and B:</li>
 </ol>
-<div class="sourceCode" id="cb39"><html><body><pre class="r">
-<span class="no">example_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">tibble</a></span>(<span class="kw">Group</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"A"</span>,<span class="st">"B"</span>), <span class="kw">each</span> <span class="kw">=</span> <span class="fl">5</span>),
-                       <span class="kw">DV</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">7</span>,<span class="fl">6</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">example_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>Group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"B"</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>,
+                       DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">7</span>,<span class="fl">6</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Use R to conduct a t.test and ANOVA on this data. Then use R to prove that the results of both analyses are the same. For example, prove that the p-values are the same, and prove that the F-value and T-value are related. (3 points)</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Look at the lab on ANOVA that I wrote for our undergraduate statistics OER lab manual <a href="https://crumplab.github.io/statisticsLab/lab-8-one-way-anova.html" class="uri">https://crumplab.github.io/statisticsLab/lab-8-one-way-anova.html</a>. That lab shows an example of obtaining data from a published paper in psych science where a one-factor ANOVA was used as a part of the analysis. Load the data, conduct the ANOVA, report a ggplot of the means, and use papaja to help you write a short results section reporting the ANOVA result. (3 points).</li>
@@ -1311,7 +1350,7 @@ Crump, M. J. C., Navarro, D., &amp; Suzuki, J. (2018). <em>Answering questions w
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
