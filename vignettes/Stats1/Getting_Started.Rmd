@@ -40,6 +40,57 @@ This semester students will be submitting their work as github repositories. Fol
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/efQlpUomP94" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+## RStudio Cloud and Github.com
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/G2xOmEHTM2A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+If you are unable to install R, RStudio, and Github desktop on your computer, then an alternative option is to use RStudio Cloud, which runs in your web-browser. RStudio Cloud also works with Github.com. Follow these steps, and/or watch the screencast for this method. Note, these instructions were slightly modified from [Symphony Yu's blog post](https://bren.zendesk.com/hc/en-us/articles/360015826731-How-to-connect-RStudio-Cloud-with-Github).
+
+1. Create a free account with RStudio Cloud at <https://rstudio.cloud>
+2. Create a free account with Github.com at <https://github.com>
+3. Log in to Github.com, and create a new repository. You will use this repository to save your assignments and other course work. 
+  - give it a name (e.g., PSYC7765stats)
+  - click the option to initialize with a readme
+  - click create repository
+4. Log in to <https://rstudio.cloud>
+5. Select New Project > New Project from Git Repository
+  - copy url to the repository you made from Github.com
+6. RStudio Cloud will pull in the files from the Github repository, and you should be viewing R Studio in your browser
+
+You can now use R Studio in the cloud. Any new files that you make will be saved to the project folder you made in R Studio Cloud. However, these files will not be "pushed" to Github.com. In order to push the files to Github.com, follow the next steps:
+
+
+1. From the R studio menu, click "Tools" > "Global Options"
+2. Select Git/SVN (on the left side).
+3. Click "Create RSA Key", click "Create". 
+  - close the textbox 
+  - click view public key
+  - copy the key
+4. Go to your Github user settings, and select "SSH and GPG keys", and click "New SSH key". Give your key a title, paste the key into the Key textbox, then click "Add SSH key".
+5. Go back to your RStudio Cloud project
+  - go to the Terminal tab on the bottom panel of your window. 
+  - in the terminal follow these steps, by typing the commands, and pressing return
+
+Replace you@example.com inside the quotations with the email associated with your Github.com account
+
+```
+git config --global user.email "you@example.com"
+```
+
+Replace Your Name inside the quotations with your Github username.
+
+```
+git config --global user.name "Your Name"
+```
+
+In the terminal, type the following, but replace YourUsername and YourRepo with your Github username and Github repository name (as it is written in your Github repository URL):
+
+```
+git config remote.origin.url git@github.com:YourUsername/YourRepo.git
+```
+
+You should now be able to use the git tab in R studio to push and pull files between R Studio Cloud and Github.com. See examples in the screen cast.
+
 ## Why are we using R for this statistics lab?
 
 A quick attempt to explain why I think it is totally worth it to learn R for data-analysis, and for psychologists in general.

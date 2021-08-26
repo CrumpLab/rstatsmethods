@@ -266,6 +266,62 @@
 <iframe width="560" height="315" src="https://www.youtube.com/embed/efQlpUomP94" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
+<div id="rstudio-cloud-and-github-com" class="section level2">
+<h2 class="hasAnchor">
+<a href="#rstudio-cloud-and-github-com" class="anchor"></a>RStudio Cloud and Github.com</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/G2xOmEHTM2A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<p>If you are unable to install R, RStudio, and Github desktop on your computer, then an alternative option is to use RStudio Cloud, which runs in your web-browser. RStudio Cloud also works with Github.com. Follow these steps, and/or watch the screencast for this method. Note, these instructions were slightly modified from <a href="https://bren.zendesk.com/hc/en-us/articles/360015826731-How-to-connect-RStudio-Cloud-with-Github">Symphony Yu’s blog post</a>.</p>
+<ol style="list-style-type: decimal">
+<li>Create a free account with RStudio Cloud at <a href="https://rstudio.cloud" class="uri">https://rstudio.cloud</a>
+</li>
+<li>Create a free account with Github.com at <a href="https://github.com" class="uri">https://github.com</a>
+</li>
+<li>Log in to Github.com, and create a new repository. You will use this repository to save your assignments and other course work.</li>
+</ol>
+<ul>
+<li>give it a name (e.g., PSYC7765stats)</li>
+<li>click the option to initialize with a readme</li>
+<li>click create repository</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li>Log in to <a href="https://rstudio.cloud" class="uri">https://rstudio.cloud</a>
+</li>
+<li>Select New Project &gt; New Project from Git Repository</li>
+</ol>
+<ul>
+<li>copy url to the repository you made from Github.com</li>
+</ul>
+<ol start="6" style="list-style-type: decimal">
+<li>RStudio Cloud will pull in the files from the Github repository, and you should be viewing R Studio in your browser</li>
+</ol>
+<p>You can now use R Studio in the cloud. Any new files that you make will be saved to the project folder you made in R Studio Cloud. However, these files will not be “pushed” to Github.com. In order to push the files to Github.com, follow the next steps:</p>
+<ol style="list-style-type: decimal">
+<li>From the R studio menu, click “Tools” &gt; “Global Options”</li>
+<li>Select Git/SVN (on the left side).</li>
+<li>Click “Create RSA Key”, click “Create”.</li>
+</ol>
+<ul>
+<li>close the textbox</li>
+<li>click view public key</li>
+<li>copy the key</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li>Go to your Github user settings, and select “SSH and GPG keys”, and click “New SSH key”. Give your key a title, paste the key into the Key textbox, then click “Add SSH key”.</li>
+<li>Go back to your RStudio Cloud project</li>
+</ol>
+<ul>
+<li>go to the Terminal tab on the bottom panel of your window.</li>
+<li>in the terminal follow these steps, by typing the commands, and pressing return</li>
+</ul>
+<p>Replace <a href="mailto:you@example.com" class="email">you@example.com</a> inside the quotations with the email associated with your Github.com account</p>
+<pre><code>git config --global user.email "you@example.com"</code></pre>
+<p>Replace Your Name inside the quotations with your Github username.</p>
+<pre><code>git config --global user.name "Your Name"</code></pre>
+<p>In the terminal, type the following, but replace YourUsername and YourRepo with your Github username and Github repository name (as it is written in your Github repository URL):</p>
+<pre><code>git config remote.origin.url git@github.com:YourUsername/YourRepo.git</code></pre>
+<p>You should now be able to use the git tab in R studio to push and pull files between R Studio Cloud and Github.com. See examples in the screen cast.</p>
+</div>
 <div id="why-are-we-using-r-for-this-statistics-lab" class="section level2">
 <h2 class="hasAnchor">
 <a href="#why-are-we-using-r-for-this-statistics-lab" class="anchor"></a>Why are we using R for this statistics lab?</h2>
