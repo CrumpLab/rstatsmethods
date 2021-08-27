@@ -1,6 +1,7 @@
 ---
 title: "Syllabus"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
 ---
@@ -11,6 +12,8 @@ Fall 2021
 
 Location: online (zoom links provided on blackboard)
 Time: Monday, Wednesday 11:00am - 12:15pm
+
+Office hours: MW 2:05pm - 3:00pm (by zoom, link on blackboard)
 
 Instructor:  Matthew Crump, [mcrump@brooklyn.cuny.edu](mcrump@brooklyn.cuny.edu)
 
