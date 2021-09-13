@@ -330,7 +330,7 @@ These practical examples will gloss over many important details that we will cov
   
 ### Importing Data
 
-First, we need to have some "real data" to import. [Download this zip file](https://crumplab.github.io/psyc7709Lab/downloads/open_data.zip). It contains a folder `open_data`, which several data files taken from published psychology papers (whose authors made their data publicly available).
+First, we need to have some "real data" to import. [Download this zip file](https://crumplab.github.io/rstatsmethods/downloads/open_data.zip). It contains a folder `open_data`, which several data files taken from published psychology papers (whose authors made their data publicly available).
 
 In order to follow along with this example, unzip the file, then copy or move the `open_data` folder into your R project folder. The `open_data` folder should be in the same R project folder as the .Rmd document you are using for this lab.
 
