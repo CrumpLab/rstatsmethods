@@ -68,7 +68,16 @@ for(i in 1:10000){
   step[i+1] <- step[i]+coin_flip
 }
 
-plot(step[1:10000])
+plot(step[1:50])
+
+step <- 0
+for(i in 1:10000){
+  coin_flip <- sample(x = c(1,-1),
+                      size = 1)
+  step[i+1] <- step[i]+coin_flip
+}
+
+plot(step)
 
 ```
 
@@ -95,6 +104,23 @@ for(i in 1:length(logical_step)){
     counter <- 0
   } else {
     counter <- counter+logical_step[i]
+  }
+}
+
+max(sequence)
+min(sequence)
+
+
+logical_step <- sign(step)
+
+sequence <- c()
+counter <- 0
+for(i in 1:length(logical_step)){
+  if(logical_step[i] != 0){
+    counter <- counter+logical_step[i]
+  } else {
+    sequence <- c(sequence,counter)
+    counter <- 0
   }
 }
 

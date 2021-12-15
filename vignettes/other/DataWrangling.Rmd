@@ -1,0 +1,285 @@
+---
+title: "DataWrangling"
+author: "Matt"
+date: "1/31/2019"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 4
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=TRUE, message = TRUE)
+```
+
+## What is Data-wrangling
+
+Data-wrangling is the general process of organizing and transforming data into various formats. For example, loading data into R, pre-processing it to get rid of things you don't want and keep the things you want, add new things you might want that, arranging the data in different ways to accomplish different kinds of tasks, grouping the data, and summarizing the data, are all common data-wrangling activities. Real-world data often has many imperfections, so data-wrangling is necessary to get the data into a state that is readily analyzable.
+
+We will mainly go over the `dplyr` package, which has a number of fantastic and relatively easy to use tools for data-wrangling. At the same time, it worth developigng your basic programming skills (using loops and logic), as they are also indispensable for solving unusual data-wrangling problems.
+
+## dplyr basics
+
+1. [Dplyr reference](https://dplyr.tidyverse.org)
+2. [Hadley Wickham's, R for Data Science, Chapter 5 Data transformation](http://r4ds.had.co.nz/transform.html)
+
+```{r}
+library(dplyr) #load the package (make sure it is installed first)
+df <- starwars # dplyr comes with a data.frame called starwars
+```
+
+Take a look at that data in df, what do you see? It lists various characters from starwars, along with many columns that code for different properties of each character
+
+## basic dataframe stuff without dplyr
+
+```{r, eval=F}
+# addressing specific columns
+df$name 
+df$height
+df$mass
+
+names(df)[3] <- "mass"
+
+# addressing columns and rows without names
+df[1,] # row 1
+df[,1] # column 1
+df[1:4,] # all of the data in rows 1:4
+df[,4:5] # all of the data in columns 4:5
+df[1:3,6:7] # the data in rows 1 to 3, for column 6 and 7 only
+
+# finding a row(s) with specific info
+df[df$name=="Luke Skywalker",]
+df[df$height > 180,]
+df[df$height < 180 & df$height > 70,]
+
+#replace a particular value
+df[1,2] <- 173 #changes the cell in row 1 column 2
+
+# size of dataframe
+dim(df) #c(number of rows, number of columns)
+
+# cbind to add a column to a data.frame
+df <- cbind(df, random_number=runif(dim(df)[1],0,1))
+
+# rbind to add rows
+# this creates a new data frame, binding together the rows 1-2, and 5-6
+# note: all of the columns need to be the same
+new_df <- rbind(df[1:2,],df[5:6,]) 
+
+# convert a character vector to a factor
+df$species <- as.factor(df$species)
+levels(df$species)
+levels(df$species)[3] <- "hello" # renames the third level, which get's applied to all listings in the df
+```
+
+## A couple questions:
+
+1. What are the names of all the characters who are taller than 80, shorter than 140, and are female?
+
+```{r, eval=F}
+df[df$height > 80 &
+     df$height < 170 &
+     df$sex == "female", ]$name
+```
+
+2. How many characters have Tatooine for their homeworld?
+
+```{r, eval=F}
+df[df$homeworld=="Tatooine",]
+dim(df[df$homeworld=="Tatooine",])[1] # counts the NAs
+
+tatooine <- df[df$homeworld=="Tatooine",]
+tatooine[is.na(tatooine$name)==FALSE,]
+dim(tatooine[is.na(tatooine$name)==FALSE,])[1]
+```
+
+## dplyr style
+
+We now look at dplyr and pipes. The idea here is that we start with a dataframe, then systematically transform one step at a time. At each step we pass the data in it's new state to the next step. The passing is called piping the data. There is a special operator for this `%>%`
+
+### quick example
+
+We start with the entire dataframe `df`. Then we select only the rows where the height is taller than 100. Then we group by homeworld, and compute the mean birth year. What we get is a new data.frame, showing the mean birth years for each homeworld. 
+
+This is a common refrain:
+
+Dataframe %>% filter %>% group_by %>% summarise
+
+```{r}
+library(dplyr)
+
+new_df <- df %>%
+            filter(height > 100) %>%
+            group_by(homeworld) %>%
+            summarise(mean_birth_year = mean(birth_year,na.rm=TRUE))
+
+```
+
+
+### filter
+
+We can filter the data by properties of particular columns
+
+```{r}
+# make a new dataframe that only include rows where the height is greater than 120
+new_df <- df %>%
+        filter(height > 120)
+
+# multiple filters are seperated by a comma
+new_df <- df %>%
+        filter(height > 120,
+               height < 180,
+               birth_year > 20)
+
+# more examples of differen logical operators
+new_df <- df %>%
+        filter(gender == "male") # == equals identity (same as)
+
+new_df <- df %>%
+        filter(gender != "male") # != not equal to
+
+new_df <- df %>%
+        filter(eye_color %in% c("blue","yellow") == TRUE) # looks for matches to blue and yellow
+
+# <= less than or equal to
+# >= greater than or equal to
+new_df <- df %>%
+        filter(height >= 120,
+               height <= 180) 
+
+new_df <- df %>%
+        filter(height > 120 & height < 180) # &  AND
+
+new_df <- df %>%
+        filter(skin_color == "fair" | skin_color == "gold") # | OR
+
+```
+
+### group_by and summarise
+
+`group_by()` let's us grab parts of the data based on the levels in the column
+
+`summarise()` applies a function to each of the groups that are created
+
+```{r}
+# counts the number of names, for each hair color
+new_df <- df %>%
+          group_by(hair_color) %>%
+          summarise(counts=length(name))
+
+# counts names, for each combination of hair and eye color
+new_df <- df %>%
+          group_by(hair_color,eye_color) %>%
+          summarise(counts=length(name))
+```
+
+### focus on summarise
+
+`summarise` is very powerful. Using summarise we can apply any function we want to each of the groups. This includes intrinsic R functions, and functions of our own design. And, we can add as many as we want. What we get back are new dataframes with columns for each group, and new columns with variables containing the data we want from the analysis
+
+```{r}
+new_df <- df %>%
+          group_by(hair_color,eye_color) %>%
+          summarise(mean_years = mean(birth_year,na.rm=TRUE),
+                    sd_years = sd(birth_year,na.rm=TRUE),
+                    counts = length(name))
+
+```
+
+### Mutate
+
+Use mutate to change or add a column
+
+```{r}
+# change numbers in the height column by subtracting 100
+new_df <- df %>%
+            mutate(height=height-100)
+
+# make a new column dividing height by mass
+new_df <- df %>%
+            mutate(hm_ratio = height/mass)
+```
+
+### Select
+
+Use select to select columns of interest and return a dataframe only with those columns
+
+```{r}
+new_df <- df %>%
+            select(name,height,mass)
+```
+
+### Star wars questions and answers
+
+1. use dplyr to find how many movies each character appeared in. Return a table that lists the names, and the number of films
+
+```{r}
+# two ways to do the same thing
+new_df <- df %>% 
+            select(name,films) %>%
+            group_by(name) %>%
+            mutate(films = length(unlist(films)))
+
+new_df <- df %>% 
+            select(name,films) %>%
+            group_by(name) %>%
+            summarise(films = length(unlist(films)))
+```
+
+
+2. How many characters are in each movie?
+
+- dplyr isn't always necessary for every question
+
+```{r}
+table(unlist(df$films))
+```
+
+3. What is the mean height and mass of characters with blue eyes?
+
+```{r}
+new_df <- df %>%
+            filter(eye_color=="blue") %>%
+            summarise(mean_height = mean(height,na.rm=TRUE),
+                      mean_mass = mean(mass,na.rm=TRUE))
+```
+
+## Data input
+
+Before we wrangle with data, we need to get it into R. There are many ways to do that. 
+
+All of the following examples assume you have a data folder in your workspace that contains all the data files we will be using. Download this .zip file [https://github.com/CrumpLab/statisticsLab/raw/master/RstudioCloud.zip](https://github.com/CrumpLab/statisticsLab/raw/master/RstudioCloud.zip). Unzip the file. Then copy the data folder into your R markdown project folder.
+
+**WARNING:** loading files requires you to tell R exactly where the file is on your computer. This can involve specifying the entire file path (the drive, all of the folder, and then the filename). These examples avoid this complete filename nonsense by putting the files in a data folder in your R project folder. Then, we just need to specify the folder and the filename. In this case, the folder will always be data. In general, R by default attempts to load files from the current working directory, which is automatically set to your project folder when you are working in an R-studio project. 
+
+```{r}
+# loading a csv file using read.csv
+hsq <- read.csv("data/hsq.csv")
+
+# alternative using fread
+library(data.table)
+hsq <- fread("data/hsq.csv") # creates a data.table, similar to a data.frame
+
+# loading an SPSS sav file
+library(foreign)
+spss <- read.spss("data/02_NYC_Salary_City_2016.sav",
+                  to.data.frame=TRUE)
+
+
+```
+
+### Other helpful libraries for reading in files
+
+1. libary `readxl` let's you read in excel files
+2. library `googlesheets` let's you read in google spreadsheets
+3. function `scan` is a powerful and all purpose text input function, often helpful in very messy situations where you want to read in line-by-line
+4. `load` for R data files
+5. there are several `read.` functions for specific situations.
+6. library `jsonlite` for json data structures
+7. and many more, this is really something that you will learn more about on a case-by-case basis as you have to deal with particular data formats.
+
+
+

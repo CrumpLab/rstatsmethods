@@ -1,0 +1,58 @@
+---
+title: "lab 9"
+author: "Matt Crump"
+date: "11/10/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#load the data in the Rmd document
+
+library(readxl)
+When_not_choosing_leads_to_not_liking_Data <- read_excel("When not choosing leads to not liking_Data.xlsx")
+
+```
+
+# reproduce the binomial test
+
+```{r}
+library(dplyr)
+
+e1 <- When_not_choosing_leads_to_not_liking_Data %>%
+  filter(ExperimentNumber == 1)
+
+number_chose_C <- sum(e1$`Infant Chose C`)
+number_chose_C
+
+binom.test(x= number_chose_C, 
+      n = dim(e1)[1],
+      p=.5, 
+      alternative = "two.sided")
+```
+# reproduce the second chi-square test for gender
+
+```{r}
+library(tidyr)
+
+gender_choice_table <- e1 %>%
+  group_by(Gender, `Infant Chose C`) %>%
+  summarize(counts = n()) %>%
+  pivot_wider(names_from = c(Gender),
+              values_from = counts)
+
+gender_choice_table <- gender_choice_table[,2:3]
+
+(gender_Xsq <- chisq.test(gender_choice_table))  
+
+uncorrected_Xsq <- sum((gender_Xsq$observed-gender_Xsq$expected)^2/gender_Xsq$expected)
+
+gender_Xsq_unc <- pchisq(uncorrected_Xsq,1,lower.tail = FALSE)
+```
+
+
+
+

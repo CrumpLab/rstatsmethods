@@ -1,0 +1,94 @@
+---
+title: "lab 7"
+author: "Matt Crump"
+date: "10/20/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# load libraries
+library(tidyverse)
+```
+
+
+
+1. A test-taker answered 50 true/false questions and received a score of 60% correct. Report the results of a binomial test and explain whether you think the test-score could be produced by the test-taker randomly guessing on each question. (2 points)
+
+```{r}
+binom.test(x = 30,
+           n = 50,
+           p = .5,
+           alternative="greater")
+```
+
+
+2. An examiner wants to make a TRUE/FALSE test, but is still deciding how many questions they will include. They want to make sure that it would be very difficult to simply randomly guess and be able to score any higher than 55% percent. How many questions would the examiner need to use to be confident that scores of 55% or higher were not produced by chance? (2 points)
+
+```{r}
+
+binom.test(x = 55,
+           n = 100,
+           p = .5,
+           alternative="greater")
+
+binom.test(x = 550,
+           n = 1000,
+           p = .5,
+           alternative="greater")
+
+binom.test(x = 110,
+           n = 200,
+           p = .5,
+           alternative="greater")
+
+binom.test(x = 165,
+           n = 300,
+           p = .5,
+           alternative="greater")
+
+```
+
+
+3. A test has 5 TRUE/FALSE questions (each with one right answer) and 5 multiple choice questions with four choices each (each with only one right answer).
+
+- create a sampling distribution or probability distribution to illustrate how a random chance process could perform on this test. (1 point)
+
+```{r}
+rbinom(10,1,.5)
+
+rbinom(n= rep(1,10), 
+       size = 1, 
+       prob= c(.5,.5,.5,.5,.5,.25,.25,.25,.25,.25) )
+
+sum(rbinom(n= rep(1,10), 
+       size = 1, 
+       prob= c(.5,.5,.5,.5,.5,.25,.25,.25,.25,.25) ))
+
+s_distribution <- replicate(10000, sum(rbinom(n= rep(1,10), 
+       size = 1, 
+       prob= c(.5,.5,.5,.5,.5,.25,.25,.25,.25,.25) )))
+
+hist(s_distribution)
+
+```
+
+
+- What is the probability that randomly guessing on each question could allow a person to receive 75% or greater on this test? (1 point)
+
+```{r}
+s_distribution[s_distribution >= 8]
+
+length(s_distribution[s_distribution >= 8])
+
+length(s_distribution[s_distribution >= 8])/10000
+
+
+library(ggplot2)
+qplot(s_distribution)
+
+```
+

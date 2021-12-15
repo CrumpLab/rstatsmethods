@@ -55,6 +55,9 @@ A_means <- rnorm(10,0,1)
 B_means <- rnorm(10,0,1)
 
 t.test(A_means,B_means,paired=TRUE)
+
+t.test(A_means-B_means,mu=0)
+
 ```
 
 ### Independent-sample t-test
@@ -64,6 +67,8 @@ A_means <- rnorm(10,0,1)
 B_means <- rnorm(10,0,1)
 
 t.test(A_means,B_means, var.equal=TRUE)
+
+t.test(A_means,B_means)
 ```
 
 ### formula syntax for data frames
@@ -177,6 +182,18 @@ t.test(means~groups, var.equal =TRUE,data = subject_means)
 As one alternative, here is another example of the above in a one-liner:
 
 ```{r}
+#subjects per group
+N <- 10
+# measurements per subject
+X <- 2
+
+# distribution assumptions
+A_mean <- 100
+B_mean <- 100
+
+A_sd <- 25
+B_sd <- 25
+
 t.test(replicate(N, mean(rnorm(X, A_mean, A_sd))),
        replicate(N, mean(rnorm(X, B_mean, B_sd))),
        var.equal = TRUE)
@@ -193,9 +210,10 @@ This quote is the first sentence from Student's formative paper on the t-test. I
 If this experiment was repeated a 1000 times, then each time there could be a mean difference between Group A and B. Thus, if the mean difference was the sample statistic used to summarize the result of this experiment, the sampling distribution of mean differences could be estimated by simulation:
 
 ```{r}
+N <- 10
 sim_mean_diffs <- replicate(1000, mean(replicate(N, mean(rnorm(X, A_mean, A_sd)))) - mean(replicate(N, mean(rnorm(X, B_mean, B_sd)))))
 
-hist(sim_mean_diffs)
+hist(sim_mean_diffs, breaks=100)
 ```
 
 #### The distribution of t
@@ -212,7 +230,7 @@ Although we already have distribution functions for t-values, a t-distribution c
 sim_ts <- replicate(1000, t.test(replicate(N, mean(rnorm(X, A_mean, A_sd))),
                                  replicate(N, mean(rnorm(X, B_mean, B_sd))),
                                  var.equal = TRUE)$statistic)
-hist(sim_ts)
+hist(sim_ts, breaks=100)
 ```
 
 
@@ -223,7 +241,7 @@ R comes with the `dt`, `pt`, `qt`, `rt` family of function for t-distributions a
 For example, rather than simulating t values as we did above, we could sample 1000 $t$ values from a t-distribution with df = 18.
 
 ```{r}
-hist(rt(1000,df=18))
+hist(rt(1000,df=18), breaks=100)
 ```
 THe `dt` function could be used to draw the probability density function for t-distributions across a range of degrees of freedom.
 
@@ -273,18 +291,37 @@ First, we should be confident in a basic answer. If we set an alpha criterion of
 sim_ps <- replicate(1000, t.test(replicate(10, mean(rnorm(5, 0, 1))),
                                  replicate(10, mean(rnorm(5, 0, 1))),
                                  var.equal = TRUE)$p.value)
-hist(sim_ps)
+hist(sim_ps,breaks=20)
 length(sim_ps[sim_ps < .05])/1000
 ```
 
 A next question would be something like, what proportion of experiments would be significant if there actually was a difference between the means of group A and B. For example, here we assume that group A has a mean of 0, and group B has a mean of .25, and that both distributions have the same standard deviation (sd=1). In this design, with N = 10 in each group, and 5 scores measured per subject, the probability of getting a p < .05 is much higher than 5%.
 
 ```{r}
-sim_ps <- replicate(1000, t.test(replicate(10, mean(rnorm(5, 0, 1))),
-                                 replicate(10, mean(rnorm(5, .25, 1))),
+sim_ps <- replicate(1000, t.test(replicate(20, mean(rnorm(10000, 0, 1))),
+                                 replicate(20, mean(rnorm(10000, .01, 1))),
                                  var.equal = TRUE)$p.value)
-hist(sim_ps)
+#hist(sim_ps,breaks=20)
 length(sim_ps[sim_ps < .05])/1000
+
+
+b <- t.test(replicate(20, mean(rnorm(10000, 0, 1))),
+                                 replicate(20, mean(rnorm(10000, .01, 1))),
+                                 var.equal = TRUE)
+
+library(papaja)
+
+apa_print(b)
+b
+
+library(lsr)
+
+GA <- replicate(20, mean(rnorm(1000000, 0, 1)))
+GB <- replicate(20, mean(rnorm(1000000, .01, 1)))
+
+t.test(GA,GB, var.equal=TRUE)
+cohensD(x=GA,y=GB)
+
 ```
 
 ### Effect-size
@@ -304,12 +341,12 @@ We will make use of these ideas in out power-curve simulations. Specifically, fo
 In this example we conduct a range of simulations assuming that effect-size increases from 0 to 1.5, in steps of .1. All simulations have the same design parameters: there are N=10 subjects per group, and X=5 scores are taken for each subject. The power curve shows the proportion of experiments that would return a result of p < .05 at each level of effect-size. For example, when the assumed effect-size is 1, then this design will detect an effect of that size at the p<.05 level close to 100% of the time. However, the "power" of the same design to detect smaller effects decreases following this curve.
 
 ```{r}
-effect_sizes <- seq(0,1.5,.1)
+effect_sizes <- seq(0,1,.1)
 prop_significant <-c()
 
 for(i in 1:length(effect_sizes)){
-  sim_ps <- replicate(1000, t.test(replicate(10, mean(rnorm(5, 0, 1))),
-                                   replicate(10, mean(rnorm(5, effect_sizes[i], 1))),
+  sim_ps <- replicate(1000, t.test(replicate(20, mean(rnorm(15, 0, 1))),
+                                   replicate(20, mean(rnorm(15, effect_sizes[i], 1))),
                                    var.equal = TRUE)$p.value)
   
   prop_significant[i] <- length(sim_ps[sim_ps < .05])/1000

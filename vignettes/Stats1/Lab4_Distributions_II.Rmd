@@ -44,17 +44,17 @@ In this concept section we will use R to generate events with specified probabil
 Each number should come up about 10000/6 = 1666.667 times.
 
 ```{r}
-rolls <- sample(1:6,1000, replace=TRUE)
+rolls <- sample(1:6,10000, replace=TRUE)
 table(rolls)
 ```
 
 2. With a pair of six-sided dice it is possible to roll the numbers 2 to 12. Use a simulation of 10000 rolls (of a pair of dice) in R to calculate the probability of rolling each of the possible numbers.
 
 ```{r}
-one <- sample(1:6,1000, replace=TRUE)
-two <- sample(1:6,1000, replace=TRUE)
+one <- sample(1:6,10000, replace=TRUE)
+two <- sample(1:6,10000, replace=TRUE)
 combined <- one+two
-table(combined)/1000
+table(combined)/10000
 ```
 Let's compare the result of the simulation to the known probabilities. First, we need to determine the number of ways that each number can be obtained by rolling a pair of dice. We can use R to do this as well:
 
@@ -65,7 +65,7 @@ sum_rolls <- first+second
 table(sum_rolls)/length(sum_rolls)
 
 ## compare
-sim_result <- table(combined)/1000
+sim_result <- table(combined)/10000
 true_probs <- table(sum_rolls)/length(sum_rolls)
 
 ## Difference
@@ -132,6 +132,7 @@ Some of the possible outcomes are 10 Tails or 10 Heads, or any combination of he
 sim_results <- replicate(10000,
                          sample( c(1,0), 10, replace=TRUE)
                          )
+
 number_of_heads <- colSums(sim_results)
 table(number_of_heads)/10000
 
@@ -157,7 +158,7 @@ table(sequence)/sum(table(sequence))
 
 ## 3 element sequences
 
-flips <- sample(c("H","T"), 10000, replace=TRUE)
+flips <- sample(c("H","T"), 1000000, replace=TRUE)
 
 sequence <- c()
 for(i in 3:length(flips)){

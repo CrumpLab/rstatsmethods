@@ -231,8 +231,8 @@ hist(raw_scores)
 Now, rather than plotting individual scores. We create a sampling distribution of the mean. We will take 10,000 samples (say of n = 5 for each) and compute the mean for each, and then plot the distribution of sample means.
 
 ```{r}
-sample_means <- replicate(10000,mean(runif(5,0,100)))
-hist(sample_means)
+sample_means <- replicate(100000,mean(runif(200,0,100)))
+hist(sample_means,breaks=100)
 ```
 
 The above histogram (sample means) is much more normal looking compared to the flat distribution where all of the individual scores came from. Of course, this is all done by simulation, so we have to wonder if our simulated distribution of sample means really does approximate a normal distribution? This raises a general question...if you have a distribution of numbers, and you suspect it is a normal distribution, how can you know if that distribution is normal? 
@@ -247,7 +247,7 @@ We could ask if we find the same proportion of numbers falling between 0 and 1 s
 
 ```{r}
 to_z <- (sample_means-mean(sample_means))/sd(sample_means)
-length(to_z[to_z > 0 & to_z < 1])/10000
+length(to_z[to_z > 0 & to_z < 1])/100000
 ```
 
 We've just done some rough checking and found that the sampling distribution of the mean seems to be approximately normal (based on the above very minimal comparison). Because this relationship often holds, it is common to use the math of normal distributions to work with sampling distributions of the mean.
@@ -287,8 +287,9 @@ We first need to compute a sampling distribution of the mean, this will tell us 
 
 ```{r}
 sample_means <- replicate(10000,mean(rnorm(10,55,5)))
-hist(sample_means)
+hist(sample_means, breaks=100)
 ```
+
 Now, we are one step removed from the original distribution. The original distribution has a mean of 55 and standard deviation of 5. The distribution in the histogram is the sampling distribution of sample means. From the central limit theorem we expect this distribution of sample means to be approximately normal. What are the parameters (mean and standard deviation) of this distribution?
 
 We can estimate them from the simulation:

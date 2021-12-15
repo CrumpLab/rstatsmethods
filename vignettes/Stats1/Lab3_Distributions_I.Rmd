@@ -260,7 +260,7 @@ Our parent population will be a normal distribution with mean =100, and sd = 50.
 
 ```{r}
 #initialize variables
-n <- seq(1000,100000,1000)
+n <- seq(10,1000,10)
 sample_mean <- c()
 sample_sd <- c()
 

@@ -129,6 +129,7 @@ First, install the package 'combinat', which contains the `permn()` function. We
 ```{r}
 library(combinat)
 permutation_matrix <- matrix(unlist(permn(1:8)), ncol=8, byrow=TRUE)
+
 ```
 
 In this matrix we can assume that the first four columns are the choices that persons 1 to 4 in group A could have made, and the last four columns are the choices that persons 5 to 8 could have made.

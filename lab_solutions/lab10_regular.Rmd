@@ -1,0 +1,157 @@
+---
+title: "lab10_regular"
+author: "Matt Crump"
+date: "11/22/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(data.table)
+
+all_data <- fread("stroop_data.csv")
+```
+
+
+```{r}
+RTs <- c(as.numeric(unlist(all_data[,1])),
+         as.numeric(unlist(all_data[,2])),
+         as.numeric(unlist(all_data[,3])),
+         as.numeric(unlist(all_data[,4]))
+         )
+
+Congruency <- rep(rep(c("Congruent","Incongruent"),each=50),2)
+Posture <- rep(c("Stand","Sit"),each=100)
+Subject <- rep(1:50,4)
+
+stroop_df <- data.frame(Subject,Congruency,Posture,RTs)
+```
+
+```{r}
+library(tidyr)
+
+stroop_long<- gather(all_data, key=Condition, value=RTs, 
+                     congruent_stand, incongruent_stand,
+                     congruent_sit, incongruent_sit)
+
+new_columns <- tstrsplit(stroop_long$Condition, "_", names=c("Congruency","Posture"))
+stroop_long <- cbind(stroop_long,new_columns)
+stroop_long <- cbind(stroop_long,Subject=rep(1:50,4))
+
+```
+
+
+## plot the data
+
+```{r}
+hist(stroop_df$RTs)
+```
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+plot_means <- stroop_df %>%
+            group_by(Congruency,Posture) %>%
+            summarise(mean_RT = mean(RTs),
+                      SEM = sd(RTs)/sqrt(length(RTs)))
+
+knitr::kable(plot_means)
+
+ggplot(plot_means, aes(x=Posture, y=mean_RT, group=Congruency, fill=Congruency))+
+  geom_bar(stat="identity", position="dodge")+
+  geom_errorbar(aes(ymin=mean_RT-SEM, ymax=mean_RT+SEM), 
+                position=position_dodge(width=0.9),
+                width=.2)+
+  theme_classic()+
+  coord_cartesian(ylim=c(700,1000))
+```
+
+T-test for Stroop effect in sitting condition
+
+```{r}
+sitting_t_test <- t.test(all_data$congruent_sit,
+                         all_data$incongruent_sit,
+                         paired=TRUE)
+sitting_t_test
+
+```
+
+
+
+T-test for Stroop effect in standing condition
+
+```{r}
+standing_t_test <- t.test(all_data$congruent_stand,
+                         all_data$incongruent_stand,
+                         paired=TRUE)
+standing_t_test
+
+```
+
+## one sample versions
+
+```{r}
+sitting_stroop_effect <- all_data$incongruent_sit - all_data$congruent_sit 
+
+sitting_t_test_OS <- t.test(sitting_stroop_effect,
+                            mu = 0)
+sitting_t_test_OS
+
+```
+```{r}
+standing_stroop_effect <- all_data$incongruent_stand - all_data$congruent_stand 
+
+standing_t_test_OS <- t.test(standing_stroop_effect,
+                            mu = 0)
+standing_t_test_OS
+
+```
+
+Is the Stroop effect when people are sitting different from when people are standing?
+
+```{r}
+
+interaction_stroop_difference <- sitting_stroop_effect - standing_stroop_effect
+
+t.test(sitting_stroop_effect,
+       standing_stroop_effect,
+       paired=TRUE)
+
+t.test(interaction_stroop_difference,
+       mu = 0)
+
+```
+
+
+```{r}
+library(pwr)
+```
+
+What is the power of this design to detect effects of different sizes with n = 50.
+
+```{r}
+effect_sizes <- seq(.1,2,.1)
+power <- sapply(effect_sizes, 
+          FUN = function(x) {
+            pwr.t.test(n=50,
+            d=x,
+            sig.level=.05,
+            type="one.sample",
+            alternative="two.sided")$power})
+plot_df <- data.frame(effect_sizes,power)
+
+library(ggplot2)
+ggplot(plot_df, aes(x=effect_sizes,
+                    y=power))+
+  geom_point()+
+  geom_line()
+
+```
+
+
+
+

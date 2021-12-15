@@ -32,8 +32,6 @@ pbinom(440,800,.5,lower.tail=FALSE)
 ```
 
 
-
-
 3. A test has 5 TRUE/FALSE questions (each with one right answer) and 5 multiple choice questions with four choices each (each with only one right answer). 
 
  - create a sampling distribution or probability distribution to illustrate how a random chance process could perform on this test. (1 point)
@@ -53,6 +51,8 @@ qplot(simulated_scores)+
   geom_histogram()
 
 length(simulated_scores[simulated_scores > .75]) /10000
+
+
 
 ```
  

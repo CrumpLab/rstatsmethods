@@ -118,9 +118,11 @@ Best fit lines can easily be displayed on scatterplots with ggplot2, here is a b
 ```{r}
 library(ggplot2)
 
+plot(some_data$Y_dv,some_data$X_iv)
+
 ggplot(some_data, aes(x=X_iv, y=Y_dv))+
   geom_point()+
-  geom_smooth(method='lm', se=FALSE)
+  geom_smooth(method='lm',se=FALSE)
 ```
 
 If you had many sets of X Y data specified in a data frame you can create multiple scatterplots, each with their own best fit line, using `facet_wrap()`.
@@ -277,7 +279,7 @@ Lets's also add the regression line in:
 ggplot(some_data, aes(x=X, y=Y))+
   geom_point()+
   geom_smooth(method='lm', se=FALSE)+
-  geom_point(aes(y=Y_pred), color='red')
+    geom_point(aes(y=Y_pred), color='red')
 ```
 
 ### Visualize residual error
@@ -323,7 +325,7 @@ ggplot(some_data, aes(x=X, y=Y))+
 
 These should look like squares, but they don't because the X and Y axes aren't exactly the same scale, and the figure height and width aren't exactly square :
 
-```{r, fig.width=5, fig.height=5}
+```{r, fig.width=2, fig.height=2}
 ggplot(some_data, aes(x=X, y=Y))+
   geom_point()+
   geom_smooth(method='lm', se=FALSE)+

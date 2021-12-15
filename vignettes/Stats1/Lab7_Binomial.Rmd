@@ -72,7 +72,6 @@ test_results$p.value
 
 So, it is now possible to write:
 
-
 Pigeon A was `r test_results$statistic`% correct (p <= `r test_results$p.value`)
 
 ### Examining the report:

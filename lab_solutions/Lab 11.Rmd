@@ -1,0 +1,66 @@
+---
+title: "lab 11"
+author: "Matt Crump"
+date: "12/1/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+X <- c(1,4,3,2,5,4,3,6,7,8)
+Y <- c(1,3,6,7,8,2,8,7,6,9)
+```
+
+
+An X and Y variable contain the above numbers.
+
+1. 
+A. Compute Pearson’s r and report the associated p-value using the cor.test() function. (2 points)
+
+```{r}
+cor.test(X,Y)
+```
+
+
+B. Use a permutation test to create a null-distribution, and report the p-value for getting the observed correlation or larger using your simulated null-distribution. (2 points)
+
+```{r}
+
+# generate null-distribution of r values
+sim_rs <- replicate(10000,cor(sample(X),sample(Y)))
+#hist(sim_rs)
+
+length(sim_rs[sim_rs >= cor(X,Y)])/10000
+
+```
+
+
+2. Using the variables X and Y above, and assuming that the values could be re-ordered in any way, report the following:
+
+A. the smallest possible sum of cross-products (1 point)
+
+```{r}
+X <- c(1,4,3,2,5,4,3,6,7,8)
+Y <- c(1,3,6,7,8,2,8,7,6,9)
+
+sum(X*Y)
+
+sort(X)
+sort(Y, decreasing = TRUE)
+
+sum(sort(X)*sort(Y, decreasing = TRUE))
+
+```
+
+
+B. the largest possible sum of cross-products (1 point)
+
+```{r}
+sum(sort(X)*sort(Y))
+```
+
+
+

@@ -1,0 +1,24 @@
+\begin{table*}[hbt]
+\ifnextchar[{\eatarg}{}
+[tbp]
+
+\begin{center}
+\begin{threeparttable}
+
+\caption{\label{tab:unnamed-chunk-1}}
+
+\begin{tabular}{llll}
+\toprule
+Congruency & \multicolumn{1}{c}{Posture} & \multicolumn{1}{c}{mean\_RT} & \multicolumn{1}{c}{SEM}\\
+\midrule
+Congruent & Sit & 821.92 & 16.60\\
+Congruent & Stand & 807.96 & 14.94\\
+Incongruent & Sit & 940.79 & 17.91\\
+Incongruent & Stand & 903.91 & 15.35\\
+\bottomrule
+\end{tabular}
+
+\end{threeparttable}
+\end{center}
+
+\end{table*}

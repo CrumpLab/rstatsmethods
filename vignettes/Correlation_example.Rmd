@@ -1,0 +1,74 @@
+---
+title: "correlation_example"
+author: "Matt Crump"
+date: "11/29/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+some_data <- data.frame(
+  subjects = 1:12,
+  texts_per_day = c(10,150,50,300,500,500,65,1000,50,250,175,160),
+  random_coin = rbinom(12,1,.5),
+  gender = NA,
+  age = NA,
+  distance_from_family = NA,
+  communication_preference = NA,
+  how_many_friends = NA,
+  social_media = c(5,80,1,30,85,55,30,70,80,20,40,99) 
+)
+
+cor(some_data$texts_per_day,some_data$social_media)
+cor.test(some_data$texts_per_day,some_data$social_media)
+
+plot(some_data$texts_per_day,some_data$social_media)
+
+
+cor(some_data$texts_per_day,some_data$random_coin)
+
+```
+
+
+```{r}
+A <- matrix(rnorm(100,0,1),ncol=10,nrow=10) 
+B <- c(1,3,2,4,3,5,4,5,6,7)
+cor(A,B)
+cor(A)
+```
+
+
+
+```{r}
+X <- 1:10
+Y <- sample(10:1)
+
+cor(X,Y)
+
+hist(replicate(10000,cor(1:10,sample(1:10))), breaks=100)
+
+```
+
+
+
+```{r}
+
+
+X <- 1:10
+Y <- 1:10
+X*Y
+sum(X*Y)
+
+X <- 1:10
+Y <- 10:1
+sum(X*Y)
+
+
+sum(sample(1:10)*sample(1:10))
+
+```
+

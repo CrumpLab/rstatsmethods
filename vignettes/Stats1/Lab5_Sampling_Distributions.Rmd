@@ -79,10 +79,11 @@ How often did we sample a value larger than 2.5? What is the probability that ch
 1. We can answer a question like the above through observation. We can look at the sample that we generated, and see how many numbers out of the total are larger than a particular value:
 
 ```{r}
-some_data$observations[some_data$observations > 2.5]
-length(some_data$observations[some_data$observations > 2.5])
-length(some_data$observations[some_data$observations > 2.5])/10000
+some_data$observations[some_data$observations > 1.64]
+length(some_data$observations[some_data$observations > 1.64])
+length(some_data$observations[some_data$observations > 1.64])/10000
 ```
+
 2. We could also compute the probability directly using analytical formulas. And, these formulas also exist in R. Specifically, distribution formulas begin with `d`, `p`, `q`, and `r`, so there are `dnorm`, `pnorm`, `qnorm`, and `rnorm` functions for the normal distribution (and other distributions).
 
 
@@ -144,7 +145,7 @@ ggplot(some_data, aes(x=x, y=density)) +
 For example, what is the area under the curve starting from the left (e.g., negative infinity) all the way to 2.5?
 
 ```{r}
-pnorm(2.5, mean=0, sd = 1)
+pnorm(1.64, mean=0, sd = 1)
 ```
 
 This is the "complement" of our question. That is 99.37903% of all values drawn from the distribution are expected to be **less than 2.5**. We have just determined the probability of getting a number smaller than 2.5, otherwise known as the lower tail.
@@ -250,8 +251,9 @@ The answer to the question **what kinds of sample means could we get?** is "the 
 Let's make a distribution of sample means. We will create 10,000 samples, each with 10 observations, and compute the mean for each. We will save and look at all of the means in a histogram.
 
 ```{r}
-sample_means <- replicate(10000, mean(rnorm(10,0,1)))
+sample_means <- replicate(10000, mean(rnorm(1000,0,1)))
 hist(sample_means)
+sd(sample_means)
 ```
 The above is a histogram representing the means for 10,000 samples. We can refer to this as a sampling distribution of the sample means. It is how sample means (in this one particular situation) are generally distributed.
 
@@ -296,11 +298,6 @@ sd(sample_means)
 1/sqrt(10)
 
 ```
-
-
-
-
-
 
 
 ## Lab 5 Generalization Assignment
