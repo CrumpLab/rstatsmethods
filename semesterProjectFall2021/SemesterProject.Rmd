@@ -137,6 +137,8 @@ standing <- t.test(all_data$incongruent_stand,
 
 The re-analysis for the sitting Stroop effect showed a significant Stroop effect, `r apa_print(sitting)$full_result`. The re-analysis for the standing Stroop effect was significant, `r apa_print(standing)$full_result`. 
 
+Here are a few more examples of using R snippets in text. Remember, this is not an R code chunk. This is regular text. Here is an example of using an R snippet to print the addition of 1+1 = `r 1+1`.
+
 # Power analysis
 
 The following reports a power curve analysis for one the t-tests in the design. This shows the power of the design to detect effects of different sizes.
