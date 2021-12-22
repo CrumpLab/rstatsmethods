@@ -217,7 +217,7 @@
 
       
 
-      </header><script src="Lab6_Statistical_Inference_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><script src="Lab6_Statistical_Inference_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Lab 6 Statistical Inference</h1>
@@ -286,7 +286,7 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span>
-<span class="co">#&gt; [1] 1 3 4 2 5</span></code></pre></div>
+<span class="co">#&gt; [1] 1 4 5 3 2</span></code></pre></div>
 <p>The number of permutations (unique re-orderings) for n distinct items is <span class="math inline">\(n!\)</span></p>
 <p>Therefore, if we take 5 numbers from the distinct values 1, 2, 3, 4, 5, we will be able to form 120 distinct orders or permutations of those numbers.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -335,22 +335,22 @@
 <tr class="odd">
 <td align="left">A</td>
 <td align="right">1</td>
-<td align="right">1</td>
+<td align="right">4</td>
 </tr>
 <tr class="even">
 <td align="left">A</td>
 <td align="right">2</td>
-<td align="right">4</td>
+<td align="right">6</td>
 </tr>
 <tr class="odd">
 <td align="left">A</td>
 <td align="right">3</td>
-<td align="right">2</td>
+<td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">A</td>
 <td align="right">4</td>
-<td align="right">3</td>
+<td align="right">7</td>
 </tr>
 <tr class="odd">
 <td align="left">B</td>
@@ -360,17 +360,17 @@
 <tr class="even">
 <td align="left">B</td>
 <td align="right">2</td>
-<td align="right">7</td>
+<td align="right">3</td>
 </tr>
 <tr class="odd">
 <td align="left">B</td>
 <td align="right">3</td>
-<td align="right">6</td>
+<td align="right">5</td>
 </tr>
 <tr class="even">
 <td align="left">B</td>
 <td align="right">4</td>
-<td align="right">5</td>
+<td align="right">2</td>
 </tr>
 </tbody>
 </table>
@@ -502,11 +502,11 @@
 <p>We can then calculate the mean of each group, and look at the difference.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_A</span><span class="op">)</span>
-<span class="co">#&gt; [1] 64.78103</span>
+<span class="co">#&gt; [1] 63.95377</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_B</span><span class="op">)</span>
-<span class="co">#&gt; [1] 63.04076</span>
+<span class="co">#&gt; [1] 68.24792</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_A</span><span class="op">)</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_B</span><span class="op">)</span>
-<span class="co">#&gt; [1] 1.74027</span></code></pre></div>
+<span class="co">#&gt; [1] -4.294152</span></code></pre></div>
 <p>In some general sense if the manipulation works, that is it <strong>causes a difference</strong>, then we would expect to see a non-zero difference. If the manipulation is ineffective and does nothing, then we expect on average no difference, <strong>however we recognize that we could obtain differences just by chance alone, because of randomly sampling our participants into the different groups</strong>.</p>
 <p>We now want to calculate a <strong>sampling distribution of possible mean differences</strong>. To do this, we take all of the values in Group A and B, and randomly re-assign them across both groups, then recalculate the means and the mean difference. Then we, do this multiple times, as in monte-carlo simulation.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
@@ -517,7 +517,7 @@
 <span class="va">new_B_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">resample</span><span class="op">[</span><span class="fl">51</span><span class="op">:</span><span class="fl">100</span><span class="op">]</span><span class="op">)</span>
 <span class="va">new_difference</span> <span class="op">&lt;-</span> <span class="va">new_A_mean</span><span class="op">-</span><span class="va">new_B_mean</span>
 <span class="va">new_difference</span>
-<span class="co">#&gt; [1] 1.767493</span>
+<span class="co">#&gt; [1] -1.865092</span>
 
 <span class="co"># Simulate the above process 10000 times</span>
 <span class="va">mean_differences</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
@@ -541,7 +541,7 @@
 <p>We can also use this distribution to calculate specific probabilities concerning chance. For example, what is the probability of getting a 4 or larger by chance alone?</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">mean_differences</span><span class="op">[</span><span class="va">mean_differences</span> <span class="op">&gt;=</span><span class="fl">4</span> <span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">mean_differences</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.0441</span></code></pre></div>
+<span class="co">#&gt; [1] 0.0188</span></code></pre></div>
 </div>
 <div id="p1-randomization-test-with-real-data" class="section level2">
 <h2 class="hasAnchor">
@@ -571,10 +571,10 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     intersect, setdiff, setequal, union</span>
 
-<span class="va">the_data</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">CONDITION</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="va">the_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">CONDITION</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>group_means <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Intellect_Rating</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 2 x 2</span>
+<span class="co">#&gt; # A tibble: 2 × 2</span>
 <span class="co">#&gt;   CONDITION group_means</span>
 <span class="co">#&gt;       &lt;int&gt;       &lt;dbl&gt;</span>
 <span class="co">#&gt; 1         0        3.65</span>
@@ -583,70 +583,70 @@
 <p>Was this difference a result that could have occurred because of randomly assigning people to different groups? Let’s do a randomization test to create <strong>a sampling distribution of possible mean differences</strong>.</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># restrict the dataset to the columns of interest</span>
-<span class="va">simulation_data</span> <span class="op">&lt;-</span> <span class="va">the_data</span> <span class="op">%&gt;%</span>
+<span class="va">simulation_data</span> <span class="op">&lt;-</span> <span class="va">the_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">CONDITION</span>,<span class="va">Intellect_Rating</span><span class="op">)</span>
 
 <span class="co"># example of randomizing the scores across conditions</span>
-<span class="va">simulation_data</span> <span class="op">%&gt;%</span>
+<span class="va">simulation_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Intellect_Rating <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">Intellect_Rating</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;    CONDITION Intellect_Rating</span>
-<span class="co">#&gt; 1          1        4.6666667</span>
-<span class="co">#&gt; 2          1        3.6666667</span>
-<span class="co">#&gt; 3          1        6.0000000</span>
-<span class="co">#&gt; 4          0        0.6666667</span>
-<span class="co">#&gt; 5          0        5.6666667</span>
-<span class="co">#&gt; 6          0        3.6666667</span>
-<span class="co">#&gt; 7          1        6.0000000</span>
-<span class="co">#&gt; 8          0        3.6666667</span>
-<span class="co">#&gt; 9          1        3.3333333</span>
-<span class="co">#&gt; 10         0        6.3333333</span>
-<span class="co">#&gt; 11         0        5.0000000</span>
-<span class="co">#&gt; 12         1        5.0000000</span>
-<span class="co">#&gt; 13         1        9.0000000</span>
-<span class="co">#&gt; 14         0        6.6666667</span>
-<span class="co">#&gt; 15         0        4.6666667</span>
-<span class="co">#&gt; 16         1        2.3333333</span>
-<span class="co">#&gt; 17         1        3.3333333</span>
-<span class="co">#&gt; 18         1        3.6666667</span>
-<span class="co">#&gt; 19         0        9.0000000</span>
-<span class="co">#&gt; 20         0        1.0000000</span>
-<span class="co">#&gt; 21         0        3.3333333</span>
-<span class="co">#&gt; 22         0        6.0000000</span>
-<span class="co">#&gt; 23         0        6.0000000</span>
-<span class="co">#&gt; 24         1        7.6666667</span>
-<span class="co">#&gt; 25         1        2.0000000</span>
-<span class="co">#&gt; 26         1        7.0000000</span>
-<span class="co">#&gt; 27         0        5.6666667</span>
-<span class="co">#&gt; 28         1        6.0000000</span>
-<span class="co">#&gt; 29         1        4.6666667</span>
-<span class="co">#&gt; 30         1        2.3333333</span>
-<span class="co">#&gt; 31         0        5.3333333</span>
-<span class="co">#&gt; 32         0        1.6666667</span>
-<span class="co">#&gt; 33         1        1.6666667</span>
+<span class="co">#&gt; 1          1        5.6666667</span>
+<span class="co">#&gt; 2          1        4.6666667</span>
+<span class="co">#&gt; 3          1        0.6666667</span>
+<span class="co">#&gt; 4          0        7.6666667</span>
+<span class="co">#&gt; 5          0        3.6666667</span>
+<span class="co">#&gt; 6          0        2.3333333</span>
+<span class="co">#&gt; 7          1        5.6666667</span>
+<span class="co">#&gt; 8          0        6.6666667</span>
+<span class="co">#&gt; 9          1        3.6666667</span>
+<span class="co">#&gt; 10         0        9.0000000</span>
+<span class="co">#&gt; 11         0        6.0000000</span>
+<span class="co">#&gt; 12         1        2.0000000</span>
+<span class="co">#&gt; 13         1        7.0000000</span>
+<span class="co">#&gt; 14         0        3.3333333</span>
+<span class="co">#&gt; 15         0        1.0000000</span>
+<span class="co">#&gt; 16         1        3.3333333</span>
+<span class="co">#&gt; 17         1        6.0000000</span>
+<span class="co">#&gt; 18         1        2.3333333</span>
+<span class="co">#&gt; 19         0        1.6666667</span>
+<span class="co">#&gt; 20         0        3.3333333</span>
+<span class="co">#&gt; 21         0        3.6666667</span>
+<span class="co">#&gt; 22         0        3.6666667</span>
+<span class="co">#&gt; 23         0        1.6666667</span>
+<span class="co">#&gt; 24         1        5.0000000</span>
+<span class="co">#&gt; 25         1        6.0000000</span>
+<span class="co">#&gt; 26         1        4.6666667</span>
+<span class="co">#&gt; 27         0        6.0000000</span>
+<span class="co">#&gt; 28         1        5.3333333</span>
+<span class="co">#&gt; 29         1        3.6666667</span>
+<span class="co">#&gt; 30         1        5.0000000</span>
+<span class="co">#&gt; 31         0        5.0000000</span>
+<span class="co">#&gt; 32         0        9.0000000</span>
+<span class="co">#&gt; 33         1        6.0000000</span>
 <span class="co">#&gt; 34         1        5.6666667</span>
-<span class="co">#&gt; 35         0        4.6666667</span>
-<span class="co">#&gt; 36         1        5.0000000</span>
-<span class="co">#&gt; 37         0        5.6666667</span>
-<span class="co">#&gt; 38         1        3.6666667</span>
-<span class="co">#&gt; 39         1        6.6666667</span>
+<span class="co">#&gt; 35         0        6.6666667</span>
+<span class="co">#&gt; 36         1        5.6666667</span>
+<span class="co">#&gt; 37         0        4.6666667</span>
+<span class="co">#&gt; 38         1        6.3333333</span>
+<span class="co">#&gt; 39         1        4.6666667</span>
 
 <span class="co"># example of calculating a new mean difference</span>
 
-<span class="va">new_data</span> <span class="op">&lt;-</span> <span class="va">simulation_data</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Intellect_Rating <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">Intellect_Rating</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">CONDITION</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="va">new_data</span> <span class="op">&lt;-</span> <span class="va">simulation_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Intellect_Rating <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">Intellect_Rating</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">CONDITION</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>new_means <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Intellect_Rating</span><span class="op">)</span>, .groups<span class="op">=</span><span class="st">"drop"</span><span class="op">)</span>
 
 <span class="va">new_data</span>
-<span class="co">#&gt; # A tibble: 2 x 2</span>
+<span class="co">#&gt; # A tibble: 2 × 2</span>
 <span class="co">#&gt;   CONDITION new_means</span>
 <span class="co">#&gt;       &lt;int&gt;     &lt;dbl&gt;</span>
-<span class="co">#&gt; 1         0      4.67</span>
-<span class="co">#&gt; 2         1      4.76</span>
+<span class="co">#&gt; 1         0      4.94</span>
+<span class="co">#&gt; 2         1      4.52</span>
 <span class="va">new_data</span><span class="op">[</span><span class="va">new_data</span><span class="op">$</span><span class="va">CONDITION</span> <span class="op">==</span> <span class="fl">0</span>,<span class="op">]</span><span class="op">$</span><span class="va">new_means</span>
-<span class="co">#&gt; [1] 4.666667</span>
+<span class="co">#&gt; [1] 4.944444</span>
 <span class="va">new_data</span><span class="op">[</span><span class="va">new_data</span><span class="op">$</span><span class="va">CONDITION</span> <span class="op">==</span> <span class="fl">1</span>,<span class="op">]</span><span class="op">$</span><span class="va">new_means</span>
-<span class="co">#&gt; [1] 4.761905</span>
+<span class="co">#&gt; [1] 4.52381</span>
 <span class="va">new_difference</span> <span class="op">&lt;-</span> <span class="va">new_data</span><span class="op">[</span><span class="va">new_data</span><span class="op">$</span><span class="va">CONDITION</span> <span class="op">==</span> <span class="fl">1</span>,<span class="op">]</span><span class="op">$</span><span class="va">new_means</span><span class="op">-</span><span class="va">new_data</span><span class="op">[</span><span class="va">new_data</span><span class="op">$</span><span class="va">CONDITION</span> <span class="op">==</span> <span class="fl">0</span>,<span class="op">]</span><span class="op">$</span><span class="va">new_means</span>
 
 <span class="co"># Run a randomization test</span>
@@ -654,9 +654,9 @@
 <span class="va">possible_differences</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
 <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span><span class="op">)</span><span class="op">{</span>
   <span class="co"># permute the data and calculate new means</span>
-  <span class="va">new_data</span> <span class="op">&lt;-</span> <span class="va">simulation_data</span> <span class="op">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Intellect_Rating <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">Intellect_Rating</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">CONDITION</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="va">new_data</span> <span class="op">&lt;-</span> <span class="va">simulation_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Intellect_Rating <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">Intellect_Rating</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">CONDITION</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>new_means <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Intellect_Rating</span><span class="op">)</span>, .groups<span class="op">=</span><span class="st">'drop'</span><span class="op">)</span>
   
   <span class="co"># calculate and save mean difference</span>
@@ -673,7 +673,7 @@
 <p><img src="Lab6_Statistical_Inference_files/figure-html/unnamed-chunk-29-1.png" width="700"> It’s pretty clear in this example that a mean difference of 2 rarely occurred across the random shuffles of the data. The odds of getting 2 or larger from the simulation were:</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">possible_differences</span><span class="op">[</span><span class="va">possible_differences</span> <span class="op">&gt;=</span> <span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">possible_differences</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.001</span></code></pre></div>
+<span class="co">#&gt; [1] 0.002</span></code></pre></div>
 <p>What can be concluded from this exercise? Should we conclude that that experimental manipulation actually caused the difference in Intellect ratings? Should we conclude that chance did not produce the difference?</p>
 <p>I’m a bit more conservative about what can be concluded. I would say that the exercise of producing the sampling distribution of differences was very useful. It gives me a pretty good sense of the kinds of differences that chance alone could produce. It shows me that a difference of 2 is very rarely produced by chance alone. This gives me some confidence to rule out chance as a candidate. In other words, I do not really think that chance has a great alibi, it wouldn’t have produced the pattern in the data very often. At the same time, it could have, just not very often…so, we can be confident, but not completely sure that chance didn’t do it.</p>
 <p>As for the experimental manipulation…if it wasn’t chance that caused the difference, is it necessarily the case that the manipulation caused the difference? This is like saying Donald Duck did not cause the difference, therefore my manipulation did cause the difference. It makes no sense. Instead, sure, the manipulation could have caused the difference, also maybe there were other confounds that were not addressed that caused the difference. Ruling out chance doesn’t tell you what caused the difference, it just suggests that the difference wasn’t caused by chance.</p>
@@ -686,10 +686,10 @@
 <span class="va">the_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"open_data/SchroederEpley2015data.csv"</span>, header <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="co"># compute the group means</span>
-<span class="va">the_data</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">CONDITION</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="va">the_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">CONDITION</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>group_means <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Intellect_Rating</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 2 x 2</span>
+<span class="co">#&gt; # A tibble: 2 × 2</span>
 <span class="co">#&gt;   CONDITION group_means</span>
 <span class="co">#&gt;       &lt;int&gt;       &lt;dbl&gt;</span>
 <span class="co">#&gt; 1         0        3.65</span>

@@ -69,6 +69,24 @@ There are 12 weekly assignments, and a final project. The grading rubric is belo
 | Semester Project |  | 28|
 |||100|
 
+Percentage grades are converted to letter grades according to the following rubric.
+
+|Letter grade|Range|
+|:--|:--|
+|F	|0-59.99|
+|D-	|60-63.32|
+|D	|63.33-66.66|
+|D+	|66.67-69.99|
+|C-	|70-72.99|
+|C	|73-76.66|
+|C+	|76.67-79.99|
+|B-	|80-83.32|
+|B	|83.33-86.66|
+|B+	|86.67-89.99|
+|A-	|90-93.32|
+|A	|93.33-96.66|
+|A+	|96.67-100|
+
 ### University’s policy on Academic Integrity
 
 The faculty and administration of Brooklyn College support an environment free from cheating and plagiarism. Each student is responsible for being aware of what constitutes cheating and plagiarism and for avoiding both. The complete text of the CUNY Academic Integrity Policy and the Brooklyn College procedure for policy implementation can be found at <http://www.brooklyn.cuny.edu/bc/policies>. If a faculty member suspects a violation of academic integrity and, upon investigation, confirms that violation, or if the student admits the violation, the faculty member MUST report the violation. Students should be aware that faculty may use plagiarism detection software.

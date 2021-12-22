@@ -217,7 +217,7 @@
 
       
 
-      </header><script src="Lab10_ttest_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><script src="Lab10_ttest_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Lab 10 t tests</h1>
@@ -242,7 +242,7 @@
 <div id="historical-background" class="section level2">
 <h2 class="hasAnchor">
 <a href="#historical-background" class="anchor"></a>Historical Background</h2>
-<p>William Sealy Gosset published the t-test under the pseudonym “Student,” which is why the test is sometimes called “Student’s t-test” <span class="citation">(<a href="#ref-studentProbableErrorMean1908" role="doc-biblioref">Student, 1908</a>)</span>. There is dispute about the origin and meaning of <span class="math inline">\(t\)</span>. One hypothesis is that <span class="math inline">\(s\)</span> was commonly used at the time to refer to sample statistics, so Gosset chose <span class="math inline">\(t\)</span> as the next letter, perhaps indicating a “step-up” in thinking about sample statistics? Gosset published under a pseudonym because he was an employee of Guinness Breweries at the time, and he was hired to examine issues in making inferences about small samples in brewing beer. The test he developed could have been the intellectual property of Guinness, but Gosset thought the test could be broadly used, so he published it under a pseudonym to protect his job. <span class="citation"><a href="#ref-pearsonStudentStatistician1939" role="doc-biblioref">Pearson</a> (<a href="#ref-pearsonStudentStatistician1939" role="doc-biblioref">1939</a>)</span> provides a biography of Gosset. <span class="citation"><a href="#ref-sawilowskyMoreRealisticLook1992" role="doc-biblioref">Sawilowsky &amp; Blair</a> (<a href="#ref-sawilowskyMoreRealisticLook1992" role="doc-biblioref">1992</a>)</span> conduct simulations and examine how robust the t-test is to violations of assumptions.</p>
+<p>William Sealy Gosset published the t-test under the pseudonym “Student”, which is why the test is sometimes called “Student’s t-test” <span class="citation">(<a href="#ref-studentProbableErrorMean1908" role="doc-biblioref">Student, 1908</a>)</span>. There is dispute about the origin and meaning of <span class="math inline">\(t\)</span>. One hypothesis is that <span class="math inline">\(s\)</span> was commonly used at the time to refer to sample statistics, so Gosset chose <span class="math inline">\(t\)</span> as the next letter, perhaps indicating a “step-up” in thinking about sample statistics? Gosset published under a pseudonym because he was an employee of Guinness Breweries at the time, and he was hired to examine issues in making inferences about small samples in brewing beer. The test he developed could have been the intellectual property of Guinness, but Gosset thought the test could be broadly used, so he published it under a pseudonym to protect his job. <span class="citation">Pearson (<a href="#ref-pearsonStudentStatistician1939" role="doc-biblioref">1939</a>)</span> provides a biography of Gosset. <span class="citation">Sawilowsky &amp; Blair (<a href="#ref-sawilowskyMoreRealisticLook1992" role="doc-biblioref">1992</a>)</span> conduct simulations and examine how robust the t-test is to violations of assumptions.</p>
 </div>
 <div id="practical-i-t-test" class="section level2">
 <h2 class="hasAnchor">
@@ -261,13 +261,13 @@
 <span class="co">#&gt;  One Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  some_random_means</span>
-<span class="co">#&gt; t = 0.081796, df = 9, p-value = 0.9366</span>
+<span class="co">#&gt; t = 1.5921, df = 9, p-value = 0.1458</span>
 <span class="co">#&gt; alternative hypothesis: true mean is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -0.4760298  0.5117463</span>
+<span class="co">#&gt;  -0.1378931  0.7931366</span>
 <span class="co">#&gt; sample estimates:</span>
-<span class="co">#&gt;  mean of x </span>
-<span class="co">#&gt; 0.01785828</span></code></pre></div>
+<span class="co">#&gt; mean of x </span>
+<span class="co">#&gt; 0.3276217</span></code></pre></div>
 </div>
 <div id="paired-sample-t-test" class="section level3">
 <h3 class="hasAnchor">
@@ -281,13 +281,26 @@
 <span class="co">#&gt;  Paired t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  A_means and B_means</span>
-<span class="co">#&gt; t = 0.97431, df = 9, p-value = 0.3554</span>
+<span class="co">#&gt; t = 0.13545, df = 9, p-value = 0.8952</span>
 <span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -0.537968  1.351960</span>
+<span class="co">#&gt;  -0.8454339  0.9531281</span>
 <span class="co">#&gt; sample estimates:</span>
 <span class="co">#&gt; mean of the differences </span>
-<span class="co">#&gt;               0.4069958</span></code></pre></div>
+<span class="co">#&gt;              0.05384708</span>
+
+<span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">A_means</span><span class="op">-</span><span class="va">B_means</span>,mu<span class="op">=</span><span class="fl">0</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  One Sample t-test</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; data:  A_means - B_means</span>
+<span class="co">#&gt; t = 0.13545, df = 9, p-value = 0.8952</span>
+<span class="co">#&gt; alternative hypothesis: true mean is not equal to 0</span>
+<span class="co">#&gt; 95 percent confidence interval:</span>
+<span class="co">#&gt;  -0.8454339  0.9531281</span>
+<span class="co">#&gt; sample estimates:</span>
+<span class="co">#&gt;  mean of x </span>
+<span class="co">#&gt; 0.05384708</span></code></pre></div>
 </div>
 <div id="independent-sample-t-test" class="section level3">
 <h3 class="hasAnchor">
@@ -301,18 +314,31 @@
 <span class="co">#&gt;  Two Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  A_means and B_means</span>
-<span class="co">#&gt; t = -1.0432, df = 18, p-value = 0.3107</span>
+<span class="co">#&gt; t = 1.7193, df = 18, p-value = 0.1027</span>
 <span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -1.3375152  0.4499549</span>
+<span class="co">#&gt;  -0.1818286  1.8201623</span>
 <span class="co">#&gt; sample estimates:</span>
-<span class="co">#&gt; mean of x mean of y </span>
-<span class="co">#&gt; 0.1401177 0.5838979</span></code></pre></div>
+<span class="co">#&gt;  mean of x  mean of y </span>
+<span class="co">#&gt;  0.2492428 -0.5699241</span>
+
+<span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">A_means</span>,<span class="va">B_means</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  Welch Two Sample t-test</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; data:  A_means and B_means</span>
+<span class="co">#&gt; t = 1.7193, df = 13.335, p-value = 0.1087</span>
+<span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span>
+<span class="co">#&gt; 95 percent confidence interval:</span>
+<span class="co">#&gt;  -0.207527  1.845861</span>
+<span class="co">#&gt; sample estimates:</span>
+<span class="co">#&gt;  mean of x  mean of y </span>
+<span class="co">#&gt;  0.2492428 -0.5699241</span></code></pre></div>
 </div>
 <div id="formula-syntax-for-data-frames" class="section level3">
 <h3 class="hasAnchor">
 <a href="#formula-syntax-for-data-frames" class="anchor"></a>formula syntax for data frames</h3>
-<p>In the above examples, the <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> function was applied to vectors containing sample means. It is also possible to apply the <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> function to long data frames using the <code><a href="https://rdrr.io/r/base/tilde.html">~</a></code> syntax.</p>
+<p>In the above examples, the <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> function was applied to vectors containing sample means. It is also possible to apply the <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> function to long data frames using the <code>~</code> syntax.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"B"</span><span class="op">)</span>, each<span class="op">=</span><span class="fl">10</span><span class="op">)</span>,
                       means <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
@@ -322,13 +348,13 @@
 <span class="co">#&gt;  Two Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  means by group</span>
-<span class="co">#&gt; t = 0.49039, df = 18, p-value = 0.6298</span>
+<span class="co">#&gt; t = 0.81346, df = 18, p-value = 0.4266</span>
 <span class="co">#&gt; alternative hypothesis: true difference in means between group A and group B is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -0.7463732  1.2008974</span>
+<span class="co">#&gt;  -0.5686516  1.2872397</span>
 <span class="co">#&gt; sample estimates:</span>
 <span class="co">#&gt; mean in group A mean in group B </span>
-<span class="co">#&gt;       0.1100720      -0.1171901</span></code></pre></div>
+<span class="co">#&gt;      0.40341922      0.04412518</span></code></pre></div>
 </div>
 <div id="one-or-two-sided-test" class="section level3">
 <h3 class="hasAnchor">
@@ -341,37 +367,37 @@
 <span class="co">#&gt;  One Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  some_random_means</span>
-<span class="co">#&gt; t = 0.35918, df = 9, p-value = 0.7277</span>
+<span class="co">#&gt; t = -2.2241, df = 9, p-value = 0.05321</span>
 <span class="co">#&gt; alternative hypothesis: true mean is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -0.7378519  1.0163888</span>
+<span class="co">#&gt;  -1.2227330  0.0103773</span>
 <span class="co">#&gt; sample estimates:</span>
-<span class="co">#&gt; mean of x </span>
-<span class="co">#&gt; 0.1392684</span>
+<span class="co">#&gt;  mean of x </span>
+<span class="co">#&gt; -0.6061779</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">some_random_means</span>, mu<span class="op">=</span><span class="fl">0</span>, alternative <span class="op">=</span> <span class="st">"less"</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  One Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  some_random_means</span>
-<span class="co">#&gt; t = 0.35918, df = 9, p-value = 0.6361</span>
+<span class="co">#&gt; t = -2.2241, df = 9, p-value = 0.0266</span>
 <span class="co">#&gt; alternative hypothesis: true mean is less than 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;       -Inf 0.8500328</span>
+<span class="co">#&gt;        -Inf -0.1065595</span>
 <span class="co">#&gt; sample estimates:</span>
-<span class="co">#&gt; mean of x </span>
-<span class="co">#&gt; 0.1392684</span>
+<span class="co">#&gt;  mean of x </span>
+<span class="co">#&gt; -0.6061779</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">some_random_means</span>, mu<span class="op">=</span><span class="fl">0</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  One Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  some_random_means</span>
-<span class="co">#&gt; t = 0.35918, df = 9, p-value = 0.3639</span>
+<span class="co">#&gt; t = -2.2241, df = 9, p-value = 0.9734</span>
 <span class="co">#&gt; alternative hypothesis: true mean is greater than 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -0.5714959        Inf</span>
+<span class="co">#&gt;  -1.105796       Inf</span>
 <span class="co">#&gt; sample estimates:</span>
-<span class="co">#&gt; mean of x </span>
-<span class="co">#&gt; 0.1392684</span></code></pre></div>
+<span class="co">#&gt;  mean of x </span>
+<span class="co">#&gt; -0.6061779</span></code></pre></div>
 </div>
 <div id="var-equal-and-welchs-correction" class="section level3">
 <h3 class="hasAnchor">
@@ -385,13 +411,13 @@
 <span class="co">#&gt;  Welch Two Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  A and B</span>
-<span class="co">#&gt; t = -0.10392, df = 17.549, p-value = 0.9184</span>
+<span class="co">#&gt; t = -2.1813, df = 17.367, p-value = 0.04318</span>
 <span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -0.6520772  0.5907151</span>
+<span class="co">#&gt;  -1.79388487 -0.03133044</span>
 <span class="co">#&gt; sample estimates:</span>
 <span class="co">#&gt;  mean of x  mean of y </span>
-<span class="co">#&gt; -0.2501246 -0.2194436</span></code></pre></div>
+<span class="co">#&gt; -0.6468583  0.2657493</span></code></pre></div>
 <p>To conduct a t-test without the correction set <code>var.equal=TRUE</code>. This only applies to the independent sample case where there are two variances.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span>, var.equal<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
@@ -399,13 +425,13 @@
 <span class="co">#&gt;  Two Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  A and B</span>
-<span class="co">#&gt; t = -0.10392, df = 18, p-value = 0.9184</span>
+<span class="co">#&gt; t = -2.1813, df = 18, p-value = 0.04267</span>
 <span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -0.6509330  0.5895709</span>
+<span class="co">#&gt;  -1.79158469 -0.03363062</span>
 <span class="co">#&gt; sample estimates:</span>
 <span class="co">#&gt;  mean of x  mean of y </span>
-<span class="co">#&gt; -0.2501246 -0.2194436</span></code></pre></div>
+<span class="co">#&gt; -0.6468583  0.2657493</span></code></pre></div>
 </div>
 <div id="t-test-contents" class="section level3">
 <h3 class="hasAnchor">
@@ -417,26 +443,26 @@
 <span class="co">#&gt;  Two Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  A and B</span>
-<span class="co">#&gt; t = -0.10392, df = 18, p-value = 0.9184</span>
+<span class="co">#&gt; t = -2.1813, df = 18, p-value = 0.04267</span>
 <span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -0.6509330  0.5895709</span>
+<span class="co">#&gt;  -1.79158469 -0.03363062</span>
 <span class="co">#&gt; sample estimates:</span>
 <span class="co">#&gt;  mean of x  mean of y </span>
-<span class="co">#&gt; -0.2501246 -0.2194436</span></code></pre></div>
+<span class="co">#&gt; -0.6468583  0.2657493</span></code></pre></div>
 <p>For example:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_results</span><span class="op">$</span><span class="va">statistic</span>
-<span class="co">#&gt;          t </span>
-<span class="co">#&gt; -0.1039231</span>
+<span class="co">#&gt;         t </span>
+<span class="co">#&gt; -2.181306</span>
 <span class="va">my_results</span><span class="op">$</span><span class="va">parameter</span>
 <span class="co">#&gt; df </span>
 <span class="co">#&gt; 18</span>
 <span class="va">my_results</span><span class="op">$</span><span class="va">p.value</span>
-<span class="co">#&gt; [1] 0.9183796</span>
+<span class="co">#&gt; [1] 0.04266648</span>
 <span class="va">my_results</span><span class="op">$</span><span class="va">estimate</span>
 <span class="co">#&gt;  mean of x  mean of y </span>
-<span class="co">#&gt; -0.2501246 -0.2194436</span></code></pre></div>
+<span class="co">#&gt; -0.6468583  0.2657493</span></code></pre></div>
 </div>
 <div id="papaja-reporting-with-apa_print" class="section level3">
 <h3 class="hasAnchor">
@@ -446,20 +472,28 @@
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/crsh/papaja">papaja</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/papaja/man/apa_print.html">apa_print</a></span><span class="op">(</span><span class="va">my_results</span><span class="op">)</span>
 <span class="co">#&gt; $estimate</span>
-<span class="co">#&gt; [1] "$\\Delta M = -0.03$, 95\\% CI $[-0.65$, $0.59]$"</span>
+<span class="co">#&gt; [1] "$\\Delta M = -0.91$, 95\\% CI $[-1.79, -0.03]$"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $statistic</span>
-<span class="co">#&gt; [1] "$t(18) = -0.10$, $p = .918$"</span>
+<span class="co">#&gt; [1] "$t(18) = -2.18$, $p = .043$"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $full_result</span>
-<span class="co">#&gt; [1] "$\\Delta M = -0.03$, 95\\% CI $[-0.65$, $0.59]$, $t(18) = -0.10$, $p = .918$"</span>
+<span class="co">#&gt; [1] "$\\Delta M = -0.91$, 95\\% CI $[-1.79, -0.03]$, $t(18) = -2.18$, $p = .043$"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $table</span>
-<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; A data.frame with 5 labelled columns:</span>
 <span class="co">#&gt; </span>
+<span class="co">#&gt;   estimate       conf.int statistic df p.value</span>
+<span class="co">#&gt; 1    -0.91 [-1.79, -0.03]     -2.18 18    .043</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; estimate : $\\Delta M$ </span>
+<span class="co">#&gt; conf.int : 95\\% CI </span>
+<span class="co">#&gt; statistic: $t$ </span>
+<span class="co">#&gt; df       : $\\mathit{df}$ </span>
+<span class="co">#&gt; p.value  : $p$ </span>
 <span class="co">#&gt; attr(,"class")</span>
 <span class="co">#&gt; [1] "apa_results" "list"</span></code></pre></div>
-<p>For example, this t-test result, <span class="math inline">\(t(18) = -0.10\)</span>, <span class="math inline">\(p = .918\)</span>, was printed using an r code snippet inserted into the text of this .Rmd.</p>
+<p>For example, this t-test result, <span class="math inline">\(t(18) = -2.18\)</span>, <span class="math inline">\(p = .043\)</span>, was printed using an r code snippet inserted into the text of this .Rmd.</p>
 </div>
 </div>
 <div id="conceptual-i-simulating-the-t-test" class="section level2">
@@ -493,8 +527,8 @@
 
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 
-<span class="va">subject_means</span> <span class="op">&lt;-</span> <span class="va">sim_data</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">groups</span>,<span class="va">subjects</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="va">subject_means</span> <span class="op">&lt;-</span> <span class="va">sim_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">groups</span>,<span class="va">subjects</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>means <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">scores</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">'drop'</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">means</span><span class="op">~</span><span class="va">groups</span>, var.equal <span class="op">=</span><span class="cn">TRUE</span>,data <span class="op">=</span> <span class="va">subject_means</span><span class="op">)</span>
@@ -502,29 +536,41 @@
 <span class="co">#&gt;  Two Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  means by groups</span>
-<span class="co">#&gt; t = 0.035024, df = 18, p-value = 0.9724</span>
+<span class="co">#&gt; t = 0.46158, df = 18, p-value = 0.6499</span>
 <span class="co">#&gt; alternative hypothesis: true difference in means between group A and group B is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -16.20578  16.75527</span>
+<span class="co">#&gt;  -12.86900  20.11589</span>
 <span class="co">#&gt; sample estimates:</span>
 <span class="co">#&gt; mean in group A mean in group B </span>
-<span class="co">#&gt;        101.8615        101.5867</span></code></pre></div>
+<span class="co">#&gt;        104.9758        101.3524</span></code></pre></div>
 <p>As one alternative, here is another example of the above in a one-liner:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="va">N</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">A_mean</span>, <span class="va">A_sd</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
+<code class="sourceCode R"><span class="co">#subjects per group</span>
+<span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">10</span>
+<span class="co"># measurements per subject</span>
+<span class="va">X</span> <span class="op">&lt;-</span> <span class="fl">2</span>
+
+<span class="co"># distribution assumptions</span>
+<span class="va">A_mean</span> <span class="op">&lt;-</span> <span class="fl">100</span>
+<span class="va">B_mean</span> <span class="op">&lt;-</span> <span class="fl">100</span>
+
+<span class="va">A_sd</span> <span class="op">&lt;-</span> <span class="fl">25</span>
+<span class="va">B_sd</span> <span class="op">&lt;-</span> <span class="fl">25</span>
+
+<span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="va">N</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">A_mean</span>, <span class="va">A_sd</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
        <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="va">N</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">B_mean</span>, <span class="va">B_sd</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
        var.equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  Two Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  replicate(N, mean(rnorm(X, A_mean, A_sd))) and replicate(N, mean(rnorm(X, B_mean, B_sd)))</span>
-<span class="co">#&gt; t = -1.1811, df = 18, p-value = 0.2529</span>
+<span class="co">#&gt; t = -1.373, df = 18, p-value = 0.1866</span>
 <span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -21.387553   5.993877</span>
+<span class="co">#&gt;  -25.181177   5.276088</span>
 <span class="co">#&gt; sample estimates:</span>
 <span class="co">#&gt; mean of x mean of y </span>
-<span class="co">#&gt;  91.31084  99.00768</span></code></pre></div>
+<span class="co">#&gt;   94.4411  104.3936</span></code></pre></div>
 </div>
 <div id="simulating-distributions-of-experiments" class="section level3">
 <h3 class="hasAnchor">
@@ -536,9 +582,10 @@
 <a href="#the-distribution-of-mean-differences" class="anchor"></a>The distribution of mean differences</h4>
 <p>If this experiment was repeated a 1000 times, then each time there could be a mean difference between Group A and B. Thus, if the mean difference was the sample statistic used to summarize the result of this experiment, the sampling distribution of mean differences could be estimated by simulation:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sim_mean_diffs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="va">N</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">A_mean</span>, <span class="va">A_sd</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="va">N</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">B_mean</span>, <span class="va">B_sd</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">10</span>
+<span class="va">sim_mean_diffs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="va">N</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">A_mean</span>, <span class="va">A_sd</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="va">N</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">B_mean</span>, <span class="va">B_sd</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">sim_mean_diffs</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">sim_mean_diffs</span>, breaks<span class="op">=</span><span class="fl">100</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab10_ttest_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
 </div>
 <div id="the-distribution-of-t" class="section level4">
@@ -552,7 +599,7 @@
 <code class="sourceCode R"><span class="va">sim_ts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="va">N</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">A_mean</span>, <span class="va">A_sd</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
                                  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="va">N</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">B_mean</span>, <span class="va">B_sd</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
                                  var.equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">statistic</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">sim_ts</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">sim_ts</span>, breaks<span class="op">=</span><span class="fl">100</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab10_ttest_files/figure-html/unnamed-chunk-17-1.png" width="700"></p>
 </div>
 </div>
@@ -562,7 +609,7 @@
 <p>R comes with the <code>dt</code>, <code>pt</code>, <code>qt</code>, <code>rt</code> family of function for t-distributions as well.</p>
 <p>For example, rather than simulating t values as we did above, we could sample 1000 <span class="math inline">\(t\)</span> values from a t-distribution with df = 18.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">rt</a></span><span class="op">(</span><span class="fl">1000</span>,df<span class="op">=</span><span class="fl">18</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/TDist.html">rt</a></span><span class="op">(</span><span class="fl">1000</span>,df<span class="op">=</span><span class="fl">18</span><span class="op">)</span>, breaks<span class="op">=</span><span class="fl">100</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab10_ttest_files/figure-html/unnamed-chunk-18-1.png" width="700"> THe <code>dt</code> function could be used to draw the probability density function for t-distributions across a range of degrees of freedom.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
@@ -606,21 +653,82 @@
 <code class="sourceCode R"><span class="va">sim_ps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
                                  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
                                  var.equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">sim_ps</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">sim_ps</span>,breaks<span class="op">=</span><span class="fl">20</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab10_ttest_files/figure-html/unnamed-chunk-21-1.png" width="700"></p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">sim_ps</span><span class="op">[</span><span class="va">sim_ps</span> <span class="op">&lt;</span> <span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.042</span></code></pre></div>
+<span class="co">#&gt; [1] 0.046</span></code></pre></div>
 <p>A next question would be something like, what proportion of experiments would be significant if there actually was a difference between the means of group A and B. For example, here we assume that group A has a mean of 0, and group B has a mean of .25, and that both distributions have the same standard deviation (sd=1). In this design, with N = 10 in each group, and 5 scores measured per subject, the probability of getting a p &lt; .05 is much higher than 5%.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sim_ps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
-                                 <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">.25</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
+<code class="sourceCode R"><span class="va">sim_ps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
+                                 <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fl">.01</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
                                  var.equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">sim_ps</span><span class="op">)</span></code></pre></div>
-<p><img src="Lab10_ttest_files/figure-html/unnamed-chunk-22-1.png" width="700"></p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">sim_ps</span><span class="op">[</span><span class="va">sim_ps</span> <span class="op">&lt;</span> <span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.219</span></code></pre></div>
+<span class="co">#hist(sim_ps,breaks=20)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">sim_ps</span><span class="op">[</span><span class="va">sim_ps</span> <span class="op">&lt;</span> <span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>
+<span class="co">#&gt; [1] 0.848</span>
+
+
+<span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
+                                 <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fl">.01</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
+                                 var.equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/crsh/papaja">papaja</a></span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/papaja/man/apa_print.html">apa_print</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span>
+<span class="co">#&gt; $estimate</span>
+<span class="co">#&gt; [1] "$\\Delta M = -0.01$, 95\\% CI $[-0.02, 0.00]$"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $statistic</span>
+<span class="co">#&gt; [1] "$t(38) = -2.88$, $p = .006$"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $full_result</span>
+<span class="co">#&gt; [1] "$\\Delta M = -0.01$, 95\\% CI $[-0.02, 0.00]$, $t(38) = -2.88$, $p = .006$"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $table</span>
+<span class="co">#&gt; A data.frame with 5 labelled columns:</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;   estimate      conf.int statistic df p.value</span>
+<span class="co">#&gt; 1    -0.01 [-0.02, 0.00]     -2.88 38    .006</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; estimate : $\\Delta M$ </span>
+<span class="co">#&gt; conf.int : 95\\% CI </span>
+<span class="co">#&gt; statistic: $t$ </span>
+<span class="co">#&gt; df       : $\\mathit{df}$ </span>
+<span class="co">#&gt; p.value  : $p$ </span>
+<span class="co">#&gt; attr(,"class")</span>
+<span class="co">#&gt; [1] "apa_results" "list"</span>
+<span class="va">b</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  Two Sample t-test</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; data:  replicate(20, mean(rnorm(10000, 0, 1))) and replicate(20, mean(rnorm(10000, 0.01, 1)))</span>
+<span class="co">#&gt; t = -2.883, df = 38, p-value = 0.00645</span>
+<span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span>
+<span class="co">#&gt; 95 percent confidence interval:</span>
+<span class="co">#&gt;  -0.015157096 -0.002651924</span>
+<span class="co">#&gt; sample estimates:</span>
+<span class="co">#&gt;     mean of x     mean of y </span>
+<span class="co">#&gt; -0.0006434696  0.0082610402</span>
+
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">lsr</span><span class="op">)</span>
+
+<span class="va">GA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000000</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="va">GB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000000</span>, <span class="fl">.01</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">GA</span>,<span class="va">GB</span>, var.equal<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  Two Sample t-test</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; data:  GA and GB</span>
+<span class="co">#&gt; t = -32.457, df = 38, p-value &lt; 2.2e-16</span>
+<span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span>
+<span class="co">#&gt; 95 percent confidence interval:</span>
+<span class="co">#&gt;  -0.010811714 -0.009542197</span>
+<span class="co">#&gt; sample estimates:</span>
+<span class="co">#&gt;     mean of x     mean of y </span>
+<span class="co">#&gt; -4.057146e-05  1.013638e-02</span>
+<span class="fu"><a href="https://rdrr.io/pkg/lsr/man/cohensD.html">cohensD</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">GA</span>,y<span class="op">=</span><span class="va">GB</span><span class="op">)</span>
+<span class="co">#&gt; [1] 10.26371</span></code></pre></div>
 </div>
 <div id="effect-size" class="section level3">
 <h3 class="hasAnchor">
@@ -635,13 +743,13 @@
 <h3 class="hasAnchor">
 <a href="#power-curve-as-a-function-of-effect-size" class="anchor"></a>Power-curve as a function of effect-size</h3>
 <p>In this example we conduct a range of simulations assuming that effect-size increases from 0 to 1.5, in steps of .1. All simulations have the same design parameters: there are N=10 subjects per group, and X=5 scores are taken for each subject. The power curve shows the proportion of experiments that would return a result of p &lt; .05 at each level of effect-size. For example, when the assumed effect-size is 1, then this design will detect an effect of that size at the p&lt;.05 level close to 100% of the time. However, the “power” of the same design to detect smaller effects decreases following this curve.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">effect_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1.5</span>,<span class="fl">.1</span><span class="op">)</span>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">effect_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">.1</span><span class="op">)</span>
 <span class="va">prop_significant</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">effect_sizes</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">sim_ps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
-                                   <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">5</span>, <span class="va">effect_sizes</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
+  <span class="va">sim_ps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">15</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
+                                   <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">15</span>, <span class="va">effect_sizes</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
                                    var.equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span><span class="op">)</span>
   
   <span class="va">prop_significant</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">sim_ps</span><span class="op">[</span><span class="va">sim_ps</span> <span class="op">&lt;</span> <span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>

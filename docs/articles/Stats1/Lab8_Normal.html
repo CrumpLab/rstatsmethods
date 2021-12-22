@@ -217,7 +217,7 @@
 
       
 
-      </header><script src="Lab8_Normal_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><script src="Lab8_Normal_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Lab 8 Z tests</h1>
@@ -298,7 +298,7 @@
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">score</span>,x<span class="op">=</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">dist</span>, scales<span class="op">=</span><span class="st">"free_x"</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df</span> <span class="op">%&gt;%</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">zscore</span> <span class="op">&gt;=</span> <span class="fl">1</span>,
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">plot_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">zscore</span> <span class="op">&gt;=</span> <span class="fl">1</span>,
                                        <span class="va">zscore</span> <span class="op">&lt;=</span> <span class="fl">2</span><span class="op">)</span>,
               fill <span class="op">=</span> <span class="st">"red"</span>,
               <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>ymin<span class="op">=</span><span class="fl">0</span>,ymax<span class="op">=</span><span class="va">score</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -306,19 +306,19 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 
-<span class="va">plot_df</span> <span class="op">%&gt;%</span>
+<span class="va">plot_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">dist</span> <span class="op">==</span> <span class="st">"first"</span>,
          <span class="va">x</span> <span class="op">&gt;</span> <span class="fl">1</span>,
-         <span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">score</span><span class="op">)</span> <span class="op">%&gt;%</span>
+         <span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">score</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">first_one</span><span class="op">)</span>
 <span class="co">#&gt; [1] 0.1443879</span>
 
-<span class="va">plot_df</span> <span class="op">%&gt;%</span>
+<span class="va">plot_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">dist</span> <span class="op">==</span> <span class="st">"second"</span>,
          <span class="va">x</span> <span class="op">&gt;</span> <span class="fl">30</span>,
-         <span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">35</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">score</span><span class="op">)</span> <span class="op">%&gt;%</span>
+         <span class="va">x</span> <span class="op">&lt;=</span> <span class="fl">35</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">score</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">second_one</span><span class="op">)</span>
 <span class="co">#&gt; [1] 0.1443879</span></code></pre></div>
 <p>The above values should approximate the values below from the <code><a href="https://rdrr.io/r/stats/Normal.html">pnorm()</a></code> function.</p>
@@ -385,7 +385,7 @@
 <p>Z-scores can become convenient if you get used to what they represent. For example, statistics textbooks commonly present a graph or table like the following:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"imgs/norm_zscores.png"</span><span class="op">)</span></code></pre></div>
-<p><img src="imgs/norm_zscores.png"><!-- --></p>
+<p><img src="imgs/norm_zscores.png" width="600"></p>
 <p>If you spend time with the unit normal distribution, then you learn its basic properties, such as about 95% of scores fall between -2 and +2 standard deviations; or 99% of scores fall between -3 and 3 standard deviations, or about 34% of scores fall between the mean and one standard deviation. If you memorized all of these details, then whenever you have three things in the future…1) a score from a normal distribution, 2) the mean, and 3) the standard deviation…you can have some good intuitions about whether the score is common or rare…which can be convenient (if you happen to be interacting with normal distributions on a regular basis).</p>
 </div>
 </div>
@@ -417,8 +417,8 @@
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">raw_scores</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab8_Normal_files/figure-html/unnamed-chunk-11-1.png" width="700"> Now, rather than plotting individual scores. We create a sampling distribution of the mean. We will take 10,000 samples (say of n = 5 for each) and compute the mean for each, and then plot the distribution of sample means.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sample_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">0</span>,<span class="fl">100</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">sample_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">100000</span>,<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">200</span>,<span class="fl">0</span>,<span class="fl">100</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">sample_means</span>,breaks<span class="op">=</span><span class="fl">100</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab8_Normal_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
 <p>The above histogram (sample means) is much more normal looking compared to the flat distribution where all of the individual scores came from. Of course, this is all done by simulation, so we have to wonder if our simulated distribution of sample means really does approximate a normal distribution? This raises a general question…if you have a distribution of numbers, and you suspect it is a normal distribution, how can you know if that distribution is normal?</p>
 <p>Instead of developing a test for normality, let’s try something pretty straightforward as a quick “gut check”. Based on what we learned about z-scores, we know that all normal distributions have the same shape. So, the probability of getting a score between 0 and 1 standard deviations is the same for all normal distributions.</p>
@@ -428,8 +428,8 @@
 <p>We could ask if we find the same proportion of numbers falling between 0 and 1 standard deviations in the sampling distribution that we created…and we see the value is pretty close.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">to_z</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">sample_means</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">to_z</span><span class="op">[</span><span class="va">to_z</span> <span class="op">&gt;</span> <span class="fl">0</span> <span class="op">&amp;</span> <span class="va">to_z</span> <span class="op">&lt;</span> <span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.3331</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">to_z</span><span class="op">[</span><span class="va">to_z</span> <span class="op">&gt;</span> <span class="fl">0</span> <span class="op">&amp;</span> <span class="va">to_z</span> <span class="op">&lt;</span> <span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">100000</span>
+<span class="co">#&gt; [1] 0.33984</span></code></pre></div>
 <p>We’ve just done some rough checking and found that the sampling distribution of the mean seems to be approximately normal (based on the above very minimal comparison). Because this relationship often holds, it is common to use the math of normal distributions to work with sampling distributions of the mean.</p>
 <p>As we will see later, not all sampling distributions create normal distributions, this is a special property of sampling distributions of sample means. In later tests, we will look at sampling distributions of other statistics such as the t-statistic, and F-statistic. These are not distributed normally, and so different distributions (t and F distributions) are used in place of the normal.</p>
 </div>
@@ -467,14 +467,15 @@
 <p>We first need to compute a sampling distribution of the mean, this will tell us the kinds of sample means (of n=10) that could be observed by randomly sampling from a normal with mean =55 and sd =5.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sample_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">55</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">)</span></code></pre></div>
-<p><img src="Lab8_Normal_files/figure-html/unnamed-chunk-16-1.png" width="700"> Now, we are one step removed from the original distribution. The original distribution has a mean of 55 and standard deviation of 5. The distribution in the histogram is the sampling distribution of sample means. From the central limit theorem we expect this distribution of sample means to be approximately normal. What are the parameters (mean and standard deviation) of this distribution?</p>
+<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">sample_means</span>, breaks<span class="op">=</span><span class="fl">100</span><span class="op">)</span></code></pre></div>
+<p><img src="Lab8_Normal_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
+<p>Now, we are one step removed from the original distribution. The original distribution has a mean of 55 and standard deviation of 5. The distribution in the histogram is the sampling distribution of sample means. From the central limit theorem we expect this distribution of sample means to be approximately normal. What are the parameters (mean and standard deviation) of this distribution?</p>
 <p>We can estimate them from the simulation:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">)</span>
-<span class="co">#&gt; [1] 54.97779</span>
+<span class="co">#&gt; [1] 54.98689</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">)</span>
-<span class="co">#&gt; [1] 1.576511</span></code></pre></div>
+<span class="co">#&gt; [1] 1.583887</span></code></pre></div>
 <p>Or, we could use analytic formulas to “know” what they should be (at least in the long). For example, we expect that the most likely sample mean will the mean of the population (remember the sample mean is an unbiased estimator of the population mean). So, the mean of sampling distribution is expected to 55.</p>
 <p>Remember in the previous lab on sampling distributions I mentioned that “the standard deviation of the sampling distribution of the sample means is the standard error of the mean”. In this case, the <strong>standard error of the mean</strong> can be computed directly:</p>
 <p><span class="math inline">\(\text{SEM} = \frac{\sigma}{\sqrt{N}}\)</span></p>
@@ -498,7 +499,7 @@
 
 <span class="co"># this is similar to what the simulation showed:</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">[</span><span class="va">sample_means</span> <span class="op">&gt;</span> <span class="fl">60</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
-<span class="co">#&gt; [1] 8e-04</span></code></pre></div>
+<span class="co">#&gt; [1] 4e-04</span></code></pre></div>
 </div>
 <div id="example-3-differences-between-groups" class="section level3">
 <h3 class="hasAnchor">
@@ -520,11 +521,11 @@
 <p>When we assume that sample means from group A and B come from the exact same distribution, and when we subtract the means from group A and B to create the above sampling distribution of mean differences, we create a null-distribution, or null-hypothesis, that shows the kinds of mean differences that could be observed due to random sampling. This is what chance could do in your experiment. Without getting more specific, if you thought your “special training” would improve the test scores in this scenario by 30%, that is way outside the window, there is no way that chance alone could do that (30% would be ABOVE AND BEYOND what chance can do). On other hand, if you ran your experiment and you found that your training improved test performance by 3%…well, how often do you get a difference of 3% or better by chance? The answer can be found by evaluating the above distribution:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">mean_differences</span><span class="op">[</span><span class="va">mean_differences</span> <span class="op">&gt;</span> <span class="fl">3</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.0885</span></code></pre></div>
-<p>According to a simulation, scores of 3% or greater occur with p &lt;= 0.0885. This would be a “one-tailed” test. If you wanted to know how often you get a score as large as 3% away from the mean in either direction, that would be a two-tailed test:</p>
+<span class="co">#&gt; [1] 0.0928</span></code></pre></div>
+<p>According to a simulation, scores of 3% or greater occur with p &lt;= 0.0928. This would be a “one-tailed” test. If you wanted to know how often you get a score as large as 3% away from the mean in either direction, that would be a two-tailed test:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">mean_differences</span><span class="op">[</span><span class="va">mean_differences</span> <span class="op">&gt;</span> <span class="fl">3</span> <span class="op">|</span> <span class="va">mean_differences</span> <span class="op">&lt;</span> <span class="op">-</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.1754</span></code></pre></div>
+<span class="co">#&gt; [1] 0.1827</span></code></pre></div>
 <p>These two p-values are close estimates of the p-values you would get from a z-test. They are off by a little bit because the simulation is slightly imperfect.</p>
 <p>To do a z-test for real, we need some observed mean difference between our two groups. Let’s say that is a 3% difference on the test. We also need the mean and standard deviation of the normal distribution where the 3% difference came from. Then we can calculate the probability of obtaining a 3% difference or larger by chance. IMPORTANTLY, the mean and standard deviation we need is for the null-distribution specific to a difference between two sample means, not the original parent distribution where the scores come from.</p>
 <ol style="list-style-type: decimal">
@@ -539,7 +540,7 @@
 <p>We could estimate this value from our simulation by calculating the standard deviation:</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">mean_differences</span><span class="op">)</span>
-<span class="co">#&gt; [1] 2.204452</span></code></pre></div>
+<span class="co">#&gt; [1] 2.243689</span></code></pre></div>
 <p>It turns out there is a slightly different analytic formula for the standard error of the mean in this situation:</p>
 <p><span class="math inline">\(\text{SEM} = \frac{\sqrt{2}\sigma}{\sqrt{N}}\)</span></p>
 <p>This formula is required because the distribution of mean differences is a subtraction of the mean for group A and B, each with n=10. And, the expected variation changes a little bit, which we account for with the added <span class="math inline">\(\sqrt{2}\)</span> in the formula.</p>

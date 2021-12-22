@@ -255,7 +255,7 @@ All of the following examples assume you have a data folder in your workspace th
 
 **WARNING:** loading files requires you to tell R exactly where the file is on your computer. This can involve specifying the entire file path (the drive, all of the folder, and then the filename). These examples avoid this complete filename nonsense by putting the files in a data folder in your R project folder. Then, we just need to specify the folder and the filename. In this case, the folder will always be data. In general, R by default attempts to load files from the current working directory, which is automatically set to your project folder when you are working in an R-studio project. 
 
-```{r}
+```{r, eval=FALSE}
 # loading a csv file using read.csv
 hsq <- read.csv("data/hsq.csv")
 
