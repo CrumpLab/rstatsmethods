@@ -35,6 +35,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -70,7 +72,7 @@
       <a href="../../articles/course_docs/Syllabus.html">Fall 2021</a>
     </li>
     <li>
-      <a href="../../articles/course_docs/Spring_syllabus.html">Spring 2022</a>
+      <a href="../../articles/course_docs/Spring_2022_syllabus.html">Spring 2022</a>
     </li>
   </ul>
 </li>
@@ -196,7 +198,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/CrumpLab/rstatsmethods">
+  <a href="https://github.com/CrumpLab/rstatsmethods" class="external-link">
     <span class="fa fa-lg fa-github"></span>
      
   </a>
@@ -217,7 +219,7 @@
 
       
 
-      </header><script src="semester_project_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Semester project</h1>
@@ -230,9 +232,9 @@
 
     
     
-<div id="overview" class="section level2">
-<h2 class="hasAnchor">
-<a href="#overview" class="anchor"></a>Overview</h2>
+<div class="section level2">
+<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h2>
 <p>Your semester project assignment is due at the end of the semester and is submitted as a link on Blackboard.</p>
 <p>We will discuss this project across the semester. As an overview, you will be demonstrating that you can conduct a reproducible analysis, which is an analysis of data that is independently verifiable. For example, someone else could obtain your data and code and independently reproduce your analysis.</p>
 <p>You will complete three related parts.</p>
@@ -242,29 +244,29 @@
 <li><p>Simulation based power analysis: Include a simulation based power analysis at the end of your APA paper.</p></li>
 </ol>
 </div>
-<div id="part-1-reproducible-report-10-points" class="section level2">
-<h2 class="hasAnchor">
-<a href="#part-1-reproducible-report-10-points" class="anchor"></a>Part 1: Reproducible report (10 points)</h2>
-<div id="finding-a-paper-with-data" class="section level3">
-<h3 class="hasAnchor">
-<a href="#finding-a-paper-with-data" class="anchor"></a>Finding a paper with data</h3>
+<div class="section level2">
+<h2 id="part-1-reproducible-report-10-points">Part 1: Reproducible report (10 points)<a class="anchor" aria-label="anchor" href="#part-1-reproducible-report-10-points"></a>
+</h2>
+<div class="section level3">
+<h3 id="finding-a-paper-with-data">Finding a paper with data<a class="anchor" aria-label="anchor" href="#finding-a-paper-with-data"></a>
+</h3>
 <p>Here are a few tips for finding a psych paper with open data. <strong>Most important</strong>, for this assignment you do not need to re-analyze <strong>all of the data</strong> from a particular paper. Many papers have multiple experiments, and multiple analyses, including analyses you may not be familiar with. You can restrict your re-analysis to a portion of the paper. For example, you might only re-analyze the results from one experiment, and perhaps only the results relevant to one of the tests reported for the experiment. <strong>You can limit your re-analyses to tests that have been covered in lecture or lab</strong>.</p>
 <ol style="list-style-type: decimal">
 <li>
-<a href="https://osf.io">https://osf.io</a> The open science framework contains many repositories of open data that are part of published papers</li>
+<a href="https://osf.io" class="external-link">https://osf.io</a> The open science framework contains many repositories of open data that are part of published papers</li>
 <li>Some journals, including Psychological Science, put badges on papers with open data. Look for the blue open-data badge. You will usually find the link to the open-data in the paper.</li>
 <li>
-<a href="https://crumplab.github.io/statisticsLab/">https://crumplab.github.io/statisticsLab/</a> This is a lab manual I use for teaching R to undergraduates. Most labs (especially 6 to 11) involve a paper from Psych science with open-data.</li>
+<a href="https://crumplab.github.io/statisticsLab/" class="external-link">https://crumplab.github.io/statisticsLab/</a> This is a lab manual I use for teaching R to undergraduates. Most labs (especially 6 to 11) involve a paper from Psych science with open-data.</li>
 </ol>
 </div>
-<div id="loading-the-data-into-r" class="section level3">
-<h3 class="hasAnchor">
-<a href="#loading-the-data-into-r" class="anchor"></a>Loading the data into R</h3>
+<div class="section level3">
+<h3 id="loading-the-data-into-r">Loading the data into R<a class="anchor" aria-label="anchor" href="#loading-the-data-into-r"></a>
+</h3>
 <p>The data you find could be in many different formats. It should be possible to load it into R and transform the data into the format/organization that you need to complete the analysis.</p>
 </div>
-<div id="re-analysis-of-original-data" class="section level3">
-<h3 class="hasAnchor">
-<a href="#re-analysis-of-original-data" class="anchor"></a>Re-analysis of original data</h3>
+<div class="section level3">
+<h3 id="re-analysis-of-original-data">Re-analysis of original data<a class="anchor" aria-label="anchor" href="#re-analysis-of-original-data"></a>
+</h3>
 <p>Focus on a single analysis that was relevant to one of the research questions. For example, if the analysis involved several t-tests:</p>
 <ol style="list-style-type: decimal">
 <li>Conduct and report the same t-tests</li>
@@ -272,9 +274,9 @@
 <li>Report a graph of the means</li>
 </ol>
 </div>
-<div id="write-a-reproducible-report" class="section level3">
-<h3 class="hasAnchor">
-<a href="#write-a-reproducible-report" class="anchor"></a>Write a reproducible report</h3>
+<div class="section level3">
+<h3 id="write-a-reproducible-report">Write a reproducible report<a class="anchor" aria-label="anchor" href="#write-a-reproducible-report"></a>
+</h3>
 <p>The concept of a reproducible report is that someone else could exactly reproduce your analysis given your report. It is easy to make reproducible reports using R markdown. If you write your report in an .Rmd file, and that file includes your scripts for loading and analyzing the data, then by sharing your .rmd file, other people can exactly reproduce your report.</p>
 <p>Your report should include the following (the points add up to 10 for part 1).</p>
 <ol style="list-style-type: decimal">
@@ -285,12 +287,12 @@
 </ol>
 </div>
 </div>
-<div id="part-2-apa-paper-in-r-markdown-10-points" class="section level2">
-<h2 class="hasAnchor">
-<a href="#part-2-apa-paper-in-r-markdown-10-points" class="anchor"></a>Part 2: APA paper in R markdown (10 points)</h2>
-<div id="papaja" class="section level3">
-<h3 class="hasAnchor">
-<a href="#papaja" class="anchor"></a>Papaja</h3>
+<div class="section level2">
+<h2 id="part-2-apa-paper-in-r-markdown-10-points">Part 2: APA paper in R markdown (10 points)<a class="anchor" aria-label="anchor" href="#part-2-apa-paper-in-r-markdown-10-points"></a>
+</h2>
+<div class="section level3">
+<h3 id="papaja">Papaja<a class="anchor" aria-label="anchor" href="#papaja"></a>
+</h3>
 <p>In part 2, you will learn how to use the papaja package to create APA style manuscripts using R markdown. We will discuss how to use papaja in class. You will create a new .rmd file using the papaja template, and then transfer your reproducible report into this format. You will write very brief sections for:</p>
 <ol style="list-style-type: decimal">
 <li>abstract (50-100 words) (1 point)</li>
@@ -310,12 +312,12 @@
 <p>Again, the purpose here is not to write a full-length APA paper, but to get some experience with using the papaja package.</p>
 </div>
 </div>
-<div id="part-3-power-analysis-8-points" class="section level2">
-<h2 class="hasAnchor">
-<a href="#part-3-power-analysis-8-points" class="anchor"></a>Part 3: Power analysis (8 points)</h2>
-<div id="simulation-based-power-analysis" class="section level3">
-<h3 class="hasAnchor">
-<a href="#simulation-based-power-analysis" class="anchor"></a>Simulation based power analysis</h3>
+<div class="section level2">
+<h2 id="part-3-power-analysis-8-points">Part 3: Power analysis (8 points)<a class="anchor" aria-label="anchor" href="#part-3-power-analysis-8-points"></a>
+</h2>
+<div class="section level3">
+<h3 id="simulation-based-power-analysis">Simulation based power analysis<a class="anchor" aria-label="anchor" href="#simulation-based-power-analysis"></a>
+</h3>
 <p>In part 3 you will add a simulation-based power analysis to your APA-style manuscript. Specifically, you should report a graph showing a power-curve for the design. We will discuss how to conduct simulation based power analyses in class.</p>
 <p>The following should be included in the general discussion of your APA-paper (from part 2).</p>
 <ol style="list-style-type: decimal">
@@ -327,11 +329,11 @@
 <hr>
 </div>
 </div>
-<div id="example-of-a-completed-project" class="section level2">
-<h2 class="hasAnchor">
-<a href="#example-of-a-completed-project" class="anchor"></a>Example of a completed project</h2>
+<div class="section level2">
+<h2 id="example-of-a-completed-project">Example of a completed project<a class="anchor" aria-label="anchor" href="#example-of-a-completed-project"></a>
+</h2>
 <p>To give you a better idea of what I am looking for I completed the project myself.</p>
-<p>And the source code is located in this github repository <a href="https://github.com/CrumpLab/psyc7709Lab/tree/master/semester_project">https://github.com/CrumpLab/psyc7709Lab/tree/master/semester_project</a>.</p>
+<p>And the source code is located in this github repository <a href="https://github.com/CrumpLab/psyc7709Lab/tree/master/semester_project" class="external-link">https://github.com/CrumpLab/psyc7709Lab/tree/master/semester_project</a>.</p>
 <p>This repository contains:</p>
 <ol style="list-style-type: decimal">
 <li>
@@ -342,9 +344,9 @@
 <strong>Part 3</strong>: a section at the end of the APA-style manuscript that conducts a simulation based power-analysis of the design.</li>
 </ol>
 </div>
-<div id="semester-project-submission" class="section level2">
-<h2 class="hasAnchor">
-<a href="#semester-project-submission" class="anchor"></a>Semester Project Submission</h2>
+<div class="section level2">
+<h2 id="semester-project-submission">Semester Project Submission<a class="anchor" aria-label="anchor" href="#semester-project-submission"></a>
+</h2>
 <ol style="list-style-type: decimal">
 <li>Create a <strong>new</strong> git-enabled R project for your semester project, and upload it to github</li>
 <li>Work in this folder, and complete Parts 1 to 3. When you are finished you should have at a minimum:</li>
@@ -372,11 +374,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://crumplab.github.io">Matthew Crump</a>.</p>
+  <p></p>
+<p>Developed by <a href="https://crumplab.github.io" class="external-link">Matthew Crump</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -384,6 +388,8 @@
 
   
 
+
+  
 
   </body>
 </html>

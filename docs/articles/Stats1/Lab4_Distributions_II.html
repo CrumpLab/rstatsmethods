@@ -35,6 +35,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -70,7 +72,7 @@
       <a href="../../articles/course_docs/Syllabus.html">Fall 2021</a>
     </li>
     <li>
-      <a href="../../articles/course_docs/Spring_syllabus.html">Spring 2022</a>
+      <a href="../../articles/course_docs/Spring_2022_syllabus.html">Spring 2022</a>
     </li>
   </ul>
 </li>
@@ -196,7 +198,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/CrumpLab/rstatsmethods">
+  <a href="https://github.com/CrumpLab/rstatsmethods" class="external-link">
     <span class="fa fa-lg fa-github"></span>
      
   </a>
@@ -217,13 +219,13 @@
 
       
 
-      </header><script src="Lab4_Distributions_II_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Lab 4 Distributions II</h1>
-                        <h4 class="author">Matthew J. C. Crump</h4>
+                        <h4 data-toc-skip class="author">Matthew J. C. Crump</h4>
             
-            <h4 class="date">9/17/2020</h4>
+            <h4 data-toc-skip class="date">9/17/2020</h4>
       
       
       <div class="hidden name"><code>Lab4_Distributions_II.Rmd</code></div>
@@ -232,14 +234,14 @@
 
     
     
-<div id="reading" class="section level2">
-<h2 class="hasAnchor">
-<a href="#reading" class="anchor"></a>Reading</h2>
+<div class="section level2">
+<h2 id="reading">Reading<a class="anchor" aria-label="anchor" href="#reading"></a>
+</h2>
 <p>Vokey &amp; Allen, Chapters 16.</p>
 </div>
-<div id="overview" class="section level2">
-<h2 class="hasAnchor">
-<a href="#overview" class="anchor"></a>Overview</h2>
+<div class="section level2">
+<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h2>
 <p>In lecture you are learning about basic probability. In this lab we will continue to learn about working with distributions in R, and we will examine issues relating to basic probability.</p>
 <p>We will look at three conceptual issues with probability, and gain practical skills in R for organizing and managing simulation data that will be useful for the rest of this course. In all of the examples we will generate events from particular distributions and examine them.</p>
 <ol style="list-style-type: decimal">
@@ -250,40 +252,40 @@
 <iframe width="560" height="315" src="https://www.youtube.com/embed/h4EvG2e65O8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
-<div id="concept-i-probabilisitic-event-generation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#concept-i-probabilisitic-event-generation" class="anchor"></a>Concept I: Probabilisitic event generation</h2>
-<p>In this concept section we will use R to generate events with specified probabilities. We will mainly use the <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code> function, which we are already familiar with. This concept section explores probabilistic event generation in a few different ways by examining a few probability problems:</p>
-<div id="dice-problems" class="section level3">
-<h3 class="hasAnchor">
-<a href="#dice-problems" class="anchor"></a>Dice Problems</h3>
+<div class="section level2">
+<h2 id="concept-i-probabilisitic-event-generation">Concept I: Probabilisitic event generation<a class="anchor" aria-label="anchor" href="#concept-i-probabilisitic-event-generation"></a>
+</h2>
+<p>In this concept section we will use R to generate events with specified probabilities. We will mainly use the <code><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample()</a></code> function, which we are already familiar with. This concept section explores probabilistic event generation in a few different ways by examining a few probability problems:</p>
+<div class="section level3">
+<h3 id="dice-problems">Dice Problems<a class="anchor" aria-label="anchor" href="#dice-problems"></a>
+</h3>
 <ol style="list-style-type: decimal">
 <li>Use R to roll a fair six-sided die, and show that each number comes up equally frequently in the long run. Roll the die 10,000 times, report how many times each number (1-6) was rolled.</li>
 </ol>
 <p>Each number should come up about 10000/6 = 1666.667 times.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">rolls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>,<span class="fl">10000</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">rolls</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">rolls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>,<span class="fl">10000</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">rolls</span><span class="op">)</span>
 <span class="co">#&gt; rolls</span>
 <span class="co">#&gt;    1    2    3    4    5    6 </span>
-<span class="co">#&gt; 1591 1656 1660 1678 1762 1653</span></code></pre></div>
+<span class="co">#&gt; 1645 1721 1641 1635 1655 1703</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>With a pair of six-sided dice it is possible to roll the numbers 2 to 12. Use a simulation of 10000 rolls (of a pair of dice) in R to calculate the probability of rolling each of the possible numbers.</li>
 </ol>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">one</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>,<span class="fl">10000</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">two</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>,<span class="fl">10000</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">one</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>,<span class="fl">10000</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">two</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>,<span class="fl">10000</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
 <span class="va">combined</span> <span class="op">&lt;-</span> <span class="va">one</span><span class="op">+</span><span class="va">two</span>
-<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">combined</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
+<span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">combined</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
 <span class="co">#&gt; combined</span>
 <span class="co">#&gt;      2      3      4      5      6      7      8      9     10     11     12 </span>
-<span class="co">#&gt; 0.0252 0.0510 0.0879 0.1127 0.1413 0.1652 0.1402 0.1104 0.0807 0.0581 0.0273</span></code></pre></div>
+<span class="co">#&gt; 0.0287 0.0567 0.0844 0.1083 0.1399 0.1672 0.1429 0.1078 0.0820 0.0567 0.0254</span></code></pre></div>
 <p>Let’s compare the result of the simulation to the known probabilities. First, we need to determine the number of ways that each number can be obtained by rolling a pair of dice. We can use R to do this as well:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">first</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span>x<span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, each <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>
-<span class="va">second</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span>x<span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, times <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">first</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span>x<span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, each <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>
+<span class="va">second</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span>x<span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, times <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>
 <span class="va">sum_rolls</span> <span class="op">&lt;-</span> <span class="va">first</span><span class="op">+</span><span class="va">second</span>
-<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">sum_rolls</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">sum_rolls</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">sum_rolls</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">sum_rolls</span><span class="op">)</span>
 <span class="co">#&gt; sum_rolls</span>
 <span class="co">#&gt;          2          3          4          5          6          7          8 </span>
 <span class="co">#&gt; 0.02777778 0.05555556 0.08333333 0.11111111 0.13888889 0.16666667 0.13888889 </span>
@@ -291,29 +293,29 @@
 <span class="co">#&gt; 0.11111111 0.08333333 0.05555556 0.02777778</span>
 
 <span class="co">## compare</span>
-<span class="va">sim_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">combined</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
-<span class="va">true_probs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">sum_rolls</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">sum_rolls</span><span class="op">)</span>
+<span class="va">sim_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">combined</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
+<span class="va">true_probs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">sum_rolls</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">sum_rolls</span><span class="op">)</span>
 
 <span class="co">## Difference</span>
 <span class="va">true_probs</span><span class="op">-</span><span class="va">sim_result</span>
 <span class="co">#&gt; sum_rolls</span>
 <span class="co">#&gt;             2             3             4             5             6 </span>
-<span class="co">#&gt;  0.0025777778  0.0045555556 -0.0045666667 -0.0015888889 -0.0024111111 </span>
+<span class="co">#&gt; -0.0009222222 -0.0011444444 -0.0010666667  0.0028111111 -0.0010111111 </span>
 <span class="co">#&gt;             7             8             9            10            11 </span>
-<span class="co">#&gt;  0.0014666667 -0.0013111111  0.0007111111  0.0026333333 -0.0025444444 </span>
+<span class="co">#&gt; -0.0005333333 -0.0040111111  0.0033111111  0.0013333333 -0.0011444444 </span>
 <span class="co">#&gt;            12 </span>
-<span class="co">#&gt;  0.0004777778</span></code></pre></div>
+<span class="co">#&gt;  0.0023777778</span></code></pre></div>
 </div>
-<div id="event-generators" class="section level3">
-<h3 class="hasAnchor">
-<a href="#event-generators" class="anchor"></a>Event generators</h3>
-<p>Remember that you can use <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code> to generate events with specific probabilities:</p>
+<div class="section level3">
+<h3 id="event-generators">Event generators<a class="anchor" aria-label="anchor" href="#event-generators"></a>
+</h3>
+<p>Remember that you can use <code><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample()</a></code> to generate events with specific probabilities:</p>
 <ol style="list-style-type: decimal">
 <li>Generate P(“A”) = .8, and P(“B”) =.2, run the generator 20 times.</li>
 </ol>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"B"</span><span class="op">)</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span>, prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.8</span>, <span class="fl">.2</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;  [1] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "B" "A" "A" "A" "A" "A" "A" "A" "B"</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"B"</span><span class="op">)</span>, <span class="fl">20</span>, replace <span class="op">=</span> <span class="cn">TRUE</span>, prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.8</span>, <span class="fl">.2</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt;  [1] "A" "A" "A" "A" "A" "B" "A" "A" "A" "B" "B" "A" "A" "A" "B" "A" "A" "A" "A"</span>
 <span class="co">#&gt; [20] "A"</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Generate letters from the alphabet such that each letter could occur with equal probability. Generate 50 letters:</li>
@@ -328,158 +330,158 @@
 <span class="co">#&gt;  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S"</span>
 <span class="co">#&gt; [20] "T" "U" "V" "W" "X" "Y" "Z"</span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">letters</span>,<span class="fl">50</span>,replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#&gt;  [1] "c" "t" "j" "v" "r" "v" "x" "h" "l" "k" "n" "l" "a" "v" "w" "e" "w" "h" "p"</span>
-<span class="co">#&gt; [20] "l" "b" "b" "s" "q" "m" "h" "t" "u" "g" "h" "o" "y" "h" "r" "c" "d" "i" "z"</span>
-<span class="co">#&gt; [39] "p" "l" "r" "k" "u" "w" "u" "w" "z" "b" "r" "u"</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">letters</span>,<span class="fl">50</span>,replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
+<span class="co">#&gt;  [1] "f" "c" "e" "h" "n" "f" "f" "x" "d" "j" "r" "d" "i" "z" "a" "e" "l" "d" "h"</span>
+<span class="co">#&gt; [20] "p" "t" "s" "o" "r" "x" "u" "r" "d" "w" "k" "v" "l" "n" "h" "h" "h" "g" "y"</span>
+<span class="co">#&gt; [39] "v" "h" "m" "s" "z" "c" "y" "u" "u" "r" "n" "r"</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Create a random string generator that creates strings of random letters. For example a string of 5 random letters could look like “fjwud”. Generate 50 random letter strings, each with 5 random letters in it.</li>
 </ol>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_letters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">letters</span>,<span class="fl">50</span><span class="op">*</span><span class="fl">5</span>,replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">my_letters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">letters</span>,<span class="fl">50</span><span class="op">*</span><span class="fl">5</span>,replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="co"># turn the vector into a matrix with 5 columns</span>
-<span class="va">my_strings</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">my_letters</span>, ncol<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
+<span class="va">my_strings</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="va">my_letters</span>, ncol<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
 
 <span class="co"># each row is a word, need to collapse the column to create a string</span>
-<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">my_strings</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span>, collapse<span class="op">=</span><span class="st">""</span><span class="op">)</span>
-<span class="co">#&gt; [1] "isyms"</span>
+<span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">my_strings</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span>, collapse<span class="op">=</span><span class="st">""</span><span class="op">)</span>
+<span class="co">#&gt; [1] "wynea"</span>
 
 <span class="co"># loop to collapse all of the rows into words</span>
-<span class="va">random_strings</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
-<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">my_strings</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">random_strings</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">my_strings</span><span class="op">[</span><span class="va">i</span>,<span class="op">]</span>, collapse<span class="op">=</span><span class="st">""</span><span class="op">)</span>
+<span class="va">random_strings</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">my_strings</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">random_strings</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">my_strings</span><span class="op">[</span><span class="va">i</span>,<span class="op">]</span>, collapse<span class="op">=</span><span class="st">""</span><span class="op">)</span>
 <span class="op">}</span>
 
 <span class="va">random_strings</span>
-<span class="co">#&gt;  [1] "isyms" "ujkxh" "ikxdk" "nhqon" "qxtyn" "dhwpv" "gwpxh" "seleg" "qewjl"</span>
-<span class="co">#&gt; [10] "zuxfl" "srpgw" "tnxqb" "mtvic" "xwkhy" "aqdko" "vxmjv" "wzxkj" "pjsyv"</span>
-<span class="co">#&gt; [19] "lneuq" "ipsjq" "pimhy" "lqftu" "qdzyv" "vfqdi" "coaag" "skobo" "edbwe"</span>
-<span class="co">#&gt; [28] "jariy" "wignl" "aglgl" "xqupd" "tlwhc" "vsyrs" "wtxdj" "qcoee" "yrwvt"</span>
-<span class="co">#&gt; [37] "knybh" "egcem" "yzuzw" "pbiqt" "zgybx" "bdfzx" "jcvqw" "sjfpk" "zrgjh"</span>
-<span class="co">#&gt; [46] "wdrgb" "dtbcw" "lihry" "nhhid" "lhhfw"</span></code></pre></div>
+<span class="co">#&gt;  [1] "wynea" "qyxpv" "knuvk" "ktqgs" "fukrr" "xdbvr" "gwyjd" "rdlhu" "zzora"</span>
+<span class="co">#&gt; [10] "yrayw" "iozbh" "nikpc" "avkem" "wdjul" "urwyu" "lisfc" "cemcj" "jqlig"</span>
+<span class="co">#&gt; [19] "bgays" "tgrqk" "jlsiw" "mcvqi" "trxyy" "xsipe" "xrvek" "updiu" "gtqik"</span>
+<span class="co">#&gt; [28] "mwene" "yigbl" "duicf" "plsyl" "qawyl" "icdnt" "bhqcm" "bfarc" "zrycs"</span>
+<span class="co">#&gt; [37] "nmjuk" "lqufn" "ckrgc" "nihbe" "oyedg" "bkwvi" "lbubz" "oyzrn" "moynz"</span>
+<span class="co">#&gt; [46] "tccod" "utwev" "vlnjj" "smbkg" "vtjuw"</span></code></pre></div>
 </div>
 </div>
-<div id="concept-ii-experiencing-probability" class="section level2">
-<h2 class="hasAnchor">
-<a href="#concept-ii-experiencing-probability" class="anchor"></a>Concept II: Experiencing probability</h2>
-<p>People talk about probabilities all of the time. For example, tomorrow might have a 10% chance of rain, and a fair coin has a 50% chance of landing heads or tails, are both common examples. We have already begun to look at how probabilities behave in lab 3, when <a href="https://crumplab.github.io/psyc7709Lab/articles/Lab3_Distributions_I.html#fair-coin-1">we used R to flip a coin to demonstrate that a coin is fair in the long run</a>. We expand on that demonstration here.</p>
+<div class="section level2">
+<h2 id="concept-ii-experiencing-probability">Concept II: Experiencing probability<a class="anchor" aria-label="anchor" href="#concept-ii-experiencing-probability"></a>
+</h2>
+<p>People talk about probabilities all of the time. For example, tomorrow might have a 10% chance of rain, and a fair coin has a 50% chance of landing heads or tails, are both common examples. We have already begun to look at how probabilities behave in lab 3, when <a href="https://crumplab.github.io/psyc7709Lab/articles/Lab3_Distributions_I.html#fair-coin-1" class="external-link">we used R to flip a coin to demonstrate that a coin is fair in the long run</a>. We expand on that demonstration here.</p>
 <p>One takeaway point from the coin flipping example is that P(heads) = .5 (probability of getting a heads equals 50%), is only true “in the long run”. In the short run, you could get a bunch of tails.</p>
-<div id="short-run-coin-flipping" class="section level3">
-<h3 class="hasAnchor">
-<a href="#short-run-coin-flipping" class="anchor"></a>Short-run coin flipping</h3>
+<div class="section level3">
+<h3 id="short-run-coin-flipping">Short-run coin flipping<a class="anchor" aria-label="anchor" href="#short-run-coin-flipping"></a>
+</h3>
 <ol style="list-style-type: decimal">
 <li>Consider flipping a fair coin ten times. What are the possible outcomes? And what is the probability of each of the outcomes? Let’s answer this question with a simulation in R.</li>
 </ol>
 <p>Some of the possible outcomes are 10 Tails or 10 Heads, or any combination of heads and tails in between, which can be described as 0 heads to 10 heads.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sim_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10000</span>,
-                         <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span>, <span class="fl">10</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">sim_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">10000</span>,
+                         <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span>, <span class="fl">10</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
                          <span class="op">)</span>
 
-<span class="va">number_of_heads</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span><span class="op">(</span><span class="va">sim_results</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">number_of_heads</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
+<span class="va">number_of_heads</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colSums</a></span><span class="op">(</span><span class="va">sim_results</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">number_of_heads</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
 <span class="co">#&gt; number_of_heads</span>
 <span class="co">#&gt;      0      1      2      3      4      5      6      7      8      9     10 </span>
-<span class="co">#&gt; 0.0006 0.0097 0.0441 0.1156 0.2069 0.2439 0.2019 0.1184 0.0482 0.0097 0.0010</span>
+<span class="co">#&gt; 0.0008 0.0115 0.0445 0.1161 0.2001 0.2486 0.2077 0.1161 0.0433 0.0105 0.0008</span>
 
 <span class="co"># alternative solution using rbinom</span>
 
-<span class="va">number_of_heads</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fl">10</span>,prob<span class="op">=</span><span class="fl">.5</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">number_of_heads</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
+<span class="va">number_of_heads</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fl">10</span>,prob<span class="op">=</span><span class="fl">.5</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">number_of_heads</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
 <span class="co">#&gt; number_of_heads</span>
 <span class="co">#&gt;      0      1      2      3      4      5      6      7      8      9     10 </span>
-<span class="co">#&gt; 0.0009 0.0098 0.0429 0.1168 0.1994 0.2541 0.2052 0.1167 0.0441 0.0088 0.0013</span></code></pre></div>
+<span class="co">#&gt; 0.0009 0.0101 0.0481 0.1218 0.2053 0.2410 0.2105 0.1105 0.0419 0.0090 0.0009</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>If you flipped a coin 10000 times, you would find many different kinds of short-run sequences. For example, HH, HT, TH, and TT. What is the probability of each of these kinds of sequences?</li>
 </ol>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">flips</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"H"</span>,<span class="st">"T"</span><span class="op">)</span>, <span class="fl">10000</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">flips</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"H"</span>,<span class="st">"T"</span><span class="op">)</span>, <span class="fl">10000</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
 
-<span class="va">sequence</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
-<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">flips</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+<span class="va">sequence</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">flips</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
   <span class="va">first_element</span> <span class="op">&lt;-</span> <span class="va">flips</span><span class="op">[</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span>
   <span class="va">second_element</span> <span class="op">&lt;-</span> <span class="va">flips</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>
-  <span class="va">sequence</span><span class="op">[</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">first_element</span>,<span class="va">second_element</span><span class="op">)</span>
+  <span class="va">sequence</span><span class="op">[</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">first_element</span>,<span class="va">second_element</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">sequence</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">sequence</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">sequence</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">sequence</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; sequence</span>
 <span class="co">#&gt;        HH        HT        TH        TT </span>
-<span class="co">#&gt; 0.2472247 0.2506251 0.2505251 0.2516252</span>
+<span class="co">#&gt; 0.2539254 0.2474247 0.2474247 0.2512251</span>
 
 <span class="co">## 3 element sequences</span>
 
-<span class="va">flips</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"H"</span>,<span class="st">"T"</span><span class="op">)</span>, <span class="fl">1000000</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">flips</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"H"</span>,<span class="st">"T"</span><span class="op">)</span>, <span class="fl">1000000</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
 
-<span class="va">sequence</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
-<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">3</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">flips</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+<span class="va">sequence</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">3</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">flips</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
   <span class="va">first_element</span> <span class="op">&lt;-</span> <span class="va">flips</span><span class="op">[</span><span class="va">i</span><span class="op">-</span><span class="fl">2</span><span class="op">]</span>
   <span class="va">second_element</span> <span class="op">&lt;-</span> <span class="va">flips</span><span class="op">[</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span>
   <span class="va">third_element</span> <span class="op">&lt;-</span> <span class="va">flips</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>
-  <span class="va">sequence</span><span class="op">[</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">first_element</span>,
+  <span class="va">sequence</span><span class="op">[</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">first_element</span>,
                           <span class="va">second_element</span>,
                           <span class="va">third_element</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">sequence</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">sequence</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">sequence</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">sequence</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; sequence</span>
 <span class="co">#&gt;       HHH       HHT       HTH       HTT       THH       THT       TTH       TTT </span>
-<span class="co">#&gt; 0.1243762 0.1250643 0.1250183 0.1251303 0.1250653 0.1250843 0.1251313 0.1251303</span></code></pre></div>
+<span class="co">#&gt; 0.1255243 0.1248492 0.1251433 0.1248712 0.1248502 0.1251643 0.1248712 0.1247262</span></code></pre></div>
 </div>
 </div>
-<div id="concept-iii-subjective-probability" class="section level2">
-<h2 class="hasAnchor">
-<a href="#concept-iii-subjective-probability" class="anchor"></a>Concept III: Subjective Probability</h2>
+<div class="section level2">
+<h2 id="concept-iii-subjective-probability">Concept III: Subjective Probability<a class="anchor" aria-label="anchor" href="#concept-iii-subjective-probability"></a>
+</h2>
 <p>Vokey &amp; Allen discuss the Bayesian concept of subjective probability, which is the practice of assigning probabilities to beliefs, and updating probabilities about the belief through a data-gathering process.</p>
 <p>In this concept section we use R to demonstrate a basic example of belief updating.</p>
 <p>First, we create a sequence of events. We will stick with coin flips. Let’s create a situation where event probability changes at some point, and our task will be to collect data and determine if we can update our beliefs about the world.</p>
 <p>So, we will flip a fair coin 100 times, and then flip a biased coin 100 times. The biased coin will be more likely to come up heads (60%).</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">simulated_sequence</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">1</span>,<span class="fl">.5</span><span class="op">)</span>,
-                        <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">1</span>,<span class="fl">.6</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">simulated_sequence</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">1</span>,<span class="fl">.5</span><span class="op">)</span>,
+                        <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">1</span>,<span class="fl">.6</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Next, imagine that you have no idea what kind of coins were being flipped, and all you have is the sequence of flips. You start at the first coin flip, and go through all of them, each time you will use the data to update your belief about the coin.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_knowledge</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">my_belief</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
-<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">simulated_sequence</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+<code class="sourceCode R"><span class="va">my_knowledge</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">my_belief</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">simulated_sequence</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
   
     <span class="va">my_knowledge</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">simulated_sequence</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>
-    <span class="va">my_belief</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">my_knowledge</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">my_knowledge</span><span class="op">)</span>
+    <span class="va">my_belief</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">my_knowledge</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">my_knowledge</span><span class="op">)</span>
     
 <span class="op">}</span>
 
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">my_belief</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">my_belief</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab4_Distributions_II_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
 <p>What do your beliefs about the probability of getting heads look like if you only allow yourself to remember the last 20 coin flips?</p>
 <p>When would you be confident you had the correct belief about the probability of getting a heads?</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-<span class="va">simulated_sequence</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">1</span>,<span class="fl">.5</span><span class="op">)</span>,
-                        <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">1</span>,<span class="fl">.6</span><span class="op">)</span><span class="op">)</span>
+<span class="va">simulated_sequence</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">1</span>,<span class="fl">.5</span><span class="op">)</span>,
+                        <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">1</span>,<span class="fl">.6</span><span class="op">)</span><span class="op">)</span>
 
-<span class="va">my_knowledge</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">my_belief</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
-<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">simulated_sequence</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+<span class="va">my_knowledge</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">my_belief</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">simulated_sequence</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
   
     <span class="va">my_knowledge</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">simulated_sequence</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>
     <span class="kw">if</span><span class="op">(</span><span class="va">i</span> <span class="op">&lt;=</span> <span class="fl">20</span><span class="op">)</span><span class="op">{</span>
-      <span class="va">my_belief</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">my_knowledge</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">my_knowledge</span><span class="op">)</span>
+      <span class="va">my_belief</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">my_knowledge</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">my_knowledge</span><span class="op">)</span>
     <span class="op">}</span><span class="kw">else</span><span class="op">{</span>
-      <span class="va">my_belief</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">my_knowledge</span><span class="op">[</span><span class="va">i</span><span class="op">:</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">20</span><span class="op">)</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">my_knowledge</span><span class="op">[</span><span class="va">i</span><span class="op">:</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">20</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
+      <span class="va">my_belief</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">my_knowledge</span><span class="op">[</span><span class="va">i</span><span class="op">:</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">20</span><span class="op">)</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">my_knowledge</span><span class="op">[</span><span class="va">i</span><span class="op">:</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">20</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
     <span class="op">}</span>
     
 <span class="op">}</span>
 
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">my_belief</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">my_belief</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab4_Distributions_II_files/figure-html/unnamed-chunk-13-1.png" width="700"></p>
 </div>
-<div id="lab-4-generalization-assignment" class="section level2">
-<h2 class="hasAnchor">
-<a href="#lab-4-generalization-assignment" class="anchor"></a>Lab 4 Generalization Assignment</h2>
-<div id="instructions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#instructions" class="anchor"></a>Instructions</h3>
+<div class="section level2">
+<h2 id="lab-4-generalization-assignment">Lab 4 Generalization Assignment<a class="anchor" aria-label="anchor" href="#lab-4-generalization-assignment"></a>
+</h2>
+<div class="section level3">
+<h3 id="instructions">Instructions<a class="anchor" aria-label="anchor" href="#instructions"></a>
+</h3>
 <p>In general, labs will present a discussion of problems and issues with example code like above, and then students will be tasked with completing generalization assignments, showing that they can work with the concepts and tools independently.</p>
 <p>Your assignment instructions are the following:</p>
 <ol style="list-style-type: decimal">
@@ -494,15 +496,15 @@
 <iframe width="560" height="315" src="https://www.youtube.com/embed/cT27lOvn4qk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
-<div id="problems" class="section level3">
-<h3 class="hasAnchor">
-<a href="#problems" class="anchor"></a>Problems</h3>
+<div class="section level3">
+<h3 id="problems">Problems<a class="anchor" aria-label="anchor" href="#problems"></a>
+</h3>
 <ol style="list-style-type: decimal">
-<li>Estimate the letter occurrence probabilities of all 26 letters in English by measuring a paragraph of English text from wikipedia. (hint use <code><a href="https://rdrr.io/r/base/strsplit.html">strsplit()</a></code> to split a paragraph into individual letters) (1 point).</li>
+<li>Estimate the letter occurrence probabilities of all 26 letters in English by measuring a paragraph of English text from wikipedia. (hint use <code><a href="https://rdrr.io/r/base/strsplit.html" class="external-link">strsplit()</a></code> to split a paragraph into individual letters) (1 point).</li>
 </ol>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_paragraph</span> <span class="op">&lt;-</span> <span class="st">"This is a paragraph, with some stuff in it. This is another sentence in the paragraph"</span>
-<span class="va">the_letters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/strsplit.html">strsplit</a></span><span class="op">(</span><span class="va">my_paragraph</span>, split<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span>
+<span class="va">the_letters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/strsplit.html" class="external-link">strsplit</a></span><span class="op">(</span><span class="va">my_paragraph</span>, split<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span>
 <span class="va">the_letters</span>
 <span class="co">#&gt;  [1] "T" "h" "i" "s" " " "i" "s" " " "a" " " "p" "a" "r" "a" "g" "r" "a" "p" "h"</span>
 <span class="co">#&gt; [20] "," " " "w" "i" "t" "h" " " "s" "o" "m" "e" " " "s" "t" "u" "f" "f" " " "i"</span>
@@ -510,7 +512,7 @@
 <span class="co">#&gt; [58] "e" "r" " " "s" "e" "n" "t" "e" "n" "c" "e" " " "i" "n" " " "t" "h" "e" " "</span>
 <span class="co">#&gt; [77] "p" "a" "r" "a" "g" "r" "a" "p" "h"</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Generate “random” strings of letters that are sampled from a distribution where letter occurrence probability is the same as natural English. Use the probabilities for each letter from this <a href="https://en.wikipedia.org/wiki/Letter_frequency">wikipedia article</a>, or use your own estimates from the previous question (2 points).</p></li>
+<li><p>Generate “random” strings of letters that are sampled from a distribution where letter occurrence probability is the same as natural English. Use the probabilities for each letter from this <a href="https://en.wikipedia.org/wiki/Letter_frequency" class="external-link">wikipedia article</a>, or use your own estimates from the previous question (2 points).</p></li>
 <li><p>Generate a random walk of 10,000 steps. In a random walk, you are simulating the process of randomly taking a step up or down, as if you are on an infinite staircase. At each step you flip a coin. If you get heads you go up one step, if you get tails you go down one step. Start on step 0, then simulate a random walk for 10,000 steps. Your vector should preserve the step number for each step. For example, if the the first three steps were all heads, then the vector would begin with 0,1,2,3, which indicates a single step up each time. Plot the first 1,000 steps. (1 point)</p></li>
 <li><p>What was the most positive and most negative step reached out of 10,000? (1 point)</p></li>
 <li><p>What was the longest run of steps where all steps were positive numbers. For example, in the sequence: 1,2,3,2,1,0,-1,-2,-1,-2,-1,0,1,2,3; the answer is 5 because the first five values were all positive, and this was the longest sequence of positive values. (1 point).</p></li>
@@ -530,11 +532,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://crumplab.github.io">Matthew Crump</a>.</p>
+  <p></p>
+<p>Developed by <a href="https://crumplab.github.io" class="external-link">Matthew Crump</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -542,6 +546,8 @@
 
   
 
+
+  
 
   </body>
 </html>

@@ -35,6 +35,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -70,7 +72,7 @@
       <a href="../articles/course_docs/Syllabus.html">Fall 2021</a>
     </li>
     <li>
-      <a href="../articles/course_docs/Spring_syllabus.html">Spring 2022</a>
+      <a href="../articles/course_docs/Spring_2022_syllabus.html">Spring 2022</a>
     </li>
   </ul>
 </li>
@@ -196,7 +198,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/CrumpLab/rstatsmethods">
+  <a href="https://github.com/CrumpLab/rstatsmethods" class="external-link">
     <span class="fa fa-lg fa-github"></span>
      
   </a>
@@ -217,13 +219,13 @@
 
       
 
-      </header><script src="Correlation_example_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>correlation_example</h1>
-                        <h4 class="author">Matt Crump</h4>
+                        <h4 data-toc-skip class="author">Matt Crump</h4>
             
-            <h4 class="date">11/29/2021</h4>
+            <h4 data-toc-skip class="date">11/29/2021</h4>
       
       
       <div class="hidden name"><code>Correlation_example.Rmd</code></div>
@@ -233,103 +235,103 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>
   subjects <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">12</span>,
-  texts_per_day <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">150</span>,<span class="fl">50</span>,<span class="fl">300</span>,<span class="fl">500</span>,<span class="fl">500</span>,<span class="fl">65</span>,<span class="fl">1000</span>,<span class="fl">50</span>,<span class="fl">250</span>,<span class="fl">175</span>,<span class="fl">160</span><span class="op">)</span>,
-  random_coin <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">12</span>,<span class="fl">1</span>,<span class="fl">.5</span><span class="op">)</span>,
+  texts_per_day <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">150</span>,<span class="fl">50</span>,<span class="fl">300</span>,<span class="fl">500</span>,<span class="fl">500</span>,<span class="fl">65</span>,<span class="fl">1000</span>,<span class="fl">50</span>,<span class="fl">250</span>,<span class="fl">175</span>,<span class="fl">160</span><span class="op">)</span>,
+  random_coin <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="fl">12</span>,<span class="fl">1</span>,<span class="fl">.5</span><span class="op">)</span>,
   gender <span class="op">=</span> <span class="cn">NA</span>,
   age <span class="op">=</span> <span class="cn">NA</span>,
   distance_from_family <span class="op">=</span> <span class="cn">NA</span>,
   communication_preference <span class="op">=</span> <span class="cn">NA</span>,
   how_many_friends <span class="op">=</span> <span class="cn">NA</span>,
-  social_media <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">80</span>,<span class="fl">1</span>,<span class="fl">30</span>,<span class="fl">85</span>,<span class="fl">55</span>,<span class="fl">30</span>,<span class="fl">70</span>,<span class="fl">80</span>,<span class="fl">20</span>,<span class="fl">40</span>,<span class="fl">99</span><span class="op">)</span> 
+  social_media <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">80</span>,<span class="fl">1</span>,<span class="fl">30</span>,<span class="fl">85</span>,<span class="fl">55</span>,<span class="fl">30</span>,<span class="fl">70</span>,<span class="fl">80</span>,<span class="fl">20</span>,<span class="fl">40</span>,<span class="fl">99</span><span class="op">)</span> 
 <span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">some_data</span><span class="op">$</span><span class="va">texts_per_day</span>,<span class="va">some_data</span><span class="op">$</span><span class="va">social_media</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 0.3462239</code></pre>
+<span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">some_data</span><span class="op">$</span><span class="va">texts_per_day</span>,<span class="va">some_data</span><span class="op">$</span><span class="va">social_media</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## [1] 0.3462239</span></code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/cor.test.html">cor.test</a></span><span class="op">(</span><span class="va">some_data</span><span class="op">$</span><span class="va">texts_per_day</span>,<span class="va">some_data</span><span class="op">$</span><span class="va">social_media</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-##  Pearson's product-moment correlation
-## 
-## data:  some_data$texts_per_day and some_data$social_media
-## t = 1.167, df = 10, p-value = 0.2703
-## alternative hypothesis: true correlation is not equal to 0
-## 95 percent confidence interval:
-##  -0.2841349  0.7676038
-## sample estimates:
-##       cor 
-## 0.3462239</code></pre>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/cor.test.html" class="external-link">cor.test</a></span><span class="op">(</span><span class="va">some_data</span><span class="op">$</span><span class="va">texts_per_day</span>,<span class="va">some_data</span><span class="op">$</span><span class="va">social_media</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## </span>
+<span class="co">##  Pearson's product-moment correlation</span>
+<span class="co">## </span>
+<span class="co">## data:  some_data$texts_per_day and some_data$social_media</span>
+<span class="co">## t = 1.167, df = 10, p-value = 0.2703</span>
+<span class="co">## alternative hypothesis: true correlation is not equal to 0</span>
+<span class="co">## 95 percent confidence interval:</span>
+<span class="co">##  -0.2841349  0.7676038</span>
+<span class="co">## sample estimates:</span>
+<span class="co">##       cor </span>
+<span class="co">## 0.3462239</span></code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">some_data</span><span class="op">$</span><span class="va">texts_per_day</span>,<span class="va">some_data</span><span class="op">$</span><span class="va">social_media</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">some_data</span><span class="op">$</span><span class="va">texts_per_day</span>,<span class="va">some_data</span><span class="op">$</span><span class="va">social_media</span><span class="op">)</span></code></pre></div>
 <p><img src="Correlation_example_files/figure-html/unnamed-chunk-1-1.png" width="700"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">some_data</span><span class="op">$</span><span class="va">texts_per_day</span>,<span class="va">some_data</span><span class="op">$</span><span class="va">random_coin</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] -0.07949929</code></pre>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">some_data</span><span class="op">$</span><span class="va">texts_per_day</span>,<span class="va">some_data</span><span class="op">$</span><span class="va">random_coin</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## [1] -0.795975</span></code></pre>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">10</span>,nrow<span class="op">=</span><span class="fl">10</span><span class="op">)</span> 
-<span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span><span class="op">)</span></code></pre></div>
-<pre><code>##               [,1]
-##  [1,]  0.391203689
-##  [2,] -0.141645929
-##  [3,] -0.172680530
-##  [4,]  0.010392412
-##  [5,]  0.567194013
-##  [6,] -0.253813282
-##  [7,] -0.002415724
-##  [8,]  0.566791134
-##  [9,] -0.523059823
-## [10,] -0.074832769</code></pre>
+<code class="sourceCode R"><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">10</span>,nrow<span class="op">=</span><span class="fl">10</span><span class="op">)</span> 
+<span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">##               [,1]</span>
+<span class="co">##  [1,] -0.241797025</span>
+<span class="co">##  [2,] -0.196015459</span>
+<span class="co">##  [3,] -0.733422243</span>
+<span class="co">##  [4,] -0.100019108</span>
+<span class="co">##  [5,]  0.001646191</span>
+<span class="co">##  [6,]  0.035947945</span>
+<span class="co">##  [7,] -0.279849583</span>
+<span class="co">##  [8,] -0.317555180</span>
+<span class="co">##  [9,] -0.377986054</span>
+<span class="co">## [10,] -0.417792158</span></code></pre>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span></code></pre></div>
-<pre><code>##              [,1]        [,2]        [,3]        [,4]        [,5]        [,6]
-##  [1,]  1.00000000  0.14993396  0.01467085  0.60591607  0.19051855 -0.48093402
-##  [2,]  0.14993396  1.00000000 -0.36413133 -0.25365178  0.09154040  0.01508232
-##  [3,]  0.01467085 -0.36413133  1.00000000  0.54907447 -0.49259325  0.29805218
-##  [4,]  0.60591607 -0.25365178  0.54907447  1.00000000 -0.02130492 -0.38383145
-##  [5,]  0.19051855  0.09154040 -0.49259325 -0.02130492  1.00000000 -0.24897729
-##  [6,] -0.48093402  0.01508232  0.29805218 -0.38383145 -0.24897729  1.00000000
-##  [7,] -0.14141771  0.21615336 -0.05742331 -0.11381754 -0.38507106 -0.18811653
-##  [8,]  0.55660148 -0.20542337  0.02352258  0.35241976  0.09964239 -0.20609704
-##  [9,]  0.13138109  0.53810943 -0.28461208  0.03593759  0.17739037  0.04277856
-## [10,] -0.14933471  0.35808451 -0.38794976 -0.39915769  0.07361246  0.09769615
-##              [,7]        [,8]        [,9]       [,10]
-##  [1,] -0.14141771  0.55660148  0.13138109 -0.14933471
-##  [2,]  0.21615336 -0.20542337  0.53810943  0.35808451
-##  [3,] -0.05742331  0.02352258 -0.28461208 -0.38794976
-##  [4,] -0.11381754  0.35241976  0.03593759 -0.39915769
-##  [5,] -0.38507106  0.09964239  0.17739037  0.07361246
-##  [6,] -0.18811653 -0.20609704  0.04277856  0.09769615
-##  [7,]  1.00000000  0.40181749 -0.42121590 -0.37364423
-##  [8,]  0.40181749  1.00000000 -0.45287683 -0.62258104
-##  [9,] -0.42121590 -0.45287683  1.00000000  0.30816030
-## [10,] -0.37364423 -0.62258104  0.30816030  1.00000000</code></pre>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">##               [,1]         [,2]       [,3]         [,4]        [,5]        [,6]</span>
+<span class="co">##  [1,]  1.000000000 -0.005568019 -0.1690552  0.007740391 -0.36972324  0.03370121</span>
+<span class="co">##  [2,] -0.005568019  1.000000000  0.2293639  0.456165608 -0.44834200 -0.14739642</span>
+<span class="co">##  [3,] -0.169055233  0.229363875  1.0000000  0.243720074  0.23262216 -0.29560140</span>
+<span class="co">##  [4,]  0.007740391  0.456165608  0.2437201  1.000000000 -0.63787498  0.47689157</span>
+<span class="co">##  [5,] -0.369723238 -0.448342002  0.2326222 -0.637874984  1.00000000 -0.35546207</span>
+<span class="co">##  [6,]  0.033701210 -0.147396421 -0.2956014  0.476891572 -0.35546207  1.00000000</span>
+<span class="co">##  [7,] -0.732293083  0.146009778  0.3762457  0.180397433 -0.02851350  0.10883829</span>
+<span class="co">##  [8,]  0.416761835  0.389569799  0.2237080  0.506740910 -0.21326713  0.44778848</span>
+<span class="co">##  [9,]  0.374869715  0.117491348  0.5388504  0.118306781  0.06493571 -0.19765509</span>
+<span class="co">## [10,]  0.210489056 -0.153058699  0.1203544 -0.051219952 -0.16314895 -0.03756204</span>
+<span class="co">##             [,7]       [,8]        [,9]       [,10]</span>
+<span class="co">##  [1,] -0.7322931  0.4167618  0.37486972  0.21048906</span>
+<span class="co">##  [2,]  0.1460098  0.3895698  0.11749135 -0.15305870</span>
+<span class="co">##  [3,]  0.3762457  0.2237080  0.53885039  0.12035439</span>
+<span class="co">##  [4,]  0.1803974  0.5067409  0.11830678 -0.05121995</span>
+<span class="co">##  [5,] -0.0285135 -0.2132671  0.06493571 -0.16314895</span>
+<span class="co">##  [6,]  0.1088383  0.4477885 -0.19765509 -0.03756204</span>
+<span class="co">##  [7,]  1.0000000 -0.2575748 -0.33535585  0.13664871</span>
+<span class="co">##  [8,] -0.2575748  1.0000000  0.43923469 -0.23592753</span>
+<span class="co">##  [9,] -0.3353559  0.4392347  1.00000000 -0.40244183</span>
+<span class="co">## [10,]  0.1366487 -0.2359275 -0.40244183  1.00000000</span></code></pre>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">X</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>
-<span class="va">Y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">10</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>
+<span class="va">Y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">10</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">X</span>,<span class="va">Y</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] -0.1393939</code></pre>
+<span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">X</span>,<span class="va">Y</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## [1] -0.1878788</span></code></pre>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, breaks<span class="op">=</span><span class="fl">100</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, breaks<span class="op">=</span><span class="fl">100</span><span class="op">)</span></code></pre></div>
 <p><img src="Correlation_example_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">X</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>
 <span class="va">Y</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>
 <span class="va">X</span><span class="op">*</span><span class="va">Y</span></code></pre></div>
-<pre><code>##  [1]   1   4   9  16  25  36  49  64  81 100</code></pre>
+<pre><code><span class="co">##  [1]   1   4   9  16  25  36  49  64  81 100</span></code></pre>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">X</span><span class="op">*</span><span class="va">Y</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 385</code></pre>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">X</span><span class="op">*</span><span class="va">Y</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## [1] 385</span></code></pre>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">X</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>
 <span class="va">Y</span> <span class="op">&lt;-</span> <span class="fl">10</span><span class="op">:</span><span class="fl">1</span>
-<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">X</span><span class="op">*</span><span class="va">Y</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 220</code></pre>
+<span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">X</span><span class="op">*</span><span class="va">Y</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## [1] 220</span></code></pre>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 333</code></pre>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## [1] 264</span></code></pre>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -341,11 +343,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://crumplab.github.io">Matthew Crump</a>.</p>
+  <p></p>
+<p>Developed by <a href="https://crumplab.github.io" class="external-link">Matthew Crump</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -353,6 +357,8 @@
 
   
 
+
+  
 
   </body>
 </html>

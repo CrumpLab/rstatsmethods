@@ -1,7 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://crumplab.github.io/rstatsmethods/index.html</loc>
+    <loc>https://crumplab.github.io/rstatsmethods/404.html</loc>
+  </url>
+  <url>
+    <loc>https://crumplab.github.io/rstatsmethods/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://crumplab.github.io/rstatsmethods/articles/Correlation_example.html</loc>
+  </url>
+  <url>
+    <loc>https://crumplab.github.io/rstatsmethods/articles/Getting_Started.html</loc>
+  </url>
+  <url>
+    <loc>https://crumplab.github.io/rstatsmethods/articles/Lab10_ttest.html</loc>
+  </url>
+  <url>
+    <loc>https://crumplab.github.io/rstatsmethods/articles/Lab11_Correlation.html</loc>
+  </url>
+  <url>
+    <loc>https://crumplab.github.io/rstatsmethods/articles/Lab12_Regression.html</loc>
+  </url>
+  <url>
+    <loc>https://crumplab.github.io/rstatsmethods/articles/Lab1_Basics.html</loc>
+  </url>
+  <url>
+    <loc>https://crumplab.github.io/rstatsmethods/articles/Lab2_Descriptives.html</loc>
+  </url>
+  <url>
+    <loc>https://crumplab.github.io/rstatsmethods/articles/Lab3_Distributions_I.html</loc>
+  </url>
+  <url>
+    <loc>https://crumplab.github.io/rstatsmethods/articles/Lab4_Distributions_II.html</loc>
+  </url>
+  <url>
+    <loc>https://crumplab.github.io/rstatsmethods/articles/Lab5_Sampling_Distributions.html</loc>
+  </url>
+  <url>
+    <loc>https://crumplab.github.io/rstatsmethods/articles/Lab6_Statistical_Inference.html</loc>
+  </url>
+  <url>
+    <loc>https://crumplab.github.io/rstatsmethods/articles/Lab7_Binomial.html</loc>
+  </url>
+  <url>
+    <loc>https://crumplab.github.io/rstatsmethods/articles/Lab8_Normal.html</loc>
+  </url>
+  <url>
+    <loc>https://crumplab.github.io/rstatsmethods/articles/Lab9_Chisquare.html</loc>
+  </url>
+  <url>
+    <loc>https://crumplab.github.io/rstatsmethods/articles/SP_Power.html</loc>
   </url>
   <url>
     <loc>https://crumplab.github.io/rstatsmethods/articles/Stats1/Getting_Started.html</loc>
@@ -70,6 +118,9 @@
     <loc>https://crumplab.github.io/rstatsmethods/articles/Stats2/Lab5_ANOVA_Randomization.html</loc>
   </url>
   <url>
+    <loc>https://crumplab.github.io/rstatsmethods/articles/Stats2/Lab5_ANOVA_Regression.html</loc>
+  </url>
+  <url>
     <loc>https://crumplab.github.io/rstatsmethods/articles/Stats2/Lab6_Comparisons.html</loc>
   </url>
   <url>
@@ -85,6 +136,12 @@
     <loc>https://crumplab.github.io/rstatsmethods/articles/Stats2/semester_project.html</loc>
   </url>
   <url>
+    <loc>https://crumplab.github.io/rstatsmethods/articles/Untitled.html</loc>
+  </url>
+  <url>
+    <loc>https://crumplab.github.io/rstatsmethods/articles/course_docs/Spring_2022_syllabus.html</loc>
+  </url>
+  <url>
     <loc>https://crumplab.github.io/rstatsmethods/articles/course_docs/Spring_syllabus.html</loc>
   </url>
   <url>
@@ -98,5 +155,32 @@
   </url>
   <url>
     <loc>https://crumplab.github.io/rstatsmethods/articles/course_docs/resources.html</loc>
+  </url>
+  <url>
+    <loc>https://crumplab.github.io/rstatsmethods/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://crumplab.github.io/rstatsmethods/articles/other/DataWrangling.html</loc>
+  </url>
+  <url>
+    <loc>https://crumplab.github.io/rstatsmethods/articles/other/TestAPA.html</loc>
+  </url>
+  <url>
+    <loc>https://crumplab.github.io/rstatsmethods/articles/other/testAPA2.html</loc>
+  </url>
+  <url>
+    <loc>https://crumplab.github.io/rstatsmethods/articles/semester_project.html</loc>
+  </url>
+  <url>
+    <loc>https://crumplab.github.io/rstatsmethods/authors.html</loc>
+  </url>
+  <url>
+    <loc>https://crumplab.github.io/rstatsmethods/index.html</loc>
+  </url>
+  <url>
+    <loc>https://crumplab.github.io/rstatsmethods/news/index.html</loc>
+  </url>
+  <url>
+    <loc>https://crumplab.github.io/rstatsmethods/reference/index.html</loc>
   </url>
 </urlset>

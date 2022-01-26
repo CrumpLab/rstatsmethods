@@ -35,6 +35,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -70,7 +72,7 @@
       <a href="../../articles/course_docs/Syllabus.html">Fall 2021</a>
     </li>
     <li>
-      <a href="../../articles/course_docs/Spring_syllabus.html">Spring 2022</a>
+      <a href="../../articles/course_docs/Spring_2022_syllabus.html">Spring 2022</a>
     </li>
   </ul>
 </li>
@@ -196,7 +198,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/CrumpLab/rstatsmethods">
+  <a href="https://github.com/CrumpLab/rstatsmethods" class="external-link">
     <span class="fa fa-lg fa-github"></span>
      
   </a>
@@ -217,13 +219,13 @@
 
       
 
-      </header><script src="Lab3_Distributions_I_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Lab 3 Distributions I</h1>
-                        <h4 class="author">Matthew J. C. Crump</h4>
+                        <h4 data-toc-skip class="author">Matthew J. C. Crump</h4>
             
-            <h4 class="date">9/10/2020</h4>
+            <h4 data-toc-skip class="date">9/10/2020</h4>
       
       
       <div class="hidden name"><code>Lab3_Distributions_I.Rmd</code></div>
@@ -232,14 +234,14 @@
 
     
     
-<div id="reading" class="section level2">
-<h2 class="hasAnchor">
-<a href="#reading" class="anchor"></a>Reading</h2>
+<div class="section level2">
+<h2 id="reading">Reading<a class="anchor" aria-label="anchor" href="#reading"></a>
+</h2>
 <p>Vokey &amp; Allen, Chapters 5 &amp; 6 on additional descriptive statistics, and recovering the distribution.</p>
 </div>
-<div id="overview" class="section level2">
-<h2 class="hasAnchor">
-<a href="#overview" class="anchor"></a>Overview</h2>
+<div class="section level2">
+<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/YQC3QlRNHwI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 <p>We are about to spend three entire labs devoted to understanding and working with distributions. We will cover topics that closely relate to the main statistics lecture, but also take advantage of R to examine distributions in a more direct and hands manner that is not possible without a programming environment.</p>
@@ -248,183 +250,182 @@
 <p>Conceptual I - Monte-Carlo simulation</p>
 <p>In a research context data is collected in the form of measurements under various conditions. The data is a <strong>sample</strong>, representing only the outcomes that <strong>did</strong> happen. Generally, researchers recognize that there is <strong>variability</strong> in their measuring process, so the <strong>sample data could have been different</strong>. When analyzing data we are interested both in what did happen, and what could have happened in terms of the pattern of numbers. To really understand the issues at play, we need to take a deep dive into distributions and understand what happens when we take samples from them.</p>
 </div>
-<div id="practical-i-sampling-from-distributions-in-r" class="section level2">
-<h2 class="hasAnchor">
-<a href="#practical-i-sampling-from-distributions-in-r" class="anchor"></a>Practical I: Sampling from distributions in R</h2>
-<div id="what-is-a-distribution" class="section level3">
-<h3 class="hasAnchor">
-<a href="#what-is-a-distribution" class="anchor"></a>What is a distribution?</h3>
+<div class="section level2">
+<h2 id="practical-i-sampling-from-distributions-in-r">Practical I: Sampling from distributions in R<a class="anchor" aria-label="anchor" href="#practical-i-sampling-from-distributions-in-r"></a>
+</h2>
+<div class="section level3">
+<h3 id="what-is-a-distribution">What is a distribution?<a class="anchor" aria-label="anchor" href="#what-is-a-distribution"></a>
+</h3>
 <p>I will take an informal approach to defining distributions. We can think of a distribution as the place or machine controlling where numbers come from. In other words, distributions are number creation machines. We get to define them, and our choices determine the kinds of numbers that can be produced from a distribution.</p>
 <p>More formally, a probability distribution defines the probabilities that particular numbers can be drawn or sampled from the distribution.</p>
 </div>
-<div id="creating-your-own-distributions-in-r-with-sample" class="section level3">
-<h3 class="hasAnchor">
-<a href="#creating-your-own-distributions-in-r-with-sample" class="anchor"></a>Creating your own distributions in R with <code>sample()</code>
+<div class="section level3">
+<h3 id="creating-your-own-distributions-in-r-with-sample">Creating your own distributions in R with <code>sample()</code><a class="anchor" aria-label="anchor" href="#creating-your-own-distributions-in-r-with-sample"></a>
 </h3>
-<p>R has several built-in functions for sampling from common distributions (discussed later). Before we look at those, let’s make our own using <code><a href="https://rdrr.io/r/base/sample.html">sample()</a></code>.</p>
+<p>R has several built-in functions for sampling from common distributions (discussed later). Before we look at those, let’s make our own using <code><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample()</a></code>.</p>
 <p>Here is the input syntax for <code>sample(x, size, replace = FALSE, prob = NULL)</code>. <code>x</code> is a vector with one or more elements, <code>size</code> is how many samples to take from the elements in the vector, <code>replace</code> can be set to TRUE or FALSE (controlling whether sampling is done with or without replacement), and <code>prob</code> is a vector of probabilities controlling the probability of sampling each element in the vector <code>x</code>.</p>
 <p>When we use sample, we can create discrete distributions and sample from them. By, default every element has an equal probability of being sampled.</p>
 <ol style="list-style-type: decimal">
 <li>Create a distribution with two equally possible numbers, sample from it twice:</li>
 </ol>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x<span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="co">#&gt; [1] 1 2</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span>x<span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="co">#&gt; [1] 2 1</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Create a distribution with two equally possible numbers, sample from it 10 times (note must set replace=TRUE, because we are sampling more items than exist in the vector):</li>
 </ol>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x<span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, size <span class="op">=</span> <span class="fl">10</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#&gt;  [1] 2 2 1 2 2 1 2 1 1 1</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span>x<span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, size <span class="op">=</span> <span class="fl">10</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="co">#&gt;  [1] 1 2 2 2 2 1 1 2 1 2</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Create a distribution with where the first number has a probability of 90% of being sampled, and the second number has a probability of 10% of being sampled, sample from it 10 times</li>
 </ol>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x<span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, size <span class="op">=</span> <span class="fl">10</span>, replace <span class="op">=</span> <span class="cn">TRUE</span>, prob<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.9</span>,<span class="fl">.1</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;  [1] 1 1 1 1 1 1 1 1 1 1</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span>x<span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, size <span class="op">=</span> <span class="fl">10</span>, replace <span class="op">=</span> <span class="cn">TRUE</span>, prob<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.9</span>,<span class="fl">.1</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt;  [1] 1 1 1 2 1 1 1 1 1 1</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Create a distribution to model a coin flip for an unbiased coin, flip the coin 10 times, have the distribution return “heads” or “tails”.</li>
 </ol>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"heads"</span>,<span class="st">"tails"</span><span class="op">)</span>, size<span class="op">=</span><span class="fl">10</span>, replace<span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> 
-<span class="co">#&gt;  [1] "tails" "tails" "heads" "heads" "tails" "tails" "tails" "tails" "heads"</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"heads"</span>,<span class="st">"tails"</span><span class="op">)</span>, size<span class="op">=</span><span class="fl">10</span>, replace<span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> 
+<span class="co">#&gt;  [1] "tails" "tails" "tails" "tails" "heads" "heads" "heads" "heads" "heads"</span>
 <span class="co">#&gt; [10] "heads"</span></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
 <li>Create a distribution that has the numbers 1 to 1000, and allows them to be sampled with equal probability. Sample 10 numbers from this distribution without replacement (if you have sampled one number, you are not allowed to sample it again because it has been taken out):</li>
 </ol>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x<span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span>, size <span class="op">=</span> <span class="fl">10</span>, replace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="co">#&gt;  [1] 154 610 813 595 498 490 105 630 266 368</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span>x<span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span>, size <span class="op">=</span> <span class="fl">10</span>, replace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="co">#&gt;  [1] 481 151 418 300 724 694 375 287 301 156</span></code></pre></div>
 </div>
-<div id="normal-distribution" class="section level3">
-<h3 class="hasAnchor">
-<a href="#normal-distribution" class="anchor"></a>Normal distribution</h3>
+<div class="section level3">
+<h3 id="normal-distribution">Normal distribution<a class="anchor" aria-label="anchor" href="#normal-distribution"></a>
+</h3>
 <p>To sample random deviates from a normal distribution, use the <code>rnorm(n, mean = 0, sd = 1)</code> function. <code>n</code> is the number of observations to sample, <code>mean</code> is the mean of the normal distribution, and <code>sd</code> is the standard deviation of the normal distribution.</p>
 <ol style="list-style-type: decimal">
 <li>Two ways to sample 10 numbers from a normal distribution with mean = 0, and standard deviation = 1.</li>
 </ol>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span> <span class="fl">10</span>,mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="co">#&gt;  [1]  0.61157622  0.26343056 -0.17090788 -0.29264381 -1.51973830 -0.92264871</span>
-<span class="co">#&gt;  [7]  1.36187359  0.77314023 -0.48183326 -0.03113506</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span> <span class="fl">10</span>,mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="co">#&gt;  [1] -0.28765781 -0.02420385  1.14215302  0.94825550  0.92280899 -1.40414825</span>
+<span class="co">#&gt;  [7]  0.24824443 -0.25689948  0.89396184  1.55105255</span>
 
-<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
-<span class="co">#&gt;  [1] -0.531184576 -0.206035803  2.012774791  1.554569599  2.491242642</span>
-<span class="co">#&gt;  [6]  0.630189344 -0.709424771 -0.005085532  1.224618554 -0.707926886</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
+<span class="co">#&gt;  [1]  1.67850329 -1.11416797  0.77015825 -0.09079109  0.58505231 -0.08808167</span>
+<span class="co">#&gt;  [7] -1.11864352  2.13462981 -0.24652775  0.83904367</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
-<li>Visualize the sample quickly with <code><a href="https://rdrr.io/r/graphics/hist.html">hist()</a></code>
+<li>Visualize the sample quickly with <code><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist()</a></code>
 </li>
 </ol>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">my_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
 <ol start="3" style="list-style-type: decimal">
-<li>Visualize the sample with ggplot2 using <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code>. A requirement here is that the sample data is formatted in a <code>data.frame</code> first. I create a data frame with 100 observations in a <code>sample_data</code> column, and I add a <code>sample</code> column which contains all 1s, to refer to the fact that all of the numbers in sample_data belong to sample #1.</li>
+<li>Visualize the sample with ggplot2 using <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram()</a></code>. A requirement here is that the sample data is formatted in a <code>data.frame</code> first. I create a data frame with 100 observations in a <code>sample_data</code> column, and I add a <code>sample</code> column which contains all 1s, to refer to the fact that all of the numbers in sample_data belong to sample #1.</li>
 </ol>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>sample_data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,
+<code class="sourceCode R"><span class="va">my_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>sample_data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,
                       sample <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
 
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">my_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">sample_data</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">my_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">sample_data</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></code></pre></div>
 <p><img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 <ol start="4" style="list-style-type: decimal">
-<li>Visualizing multiple samples with individual histograms with ggplot2. Let’s say we want to sample 25 values from a normal distribution, but we want to repeat this process four times. We will have samples 1 to 4, each containing 25 observations. We also want to generate four histograms to quickly look at each of the four samples. We can do this by setting up our dataframe to represent this situation, and by using <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap()</a></code>.</li>
+<li>Visualizing multiple samples with individual histograms with ggplot2. Let’s say we want to sample 25 values from a normal distribution, but we want to repeat this process four times. We will have samples 1 to 4, each containing 25 observations. We also want to generate four histograms to quickly look at each of the four samples. We can do this by setting up our dataframe to represent this situation, and by using <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap()</a></code>.</li>
 </ol>
-<p>Note: the use of the <code><a href="https://rdrr.io/r/base/rep.html">rep()</a></code> function is new, it creates a vector that repeats the numbers from 1 to 4, 25 times each. This way, the first 25 rows in the dataframe represent the 25 observations in sample 1, the next 25 rows represent the observations in sample 2, and so on.</p>
+<p>Note: the use of the <code><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep()</a></code> function is new, it creates a vector that repeats the numbers from 1 to 4, 25 times each. This way, the first 25 rows in the dataframe represent the 25 observations in sample 1, the next 25 rows represent the observations in sample 2, and so on.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>sample_data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,
-                      sample <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, each<span class="op">=</span><span class="fl">25</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">my_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>sample_data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,
+                      sample <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, each<span class="op">=</span><span class="fl">25</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">my_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">sample_data</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">sample</span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">my_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">sample_data</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">sample</span><span class="op">)</span>
 <span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></code></pre></div>
 <p><img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
 </div>
-<div id="uniform-distribution-rectangle-distribution" class="section level3">
-<h3 class="hasAnchor">
-<a href="#uniform-distribution-rectangle-distribution" class="anchor"></a>Uniform Distribution (rectangle distribution)</h3>
+<div class="section level3">
+<h3 id="uniform-distribution-rectangle-distribution">Uniform Distribution (rectangle distribution)<a class="anchor" aria-label="anchor" href="#uniform-distribution-rectangle-distribution"></a>
+</h3>
 <p>A uniform distribution is an equal probability distribution, where all numbers in between the smallest and largest have an equal probability of being sampled.</p>
 <p>Use <code>runif(n, min = 0, max = 1)</code> to sample numbers from a uniform distribution. <code>n</code> is the number of observations, <code>min</code> is the starting minimum value, <code>max</code> is the largest value.</p>
 <ol style="list-style-type: decimal">
 <li>Sample and plot 1000 values from a uniform distribution between 0 and 1.</li>
 </ol>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Sample and plot 10000 values from a uniform distribution between 100 and 1000.</li>
 </ol>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fl">100</span>,<span class="fl">1000</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fl">100</span>,<span class="fl">1000</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
 <ol start="3" style="list-style-type: decimal">
 <li>Take one sample of 100 numbers from a uniform distribution between 0 and 1. Then, for this one sample return a count of how many numbers are less than the value .05.</li>
 </ol>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">[</span><span class="va">my_sample</span> <span class="op">&lt;</span> <span class="fl">.05</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt; [1] 3</span></code></pre></div>
+<code class="sourceCode R"><span class="va">my_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">[</span><span class="va">my_sample</span> <span class="op">&lt;</span> <span class="fl">.05</span><span class="op">]</span><span class="op">)</span>
+<span class="co">#&gt; [1] 5</span></code></pre></div>
 </div>
-<div id="other-distributions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#other-distributions" class="anchor"></a>Other distributions</h3>
-<p>R contains many distributions to sample numbers from. The list can be found by <code><a href="https://rdrr.io/r/stats/Distributions.html">?distributions</a></code>. Here a few more examples:</p>
+<div class="section level3">
+<h3 id="other-distributions">Other distributions<a class="anchor" aria-label="anchor" href="#other-distributions"></a>
+</h3>
+<p>R contains many distributions to sample numbers from. The list can be found by <code><a href="https://rdrr.io/r/stats/Distributions.html" class="external-link">?distributions</a></code>. Here a few more examples:</p>
 <p>Exponential distribution</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">rexp</a></span><span class="op">(</span><span class="fl">1000</span>,rate <span class="op">=</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">rexp</a></span><span class="op">(</span><span class="fl">1000</span>,rate <span class="op">=</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
 <p>Binomial Distribution</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">1</span>,prob<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.5</span>,<span class="fl">.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">1</span>,prob<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.5</span>,<span class="fl">.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
 <p>Weibull distribution</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Weibull.html">rweibull</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">1000</span>, shape<span class="op">=</span><span class="fl">2</span>, scale <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Weibull.html" class="external-link">rweibull</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">1000</span>, shape<span class="op">=</span><span class="fl">2</span>, scale <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
 </div>
-<div id="other-descriptive-statistics" class="section level3">
-<h3 class="hasAnchor">
-<a href="#other-descriptive-statistics" class="anchor"></a>Other descriptive statistics</h3>
+<div class="section level3">
+<h3 id="other-descriptive-statistics">Other descriptive statistics<a class="anchor" aria-label="anchor" href="#other-descriptive-statistics"></a>
+</h3>
 <p>In Chapter 5, Vokey and Allen discuss skewness and kurtosis as additional descriptive statistics that describe the shapes of sets of numbers. Functions for skewness and kurtosis can be obtained in R by installing additional packages such as the <code>moments</code> packages.</p>
 <ol style="list-style-type: decimal">
 <li>Compute the mean, sd, skewness, and kurtosis for a sample of 1000 observations from a normal distribution:</li>
 </ol>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.r-project.org">moments</a></span><span class="op">)</span>
-<span class="va">my_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.007161435</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span>
-<span class="co">#&gt; [1] 1.034772</span>
-<span class="fu"><a href="https://rdrr.io/pkg/moments/man/skewness.html">skewness</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.02400291</span>
-<span class="fu"><a href="https://rdrr.io/pkg/moments/man/kurtosis.html">kurtosis</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span>
-<span class="co">#&gt; [1] 2.907732</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.r-project.org" class="external-link">moments</a></span><span class="op">)</span>
+<span class="va">my_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.01560604</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.985065</span>
+<span class="fu"><a href="https://rdrr.io/pkg/moments/man/skewness.html" class="external-link">skewness</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span>
+<span class="co">#&gt; [1] -0.02702746</span>
+<span class="fu"><a href="https://rdrr.io/pkg/moments/man/kurtosis.html" class="external-link">kurtosis</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span>
+<span class="co">#&gt; [1] 3.144605</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-17-1.png" width="700"> 2. Compute the mean, sd, skewness, and kurtosis for a sample of 1000 observations from a right-skewed exponential distribution.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">rexp</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">2</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.4910742</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.4986867</span>
-<span class="fu"><a href="https://rdrr.io/pkg/moments/man/skewness.html">skewness</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span>
-<span class="co">#&gt; [1] 2.180244</span>
-<span class="fu"><a href="https://rdrr.io/pkg/moments/man/kurtosis.html">kurtosis</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span>
-<span class="co">#&gt; [1] 10.01982</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">my_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">rexp</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">2</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.4787965</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.4689568</span>
+<span class="fu"><a href="https://rdrr.io/pkg/moments/man/skewness.html" class="external-link">skewness</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span>
+<span class="co">#&gt; [1] 1.854101</span>
+<span class="fu"><a href="https://rdrr.io/pkg/moments/man/kurtosis.html" class="external-link">kurtosis</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span>
+<span class="co">#&gt; [1] 7.788855</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">my_sample</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-18-1.png" width="700"></p>
 </div>
 </div>
-<div id="conceptual-i-monte-carlo-simulations" class="section level2">
-<h2 class="hasAnchor">
-<a href="#conceptual-i-monte-carlo-simulations" class="anchor"></a>Conceptual I: Monte carlo simulations</h2>
+<div class="section level2">
+<h2 id="conceptual-i-monte-carlo-simulations">Conceptual I: Monte carlo simulations<a class="anchor" aria-label="anchor" href="#conceptual-i-monte-carlo-simulations"></a>
+</h2>
 <p>Many of the next conceptual sections in our labs will involve a process called Monte carlo simulation. In short, a Monte Carlo simulation is one where a sampling process is carried out hundreds or thousands of times in order to estimate how the sampling process behaves over the long run. Monte Carlo simulations can be conducted very easily in R, because we can write scripts to make R repeatedly sample things, and then we can measure and assess the samples we created.</p>
 <p>Monte-carlo simulations can be used as a tool to demonstrate statistical facts and concepts, and we will take the opportunity to use this tool in many different ways throughout this course. The purpose of this conceptual section is to introduce you to running Monte-Carlo simulations, and show you that they can be done in different ways.</p>
 <p>In general we will:</p>
@@ -435,9 +436,9 @@
 <li>Evaluate our simulation</li>
 </ol>
 <p>And, most important, we will identify important statistical concepts and use monte-carlo simulations to demonstrate our understanding of these concepts.</p>
-<div id="fair-coin" class="section level3">
-<h3 class="hasAnchor">
-<a href="#fair-coin" class="anchor"></a>Fair coin</h3>
+<div class="section level3">
+<h3 id="fair-coin">Fair coin<a class="anchor" aria-label="anchor" href="#fair-coin"></a>
+</h3>
 <p>A coin is fair if it comes up heads equally often as tails in the long run. Let’s consider how we could use a simulation to demonstrate this idea. We need to</p>
 <ol style="list-style-type: decimal">
 <li>Have a way to sample the outcomes of a binary variable</li>
@@ -447,76 +448,76 @@
 <p>There is more than one way to use R to accomplish these goals. Here, we use the <code>sample</code> function, and sample 1s for heads, and 0s for tails. We also create a <code>for</code> loop, and repeat a sampling process 100 times. Each iteration we flip a coin, save the result, and calculate the proportion of heads and tails so far. We save everything in a data.frame, and plot the proportion of heads as we go from 1 to 100 flips. We should see the proportion get closer to .5 as we increase the number of flips.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#initialize variables</span>
-<span class="va">flip</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">outcome</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">proportion_heads</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">proportion_tails</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">flip</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">outcome</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">proportion_heads</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">proportion_tails</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="co"># run the simulation</span>
 <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span><span class="op">)</span><span class="op">{</span>
   <span class="va">flip</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">i</span>
-  <span class="va">outcome</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-  <span class="va">proportion_heads</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">outcome</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">outcome</span><span class="op">)</span>
+  <span class="va">outcome</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+  <span class="va">proportion_heads</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">outcome</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">outcome</span><span class="op">)</span>
   <span class="va">proportion_tails</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">-</span><span class="va">proportion_heads</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>
 <span class="op">}</span>
 
 <span class="co"># create a dataframe with saved data</span>
-<span class="va">sim_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">flip</span>,
+<span class="va">sim_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">flip</span>,
                        <span class="va">outcome</span>,
                        <span class="va">proportion_heads</span>,
                        <span class="va">proportion_tails</span><span class="op">)</span>
 
 <span class="co"># plot the simulation results</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">sim_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">flip</span>,y<span class="op">=</span><span class="va">proportion_heads</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept<span class="op">=</span><span class="fl">.5</span>, color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">sim_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">flip</span>,y<span class="op">=</span><span class="va">proportion_heads</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_hline</a></span><span class="op">(</span>yintercept<span class="op">=</span><span class="fl">.5</span>, color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-19-1.png" width="700"></p>
 </div>
-<div id="samples-become-the-population-as-n-increases" class="section level3">
-<h3 class="hasAnchor">
-<a href="#samples-become-the-population-as-n-increases" class="anchor"></a>Samples become the population as n increases</h3>
+<div class="section level3">
+<h3 id="samples-become-the-population-as-n-increases">Samples become the population as n increases<a class="anchor" aria-label="anchor" href="#samples-become-the-population-as-n-increases"></a>
+</h3>
 <p>A fundamental concept in sampling is that samples of numbers become increasingly like their parent population (or distribution) as the size of the sample (n or number of observations in the sample) increases. Let’s demonstrate an example of this phenomena.</p>
 <p>Our parent population will be a normal distribution with mean =100, and sd = 50. We want to conduct a simulation that takes a sample across different ranges of n. Then for each sample, we will calculate a sample statistic such as the mean and standard deviation. These sample statistics should become closer and closer to the “true” parent distribution parameters as n increases.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#initialize variables</span>
-<span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">1000</span>,<span class="fl">10</span><span class="op">)</span>
-<span class="va">sample_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">sample_sd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">1000</span>,<span class="fl">10</span><span class="op">)</span>
+<span class="va">sample_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">sample_sd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="co">#run simulation</span>
-<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">sim_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, mean <span class="op">=</span> <span class="fl">100</span>, sd <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>
-  <span class="va">sample_mean</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">sim_sample</span><span class="op">)</span>
-  <span class="va">sample_sd</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">sim_sample</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">sim_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">n</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, mean <span class="op">=</span> <span class="fl">100</span>, sd <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>
+  <span class="va">sample_mean</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">sim_sample</span><span class="op">)</span>
+  <span class="va">sample_sd</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">sim_sample</span><span class="op">)</span>
 <span class="op">}</span>
 
 <span class="co"># organize results in dataframe</span>
-<span class="va">sim_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">n</span>,
+<span class="va">sim_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">n</span>,
                        <span class="va">sample_mean</span>,
                        <span class="va">sample_sd</span><span class="op">)</span>
 
 <span class="co"># graph results</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">sim_data</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">n</span>,y<span class="op">=</span><span class="va">sample_mean</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept<span class="op">=</span><span class="fl">100</span>, color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">sim_data</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">n</span>,y<span class="op">=</span><span class="va">sample_mean</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_hline</a></span><span class="op">(</span>yintercept<span class="op">=</span><span class="fl">100</span>, color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-20-1.png" width="700"></p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">sim_data</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">n</span>,y<span class="op">=</span><span class="va">sample_sd</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept<span class="op">=</span><span class="fl">50</span>, color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">sim_data</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">n</span>,y<span class="op">=</span><span class="va">sample_sd</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_hline</a></span><span class="op">(</span>yintercept<span class="op">=</span><span class="fl">50</span>, color<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab3_Distributions_I_files/figure-html/unnamed-chunk-20-2.png" width="700"></p>
 </div>
 </div>
-<div id="lab-3-generalization-assignment" class="section level2">
-<h2 class="hasAnchor">
-<a href="#lab-3-generalization-assignment" class="anchor"></a>Lab 3 Generalization Assignment</h2>
-<div id="instructions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#instructions" class="anchor"></a>Instructions</h3>
+<div class="section level2">
+<h2 id="lab-3-generalization-assignment">Lab 3 Generalization Assignment<a class="anchor" aria-label="anchor" href="#lab-3-generalization-assignment"></a>
+</h2>
+<div class="section level3">
+<h3 id="instructions">Instructions<a class="anchor" aria-label="anchor" href="#instructions"></a>
+</h3>
 <p>In general, labs will present a discussion of problems and issues with example code like above, and then students will be tasked with completing generalization assignments, showing that they can work with the concepts and tools independently.</p>
 <p>Your assignment instructions are the following:</p>
 <ol style="list-style-type: decimal">
@@ -531,9 +532,9 @@
 <iframe width="560" height="315" src="https://www.youtube.com/embed/kvPVWdEWm6k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
-<div id="problems" class="section level3">
-<h3 class="hasAnchor">
-<a href="#problems" class="anchor"></a>Problems</h3>
+<div class="section level3">
+<h3 id="problems">Problems<a class="anchor" aria-label="anchor" href="#problems"></a>
+</h3>
 <ol style="list-style-type: decimal">
 <li><p>Create five samples of 25 observations from a normal distribution with mean 200, and standard deviation 100. Compute the mean of each sample, and plot the means in a graph using ggplot2. (1 point)</p></li>
 <li><p>Additionally calculate the standard deviation of each sample from above. Use the standard deviations for error bars, and produce another graph with the means along with error bars using ggplot2. (1 point)</p></li>
@@ -574,11 +575,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://crumplab.github.io">Matthew Crump</a>.</p>
+  <p></p>
+<p>Developed by <a href="https://crumplab.github.io" class="external-link">Matthew Crump</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -586,6 +589,8 @@
 
   
 
+
+  
 
   </body>
 </html>

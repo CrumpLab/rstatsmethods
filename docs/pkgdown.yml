@@ -1,40 +1,45 @@
-pandoc: 2.11.4
-pkgdown: 1.6.1
+pandoc: '2.16'
+pkgdown: 2.0.1
 pkgdown_sha: ~
 articles:
-  Stats1/Getting_Started: Getting_Started.html
-  Stats1/Lab10_ttest: Lab10_ttest.html
-  Stats1/Lab11_Correlation: Lab11_Correlation.html
-  Stats1/Lab12_Regression: Lab12_Regression.html
-  Stats1/Lab1_Basics: Lab1_Basics.html
-  Stats1/Lab2_Descriptives: Lab2_Descriptives.html
-  Stats1/Lab3_Distributions_I: Lab3_Distributions_I.html
-  Stats1/Lab4_Distributions_II: Lab4_Distributions_II.html
-  Stats1/Lab5_Sampling_Distributions: Lab5_Sampling_Distributions.html
-  Stats1/Lab6_Statistical_Inference: Lab6_Statistical_Inference.html
-  Stats1/Lab7_Binomial: Lab7_Binomial.html
-  Stats1/Lab8_Normal: Lab8_Normal.html
-  Stats1/Lab9_Chisquare: Lab9_Chisquare.html
-  Stats1/SP_Power: SP_Power.html
-  Stats1/semester_project: semester_project.html
-  Stats2/Lab10_Nested_Designs: Lab10_Nested_Designs.html
-  Stats2/Lab11_WYOR: Lab11_WYOR.html
-  Stats2/Lab1_Shape: Lab1_Shape.html
-  Stats2/Lab2_Multiple_regression_I: Lab2_Multiple_regression_I.html
-  Stats2/Lab3_Multiple_regression_II: Lab3_Multiple_regression_II.html
-  Stats2/Lab4_ANOVA: Lab4_ANOVA.html
-  Stats2/Lab5_ANOVA_Randomization: Lab5_ANOVA_Randomization.html
-  Stats2/Lab6_Comparisons: Lab6_Comparisons.html
-  Stats2/Lab7_Factorial_ANOVA: Lab7_Factorial_ANOVA.html
-  Stats2/Lab8_Contrasts: Lab8_Contrasts.html
-  Stats2/Lab9_RM_ANOVA: Lab9_RM_ANOVA.html
-  Stats2/semester_project: semester_project.html
-  course_docs/Spring_syllabus: Spring_syllabus.html
-  course_docs/Syllabus: Syllabus.html
-  course_docs/contribute: contribute.html
-  course_docs/reference_code: reference_code.html
-  course_docs/resources: resources.html
-last_built: 2021-08-09T12:57Z
+  Correlation_example: Correlation_example.html
+  Getting_Started: Stats1/Getting_Started.html
+  Lab10_ttest: Stats1/Lab10_ttest.html
+  Lab11_Correlation: Stats1/Lab11_Correlation.html
+  Lab12_Regression: Stats1/Lab12_Regression.html
+  Lab1_Basics: Stats1/Lab1_Basics.html
+  Lab2_Descriptives: Stats1/Lab2_Descriptives.html
+  Lab3_Distributions_I: Stats1/Lab3_Distributions_I.html
+  Lab4_Distributions_II: Stats1/Lab4_Distributions_II.html
+  Lab5_Sampling_Distributions: Stats1/Lab5_Sampling_Distributions.html
+  Lab6_Statistical_Inference: Stats1/Lab6_Statistical_Inference.html
+  Lab7_Binomial: Stats1/Lab7_Binomial.html
+  Lab8_Normal: Stats1/Lab8_Normal.html
+  Lab9_Chisquare: Stats1/Lab9_Chisquare.html
+  SP_Power: Stats1/SP_Power.html
+  semester_project: Stats1/semester_project.html
+  Lab10_Nested_Designs: Stats2/Lab10_Nested_Designs.html
+  Lab11_WYOR: Stats2/Lab11_WYOR.html
+  Lab1_Shape: Stats2/Lab1_Shape.html
+  Lab2_Multiple_regression_I: Stats2/Lab2_Multiple_regression_I.html
+  Lab3_Multiple_regression_II: Stats2/Lab3_Multiple_regression_II.html
+  Lab4_ANOVA: Stats2/Lab4_ANOVA.html
+  Lab5_ANOVA_Randomization: Stats2/Lab5_ANOVA_Randomization.html
+  Lab6_Comparisons: Stats2/Lab6_Comparisons.html
+  Lab7_Factorial_ANOVA: Stats2/Lab7_Factorial_ANOVA.html
+  Lab8_Contrasts: Stats2/Lab8_Contrasts.html
+  Lab9_RM_ANOVA: Stats2/Lab9_RM_ANOVA.html
+  semester_project: Stats2/semester_project.html
+  Spring_2022_syllabus: course_docs/Spring_2022_syllabus.html
+  Spring_syllabus: course_docs/Spring_syllabus.html
+  Syllabus: course_docs/Syllabus.html
+  contribute: course_docs/contribute.html
+  reference_code: course_docs/reference_code.html
+  resources: course_docs/resources.html
+  DataWrangling: other/DataWrangling.html
+  TestAPA: other/TestAPA.html
+  testAPA2: other/testAPA2.html
+last_built: 2022-01-26T16:47Z
 urls:
   reference: https://crumplab.github.io/rstatsmethods/reference
   article: https://crumplab.github.io/rstatsmethods/articles

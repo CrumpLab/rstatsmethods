@@ -35,6 +35,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -70,7 +72,7 @@
       <a href="../../articles/course_docs/Syllabus.html">Fall 2021</a>
     </li>
     <li>
-      <a href="../../articles/course_docs/Spring_syllabus.html">Spring 2022</a>
+      <a href="../../articles/course_docs/Spring_2022_syllabus.html">Spring 2022</a>
     </li>
   </ul>
 </li>
@@ -196,7 +198,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/CrumpLab/rstatsmethods">
+  <a href="https://github.com/CrumpLab/rstatsmethods" class="external-link">
     <span class="fa fa-lg fa-github"></span>
      
   </a>
@@ -217,13 +219,13 @@
 
       
 
-      </header><script src="Lab6_Comparisons_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Lab 6 Comparisons</h1>
-                        <h4 class="author">Matthew J. C. Crump</h4>
+                        <h4 data-toc-skip class="author">Matthew J. C. Crump</h4>
             
-            <h4 class="date">2/1/2021</h4>
+            <h4 data-toc-skip class="date">2/1/2021</h4>
       
       
       <div class="hidden name"><code>Lab6_Comparisons.Rmd</code></div>
@@ -232,29 +234,29 @@
 
     
     
-<div id="readings" class="section level2">
-<h2 class="hasAnchor">
-<a href="#readings" class="anchor"></a>Readings</h2>
+<div class="section level2">
+<h2 id="readings">Readings<a class="anchor" aria-label="anchor" href="#readings"></a>
+</h2>
 <p>Chapters 12, 13, and 14 from <span class="citation">(<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al., 2009</a>)</span>.</p>
 </div>
-<div id="overview" class="section level2">
-<h2 class="hasAnchor">
-<a href="#overview" class="anchor"></a>Overview</h2>
+<div class="section level2">
+<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h2>
 </div>
-<div id="practical-i-orthogonal-constrasts" class="section level2">
-<h2 class="hasAnchor">
-<a href="#practical-i-orthogonal-constrasts" class="anchor"></a>Practical I: Orthogonal Constrasts</h2>
+<div class="section level2">
+<h2 id="practical-i-orthogonal-constrasts">Practical I: Orthogonal Constrasts<a class="anchor" aria-label="anchor" href="#practical-i-orthogonal-constrasts"></a>
+</h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Og1cPcO551w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-<p>We will start with a practical example of how to do orthogonal contrasts in R. The following R code shows how to reproduce the example from 12.4 in <span class="citation"><a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al.</a> (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>. The video briefly reviews that example and discusses some of the details of implementing orthogonal contrasts in R.</p>
+<p>We will start with a practical example of how to do orthogonal contrasts in R. The following R code shows how to reproduce the example from 12.4 in <span class="citation">Abdi et al. (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>. The video briefly reviews that example and discusses some of the details of implementing orthogonal contrasts in R.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>dplyr.summarise.inform <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/" class="external-link">tibble</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>dplyr.summarise.inform <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
 <span class="co"># create the example data</span>
-<span class="va">smith_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
+<span class="va">smith_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span>
   <span class="op">~</span><span class="va">Same</span>, <span class="op">~</span><span class="va">Different</span>, <span class="op">~</span><span class="va">Imagery</span>, <span class="op">~</span><span class="va">Photo</span>, <span class="op">~</span><span class="va">Placebo</span>,
   <span class="co">#--|--|--|--|----</span>
   <span class="fl">25</span>,<span class="fl">11</span>,<span class="fl">14</span>,<span class="fl">25</span>,<span class="fl">8</span>,
@@ -267,11 +269,11 @@
   <span class="fl">20</span>,<span class="fl">4</span>,<span class="fl">20</span>,<span class="fl">27</span>,<span class="fl">17</span>,
   <span class="fl">11</span>,<span class="fl">7</span>,<span class="fl">22</span>,<span class="fl">12</span>,<span class="fl">11</span>,
   <span class="fl">21</span>,<span class="fl">19</span>,<span class="fl">12</span>,<span class="fl">11</span>,<span class="fl">4</span>
-<span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>,
+<span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>,
                names_to <span class="op">=</span> <span class="st">"IV"</span>,
-               values_to <span class="op">=</span> <span class="st">"DV"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>IV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">IV</span>,levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Same"</span>, 
+               values_to <span class="op">=</span> <span class="st">"DV"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>IV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">IV</span>,levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Same"</span>, 
                                     <span class="st">"Different"</span>, 
                                     <span class="st">"Imagery"</span>, 
                                     <span class="st">"Photo"</span>, 
@@ -283,8 +285,8 @@
 <span class="co"># so we need to explicitly declare the order of levels</span>
 
 <span class="co"># run the omnibus test</span>
-<span class="va">aov.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">DV</span><span class="op">~</span><span class="va">IV</span>, <span class="va">smith_example</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">aov.out</span><span class="op">)</span>
+<span class="va">aov.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">DV</span><span class="op">~</span><span class="va">IV</span>, <span class="va">smith_example</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">aov.out</span><span class="op">)</span>
 <span class="co">#&gt;             Df Sum Sq Mean Sq F value  Pr(&gt;F)   </span>
 <span class="co">#&gt; IV           4    700     175   5.469 0.00112 **</span>
 <span class="co">#&gt; Residuals   45   1440      32                   </span>
@@ -292,7 +294,7 @@
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 
 <span class="co"># check the existing contrasts for your factor</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">smith_example</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">smith_example</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span>
 <span class="co">#&gt;           Different Imagery Photo Placebo</span>
 <span class="co">#&gt; Same              0       0     0       0</span>
 <span class="co">#&gt; Different         1       0     0       0</span>
@@ -302,20 +304,20 @@
 
 <span class="co"># define your new set of contrasts</span>
 
-<span class="va">c1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="op">-</span><span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="op">-</span><span class="fl">3</span><span class="op">)</span>
-<span class="va">c2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">0</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span>
-<span class="va">c3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="op">+</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span>
-<span class="va">c4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="op">+</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>
+<span class="va">c1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="op">-</span><span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="op">-</span><span class="fl">3</span><span class="op">)</span>
+<span class="va">c2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">0</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span>
+<span class="va">c3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="op">+</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span>
+<span class="va">c4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="op">+</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>
 
 <span class="co"># combine them into the columns of a matrix</span>
-<span class="va">my_contrasts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">c1</span>, <span class="va">c2</span>, <span class="va">c3</span>, <span class="va">c4</span><span class="op">)</span>
+<span class="va">my_contrasts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">c1</span>, <span class="va">c2</span>, <span class="va">c3</span>, <span class="va">c4</span><span class="op">)</span>
 
 <span class="co"># assign them to the contrast property for your IV</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">smith_example</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">my_contrasts</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">smith_example</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">my_contrasts</span>
 
 <span class="co"># rerun ANOVA</span>
-<span class="va">aov.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">DV</span><span class="op">~</span><span class="va">IV</span>, <span class="va">smith_example</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">aov.out</span><span class="op">)</span>
+<span class="va">aov.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">DV</span><span class="op">~</span><span class="va">IV</span>, <span class="va">smith_example</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">aov.out</span><span class="op">)</span>
 <span class="co">#&gt;             Df Sum Sq Mean Sq F value  Pr(&gt;F)   </span>
 <span class="co">#&gt; IV           4    700     175   5.469 0.00112 **</span>
 <span class="co">#&gt; Residuals   45   1440      32                   </span>
@@ -325,8 +327,8 @@
 <span class="co"># use summary.aov and split to print out contrast info</span>
 <span class="co"># define your contrast labels that will get printed to the table</span>
 
-<span class="op">(</span><span class="va">full_summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/summary.aov.html">summary.aov</a></span><span class="op">(</span><span class="va">aov.out</span>,
-                             split<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>IV<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"(1+3+4) vs (2+5)"</span><span class="op">=</span><span class="fl">1</span>, 
+<span class="op">(</span><span class="va">full_summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/summary.aov.html" class="external-link">summary.aov</a></span><span class="op">(</span><span class="va">aov.out</span>,
+                             split<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>IV<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"(1+3+4) vs (2+5)"</span><span class="op">=</span><span class="fl">1</span>, 
                                                 <span class="st">"(1) vs (3+4)"</span> <span class="op">=</span> <span class="fl">2</span>, 
                                                 <span class="st">"(3) vs (4)"</span><span class="op">=</span> <span class="fl">3</span>,
                                                 <span class="st">"(2) vs (5)"</span><span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
@@ -343,8 +345,8 @@
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/crsh/papaja">papaja</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/papaja/man/apa_table.html">apa_table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/papaja/man/apa_print.html">apa_print</a></span><span class="op">(</span><span class="va">full_summary</span><span class="op">)</span><span class="op">$</span><span class="va">table</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/crsh/papaja" class="external-link">papaja</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/papaja/man/apa_table.html" class="external-link">apa_table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/papaja/man/apa_print.html" class="external-link">apa_print</a></span><span class="op">(</span><span class="va">full_summary</span><span class="op">)</span><span class="op">$</span><span class="va">table</span><span class="op">)</span></code></pre></div>
 <caption>
 (#tab:example_table)
 </caption>
@@ -354,112 +356,112 @@
 <table class="table">
 <thead><tr class="header">
 <th align="left">Effect</th>
+<th align="left"><span class="math inline">\(\hat{\eta}^2_G\)</span></th>
 <th align="left"><span class="math inline">\(F\)</span></th>
-<th align="left"><span class="math inline">\(\mathit{df}_1\)</span></th>
-<th align="left"><span class="math inline">\(\mathit{df}_2\)</span></th>
+<th align="left"><span class="math inline">\(\mathit{df}\)</span></th>
+<th align="left"><span class="math inline">\(\mathit{df}_{\mathrm{res}}\)</span></th>
 <th align="left"><span class="math inline">\(\mathit{MSE}\)</span></th>
 <th align="left"><span class="math inline">\(p\)</span></th>
-<th align="left"><span class="math inline">\(\hat{\eta}^2_G\)</span></th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">IV</td>
+<td align="left">.327</td>
 <td align="left">5.47</td>
 <td align="left">4</td>
 <td align="left">45</td>
 <td align="left">32.00</td>
 <td align="left">.001</td>
-<td align="left">.327</td>
 </tr>
 <tr class="even">
 <td align="left">IV <span class="math inline">\(\times\)</span> 1+3+4 vs 2+5</td>
+<td align="left">.319</td>
 <td align="left">21.09</td>
 <td align="left">1</td>
 <td align="left">45</td>
 <td align="left">32.00</td>
 <td align="left">&lt; .001</td>
-<td align="left">.319</td>
 </tr>
 <tr class="odd">
 <td align="left">IV <span class="math inline">\(\times\)</span> 1 vs 3+4</td>
+<td align="left">.000</td>
 <td align="left">0.00</td>
 <td align="left">1</td>
 <td align="left">45</td>
 <td align="left">32.00</td>
 <td align="left">&gt; .999</td>
-<td align="left">.000</td>
 </tr>
 <tr class="even">
 <td align="left">IV <span class="math inline">\(\times\)</span> 3 vs 4</td>
+<td align="left">.014</td>
 <td align="left">0.62</td>
 <td align="left">1</td>
 <td align="left">45</td>
 <td align="left">32.00</td>
 <td align="left">.433</td>
-<td align="left">.014</td>
 </tr>
 <tr class="odd">
 <td align="left">IV <span class="math inline">\(\times\)</span> 2 vs 5</td>
+<td align="left">.003</td>
 <td align="left">0.16</td>
 <td align="left">1</td>
 <td align="left">45</td>
 <td align="left">32.00</td>
 <td align="left">.695</td>
-<td align="left">.003</td>
 </tr>
 </tbody>
 </table>
-<p>As a sidenote, <span class="citation"><a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al.</a> (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span> points out that when you use a complete set of orthogonal contrasts, the omnibus F-value is the same as the average of the F-values from each of the contrasts.</p>
+<p>As a sidenote, <span class="citation">Abdi et al. (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span> points out that when you use a complete set of orthogonal contrasts, the omnibus F-value is the same as the average of the F-values from each of the contrasts.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">full_summary</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`F value`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
 <span class="co">#&gt;         </span>
 <span class="co">#&gt; 5.46875</span>
-<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">full_summary</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`F value`</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">full_summary</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`F value`</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; [1] 5.46875</span></code></pre></div>
 </div>
-<div id="concept-1-understanding-orthogonal-contrasts" class="section level2">
-<h2 class="hasAnchor">
-<a href="#concept-1-understanding-orthogonal-contrasts" class="anchor"></a>Concept 1: Understanding orthogonal contrasts</h2>
+<div class="section level2">
+<h2 id="concept-1-understanding-orthogonal-contrasts">Concept 1: Understanding orthogonal contrasts<a class="anchor" aria-label="anchor" href="#concept-1-understanding-orthogonal-contrasts"></a>
+</h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/egoVLWApFMU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"imgs/LinearContrasts/LinearContrasts.004.jpeg"</span><span class="op">)</span></code></pre></div>
-<p><img src="imgs/LinearContrasts/LinearContrasts.004.jpeg"><!-- --></p>
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="st">"imgs/LinearContrasts/LinearContrasts.004.jpeg"</span><span class="op">)</span></code></pre></div>
+<p><img src="imgs/LinearContrasts/LinearContrasts.004.jpeg" width="960"></p>
 <p>The figure shows some group means that are different from the grand mean. The top right panel shows how each group mean can be considered as a unique source for each difference. The bottom three panels on the right show a set of three orthogonal contrasts, which is an alternative way of breaking down the sources of the differences.</p>
 <p>Here are a similar pattern of group means, along with the grand mean, deviations, and sum of squares.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-<span class="va">group_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">10</span>,<span class="fl">11</span><span class="op">)</span>
-<span class="op">(</span><span class="va">grand_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">group_means</span><span class="op">)</span><span class="op">)</span>
+<span class="va">group_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">10</span>,<span class="fl">11</span><span class="op">)</span>
+<span class="op">(</span><span class="va">grand_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">group_means</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] 7</span>
 <span class="op">(</span><span class="va">differences</span> <span class="op">&lt;-</span> <span class="va">group_means</span><span class="op">-</span><span class="va">grand_mean</span><span class="op">)</span>
 <span class="co">#&gt; [1] -3 -4  3  4</span>
 <span class="op">(</span><span class="va">squared_differences</span> <span class="op">&lt;-</span> <span class="va">differences</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
 <span class="co">#&gt; [1]  9 16  9 16</span>
-<span class="op">(</span><span class="va">sum_squares</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">squared_differences</span><span class="op">)</span><span class="op">)</span>
+<span class="op">(</span><span class="va">sum_squares</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">squared_differences</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] 50</span></code></pre></div>
 <p>If all of the groups are different, and each of them have an independent influence on the grand mean, then we can think of each group mean as having it’s own unique effect (represented as four different colored lines in the top right of panel above).</p>
 <p>Even though there are four presumed influences, because we are estimating them on the basis of the grand mean, one degree of freedom is lost. So, three of the group means could be any number, but the last one would be fixed in order for the set to produce the specific grand mean here.</p>
 <p>When we define linear contrasts, we are defining the make-up of specific means in terms of combinations of the set of means. So, the default ANOVA assumption that each mean is unique, can be thought of itself as a very basic set of orthogonal contrasts.</p>
 <p>If we enter the group names and means into a dataframe, and declare the IV as a factor, we can see the basic set of orthogonal contrasts.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">fake_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>IV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>,<span class="st">"D"</span><span class="op">)</span><span class="op">)</span>,
-                    DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">10</span>,<span class="fl">11</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">fake_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span>IV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>,<span class="st">"D"</span><span class="op">)</span><span class="op">)</span>,
+                    DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">10</span>,<span class="fl">11</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span>
 <span class="co">#&gt;   B C D</span>
 <span class="co">#&gt; A 0 0 0</span>
 <span class="co">#&gt; B 1 0 0</span>
 <span class="co">#&gt; C 0 1 0</span>
 <span class="co">#&gt; D 0 0 1</span></code></pre></div>
-<p>Let’s walk through this and answer some rhetorical questions. Our question for each group mean is, “how will we estimate this mean?” First of all, we assume that all of the group means are deviations from the grand mean. So each group mean will be expressed as the sum of the grand mean and a deviation.</p>
+<p>Let’s walk through this and answer some rhetorical questions. Our question for each group mean is, “how will we estimate this mean?”. First of all, we assume that all of the group means are deviations from the grand mean. So each group mean will be expressed as the sum of the grand mean and a deviation.</p>
 <p>Let’s start with D. What values from the data will we use to estimate the mean of D? The values in the column for D show the contrast <strong>weights</strong>. We are saying we will take 100% of deviation for D (an 4), and 0% of the other means.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">[</span>,<span class="st">'D'</span><span class="op">]</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">[</span>,<span class="st">'D'</span><span class="op">]</span>
 <span class="co">#&gt; A B C D </span>
 <span class="co">#&gt; 0 0 0 1</span>
 
-<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">[</span>,<span class="st">'D'</span><span class="op">]</span> <span class="op">*</span> <span class="va">differences</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">[</span>,<span class="st">'D'</span><span class="op">]</span> <span class="op">*</span> <span class="va">differences</span>
 <span class="co">#&gt; A B C D </span>
 <span class="co">#&gt; 0 0 0 4</span>
 
@@ -468,14 +470,14 @@
 <span class="co">#&gt; [1] 11</span></code></pre></div>
 <p>The same goes for C and B. We will estimate each of those means, with the grand mean and their unique deviations</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span>
 <span class="co">#&gt;   B C D</span>
 <span class="co">#&gt; A 0 0 0</span>
 <span class="co">#&gt; B 1 0 0</span>
 <span class="co">#&gt; C 0 1 0</span>
 <span class="co">#&gt; D 0 0 1</span>
 
-<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span> <span class="op">*</span> <span class="va">differences</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span> <span class="op">*</span> <span class="va">differences</span>
 <span class="co">#&gt;    B C D</span>
 <span class="co">#&gt; A  0 0 0</span>
 <span class="co">#&gt; B -4 0 0</span>
@@ -483,7 +485,7 @@
 <span class="co">#&gt; D  0 0 4</span></code></pre></div>
 <p>So far if we say that each mean is the sum of the grand mean and the unique deviations from the grand mean, we get the original mean back for B, C, and D:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">grand_mean</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span> <span class="op">*</span> <span class="va">differences</span>
+<code class="sourceCode R"><span class="va">grand_mean</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span> <span class="op">*</span> <span class="va">differences</span>
 <span class="co">#&gt;   B  C  D</span>
 <span class="co">#&gt; A 0  0  0</span>
 <span class="co">#&gt; B 3  0  0</span>
@@ -495,25 +497,25 @@
 <span class="co">#&gt; [1] 7</span>
 
 <span class="co"># A has to be four, if the others are 3, 10, and 11)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">10</span>, <span class="fl">11</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">10</span>, <span class="fl">11</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] 7</span></code></pre></div>
-<div id="other-orthogonal-contrasts" class="section level3">
-<h3 class="hasAnchor">
-<a href="#other-orthogonal-contrasts" class="anchor"></a>Other orthogonal contrasts</h3>
+<div class="section level3">
+<h3 id="other-orthogonal-contrasts">Other orthogonal contrasts<a class="anchor" aria-label="anchor" href="#other-orthogonal-contrasts"></a>
+</h3>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"imgs/LinearContrasts/LinearContrasts.004.jpeg"</span><span class="op">)</span></code></pre></div>
-<p><img src="imgs/LinearContrasts/LinearContrasts.004.jpeg"><!-- --></p>
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="st">"imgs/LinearContrasts/LinearContrasts.004.jpeg"</span><span class="op">)</span></code></pre></div>
+<p><img src="imgs/LinearContrasts/LinearContrasts.004.jpeg" width="960"></p>
 <p>Just to keep this picture close at hand, the previous section showed how the top right panel, showing the idea that each mean is a unique source, can be described in terms of linear contrasts.</p>
 <p>The same set of means can be described by <strong>any</strong> set of orthogonal linear contrasts. For example, consider the set of three contrasts in the figure.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">c1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span>
-<span class="va">c2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>
-<span class="va">c3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">c1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span>
+<span class="va">c2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>
+<span class="va">c3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span>
 
-<span class="va">my_contrasts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">c1</span>,<span class="va">c2</span>,<span class="va">c3</span><span class="op">)</span>
+<span class="va">my_contrasts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">c1</span>,<span class="va">c2</span>,<span class="va">c3</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">my_contrasts</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">my_contrasts</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span>
 <span class="co">#&gt;   c1 c2 c3</span>
 <span class="co">#&gt; A -1  1  0</span>
 <span class="co">#&gt; B -1 -1  0</span>
@@ -521,7 +523,7 @@
 <span class="co">#&gt; D  1  0  1</span>
 
 <span class="co"># check they are orthogonal</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;    c1 c2 c3</span>
 <span class="co">#&gt; c1  1  0  0</span>
 <span class="co">#&gt; c2  0  1  0</span>
@@ -531,7 +533,7 @@
 <p>If we compute the SSs for each contrast, we can see that they add up to the same total SS (50) from the example above. This will be true for any set of orthogonal linear contrasts.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># multiple contrast weights by group means</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span> <span class="op">*</span> <span class="va">group_means</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span> <span class="op">*</span> <span class="va">group_means</span>
 <span class="co">#&gt;   c1 c2  c3</span>
 <span class="co">#&gt; A -4  4   0</span>
 <span class="co">#&gt; B -3 -3   0</span>
@@ -539,26 +541,26 @@
 <span class="co">#&gt; D 11  0  11</span>
 
 <span class="co"># Find the sums for each column</span>
-<span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span> <span class="op">*</span> <span class="va">group_means</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colSums</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span> <span class="op">*</span> <span class="va">group_means</span><span class="op">)</span>
 <span class="co">#&gt; c1 c2 c3 </span>
 <span class="co">#&gt; 14  1  1</span>
 
 <span class="co"># Square the sums</span>
-<span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span> <span class="op">*</span> <span class="va">group_means</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>
+<span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colSums</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span> <span class="op">*</span> <span class="va">group_means</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>
 <span class="co">#&gt;  c1  c2  c3 </span>
 <span class="co">#&gt; 196   1   1</span>
 
 <span class="co"># divide by the SS for the contrast weights</span>
-<span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span> <span class="op">*</span> <span class="va">group_means</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
+<span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colSums</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span> <span class="op">*</span> <span class="va">group_means</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colSums</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
 <span class="co">#&gt;   c1   c2   c3 </span>
 <span class="co">#&gt; 49.0  0.5  0.5</span></code></pre></div>
 </div>
-<div id="explanation-part-2" class="section level3">
-<h3 class="hasAnchor">
-<a href="#explanation-part-2" class="anchor"></a>Explanation part 2</h3>
+<div class="section level3">
+<h3 id="explanation-part-2">Explanation part 2<a class="anchor" aria-label="anchor" href="#explanation-part-2"></a>
+</h3>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ET-Hz1tUVKM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-<p>This is an addendum to the above “explanation,” which I gave a low score to myself for explanatory value. I thought I could do better, so I came up with this…</p>
+<p>This is an addendum to the above “explanation”, which I gave a low score to myself for explanatory value. I thought I could do better, so I came up with this…</p>
 <p><strong>Here’s the thing about orthogonal linear contrasts</strong>: if you add them up in the right way, you are guaranteed to get the original means back.</p>
 <p>Let’s see this process in action:</p>
 <p>From the above example, our means are:</p>
@@ -567,27 +569,27 @@
 <span class="co">#&gt; [1]  4  3 10 11</span></code></pre></div>
 <p>and our set of three linear contrasts are:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span>
 <span class="co">#&gt;   c1 c2 c3</span>
 <span class="co">#&gt; A -1  1  0</span>
 <span class="co">#&gt; B -1 -1  0</span>
 <span class="co">#&gt; C  1  0 -1</span>
 <span class="co">#&gt; D  1  0  1</span></code></pre></div>
 <p>The claim is that if I add these contrasts up in the right way, I can get back the original pattern of means.</p>
-<p>Let’s try adding, remember we start with the grand means. So, the question will be, “can we add some combination of the linear contrasts in such a way that we can get the original pattern of means back?”</p>
+<p>Let’s try adding, remember we start with the grand means. So, the question will be, “can we add some combination of the linear contrasts in such a way that we can get the original pattern of means back?”.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">grand_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span>,<span class="fl">7</span>,<span class="fl">7</span>,<span class="fl">7</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">grand_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">7</span>,<span class="fl">7</span>,<span class="fl">7</span>,<span class="fl">7</span><span class="op">)</span>
 <span class="va">grand_means</span>
 <span class="co">#&gt; [1] 7 7 7 7</span></code></pre></div>
 <p>First, note that we need all of the contrasts to do this. For example, there is now way we can add just the first linear contrast and somehow get the original means back…</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">grand_means</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>
+<code class="sourceCode R"><span class="va">grand_means</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>
 <span class="co">#&gt; A B C D </span>
 <span class="co">#&gt; 6 6 8 8</span>
-<span class="va">grand_means</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">*</span><span class="fl">2</span>
+<span class="va">grand_means</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">*</span><span class="fl">2</span>
 <span class="co">#&gt; A B C D </span>
 <span class="co">#&gt; 5 5 9 9</span>
-<span class="va">grand_means</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">*</span><span class="fl">10</span>
+<span class="va">grand_means</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">*</span><span class="fl">10</span>
 <span class="co">#&gt;  A  B  C  D </span>
 <span class="co">#&gt; -3 -3 17 17</span></code></pre></div>
 <p>In the above example no matter how many times we add the linear contrast to the grand means, we can never get the pattern in the original means…A will also be the same as B, and C will always be the same as D. We won’t capture those extra nuances, so we need the other two contrasts.</p>
@@ -595,17 +597,17 @@
 <p>I could fiddle about by hand and try different coefficients…</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">grand_means</span><span class="op">+</span>
-<span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">*</span><span class="fl">3.5</span><span class="op">)</span><span class="op">+</span>
-<span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">*</span><span class="fl">.5</span><span class="op">)</span><span class="op">+</span>
-<span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span><span class="op">*</span><span class="fl">.5</span><span class="op">)</span>  
+<span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">*</span><span class="fl">3.5</span><span class="op">)</span><span class="op">+</span>
+<span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">*</span><span class="fl">.5</span><span class="op">)</span><span class="op">+</span>
+<span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span><span class="op">*</span><span class="fl">.5</span><span class="op">)</span>  
 <span class="co">#&gt;  A  B  C  D </span>
 <span class="co">#&gt;  4  3 10 11</span></code></pre></div>
 <p>Or, we could connect this issue with the concept of linear regression. Effectively, we are trying to explain the pattern of means (4,3,10,11), in terms of the multiple <em>linear</em> regression of the three different linear contrasts. Our question is what are the weights for each?</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fake_data_2</span> <span class="op">&lt;-</span> <span class="va">fake_data</span>
-<span class="va">fake_data_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">fake_data</span>,<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">)</span>
+<span class="va">fake_data_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">fake_data</span>,<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">c1</span> <span class="op">+</span> <span class="va">c2</span> <span class="op">+</span> <span class="va">c3</span>, data <span class="op">=</span> <span class="va">fake_data_2</span> <span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">c1</span> <span class="op">+</span> <span class="va">c2</span> <span class="op">+</span> <span class="va">c3</span>, data <span class="op">=</span> <span class="va">fake_data_2</span> <span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Call:</span>
 <span class="co">#&gt; lm(formula = DV ~ c1 + c2 + c3, data = fake_data_2)</span>
@@ -613,7 +615,7 @@
 <span class="co">#&gt; Coefficients:</span>
 <span class="co">#&gt; (Intercept)           c1           c2           c3  </span>
 <span class="co">#&gt;         7.0          3.5          0.5          0.5</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">c1</span> <span class="op">+</span> <span class="va">c2</span> <span class="op">+</span> <span class="va">c3</span>, data <span class="op">=</span> <span class="va">fake_data_2</span> <span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">c1</span> <span class="op">+</span> <span class="va">c2</span> <span class="op">+</span> <span class="va">c3</span>, data <span class="op">=</span> <span class="va">fake_data_2</span> <span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Call:</span>
 <span class="co">#&gt; lm(formula = DV ~ c1 + c2 + c3, data = fake_data_2)</span>
@@ -634,9 +636,9 @@
 <p>Ok, we just used multiple linear regression to find how much of each contrast we need to add together to reproduce the original pattern of means. The above coefficients were 3, 1, and, 1, we just need to change this to 3.5, .5, and, .5:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">grand_means</span><span class="op">+</span>
-<span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">*</span><span class="fl">3.5</span><span class="op">)</span><span class="op">+</span>
-<span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">*</span><span class="fl">.5</span><span class="op">)</span><span class="op">+</span>
-<span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span><span class="op">*</span><span class="fl">.5</span><span class="op">)</span>  
+<span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">*</span><span class="fl">3.5</span><span class="op">)</span><span class="op">+</span>
+<span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">*</span><span class="fl">.5</span><span class="op">)</span><span class="op">+</span>
+<span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span><span class="op">*</span><span class="fl">.5</span><span class="op">)</span>  
 <span class="co">#&gt;  A  B  C  D </span>
 <span class="co">#&gt;  4  3 10 11</span></code></pre></div>
 <p>Although we don’t have time in this lab to dive into the issue. The above will always be true for any set of orthogonal linear contrasts. You can always decompose and recompose a set of means into weighted contributions of linear contrasts. I will leave it to you to define different orthogonal linear contrasts for this set of means, and then show that they can be added up to produce the original set of means (sounds like a good generalization problem).</p>
@@ -647,19 +649,19 @@
 <span class="co"># and always find a combination of contrasts</span>
 <span class="co"># that perfectly explains the data</span>
 
-<span class="va">fake_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>IV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>,<span class="st">"D"</span><span class="op">)</span><span class="op">)</span>,
-                    DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">43</span>,<span class="fl">22</span>,<span class="fl">53</span>,<span class="fl">104</span><span class="op">)</span><span class="op">)</span>
+<span class="va">fake_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span>IV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>,<span class="st">"D"</span><span class="op">)</span><span class="op">)</span>,
+                    DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">43</span>,<span class="fl">22</span>,<span class="fl">53</span>,<span class="fl">104</span><span class="op">)</span><span class="op">)</span>
 
-<span class="va">c1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span>
-<span class="va">c2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>
-<span class="va">c3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span>
-<span class="va">my_contrasts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">c1</span>,<span class="va">c2</span>,<span class="va">c3</span><span class="op">)</span>
+<span class="va">c1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span>
+<span class="va">c2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>
+<span class="va">c3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span>
+<span class="va">my_contrasts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">c1</span>,<span class="va">c2</span>,<span class="va">c3</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">my_contrasts</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">my_contrasts</span>
 
-<span class="va">fake_data_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">fake_data</span>,<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">)</span>
+<span class="va">fake_data_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">fake_data</span>,<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">c1</span> <span class="op">+</span> <span class="va">c2</span> <span class="op">+</span> <span class="va">c3</span>, data <span class="op">=</span> <span class="va">fake_data_2</span> <span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">c1</span> <span class="op">+</span> <span class="va">c2</span> <span class="op">+</span> <span class="va">c3</span>, data <span class="op">=</span> <span class="va">fake_data_2</span> <span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Call:</span>
 <span class="co">#&gt; lm(formula = DV ~ c1 + c2 + c3, data = fake_data_2)</span>
@@ -667,7 +669,7 @@
 <span class="co">#&gt; Coefficients:</span>
 <span class="co">#&gt; (Intercept)           c1           c2           c3  </span>
 <span class="co">#&gt;        55.5         23.0         10.5         25.5</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">c1</span> <span class="op">+</span> <span class="va">c2</span> <span class="op">+</span> <span class="va">c3</span>, data <span class="op">=</span> <span class="va">fake_data_2</span> <span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">c1</span> <span class="op">+</span> <span class="va">c2</span> <span class="op">+</span> <span class="va">c3</span>, data <span class="op">=</span> <span class="va">fake_data_2</span> <span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Call:</span>
 <span class="co">#&gt; lm(formula = DV ~ c1 + c2 + c3, data = fake_data_2)</span>
@@ -700,9 +702,9 @@ do a monte-carlo simulation...familywise etc.
 -->
 </div>
 </div>
-<div id="concept-2-family-wise-error-rate" class="section level2">
-<h2 class="hasAnchor">
-<a href="#concept-2-family-wise-error-rate" class="anchor"></a>Concept 2: Family-wise error rate</h2>
+<div class="section level2">
+<h2 id="concept-2-family-wise-error-rate">Concept 2: Family-wise error rate<a class="anchor" aria-label="anchor" href="#concept-2-family-wise-error-rate"></a>
+</h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hh1BM6Z6O4M" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 <p>Orthogonal linear contrasts show how a single omnibus ANOVA can be broken down into a set of contrasts. This is useful especially when the contrasts are designed to examine patterns of interest.</p>
@@ -712,33 +714,33 @@ do a monte-carlo simulation...familywise etc.
 <li><p><span class="math inline">\(\alpha(PC)\)</span> or alpha per comparison: the probability of making a type I error for a single test</p></li>
 <li><p><span class="math inline">\(\alpha(PF)\)</span>, or alpha per family of comparisons, the probability of making at least one type I error across a whole set of related tests.</p></li>
 </ol>
-<div id="monte-carlo-simulation-of-two-alphas" class="section level3">
-<h3 class="hasAnchor">
-<a href="#monte-carlo-simulation-of-two-alphas" class="anchor"></a>Monte-Carlo simulation of two alphas</h3>
+<div class="section level3">
+<h3 id="monte-carlo-simulation-of-two-alphas">Monte-Carlo simulation of two alphas<a class="anchor" aria-label="anchor" href="#monte-carlo-simulation-of-two-alphas"></a>
+</h3>
 <p>The textbook describes a monte-carlo simulation of a one-factor design with 6 groups. There are 100 observations per group, all sampled from a normal distribution.</p>
 <p>For each simulation we do two things:</p>
 <ol style="list-style-type: decimal">
-<li><p>Conduct an omnibus ANOVA and compute F. If the p-value is smaller than .05, we “reject the null,” and count this a type I error.</p></li>
+<li><p>Conduct an omnibus ANOVA and compute F. If the p-value is smaller than .05, we “reject the null”, and count this a type I error.</p></li>
 <li><p>conduct 5 linear orthogonal contrasts, compute each F, and if any have p-values smaller than .05, we “reject” them, and count them as type I errors.</p></li>
 </ol>
 <p>In the textbook example, there were 10,000 simulations. The below code contains the basic components we need to perform the simulation.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># example dataframe to simulate null</span>
-<span class="va">sim_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">6</span><span class="op">*</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,
-                   IV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, each <span class="op">=</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="va">sim_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span>DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">6</span><span class="op">*</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,
+                   IV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, each <span class="op">=</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># example orthogonal linear contrasts</span>
-<span class="va">c1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>
-<span class="va">c2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>
-<span class="va">c3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>
-<span class="va">c4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>
-<span class="va">c5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>
+<span class="va">c1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>
+<span class="va">c2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>
+<span class="va">c3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>
+<span class="va">c4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>
+<span class="va">c5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>
 
 <span class="co"># create contrast matrix</span>
-<span class="va">orth_contrasts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">c1</span>,<span class="va">c2</span>,<span class="va">c3</span>,<span class="va">c4</span>,<span class="va">c5</span><span class="op">)</span>
+<span class="va">orth_contrasts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">c1</span>,<span class="va">c2</span>,<span class="va">c3</span>,<span class="va">c4</span>,<span class="va">c5</span><span class="op">)</span>
 
 <span class="co"># check contrasts are orthogonal</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">orth_contrasts</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">orth_contrasts</span><span class="op">)</span>
 <span class="co">#&gt;    c1 c2 c3 c4 c5</span>
 <span class="co">#&gt; c1  1  0  0  0  0</span>
 <span class="co">#&gt; c2  0  1  0  0  0</span>
@@ -747,38 +749,40 @@ do a monte-carlo simulation...familywise etc.
 <span class="co">#&gt; c5  0  0  0  0  1</span>
 
 <span class="co"># assign new contrasts to IV</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">sim_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">orth_contrasts</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">sim_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">orth_contrasts</span>
 
 <span class="co"># run ANOVA</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/summary.aov.html">summary.aov</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">DV</span><span class="op">~</span><span class="va">IV</span>, <span class="va">sim_data</span><span class="op">)</span>, split<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>IV<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"c1"</span><span class="op">=</span><span class="fl">1</span>, 
+<span class="fu"><a href="https://rdrr.io/r/stats/summary.aov.html" class="external-link">summary.aov</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">DV</span><span class="op">~</span><span class="va">IV</span>, <span class="va">sim_data</span><span class="op">)</span>, split<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>IV<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"c1"</span><span class="op">=</span><span class="fl">1</span>, 
                                                 <span class="st">"c2"</span> <span class="op">=</span> <span class="fl">2</span>, 
                                                 <span class="st">"c3"</span><span class="op">=</span> <span class="fl">3</span>,
                                                 <span class="st">"c4"</span><span class="op">=</span> <span class="fl">4</span>,
                                                 <span class="st">"c5"</span> <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
                                         <span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;              Df Sum Sq Mean Sq F value Pr(&gt;F)</span>
-<span class="co">#&gt; IV            5    4.3  0.8689   0.887  0.490</span>
-<span class="co">#&gt;   IV: c1      1    2.2  2.1809   2.225  0.136</span>
-<span class="co">#&gt;   IV: c2      1    0.1  0.0607   0.062  0.804</span>
-<span class="co">#&gt;   IV: c3      1    0.0  0.0185   0.019  0.891</span>
-<span class="co">#&gt;   IV: c4      1    0.3  0.3341   0.341  0.560</span>
-<span class="co">#&gt;   IV: c5      1    1.8  1.7506   1.786  0.182</span>
-<span class="co">#&gt; Residuals   594  582.2  0.9802</span></code></pre></div>
+<span class="co">#&gt;              Df Sum Sq Mean Sq F value Pr(&gt;F)  </span>
+<span class="co">#&gt; IV            5    6.5   1.299   1.367  0.235  </span>
+<span class="co">#&gt;   IV: c1      1    3.5   3.457   3.638  0.057 .</span>
+<span class="co">#&gt;   IV: c2      1    1.7   1.709   1.798  0.180  </span>
+<span class="co">#&gt;   IV: c3      1    1.0   0.975   1.026  0.312  </span>
+<span class="co">#&gt;   IV: c4      1    0.3   0.342   0.360  0.549  </span>
+<span class="co">#&gt;   IV: c5      1    0.0   0.011   0.012  0.914  </span>
+<span class="co">#&gt; Residuals   594  564.5   0.950                 </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
 <p>When we conduct the simulation we want to count type I errors. Specifically, let’s count type I errors for the omnibus test, as well as for the linear contrasts. Our simulation will be similar to the one reported in Table 12.1 from the textbook.</p>
 <p>In terms of organizing the code, I will adopt a strategy of saving the necessary data from the simulation into a dataframe that can then be analyzed to produce a summary table.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#create a tibble to store all the results</span>
-<span class="va">all_sim_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">all_sim_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="co"># conduct simulation</span>
 <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10000</span><span class="op">)</span><span class="op">{</span>
 
-<span class="va">sim_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">6</span><span class="op">*</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,
-                   IV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, each <span class="op">=</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="va">sim_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span>DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">6</span><span class="op">*</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,
+                   IV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, each <span class="op">=</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">sim_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">orth_contrasts</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">sim_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">orth_contrasts</span>
 
-<span class="va">sim_output</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/summary.aov.html">summary.aov</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">DV</span><span class="op">~</span><span class="va">IV</span>, <span class="va">sim_data</span><span class="op">)</span>, split<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>IV<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"c1"</span><span class="op">=</span><span class="fl">1</span>, 
+<span class="va">sim_output</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/summary.aov.html" class="external-link">summary.aov</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">DV</span><span class="op">~</span><span class="va">IV</span>, <span class="va">sim_data</span><span class="op">)</span>, split<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>IV<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"c1"</span><span class="op">=</span><span class="fl">1</span>, 
                                                 <span class="st">"c2"</span> <span class="op">=</span> <span class="fl">2</span>, 
                                                 <span class="st">"c3"</span><span class="op">=</span> <span class="fl">3</span>,
                                                 <span class="st">"c4"</span><span class="op">=</span> <span class="fl">4</span>,
@@ -786,25 +790,25 @@ do a monte-carlo simulation...familywise etc.
                                         <span class="op">)</span><span class="op">)</span>
 
 <span class="co">#save current results in a tibble</span>
-<span class="va">sim_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"omnibus"</span>,<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"contrast"</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span>,
+<span class="va">sim_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span>type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"omnibus"</span>,<span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"contrast"</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span>,
                       p_values <span class="op">=</span> <span class="va">sim_output</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`Pr(&gt;F)`</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>,
-                      sim_num <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">i</span>,<span class="fl">6</span><span class="op">)</span>
+                      sim_num <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="va">i</span>,<span class="fl">6</span><span class="op">)</span>
                       <span class="op">)</span>
 
 <span class="co"># add current results to the tibble storing all the results</span>
-<span class="va">all_sim_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">all_sim_data</span>,<span class="va">sim_results</span><span class="op">)</span>
+<span class="va">all_sim_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">all_sim_data</span>,<span class="va">sim_results</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <p>Let’s use <code>dplyr</code> to count how many type I errors occurred for omnibus and contrast based F-tests.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># analyze the sim data</span>
-<span class="va">type_I_errors</span> <span class="op">&lt;-</span> <span class="va">all_sim_data</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>type_I <span class="op">=</span> <span class="va">p_values</span> <span class="op">&lt;</span> <span class="fl">.05</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">type</span>, <span class="va">sim_num</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>counts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">type_I</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">type</span>,<span class="va">counts</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>type_I_frequency <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">counts</span><span class="op">)</span><span class="op">)</span>
+<span class="va">type_I_errors</span> <span class="op">&lt;-</span> <span class="va">all_sim_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>type_I <span class="op">=</span> <span class="va">p_values</span> <span class="op">&lt;</span> <span class="fl">.05</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">type</span>, <span class="va">sim_num</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>counts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">type_I</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">type</span>,<span class="va">counts</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>type_I_frequency <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">counts</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">type_I_errors</span><span class="op">)</span></code></pre></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">type_I_errors</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">type</th>
@@ -820,17 +824,17 @@ do a monte-carlo simulation...familywise etc.
 <tr class="even">
 <td align="left">contrast</td>
 <td align="right">1</td>
-<td align="right">2066</td>
+<td align="right">2001</td>
 </tr>
 <tr class="odd">
 <td align="left">contrast</td>
 <td align="right">2</td>
-<td align="right">428</td>
+<td align="right">436</td>
 </tr>
 <tr class="even">
 <td align="left">contrast</td>
 <td align="right">3</td>
-<td align="right">42</td>
+<td align="right">30</td>
 </tr>
 <tr class="odd">
 <td align="left">omnibus</td>
@@ -840,67 +844,67 @@ do a monte-carlo simulation...familywise etc.
 <tr class="even">
 <td align="left">omnibus</td>
 <td align="right">1</td>
-<td align="right">520</td>
+<td align="right">508</td>
 </tr>
 </tbody>
 </table>
 <p>The type I error rate for the omnibus test is pretty close to .05:</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">type_I_errors</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">type</span> <span class="op">==</span> <span class="st">'omnibus'</span>,
-         <span class="va">counts</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">type_I_frequency</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.052</span></code></pre></div>
+<code class="sourceCode R"><span class="va">type_I_errors</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">type</span> <span class="op">==</span> <span class="st">'omnibus'</span>,
+         <span class="va">counts</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">type_I_frequency</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
+<span class="co">#&gt; [1] 0.0508</span></code></pre></div>
 <p>Similarly, we conducted 50000 total linear contrasts. Looking at individual contrasts, the type I error rate is also close to .05:</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">type_I_errors</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">type</span> <span class="op">==</span> <span class="st">'contrast'</span>,
-         <span class="va">counts</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">type_I_frequency</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="fl">50000</span>
-<span class="co">#&gt; [1] 0.05072</span></code></pre></div>
+<code class="sourceCode R"><span class="va">type_I_errors</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">type</span> <span class="op">==</span> <span class="st">'contrast'</span>,
+         <span class="va">counts</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">type_I_frequency</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="fl">50000</span>
+<span class="co">#&gt; [1] 0.04934</span></code></pre></div>
 <p>However, <strong>the family-wise</strong> type I error rate is larger. We conducted 10,000 simulated experiments, if asked the question, what was the probability of rejecting the null if any of the linear contrasts were significant, then we find:</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">type_I_errors</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">type</span> <span class="op">==</span> <span class="st">'contrast'</span>,
-         <span class="va">counts</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">type_I_frequency</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.2536</span></code></pre></div>
+<code class="sourceCode R"><span class="va">type_I_errors</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">type</span> <span class="op">==</span> <span class="st">'contrast'</span>,
+         <span class="va">counts</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">type_I_frequency</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
+<span class="co">#&gt; [1] 0.2467</span></code></pre></div>
 </div>
 </div>
-<div id="concept-3-correcting-for-multiple-comparisons" class="section level2">
-<h2 class="hasAnchor">
-<a href="#concept-3-correcting-for-multiple-comparisons" class="anchor"></a>Concept 3: Correcting for multiple comparisons</h2>
+<div class="section level2">
+<h2 id="concept-3-correcting-for-multiple-comparisons">Concept 3: Correcting for multiple comparisons<a class="anchor" aria-label="anchor" href="#concept-3-correcting-for-multiple-comparisons"></a>
+</h2>
 <p>Your textbook describes several methods for “correcting” p-values for multiple comparisons to protect against the family-wise type I error rate. Some of these corrections include the Sidak, Bonferroni, Boole, and Dunn. I going to purposefully leave this concept section mostly blank; and, discuss why in class.</p>
 <p>As a blunt perspective, I think it is generally useful to report how many tests you conducted, along with the uncorrected p-values for each. In my experience, many different people have different perspectives on what ought to be done. Most of the corrections can be done to the uncorrected p-values, so if a reader has a preference, you have supplied them with the necessary information for them to do the corrections that they think are necessary.</p>
 </div>
-<div id="practical-ii-non-orthogonal-contrasts" class="section level2">
-<h2 class="hasAnchor">
-<a href="#practical-ii-non-orthogonal-contrasts" class="anchor"></a>Practical II: Non-orthogonal Contrasts</h2>
+<div class="section level2">
+<h2 id="practical-ii-non-orthogonal-contrasts">Practical II: Non-orthogonal Contrasts<a class="anchor" aria-label="anchor" href="#practical-ii-non-orthogonal-contrasts"></a>
+</h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/8pPDvBEo_bE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 <p>This practical section will be brief. The purpose will be to show how to accomplish textbook examples from chapter 13 in R.</p>
-<div id="pretend-non-orthogonal-contrasts-are-orthogonal" class="section level3">
-<h3 class="hasAnchor">
-<a href="#pretend-non-orthogonal-contrasts-are-orthogonal" class="anchor"></a>13.2.3 Pretend non-orthogonal contrasts are orthogonal</h3>
+<div class="section level3">
+<h3 id="pretend-non-orthogonal-contrasts-are-orthogonal">13.2.3 Pretend non-orthogonal contrasts are orthogonal<a class="anchor" aria-label="anchor" href="#pretend-non-orthogonal-contrasts-are-orthogonal"></a>
+</h3>
 <p>In this example, sample data from the “romeo and juliet” example are supplied, along with four linear contrasts testing different research hypotheses. The textbook shows examples of computing F statistics for each contrast.</p>
 <p>We can do this in R too, <strong>with some minor difficulties</strong>.</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">romeo_juliet</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>subjects <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>,
-                       Group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Context Before"</span>,
+<code class="sourceCode R"><span class="va">romeo_juliet</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span>subjects <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>,
+                       Group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Context Before"</span>,
                                  <span class="st">"Partial Context"</span>,
                                  <span class="st">"Context After"</span>,
                                  <span class="st">"Without context"</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>,
-                       Comprehension <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">9</span>,<span class="fl">8</span>,<span class="fl">4</span>,<span class="fl">9</span>,
+                       Comprehension <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">9</span>,<span class="fl">8</span>,<span class="fl">4</span>,<span class="fl">9</span>,
                                          <span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,
                                          <span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">1</span>,
                                          <span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>
                                    <span class="op">)</span>
                           <span class="op">)</span>
 
-<span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span>,
-                             levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Context Before"</span>,
+<span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span>,
+                             levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Context Before"</span>,
                                  <span class="st">"Partial Context"</span>,
                                  <span class="st">"Context After"</span>,
                                  <span class="st">"Without context"</span><span class="op">)</span>
@@ -908,24 +912,24 @@ do a monte-carlo simulation...familywise etc.
 
 <span class="co"># define non-orthogonal contrasts</span>
 
-<span class="va">c1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="op">-</span><span class="fl">3</span><span class="op">)</span>
-<span class="va">c2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>
-<span class="va">c3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>
-<span class="va">c4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>
+<span class="va">c1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="op">-</span><span class="fl">3</span><span class="op">)</span>
+<span class="va">c2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>
+<span class="va">c3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>
+<span class="va">c4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>
 
-<span class="va">new_contrasts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">c1</span>,<span class="va">c2</span>,<span class="va">c3</span>,<span class="va">c4</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">new_contrasts</span><span class="op">)</span>
+<span class="va">new_contrasts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">c1</span>,<span class="va">c2</span>,<span class="va">c3</span>,<span class="va">c4</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">new_contrasts</span><span class="op">)</span>
 <span class="co">#&gt;           c1        c2        c3        c4</span>
 <span class="co">#&gt; c1 1.0000000 0.8164966 0.3333333 0.0000000</span>
 <span class="co">#&gt; c2 0.8164966 1.0000000 0.0000000 0.0000000</span>
 <span class="co">#&gt; c3 0.3333333 0.0000000 1.0000000 0.8164966</span>
 <span class="co">#&gt; c4 0.0000000 0.0000000 0.8164966 1.0000000</span>
 
-<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">new_contrasts</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">new_contrasts</span>
 
 <span class="co"># note, by default, correctly computes the first contrast, but not the rest...</span>
 
-<span class="fu"><a href="https://rdrr.io/r/stats/summary.aov.html">summary.aov</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Comprehension</span><span class="op">~</span><span class="va">Group</span>, <span class="va">romeo_juliet</span><span class="op">)</span>, split<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Group<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"c1"</span><span class="op">=</span><span class="fl">1</span>, <span class="st">"c2"</span> <span class="op">=</span> <span class="fl">2</span>, <span class="st">"c3"</span><span class="op">=</span> <span class="fl">3</span>, <span class="st">"c4"</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/summary.aov.html" class="external-link">summary.aov</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">Comprehension</span><span class="op">~</span><span class="va">Group</span>, <span class="va">romeo_juliet</span><span class="op">)</span>, split<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Group<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"c1"</span><span class="op">=</span><span class="fl">1</span>, <span class="st">"c2"</span> <span class="op">=</span> <span class="fl">2</span>, <span class="st">"c3"</span><span class="op">=</span> <span class="fl">3</span>, <span class="st">"c4"</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;             Df Sum Sq Mean Sq F value  Pr(&gt;F)   </span>
 <span class="co">#&gt; Group        3  50.95   16.98   7.227 0.00278 **</span>
 <span class="co">#&gt;   Group: c1  1  12.15   12.15   5.170 0.03710 * </span>
@@ -938,8 +942,8 @@ do a monte-carlo simulation...familywise etc.
 
 <span class="co"># you could enter them one at a time:</span>
 
-<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">c1</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/summary.aov.html">summary.aov</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Comprehension</span><span class="op">~</span><span class="va">Group</span>, <span class="va">romeo_juliet</span><span class="op">)</span>, split<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Group<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"c1"</span><span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">c1</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/summary.aov.html" class="external-link">summary.aov</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">Comprehension</span><span class="op">~</span><span class="va">Group</span>, <span class="va">romeo_juliet</span><span class="op">)</span>, split<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Group<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"c1"</span><span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;             Df Sum Sq Mean Sq F value  Pr(&gt;F)   </span>
 <span class="co">#&gt; Group        3  50.95   16.98   7.227 0.00278 **</span>
 <span class="co">#&gt;   Group: c1  1  12.15   12.15   5.170 0.03710 * </span>
@@ -947,8 +951,8 @@ do a monte-carlo simulation...familywise etc.
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 
-<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">c2</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/summary.aov.html">summary.aov</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Comprehension</span><span class="op">~</span><span class="va">Group</span>, <span class="va">romeo_juliet</span><span class="op">)</span>, split<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Group<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"c2"</span><span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">c2</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/summary.aov.html" class="external-link">summary.aov</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">Comprehension</span><span class="op">~</span><span class="va">Group</span>, <span class="va">romeo_juliet</span><span class="op">)</span>, split<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Group<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"c2"</span><span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;             Df Sum Sq Mean Sq F value  Pr(&gt;F)   </span>
 <span class="co">#&gt; Group        3  50.95   16.98   7.227 0.00278 **</span>
 <span class="co">#&gt;   Group: c2  1   0.10    0.10   0.043 0.83917   </span>
@@ -956,8 +960,8 @@ do a monte-carlo simulation...familywise etc.
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 
-<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">c3</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/summary.aov.html">summary.aov</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Comprehension</span><span class="op">~</span><span class="va">Group</span>, <span class="va">romeo_juliet</span><span class="op">)</span>, split<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Group<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"c3"</span><span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">c3</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/summary.aov.html" class="external-link">summary.aov</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">Comprehension</span><span class="op">~</span><span class="va">Group</span>, <span class="va">romeo_juliet</span><span class="op">)</span>, split<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Group<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"c3"</span><span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;             Df Sum Sq Mean Sq F value   Pr(&gt;F)    </span>
 <span class="co">#&gt; Group        3  50.95   16.98   7.227 0.002782 ** </span>
 <span class="co">#&gt;   Group: c3  1  46.82   46.82  19.922 0.000392 ***</span>
@@ -965,8 +969,8 @@ do a monte-carlo simulation...familywise etc.
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 
-<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">c4</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/summary.aov.html">summary.aov</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Comprehension</span><span class="op">~</span><span class="va">Group</span>, <span class="va">romeo_juliet</span><span class="op">)</span>, split<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Group<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"c4"</span><span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">c4</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/summary.aov.html" class="external-link">summary.aov</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">Comprehension</span><span class="op">~</span><span class="va">Group</span>, <span class="va">romeo_juliet</span><span class="op">)</span>, split<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Group<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"c4"</span><span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;             Df Sum Sq Mean Sq F value  Pr(&gt;F)   </span>
 <span class="co">#&gt; Group        3  50.95   16.98   7.227 0.00278 **</span>
 <span class="co">#&gt;   Group: c4  1  19.60   19.60   8.340 0.01070 * </span>
@@ -974,26 +978,26 @@ do a monte-carlo simulation...familywise etc.
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
 </div>
-<div id="multiple-regression-of-non-orthogonal-contrasts" class="section level3">
-<h3 class="hasAnchor">
-<a href="#multiple-regression-of-non-orthogonal-contrasts" class="anchor"></a>13.3.3 Multiple regression of non-orthogonal contrasts</h3>
+<div class="section level3">
+<h3 id="multiple-regression-of-non-orthogonal-contrasts">13.3.3 Multiple regression of non-orthogonal contrasts<a class="anchor" aria-label="anchor" href="#multiple-regression-of-non-orthogonal-contrasts"></a>
+</h3>
 <p>Next we jump to the last example. We again use the “romeo and juliet” data, and we are given three non-orthogonal contrasts (table 13.5).</p>
 <p>In this example, the textbook looks at how the F-values for each contrasts depend on whether you take the “traditional” approach, or consider a role for semi-partial correlation (the modern approach).</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">romeo_juliet</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>subjects <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>,
-                       Group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Context Before"</span>,
+<code class="sourceCode R"><span class="va">romeo_juliet</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span>subjects <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>,
+                       Group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Context Before"</span>,
                                  <span class="st">"Partial Context"</span>,
                                  <span class="st">"Context After"</span>,
                                  <span class="st">"Without context"</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>,
-                       Comprehension <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">9</span>,<span class="fl">8</span>,<span class="fl">4</span>,<span class="fl">9</span>,
+                       Comprehension <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">9</span>,<span class="fl">8</span>,<span class="fl">4</span>,<span class="fl">9</span>,
                                          <span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,
                                          <span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">1</span>,
                                          <span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>
                                    <span class="op">)</span>
                           <span class="op">)</span>
 
-<span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span>,
-                             levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Context Before"</span>,
+<span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span>,
+                             levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Context Before"</span>,
                                  <span class="st">"Partial Context"</span>,
                                  <span class="st">"Context After"</span>,
                                  <span class="st">"Without context"</span><span class="op">)</span>
@@ -1003,14 +1007,14 @@ do a monte-carlo simulation...familywise etc.
 
 <span class="co"># define contrasts</span>
 
-<span class="va">c1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>
-<span class="va">c2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>
-<span class="va">c3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>
+<span class="va">c1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>
+<span class="va">c2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>
+<span class="va">c3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>
 
 <span class="co"># run individual ANOVAs for each contrast</span>
 
-<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">c1</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/summary.aov.html">summary.aov</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Comprehension</span><span class="op">~</span><span class="va">Group</span>, <span class="va">romeo_juliet</span><span class="op">)</span>, split<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Group<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"contrast"</span><span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">c1</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/summary.aov.html" class="external-link">summary.aov</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">Comprehension</span><span class="op">~</span><span class="va">Group</span>, <span class="va">romeo_juliet</span><span class="op">)</span>, split<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Group<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"contrast"</span><span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;                   Df Sum Sq Mean Sq F value   Pr(&gt;F)    </span>
 <span class="co">#&gt; Group              3  50.95   16.98   7.227 0.002782 ** </span>
 <span class="co">#&gt;   Group: contrast  1  46.82   46.82  19.922 0.000392 ***</span>
@@ -1018,8 +1022,8 @@ do a monte-carlo simulation...familywise etc.
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 
-<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">c2</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/summary.aov.html">summary.aov</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Comprehension</span><span class="op">~</span><span class="va">Group</span>, <span class="va">romeo_juliet</span><span class="op">)</span>, split<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Group<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"contrast"</span><span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">c2</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/summary.aov.html" class="external-link">summary.aov</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">Comprehension</span><span class="op">~</span><span class="va">Group</span>, <span class="va">romeo_juliet</span><span class="op">)</span>, split<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Group<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"contrast"</span><span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;                   Df Sum Sq Mean Sq F value  Pr(&gt;F)   </span>
 <span class="co">#&gt; Group              3  50.95   16.98   7.227 0.00278 **</span>
 <span class="co">#&gt;   Group: contrast  1  31.25   31.25  13.298 0.00217 **</span>
@@ -1027,8 +1031,8 @@ do a monte-carlo simulation...familywise etc.
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 
-<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html">contrasts</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">c3</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/summary.aov.html">summary.aov</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Comprehension</span><span class="op">~</span><span class="va">Group</span>, <span class="va">romeo_juliet</span><span class="op">)</span>, split<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Group<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"contrast"</span><span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">$</span><span class="va">Group</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">c3</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/summary.aov.html" class="external-link">summary.aov</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">Comprehension</span><span class="op">~</span><span class="va">Group</span>, <span class="va">romeo_juliet</span><span class="op">)</span>, split<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Group<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"contrast"</span><span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;                   Df Sum Sq Mean Sq F value  Pr(&gt;F)   </span>
 <span class="co">#&gt; Group              3  50.95   16.98   7.227 0.00278 **</span>
 <span class="co">#&gt;   Group: contrast  1  11.25   11.25   4.787 0.04386 * </span>
@@ -1040,14 +1044,14 @@ do a monte-carlo simulation...familywise etc.
 
 <span class="co"># add contrasts as factors in a multiple linear regression</span>
 
-<span class="va">romeo_juliet</span> <span class="op">&lt;-</span> <span class="va">romeo_juliet</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>c1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>,each<span class="op">=</span><span class="fl">5</span><span class="op">)</span>,
-         c2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>,each<span class="op">=</span><span class="fl">5</span><span class="op">)</span>,
-         c3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>,each<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
+<span class="va">romeo_juliet</span> <span class="op">&lt;-</span> <span class="va">romeo_juliet</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>c1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>,each<span class="op">=</span><span class="fl">5</span><span class="op">)</span>,
+         c2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>,each<span class="op">=</span><span class="fl">5</span><span class="op">)</span>,
+         c3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>,each<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
          <span class="op">)</span>
 
 <span class="co"># conduct the multiple linear regression</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Comprehension</span> <span class="op">~</span> <span class="va">c1</span> <span class="op">+</span> <span class="va">c2</span> <span class="op">+</span> <span class="va">c3</span> , <span class="va">romeo_juliet</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Comprehension</span> <span class="op">~</span> <span class="va">c1</span> <span class="op">+</span> <span class="va">c2</span> <span class="op">+</span> <span class="va">c3</span> , <span class="va">romeo_juliet</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Call:</span>
 <span class="co">#&gt; lm(formula = Comprehension ~ c1 + c2 + c3, data = romeo_juliet)</span>
@@ -1073,8 +1077,8 @@ do a monte-carlo simulation...familywise etc.
 
 <span class="co"># semi-partial correlations</span>
 
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ppcor</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/ppcor/man/spcor.html">spcor</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">[</span>,<span class="fl">3</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span><span class="op">$</span><span class="va">estimate</span><span class="op">^</span><span class="fl">2</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ppcor</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/ppcor/man/spcor.html" class="external-link">spcor</a></span><span class="op">(</span><span class="va">romeo_juliet</span><span class="op">[</span>,<span class="fl">3</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span><span class="op">$</span><span class="va">estimate</span><span class="op">^</span><span class="fl">2</span>
 <span class="co">#&gt;               Comprehension         c1         c2          c3</span>
 <span class="co">#&gt; Comprehension    1.00000000 0.09542631 0.04065500 0.001129305</span>
 <span class="co">#&gt; c1               0.06116540 1.00000000 0.08315764 0.166459175</span>
@@ -1082,14 +1086,14 @@ do a monte-carlo simulation...familywise etc.
 <span class="co">#&gt; c3               0.00132626 0.30499118 0.15947322 1.000000000</span></code></pre></div>
 </div>
 </div>
-<div id="lab-6-generalization-assignment" class="section level2">
-<h2 class="hasAnchor">
-<a href="#lab-6-generalization-assignment" class="anchor"></a>Lab 6 Generalization Assignment</h2>
+<div class="section level2">
+<h2 id="lab-6-generalization-assignment">Lab 6 Generalization Assignment<a class="anchor" aria-label="anchor" href="#lab-6-generalization-assignment"></a>
+</h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/UkpAGiO1ic4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-<div id="instructions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#instructions" class="anchor"></a>Instructions</h3>
+<div class="section level3">
+<h3 id="instructions">Instructions<a class="anchor" aria-label="anchor" href="#instructions"></a>
+</h3>
 <p>Your assignment instructions are the following:</p>
 <ol style="list-style-type: decimal">
 <li>Work inside the new R project for stats II that you created</li>
@@ -1100,14 +1104,14 @@ do a monte-carlo simulation...familywise etc.
 <li>Submit your github repository link for Lab 6 on blackboard.</li>
 </ol>
 </div>
-<div id="problems" class="section level3">
-<h3 class="hasAnchor">
-<a href="#problems" class="anchor"></a>Problems</h3>
+<div class="section level3">
+<h3 id="problems">Problems<a class="anchor" aria-label="anchor" href="#problems"></a>
+</h3>
 <ol style="list-style-type: decimal">
-<li>Section 12.3.3 from your textbook refers to: The problem with replications of a meaningless experiment: ‘alpha and the captain’s age.’ The issue here is that if you run an ineffectual experiment enough times you can always find a significant result by chance. The textbook mentions that if you repeat an experiment 20 times, you are guaranteed to find a significant result with .64 probability, and the probability is .92 if you repeat the experiment 50 times.</li>
+<li>Section 12.3.3 from your textbook refers to: The problem with replications of a meaningless experiment: ‘alpha and the captain’s age’. The issue here is that if you run an ineffectual experiment enough times you can always find a significant result by chance. The textbook mentions that if you repeat an experiment 20 times, you are guaranteed to find a significant result with .64 probability, and the probability is .92 if you repeat the experiment 50 times.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
-<li><p>Make use of the <code><a href="https://rdrr.io/r/stats/Binomial.html">rbinom()</a></code> function to show you can reproduce both probabilities. (1 point)</p></li>
+<li><p>Make use of the <code><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom()</a></code> function to show you can reproduce both probabilities. (1 point)</p></li>
 <li><p>If the ineffectual experiment was conducted 20 times, and there were four groups, and the experimenter would accept a significant result from any of the orthogonal linear contrasts, what would be the probability of finding a significant result here? (1 point)</p></li>
 </ol>
 <p>The next two questions draw a connection to a technique we have not yet discussed called p-curve analysis <span class="citation">(<a href="#ref-simonsohnPcurveKeyFiledrawer2014" role="doc-biblioref">Simonsohn et al., 2014</a>; <a href="#ref-wallisCompoundingProbabilitiesIndependent1942" role="doc-biblioref">Wallis, 1942</a>)</span>. P-curve analysis is sometimes used for purposes of meta-analyses to determine whether there is “good” evidence for an effect in the literature.</p>
@@ -1122,18 +1126,18 @@ do a monte-carlo simulation...familywise etc.
 </ol>
 </div>
 </div>
-<div id="references" class="section level2 unnumbered">
-<h2 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h2>
+<div class="section level2 unnumbered">
+<h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 <div id="ref-abdiExperimentalDesignAnalysis2009" class="csl-entry">
 Abdi, H., Edelman, B., Dowling, W. J., &amp; Valentin, D. (2009). <em>Experimental design and analysis for psychology</em>. <span>Oxford University Press</span>.
 </div>
 <div id="ref-simonsohnPcurveKeyFiledrawer2014" class="csl-entry">
-Simonsohn, U., Nelson, L. D., &amp; Simmons, J. P. (2014). P-curve: A key to the file-drawer. <em>Journal of Experimental Psychology: General</em>, <em>143</em>(2), 534–547. <a href="https://doi.org/gffnn9">https://doi.org/gffnn9</a>
+Simonsohn, U., Nelson, L. D., &amp; Simmons, J. P. (2014). P-curve: A key to the file-drawer. <em>Journal of Experimental Psychology: General</em>, <em>143</em>(2), 534–547. <a href="https://doi.org/gffnn9" class="external-link">https://doi.org/gffnn9</a>
 </div>
 <div id="ref-wallisCompoundingProbabilitiesIndependent1942" class="csl-entry">
-Wallis, W. A. (1942). Compounding <span>Probabilities</span> from <span>Independent Significance Tests</span>. <em>Econometrica</em>, <em>10</em>(3/4), 229. <a href="https://doi.org/c43vv7">https://doi.org/c43vv7</a>
+Wallis, W. A. (1942). Compounding <span>Probabilities</span> from <span>Independent Significance Tests</span>. <em>Econometrica</em>, <em>10</em>(3/4), 229. <a href="https://doi.org/c43vv7" class="external-link">https://doi.org/c43vv7</a>
 </div>
 </div>
 </div>
@@ -1150,11 +1154,13 @@ Wallis, W. A. (1942). Compounding <span>Probabilities</span> from <span>Independ
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://crumplab.github.io">Matthew Crump</a>.</p>
+  <p></p>
+<p>Developed by <a href="https://crumplab.github.io" class="external-link">Matthew Crump</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -1162,6 +1168,8 @@ Wallis, W. A. (1942). Compounding <span>Probabilities</span> from <span>Independ
 
   
 
+
+  
 
   </body>
 </html>

@@ -35,6 +35,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -70,7 +72,7 @@
       <a href="../../articles/course_docs/Syllabus.html">Fall 2021</a>
     </li>
     <li>
-      <a href="../../articles/course_docs/Spring_syllabus.html">Spring 2022</a>
+      <a href="../../articles/course_docs/Spring_2022_syllabus.html">Spring 2022</a>
     </li>
   </ul>
 </li>
@@ -196,7 +198,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/CrumpLab/rstatsmethods">
+  <a href="https://github.com/CrumpLab/rstatsmethods" class="external-link">
     <span class="fa fa-lg fa-github"></span>
      
   </a>
@@ -217,13 +219,13 @@
 
       
 
-      </header><script src="Lab3_Multiple_regression_II_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Lab 3 Multiple Regression II</h1>
-                        <h4 class="author">Matthew J. C. Crump</h4>
+                        <h4 data-toc-skip class="author">Matthew J. C. Crump</h4>
             
-            <h4 class="date">2/17/2021</h4>
+            <h4 data-toc-skip class="date">2/17/2021</h4>
       
       
       <div class="hidden name"><code>Lab3_Multiple_regression_II.Rmd</code></div>
@@ -232,125 +234,125 @@
 
     
     
-<div id="readings" class="section level2">
-<h2 class="hasAnchor">
-<a href="#readings" class="anchor"></a>Readings</h2>
-<p>Chapters 6 on semi-partial correlation from <span class="citation"><a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al.</a> (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>.</p>
+<div class="section level2">
+<h2 id="readings">Readings<a class="anchor" aria-label="anchor" href="#readings"></a>
+</h2>
+<p>Chapters 6 on semi-partial correlation from <span class="citation">Abdi et al. (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/56hUV8Gvyrk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
-<div id="overview" class="section level2">
-<h2 class="hasAnchor">
-<a href="#overview" class="anchor"></a>Overview</h2>
+<div class="section level2">
+<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h2>
 <p>An overarching goal of this semester is to discuss how experimental research designs and statistical tools are combined together to test causal hypotheses about psychological phenomena. For the most part, we will use ANOVA as the statistical tool for experimental research designs with multiple IVs. Currently, we are discussing regression en route to discussing ANOVA. One reason is that ANOVA and regression are fundamentally the same analyses, and it is important to recognize that equivalence. A focus of today’s lab is the concept of semi-partial correlation in the context of non-orthogonal multiple regression. This is a statistical tool that is often is used in non-experimental research, and it is useful to discuss some its uses and limitations as we prepare for ANOVA next week.</p>
 </div>
-<div id="a-note-on-explanation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#a-note-on-explanation" class="anchor"></a>A note on Explanation</h2>
+<div class="section level2">
+<h2 id="a-note-on-explanation">A note on Explanation<a class="anchor" aria-label="anchor" href="#a-note-on-explanation"></a>
+</h2>
 <p>Briefly, we will be using the word explanation many times throughout this lab and the next ones. For the most part we will be talking about explanation in a highly restricted statistical sense. For example, <span class="math inline">\(R^2\)</span>, termed the co-efficient of determination, is often described as a quantity of explanation; specifically, how much variation in one variable <strong>explains</strong> variation in another. <span class="math inline">\(F\)</span> is a ratio of “explained” variance divided by “unexplained” variance. Because we will mainly deal with linear models, “explanation” always refers to a geometrical account of the the data, wherein data points are described as one part that falls on a line (the explained part), and a leftover part that does not (error, or unexplained part). Although we use the word explanation, this term does not imply anything about theoretical or causal explanation.</p>
 </div>
-<div id="concept-i-explaining-variance-with-multiple-variables" class="section level2">
-<h2 class="hasAnchor">
-<a href="#concept-i-explaining-variance-with-multiple-variables" class="anchor"></a>Concept I: Explaining variance with multiple variables</h2>
+<div class="section level2">
+<h2 id="concept-i-explaining-variance-with-multiple-variables">Concept I: Explaining variance with multiple variables<a class="anchor" aria-label="anchor" href="#concept-i-explaining-variance-with-multiple-variables"></a>
+</h2>
 <p>In multiple linear regression there is one dependent variable and multiple predictor variables. The variation in the dependent variable is “explained” in terms of combinations of linear relationships to the other variables.</p>
 <p>One issue with multiple linear regression is that adding more predictor variables generally increases the amount of variation explained. We quickly illustrate this below:</p>
 <p>First, I create a matrix of random values from a normal distribution. There are 26 variables, each labeled from a to z. We will pick <code>a</code> as the DV, and use the other random vectors as predictor variables to explain the variation in <code>a</code></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-<span class="va">random_vectors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span><span class="op">*</span><span class="fl">26</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, nrow<span class="op">=</span><span class="fl">20</span>, ncol<span class="op">=</span><span class="fl">26</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">random_vectors</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">letters</span>
-<span class="va">random_vectors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">random_vectors</span><span class="op">)</span></code></pre></div>
-<p>First, because everything is random, the variables are “ortho-normal in expectation.” That is, we expect that the variables are not correlated with each other. Let’s find out if that is true:</p>
+<span class="va">random_vectors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span><span class="op">*</span><span class="fl">26</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, nrow<span class="op">=</span><span class="fl">20</span>, ncol<span class="op">=</span><span class="fl">26</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">random_vectors</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">letters</span>
+<span class="va">random_vectors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">random_vectors</span><span class="op">)</span></code></pre></div>
+<p>First, because everything is random, the variables are “ortho-normal in expectation”. That is, we expect that the variables are not correlated with each other. Let’s find out if that is true:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab3_Multiple_regression_II_files/figure-html/unnamed-chunk-3-1.png" width="700"> In general, the distribution of correlations is centered on 0. And, the other “correlations” are all caused by chance (except for the identities, which must be one…<code>a</code> correlated with itself is 1, and so on).</p>
 <p>Now, let’s try to predict the values of <code>a</code> from the random vectors in <code>b</code> to <code>z</code>, and see what happens… notice that the total <span class="math inline">\(R^2\)</span> keeps increasing.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Call:</span>
 <span class="co">#&gt; lm(formula = a ~ b, data = random_vectors)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Residuals:</span>
 <span class="co">#&gt;     Min      1Q  Median      3Q     Max </span>
-<span class="co">#&gt; -1.2643 -0.5724 -0.0421  0.5776  1.1880 </span>
+<span class="co">#&gt; -2.0193 -0.3867 -0.1530  0.5597  2.1798 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Coefficients:</span>
 <span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)</span>
-<span class="co">#&gt; (Intercept)  0.04837    0.16440   0.294    0.772</span>
-<span class="co">#&gt; b           -0.24183    0.16056  -1.506    0.149</span>
+<span class="co">#&gt; (Intercept) -0.19957    0.22295  -0.895    0.383</span>
+<span class="co">#&gt; b            0.09977    0.20780   0.480    0.637</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; Residual standard error: 0.7264 on 18 degrees of freedom</span>
-<span class="co">#&gt; Multiple R-squared:  0.1119, Adjusted R-squared:  0.06259 </span>
-<span class="co">#&gt; F-statistic: 2.269 on 1 and 18 DF,  p-value: 0.1494</span>
+<span class="co">#&gt; Residual standard error: 0.9802 on 18 degrees of freedom</span>
+<span class="co">#&gt; Multiple R-squared:  0.01265,    Adjusted R-squared:  -0.04221 </span>
+<span class="co">#&gt; F-statistic: 0.2305 on 1 and 18 DF,  p-value: 0.6369</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span>
-<span class="co">#&gt; [1] 0.1119257</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span><span class="op">+</span><span class="va">c</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span>
-<span class="co">#&gt; [1] 0.1122206</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span><span class="op">+</span><span class="va">c</span><span class="op">+</span><span class="va">d</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span>
-<span class="co">#&gt; [1] 0.259386</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span><span class="op">+</span><span class="va">c</span><span class="op">+</span><span class="va">d</span><span class="op">+</span><span class="va">e</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span>
-<span class="co">#&gt; [1] 0.264108</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span><span class="op">+</span><span class="va">c</span><span class="op">+</span><span class="va">d</span><span class="op">+</span><span class="va">e</span><span class="op">+</span><span class="va">f</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span>
-<span class="co">#&gt; [1] 0.2812596</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span><span class="op">+</span><span class="va">c</span><span class="op">+</span><span class="va">d</span><span class="op">+</span><span class="va">e</span><span class="op">+</span><span class="va">f</span><span class="op">+</span><span class="va">g</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span>
-<span class="co">#&gt; [1] 0.2850951</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span><span class="op">+</span><span class="va">c</span><span class="op">+</span><span class="va">d</span><span class="op">+</span><span class="va">e</span><span class="op">+</span><span class="va">f</span><span class="op">+</span><span class="va">g</span><span class="op">+</span><span class="va">h</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span>
-<span class="co">#&gt; [1] 0.4050012</span></code></pre></div>
-<p>The above example uses <code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code> to add new variables in the linear regression formula. This adds each variable as its own predictor and does not add in potential interactions with other variables. We have not discussed the concept of statistical interaction yet in this course, and we do that in coming lectures. Nevertheless, consider what happens to <span class="math inline">\(R^2\)</span> when the <code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code> is used in the formula.</p>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span>
+<span class="co">#&gt; [1] 0.01264592</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span><span class="op">+</span><span class="va">c</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span>
+<span class="co">#&gt; [1] 0.01500323</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span><span class="op">+</span><span class="va">c</span><span class="op">+</span><span class="va">d</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span>
+<span class="co">#&gt; [1] 0.04855499</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span><span class="op">+</span><span class="va">c</span><span class="op">+</span><span class="va">d</span><span class="op">+</span><span class="va">e</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span>
+<span class="co">#&gt; [1] 0.2265912</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span><span class="op">+</span><span class="va">c</span><span class="op">+</span><span class="va">d</span><span class="op">+</span><span class="va">e</span><span class="op">+</span><span class="va">f</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span>
+<span class="co">#&gt; [1] 0.2552834</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span><span class="op">+</span><span class="va">c</span><span class="op">+</span><span class="va">d</span><span class="op">+</span><span class="va">e</span><span class="op">+</span><span class="va">f</span><span class="op">+</span><span class="va">g</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span>
+<span class="co">#&gt; [1] 0.2556981</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span><span class="op">+</span><span class="va">c</span><span class="op">+</span><span class="va">d</span><span class="op">+</span><span class="va">e</span><span class="op">+</span><span class="va">f</span><span class="op">+</span><span class="va">g</span><span class="op">+</span><span class="va">h</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span>
+<span class="co">#&gt; [1] 0.3287528</span></code></pre></div>
+<p>The above example uses <code>+</code> to add new variables in the linear regression formula. This adds each variable as its own predictor and does not add in potential interactions with other variables. We have not discussed the concept of statistical interaction yet in this course, and we do that in coming lectures. Nevertheless, consider what happens to <span class="math inline">\(R^2\)</span> when the <code>*</code> is used in the formula.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span>
-<span class="co">#&gt; [1] 0.1119257</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span><span class="op">*</span><span class="va">c</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span>
-<span class="co">#&gt; [1] 0.1122292</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span><span class="op">*</span><span class="va">c</span><span class="op">*</span><span class="va">d</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span>
-<span class="co">#&gt; [1] 0.3190628</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span><span class="op">*</span><span class="va">c</span><span class="op">*</span><span class="va">d</span><span class="op">*</span><span class="va">e</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span>
-<span class="co">#&gt; [1] 0.8280649</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span><span class="op">*</span><span class="va">c</span><span class="op">*</span><span class="va">d</span><span class="op">*</span><span class="va">e</span><span class="op">*</span><span class="va">f</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span>
+<span class="co">#&gt; [1] 0.01264592</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span><span class="op">*</span><span class="va">c</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span>
+<span class="co">#&gt; [1] 0.03754397</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span><span class="op">*</span><span class="va">c</span><span class="op">*</span><span class="va">d</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span>
+<span class="co">#&gt; [1] 0.1416701</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span><span class="op">*</span><span class="va">c</span><span class="op">*</span><span class="va">d</span><span class="op">*</span><span class="va">e</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span>
+<span class="co">#&gt; [1] 0.6481312</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span><span class="op">*</span><span class="va">c</span><span class="op">*</span><span class="va">d</span><span class="op">*</span><span class="va">e</span><span class="op">*</span><span class="va">f</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span>
 <span class="co">#&gt; [1] 1</span></code></pre></div>
-<p>The <code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code> adds interactions of variables, which effectively increases the number of random predictor variables in this regression. As you can see, with only 5 predictor variables, when we include the potential interactions, this grows to many linearly independent variables (15 in this case):</p>
+<p>The <code>*</code> adds interactions of variables, which effectively increases the number of random predictor variables in this regression. As you can see, with only 5 predictor variables, when we include the potential interactions, this grows to many linearly independent variables (15 in this case):</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span><span class="op">*</span><span class="va">c</span><span class="op">*</span><span class="va">d</span><span class="op">*</span><span class="va">e</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span><span class="op">*</span><span class="va">c</span><span class="op">*</span><span class="va">d</span><span class="op">*</span><span class="va">e</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Call:</span>
 <span class="co">#&gt; lm(formula = a ~ b * c * d * e, data = random_vectors)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Residuals:</span>
-<span class="co">#&gt;         1         2         3         4         5         6         7         8 </span>
-<span class="co">#&gt; -0.367396  0.307342  0.290287 -0.057604 -0.001425 -0.371145  0.129515  0.043280 </span>
-<span class="co">#&gt;         9        10        11        12        13        14        15        16 </span>
-<span class="co">#&gt;  0.286235 -0.321724  0.026693  0.006575  0.022560 -0.655305  0.779323  0.034842 </span>
-<span class="co">#&gt;        17        18        19        20 </span>
-<span class="co">#&gt;  0.111859  0.035083  0.053073 -0.352067 </span>
+<span class="co">#&gt;        1        2        3        4        5        6        7        8 </span>
+<span class="co">#&gt; -1.80793  0.45221  0.08497 -0.30442  0.44143  0.42276  0.23592  0.45384 </span>
+<span class="co">#&gt;        9       10       11       12       13       14       15       16 </span>
+<span class="co">#&gt;  0.11453  0.11424 -0.05224  0.83249 -0.14339 -0.69329  0.20851 -0.01559 </span>
+<span class="co">#&gt;       17       18       19       20 </span>
+<span class="co">#&gt; -0.58555 -0.38572  0.30567  0.32154 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Coefficients:</span>
-<span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)</span>
-<span class="co">#&gt; (Intercept) -0.01619    0.28860  -0.056    0.958</span>
-<span class="co">#&gt; b            0.25761    0.67006   0.384    0.720</span>
-<span class="co">#&gt; c            0.03358    0.30820   0.109    0.918</span>
-<span class="co">#&gt; d            0.05851    0.47147   0.124    0.907</span>
-<span class="co">#&gt; e            0.71351    0.49127   1.452    0.220</span>
-<span class="co">#&gt; b:c         -0.49691    0.58369  -0.851    0.443</span>
-<span class="co">#&gt; b:d          0.16262    0.92773   0.175    0.869</span>
-<span class="co">#&gt; c:d          1.73669    1.79799   0.966    0.389</span>
-<span class="co">#&gt; b:e         -1.18296    1.03062  -1.148    0.315</span>
-<span class="co">#&gt; c:e         -1.63217    1.10175  -1.481    0.213</span>
-<span class="co">#&gt; d:e          0.65660    0.49608   1.324    0.256</span>
-<span class="co">#&gt; b:c:d       -0.95201    0.95591  -0.996    0.376</span>
-<span class="co">#&gt; b:c:e        1.16895    1.48649   0.786    0.476</span>
-<span class="co">#&gt; b:d:e       -0.48871    0.67958  -0.719    0.512</span>
-<span class="co">#&gt; c:d:e       -1.65389    4.06415  -0.407    0.705</span>
-<span class="co">#&gt; b:c:d:e      0.88773    2.90113   0.306    0.775</span>
+<span class="co">#&gt;               Estimate Std. Error t value Pr(&gt;|t|)</span>
+<span class="co">#&gt; (Intercept) -0.2963722  0.4536659  -0.653    0.549</span>
+<span class="co">#&gt; b            0.1160305  0.6631834   0.175    0.870</span>
+<span class="co">#&gt; c           -0.0658254  0.4828219  -0.136    0.898</span>
+<span class="co">#&gt; d           -0.1523257  0.4222109  -0.361    0.737</span>
+<span class="co">#&gt; e            0.4425127  0.4984469   0.888    0.425</span>
+<span class="co">#&gt; b:c          0.0369937  0.7345695   0.050    0.962</span>
+<span class="co">#&gt; b:d          0.3813567  0.6829469   0.558    0.606</span>
+<span class="co">#&gt; c:d          0.0965306  0.5342995   0.181    0.865</span>
+<span class="co">#&gt; b:e          0.0002545  0.6238492   0.000    1.000</span>
+<span class="co">#&gt; c:e          0.3277834  0.5284209   0.620    0.569</span>
+<span class="co">#&gt; d:e          0.3469650  0.5208888   0.666    0.542</span>
+<span class="co">#&gt; b:c:d        0.3571624  0.6597060   0.541    0.617</span>
+<span class="co">#&gt; b:c:e       -0.0476320  0.4829805  -0.099    0.926</span>
+<span class="co">#&gt; b:d:e        0.1681930  0.7973036   0.211    0.843</span>
+<span class="co">#&gt; c:d:e       -0.2146886  0.6584572  -0.326    0.761</span>
+<span class="co">#&gt; b:c:d:e      0.4480283  0.5208085   0.860    0.438</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; Residual standard error: 0.678 on 4 degrees of freedom</span>
-<span class="co">#&gt; Multiple R-squared:  0.8281, Adjusted R-squared:  0.1833 </span>
-<span class="co">#&gt; F-statistic: 1.284 on 15 and 4 DF,  p-value: 0.4438</span></code></pre></div>
+<span class="co">#&gt; Residual standard error: 1.241 on 4 degrees of freedom</span>
+<span class="co">#&gt; Multiple R-squared:  0.6481, Adjusted R-squared:  -0.6714 </span>
+<span class="co">#&gt; F-statistic: 0.4912 on 15 and 4 DF,  p-value: 0.8592</span></code></pre></div>
 <p>When you have more predictor variables than you have rows of data in the DV, you will overfit the data because you will have more ways of explaining the data with lines than you have data points. So, when we have 6 predictor variables, and their interactions, the multiple <span class="math inline">\(R^2\)</span> value goes to 1.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span><span class="op">*</span><span class="va">c</span><span class="op">*</span><span class="va">d</span><span class="op">*</span><span class="va">e</span><span class="op">*</span><span class="va">f</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">a</span><span class="op">~</span><span class="va">b</span><span class="op">*</span><span class="va">c</span><span class="op">*</span><span class="va">d</span><span class="op">*</span><span class="va">e</span><span class="op">*</span><span class="va">f</span>,data<span class="op">=</span><span class="va">random_vectors</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Call:</span>
 <span class="co">#&gt; lm(formula = a ~ b * c * d * e * f, data = random_vectors)</span>
@@ -360,26 +362,26 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Coefficients: (12 not defined because of singularities)</span>
 <span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)</span>
-<span class="co">#&gt; (Intercept)  0.29698        NaN     NaN      NaN</span>
-<span class="co">#&gt; b            0.53959        NaN     NaN      NaN</span>
-<span class="co">#&gt; c            0.15731        NaN     NaN      NaN</span>
-<span class="co">#&gt; d           -0.05187        NaN     NaN      NaN</span>
-<span class="co">#&gt; e            0.80413        NaN     NaN      NaN</span>
-<span class="co">#&gt; f           -0.65471        NaN     NaN      NaN</span>
-<span class="co">#&gt; b:c         -1.04791        NaN     NaN      NaN</span>
-<span class="co">#&gt; b:d          0.50429        NaN     NaN      NaN</span>
-<span class="co">#&gt; c:d          0.54328        NaN     NaN      NaN</span>
-<span class="co">#&gt; b:e         -0.90308        NaN     NaN      NaN</span>
-<span class="co">#&gt; c:e         -1.47793        NaN     NaN      NaN</span>
-<span class="co">#&gt; d:e          0.87071        NaN     NaN      NaN</span>
-<span class="co">#&gt; b:f         -0.69302        NaN     NaN      NaN</span>
-<span class="co">#&gt; c:f         -0.54947        NaN     NaN      NaN</span>
-<span class="co">#&gt; d:f         -0.06388        NaN     NaN      NaN</span>
-<span class="co">#&gt; e:f         -0.21800        NaN     NaN      NaN</span>
-<span class="co">#&gt; b:c:d       -0.50991        NaN     NaN      NaN</span>
-<span class="co">#&gt; b:c:e        0.32899        NaN     NaN      NaN</span>
-<span class="co">#&gt; b:d:e       -0.53573        NaN     NaN      NaN</span>
-<span class="co">#&gt; c:d:e       -2.08217        NaN     NaN      NaN</span>
+<span class="co">#&gt; (Intercept) -1.28552        NaN     NaN      NaN</span>
+<span class="co">#&gt; b            0.60611        NaN     NaN      NaN</span>
+<span class="co">#&gt; c            0.32297        NaN     NaN      NaN</span>
+<span class="co">#&gt; d           -0.97614        NaN     NaN      NaN</span>
+<span class="co">#&gt; e            0.80694        NaN     NaN      NaN</span>
+<span class="co">#&gt; f            0.09129        NaN     NaN      NaN</span>
+<span class="co">#&gt; b:c         -0.09361        NaN     NaN      NaN</span>
+<span class="co">#&gt; b:d          1.75305        NaN     NaN      NaN</span>
+<span class="co">#&gt; c:d          0.61044        NaN     NaN      NaN</span>
+<span class="co">#&gt; b:e          0.77410        NaN     NaN      NaN</span>
+<span class="co">#&gt; c:e          0.44141        NaN     NaN      NaN</span>
+<span class="co">#&gt; d:e          0.80594        NaN     NaN      NaN</span>
+<span class="co">#&gt; b:f         -2.91848        NaN     NaN      NaN</span>
+<span class="co">#&gt; c:f          0.78412        NaN     NaN      NaN</span>
+<span class="co">#&gt; d:f          1.55976        NaN     NaN      NaN</span>
+<span class="co">#&gt; e:f          2.09160        NaN     NaN      NaN</span>
+<span class="co">#&gt; b:c:d       -0.58015        NaN     NaN      NaN</span>
+<span class="co">#&gt; b:c:e       -0.75811        NaN     NaN      NaN</span>
+<span class="co">#&gt; b:d:e        0.84950        NaN     NaN      NaN</span>
+<span class="co">#&gt; c:d:e       -0.09894        NaN     NaN      NaN</span>
 <span class="co">#&gt; b:c:f             NA         NA      NA       NA</span>
 <span class="co">#&gt; b:d:f             NA         NA      NA       NA</span>
 <span class="co">#&gt; c:d:f             NA         NA      NA       NA</span>
@@ -398,25 +400,25 @@
 <span class="co">#&gt; F-statistic:   NaN on 19 and 0 DF,  p-value: NA</span></code></pre></div>
 <p>So, please seriously consider what has been explained here. The DV was generated at random, so there is nothing there to explain in the first place. All of the predictor variables are also generated at random, and shouldn’t explain any variance. Yet, when we use enough random vectors to “explain” the variation in another random vector, we can do so perfectly, explaining 100% of the variance. It is in this sense that we explained everything statistically, without having explained anything at all. These numeric realities are always at play during analyses of real data.</p>
 </div>
-<div id="review-concept-slamecka-and-orthogonality" class="section level2">
-<h2 class="hasAnchor">
-<a href="#review-concept-slamecka-and-orthogonality" class="anchor"></a>Review Concept: Slamecka and orthogonality</h2>
+<div class="section level2">
+<h2 id="review-concept-slamecka-and-orthogonality">Review Concept: Slamecka and orthogonality<a class="anchor" aria-label="anchor" href="#review-concept-slamecka-and-orthogonality"></a>
+</h2>
 <p>In the last lab we discussed <strong>orthogonal</strong> multiple regression. We defined orthogonal as a geometric concept, whereby one dimension is orthogonal to another when they are perpendicular, or connected at a 90 degree angle. Whenever this occurs, it is possible to move along one dimension without also moving along any other dimensions (e.g., you can go back and forth on an X-axis without going anywhere on a Y-axis, so those are orthogonal dimensions). Another way of saying this is that variation along one dimension does not influence variation along another. In other words, dimensions are orthogonal when they are un-correlated with each other.</p>
-<p>We also described the <span class="citation"><a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">Slamecka</a> (<a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">1960</a>)</span> design as an orthogonal design. In chapter 6, we see an example of non-orthogonal multiple regression, where the research design involved non-orthogonal independent variables. Specifically, the IVs are correlated with each other, so they are not orthogonal</p>
+<p>We also described the <span class="citation">Slamecka (<a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">1960</a>)</span> design as an orthogonal design. In chapter 6, we see an example of non-orthogonal multiple regression, where the research design involved non-orthogonal independent variables. Specifically, the IVs are correlated with each other, so they are not orthogonal</p>
 <p>Before we discuss that design, it is worth clarifying how it was that the Slamecka design was orthogonal. For example, how exactly is it the case that the IVs in that design were uncorrelated with each other?</p>
 <p>Remember that the Slamecka design had two IVs, with three levels each. Original learning had 3 levels (2, 4, &amp; 8); and interpolated learning had 3 levels (0, 4, and 8). At first glance it might seem that these two IVs are highly correlated:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">OL</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">8</span><span class="op">)</span>
-<span class="va">IL</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">4</span>,<span class="fl">8</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">OL</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">8</span><span class="op">)</span>
+<span class="va">IL</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">4</span>,<span class="fl">8</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">OL</span>,<span class="va">IL</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">OL</span>,<span class="va">IL</span><span class="op">)</span>
 <span class="co">#&gt; [1] 0.9819805</span></code></pre></div>
 <p>The reason that the Slamecka design is an orthogonal design has to do with the <strong>experimental design</strong>, specifically how subjects were assigned to the different levels of each of the independent variables. Depending on how subjects are assigned, the IVs can be correlated (confounded) or uncorrelated.</p>
 <p>The lab assignment from week 1 involved writing a table indicating how subjects were assigned to each condition. This is reprinted below:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/" class="external-link">tibble</a></span><span class="op">)</span>
 
-<span class="va">slamecka_design</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
+<span class="va">slamecka_design</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span>
   <span class="op">~</span><span class="va">Subjects</span>, <span class="op">~</span><span class="va">OL</span>, <span class="op">~</span><span class="va">IL</span>,
   <span class="co">#--|--|----</span>
   <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">0</span>,
@@ -447,16 +449,16 @@
   <span class="fl">9</span>, <span class="fl">4</span>, <span class="fl">4</span>,
   <span class="fl">9</span>, <span class="fl">2</span>, <span class="fl">0</span>
 <span class="op">)</span></code></pre></div>
-<p>Now, if the Subjects, OL, and IL variables are orthogonal, they must all be uncorrelated with each other. We can check this using the <code><a href="https://rdrr.io/r/stats/cor.html">cor()</a></code> function, which will return a matrix of correlations.</p>
+<p>Now, if the Subjects, OL, and IL variables are orthogonal, they must all be uncorrelated with each other. We can check this using the <code><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor()</a></code> function, which will return a matrix of correlations.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">slamecka_design</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">slamecka_design</span><span class="op">)</span>
 <span class="co">#&gt;          Subjects OL IL</span>
 <span class="co">#&gt; Subjects        1  0  0</span>
 <span class="co">#&gt; OL              0  1  0</span>
 <span class="co">#&gt; IL              0  0  1</span></code></pre></div>
 <p>Finally, consider for the moment what a confounded design would look like. For example:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">slamecka_confounded</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">slamecka_confounded</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span>
   <span class="op">~</span><span class="va">Subjects</span>, <span class="op">~</span><span class="va">OL</span>, <span class="op">~</span><span class="va">IL</span>,
   <span class="co">#--|--|----</span>
   <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">0</span>,
@@ -489,7 +491,7 @@
 <span class="op">)</span></code></pre></div>
 <p>I set up the confounded design such that individual subjects were assigned to basically the same levels in OL and IL. As you can see, now the OL and IL variables are perfectly correlated (not orthogonal). They are confounded in the design because if either of them causes some change in the DV, it won’t be clear which one caused the change.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">slamecka_confounded</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">slamecka_confounded</span><span class="op">)</span>
 <span class="co">#&gt;          Subjects        OL        IL</span>
 <span class="co">#&gt; Subjects        1 0.0000000 0.0000000</span>
 <span class="co">#&gt; OL              0 1.0000000 0.9819805</span>
@@ -498,31 +500,31 @@
 <p>To connect back to my earlier venting about explanation, even in this case the statistical explanation is a very thin kind of explanation. For example, consider a researcher who has no idea about magnetism. They find themselves at a table with a bunch of metal filings. And they move a rock toward and away from the table, and the metal filings don’t move. This rock isn’t magnetic, it doesn’t do anything to the position of the metal filings. The researcher then accidentally grabs a magnet and moves it toward the table. They notice that the metal filings move more and more as the magnet moves closer to the table. It appears to be like magic. The researcher then very systematically measure metal filing displacement as a function of magnet distance, and produces clear results that the the IV (magnet distance) appears to cause metal filings to move. They then publish a paper titled the effect of this weird rock on moving metal filings on my table.</p>
 <p>I made up this example to highlight two levels of explanation, statistical and theoretical. At a statistical level the position of the magnet “explains” variance in the displacement of metal filings. However, this level of explanation says nothing about how the cause works, it is not an explanation of magnetism. The statistical level of explanation produces a phenomena or effect (the effect of magnets on moving metal filings) that itself still needs to be explained (e.g., by a theory of magnetism). So, although we take about manipulations in terms of whether they explain our measurements, at the theoretical level manipulations never explain anything. Instead they produce phenomena that require theoretical (an account of how the causes work to produce the phenomena) and not statistical explanation.</p>
 </div>
-<div id="concept-ii-semi-partial-correlation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#concept-ii-semi-partial-correlation" class="anchor"></a>Concept II: Semi-partial Correlation</h2>
+<div class="section level2">
+<h2 id="concept-ii-semi-partial-correlation">Concept II: Semi-partial Correlation<a class="anchor" aria-label="anchor" href="#concept-ii-semi-partial-correlation"></a>
+</h2>
 <p>Above I tried to briefly develop the idea that explanation is hard, even when you are using the best in class tools like orthogonal experimental designs. For example, even when we have a really powerful manipulation like a magnet that can move metal, just running the experiment doesn’t explain why magnetism works, that part requires a theory of magnetism.</p>
 <p>In non-experimental designs the prospect of explanation is even more remote and in my opinion extremely difficult. For example, in correlational research, a typical strategy is to take many measurements and then see what correlates with what. This strategy can find patterns in data, but as we saw in the first concept section it is possible to “explain” variance with completely random vectors too.</p>
-<p>In Chapter 6, <span class="citation"><a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al.</a> (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span> contrasts orthogonal multiple regression suitable for experimental designs with non-orthogonal multiple regression typical of correlation research. In both cases the research design has multiple variables that could “explain” variance in some dependent measure. Most measures of human behavior are complex and multiply determined, so it is natural consider the idea that different variables may or may not have a causal influence on the measure, and if they do cause change, then each variable may cause different amounts of change. As a result, when there are multiple variables, researchers might be interested in figuring out, for each variable, how much it causes change in the measure.</p>
+<p>In Chapter 6, <span class="citation">Abdi et al. (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span> contrasts orthogonal multiple regression suitable for experimental designs with non-orthogonal multiple regression typical of correlation research. In both cases the research design has multiple variables that could “explain” variance in some dependent measure. Most measures of human behavior are complex and multiply determined, so it is natural consider the idea that different variables may or may not have a causal influence on the measure, and if they do cause change, then each variable may cause different amounts of change. As a result, when there are multiple variables, researchers might be interested in figuring out, for each variable, how much it causes change in the measure.</p>
 <p>In the case of experimental research with orthogonal designs, the determination of the action of causal variables is done by independently manipulating a variable of interest, and measuring whether the manipulation has an effect on the measure. In the case of non-orthogonal correlational research it is not possible make any causal claims. However, it is possible to add variables of interest into a regression, and this will raise many more questions about possible causes. Let’s consider some of the issues by looking at the textbook example.</p>
-<div id="age-speech-rate-and-memory" class="section level3">
-<h3 class="hasAnchor">
-<a href="#age-speech-rate-and-memory" class="anchor"></a>Age, speech rate, and memory</h3>
-<p><span class="citation"><a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al.</a> (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span> discusses a research design by <span class="citation"><a href="#ref-hulmeSpeechRateDevelopment1984" role="doc-biblioref">Hulme et al.</a> (<a href="#ref-hulmeSpeechRateDevelopment1984" role="doc-biblioref">1984</a>)</span> who were interested in whether the variables of age and speech rate were involve in memory ability. The basic claim was that older children who can talk faster will have better memory abilities compared to younger children who talk slower, perhaps because faster speech rate would help one rehearse more information.</p>
+<div class="section level3">
+<h3 id="age-speech-rate-and-memory">Age, speech rate, and memory<a class="anchor" aria-label="anchor" href="#age-speech-rate-and-memory"></a>
+</h3>
+<p><span class="citation">Abdi et al. (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span> discusses a research design by <span class="citation">Hulme et al. (<a href="#ref-hulmeSpeechRateDevelopment1984" role="doc-biblioref">1984</a>)</span> who were interested in whether the variables of age and speech rate were involve in memory ability. The basic claim was that older children who can talk faster will have better memory abilities compared to younger children who talk slower, perhaps because faster speech rate would help one rehearse more information.</p>
 <p>It is not possible to randomly assign people to different ages or different speech rate abilities, so this kind of research can not employ an experimental design with orthogonal variables. As a result, the “Independent Variables” of Age (X) and speech rate (T) are not independent from each other, they are confounded and correlated with one another. For example, as children age they also talk faster, so the age variable is positively correlated with talking faster.</p>
 <p>Example data from the textbook is below:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/" class="external-link">tibble</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
 
-<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>X <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">7</span>,<span class="fl">7</span>,<span class="fl">10</span>,<span class="fl">10</span><span class="op">)</span>,
-               T <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">6</span><span class="op">)</span>,
-               Y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">14</span>,<span class="fl">23</span>,<span class="fl">30</span>,<span class="fl">50</span>,<span class="fl">39</span>,<span class="fl">67</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span>X <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">7</span>,<span class="fl">7</span>,<span class="fl">10</span>,<span class="fl">10</span><span class="op">)</span>,
+               T <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">6</span><span class="op">)</span>,
+               Y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">14</span>,<span class="fl">23</span>,<span class="fl">30</span>,<span class="fl">50</span>,<span class="fl">39</span>,<span class="fl">67</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>We can run a multiple linear regression to ask the question, how much does Age (X) and Speech Rate (T) explain variance in memory ability (Y). In this fake date, we see that <span class="math inline">\(R^2\)</span> is nearly one, so taken togetehr, X and T seem to ‘explain’ almost all the variation in Y.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Predict Y as a function of X and T</span>
-<span class="op">(</span><span class="va">overall_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Y</span><span class="op">~</span><span class="va">X</span><span class="op">+</span><span class="cn">T</span>, data<span class="op">=</span><span class="va">data</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="op">(</span><span class="va">overall_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Y</span><span class="op">~</span><span class="va">X</span><span class="op">+</span><span class="cn">T</span>, data<span class="op">=</span><span class="va">data</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Call:</span>
 <span class="co">#&gt; lm(formula = Y ~ X + T, data = data)</span>
@@ -544,12 +546,12 @@
 <span class="co">#&gt; F-statistic: 110.1 on 2 and 3 DF,  p-value: 0.001559</span></code></pre></div>
 <p>We can also look at the correlations and <span class="math inline">\(R^2\)</span> values between all the variables.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span>
 <span class="co">#&gt;           X         T         Y</span>
 <span class="co">#&gt; X 1.0000000 0.7500000 0.8027961</span>
 <span class="co">#&gt; T 0.7500000 1.0000000 0.9889517</span>
 <span class="co">#&gt; Y 0.8027961 0.9889517 1.0000000</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>
 <span class="co">#&gt;           X         T         Y</span>
 <span class="co">#&gt; X 1.0000000 0.5625000 0.6444815</span>
 <span class="co">#&gt; T 0.5625000 1.0000000 0.9780254</span>
@@ -557,22 +559,22 @@
 <p>Here we see that X explains .64 of the variation in Y, and T explains .97 of the variation in Y. Notice this adds up to .97+.64 = 1.61, which is greater than 1. In other words we are explaining more than 100% of the variation, which is nonsensical. How could this happen?</p>
 <p>The assumption is that X and T are correlated with each other, and we can see in the correlation matrix that this is true, the correlation is <span class="math inline">\(r=.75\)</span>. As a result, we consider the idea that there are three parts of the puzzle. The unique potential influence of X, the unique potential influence T, and the shared part between X and T. In other words, part of the age and speech rate variables are measuring the same underlying thing (we call this the shared part), but they are also each measuring some unique things.</p>
 <p>The <span class="math inline">\(R^2\)</span> for X and Y is .64, and this includes the unique part of X and the shared part with T. The <span class="math inline">\(R^2\)</span> for T and Y is .97 and includes the unique part of T, and the shared part with X. If we add the two together, we add the shared part twice, which causes the total <span class="math inline">\(R^2\)</span> to be greater than 1. <strong>Using the technique of semi-partial correlation, it is possible to re-express the two confounded variables into three sources of variation, the unique parts of each, and the shared part.</strong></p>
-<p>Semi-partial correlation involves a process of “de-correlation,” or “taking the line out the data.” Let’s take a closer look at the de-correlation process before using it for semi-partial correlation.</p>
+<p>Semi-partial correlation involves a process of “de-correlation”, or “taking the line out the data”. Let’s take a closer look at the de-correlation process before using it for semi-partial correlation.</p>
 </div>
-<div id="the-residuals-are-de-correlated" class="section level3">
-<h3 class="hasAnchor">
-<a href="#the-residuals-are-de-correlated" class="anchor"></a>The residuals are de-correlated</h3>
+<div class="section level3">
+<h3 id="the-residuals-are-de-correlated">The residuals are de-correlated<a class="anchor" aria-label="anchor" href="#the-residuals-are-de-correlated"></a>
+</h3>
 <p>Consider how much X (Age) explains variation in Y (memory ability). We conduct the regression, then we look at two components of the Y data expressed in terms X. These are the parts of Y that fall on the regression line (the predicted parts), and the parts of Y that are not on the line (the residual error).</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Predict Y as a function of X</span>
 
-<span class="va">lm.x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Y</span><span class="op">~</span><span class="va">X</span>, data<span class="op">=</span><span class="va">data</span><span class="op">)</span>
+<span class="va">lm.x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Y</span><span class="op">~</span><span class="va">X</span>, data<span class="op">=</span><span class="va">data</span><span class="op">)</span>
 
-<span class="va">data</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>X_residuals <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">lm.x</span><span class="op">)</span>,
-         X_predicted_Y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">lm.x</span><span class="op">)</span><span class="op">)</span>
+<span class="va">data</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>X_residuals <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">residuals</a></span><span class="op">(</span><span class="va">lm.x</span><span class="op">)</span>,
+         X_predicted_Y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">lm.x</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></code></pre></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">X</th>
@@ -629,19 +631,19 @@
 <p>Now, the <code>data</code> table contains three versions of Y, the original Y variable decomposed into the predicted part (regression line part), and the residual part. Let’s plot all of these and run a regression line through them.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-<span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">Y</span>, x<span class="op">=</span><span class="va">X</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">"lm"</span>, se<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
+<span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">Y</span>, x<span class="op">=</span><span class="va">X</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="external-link">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">"lm"</span>, se<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
 
-<span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">X_predicted_Y</span>, x<span class="op">=</span><span class="va">X</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">"lm"</span>,se<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
+<span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">X_predicted_Y</span>, x<span class="op">=</span><span class="va">X</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="external-link">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">"lm"</span>,se<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
 
-<span class="va">C</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">X_residuals</span>, x<span class="op">=</span><span class="va">X</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">"lm"</span>,se<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
+<span class="va">C</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">X_residuals</span>, x<span class="op">=</span><span class="va">X</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="external-link">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">"lm"</span>,se<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
 
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span>
 
 <span class="va">A</span><span class="op">+</span><span class="va">B</span><span class="op">+</span><span class="va">C</span></code></pre></div>
 <p><img src="Lab3_Multiple_regression_II_files/figure-html/unnamed-chunk-17-1.png" width="700"></p>
@@ -651,91 +653,90 @@
 <code class="sourceCode R">
 <span class="co"># Predict Y as a function of T</span>
 
-<span class="va">lm.t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Y</span><span class="op">~</span><span class="cn">T</span>, data<span class="op">=</span><span class="va">data</span><span class="op">)</span>
+<span class="va">lm.t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Y</span><span class="op">~</span><span class="cn">T</span>, data<span class="op">=</span><span class="va">data</span><span class="op">)</span>
 
-<span class="va">data</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>T_residuals <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">lm.t</span><span class="op">)</span>,
-         T_predicted_Y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">lm.t</span><span class="op">)</span><span class="op">)</span>
-<span class="va">D</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">Y</span>, x<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">"lm"</span>, se<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
+<span class="va">data</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>T_residuals <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">residuals</a></span><span class="op">(</span><span class="va">lm.t</span><span class="op">)</span>,
+         T_predicted_Y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">lm.t</span><span class="op">)</span><span class="op">)</span>
+<span class="va">D</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">Y</span>, x<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="external-link">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">"lm"</span>, se<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
 
-<span class="va">E</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">T_predicted_Y</span>, x<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">"lm"</span>,se<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
+<span class="va">E</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">T_predicted_Y</span>, x<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="external-link">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">"lm"</span>,se<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
 
-<span class="cn">F</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">T_residuals</span>, x<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">"lm"</span>,se<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
+<span class="cn">F</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">T_residuals</span>, x<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="external-link">geom_smooth</a></span><span class="op">(</span>method<span class="op">=</span><span class="st">"lm"</span>,se<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
 
 <span class="va">D</span><span class="op">+</span><span class="va">E</span><span class="op">+</span><span class="cn">F</span></code></pre></div>
 <p><img src="Lab3_Multiple_regression_II_files/figure-html/unnamed-chunk-18-1.png" width="700"></p>
 </div>
-<div id="semi-partial-correlation" class="section level3">
-<h3 class="hasAnchor">
-<a href="#semi-partial-correlation" class="anchor"></a>Semi-partial correlation</h3>
+<div class="section level3">
+<h3 id="semi-partial-correlation">Semi-partial correlation<a class="anchor" aria-label="anchor" href="#semi-partial-correlation"></a>
+</h3>
 <p>The technique of semi-partial correlation relies on the decorrelation process that we just reviewed. The idea is that our predictor variables X and T each have unique variance, but they also have shared variance. We want to separate these three sources of variance into <span class="math inline">\(X_{\text{unique}}\)</span>, <span class="math inline">\(T_{\text{unique}}\)</span>, and <span class="math inline">\(XT_{\text{shared}}\)</span>.</p>
 </div>
-<div id="finding-the-unique-part-of-x" class="section level3">
-<h3 class="hasAnchor">
-<a href="#finding-the-unique-part-of-x" class="anchor"></a>Finding the unique part of X</h3>
+<div class="section level3">
+<h3 id="finding-the-unique-part-of-x">Finding the unique part of X<a class="anchor" aria-label="anchor" href="#finding-the-unique-part-of-x"></a>
+</h3>
 <p>What part of X is unique to X and not correlated with T? Let’s consider X as the dependent variable, and regress T onto it as the predictor variable.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Semi-partial correlation</span>
 <span class="co"># Part uniquely explained by X</span>
-<span class="va">lm.xt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">X</span><span class="op">~</span><span class="cn">T</span>, data<span class="op">=</span><span class="va">data</span><span class="op">)</span></code></pre></div>
+<span class="va">lm.xt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">X</span><span class="op">~</span><span class="cn">T</span>, data<span class="op">=</span><span class="va">data</span><span class="op">)</span></code></pre></div>
 <p>Now, we know that the residuals here are the part of X that is not linearly correlated with T.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">lm.xt</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">residuals</a></span><span class="op">(</span><span class="va">lm.xt</span><span class="op">)</span>
 <span class="co">#&gt;      1      2      3      4      5      6 </span>
 <span class="co">#&gt; -0.750 -1.875  1.125 -1.125  3.000 -0.375</span></code></pre></div>
 <p>In other words, these values are <span class="math inline">\(X_{\text{unique}}\)</span> with the <span class="math inline">\(XT_{\text{shared}}\)</span> part removed. Remember, the original question was to figure out how much X alone explained Y. We can do this by computing the <span class="math inline">\(R^2\)</span> between this vector of residuals, and the Y dependent measure.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">lm.xt</span><span class="op">)</span>,<span class="va">data</span><span class="op">$</span><span class="va">Y</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">residuals</a></span><span class="op">(</span><span class="va">lm.xt</span><span class="op">)</span>,<span class="va">data</span><span class="op">$</span><span class="va">Y</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>
 <span class="co">#&gt; [1] 0.008528111</span></code></pre></div>
 </div>
-<div id="finding-the-unique-part-of-t" class="section level3">
-<h3 class="hasAnchor">
-<a href="#finding-the-unique-part-of-t" class="anchor"></a>Finding the unique part of T</h3>
+<div class="section level3">
+<h3 id="finding-the-unique-part-of-t">Finding the unique part of T<a class="anchor" aria-label="anchor" href="#finding-the-unique-part-of-t"></a>
+</h3>
 <p>We repeat the process to find <span class="math inline">\(T_{\text{unique}}\)</span>, except now we regress X as the predictor onto T as the dependent variable.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Part uniquely explained by T</span>
-<span class="va">lm.tx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="cn">T</span><span class="op">~</span><span class="va">X</span>, data<span class="op">=</span><span class="va">data</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">lm.tx</span><span class="op">)</span>
+<span class="va">lm.tx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="cn">T</span><span class="op">~</span><span class="va">X</span>, data<span class="op">=</span><span class="va">data</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">residuals</a></span><span class="op">(</span><span class="va">lm.tx</span><span class="op">)</span>
 <span class="co">#&gt;    1    2    3    4    5    6 </span>
 <span class="co">#&gt; -0.5  0.5 -1.0  1.0 -1.5  1.5</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">lm.tx</span><span class="op">)</span>,<span class="va">data</span><span class="op">$</span><span class="va">Y</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">residuals</a></span><span class="op">(</span><span class="va">lm.tx</span><span class="op">)</span>,<span class="va">data</span><span class="op">$</span><span class="va">Y</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>
 <span class="co">#&gt; [1] 0.342072</span></code></pre></div>
 </div>
-<div id="the-shared-part" class="section level3">
-<h3 class="hasAnchor">
-<a href="#the-shared-part" class="anchor"></a>The shared part</h3>
-<p>To estimate how much variance the shared part of X and T explain we can do a bit algebra. We take the total multiple <span class="math inline">\(R^2\)</span> from the original model <code><a href="https://rdrr.io/r/stats/lm.html">lm(Y~X+T)</a></code>, and then subtract <span class="math inline">\(X_{\text{unique}}\)</span> and <span class="math inline">\(T_{\text{unique}}\)</span> from the total.</p>
+<div class="section level3">
+<h3 id="the-shared-part">The shared part<a class="anchor" aria-label="anchor" href="#the-shared-part"></a>
+</h3>
+<p>To estimate how much variance the shared part of X and T explain we can do a bit algebra. We take the total multiple <span class="math inline">\(R^2\)</span> from the original model <code>lm(Y~X+T)</code>, and then subtract <span class="math inline">\(X_{\text{unique}}\)</span> and <span class="math inline">\(T_{\text{unique}}\)</span> from the total.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Part common to X and T</span>
-<span class="va">overall_model</span><span class="op">$</span><span class="va">r.squared</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">lm.xt</span><span class="op">)</span>,<span class="va">data</span><span class="op">$</span><span class="va">Y</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">lm.tx</span><span class="op">)</span>,<span class="va">data</span><span class="op">$</span><span class="va">Y</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>
+<span class="va">overall_model</span><span class="op">$</span><span class="va">r.squared</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">residuals</a></span><span class="op">(</span><span class="va">lm.xt</span><span class="op">)</span>,<span class="va">data</span><span class="op">$</span><span class="va">Y</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">residuals</a></span><span class="op">(</span><span class="va">lm.tx</span><span class="op">)</span>,<span class="va">data</span><span class="op">$</span><span class="va">Y</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>
 <span class="co">#&gt; [1] 0.6359534</span></code></pre></div>
 </div>
-<div id="what-has-been-explained" class="section level3">
-<h3 class="hasAnchor">
-<a href="#what-has-been-explained" class="anchor"></a>What has been explained?</h3>
+<div class="section level3">
+<h3 id="what-has-been-explained">What has been explained?<a class="anchor" aria-label="anchor" href="#what-has-been-explained"></a>
+</h3>
 <p>Semi-partial correlation is a useful demonstration of the idea of partitioning sources of variance into unique and shared portions. However, if we returned to the question of what has been explained, we will likely have more questions than we had in the first place.</p>
 <p>Apparently the unique part of Age (X) only explained a small part of the variation in memory ability (.0085). The Age variable is not a clear measure in the first place, as it is a proxy variable for a huge amount of things that change over development. The speech rate variable is more specific than the age variable, but it explains less variance (.34) than the shared part between age and speech rate (.63). What is the share part actually referring to? Who knows? It’s a latent construct that in some sense is not related to age or speech rate. And, because the design is correlational, it is not clear if the the things that cause memory ability are causing this latent construct to change or vice-versa. Explanation is hard, and non-orthogonal designs can easily raise more questions than they answer. Partly for this reason, we stick to examining experimental designs for the remainder of this course.</p>
 </div>
 </div>
-<div id="practical-i-semi-partial-correlation-with-ppcor" class="section level2">
-<h2 class="hasAnchor">
-<a href="#practical-i-semi-partial-correlation-with-ppcor" class="anchor"></a>Practical I: semi-partial correlation with <code>ppcor</code>
+<div class="section level2">
+<h2 id="practical-i-semi-partial-correlation-with-ppcor">Practical I: semi-partial correlation with <code>ppcor</code><a class="anchor" aria-label="anchor" href="#practical-i-semi-partial-correlation-with-ppcor"></a>
 </h2>
-<p>The <code>ppcor</code> package has a function for computing semi-partial correlations. We can see that the <code><a href="https://rdrr.io/pkg/ppcor/man/spcor.html">spcor()</a></code> function returns the same values as in the textbook book example.</p>
+<p>The <code>ppcor</code> package has a function for computing semi-partial correlations. We can see that the <code><a href="https://rdrr.io/pkg/ppcor/man/spcor.html" class="external-link">spcor()</a></code> function returns the same values as in the textbook book example.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ppcor</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ppcor</span><span class="op">)</span>
 
-<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>X <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">7</span>,<span class="fl">7</span>,<span class="fl">10</span>,<span class="fl">10</span><span class="op">)</span>,
-               T <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">6</span><span class="op">)</span>,
-               Y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">14</span>,<span class="fl">23</span>,<span class="fl">30</span>,<span class="fl">50</span>,<span class="fl">39</span>,<span class="fl">67</span><span class="op">)</span><span class="op">)</span>
+<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span>X <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">7</span>,<span class="fl">7</span>,<span class="fl">10</span>,<span class="fl">10</span><span class="op">)</span>,
+               T <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">6</span><span class="op">)</span>,
+               Y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">14</span>,<span class="fl">23</span>,<span class="fl">30</span>,<span class="fl">50</span>,<span class="fl">39</span>,<span class="fl">67</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/ppcor/man/spcor.html">spcor</a></span><span class="op">(</span><span class="va">data</span>, method <span class="op">=</span> <span class="st">"pearson"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/ppcor/man/spcor.html" class="external-link">spcor</a></span><span class="op">(</span><span class="va">data</span>, method <span class="op">=</span> <span class="st">"pearson"</span><span class="op">)</span>
 <span class="co">#&gt; $estimate</span>
 <span class="co">#&gt;             X          T         Y</span>
 <span class="co">#&gt; X  1.00000000 -0.2963241 0.4120552</span>
@@ -762,20 +763,20 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $method</span>
 <span class="co">#&gt; [1] "pearson"</span></code></pre></div>
-<p>Note that <code><a href="https://rdrr.io/pkg/ppcor/man/spcor.html">spcor()</a></code> returns correlations (<span class="math inline">\(r\)</span> values). Square them to produce coefficients of determination (<span class="math inline">\(R^2\)</span>).</p>
+<p>Note that <code><a href="https://rdrr.io/pkg/ppcor/man/spcor.html" class="external-link">spcor()</a></code> returns correlations (<span class="math inline">\(r\)</span> values). Square them to produce coefficients of determination (<span class="math inline">\(R^2\)</span>).</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ppcor/man/spcor.html">spcor</a></span><span class="op">(</span><span class="va">data</span>, method <span class="op">=</span> <span class="st">"pearson"</span><span class="op">)</span><span class="op">$</span><span class="va">estimate</span><span class="op">^</span><span class="fl">2</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ppcor/man/spcor.html" class="external-link">spcor</a></span><span class="op">(</span><span class="va">data</span>, method <span class="op">=</span> <span class="st">"pearson"</span><span class="op">)</span><span class="op">$</span><span class="va">estimate</span><span class="op">^</span><span class="fl">2</span>
 <span class="co">#&gt;             X          T         Y</span>
 <span class="co">#&gt; X 1.000000000 0.08780798 0.1697895</span>
 <span class="co">#&gt; T 0.005427400 1.00000000 0.4209528</span>
 <span class="co">#&gt; Y 0.008528111 0.34207202 1.0000000</span></code></pre></div>
 </div>
-<div id="lab-3-generalization-assignment" class="section level2">
-<h2 class="hasAnchor">
-<a href="#lab-3-generalization-assignment" class="anchor"></a>Lab 3 Generalization Assignment</h2>
-<div id="instructions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#instructions" class="anchor"></a>Instructions</h3>
+<div class="section level2">
+<h2 id="lab-3-generalization-assignment">Lab 3 Generalization Assignment<a class="anchor" aria-label="anchor" href="#lab-3-generalization-assignment"></a>
+</h2>
+<div class="section level3">
+<h3 id="instructions">Instructions<a class="anchor" aria-label="anchor" href="#instructions"></a>
+</h3>
 <p>Your assignment instructions are the following:</p>
 <ol style="list-style-type: decimal">
 <li>Work inside the new R project for stats II that you created</li>
@@ -784,9 +785,9 @@
 <li>Submit your github repository link for Lab 3 on blackboard.</li>
 </ol>
 </div>
-<div id="problems" class="section level3">
-<h3 class="hasAnchor">
-<a href="#problems" class="anchor"></a>Problems</h3>
+<div class="section level3">
+<h3 id="problems">Problems<a class="anchor" aria-label="anchor" href="#problems"></a>
+</h3>
 <ol style="list-style-type: decimal">
 <li>The problem for this week is to develop a little bit of content (tutorial material) that could be added to this lab. (6 points)</li>
 </ol>
@@ -797,18 +798,18 @@
 <p>Good luck!</p>
 </div>
 </div>
-<div id="references" class="section level2 unnumbered">
-<h2 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h2>
+<div class="section level2 unnumbered">
+<h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 <div id="ref-abdiExperimentalDesignAnalysis2009" class="csl-entry">
 Abdi, H., Edelman, B., Dowling, W. J., &amp; Valentin, D. (2009). <em>Experimental design and analysis for psychology</em>. <span>Oxford University Press</span>.
 </div>
 <div id="ref-hulmeSpeechRateDevelopment1984" class="csl-entry">
-Hulme, C., Thomson, N., Muir, C., &amp; Lawrence, A. (1984). Speech rate and the development of short-term memory span. <em>Journal of Experimental Child Psychology</em>, <em>38</em>(2), 241–253. <a href="https://doi.org/cs58jc">https://doi.org/cs58jc</a>
+Hulme, C., Thomson, N., Muir, C., &amp; Lawrence, A. (1984). Speech rate and the development of short-term memory span. <em>Journal of Experimental Child Psychology</em>, <em>38</em>(2), 241–253. <a href="https://doi.org/cs58jc" class="external-link">https://doi.org/cs58jc</a>
 </div>
 <div id="ref-slameckaRetroactiveInhibitionConnected1960" class="csl-entry">
-Slamecka, N. J. (1960). Retroactive inhibition of connected discourse as a function of practice level. <em>Journal of Experimental Psychology</em>, <em>59</em>(2), 104–108. <a href="https://doi.org/b5z2nt">https://doi.org/b5z2nt</a>
+Slamecka, N. J. (1960). Retroactive inhibition of connected discourse as a function of practice level. <em>Journal of Experimental Psychology</em>, <em>59</em>(2), 104–108. <a href="https://doi.org/b5z2nt" class="external-link">https://doi.org/b5z2nt</a>
 </div>
 </div>
 </div>
@@ -825,11 +826,13 @@ Slamecka, N. J. (1960). Retroactive inhibition of connected discourse as a funct
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://crumplab.github.io">Matthew Crump</a>.</p>
+  <p></p>
+<p>Developed by <a href="https://crumplab.github.io" class="external-link">Matthew Crump</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -837,6 +840,8 @@ Slamecka, N. J. (1960). Retroactive inhibition of connected discourse as a funct
 
   
 
+
+  
 
   </body>
 </html>

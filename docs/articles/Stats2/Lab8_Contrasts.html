@@ -35,6 +35,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -70,7 +72,7 @@
       <a href="../../articles/course_docs/Syllabus.html">Fall 2021</a>
     </li>
     <li>
-      <a href="../../articles/course_docs/Spring_syllabus.html">Spring 2022</a>
+      <a href="../../articles/course_docs/Spring_2022_syllabus.html">Spring 2022</a>
     </li>
   </ul>
 </li>
@@ -196,7 +198,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/CrumpLab/rstatsmethods">
+  <a href="https://github.com/CrumpLab/rstatsmethods" class="external-link">
     <span class="fa fa-lg fa-github"></span>
      
   </a>
@@ -217,13 +219,13 @@
 
       
 
-      </header><script src="Lab8_Contrasts_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Lab 8 Contrast Analyses</h1>
-                        <h4 class="author">Matthew J. C. Crump</h4>
+                        <h4 data-toc-skip class="author">Matthew J. C. Crump</h4>
             
-            <h4 class="date">2/1/2021</h4>
+            <h4 data-toc-skip class="date">2/1/2021</h4>
       
       
       <div class="hidden name"><code>Lab8_Contrasts.Rmd</code></div>
@@ -232,52 +234,52 @@
 
     
     
-<div id="readings" class="section level2">
-<h2 class="hasAnchor">
-<a href="#readings" class="anchor"></a>Readings</h2>
+<div class="section level2">
+<h2 id="readings">Readings<a class="anchor" aria-label="anchor" href="#readings"></a>
+</h2>
 <p>Chapter 17 <span class="citation">(<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al., 2009</a>)</span>.</p>
 </div>
-<div id="overview" class="section level2">
-<h2 class="hasAnchor">
-<a href="#overview" class="anchor"></a>Overview</h2>
+<div class="section level2">
+<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h2>
 <p>This lab supplements the chapter on factorial designs and contrast analyses that discusses statistical techniques for interrogating specific patterns among means in factorial designs.</p>
 <p>Fundamental to these ideas is a strong understanding of the concepts of main effect and interactions. In the current lab we build on the score model concept and use R to examine properties of main effects and interactions in greater detail.</p>
 </div>
-<div id="concept-i-generating-main-effect-and-interactions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#concept-i-generating-main-effect-and-interactions" class="anchor"></a>Concept I: Generating main effect and interactions</h2>
+<div class="section level2">
+<h2 id="concept-i-generating-main-effect-and-interactions">Concept I: Generating main effect and interactions<a class="anchor" aria-label="anchor" href="#concept-i-generating-main-effect-and-interactions"></a>
+</h2>
 <p>In this section we use R to generate predicted patterns of main effects and interactions for a design with two independent variables.</p>
 <p>The following code chunk shows how the score model for a fixed design (model I) can be coded in R to produce any pattern of main effects and interactions, along with a graphical display of the patterns.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#load libraries</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/" class="external-link">tibble</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span>
 
 <span class="co"># define 2-factor score model</span>
 <span class="va">grand_mean</span> <span class="op">&lt;-</span> <span class="fl">50</span>
-<span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">5</span>,<span class="fl">10</span>,<span class="fl">15</span>,<span class="fl">20</span>,<span class="fl">25</span>,<span class="fl">50</span><span class="op">)</span>
-<span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">5</span>,<span class="op">-</span><span class="fl">15</span><span class="op">)</span>
-<span class="va">AB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">)</span>
+<span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">5</span>,<span class="fl">10</span>,<span class="fl">15</span>,<span class="fl">20</span>,<span class="fl">25</span>,<span class="fl">50</span><span class="op">)</span>
+<span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">5</span>,<span class="op">-</span><span class="fl">15</span><span class="op">)</span>
+<span class="va">AB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># create design table</span>
-<span class="va">model_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="op">)</span>
-<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
-  <span class="kw">for</span><span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+<span class="va">model_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+  <span class="kw">for</span><span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
     <span class="va">IVA</span> <span class="op">&lt;-</span> <span class="va">i</span> 
     <span class="va">IVB</span> <span class="op">&lt;-</span> <span class="va">j</span>
-    <span class="va">DV</span> <span class="op">&lt;-</span> <span class="va">grand_mean</span><span class="op">+</span><span class="va">A</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">+</span><span class="va">B</span><span class="op">[</span><span class="va">j</span><span class="op">]</span><span class="op">+</span><span class="va">AB</span><span class="op">[</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">+</span><span class="va">j</span><span class="op">]</span>
+    <span class="va">DV</span> <span class="op">&lt;-</span> <span class="va">grand_mean</span><span class="op">+</span><span class="va">A</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">+</span><span class="va">B</span><span class="op">[</span><span class="va">j</span><span class="op">]</span><span class="op">+</span><span class="va">AB</span><span class="op">[</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">+</span><span class="va">j</span><span class="op">]</span>
     <span class="va">sc_GM</span> <span class="op">&lt;-</span> <span class="va">grand_mean</span>
     <span class="va">sc_A</span> <span class="op">&lt;-</span> <span class="va">A</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>
     <span class="va">sc_B</span> <span class="op">&lt;-</span> <span class="va">B</span><span class="op">[</span><span class="va">j</span><span class="op">]</span>
-    <span class="va">sc_AB</span> <span class="op">&lt;-</span> <span class="va">AB</span><span class="op">[</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">+</span><span class="va">j</span><span class="op">]</span> 
-    <span class="va">row_entry</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="va">IVA</span>,<span class="va">IVB</span>,<span class="va">DV</span>,
+    <span class="va">sc_AB</span> <span class="op">&lt;-</span> <span class="va">AB</span><span class="op">[</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">+</span><span class="va">j</span><span class="op">]</span> 
+    <span class="va">row_entry</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="va">IVA</span>,<span class="va">IVB</span>,<span class="va">DV</span>,
                         <span class="va">sc_GM</span>,<span class="va">sc_A</span>,<span class="va">sc_B</span>,<span class="va">sc_AB</span><span class="op">)</span>
-    <span class="va">model_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">model_data</span>,<span class="va">row_entry</span><span class="op">)</span>
+    <span class="va">model_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">model_data</span>,<span class="va">row_entry</span><span class="op">)</span>
   <span class="op">}</span>
 <span class="op">}</span>
 
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">model_data</span><span class="op">)</span></code></pre></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">model_data</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">IVA</th>
@@ -483,52 +485,52 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># generate plots</span>
-<span class="va">bar_graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">model_data</span>, 
-                    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">DV</span>,
-                        x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">IVA</span><span class="op">)</span>,
-                        fill<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">IVB</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">'identity'</span>, position<span class="op">=</span><span class="st">'dodge'</span><span class="op">)</span>
+<span class="va">bar_graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">model_data</span>, 
+                    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">DV</span>,
+                        x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">IVA</span><span class="op">)</span>,
+                        fill<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">IVB</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">'identity'</span>, position<span class="op">=</span><span class="st">'dodge'</span><span class="op">)</span>
 
-<span class="va">line_graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">model_data</span>, 
-                     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">DV</span>,
+<span class="va">line_graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">model_data</span>, 
+                     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">DV</span>,
                          x<span class="op">=</span><span class="va">IVA</span>,
-                         linetype<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">IVB</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span>
+                         linetype<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">IVB</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="op">(</span><span class="va">bar_graph</span><span class="op">/</span><span class="va">line_graph</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab8_Contrasts_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
-<div id="one-or-two-main-effects-and-no-interaction" class="section level3">
-<h3 class="hasAnchor">
-<a href="#one-or-two-main-effects-and-no-interaction" class="anchor"></a>One or two main effects and no interaction</h3>
+<div class="section level3">
+<h3 id="one-or-two-main-effects-and-no-interaction">One or two main effects and no interaction<a class="anchor" aria-label="anchor" href="#one-or-two-main-effects-and-no-interaction"></a>
+</h3>
 <p>It is important to recognize that just because a design uses multiple independent variables, it is not necessarily the case that interactions will occur.</p>
 <p>For example, consider the following toy example. We will conduct an experiment, and the first IV will have three levels (0,5,10), indicating how much money participants are paid when they complete the experiment. The second IV will also have three levels (0,5,10), indicating how much bonus money participants are paid when they complete the experiment. The DV will be how much money in total the participant is given by the experimenter at the end of the experiment.</p>
 <p>Consider how we would represent this experiment using the code from above. First, we program in the expected means for each level of the first and second IV. Second, we do not program an interaction term.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># define 2-factor score model</span>
 <span class="va">grand_mean</span> <span class="op">&lt;-</span> <span class="fl">10</span>
-<span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>,<span class="fl">0</span>,<span class="fl">5</span><span class="op">)</span>
-<span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>,<span class="fl">0</span>,<span class="fl">5</span><span class="op">)</span>
-<span class="va">AB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">)</span>
+<span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>,<span class="fl">0</span>,<span class="fl">5</span><span class="op">)</span>
+<span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>,<span class="fl">0</span>,<span class="fl">5</span><span class="op">)</span>
+<span class="va">AB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># create design table</span>
-<span class="va">model_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="op">)</span>
-<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
-  <span class="kw">for</span><span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+<span class="va">model_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+  <span class="kw">for</span><span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
     <span class="va">IVA</span> <span class="op">&lt;-</span> <span class="va">i</span> 
     <span class="va">IVB</span> <span class="op">&lt;-</span> <span class="va">j</span>
-    <span class="va">DV</span> <span class="op">&lt;-</span> <span class="va">grand_mean</span><span class="op">+</span><span class="va">A</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">+</span><span class="va">B</span><span class="op">[</span><span class="va">j</span><span class="op">]</span><span class="op">+</span><span class="va">AB</span><span class="op">[</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">+</span><span class="va">j</span><span class="op">]</span>
+    <span class="va">DV</span> <span class="op">&lt;-</span> <span class="va">grand_mean</span><span class="op">+</span><span class="va">A</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">+</span><span class="va">B</span><span class="op">[</span><span class="va">j</span><span class="op">]</span><span class="op">+</span><span class="va">AB</span><span class="op">[</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">+</span><span class="va">j</span><span class="op">]</span>
     <span class="va">sc_GM</span> <span class="op">&lt;-</span> <span class="va">grand_mean</span>
     <span class="va">sc_A</span> <span class="op">&lt;-</span> <span class="va">A</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>
     <span class="va">sc_B</span> <span class="op">&lt;-</span> <span class="va">B</span><span class="op">[</span><span class="va">j</span><span class="op">]</span>
-    <span class="va">sc_AB</span> <span class="op">&lt;-</span> <span class="va">AB</span><span class="op">[</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">+</span><span class="va">j</span><span class="op">]</span> 
-    <span class="va">row_entry</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="va">IVA</span>,<span class="va">IVB</span>,<span class="va">DV</span>,
+    <span class="va">sc_AB</span> <span class="op">&lt;-</span> <span class="va">AB</span><span class="op">[</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">+</span><span class="va">j</span><span class="op">]</span> 
+    <span class="va">row_entry</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="va">IVA</span>,<span class="va">IVB</span>,<span class="va">DV</span>,
                         <span class="va">sc_GM</span>,<span class="va">sc_A</span>,<span class="va">sc_B</span>,<span class="va">sc_AB</span><span class="op">)</span>
-    <span class="va">model_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">model_data</span>,<span class="va">row_entry</span><span class="op">)</span>
+    <span class="va">model_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">model_data</span>,<span class="va">row_entry</span><span class="op">)</span>
   <span class="op">}</span>
 <span class="op">}</span>
 
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">model_data</span><span class="op">)</span></code></pre></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">model_data</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">IVA</th>
@@ -626,30 +628,30 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># generate plots</span>
-<span class="va">bar_graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">model_data</span>, 
-                    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">DV</span>,
-                        x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">IVA</span><span class="op">)</span>,
-                        fill<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">IVB</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">'identity'</span>, position<span class="op">=</span><span class="st">'dodge'</span><span class="op">)</span>
+<span class="va">bar_graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">model_data</span>, 
+                    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">DV</span>,
+                        x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">IVA</span><span class="op">)</span>,
+                        fill<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">IVB</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">'identity'</span>, position<span class="op">=</span><span class="st">'dodge'</span><span class="op">)</span>
 
-<span class="va">line_graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">model_data</span>, 
-                     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">DV</span>,
+<span class="va">line_graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">model_data</span>, 
+                     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">DV</span>,
                          x<span class="op">=</span><span class="va">IVA</span>,
-                         linetype<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">IVB</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span>
+                         linetype<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">IVB</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="op">(</span><span class="va">bar_graph</span><span class="op">/</span><span class="va">line_graph</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab8_Contrasts_files/figure-html/unnamed-chunk-3-1.png" width="700"> This is a silly design where an interaction should, by definition, be impossible. There are two independent sources of money, and the total amount of money received by each subject is the sum of both sources. In this scenario, the concept of an interaction would occur if one of the combinations of IVA and IVB levels somehow produces more or less than the sum of the levels. For example, if the subjects who received 5 dollars in level 2 of IVA, and 5 dollars bonus from level 2 of IVB, somehow were paid more than 10 dollars in total, or less than 10 dollars in total, there would be an interaction. However, in our mock scenario, we are stipulating that 5+5 = 10, so we have created a situation where an interaction is not possible.</p>
 </div>
-<div id="two-main-effects-and-an-interaction" class="section level3">
-<h3 class="hasAnchor">
-<a href="#two-main-effects-and-an-interaction" class="anchor"></a>Two main effects and an interaction</h3>
+<div class="section level3">
+<h3 id="two-main-effects-and-an-interaction">Two main effects and an interaction<a class="anchor" aria-label="anchor" href="#two-main-effects-and-an-interaction"></a>
+</h3>
 <p>Let’s consider an example from a classic demonstration in visual search. In a visual search task subjects are shown a visual display and asked to find a target among distractors.</p>
 <p>For example, the task could be to find the T, and report whether it is rotated to the left or to the right. Some example displays are shown below.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">'imgs/Factorial/visual_search.png'</span><span class="op">)</span></code></pre></div>
-<p><img src="imgs/Factorial/visual_search.png"><!-- --></p>
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="st">'imgs/Factorial/visual_search.png'</span><span class="op">)</span></code></pre></div>
+<p><img src="imgs/Factorial/visual_search.png" width="832"></p>
 <p>The figure depicts a 3x2 design, with three levels of set-size (10,20, 30), and two levels of popout (no popout vs color popout),</p>
 <p>A classic main effect in visual search involves set-size. In general, it takes longer to finder a target as the number of distractors (set-size) increases.</p>
 <p>However, it is possible modulate the set-size effect. For example, the set-size effect would be very pronounced in the no color popout condition. However, in the color popout condition, the target just “pops” out, and it is very easy to find. In this case, the number of distractors (set-size) has a very small or possibly no effect on search time.</p>
@@ -658,28 +660,28 @@
 <code class="sourceCode R">
 <span class="co"># define 2-factor score model</span>
 <span class="va">grand_mean</span> <span class="op">&lt;-</span> <span class="fl">500</span>
-<span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">100</span><span class="op">)</span>
-<span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">100</span>,<span class="op">-</span><span class="fl">100</span><span class="op">)</span>
-<span class="va">AB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="op">-</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="op">-</span><span class="fl">200</span><span class="op">)</span>
+<span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">100</span><span class="op">)</span>
+<span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>,<span class="op">-</span><span class="fl">100</span><span class="op">)</span>
+<span class="va">AB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="op">-</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="op">-</span><span class="fl">200</span><span class="op">)</span>
 
 <span class="co"># create design table</span>
-<span class="va">model_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="op">)</span>
-<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
-  <span class="kw">for</span><span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+<span class="va">model_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="op">)</span>
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+  <span class="kw">for</span><span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
     <span class="va">IVA</span> <span class="op">&lt;-</span> <span class="va">i</span> 
     <span class="va">IVB</span> <span class="op">&lt;-</span> <span class="va">j</span>
-    <span class="va">DV</span> <span class="op">&lt;-</span> <span class="va">grand_mean</span><span class="op">+</span><span class="va">A</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">+</span><span class="va">B</span><span class="op">[</span><span class="va">j</span><span class="op">]</span><span class="op">+</span><span class="va">AB</span><span class="op">[</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">+</span><span class="va">j</span><span class="op">]</span>
+    <span class="va">DV</span> <span class="op">&lt;-</span> <span class="va">grand_mean</span><span class="op">+</span><span class="va">A</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">+</span><span class="va">B</span><span class="op">[</span><span class="va">j</span><span class="op">]</span><span class="op">+</span><span class="va">AB</span><span class="op">[</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">+</span><span class="va">j</span><span class="op">]</span>
     <span class="va">sc_GM</span> <span class="op">&lt;-</span> <span class="va">grand_mean</span>
     <span class="va">sc_A</span> <span class="op">&lt;-</span> <span class="va">A</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>
     <span class="va">sc_B</span> <span class="op">&lt;-</span> <span class="va">B</span><span class="op">[</span><span class="va">j</span><span class="op">]</span>
-    <span class="va">sc_AB</span> <span class="op">&lt;-</span> <span class="va">AB</span><span class="op">[</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">+</span><span class="va">j</span><span class="op">]</span> 
-    <span class="va">row_entry</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="va">IVA</span>,<span class="va">IVB</span>,<span class="va">DV</span>,
+    <span class="va">sc_AB</span> <span class="op">&lt;-</span> <span class="va">AB</span><span class="op">[</span><span class="op">(</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">+</span><span class="va">j</span><span class="op">]</span> 
+    <span class="va">row_entry</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="va">IVA</span>,<span class="va">IVB</span>,<span class="va">DV</span>,
                         <span class="va">sc_GM</span>,<span class="va">sc_A</span>,<span class="va">sc_B</span>,<span class="va">sc_AB</span><span class="op">)</span>
-    <span class="va">model_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">model_data</span>,<span class="va">row_entry</span><span class="op">)</span>
+    <span class="va">model_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">model_data</span>,<span class="va">row_entry</span><span class="op">)</span>
   <span class="op">}</span>
 <span class="op">}</span>
 
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">model_data</span><span class="op">)</span></code></pre></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">model_data</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">IVA</th>
@@ -750,66 +752,66 @@
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># generate plots</span>
-<span class="va">bar_graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">model_data</span>, 
-                    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">DV</span>,
-                        x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">IVA</span><span class="op">)</span>,
-                        fill<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">IVB</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">'identity'</span>, position<span class="op">=</span><span class="st">'dodge'</span><span class="op">)</span>
+<span class="va">bar_graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">model_data</span>, 
+                    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">DV</span>,
+                        x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">IVA</span><span class="op">)</span>,
+                        fill<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">IVB</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">'identity'</span>, position<span class="op">=</span><span class="st">'dodge'</span><span class="op">)</span>
 
-<span class="va">line_graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">model_data</span>, 
-                     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">DV</span>,
+<span class="va">line_graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">model_data</span>, 
+                     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">DV</span>,
                          x<span class="op">=</span><span class="va">IVA</span>,
-                         linetype<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">IVB</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span>
+                         linetype<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">IVB</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="op">(</span><span class="va">bar_graph</span><span class="op">/</span><span class="va">line_graph</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab8_Contrasts_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 </div>
 </div>
-<div id="concept-ii-simulated-power-analysis" class="section level2">
-<h2 class="hasAnchor">
-<a href="#concept-ii-simulated-power-analysis" class="anchor"></a>Concept II: Simulated power analysis</h2>
+<div class="section level2">
+<h2 id="concept-ii-simulated-power-analysis">Concept II: Simulated power analysis<a class="anchor" aria-label="anchor" href="#concept-ii-simulated-power-analysis"></a>
+</h2>
 <p>The following code block gives an example of simulating data for a 2x2 design that can be used to estimate power (proportion of experiments returning a significant result) for each main effect and interaction.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># N per group</span>
 <span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">40</span>
 
-<span class="va">A_pvalue</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">B_pvalue</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">AB_pvalue</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">A_pvalue</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">B_pvalue</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">AB_pvalue</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>
 <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">1000</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">IVA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span>,<span class="st">"2"</span><span class="op">)</span>, each<span class="op">=</span><span class="fl">2</span><span class="op">)</span>,<span class="va">N</span><span class="op">)</span>
-  <span class="va">IVB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span>,<span class="st">"2"</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>,<span class="va">N</span><span class="op">)</span>
-  <span class="va">DV</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="va">N</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, <span class="co"># means A1B1</span>
-                        <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, <span class="co"># means A1B2</span>
-                        <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">.5</span>,<span class="fl">1</span><span class="op">)</span>, <span class="co"># means A2B1</span>
-                        <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">.5</span>,<span class="fl">1</span><span class="op">)</span>  <span class="co"># means A2B2</span>
+  <span class="va">IVA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1"</span>,<span class="st">"2"</span><span class="op">)</span>, each<span class="op">=</span><span class="fl">2</span><span class="op">)</span>,<span class="va">N</span><span class="op">)</span>
+  <span class="va">IVB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1"</span>,<span class="st">"2"</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>,<span class="va">N</span><span class="op">)</span>
+  <span class="va">DV</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="va">N</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, <span class="co"># means A1B1</span>
+                        <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, <span class="co"># means A1B2</span>
+                        <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">.5</span>,<span class="fl">1</span><span class="op">)</span>, <span class="co"># means A2B1</span>
+                        <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">.5</span>,<span class="fl">1</span><span class="op">)</span>  <span class="co"># means A2B2</span>
           <span class="op">)</span><span class="op">)</span><span class="op">)</span>
-  <span class="va">sim_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">IVA</span>,<span class="va">IVB</span>,<span class="va">DV</span><span class="op">)</span>
+  <span class="va">sim_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">IVA</span>,<span class="va">IVB</span>,<span class="va">DV</span><span class="op">)</span>
   
-  <span class="va">aov_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">DV</span><span class="op">~</span><span class="va">IVA</span><span class="op">*</span><span class="va">IVB</span>, <span class="va">sim_df</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">aov_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">DV</span><span class="op">~</span><span class="va">IVA</span><span class="op">*</span><span class="va">IVB</span>, <span class="va">sim_df</span><span class="op">)</span><span class="op">)</span>
   <span class="va">A_pvalue</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">&lt;-</span><span class="va">aov_results</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`Pr(&gt;F)`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
   <span class="va">B_pvalue</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">&lt;-</span><span class="va">aov_results</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`Pr(&gt;F)`</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>
   <span class="va">AB_pvalue</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">&lt;-</span><span class="va">aov_results</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`Pr(&gt;F)`</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>
 <span class="op">}</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">A_pvalue</span><span class="op">[</span><span class="va">A_pvalue</span><span class="op">&lt;</span><span class="fl">0.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.877</span>
-<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">B_pvalue</span><span class="op">[</span><span class="va">B_pvalue</span><span class="op">&lt;</span><span class="fl">0.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.048</span>
-<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">AB_pvalue</span><span class="op">[</span><span class="va">AB_pvalue</span><span class="op">&lt;</span><span class="fl">0.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.058</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">A_pvalue</span><span class="op">[</span><span class="va">A_pvalue</span><span class="op">&lt;</span><span class="fl">0.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>
+<span class="co">#&gt; [1] 0.886</span>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">B_pvalue</span><span class="op">[</span><span class="va">B_pvalue</span><span class="op">&lt;</span><span class="fl">0.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>
+<span class="co">#&gt; [1] 0.045</span>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">AB_pvalue</span><span class="op">[</span><span class="va">AB_pvalue</span><span class="op">&lt;</span><span class="fl">0.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>
+<span class="co">#&gt; [1] 0.041</span></code></pre></div>
 </div>
-<div id="lab-8-generalization-assignment" class="section level2">
-<h2 class="hasAnchor">
-<a href="#lab-8-generalization-assignment" class="anchor"></a>Lab 8 Generalization Assignment</h2>
+<div class="section level2">
+<h2 id="lab-8-generalization-assignment">Lab 8 Generalization Assignment<a class="anchor" aria-label="anchor" href="#lab-8-generalization-assignment"></a>
+</h2>
 <p>Note: there was a technical glitch for this video, where I zoomed to close on the RStudio window. Most of the screencast is visible, but sometimes I am working on code that is out of view. As always, the .Rmd files for the solutions are on the github repository for this course, so you can check those out too.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/tu-rYkuq1lI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-<div id="instructions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#instructions" class="anchor"></a>Instructions</h3>
+<div class="section level3">
+<h3 id="instructions">Instructions<a class="anchor" aria-label="anchor" href="#instructions"></a>
+</h3>
 <p>Your assignment instructions are the following:</p>
 <ol style="list-style-type: decimal">
 <li>Work inside the new R project for stats II that you created</li>
@@ -820,9 +822,9 @@
 <li>Submit your github repository link for Lab 8 on blackboard.</li>
 </ol>
 </div>
-<div id="problems" class="section level3">
-<h3 class="hasAnchor">
-<a href="#problems" class="anchor"></a>Problems</h3>
+<div class="section level3">
+<h3 id="problems">Problems<a class="anchor" aria-label="anchor" href="#problems"></a>
+</h3>
 <ol style="list-style-type: decimal">
 <li>Consider a 2x2 design. Assume the DV is measured from a normal distribution with mean 0, and standard deviation 1. Assume that the main effect of A causes a total shift of .5 standard deviations of the mean between the levels. Assume that level 1 of B is a control, where you expect to measure the standard effect of A. Assume that level 2 of B is an experimental factor intended to reduce the effect of A by .25 standard deviations.</li>
 </ol>
@@ -834,9 +836,9 @@
 <p>B1. Create a power curve showing how power for the interaction effect in this example is influenced by number of subjects. Choose a range of N from 25 to 800 (per cell) and run a simulation-based power analysis for increments of 25 subjects. Then plot the results using ggplot2 (2 points).</p>
 </div>
 </div>
-<div id="references" class="section level2 unnumbered">
-<h2 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h2>
+<div class="section level2 unnumbered">
+<h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 <div id="ref-abdiExperimentalDesignAnalysis2009" class="csl-entry">
 Abdi, H., Edelman, B., Dowling, W. J., &amp; Valentin, D. (2009). <em>Experimental design and analysis for psychology</em>. <span>Oxford University Press</span>.
@@ -856,11 +858,13 @@ Abdi, H., Edelman, B., Dowling, W. J., &amp; Valentin, D. (2009). <em>Experiment
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://crumplab.github.io">Matthew Crump</a>.</p>
+  <p></p>
+<p>Developed by <a href="https://crumplab.github.io" class="external-link">Matthew Crump</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -868,6 +872,8 @@ Abdi, H., Edelman, B., Dowling, W. J., &amp; Valentin, D. (2009). <em>Experiment
 
   
 
+
+  
 
   </body>
 </html>

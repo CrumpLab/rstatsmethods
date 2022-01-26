@@ -35,6 +35,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -70,7 +72,7 @@
       <a href="../../articles/course_docs/Syllabus.html">Fall 2021</a>
     </li>
     <li>
-      <a href="../../articles/course_docs/Spring_syllabus.html">Spring 2022</a>
+      <a href="../../articles/course_docs/Spring_2022_syllabus.html">Spring 2022</a>
     </li>
   </ul>
 </li>
@@ -196,7 +198,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/CrumpLab/rstatsmethods">
+  <a href="https://github.com/CrumpLab/rstatsmethods" class="external-link">
     <span class="fa fa-lg fa-github"></span>
      
   </a>
@@ -217,13 +219,13 @@
 
       
 
-      </header><script src="Lab5_Sampling_Distributions_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Lab 5 Sampling Distributions</h1>
-                        <h4 class="author">Matthew J. C. Crump</h4>
+                        <h4 data-toc-skip class="author">Matthew J. C. Crump</h4>
             
-            <h4 class="date">10/2/2020</h4>
+            <h4 data-toc-skip class="date">10/2/2020</h4>
       
       
       <div class="hidden name"><code>Lab5_Sampling_Distributions.Rmd</code></div>
@@ -232,9 +234,9 @@
 
     
     
-<div id="review" class="section level2">
-<h2 class="hasAnchor">
-<a href="#review" class="anchor"></a>Review</h2>
+<div class="section level2">
+<h2 id="review">Review<a class="anchor" aria-label="anchor" href="#review"></a>
+</h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xbQaPWdKUp0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 <p>In the last two labs we have begun to explore distributions, and have used R to create and sample from distributions. We will continue this exploration in many of the following labs.</p>
@@ -246,9 +248,9 @@
 <p>To put this into concrete terms from previous labs. You know that ‘chance’ can produce different outcomes when you flip a coin. This is a sense in which chance do things. A 50% chance process can sometimes make a heads, and sometimes a tails. Also, we have started to ask “what can chance do?” in prior labs. For example, we asked how often chance produces 10 heads in a row, when you a flip a coin. We found that chance doesn’t do that very often, compared to say 5 heads and 5 tails.</p>
 <p>We are using these next labs to find different ways to use R to experience 1) <strong>that</strong> chance can do things, and 2) how <strong>likely</strong> it is that some things happen by chance. We are working toward a third question (for next lab), which is 3) did chance do it?…or when I run an experiment, is it possible that chance alone produced the data that was collected?</p>
 </div>
-<div id="overview" class="section level2">
-<h2 class="hasAnchor">
-<a href="#overview" class="anchor"></a>Overview</h2>
+<div class="section level2">
+<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h2>
 <p>This lab has the following modules:</p>
 <ol style="list-style-type: decimal">
 <li>Conceptual Review I: Probability Distributions</li>
@@ -265,28 +267,28 @@
 <strong>Understanding sampling distributions may well be the most fundamental thing to understand about statistics</strong> (but that’s just my opinion).</li>
 </ul>
 </div>
-<div id="probability-distributions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#probability-distributions" class="anchor"></a>Probability Distributions</h2>
+<div class="section level2">
+<h2 id="probability-distributions">Probability Distributions<a class="anchor" aria-label="anchor" href="#probability-distributions"></a>
+</h2>
 <p>In previous labs we learned that it is possible to sample numbers from particular distributions in R.</p>
-<pre><code><a href="https://rdrr.io/r/stats/Distributions.html">#see all the distribution functions
-?distributions</a></code></pre>
-<div id="normal-distribution" class="section level3">
-<h3 class="hasAnchor">
-<a href="#normal-distribution" class="anchor"></a>Normal Distribution</h3>
-<p>We use <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> to sample numbers from a normal distribution:</p>
+<pre><code><span class="co">#see all the distribution functions</span>
+<span class="op">?</span><span class="va">distributions</span></code></pre>
+<div class="section level3">
+<h3 id="normal-distribution">Normal Distribution<a class="anchor" aria-label="anchor" href="#normal-distribution"></a>
+</h3>
+<p>We use <code><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm()</a></code> to sample numbers from a normal distribution:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="co">#&gt;  [1] -0.4617725 -0.4423121 -0.9552781 -0.2407341 -0.4193462  1.0997483</span>
-<span class="co">#&gt;  [7]  0.6790078 -0.5265081  2.0021835 -1.9730426</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="co">#&gt;  [1] -1.4097134  2.0727632  0.2501567 -0.2370294  0.9405611  0.7595043</span>
+<span class="co">#&gt;  [7] -1.1905671 -0.3966679  1.4365721  0.9867221</span></code></pre></div>
 <p>We can ‘see’ the distribution by sampling a large number of observations, and plotting them in a histogram:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>observations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10000</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
+<span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>observations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10000</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
                         type <span class="op">=</span> <span class="st">"A"</span><span class="op">)</span>
 
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">some_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">observations</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins<span class="op">=</span><span class="fl">100</span>, color<span class="op">=</span><span class="st">"black"</span>, 
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">some_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">observations</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span>bins<span class="op">=</span><span class="fl">100</span>, color<span class="op">=</span><span class="st">"black"</span>, 
                  fill<span class="op">=</span> <span class="st">'orange'</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab5_Sampling_Distributions_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 <p>We can see in this example that using random chance to sample from this distribution caused these numbers to be observed. So, we can see that “chance did something”. We can also see that chance did some things more than others. Values close to 0 were sampled much more often than values larger 2.5.</p>
@@ -296,99 +298,96 @@
 </ol>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">some_data</span><span class="op">$</span><span class="va">observations</span><span class="op">[</span><span class="va">some_data</span><span class="op">$</span><span class="va">observations</span> <span class="op">&gt;</span> <span class="fl">1.64</span><span class="op">]</span>
-<span class="co">#&gt;   [1] 2.205575 1.919385 1.685519 1.748978 1.905027 1.737868 1.888652 2.284043</span>
-<span class="co">#&gt;   [9] 1.700995 3.807356 1.932267 1.750876 1.924108 1.953374 2.185254 2.452306</span>
-<span class="co">#&gt;  [17] 2.291674 1.643627 2.326876 1.728204 2.086401 1.854245 1.755098 2.067633</span>
-<span class="co">#&gt;  [25] 1.759669 2.263673 1.895977 1.904211 3.217764 2.625932 2.089030 1.869943</span>
-<span class="co">#&gt;  [33] 1.920445 2.279869 2.205040 4.135522 1.890499 1.794145 1.744239 1.841007</span>
-<span class="co">#&gt;  [41] 1.752530 1.959820 1.935524 2.017608 2.171259 1.852701 2.086906 2.815737</span>
-<span class="co">#&gt;  [49] 3.197977 2.768873 1.973468 1.747927 2.275805 2.465847 1.755156 1.705197</span>
-<span class="co">#&gt;  [57] 2.575621 2.325032 3.138697 2.510277 1.823394 1.980772 2.115594 1.837315</span>
-<span class="co">#&gt;  [65] 1.957667 2.289108 1.865334 1.651101 2.295815 1.971648 1.855415 1.823404</span>
-<span class="co">#&gt;  [73] 2.456802 2.636558 2.536803 3.569791 1.899417 1.971889 2.783799 1.946240</span>
-<span class="co">#&gt;  [81] 2.140147 1.727729 1.640489 2.941354 1.947322 1.943660 2.313176 1.906936</span>
-<span class="co">#&gt;  [89] 2.168345 1.664167 1.957866 1.782245 1.953273 1.875503 1.853621 1.687222</span>
-<span class="co">#&gt;  [97] 1.954743 1.827347 2.467468 1.825717 2.608564 1.785942 1.698429 2.947312</span>
-<span class="co">#&gt; [105] 1.676816 1.962475 1.944367 2.077195 1.867485 1.772005 2.343274 2.508601</span>
-<span class="co">#&gt; [113] 1.694131 2.072729 1.945711 1.970970 2.219950 1.672285 2.371535 1.901168</span>
-<span class="co">#&gt; [121] 3.019465 2.065056 2.051028 1.700693 1.930843 1.813964 1.733074 1.853083</span>
-<span class="co">#&gt; [129] 1.902891 2.053941 1.786372 2.005367 2.419718 1.904789 1.858436 1.996116</span>
-<span class="co">#&gt; [137] 2.416020 2.126970 1.670041 1.857032 2.447198 1.775228 2.019294 1.984692</span>
-<span class="co">#&gt; [145] 1.745055 1.766933 1.742818 1.906600 1.715343 2.085948 1.751085 1.944568</span>
-<span class="co">#&gt; [153] 2.344866 1.704489 1.819682 1.640523 2.336726 1.852345 1.789021 2.495067</span>
-<span class="co">#&gt; [161] 2.348499 1.972321 1.775862 2.362110 1.702055 1.893249 3.126282 2.092853</span>
-<span class="co">#&gt; [169] 2.321506 2.067542 1.731346 1.832015 1.732703 1.658512 1.731603 1.816295</span>
-<span class="co">#&gt; [177] 1.911136 1.691478 2.632581 2.254088 1.658429 1.875476 2.347431 2.092576</span>
-<span class="co">#&gt; [185] 1.883171 1.853508 2.088367 2.586658 1.753430 1.816630 2.237405 1.696708</span>
-<span class="co">#&gt; [193] 1.791895 2.498861 2.484264 1.684490 1.650891 2.153251 1.830239 2.526592</span>
-<span class="co">#&gt; [201] 2.652279 1.967921 1.710401 1.684111 2.436479 2.357229 2.173545 2.158858</span>
-<span class="co">#&gt; [209] 2.055683 1.804408 3.215690 1.702537 2.174427 1.784464 1.763139 1.914470</span>
-<span class="co">#&gt; [217] 3.014645 1.929827 1.852656 2.389936 1.766956 1.861219 2.054795 3.449168</span>
-<span class="co">#&gt; [225] 2.287839 1.952629 2.362610 2.419568 1.887100 2.141991 1.770933 1.946801</span>
-<span class="co">#&gt; [233] 2.169423 1.976842 1.959237 2.031968 2.372759 3.618499 1.725536 1.979669</span>
-<span class="co">#&gt; [241] 1.717029 1.719403 2.035490 2.233789 2.060031 1.895913 1.846011 2.801935</span>
-<span class="co">#&gt; [249] 1.981015 2.477665 1.829612 2.645017 2.714125 2.357621 1.749767 1.965660</span>
-<span class="co">#&gt; [257] 1.719146 1.952468 2.630153 1.824932 1.713074 1.788155 2.328073 1.705275</span>
-<span class="co">#&gt; [265] 2.026326 2.735631 2.355570 1.670878 2.312928 1.834367 2.793230 1.777118</span>
-<span class="co">#&gt; [273] 1.791107 2.397654 1.869381 2.094305 2.158171 1.846136 1.784424 1.730464</span>
-<span class="co">#&gt; [281] 2.815962 1.861527 1.788190 1.827294 1.706389 2.810115 2.267512 1.743440</span>
-<span class="co">#&gt; [289] 1.904920 1.714212 1.769907 1.956994 1.656388 1.773252 1.848548 1.833908</span>
-<span class="co">#&gt; [297] 1.687702 2.216631 3.074050 1.890899 2.092574 1.683537 2.649315 1.693621</span>
-<span class="co">#&gt; [305] 2.491860 2.092108 2.461018 1.833150 2.557039 2.059177 2.287916 2.901535</span>
-<span class="co">#&gt; [313] 1.853629 2.616822 2.482262 2.113913 1.930456 2.499879 2.259142 1.797725</span>
-<span class="co">#&gt; [321] 1.645066 2.041065 1.753167 1.750018 1.906273 1.681741 2.118638 1.651636</span>
-<span class="co">#&gt; [329] 1.918758 1.993312 2.073298 1.645381 2.335945 1.939587 1.670600 2.307440</span>
-<span class="co">#&gt; [337] 2.112244 1.852535 2.203503 2.456087 2.151451 1.770500 1.849564 1.828700</span>
-<span class="co">#&gt; [345] 2.621708 1.741074 2.049195 2.414237 1.877369 2.512578 2.312122 2.468782</span>
-<span class="co">#&gt; [353] 2.022566 1.924750 2.231457 2.888190 2.145853 1.729180 2.082866 1.668273</span>
-<span class="co">#&gt; [361] 1.847158 1.916679 2.414004 1.889628 1.819738 1.691266 1.656794 1.691767</span>
-<span class="co">#&gt; [369] 1.800103 1.645430 1.808595 1.716622 2.193137 2.119056 2.178398 1.836770</span>
-<span class="co">#&gt; [377] 1.793744 3.384796 1.904212 1.741485 1.725491 2.167672 2.890073 2.711573</span>
-<span class="co">#&gt; [385] 1.647896 2.912079 2.142854 2.523943 1.777879 2.257889 1.851376 1.661854</span>
-<span class="co">#&gt; [393] 1.763525 2.182791 2.527289 1.874788 2.131520 1.837830 2.375524 2.303114</span>
-<span class="co">#&gt; [401] 2.130309 2.664627 2.068775 1.780550 2.095211 2.066840 2.812419 2.247278</span>
-<span class="co">#&gt; [409] 1.779431 1.915608 2.100872 1.716274 1.743990 1.698930 1.665880 2.453066</span>
-<span class="co">#&gt; [417] 1.725678 1.959320 1.759076 1.890014 2.000314 2.667627 1.808561 1.832734</span>
-<span class="co">#&gt; [425] 1.677404 1.937609 2.457054 2.499869 1.955044 2.310300 1.782458 2.358662</span>
-<span class="co">#&gt; [433] 1.908467 2.857099 2.484554 2.245601 2.761805 2.571973 2.074839 2.503456</span>
-<span class="co">#&gt; [441] 2.403902 1.801112 1.877124 1.800583 1.870654 1.855119 1.706896 1.644543</span>
-<span class="co">#&gt; [449] 1.885026 2.061001 2.132950 2.078670 1.721964 2.490840 2.038601 1.815866</span>
-<span class="co">#&gt; [457] 2.006296 1.994086 3.352555 1.647525 1.731472 2.141614 2.284460 2.127139</span>
-<span class="co">#&gt; [465] 1.840096 2.419960 2.049782 2.424408 1.927881 1.837748 1.839810 1.939675</span>
-<span class="co">#&gt; [473] 1.720779 1.740823 1.667792 2.487124 1.668686 1.656759 2.436321 1.997765</span>
-<span class="co">#&gt; [481] 2.103072 2.216814 1.659039 2.604039 2.193822 1.980617 2.412060 2.374254</span>
-<span class="co">#&gt; [489] 2.533612 2.233643 1.988809 1.898983 2.162628 1.681715 1.937068 1.757854</span>
-<span class="co">#&gt; [497] 1.728775 2.593267 1.828774 2.967843 2.527619 3.479014 1.814042 2.082819</span>
-<span class="co">#&gt; [505] 2.925790 1.766145 2.043859 2.070876 1.808206 1.705470 2.364955 1.998870</span>
-<span class="co">#&gt; [513] 1.695640 2.753300 1.720576 1.863204 2.530517 2.359790 2.483291 1.953354</span>
-<span class="co">#&gt; [521] 1.906404</span>
-<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">some_data</span><span class="op">$</span><span class="va">observations</span><span class="op">[</span><span class="va">some_data</span><span class="op">$</span><span class="va">observations</span> <span class="op">&gt;</span> <span class="fl">1.64</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt; [1] 521</span>
-<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">some_data</span><span class="op">$</span><span class="va">observations</span><span class="op">[</span><span class="va">some_data</span><span class="op">$</span><span class="va">observations</span> <span class="op">&gt;</span> <span class="fl">1.64</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.0521</span></code></pre></div>
+<span class="co">#&gt;   [1] 2.160835 1.763559 2.509307 2.083682 1.970823 2.915501 1.763827 2.168356</span>
+<span class="co">#&gt;   [9] 2.022439 2.478965 2.183712 1.696275 1.809133 1.684660 1.745048 2.094353</span>
+<span class="co">#&gt;  [17] 2.398494 1.876354 1.854108 1.871780 2.303760 1.678826 2.294011 2.347788</span>
+<span class="co">#&gt;  [25] 1.909478 2.625038 1.949434 1.958748 1.695308 1.864553 1.870946 1.700686</span>
+<span class="co">#&gt;  [33] 1.815948 1.902257 1.781170 2.007094 1.792292 1.692510 2.409367 2.122571</span>
+<span class="co">#&gt;  [41] 1.680427 1.779404 1.683266 1.924455 2.104740 2.251382 2.141740 3.555699</span>
+<span class="co">#&gt;  [49] 1.996935 2.174627 1.827833 3.006466 1.880060 2.111069 1.957656 1.833876</span>
+<span class="co">#&gt;  [57] 2.161112 1.798677 2.273213 2.206828 1.650487 1.987830 1.971745 1.973209</span>
+<span class="co">#&gt;  [65] 2.085023 2.138719 1.826016 1.693535 2.192358 1.970982 1.967137 1.672293</span>
+<span class="co">#&gt;  [73] 2.614385 2.370285 1.859084 1.808925 1.645817 2.141491 1.807621 2.186734</span>
+<span class="co">#&gt;  [81] 2.022008 2.080588 1.707541 1.984653 1.674033 1.678679 1.763126 2.151032</span>
+<span class="co">#&gt;  [89] 1.658323 1.750007 1.642248 2.030291 2.001780 2.014632 2.744082 1.677040</span>
+<span class="co">#&gt;  [97] 1.797508 1.981316 1.864871 2.505281 2.603755 1.917275 2.290006 1.760720</span>
+<span class="co">#&gt; [105] 2.672573 1.930416 2.100118 2.905814 1.778171 1.980153 1.728521 1.813296</span>
+<span class="co">#&gt; [113] 2.870451 1.669891 1.855920 3.050648 2.080826 1.672030 1.950778 2.516106</span>
+<span class="co">#&gt; [121] 1.713196 1.910425 1.950877 2.309460 1.750110 2.070754 1.998754 1.859513</span>
+<span class="co">#&gt; [129] 2.034973 1.843286 2.650534 2.574555 1.697740 1.908772 2.487529 2.072802</span>
+<span class="co">#&gt; [137] 1.937494 2.797733 1.654513 2.055241 1.745643 2.308071 1.967292 1.698359</span>
+<span class="co">#&gt; [145] 1.743655 1.675947 2.031143 2.192918 2.968494 2.590022 1.929543 1.794471</span>
+<span class="co">#&gt; [153] 1.935360 2.007118 2.404663 2.393933 2.071089 2.590374 2.054266 1.882086</span>
+<span class="co">#&gt; [161] 1.979343 2.063322 2.080849 1.917088 2.531731 1.794160 1.826303 2.116722</span>
+<span class="co">#&gt; [169] 2.191155 1.758828 1.911892 1.660950 2.414295 1.724962 1.776178 1.969231</span>
+<span class="co">#&gt; [177] 2.533679 1.898454 1.864648 2.140424 1.888026 2.315862 2.578988 1.881405</span>
+<span class="co">#&gt; [185] 2.544113 2.213469 1.970423 2.326214 1.700307 1.775606 1.904358 2.123282</span>
+<span class="co">#&gt; [193] 1.704909 2.115981 2.436738 2.178166 1.662023 2.250972 2.071980 1.685879</span>
+<span class="co">#&gt; [201] 2.183760 1.970172 2.330724 2.282777 1.669078 1.742763 1.820172 1.876415</span>
+<span class="co">#&gt; [209] 1.839888 1.752842 2.406668 2.297820 2.339169 1.695311 1.757120 2.238810</span>
+<span class="co">#&gt; [217] 1.799120 2.158023 2.632745 1.993842 1.674258 1.681547 2.042864 1.909836</span>
+<span class="co">#&gt; [225] 2.287488 1.732391 1.975657 2.586769 2.559073 1.707951 1.763280 2.007156</span>
+<span class="co">#&gt; [233] 1.830587 1.676073 1.888226 1.681638 1.656622 1.748178 2.395591 2.384360</span>
+<span class="co">#&gt; [241] 1.971760 2.102174 1.691581 2.034300 1.894401 1.649878 1.648543 1.935602</span>
+<span class="co">#&gt; [249] 1.803848 1.646988 2.859688 2.526927 3.008876 2.579322 1.870267 1.822524</span>
+<span class="co">#&gt; [257] 1.713613 1.667297 1.815826 1.735882 1.988809 1.772094 2.203091 1.740979</span>
+<span class="co">#&gt; [265] 1.676824 1.997205 2.541708 2.102774 2.447652 1.833568 1.949633 3.467045</span>
+<span class="co">#&gt; [273] 1.755788 2.025648 2.299362 1.786363 2.579492 1.926420 2.070244 2.018753</span>
+<span class="co">#&gt; [281] 2.104021 2.255740 1.662542 2.307947 2.001556 1.650151 1.931564 2.250653</span>
+<span class="co">#&gt; [289] 1.978539 1.780007 1.833867 2.411698 1.896997 1.647504 2.173019 2.316005</span>
+<span class="co">#&gt; [297] 1.978687 3.150276 1.721521 2.616731 1.734480 2.060505 2.193237 2.177840</span>
+<span class="co">#&gt; [305] 1.927467 2.252978 1.872511 1.716636 1.838382 2.117175 1.882689 2.531512</span>
+<span class="co">#&gt; [313] 2.010487 1.659478 1.691481 1.918211 1.726931 2.491852 1.655457 1.916806</span>
+<span class="co">#&gt; [321] 1.739337 2.368541 2.080636 2.068438 1.813048 1.975463 2.273367 1.877708</span>
+<span class="co">#&gt; [329] 2.373521 2.479622 1.812380 1.648769 2.422884 2.117415 1.900708 2.003685</span>
+<span class="co">#&gt; [337] 1.695356 2.797924 2.136433 1.825070 2.415424 2.750397 1.648266 3.270167</span>
+<span class="co">#&gt; [345] 2.954529 1.842773 2.014166 1.671824 1.720324 2.348141 1.756001 2.084108</span>
+<span class="co">#&gt; [353] 1.683090 1.970803 2.444232 1.978240 2.032360 2.354650 2.192295 2.142222</span>
+<span class="co">#&gt; [361] 2.502549 2.185242 1.721107 1.709011 1.822352 2.097637 1.682285 1.867687</span>
+<span class="co">#&gt; [369] 2.668967 1.658892 1.791171 1.696778 2.990761 1.741130 1.895953 1.806008</span>
+<span class="co">#&gt; [377] 1.929345 2.453389 1.750736 1.648458 2.301857 1.883030 1.863447 2.119431</span>
+<span class="co">#&gt; [385] 2.488127 1.690132 2.289462 1.736663 1.747324 1.820204 2.992764 1.661842</span>
+<span class="co">#&gt; [393] 2.699628 2.131252 1.698576 1.661387 1.711495 2.035874 1.855094 2.074477</span>
+<span class="co">#&gt; [401] 2.535661 1.798087 1.656074 2.321613 2.296863 2.205042 1.770269 1.874589</span>
+<span class="co">#&gt; [409] 1.996884 1.924727 1.854862 1.785530 2.074769 2.528263 1.940669 2.052406</span>
+<span class="co">#&gt; [417] 1.976548 2.170311 2.062172 1.849916 1.791679 1.795894 1.830072 1.659089</span>
+<span class="co">#&gt; [425] 1.771099 2.329610 1.655755 2.456228 2.034367 1.712528 2.816031 1.959763</span>
+<span class="co">#&gt; [433] 2.133772 1.810689 2.136593 2.418696 2.277546 2.555518 1.980804 2.139007</span>
+<span class="co">#&gt; [441] 1.966111 1.827449 1.729840 1.962515 1.856216 2.491259 2.547443 1.662368</span>
+<span class="co">#&gt; [449] 1.738150 2.061905 1.978075 2.202115 2.496436 1.745418 2.331448 2.428454</span>
+<span class="co">#&gt; [457] 2.662871 2.143540 2.074297 1.989706 1.831702 1.877673 2.106902 1.673647</span>
+<span class="co">#&gt; [465] 1.688615 2.000875 1.726415 1.741599 1.889844 1.795926 2.468411 2.573554</span>
+<span class="co">#&gt; [473] 2.640711 2.620706 1.688433 2.018740 2.749998 1.650702 2.350947 1.939082</span>
+<span class="co">#&gt; [481] 1.761001 2.742099 1.884197 1.838216 1.744913 1.662455 1.984691 2.291744</span>
+<span class="co">#&gt; [489] 1.760150 1.670390 1.986629 1.771684 1.881873 2.028468 2.215520 2.304709</span>
+<span class="co">#&gt; [497] 1.676986 1.921935 1.804772</span>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">some_data</span><span class="op">$</span><span class="va">observations</span><span class="op">[</span><span class="va">some_data</span><span class="op">$</span><span class="va">observations</span> <span class="op">&gt;</span> <span class="fl">1.64</span><span class="op">]</span><span class="op">)</span>
+<span class="co">#&gt; [1] 499</span>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">some_data</span><span class="op">$</span><span class="va">observations</span><span class="op">[</span><span class="va">some_data</span><span class="op">$</span><span class="va">observations</span> <span class="op">&gt;</span> <span class="fl">1.64</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
+<span class="co">#&gt; [1] 0.0499</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>We could also compute the probability directly using analytical formulas. And, these formulas also exist in R. Specifically, distribution formulas begin with <code>d</code>, <code>p</code>, <code>q</code>, and <code>r</code>, so there are <code>dnorm</code>, <code>pnorm</code>, <code>qnorm</code>, and <code>rnorm</code> functions for the normal distribution (and other distributions).</li>
 </ol>
-<div id="rnorm" class="section level4">
-<h4 class="hasAnchor">
-<a href="#rnorm" class="anchor"></a>rnorm()</h4>
+<div class="section level4">
+<h4 id="rnorm">rnorm()<a class="anchor" aria-label="anchor" href="#rnorm"></a>
+</h4>
 <p><code>rnorm(n, mean = 0, sd = 1)</code> samples observations (or random deviates) from a normal distribution with specified mean and standard deviation.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="co">#&gt;  [1]  0.6938833 -1.3019193  0.4208554 -0.2490378 -0.8942314 -1.8099562</span>
-<span class="co">#&gt;  [7]  0.6576543  0.9907504 -0.7352276 -0.4269668</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="co">#&gt;  [1]  0.8929863491 -0.1984742114 -1.5594749886 -0.0002081319  1.6306120959</span>
+<span class="co">#&gt;  [6]  0.0857243211 -0.5772098923  2.5938103731  2.5509671568  0.1434862998</span></code></pre></div>
 </div>
-<div id="dnorm" class="section level4">
-<h4 class="hasAnchor">
-<a href="#dnorm" class="anchor"></a>dnorm()</h4>
+<div class="section level4">
+<h4 id="dnorm">dnorm()<a class="anchor" aria-label="anchor" href="#dnorm"></a>
+</h4>
 <p><code>dnorm(x, mean = 0, sd = 1, log = FALSE)</code> is the probability density function. It returns the probability density of the distribution for any value that can be obtained from the distribution.</p>
 <p>For example, in the above histogram, we can see that the distribution produces values roughly between -3 and 3, or perhaps -4 to 4. We also see that as values approach 0, they happen more often. So, the probability density changes across the distribution. We can plot this directly using <code>dorm()</code>, by supplying a sequence of value, say from -4 to 4.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>density <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span><span class="op">:</span><span class="fl">4</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
+<span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>density <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">dnorm</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span><span class="op">:</span><span class="fl">4</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
                         x <span class="op">=</span> <span class="op">-</span><span class="fl">4</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span>
 
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">some_data</span><span class="op">)</span></code></pre></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">some_data</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">density</th>
@@ -435,18 +434,18 @@
 </table>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">some_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">x</span>, y<span class="op">=</span><span class="va">density</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">some_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">x</span>, y<span class="op">=</span><span class="va">density</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab5_Sampling_Distributions_files/figure-html/unnamed-chunk-6-1.png" width="700"> To generate a plot of the full distribution in R, you could calculate additional intervening values on the x-axis, and use a line plot.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>density <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">.001</span><span class="op">)</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
-                        x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">.001</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>density <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">dnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">.001</span><span class="op">)</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
+                        x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">.001</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">some_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">x</span>, y<span class="op">=</span><span class="va">density</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">some_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">x</span>, y<span class="op">=</span><span class="va">density</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab5_Sampling_Distributions_files/figure-html/unnamed-chunk-7-1.png" width="700"> Note, that this probability density function could be consulted to ask a question like, what is the probability of getting a value larger than 2.5? The answer is given by the area under the curve (in red).</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'dplyr'</span>
 <span class="co">#&gt; The following objects are masked from 'package:stats':</span>
@@ -455,131 +454,131 @@
 <span class="co">#&gt; The following objects are masked from 'package:base':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     intersect, setdiff, setequal, union</span>
-<span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>density <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">.001</span><span class="op">)</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
-                        x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">.001</span><span class="op">)</span><span class="op">)</span>
+<span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>density <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">dnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">.001</span><span class="op">)</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
+                        x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">.001</span><span class="op">)</span><span class="op">)</span>
 
-<span class="va">region_data</span> <span class="op">&lt;-</span> <span class="va">some_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">2.5</span><span class="op">)</span>
+<span class="va">region_data</span> <span class="op">&lt;-</span> <span class="va">some_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">2.5</span><span class="op">)</span>
 
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">some_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">x</span>, y<span class="op">=</span><span class="va">density</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">region_data</span>, 
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">some_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">x</span>, y<span class="op">=</span><span class="va">density</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html" class="external-link">geom_ribbon</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">region_data</span>, 
               fill <span class="op">=</span> <span class="st">"red"</span>,
-              <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>ymin<span class="op">=</span><span class="fl">0</span>,ymax<span class="op">=</span><span class="va">density</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+              <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>ymin<span class="op">=</span><span class="fl">0</span>,ymax<span class="op">=</span><span class="va">density</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab5_Sampling_Distributions_files/figure-html/unnamed-chunk-8-1.png" width="700"> ### pnorm</p>
 <p><code>pnorm(q, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)</code> takes a given value that the distribution could produce as an input called <code>q</code> for quantile. The function then returns the proportional area under the curve up to that value.</p>
 <p>For example, what is the area under the curve starting from the left (e.g., negative infinity) all the way to 2.5?</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">1.64</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">pnorm</a></span><span class="op">(</span><span class="fl">1.64</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="co">#&gt; [1] 0.9494974</span></code></pre></div>
 <p>This is the “complement” of our question. That is 99.37903% of all values drawn from the distribution are expected to be <strong>less than 2.5</strong>. We have just determined the probability of getting a number smaller than 2.5, otherwise known as the lower tail.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>density <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">.001</span><span class="op">)</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
-                        x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">.001</span><span class="op">)</span><span class="op">)</span>
-<span class="va">region_data</span> <span class="op">&lt;-</span> <span class="va">some_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="fl">2.5</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>density <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">dnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">.001</span><span class="op">)</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
+                        x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">.001</span><span class="op">)</span><span class="op">)</span>
+<span class="va">region_data</span> <span class="op">&lt;-</span> <span class="va">some_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="fl">2.5</span><span class="op">)</span>
 
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">some_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">x</span>, y<span class="op">=</span><span class="va">density</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">region_data</span>, 
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">some_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">x</span>, y<span class="op">=</span><span class="va">density</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html" class="external-link">geom_ribbon</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">region_data</span>, 
               fill <span class="op">=</span> <span class="st">"red"</span>,
-              <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>ymin<span class="op">=</span><span class="fl">0</span>,ymax<span class="op">=</span><span class="va">density</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+              <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>ymin<span class="op">=</span><span class="fl">0</span>,ymax<span class="op">=</span><span class="va">density</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab5_Sampling_Distributions_files/figure-html/unnamed-chunk-10-1.png" width="700"> By default, <code>pnorm</code> calculates the lower tail, or the area under the curve from the <code>q</code> value point to the left side of the plot.</p>
 <p>To calculate the the probability of getting a number larger than a particular value you can take the complement, or set <code>lower.tail=FALSE</code></p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">2.5</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">pnorm</a></span><span class="op">(</span><span class="fl">2.5</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="co">#&gt; [1] 0.006209665</span>
 
-<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">2.5</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, lower.tail<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">pnorm</a></span><span class="op">(</span><span class="fl">2.5</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, lower.tail<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
 <span class="co">#&gt; [1] 0.006209665</span></code></pre></div>
 </div>
-<div id="qnorm" class="section level4">
-<h4 class="hasAnchor">
-<a href="#qnorm" class="anchor"></a>qnorm</h4>
+<div class="section level4">
+<h4 id="qnorm">qnorm<a class="anchor" aria-label="anchor" href="#qnorm"></a>
+</h4>
 <p><code>qnorm(p, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)</code> is similar to <code>pnorm</code>, but it takes a probability as an input, and returns a specific point value (or quantile) on the x-axis. More formally, you specify a proportional area under the curve starting from the left, and the function tells which number that area corresponds to.</p>
 <p>For the remaining we assume mean=0 and sd =1.</p>
 <p>What number on the x-axis is the location where 25% of the values are smaller than that value?</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">.25</span>, mean<span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">qnorm</a></span><span class="op">(</span><span class="fl">.25</span>, mean<span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span>
 <span class="co">#&gt; [1] -0.6744898</span></code></pre></div>
 <p>What number on the x-axis is the location where 50% of the values are smaller than that value?</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">.5</span>, mean<span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">qnorm</a></span><span class="op">(</span><span class="fl">.5</span>, mean<span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span>
 <span class="co">#&gt; [1] 0</span></code></pre></div>
 <p>What is the number where 95% of the values are larger than that number?</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">.95</span>, mean<span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">qnorm</a></span><span class="op">(</span><span class="fl">.95</span>, mean<span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="co">#&gt; [1] -1.644854</span>
 
-<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">.05</span>, mean <span class="op">=</span> <span class="fl">0</span> , sd <span class="op">=</span><span class="fl">1</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">qnorm</a></span><span class="op">(</span><span class="fl">.05</span>, mean <span class="op">=</span> <span class="fl">0</span> , sd <span class="op">=</span><span class="fl">1</span>, lower.tail <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="co">#&gt; [1] 1.644854</span></code></pre></div>
 </div>
 </div>
-<div id="summary" class="section level3">
-<h3 class="hasAnchor">
-<a href="#summary" class="anchor"></a>Summary</h3>
+<div class="section level3">
+<h3 id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
+</h3>
 <p>Focusing on the normal distribution functions, we have learned that chance can produce different kinds of numbers from a normal distribution. And, we can use the <code>dnorm</code>, <code>qnorm</code>, and <code>pnorm</code> functions to exactly compute the specific probabilities that <strong>certain ranges of values</strong> occur.</p>
 </div>
 </div>
-<div id="conceptual-sampling-distributions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#conceptual-sampling-distributions" class="anchor"></a>Conceptual: Sampling Distributions</h2>
+<div class="section level2">
+<h2 id="conceptual-sampling-distributions">Conceptual: Sampling Distributions<a class="anchor" aria-label="anchor" href="#conceptual-sampling-distributions"></a>
+</h2>
 <p>When we collect data we assume they come from some “distribution”, which “causes” some numbers to occur more than others. The data we collect is a “sample” or portion of the “distribution”.</p>
 <p>We know that when we sample from distributions chance can play a role. Specifically, by chance alone one sample of observations could look different from another sample, even if they came from the same distribution. In other words, <strong>we recognize that the process of sampling from a distribution involves variability or uncertainty</strong>.</p>
 <p>We can use <strong>sampling distributions</strong> as a tool to help us understand and predict how our sampling process will behave. This way we can have information about how variable or uncertain our samples are.</p>
-<div id="confusing-jargon" class="section level3">
-<h3 class="hasAnchor">
-<a href="#confusing-jargon" class="anchor"></a>Confusing jargon</h3>
+<div class="section level3">
+<h3 id="confusing-jargon">Confusing jargon<a class="anchor" aria-label="anchor" href="#confusing-jargon"></a>
+</h3>
 <p>Throughout this course you will come across terms like, “sampling distributions”, “the sampling distribution of the sample mean”, “the sampling distribution of any sample statistic”, “the standard deviation of the sampling distribution of the sample mean is the standard error of the mean”. Although all of these sentence are hard to parse and in my opinion very jargony, they all represent very important ideas that need to be distinguished and well understood. We are going to work on these things in this lab.</p>
 </div>
-<div id="the-sample-mean" class="section level3">
-<h3 class="hasAnchor">
-<a href="#the-sample-mean" class="anchor"></a>The sample mean</h3>
+<div class="section level3">
+<h3 id="the-sample-mean">The sample mean<a class="anchor" aria-label="anchor" href="#the-sample-mean"></a>
+</h3>
 <p>For all of the remaining examples we will use a normal distribution with mean = 0 and sd =1.</p>
 <p>We already know what the sample mean is and how to calculate it in R. Here is an example of calculating a sample mean, where the number of observations (n) in the sample is 10.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] -0.1266436</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] -0.1354605</span></code></pre></div>
 </div>
-<div id="multiple-sample-means" class="section level3">
-<h3 class="hasAnchor">
-<a href="#multiple-sample-means" class="anchor"></a>Multiple sample means</h3>
+<div class="section level3">
+<h3 id="multiple-sample-means">Multiple sample means<a class="anchor" aria-label="anchor" href="#multiple-sample-means"></a>
+</h3>
 <p>We can repeat the above process as many times as we like, each time creating a sample of 10 observations and computing the mean.</p>
 <p>Here is an example of creating 5 sample means from 5 sets of 10 observations.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] -0.08306411</span>
-<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.02532174</span>
-<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.354553</span>
-<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.3649527</span>
-<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] -0.3194676</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.396047</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] -0.2863516</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.136062</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.1338093</span>
+<span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] -0.03415137</span></code></pre></div>
 <p>Notice each of the sample means is different, this is because of the variability introduced by randomly choosing values from the same normal distribution.</p>
 <p>The mean of the distribution that the samples come from is 0, what do we expect the mean of the samples to be? In general, we expect 0, but we can see that not all of the sample means are exactly 0.</p>
 <p>How much variability can we expect for our sample mean? In other words, if we are going to obtain a sample of 10 numbers from this distribution, <strong>what kinds of sample means could we get?</strong>.</p>
 </div>
-<div id="the-sampling-distribution-of-the-sample-means" class="section level3">
-<h3 class="hasAnchor">
-<a href="#the-sampling-distribution-of-the-sample-means" class="anchor"></a>The sampling distribution of the sample means</h3>
+<div class="section level3">
+<h3 id="the-sampling-distribution-of-the-sample-means">The sampling distribution of the sample means<a class="anchor" aria-label="anchor" href="#the-sampling-distribution-of-the-sample-means"></a>
+</h3>
 <p>The answer to the question <strong>what kinds of sample means could we get?</strong> is “the sampling distribution of the sample means”. In other words, if you do the work to actually find out and create a bunch of samples, and then find their means, then you have a bunch of sample means, and all of these numbers form a distribution. This distribution is effectively showing you all of the different ways that random chance can produce particular sample means.</p>
 <p>Let’s make a distribution of sample means. We will create 10,000 samples, each with 10 observations, and compute the mean for each. We will save and look at all of the means in a histogram.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sample_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">sample_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab5_Sampling_Distributions_files/figure-html/unnamed-chunk-17-1.png" width="700"></p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.03170632</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.03165109</span></code></pre></div>
 <p>The above is a histogram representing the means for 10,000 samples. We can refer to this as a sampling distribution of the sample means. It is how sample means (in this one particular situation) are generally distributed.</p>
 <p>If you wanted to know what to expect from a single sample mean (if you knew you were taking values from this normal distribution), then you could look at this sampling distribution.</p>
 <p>Sample means close to 0 happen the most. So, most of the time, when you take a sample from this distribution, the mean of that sample will be 0. It is rare for a sample mean to be larger than .5. It is very very rare for a sample mean to be larger than 1.</p>
 </div>
-<div id="the-standard-error-the-mean" class="section level3">
-<h3 class="hasAnchor">
-<a href="#the-standard-error-the-mean" class="anchor"></a>The standard error the mean</h3>
+<div class="section level3">
+<h3 id="the-standard-error-the-mean">The standard error the mean<a class="anchor" aria-label="anchor" href="#the-standard-error-the-mean"></a>
+</h3>
 <p>We have not discussed the concept or definition of the standard error the mean in the lecture portion of this class. However, we have seen that the mean for a sample taken from a distribution has expected variability, specifically the fact that there is a distribution of different sample means shows that there is variability.</p>
 <p>What descriptive statistic have we already discussed that provides measures of variability? One option is the standard deviation. For example, we could do the following to measure the variability associated with a distribution of sample means.</p>
 <ol style="list-style-type: decimal">
@@ -588,9 +587,9 @@
 </ol>
 <p>The standard deviation of the sample means would give us an idea of how much variability we expect from our sample mean. We could do this quickly in R like this:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sample_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.3176763</span></code></pre></div>
+<code class="sourceCode R"><span class="va">sample_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.3165647</span></code></pre></div>
 <p>The value we calculated is a standardized unit, and it describes the amount of error we expect in general from a sample mean. Specifically, if the true population mean is 0, then when we obtain samples, we expect the sample means will have some error, they should on average be 0, but plus or minus the standard deviation we calculated.</p>
 <p>We do not necessarily have to generate a distribution of sample means to calculate the standard error. If we know the population standard deviation (<span class="math inline">\(\sigma\)</span>), then we can use this formula for the standard error of the mean (SEM) is:</p>
 <p><span class="math inline">\(\text{SEM} = \frac{\sigma}{\sqrt{N}}\)</span></p>
@@ -598,24 +597,24 @@
 <p>We can also compare the SEM from the formula to the one we obtained by simulation, and we find they are similar.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># simulation SEM</span>
-<span class="va">sample_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.3185234</span>
+<span class="va">sample_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.3166792</span>
 
 <span class="co"># analytic SEM</span>
 
-<span class="fl">1</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>
+<span class="fl">1</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>
 <span class="co">#&gt; [1] 0.3162278</span></code></pre></div>
 </div>
 </div>
-<div id="lab-5-generalization-assignment" class="section level2">
-<h2 class="hasAnchor">
-<a href="#lab-5-generalization-assignment" class="anchor"></a>Lab 5 Generalization Assignment</h2>
+<div class="section level2">
+<h2 id="lab-5-generalization-assignment">Lab 5 Generalization Assignment<a class="anchor" aria-label="anchor" href="#lab-5-generalization-assignment"></a>
+</h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/rjp7kmIo2Qk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-<div id="instructions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#instructions" class="anchor"></a>Instructions</h3>
+<div class="section level3">
+<h3 id="instructions">Instructions<a class="anchor" aria-label="anchor" href="#instructions"></a>
+</h3>
 <p>In general, labs will present a discussion of problems and issues with example code like above, and then students will be tasked with completing generalization assignments, showing that they can work with the concepts and tools independently.</p>
 <p>Your assignment instructions are the following:</p>
 <ol style="list-style-type: decimal">
@@ -628,11 +627,11 @@
 <li>There are five problems to solve</li>
 </ol>
 </div>
-<div id="problems" class="section level3">
-<h3 class="hasAnchor">
-<a href="#problems" class="anchor"></a>Problems</h3>
+<div class="section level3">
+<h3 id="problems">Problems<a class="anchor" aria-label="anchor" href="#problems"></a>
+</h3>
 <ol style="list-style-type: decimal">
-<li><p>Trust but verify. We trust that the <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> will generate random deviates in accordance with the definition of the normal distribution. For example, we learned in this lab, that a normal distribution with mean = 0, and sd =1 , should only produce values larger than 2.5 with a specific small probability, that is P(x&gt;2.5) = 0.006209665. Verify this is approximately the case by randomly sampling 1 million numbers from this distribution, and calculate what proportion of numbers are larger than 2.5. (1 point)</p></li>
+<li><p>Trust but verify. We trust that the <code><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm()</a></code> will generate random deviates in accordance with the definition of the normal distribution. For example, we learned in this lab, that a normal distribution with mean = 0, and sd =1 , should only produce values larger than 2.5 with a specific small probability, that is P(x&gt;2.5) = 0.006209665. Verify this is approximately the case by randomly sampling 1 million numbers from this distribution, and calculate what proportion of numbers are larger than 2.5. (1 point)</p></li>
 <li><p>If performance on a standardized test was known to follow a normal distribution with mean 100 and standard deviation 10, and 10,000 people took the test, how many people would be expected to achieve a score higher than 3 standard deviations from the mean? (1 point)</p></li>
 <li><p>You randomly sample 25 numbers from a normal distribution with mean = 10 and standard deviation = 20. You obtain a sample mean of 12. You want to know the probability that you could have received a sample mean of 12 or larger.</p></li>
 </ol>
@@ -660,11 +659,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://crumplab.github.io">Matthew Crump</a>.</p>
+  <p></p>
+<p>Developed by <a href="https://crumplab.github.io" class="external-link">Matthew Crump</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -672,6 +673,8 @@
 
   
 
+
+  
 
   </body>
 </html>

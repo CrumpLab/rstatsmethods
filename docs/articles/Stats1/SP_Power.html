@@ -35,6 +35,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -70,7 +72,7 @@
       <a href="../../articles/course_docs/Syllabus.html">Fall 2021</a>
     </li>
     <li>
-      <a href="../../articles/course_docs/Spring_syllabus.html">Spring 2022</a>
+      <a href="../../articles/course_docs/Spring_2022_syllabus.html">Spring 2022</a>
     </li>
   </ul>
 </li>
@@ -196,7 +198,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/CrumpLab/rstatsmethods">
+  <a href="https://github.com/CrumpLab/rstatsmethods" class="external-link">
     <span class="fa fa-lg fa-github"></span>
      
   </a>
@@ -217,13 +219,13 @@
 
       
 
-      </header><script src="SP_Power_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Simulation and Power Analysis</h1>
-                        <h4 class="author">Matthew J. C. Crump</h4>
+                        <h4 data-toc-skip class="author">Matthew J. C. Crump</h4>
             
-            <h4 class="date">11/12/2020</h4>
+            <h4 data-toc-skip class="date">11/12/2020</h4>
       
       
       <div class="hidden name"><code>SP_Power.Rmd</code></div>
@@ -232,9 +234,9 @@
 
     
     
-<div id="overview" class="section level2">
-<h2 class="hasAnchor">
-<a href="#overview" class="anchor"></a>Overview</h2>
+<div class="section level2">
+<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h2>
 <p>Part of the semester long project is to conduct a simulation-based power-analysis. This document provides some background on power-analyses and use of simulations for sample-size and design planning. Attempts will be made to integrate additional examples in the remaining labs this semester and next as we move on to more complicated designs and statistical tests.</p>
 <ol style="list-style-type: decimal">
 <li>Develop a deeper understanding of the assumptions behind statistical tests</li>
@@ -242,9 +244,9 @@
 <li>Understand how real data ought to behave given the assumptions you are making about the data.</li>
 </ol>
 </div>
-<div id="null-hypothesis" class="section level2">
-<h2 class="hasAnchor">
-<a href="#null-hypothesis" class="anchor"></a>Null-hypothesis</h2>
+<div class="section level2">
+<h2 id="null-hypothesis">Null-hypothesis<a class="anchor" aria-label="anchor" href="#null-hypothesis"></a>
+</h2>
 <p>In general, the null-hypothesis is the hypothesis that your experimental manipulation didn’t work. Or, the hypothesis of no differences.</p>
 <p>We can simulate null-hypotheses in R for any experimental design. We do this in the following way:</p>
 <ol style="list-style-type: decimal">
@@ -253,74 +255,74 @@
 <li>Compute a test-statistic for each simulation, save it, then repeat to create the sampling distribution of the test statistic.</li>
 <li>The sampling distribution of the test-statistic is the null-distribution. We use it to set an alpha criterion, and then do hypothesis testing.</li>
 </ol>
-<div id="null-for-a-t-test" class="section level3">
-<h3 class="hasAnchor">
-<a href="#null-for-a-t-test" class="anchor"></a>Null for a t-test</h3>
+<div class="section level3">
+<h3 id="null-for-a-t-test">Null for a t-test<a class="anchor" aria-label="anchor" href="#null-for-a-t-test"></a>
+</h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># samples A and B come from the same normal distribution</span>
-<span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">10</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
-<span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">10</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
+<span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">10</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
+<span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">10</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
 
 <span class="co"># the pvalue for this one pretend simulation</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span>,var.equal<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span>
-<span class="co">#&gt; [1] 0.2658035</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">t.test</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span>,var.equal<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span>
+<span class="co">#&gt; [1] 0.2090953</span>
 
 <span class="co"># running the simulation</span>
 <span class="co"># everytime we run this function we do one simulated experiment and return the p-value</span>
 <span class="va">sim_null</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">10</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
-  <span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">10</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span>,var.equal<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span><span class="op">)</span>
+  <span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">10</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
+  <span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">10</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">t.test</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span>,var.equal<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span><span class="op">)</span>
 <span class="op">}</span>
 
 <span class="co"># use replicate to run the sim many times</span>
-<span class="va">outcomes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fu">sim_null</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="va">outcomes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fu">sim_null</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># plot the null-distribution of p-values</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">outcomes</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">outcomes</span><span class="op">)</span></code></pre></div>
 <p><img src="SP_Power_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># proportion of simulated experiments had a p-value less than .05</span>
-<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">outcomes</span><span class="op">[</span><span class="va">outcomes</span><span class="op">&lt;</span><span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.058</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">outcomes</span><span class="op">[</span><span class="va">outcomes</span><span class="op">&lt;</span><span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>
+<span class="co">#&gt; [1] 0.055</span></code></pre></div>
 <p>We ran the above simulation 1000 times. By definition, we should get approximately 5% of the simulations returning a p-value less than .05. If we increase the number of simulations, then we will get a more accurate answer that converges on 5% every time.</p>
 </div>
 </div>
-<div id="alternative-hypothesis" class="section level2">
-<h2 class="hasAnchor">
-<a href="#alternative-hypothesis" class="anchor"></a>Alternative hypothesis</h2>
+<div class="section level2">
+<h2 id="alternative-hypothesis">Alternative hypothesis<a class="anchor" aria-label="anchor" href="#alternative-hypothesis"></a>
+</h2>
 <p>The very general alternative to the null hypothesis (no differences), is often called the <strong>alternative</strong> hypothesis: that the manipulation does cause a difference. More specifically, there are an infinite number of possible alternative hypotheses, each involving a difference of a specific size.</p>
 <p>Consider this. How often will we find a p-value less than .05 if there was a mean difference of 5 between sample A and B. Let’s use all of the same parameters as before, except this time we sample from different distributions for A and B.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R">  <span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">10</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
-  <span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">15</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span>,var.equal<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span>
-<span class="co">#&gt; [1] 0.4120979</span>
+<code class="sourceCode R">  <span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">10</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
+  <span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">15</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">t.test</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span>,var.equal<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span>
+<span class="co">#&gt; [1] 0.0003445356</span>
 
 <span class="co"># make the mean for B 15 (5 more than A)</span>
 <span class="va">sim_alternative</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">10</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
-  <span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">15</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span>,var.equal<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span><span class="op">)</span>
+  <span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">10</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
+  <span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">15</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">t.test</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span>,var.equal<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span><span class="op">)</span>
 <span class="op">}</span>
 
 <span class="co"># use replicate to run the sim many times</span>
-<span class="va">outcomes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fu">sim_alternative</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="va">outcomes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fu">sim_alternative</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># plot the distribution of p-values</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">outcomes</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">outcomes</span><span class="op">)</span></code></pre></div>
 <p><img src="SP_Power_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># proportion of simulated experiments had a p-value less than .05</span>
-<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">outcomes</span><span class="op">[</span><span class="va">outcomes</span><span class="op">&lt;</span><span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.554</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">outcomes</span><span class="op">[</span><span class="va">outcomes</span><span class="op">&lt;</span><span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>
+<span class="co">#&gt; [1] 0.567</span></code></pre></div>
 <p>We programmed a mean difference of 5 between our sample for A and B, and we found p-values less than .05 a much higher proportion of the time. This is sensible, as there really was a difference between the samples (we put it there).</p>
 </div>
-<div id="power-and-effect-size" class="section level2">
-<h2 class="hasAnchor">
-<a href="#power-and-effect-size" class="anchor"></a>Power and Effect Size</h2>
+<div class="section level2">
+<h2 id="power-and-effect-size">Power and Effect Size<a class="anchor" aria-label="anchor" href="#power-and-effect-size"></a>
+</h2>
 <p><strong>Power</strong>: the probability of rejecting a null-hypothesis, given that there is a true effect of some size.</p>
 <p><strong>Effect-size</strong>: In general, it’s the assumed size of the difference. In the above example, we assumed a difference of 5, so the assumed effect-size was 5.</p>
 <p>There are many other ways to define and measure effect-size. Perhaps the most common way is Cohen’s D. Cohen’s D expresses the mean difference in terms of standard deviation units. In the above example, both distributions had a standard deviation of 5. The mean for A was 10, and the mean for B was 15. Using Cohen’s D, the effect-size was 1. This is because 15 is 1 standard deviation away from 10 (the standard deviation is also 5).</p>
@@ -333,17 +335,17 @@
 </ol>
 <p>Power is a property of a design. The power of a design increases when sample-size increases. The power of a design increases when the actual true effect-size increases. The power of a design increases then the alpha criterion increases (e.g, going from .05 to .1, making it easier to reject the null).</p>
 </div>
-<div id="power-analysis-with-r" class="section level2">
-<h2 class="hasAnchor">
-<a href="#power-analysis-with-r" class="anchor"></a>Power analysis with R</h2>
+<div class="section level2">
+<h2 id="power-analysis-with-r">Power analysis with R<a class="anchor" aria-label="anchor" href="#power-analysis-with-r"></a>
+</h2>
 <p>There are many packages and functions for power analysis. Power analysis is important for planning a design. For example, you can determine how many subjects you need in order to have a high probability of detecting a true effect (of a particular size) if it is really there.</p>
-<div id="pwr-package" class="section level3">
-<h3 class="hasAnchor">
-<a href="#pwr-package" class="anchor"></a>pwr package</h3>
+<div class="section level3">
+<h3 id="pwr-package">pwr package<a class="anchor" aria-label="anchor" href="#pwr-package"></a>
+</h3>
 <p>Here is an example of using the <code>pwr</code> package to find the power for an independent sample t-test, with n=10, to detect an effect-size of 1. This answer is similar to our simulations answer. The simulation would converge on this answer if we increased the number of simulations.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/heliosdrm/pwr">pwr</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/pwr/man/pwr.t.test.html">pwr.t.test</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">9</span>,
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/heliosdrm/pwr" class="external-link">pwr</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/pwr/man/pwr.t.test.html" class="external-link">pwr.t.test</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">9</span>,
            d<span class="op">=</span><span class="fl">.2</span>,
            sig.level<span class="op">=</span><span class="fl">.05</span>,
            type<span class="op">=</span><span class="st">"two.sample"</span>,
@@ -360,7 +362,7 @@
 <span class="co">#&gt; NOTE: n is number in *each* group</span>
 
 <span class="co">## for an r test</span>
-<span class="fu"><a href="https://rdrr.io/pkg/pwr/man/pwr.r.test.html">pwr.r.test</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,
+<span class="fu"><a href="https://rdrr.io/pkg/pwr/man/pwr.r.test.html" class="external-link">pwr.r.test</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,
            r<span class="op">=</span><span class="fl">.2</span>,
            sig.level<span class="op">=</span><span class="fl">.05</span>,
            alternative<span class="op">=</span><span class="st">"two.sided"</span><span class="op">)</span>
@@ -375,54 +377,54 @@
 <p>As I mentioned there are many functions for directly computing power in R. Feel free to use them. In this class, we learn how to use simulation to conduct power analyses. This can be a redundant approach that is not necessary, given there are other functions we can use. Additionally, we will not get exact solutions (but approximate ones). Nevertheless, the existing power functions can be limited and may not apply to your design. The simulation approach can be extended to any design. Learning how to run the simulations will also improve your statistical sensibilities, and power calculations will become less of a black box.</p>
 <p>Two more things before moving onto simulation: power-curves, and sample-size planning.</p>
 </div>
-<div id="power-curves" class="section level3">
-<h3 class="hasAnchor">
-<a href="#power-curves" class="anchor"></a>power-curves</h3>
+<div class="section level3">
+<h3 id="power-curves">power-curves<a class="anchor" aria-label="anchor" href="#power-curves"></a>
+</h3>
 <p>A design’s power is in relation to the true effect-size. The same design has different levels of power to detect different sized effects. Let’s make a power curve to see the power of a t-test for independent samples (n=10) to detect a range of effect-sizes</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">effect_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">.1</span>,<span class="fl">2</span>,<span class="fl">.1</span><span class="op">)</span>
-<span class="va">power</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">effect_sizes</span>, 
+<code class="sourceCode R"><span class="va">effect_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">.1</span>,<span class="fl">2</span>,<span class="fl">.1</span><span class="op">)</span>
+<span class="va">power</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">effect_sizes</span>, 
           FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
-            <span class="fu"><a href="https://rdrr.io/pkg/pwr/man/pwr.t.test.html">pwr.t.test</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">9</span>,
+            <span class="fu"><a href="https://rdrr.io/pkg/pwr/man/pwr.t.test.html" class="external-link">pwr.t.test</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">9</span>,
             d<span class="op">=</span><span class="va">x</span>,
             sig.level<span class="op">=</span><span class="fl">.05</span>,
             type<span class="op">=</span><span class="st">"two.sample"</span>,
             alternative<span class="op">=</span><span class="st">"two.sided"</span><span class="op">)</span><span class="op">$</span><span class="va">power</span><span class="op">}</span><span class="op">)</span>
-<span class="va">plot_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">effect_sizes</span>,<span class="va">power</span><span class="op">)</span>
+<span class="va">plot_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">effect_sizes</span>,<span class="va">power</span><span class="op">)</span>
 
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">effect_sizes</span>,
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">effect_sizes</span>,
                     y<span class="op">=</span><span class="va">power</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="SP_Power_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co">## r test power curve</span>
 
-<span class="va">r_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">.1</span><span class="op">)</span>
-<span class="va">power</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">r_sizes</span>, 
+<span class="va">r_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">.1</span><span class="op">)</span>
+<span class="va">power</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">r_sizes</span>, 
           FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
-            <span class="fu"><a href="https://rdrr.io/pkg/pwr/man/pwr.r.test.html">pwr.r.test</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">9</span>,
+            <span class="fu"><a href="https://rdrr.io/pkg/pwr/man/pwr.r.test.html" class="external-link">pwr.r.test</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">9</span>,
             r<span class="op">=</span><span class="va">x</span>,
             sig.level<span class="op">=</span><span class="fl">.05</span>,
             alternative<span class="op">=</span><span class="st">"two.sided"</span><span class="op">)</span><span class="op">$</span><span class="va">power</span><span class="op">}</span><span class="op">)</span>
 
-<span class="va">plot_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">r_sizes</span>,<span class="va">power</span><span class="op">)</span>
+<span class="va">plot_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">r_sizes</span>,<span class="va">power</span><span class="op">)</span>
 
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">r_sizes</span>,
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">r_sizes</span>,
                     y<span class="op">=</span><span class="va">power</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="SP_Power_files/figure-html/unnamed-chunk-5-2.png" width="700"></p>
 <p>This power curve applies to all independent-sample t-tests with n=10. It is a property, or fact about those designs. Every design has it’s own power curve. The power curve shows us what <strong>should</strong> happen (on average), when the <strong>true</strong> state of the world involves effects of different sizes.</p>
 <p>If you do not know the power-curve for your design, then you do not know how sensitive your design is for detecting effects of particular sizes. You might accidentally be using an under powered design, with only a very small chance of detecting an effect of a size you are interested in.</p>
 <p>If you do know the power-curve for your design, you will be in a better position to plan your experiment, for example by modifying the number of subjects that you run.</p>
 </div>
-<div id="sample-size-planning" class="section level3">
-<h3 class="hasAnchor">
-<a href="#sample-size-planning" class="anchor"></a>Sample-size planning</h3>
+<div class="section level3">
+<h3 id="sample-size-planning">Sample-size planning<a class="anchor" aria-label="anchor" href="#sample-size-planning"></a>
+</h3>
 <p>Here is one way to plan for the number of subjects that you need to find an effect of interest.</p>
 <ol style="list-style-type: decimal">
 <li>Establish a smallest effect-size of interest</li>
@@ -431,28 +433,28 @@
 <p>It’s not clear how you establish a smallest effect-size of interest. But let’s say you are interested in detecting an effect of at least d = .2. This means that two conditions would differ by at least a .2 standard deviation shift. If you find something smaller than that, let’s say you wouldn’t care about it because it wouldn’t be big enough for you to care. How many subjects do you need to have a high powered design, one that would almost always reject the null-hypothesis?</p>
 <p>This is for an independent samples t-test:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">num_subjects</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">1000</span>,<span class="fl">10</span><span class="op">)</span>
-<span class="va">power</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">num_subjects</span>, 
+<code class="sourceCode R"><span class="va">num_subjects</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">1000</span>,<span class="fl">10</span><span class="op">)</span>
+<span class="va">power</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">num_subjects</span>, 
           FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
-            <span class="fu"><a href="https://rdrr.io/pkg/pwr/man/pwr.t.test.html">pwr.t.test</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">x</span>,
+            <span class="fu"><a href="https://rdrr.io/pkg/pwr/man/pwr.t.test.html" class="external-link">pwr.t.test</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">x</span>,
             d<span class="op">=</span><span class="fl">.2</span>,
             sig.level<span class="op">=</span><span class="fl">.05</span>,
             type<span class="op">=</span><span class="st">"two.sample"</span>,
             alternative<span class="op">=</span><span class="st">"two.sided"</span><span class="op">)</span><span class="op">$</span><span class="va">power</span><span class="op">}</span><span class="op">)</span>
-<span class="va">plot_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">num_subjects</span>,<span class="va">power</span><span class="op">)</span>
+<span class="va">plot_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">num_subjects</span>,<span class="va">power</span><span class="op">)</span>
 
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">num_subjects</span>,
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">num_subjects</span>,
                     y<span class="op">=</span><span class="va">power</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="SP_Power_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 <p>Well, it looks like you need many subjects to have high power. For example, if you want to detect the effect 95% of the time, you would need around 650 subjects. It’s worth doing this kind of analysis to see if your design checks out. You don’t want to waste your time running an experiment that is designed to fail (even when the true effect is real).</p>
 </div>
 </div>
-<div id="simulation-approach-to-power-calculations" class="section level2">
-<h2 class="hasAnchor">
-<a href="#simulation-approach-to-power-calculations" class="anchor"></a>Simulation approach to power calculations</h2>
+<div class="section level2">
+<h2 id="simulation-approach-to-power-calculations">Simulation approach to power calculations<a class="anchor" aria-label="anchor" href="#simulation-approach-to-power-calculations"></a>
+</h2>
 <p>The simulation approach to power analysis involves these steps:</p>
 <ol style="list-style-type: decimal">
 <li>Use R to sample numbers into each condition of any design.</li>
@@ -462,46 +464,46 @@
 <li>Compute power by determining the proportion of simulated p-values that are less than your alpha criterion.</li>
 </ol>
 <p>For all simulations, increasing number of simulations will improve the accuracy of your results. We will use 1000 simulations throughout. 10,000 would be better, but might take just a little bit longer.</p>
-<div id="simulated-power-for-a-t-test" class="section level3">
-<h3 class="hasAnchor">
-<a href="#simulated-power-for-a-t-test" class="anchor"></a>Simulated power for a t-test</h3>
+<div class="section level3">
+<h3 id="simulated-power-for-a-t-test">Simulated power for a t-test<a class="anchor" aria-label="anchor" href="#simulated-power-for-a-t-test"></a>
+</h3>
 <p>A power curve for n=10.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># function to run a simulated t-test</span>
 <span class="va">sim_power</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
-  <span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="op">(</span><span class="fl">0</span><span class="op">+</span><span class="va">x</span><span class="op">)</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span>,var.equal<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span><span class="op">)</span>
+  <span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
+  <span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="op">(</span><span class="fl">0</span><span class="op">+</span><span class="va">x</span><span class="op">)</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">t.test</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span>,var.equal<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span><span class="op">)</span>
 <span class="op">}</span>
 
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">.3</span> 
-<span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fu">sim_power</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">sims</span><span class="op">[</span><span class="va">sims</span><span class="op">&lt;</span><span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">sims</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.088</span>
+<span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fu">sim_power</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">sims</span><span class="op">[</span><span class="va">sims</span><span class="op">&lt;</span><span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">sims</span><span class="op">)</span>
+<span class="co">#&gt; [1] 0.094</span>
 
 <span class="co"># vector of effect sizes</span>
-<span class="va">effect_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">.1</span>,<span class="fl">2</span>,<span class="fl">.1</span><span class="op">)</span>
+<span class="va">effect_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">.1</span>,<span class="fl">2</span>,<span class="fl">.1</span><span class="op">)</span>
 <span class="co"># run simulation for each effect size 1000 times</span>
-<span class="va">power</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">effect_sizes</span>, 
+<span class="va">power</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">effect_sizes</span>, 
           FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
-            <span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fu">sim_power</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>
-            <span class="va">sim_power</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">sims</span><span class="op">[</span><span class="va">sims</span><span class="op">&lt;</span><span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">sims</span><span class="op">)</span>
-            <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">sim_power</span><span class="op">)</span><span class="op">}</span><span class="op">)</span>
+            <span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fu">sim_power</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>
+            <span class="va">sim_power</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">sims</span><span class="op">[</span><span class="va">sims</span><span class="op">&lt;</span><span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">sims</span><span class="op">)</span>
+            <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">sim_power</span><span class="op">)</span><span class="op">}</span><span class="op">)</span>
 <span class="co"># combine into dataframe</span>
-<span class="va">plot_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">effect_sizes</span>,<span class="va">power</span><span class="op">)</span>
+<span class="va">plot_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">effect_sizes</span>,<span class="va">power</span><span class="op">)</span>
 
 <span class="co"># plot the power curve</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">effect_sizes</span>,
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">effect_sizes</span>,
                     y<span class="op">=</span><span class="va">power</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="SP_Power_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 <p>In this case, there is no obvious benefit to computing the power-curve by simulation. The answer we get is similar to the answer we got before using the <code>pwr</code> package, but our simulation answer is more noisy. Why bother the simulation?</p>
 <p>One answer to the why bother question is that you can simulate deeper aspects of the design and get more refined answers without having to work through the math.</p>
 </div>
-<div id="simulating-cell-size" class="section level3">
-<h3 class="hasAnchor">
-<a href="#simulating-cell-size" class="anchor"></a>Simulating cell-size</h3>
+<div class="section level3">
+<h3 id="simulating-cell-size">Simulating cell-size<a class="anchor" aria-label="anchor" href="#simulating-cell-size"></a>
+</h3>
 <p>Many experimental designs involve multiple measurements, or trials, for each subject in each condition. How many trials should we require for each subject in each condition? Traditional power analysis doesn’t make it easy to answer this question. However, the power of a design will depend not only on the number subjects, but also the number trials used to estimate the mean for each subject in each condition.</p>
 <p>Consider a simple Stroop experiment. The researcher is interested in measuring a Stroop effect of at least d=.1 (e.g., the difference between mean congruent trials is .1 standard deviations smaller than mean incongruent trials). How many subjects are required? And, how many trials should each subject perform in the congruent and incongruent conditions? Let’s use simulation to find out.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
@@ -511,40 +513,40 @@
 <span class="co"># d sets effect size</span>
 <span class="co"># this is a paired sample test to model Stroop</span>
 <span class="va">sim_power</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">nsubs</span>,<span class="va">ntrials</span>,<span class="va">d</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="va">nsubs</span>,<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">ntrials</span>,mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-  <span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="va">nsubs</span>,<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">ntrials</span>,mean<span class="op">=</span><span class="va">d</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span>,paired<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span><span class="op">)</span>
+  <span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="va">nsubs</span>,<span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">ntrials</span>,mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="va">nsubs</span>,<span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">ntrials</span>,mean<span class="op">=</span><span class="va">d</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">t.test</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span>,paired<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span><span class="op">)</span>
 <span class="op">}</span>
 
 <span class="co"># vectors for number of subjects and trials</span>
-<span class="va">n_subs_vector</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">20</span>,<span class="fl">30</span>,<span class="fl">50</span><span class="op">)</span>
-<span class="va">n_trials_vector</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">20</span>,<span class="fl">30</span>,<span class="fl">50</span>,<span class="fl">100</span><span class="op">)</span>
+<span class="va">n_subs_vector</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">20</span>,<span class="fl">30</span>,<span class="fl">50</span><span class="op">)</span>
+<span class="va">n_trials_vector</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">20</span>,<span class="fl">30</span>,<span class="fl">50</span>,<span class="fl">100</span><span class="op">)</span>
 
 <span class="co"># a loop to run all simulations</span>
-<span class="va">power</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">subjects</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">trials</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">power</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">subjects</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">trials</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">i</span> <span class="op">&lt;-</span> <span class="fl">0</span> <span class="co"># use this as a counter for indexing</span>
 <span class="kw">for</span><span class="op">(</span><span class="va">s</span> <span class="kw">in</span> <span class="va">n_subs_vector</span><span class="op">)</span><span class="op">{</span>
   <span class="kw">for</span><span class="op">(</span><span class="va">t</span> <span class="kw">in</span> <span class="va">n_trials_vector</span><span class="op">)</span><span class="op">{</span>
     <span class="va">i</span> <span class="op">&lt;-</span> <span class="va">i</span><span class="op">+</span><span class="fl">1</span>
-    <span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fu">sim_power</span><span class="op">(</span><span class="va">s</span>,<span class="va">t</span>,<span class="fl">.1</span><span class="op">)</span><span class="op">)</span>
-    <span class="va">power</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">sims</span><span class="op">[</span><span class="va">sims</span><span class="op">&lt;</span><span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">sims</span><span class="op">)</span>
+    <span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fu">sim_power</span><span class="op">(</span><span class="va">s</span>,<span class="va">t</span>,<span class="fl">.1</span><span class="op">)</span><span class="op">)</span>
+    <span class="va">power</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">sims</span><span class="op">[</span><span class="va">sims</span><span class="op">&lt;</span><span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">sims</span><span class="op">)</span>
     <span class="va">subjects</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">s</span>
     <span class="va">trials</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">t</span>
   <span class="op">}</span>
 <span class="op">}</span>
 
 <span class="co"># combine into dataframe</span>
-<span class="va">plot_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">power</span>,<span class="va">subjects</span>,<span class="va">trials</span><span class="op">)</span>
+<span class="va">plot_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">power</span>,<span class="va">subjects</span>,<span class="va">trials</span><span class="op">)</span>
 
 <span class="co"># plot the power curve</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">subjects</span>,
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">subjects</span>,
                     y<span class="op">=</span><span class="va">power</span>,
                     group<span class="op">=</span><span class="va">trials</span>,
                     color<span class="op">=</span><span class="va">trials</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="SP_Power_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
@@ -561,87 +563,87 @@
 <p>To my eye, it looks like 30 subjects with 100 trials in each condition would give you a very high power to find a Stroop effect of d=.1.</p>
 </div>
 </div>
-<div id="closing-thoughts" class="section level2">
-<h2 class="hasAnchor">
-<a href="#closing-thoughts" class="anchor"></a>Closing thoughts</h2>
+<div class="section level2">
+<h2 id="closing-thoughts">Closing thoughts<a class="anchor" aria-label="anchor" href="#closing-thoughts"></a>
+</h2>
 <p>The simulation approach is powerful and flexible. It can be applied whenever you can formalize your assumptions about the data. And, your simulations can be highly customized to account for all kinds of nuances, like different numbers of subjects, different distributions, assumptions about noise, etc. If you are wondering what your design can do, maybe you should simulate it.</p>
 </div>
-<div id="more-examples" class="section level2">
-<h2 class="hasAnchor">
-<a href="#more-examples" class="anchor"></a>More example(s)</h2>
+<div class="section level2">
+<h2 id="more-examples">More example(s)<a class="anchor" aria-label="anchor" href="#more-examples"></a>
+</h2>
 <p>As I find time I will try to add more examples here, especially out of the box examples to illustrate how simulation can be applied.</p>
-<div id="one-way-anova" class="section level3">
-<h3 class="hasAnchor">
-<a href="#one-way-anova" class="anchor"></a>One-Way ANOVA</h3>
+<div class="section level3">
+<h3 id="one-way-anova">One-Way ANOVA<a class="anchor" aria-label="anchor" href="#one-way-anova"></a>
+</h3>
 <p>Let’s extend our simulation based approach to the one-way ANOVA. Let’s assume a between-subjects design, with one factor that has four levels: A, B, C, and D. There will be 20 subjects in each group. What is the power curve for this design to detect effects of various size? Immediately, the situation becomes complicated, there are numerous ways that the means for A, B, C, and D could vary. Let’s assume the simplest case, three of them are the same, and one of them is different by some amount of standard deviations. We will compute the main effect, and report the proportion of significant experiments as we increase the effect size for the fourth group.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># function to run a simulated t-test</span>
 <span class="va">sim_power_anova</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">20</span>,mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
-  <span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">20</span>,mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
-  <span class="va">C</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">20</span>,mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
-  <span class="va">D</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">20</span>,mean<span class="op">=</span><span class="op">(</span><span class="fl">0</span><span class="op">+</span><span class="va">x</span><span class="op">)</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
-  <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>condition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>,<span class="st">"D"</span><span class="op">)</span>,each<span class="op">=</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span>,
-                   DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span>,<span class="va">C</span>,<span class="va">D</span><span class="op">)</span><span class="op">)</span>
-  <span class="va">aov_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">DV</span><span class="op">~</span><span class="va">condition</span>,<span class="va">df</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">20</span>,mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
+  <span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">20</span>,mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
+  <span class="va">C</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">20</span>,mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
+  <span class="va">D</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">20</span>,mean<span class="op">=</span><span class="op">(</span><span class="fl">0</span><span class="op">+</span><span class="va">x</span><span class="op">)</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
+  <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>condition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>,<span class="st">"D"</span><span class="op">)</span>,each<span class="op">=</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span>,
+                   DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span>,<span class="va">C</span>,<span class="va">D</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">aov_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">DV</span><span class="op">~</span><span class="va">condition</span>,<span class="va">df</span><span class="op">)</span><span class="op">)</span>
   <span class="co">#return the pvalue</span>
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">aov_results</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`Pr(&gt;F)`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">aov_results</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`Pr(&gt;F)`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
 <span class="op">}</span>
 
 <span class="co"># vector of effect sizes</span>
-<span class="va">effect_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">.1</span>,<span class="fl">2</span>,<span class="fl">.1</span><span class="op">)</span>
+<span class="va">effect_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">.1</span>,<span class="fl">2</span>,<span class="fl">.1</span><span class="op">)</span>
 <span class="co"># run simulation for each effect size 1000 times</span>
-<span class="va">power</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">effect_sizes</span>, 
+<span class="va">power</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">effect_sizes</span>, 
           FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
-            <span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fu">sim_power_anova</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>
-            <span class="va">sim_power</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">sims</span><span class="op">[</span><span class="va">sims</span><span class="op">&lt;</span><span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">sims</span><span class="op">)</span>
-            <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">sim_power</span><span class="op">)</span><span class="op">}</span><span class="op">)</span>
+            <span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fu">sim_power_anova</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>
+            <span class="va">sim_power</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">sims</span><span class="op">[</span><span class="va">sims</span><span class="op">&lt;</span><span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">sims</span><span class="op">)</span>
+            <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">sim_power</span><span class="op">)</span><span class="op">}</span><span class="op">)</span>
 <span class="co"># combine into dataframe</span>
-<span class="va">plot_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">effect_sizes</span>,<span class="va">power</span><span class="op">)</span>
+<span class="va">plot_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">effect_sizes</span>,<span class="va">power</span><span class="op">)</span>
 
 <span class="co"># plot the power curve</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">effect_sizes</span>,
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">effect_sizes</span>,
                     y<span class="op">=</span><span class="va">power</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="SP_Power_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 <p>It looks like this design (1 factor, between-subjects, 20 subjects per group) has high power to detect an effect of d=1, specifically when one of the groups differs from the others by d=1.</p>
 <p>However, most effects in psychology are smalls, d=.2 is very common. How, many subjects does this design require to have high power (let’s say above .95, although most people use .8) to detect that small effect?</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sim_power_anova</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">x</span>,mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
-  <span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">x</span>,mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
-  <span class="va">C</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">x</span>,mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
-  <span class="va">D</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">x</span>,mean<span class="op">=</span><span class="fl">.2</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
-  <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>condition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>,<span class="st">"D"</span><span class="op">)</span>,each<span class="op">=</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>,
-                   DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span>,<span class="va">C</span>,<span class="va">D</span><span class="op">)</span><span class="op">)</span>
-  <span class="va">aov_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">DV</span><span class="op">~</span><span class="va">condition</span>,<span class="va">df</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">x</span>,mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
+  <span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">x</span>,mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
+  <span class="va">C</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">x</span>,mean<span class="op">=</span><span class="fl">0</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
+  <span class="va">D</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="va">x</span>,mean<span class="op">=</span><span class="fl">.2</span>, sd<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
+  <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>condition <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>,<span class="st">"D"</span><span class="op">)</span>,each<span class="op">=</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>,
+                   DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span>,<span class="va">C</span>,<span class="va">D</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">aov_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">DV</span><span class="op">~</span><span class="va">condition</span>,<span class="va">df</span><span class="op">)</span><span class="op">)</span>
   <span class="co">#return the pvalue</span>
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">aov_results</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`Pr(&gt;F)`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">aov_results</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`Pr(&gt;F)`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
 <span class="op">}</span>
 
 <span class="co"># vector of effect sizes</span>
-<span class="va">subjects</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">1000</span>,<span class="fl">50</span><span class="op">)</span>
+<span class="va">subjects</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">1000</span>,<span class="fl">50</span><span class="op">)</span>
 <span class="co"># run simulation for each effect size 1000 times</span>
-<span class="va">power</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">subjects</span>, 
+<span class="va">power</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">subjects</span>, 
           FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
-            <span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fu">sim_power_anova</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>
-            <span class="va">sim_power</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">sims</span><span class="op">[</span><span class="va">sims</span><span class="op">&lt;</span><span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">sims</span><span class="op">)</span>
-            <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">sim_power</span><span class="op">)</span><span class="op">}</span><span class="op">)</span>
+            <span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fu">sim_power_anova</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>
+            <span class="va">sim_power</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">sims</span><span class="op">[</span><span class="va">sims</span><span class="op">&lt;</span><span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">sims</span><span class="op">)</span>
+            <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">sim_power</span><span class="op">)</span><span class="op">}</span><span class="op">)</span>
 <span class="co"># combine into dataframe</span>
-<span class="va">plot_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">subjects</span>,<span class="va">power</span><span class="op">)</span>
+<span class="va">plot_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">subjects</span>,<span class="va">power</span><span class="op">)</span>
 
 <span class="co"># plot the power curve</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">subjects</span>,
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">plot_df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">subjects</span>,
                     y<span class="op">=</span><span class="va">power</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="SP_Power_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
 <p>The simulations suggests we need about 560 subjects in each group to have power .95 to detect the effect (d=.2). That’s a total of 2240 subjects. Reality can be surprising when it comes to power analysis. It is better to be surprised about your design before you run your experiment, not after.</p>
 </div>
-<div id="correlation-between-traits-and-behavior" class="section level3">
-<h3 class="hasAnchor">
-<a href="#correlation-between-traits-and-behavior" class="anchor"></a>Correlation between traits and behavior</h3>
+<div class="section level3">
+<h3 id="correlation-between-traits-and-behavior">Correlation between traits and behavior<a class="anchor" aria-label="anchor" href="#correlation-between-traits-and-behavior"></a>
+</h3>
 <p>A common research strategy is to measure putative correlations between people’s traits and their behavior. For example, a researcher might prepare a questionnaire with several questions. Perhaps the questions are about their political views, or about their life satisfaction, or anything else. The research might ask some group of people to answer the questions, and to also perform some task. At the end of the experiment, they might ask if different kinds of people (measured by the questionnaire) perform differently on the behavioral measure. For example, we might have people answer several questions about their openness to new experiences, we might also measure their performance on a working memory task. A research question might be, do people who are more open to experience perform better on a working memory task? The answer would lie in a correlation between the answers on the questions, and the performance on the task. Let’s simulate this kind of situation, say for 20 subjects. Each subject answers 20 questions, and they perform a behavioral task. At the end of the experiment, we correlate the answers on each question, with the performance on the task. What kind of correlations would we expect by chance alone? Let’s say the participants are all random robots. They answer each question randomly, and their performance on the behavioral task is sampled randomly from some normal distribution. If everything is random, shouldn’t we expect to find no correlations?</p>
 <p>Details:</p>
 <p>Let’s assume that each question involves a likert scale from 1 to 7. Each person randomly picks a number from 1 to 7 for each question. Let’s assume performance on the behavioral task is sampled from a normal distribution with mean = 0, and sd = 1.</p>
@@ -649,53 +651,53 @@
 <code class="sourceCode R"><span class="co"># get 20 random answers for all 20 subjects and 20 questions</span>
 <span class="co"># columns will be individual subjects 1 to 20</span>
 <span class="co"># rows will be questions 1 to 20</span>
-<span class="va">questionnaire</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span>,<span class="fl">20</span><span class="op">*</span><span class="fl">20</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">20</span><span class="op">)</span>
+<span class="va">questionnaire</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span>,<span class="fl">20</span><span class="op">*</span><span class="fl">20</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">20</span><span class="op">)</span>
 <span class="co"># get 20 measures of performance on behavioral task</span>
-<span class="va">behavioral_task</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
+<span class="va">behavioral_task</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
 
 <span class="co"># correlate behavior with each question</span>
-<span class="va">save_correlations</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">save_correlations</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>
 <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">save_correlations</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">behavioral_task</span>,<span class="va">questionnaire</span><span class="op">[</span><span class="va">i</span>,<span class="op">]</span><span class="op">)</span>
+  <span class="va">save_correlations</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">behavioral_task</span>,<span class="va">questionnaire</span><span class="op">[</span><span class="va">i</span>,<span class="op">]</span><span class="op">)</span>
 <span class="op">}</span>
 
 <span class="co"># show histogram of 20 correlations</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">save_correlations</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">save_correlations</span><span class="op">)</span></code></pre></div>
 <p><img src="SP_Power_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 <p>The histogram shows that a range of correlations between individual questions and behavior can emerge just by chance alone. If you run the above code a few times, you will see that the histogram changes a bit because of random chance.</p>
 <p>Oftentimes researchers might not know which question on the questionnaire is the best question. That is, the one that best correlates with behavior. Consider a researcher who computes all of the correlations between each question and behavior, and then chooses the question with highest correlation (positive or negative) as the best question. After all, it has the highest correlation. After choosing this question, they might suggest that behavior is strongly correlated with how people answer this question.</p>
 <p>Let’s try to find out by simulation what kinds of large correlations can occur just by chance alone. We will run the above many times, and each time we will save the absolute value of the largest correlation between a question and behavior. Just how large can these correlations be by chance alone?</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">save_max</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">save_max</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>
 <span class="kw">for</span><span class="op">(</span> <span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10000</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">questionnaire</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span>,<span class="fl">20</span><span class="op">*</span><span class="fl">20</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">20</span><span class="op">)</span>
-  <span class="va">behavioral_task</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
+  <span class="va">questionnaire</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span>,<span class="fl">20</span><span class="op">*</span><span class="fl">20</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">20</span><span class="op">)</span>
+  <span class="va">behavioral_task</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
   
-  <span class="va">save_correlations</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+  <span class="va">save_correlations</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>
   <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span><span class="op">{</span>
-    <span class="va">save_correlations</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">behavioral_task</span>,<span class="va">questionnaire</span><span class="op">[</span><span class="va">i</span>,<span class="op">]</span><span class="op">)</span>
+    <span class="va">save_correlations</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">behavioral_task</span>,<span class="va">questionnaire</span><span class="op">[</span><span class="va">i</span>,<span class="op">]</span><span class="op">)</span>
   <span class="op">}</span>
-  <span class="va">save_max</span><span class="op">[</span><span class="va">j</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">save_correlations</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">save_max</span><span class="op">[</span><span class="va">j</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="va">save_correlations</span><span class="op">)</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">save_max</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">save_max</span><span class="op">)</span></code></pre></div>
 <p><img src="SP_Power_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
 <p>The simulation shows that chance alone in this situation can produce very large correlations, as large as .8 or .9 (although not very often).</p>
 <p>The situation changes somewhat if many more subjects are run. Let’s do the same as above, but run 200 subjects, rather than 20.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">save_max</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">save_max</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>
 <span class="kw">for</span><span class="op">(</span> <span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10000</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">questionnaire</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span>,<span class="fl">200</span><span class="op">*</span><span class="fl">20</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">200</span><span class="op">)</span>
-  <span class="va">behavioral_task</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">200</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
+  <span class="va">questionnaire</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span>,<span class="fl">200</span><span class="op">*</span><span class="fl">20</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">200</span><span class="op">)</span>
+  <span class="va">behavioral_task</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">200</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
   
-  <span class="va">save_correlations</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+  <span class="va">save_correlations</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>
   <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span><span class="op">{</span>
-    <span class="va">save_correlations</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">behavioral_task</span>,<span class="va">questionnaire</span><span class="op">[</span><span class="va">i</span>,<span class="op">]</span><span class="op">)</span>
+    <span class="va">save_correlations</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">behavioral_task</span>,<span class="va">questionnaire</span><span class="op">[</span><span class="va">i</span>,<span class="op">]</span><span class="op">)</span>
   <span class="op">}</span>
-  <span class="va">save_max</span><span class="op">[</span><span class="va">j</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">save_correlations</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">save_max</span><span class="op">[</span><span class="va">j</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="va">save_correlations</span><span class="op">)</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">save_max</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">save_max</span><span class="op">)</span></code></pre></div>
 <p><img src="SP_Power_files/figure-html/unnamed-chunk-13-1.png" width="700"></p>
 <p>Now, chance doesn’t do much better than .25.</p>
 </div>
@@ -713,11 +715,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://crumplab.github.io">Matthew Crump</a>.</p>
+  <p></p>
+<p>Developed by <a href="https://crumplab.github.io" class="external-link">Matthew Crump</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -725,6 +729,8 @@
 
   
 
+
+  
 
   </body>
 </html>
