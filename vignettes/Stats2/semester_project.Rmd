@@ -5,7 +5,7 @@ bibliography: BCStats.bib
 csl: apa.csl
 link-citations: yes
 vignette: >
-  %\VignetteIndexEntry{Semester project Spring 2021}
+  %\VignetteIndexEntry{Semester project Spring 2022}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -28,6 +28,12 @@ Last semester you completed your lab work as .Rmd documents, uploaded them to a 
 For now, watch this getting starting video to review the process. I will go over the details many times in class as well.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/jxWe_XuQSeI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Example Semester Project
+
+I will be building my own semester project throughout the semester. This code-base can act as working example code for you. My semester project will be located here:
+
+<https://github.com/CrumpLab/SemesterProject7709>
 
 
 
