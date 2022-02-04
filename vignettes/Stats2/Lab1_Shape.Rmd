@@ -436,7 +436,9 @@ Your assignment instructions are the following:
 
 ### Problem (6 points)
 
-1. Download the `Lab1_data.xlsx` data file. This file contains fake data for a 2x3x2 repeated measures design, for 10 participants. The data is in wide format.
+1. Download the `Lab1_data.xlsx` data file. This file contains fake data for a 2x3x2 repeated measures design, for 10 participants. The data is in wide format. Here is the link. 
+
+<https://github.com/CrumpLab/rstatsmethods/raw/master/vignettes/Stats2/Lab1_data.xlsx>
 
 Your task is to convert the data to long format, and store the long-format data in a data.frame or tibble. Print out some of the long-form data in your lab1.Rmd, to show that you did make the appropriate conversion. For extra fun, show two different ways to solve the problem. 
 
