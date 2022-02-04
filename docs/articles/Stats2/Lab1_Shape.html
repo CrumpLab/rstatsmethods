@@ -598,13 +598,13 @@ find_group_means_B(long_data)
 <span class="co">#&gt;  One Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  dv</span>
-<span class="co">#&gt; t = -0.52686, df = 9, p-value = 0.611</span>
+<span class="co">#&gt; t = -0.43585, df = 9, p-value = 0.6732</span>
 <span class="co">#&gt; alternative hypothesis: true mean is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -0.5680496  0.3534349</span>
+<span class="co">#&gt;  -0.7461244  0.5050595</span>
 <span class="co">#&gt; sample estimates:</span>
 <span class="co">#&gt;  mean of x </span>
-<span class="co">#&gt; -0.1073074</span></code></pre></div>
+<span class="co">#&gt; -0.1205325</span></code></pre></div>
 <p>Consider a design with 50 participants. Each participant takes a TRUE/FALSE quiz with 10 questions. A researcher wants to apply a one-sample t-test to test whether the participants performed better than chance.</p>
 <ol style="list-style-type: decimal">
 <li>
@@ -625,13 +625,13 @@ find_group_means_B(long_data)
 <span class="co">#&gt;  One Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  subject_means</span>
-<span class="co">#&gt; t = -1.4367, df = 49, p-value = 0.1572</span>
+<span class="co">#&gt; t = -1.0104, df = 49, p-value = 0.3173</span>
 <span class="co">#&gt; alternative hypothesis: true mean is not equal to 0.5</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  0.4184413 0.5135587</span>
+<span class="co">#&gt;  0.4402207 0.5197793</span>
 <span class="co">#&gt; sample estimates:</span>
 <span class="co">#&gt; mean of x </span>
-<span class="co">#&gt;     0.466</span></code></pre></div>
+<span class="co">#&gt;      0.48</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="paired-sample-t-test">Paired sample t-test<a class="anchor" aria-label="anchor" href="#paired-sample-t-test"></a>
@@ -658,13 +658,13 @@ find_group_means_B(long_data)
                           <span class="va">measurement_number</span>,
                           <span class="va">weights</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">weight_data</span><span class="op">)</span>
-<span class="co">#&gt;   subject_number       day measurement_number  weights</span>
-<span class="co">#&gt; 1              1 Wednesday                  1 104.8479</span>
-<span class="co">#&gt; 2              1 Wednesday                  2 125.2260</span>
-<span class="co">#&gt; 3              1 Wednesday                  3 117.0271</span>
-<span class="co">#&gt; 4              1 Wednesday                  4 128.6489</span>
-<span class="co">#&gt; 5              1 Wednesday                  5  12.9889</span>
-<span class="co">#&gt; 6              1    Sunday                  1 142.6735</span></code></pre></div>
+<span class="co">#&gt;   subject_number       day measurement_number   weights</span>
+<span class="co">#&gt; 1              1 Wednesday                  1  83.14832</span>
+<span class="co">#&gt; 2              1 Wednesday                  2  90.12972</span>
+<span class="co">#&gt; 3              1 Wednesday                  3  86.67018</span>
+<span class="co">#&gt; 4              1 Wednesday                  4 114.07342</span>
+<span class="co">#&gt; 5              1 Wednesday                  5 116.51633</span>
+<span class="co">#&gt; 6              1    Sunday                  1  76.74408</span></code></pre></div>
 <p>Note, we could have defined everything inside a single data.frame</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">weight_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>subject_number <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">25</span>, each<span class="op">=</span><span class="fl">10</span><span class="op">)</span>,
@@ -681,12 +681,12 @@ find_group_means_B(long_data)
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 3</span></span>
 <span class="co">#&gt;   subject_number day       mean_weight</span>
 <span class="co">#&gt;            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>              1 Sunday           91.6</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>              1 Wednesday        97.4</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span>              2 Sunday          113. </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span>              2 Wednesday        96.7</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span>              3 Sunday           95.9</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span>              3 Wednesday        99.9</span></code></pre></div>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>              1 Sunday           85.5</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>              1 Wednesday       107. </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span>              2 Sunday           94.1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span>              2 Wednesday       124. </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">5</span>              3 Sunday          110. </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">6</span>              3 Wednesday        98.9</span></code></pre></div>
 <p>Finally, we can run the <code>t.test</code></p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">t.test</a></span><span class="op">(</span><span class="va">mean_weight</span><span class="op">~</span><span class="va">day</span>, paired<span class="op">=</span><span class="cn">TRUE</span>, data<span class="op">=</span><span class="va">subject_means</span><span class="op">)</span>
@@ -694,13 +694,13 @@ find_group_means_B(long_data)
 <span class="co">#&gt;  Paired t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  mean_weight by day</span>
-<span class="co">#&gt; t = 0.50715, df = 24, p-value = 0.6167</span>
+<span class="co">#&gt; t = -2.1171, df = 24, p-value = 0.04481</span>
 <span class="co">#&gt; alternative hypothesis: true difference in means is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -5.183214  8.560341</span>
+<span class="co">#&gt;  -12.7562506  -0.1622017</span>
 <span class="co">#&gt; sample estimates:</span>
 <span class="co">#&gt; mean of the differences </span>
-<span class="co">#&gt;                1.688563</span></code></pre></div>
+<span class="co">#&gt;               -6.459226</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="independent-sample-t-test">Independent sample t-test<a class="anchor" aria-label="anchor" href="#independent-sample-t-test"></a>
@@ -726,13 +726,13 @@ find_group_means_B(long_data)
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>        1 Noisy     1       0</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>        1 Noisy     2       0</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>        1 Noisy     3       1</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>        1 Noisy     4       0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>        1 Noisy     4       1</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>        1 Noisy     5       0</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>        1 Noisy     6       1</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>        1 Noisy     7       0</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>        1 Noisy     8       0</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>        1 Noisy     9       0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>        1 Noisy    10       1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>        1 Noisy    10       0</span>
 <span class="co">#&gt; <span style="color: #949494;"># … with 490 more rows</span></span>
 
 <span class="va">count_data</span> <span class="op">&lt;-</span> <span class="va">recall_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -743,29 +743,29 @@ find_group_means_B(long_data)
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 3</span></span>
 <span class="co">#&gt;    subjects room  number_correct</span>
 <span class="co">#&gt;       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>        1 Noisy             26</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>        2 Noisy             29</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>        3 Noisy             32</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>        4 Noisy             23</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>        5 Noisy             18</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>        6 Quiet             28</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>        1 Noisy             25</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>        2 Noisy             34</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>        3 Noisy             21</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>        4 Noisy             24</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>        5 Noisy             20</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>        6 Quiet             22</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>        7 Quiet             29</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>        8 Quiet             25</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>        9 Quiet             24</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>       10 Quiet             18</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>        8 Quiet             29</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>        9 Quiet             20</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>       10 Quiet             26</span>
 
 <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">t.test</a></span><span class="op">(</span><span class="va">number_correct</span><span class="op">~</span><span class="va">room</span>, var.equal<span class="op">=</span><span class="cn">TRUE</span>, data<span class="op">=</span><span class="va">count_data</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  Two Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  number_correct by room</span>
-<span class="co">#&gt; t = 0.2582, df = 8, p-value = 0.8028</span>
+<span class="co">#&gt; t = -0.12991, df = 8, p-value = 0.8998</span>
 <span class="co">#&gt; alternative hypothesis: true difference in means between group Noisy and group Quiet is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -6.344892  7.944892</span>
+<span class="co">#&gt;  -7.500096  6.700096</span>
 <span class="co">#&gt; sample estimates:</span>
 <span class="co">#&gt; mean in group Noisy mean in group Quiet </span>
-<span class="co">#&gt;                25.6                24.8</span></code></pre></div>
+<span class="co">#&gt;                24.8                25.2</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="simple-linear-regression">Simple linear regression<a class="anchor" aria-label="anchor" href="#simple-linear-regression"></a>
@@ -780,16 +780,16 @@ find_group_means_B(long_data)
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 100 × 2</span></span>
 <span class="co">#&gt;    height   day</span>
 <span class="co">#&gt;     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>   78.7    21</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>   99.6    19</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>   88.1     8</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>   76.7    28</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>   82.8    25</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>   76.1     1</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>   88.8     3</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>   78.4     3</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>   79.3    21</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>   82.8    23</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>   76.5    12</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>   80.8    27</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>   97.0     7</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>   78.5    25</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>   74.2     4</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>   95.0    15</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>   85.6    17</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>   86.1    14</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>  102.     23</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>   93.0    15</span>
 <span class="co">#&gt; <span style="color: #949494;"># … with 90 more rows</span></span>
 
 <span class="va">lm.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">height</span><span class="op">~</span><span class="va">day</span>, data<span class="op">=</span> <span class="va">people</span><span class="op">)</span>
@@ -800,7 +800,7 @@ find_group_means_B(long_data)
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Coefficients:</span>
 <span class="co">#&gt; (Intercept)          day  </span>
-<span class="co">#&gt;    86.95199      0.07154</span>
+<span class="co">#&gt;     87.0047       0.1558</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">lm.out</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Call:</span>
@@ -808,18 +808,18 @@ find_group_means_B(long_data)
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Residuals:</span>
 <span class="co">#&gt;      Min       1Q   Median       3Q      Max </span>
-<span class="co">#&gt; -30.5385  -7.1983   0.4807   6.7624  24.3101 </span>
+<span class="co">#&gt; -22.5155  -6.6873   0.3017   6.4127  17.9940 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Coefficients:</span>
 <span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span class="co">#&gt; (Intercept) 86.95199    2.10871  41.235   &lt;2e-16 ***</span>
-<span class="co">#&gt; day          0.07154    0.11242   0.636    0.526    </span>
+<span class="co">#&gt; (Intercept)  87.0047     2.0876  41.676   &lt;2e-16 ***</span>
+<span class="co">#&gt; day           0.1558     0.1172   1.329    0.187    </span>
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; Residual standard error: 9.734 on 98 degrees of freedom</span>
-<span class="co">#&gt; Multiple R-squared:  0.004115,   Adjusted R-squared:  -0.006047 </span>
-<span class="co">#&gt; F-statistic: 0.405 on 1 and 98 DF,  p-value: 0.526</span></code></pre></div>
+<span class="co">#&gt; Residual standard error: 9.666 on 98 degrees of freedom</span>
+<span class="co">#&gt; Multiple R-squared:  0.01771,    Adjusted R-squared:  0.007683 </span>
+<span class="co">#&gt; F-statistic: 1.767 on 1 and 98 DF,  p-value: 0.1869</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="one-way-anova">One-way ANOVA<a class="anchor" aria-label="anchor" href="#one-way-anova"></a>
@@ -842,23 +842,23 @@ find_group_means_B(long_data)
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 175 × 3</span></span>
 <span class="co">#&gt;    subject_number day   mean_weight</span>
 <span class="co">#&gt;             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>              1 F           130. </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>              1 M           116. </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>              1 S            89.9</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>              1 Sa           98.3</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>              1 T            91.6</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>              1 Th          113. </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>              1 W            88.9</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>              2 F            90.2</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>              2 M           103. </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>              2 S            97.1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>              1 F           103. </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>              1 M            91.6</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>              1 S           106. </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>              1 Sa           91.0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>              1 T            78.2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>              1 Th           99.7</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>              1 W            89.2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>              2 F            93.0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>              2 M           104. </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>              2 S           105. </span>
 <span class="co">#&gt; <span style="color: #949494;"># … with 165 more rows</span></span>
 
 <span class="va">aov.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">mean_weight</span> <span class="op">~</span> <span class="va">day</span>, data <span class="op">=</span> <span class="va">subject_means</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">aov.out</span><span class="op">)</span>
 <span class="co">#&gt;              Df Sum Sq Mean Sq F value Pr(&gt;F)</span>
-<span class="co">#&gt; day           6    783   130.6   0.998  0.429</span>
-<span class="co">#&gt; Residuals   168  21990   130.9</span></code></pre></div>
+<span class="co">#&gt; day           6    392   65.36    0.58  0.746</span>
+<span class="co">#&gt; Residuals   168  18921  112.63</span></code></pre></div>
 <p>And, as we will also learn in class, ANOVA and Linear Regression are fundamentally the same analysis, so we could also use the <code>lm</code> function and treat the analysis as a regression.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">subject_means</span> <span class="op">&lt;-</span> <span class="va">weight_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -869,16 +869,16 @@ find_group_means_B(long_data)
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 175 × 3</span></span>
 <span class="co">#&gt;    subject_number day   mean_weight</span>
 <span class="co">#&gt;             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>              1 F           130. </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>              1 M           116. </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>              1 S            89.9</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>              1 Sa           98.3</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>              1 T            91.6</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>              1 Th          113. </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>              1 W            88.9</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>              2 F            90.2</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>              2 M           103. </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>              2 S            97.1</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>              1 F           103. </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>              1 M            91.6</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>              1 S           106. </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>              1 Sa           91.0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>              1 T            78.2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>              1 Th           99.7</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>              1 W            89.2</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>              2 F            93.0</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>              2 M           104. </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>              2 S           105. </span>
 <span class="co">#&gt; <span style="color: #949494;"># … with 165 more rows</span></span>
 
 <span class="va">lm.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mean_weight</span> <span class="op">~</span> <span class="va">day</span>, data <span class="op">=</span> <span class="va">subject_means</span><span class="op">)</span>
@@ -888,24 +888,24 @@ find_group_means_B(long_data)
 <span class="co">#&gt; lm(formula = mean_weight ~ day, data = subject_means)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Residuals:</span>
-<span class="co">#&gt;     Min      1Q  Median      3Q     Max </span>
-<span class="co">#&gt; -33.250  -8.387   0.221   7.434  34.322 </span>
+<span class="co">#&gt;      Min       1Q   Median       3Q      Max </span>
+<span class="co">#&gt; -29.6632  -7.3573   0.8375   7.6869  24.5736 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Coefficients:</span>
 <span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span class="co">#&gt; (Intercept)  103.016      2.288  45.021   &lt;2e-16 ***</span>
-<span class="co">#&gt; dayM          -1.962      3.236  -0.606   0.5451    </span>
-<span class="co">#&gt; dayS          -4.140      3.236  -1.279   0.2025    </span>
-<span class="co">#&gt; daySa         -4.954      3.236  -1.531   0.1276    </span>
-<span class="co">#&gt; dayT          -6.158      3.236  -1.903   0.0588 .  </span>
-<span class="co">#&gt; dayTh         -4.034      3.236  -1.247   0.2143    </span>
-<span class="co">#&gt; dayW          -6.370      3.236  -1.969   0.0507 .  </span>
+<span class="co">#&gt; (Intercept)  102.222      2.123  48.161   &lt;2e-16 ***</span>
+<span class="co">#&gt; dayM          -2.886      3.002  -0.962   0.3377    </span>
+<span class="co">#&gt; dayS          -1.780      3.002  -0.593   0.5540    </span>
+<span class="co">#&gt; daySa         -3.067      3.002  -1.022   0.3083    </span>
+<span class="co">#&gt; dayT          -3.253      3.002  -1.084   0.2801    </span>
+<span class="co">#&gt; dayTh         -2.219      3.002  -0.739   0.4608    </span>
+<span class="co">#&gt; dayW          -5.320      3.002  -1.772   0.0781 .  </span>
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; Residual standard error: 11.44 on 168 degrees of freedom</span>
-<span class="co">#&gt; Multiple R-squared:  0.0344, Adjusted R-squared:  -8.333e-05 </span>
-<span class="co">#&gt; F-statistic: 0.9976 on 6 and 168 DF,  p-value: 0.4287</span></code></pre></div>
+<span class="co">#&gt; Residual standard error: 10.61 on 168 degrees of freedom</span>
+<span class="co">#&gt; Multiple R-squared:  0.02031,    Adjusted R-squared:  -0.01468 </span>
+<span class="co">#&gt; F-statistic: 0.5804 on 6 and 168 DF,  p-value: 0.7456</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="factorial-anova">Factorial ANOVA<a class="anchor" aria-label="anchor" href="#factorial-anova"></a>
@@ -930,25 +930,27 @@ find_group_means_B(long_data)
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 350 × 4</span></span>
 <span class="co">#&gt;    subject_number day   time_of_day mean_weight</span>
 <span class="co">#&gt;             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>              1 F     Evening            92.4</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>              1 F     Morning            89.8</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>              1 M     Evening           116. </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>              1 F     Evening           101. </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>              1 F     Morning            91.6</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>              1 M     Evening           111. </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>              1 M     Morning           101. </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>              1 S     Evening           108. </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>              1 S     Morning            77.7</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>              1 Sa    Evening            93.0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>              1 Sa    Morning           118. </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>              1 T     Evening           123. </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>              1 T     Morning           108. </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>              1 S     Evening            91.8</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>              1 S     Morning            91.5</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>              1 Sa    Evening           113. </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>              1 Sa    Morning           144. </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>              1 T     Evening           113. </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>              1 T     Morning           117. </span>
 <span class="co">#&gt; <span style="color: #949494;"># … with 340 more rows</span></span>
 
 <span class="va">aov.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">mean_weight</span> <span class="op">~</span> <span class="va">day</span><span class="op">*</span><span class="va">time_of_day</span>, data <span class="op">=</span> <span class="va">subject_means</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">aov.out</span><span class="op">)</span>
-<span class="co">#&gt;                  Df Sum Sq Mean Sq F value Pr(&gt;F)</span>
-<span class="co">#&gt; day               6   2035   339.2   1.017  0.414</span>
-<span class="co">#&gt; time_of_day       1      5     4.6   0.014  0.906</span>
-<span class="co">#&gt; day:time_of_day   6   1011   168.5   0.505  0.804</span>
-<span class="co">#&gt; Residuals       336 112082   333.6</span></code></pre></div>
+<span class="co">#&gt;                  Df Sum Sq Mean Sq F value Pr(&gt;F)  </span>
+<span class="co">#&gt; day               6   1486   247.7   0.709 0.6425  </span>
+<span class="co">#&gt; time_of_day       1   1167  1167.3   3.342 0.0684 .</span>
+<span class="co">#&gt; day:time_of_day   6    828   138.0   0.395 0.8821  </span>
+<span class="co">#&gt; Residuals       336 117371   349.3                 </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
 <p>Just like we can treat a one-way ANOVA as a regression, we can also treat a Factorial ANOVA as a multiple regression:</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">subject_means</span> <span class="op">&lt;-</span> <span class="va">weight_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -962,16 +964,16 @@ find_group_means_B(long_data)
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 350 × 4</span></span>
 <span class="co">#&gt;    subject_number day   time_of_day mean_weight</span>
 <span class="co">#&gt;             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>              1 F     Evening            92.4</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>              1 F     Morning            89.8</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>              1 M     Evening           116. </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>              1 F     Evening           101. </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>              1 F     Morning            91.6</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>              1 M     Evening           111. </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>              1 M     Morning           101. </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>              1 S     Evening           108. </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>              1 S     Morning            77.7</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>              1 Sa    Evening            93.0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>              1 Sa    Morning           118. </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>              1 T     Evening           123. </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>              1 T     Morning           108. </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>              1 S     Evening            91.8</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>              1 S     Morning            91.5</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>              1 Sa    Evening           113. </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>              1 Sa    Morning           144. </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>              1 T     Evening           113. </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>              1 T     Morning           117. </span>
 <span class="co">#&gt; <span style="color: #949494;"># … with 340 more rows</span></span>
 
 <span class="va">lm.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">mean_weight</span> <span class="op">~</span> <span class="va">day</span><span class="op">*</span><span class="va">time_of_day</span>, data <span class="op">=</span> <span class="va">subject_means</span><span class="op">)</span>
@@ -982,39 +984,41 @@ find_group_means_B(long_data)
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Residuals:</span>
 <span class="co">#&gt;     Min      1Q  Median      3Q     Max </span>
-<span class="co">#&gt; -54.522 -10.563  -0.151  11.768  63.040 </span>
+<span class="co">#&gt; -49.157 -11.227  -0.075  11.016  58.110 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Coefficients:</span>
 <span class="co">#&gt;                          Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span class="co">#&gt; (Intercept)               101.473      3.653  27.779   &lt;2e-16 ***</span>
-<span class="co">#&gt; dayM                        5.108      5.166   0.989    0.323    </span>
-<span class="co">#&gt; dayS                        1.593      5.166   0.308    0.758    </span>
-<span class="co">#&gt; daySa                      -3.263      5.166  -0.632    0.528    </span>
-<span class="co">#&gt; dayT                        2.077      5.166   0.402    0.688    </span>
-<span class="co">#&gt; dayTh                      -5.562      5.166  -1.077    0.282    </span>
-<span class="co">#&gt; dayW                       -1.743      5.166  -0.337    0.736    </span>
-<span class="co">#&gt; time_of_dayMorning         -4.917      5.166  -0.952    0.342    </span>
-<span class="co">#&gt; dayM:time_of_dayMorning     3.757      7.306   0.514    0.607    </span>
-<span class="co">#&gt; dayS:time_of_dayMorning     1.691      7.306   0.232    0.817    </span>
-<span class="co">#&gt; daySa:time_of_dayMorning    6.339      7.306   0.868    0.386    </span>
-<span class="co">#&gt; dayT:time_of_dayMorning     2.947      7.306   0.403    0.687    </span>
-<span class="co">#&gt; dayTh:time_of_dayMorning   10.694      7.306   1.464    0.144    </span>
-<span class="co">#&gt; dayW:time_of_dayMorning     7.382      7.306   1.010    0.313    </span>
+<span class="co">#&gt; (Intercept)                92.024      3.738  24.618   &lt;2e-16 ***</span>
+<span class="co">#&gt; dayM                        8.778      5.286   1.661   0.0977 .  </span>
+<span class="co">#&gt; dayS                        5.923      5.286   1.120   0.2633    </span>
+<span class="co">#&gt; daySa                       6.042      5.286   1.143   0.2538    </span>
+<span class="co">#&gt; dayT                        7.042      5.286   1.332   0.1837    </span>
+<span class="co">#&gt; dayTh                       6.649      5.286   1.258   0.2093    </span>
+<span class="co">#&gt; dayW                        4.051      5.286   0.766   0.4440    </span>
+<span class="co">#&gt; time_of_dayMorning          9.103      5.286   1.722   0.0860 .  </span>
+<span class="co">#&gt; dayM:time_of_dayMorning    -4.777      7.476  -0.639   0.5233    </span>
+<span class="co">#&gt; dayS:time_of_dayMorning    -8.705      7.476  -1.164   0.2451    </span>
+<span class="co">#&gt; daySa:time_of_dayMorning   -7.946      7.476  -1.063   0.2886    </span>
+<span class="co">#&gt; dayT:time_of_dayMorning    -8.999      7.476  -1.204   0.2295    </span>
+<span class="co">#&gt; dayTh:time_of_dayMorning   -2.960      7.476  -0.396   0.6924    </span>
+<span class="co">#&gt; dayW:time_of_dayMorning    -4.765      7.476  -0.637   0.5243    </span>
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; Residual standard error: 18.26 on 336 degrees of freedom</span>
-<span class="co">#&gt; Multiple R-squared:  0.0265, Adjusted R-squared:  -0.01117 </span>
-<span class="co">#&gt; F-statistic: 0.7036 on 13 and 336 DF,  p-value: 0.7599</span>
+<span class="co">#&gt; Residual standard error: 18.69 on 336 degrees of freedom</span>
+<span class="co">#&gt; Multiple R-squared:  0.02881,    Adjusted R-squared:  -0.008767 </span>
+<span class="co">#&gt; F-statistic: 0.7667 on 13 and 336 DF,  p-value: 0.6954</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/anova.html" class="external-link">anova</a></span><span class="op">(</span><span class="va">lm.out</span><span class="op">)</span>
 <span class="co">#&gt; Analysis of Variance Table</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Response: mean_weight</span>
-<span class="co">#&gt;                  Df Sum Sq Mean Sq F value Pr(&gt;F)</span>
-<span class="co">#&gt; day               6   2035  339.19  1.0168 0.4141</span>
-<span class="co">#&gt; time_of_day       1      5    4.64  0.0139 0.9062</span>
-<span class="co">#&gt; day:time_of_day   6   1011  168.55  0.5053 0.8043</span>
-<span class="co">#&gt; Residuals       336 112082  333.58</span></code></pre></div>
+<span class="co">#&gt;                  Df Sum Sq Mean Sq F value  Pr(&gt;F)  </span>
+<span class="co">#&gt; day               6   1486  247.71  0.7091 0.64247  </span>
+<span class="co">#&gt; time_of_day       1   1167 1167.31  3.3417 0.06843 .</span>
+<span class="co">#&gt; day:time_of_day   6    828  138.01  0.3951 0.88206  </span>
+<span class="co">#&gt; Residuals       336 117371  349.32                  </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -1022,57 +1026,34 @@ find_group_means_B(long_data)
 </h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/pwxqxTlDHHo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-<p>NOTE: Create a new github repository and R project for stats II, this way you can start fresh. Please save all of your labs in this repository.</p>
+<p>NOTE: For Spring 2022, following the video in the <a href="https://www.crumplab.com/rstatsmethods/articles/Stats2/semester_project.html" class="external-link">semester long project tab</a> for setting up your new R project and github repo. You will be making an .Rmd, adding it to your vignettes folder, and then displaying your work on your pkgdown website.</p>
 <div class="section level3">
 <h3 id="instructions">Instructions<a class="anchor" aria-label="anchor" href="#instructions"></a>
 </h3>
 <p>Your assignment instructions are the following:</p>
 <ol style="list-style-type: decimal">
 <li>Work inside the new R project that you created</li>
-<li>Create a new R Markdown document called “Lab1.Rmd”</li>
+<li>Create a new R Markdown document called “Lab1.Rmd”, inside the vignettes folder</li>
 <li>Use Lab1.Rmd to show your work attempting to solve the following generalization problems. Commit your work regularly so that it appears on your Github repository.</li>
 <li>
 <strong>For each problem, make a note about how much of the problem you believe you can solve independently without help</strong>. For example, if you needed to watch the help video and are unable to solve the problem on your own without copying the answers, then your note would be 0. If you are confident you can complete the problem from scratch completely on your own, your note would be 100. It is OK to have all 0s or 100s anything in between.</li>
-<li>Submit your github repository link for Lab 1 on blackboard.</li>
+<li>When you have finished, compile your pkgdown website by running <code><a href="https://pkgdown.r-lib.org/reference/build_site.html" class="external-link">pkgdown::build_site()</a></code> so that your lab work is displayed on your website.</li>
+<li>Push everything to github, make sure your github repo is public, and that github pages is enabled. Make sure you can view your website. Submit the URL to your website on blackboard.</li>
 </ol>
 </div>
 <div class="section level3">
-<h3 id="problems">Problems<a class="anchor" aria-label="anchor" href="#problems"></a>
+<h3 id="problem-6-points">Problem (6 points)<a class="anchor" aria-label="anchor" href="#problem-6-points"></a>
 </h3>
-<p><strong>Important:</strong> This lab has one coding problem, and one written problem. Both are worth 3 points. The written problem must be completed before next class. No points will be awarded for late assignments. It is critical that you complete the written portion because it is necessary for your participation next week.</p>
-<div class="section level4">
-<h4 id="written-problem">Written Problem<a class="anchor" aria-label="anchor" href="#written-problem"></a>
-</h4>
-<p>3 points</p>
-<p>We will go over this in-class too. In chapter 5 on regression, Abdi discusses a primary research article from 1960 by <span class="citation">Slamecka (<a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">1960</a>)</span> as an example. A pdf of this article is located in the shared zotero library. Your writing assignment is as follows:</p>
 <ol style="list-style-type: decimal">
-<li>Read the paper (it is only 5 pages)</li>
-<li>Write a point-form QALMRI summary of the paper.</li>
+<li>Download the <code>Lab1_data.xlsx</code> data file. This file contains fake data for a 2x3x2 repeated measures design, for 10 participants. The data is in wide format.</li>
 </ol>
-<p>I will explain in-class what a QALMRI summary is, but you can also read the general instructions here: <a href="https://crumplab.github.io/ResearchMethodsLab/qalmri.html" class="external-link">https://crumplab.github.io/ResearchMethodsLab/qalmri.html</a></p>
-<ol start="3" style="list-style-type: decimal">
-<li>Submit your QALMRI assignment on Blackboard</li>
-</ol>
-<p>NOTE: next class we will discuss your QALMRI in groups, then as a bigger group, to make sure we understand the design.</p>
-</div>
-<div class="section level4">
-<h4 id="coding-problem">Coding problem<a class="anchor" aria-label="anchor" href="#coding-problem"></a>
-</h4>
-<p>3 points</p>
-<ol style="list-style-type: decimal">
-<li>Create a dataframe that capable of representing the design, in as complete a way as you can, in the <span class="citation">Slamecka (<a href="#ref-slameckaRetroactiveInhibitionConnected1960" role="doc-biblioref">1960</a>)</span> paper.</li>
-</ol>
+<p>Your task is to convert the data to long format, and store the long-format data in a data.frame or tibble. Print out some of the long-form data in your lab1.Rmd, to show that you did make the appropriate conversion. For extra fun, show two different ways to solve the problem.</p>
+<p>If you need to modify the excel by hand to help you solve the problem that is OK, just make a note of it in your lab work.</p>
 </div>
 </div>
-</div>
-<div class="section level2 unnumbered">
-<h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
-<div id="ref-slameckaRetroactiveInhibitionConnected1960" class="csl-entry">
-Slamecka, N. J. (1960). Retroactive inhibition of connected discourse as a function of practice level. <em>Journal of Experimental Psychology</em>, <em>59</em>(2), 104–108. <a href="https://doi.org/b5z2nt" class="external-link">https://doi.org/b5z2nt</a>
-</div>
-</div>
 </div>
   </div>
 

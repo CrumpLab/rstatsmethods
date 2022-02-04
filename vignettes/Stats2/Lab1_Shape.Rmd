@@ -421,42 +421,27 @@ anova(lm.out)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/pwxqxTlDHHo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-NOTE: Create a new github repository and R project for stats II, this way you can start fresh. Please save all of your labs in this repository.
+NOTE: For Spring 2022, following the video in the [semester long project tab](https://www.crumplab.com/rstatsmethods/articles/Stats2/semester_project.html) for setting up your new R project and github repo. You will be making an .Rmd, adding it to your vignettes folder, and then displaying your work on your pkgdown website.
 
 ### Instructions
 
 Your assignment instructions are the following:
 
 1.  Work inside the new R project that you created
-2.  Create a new R Markdown document called "Lab1.Rmd"
+2.  Create a new R Markdown document called "Lab1.Rmd", inside the vignettes folder
 3.  Use Lab1.Rmd to show your work attempting to solve the following generalization problems. Commit your work regularly so that it appears on your Github repository.
 4.  **For each problem, make a note about how much of the problem you believe you can solve independently without help**. For example, if you needed to watch the help video and are unable to solve the problem on your own without copying the answers, then your note would be 0. If you are confident you can complete the problem from scratch completely on your own, your note would be 100. It is OK to have all 0s or 100s anything in between.
-5.  Submit your github repository link for Lab 1 on blackboard.
+5. When you have finished, compile your pkgdown website by running `pkgdown::build_site()` so that your lab work is displayed on your website.
+6. Push everything to github, make sure your github repo is public, and that github pages is enabled. Make sure you can view your website. Submit the URL to your website on blackboard.
 
-### Problems
+### Problem (6 points)
 
-**Important:** This lab has one coding problem, and one written problem. Both are worth 3 points. The written problem must be completed before next class. No points will be awarded for late assignments. It is critical that you complete the written portion because it is necessary for your participation next week.
+1. Download the `Lab1_data.xlsx` data file. This file contains fake data for a 2x3x2 repeated measures design, for 10 participants. The data is in wide format.
 
-#### Written Problem
+Your task is to convert the data to long format, and store the long-format data in a data.frame or tibble. Print out some of the long-form data in your lab1.Rmd, to show that you did make the appropriate conversion. For extra fun, show two different ways to solve the problem. 
 
-3 points
+If you need to modify the excel by hand to help you solve the problem that is OK, just make a note of it in your lab work.
 
-We will go over this in-class too. In chapter 5 on regression, Abdi discusses a primary research article from 1960 by @slameckaRetroactiveInhibitionConnected1960 as an example. A pdf of this article is located in the shared zotero library. Your writing assignment is as follows:
-
-1. Read the paper (it is only 5 pages)
-2. Write a point-form QALMRI summary of the paper.
-
-I will explain in-class what a QALMRI summary is, but you can also read the general instructions here: [https://crumplab.github.io/ResearchMethodsLab/qalmri.html](https://crumplab.github.io/ResearchMethodsLab/qalmri.html)
-
-3. Submit your QALMRI assignment on Blackboard
-
-NOTE: next class we will discuss your QALMRI in groups, then as a bigger group, to make sure we understand the design.
-
-#### Coding problem
-
-3 points
-
-1. Create a dataframe that capable of representing the design, in as complete a way as you can, in the @slameckaRetroactiveInhibitionConnected1960 paper.
 
 
 ## References
