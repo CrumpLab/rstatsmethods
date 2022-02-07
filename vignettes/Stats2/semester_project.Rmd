@@ -35,7 +35,7 @@ I will be building my own semester project throughout the semester. This code-ba
 
 <https://github.com/CrumpLab/SemesterProject7709>
 
-<!--
+## R Basics tab
 
 The purpose of this component of the semester long project is for you to demonstrate basic command of fundamental R programming skills. Consider this a litmus test for yourself. If you can confidently provide working code for each item, then you will also be creating a resource for your future self in case you forget how these elements of R programming work. If you find yourself struggling to produce working code for each item, then you have identified some basic skills to practice this semester.
 
@@ -51,13 +51,16 @@ Demonstrate your understanding of and ability to use:
 
 4. Loops and logic. Demonstrate that you can combine loops and logic to solve some problem. For example, use loops and logic to solve the fizz buzz problem.
 
-5. Pick at least one advanced problem from this list of problems, and show that you can solve it in R. For maximum fun, pick the snakes and ladders problem. I know you can do it.
+5. Pick at least one advanced problem from this list of problems, and show that you can solve it in R. 
+
+<https://crumplab.github.io/programmingforpsych/programming-challenges-i-learning-the-fundamentals.html>
+
+For maximum fun, pick the snakes and ladders problem. I know you can do it.
 
 6. Write a function, include it in your R package, show that it works. FYI, I will help with this one. You will be writing a new function, putting it in your R folder (in our R package folder structure). You will make documentation for the function (I will show you how). You will build your R package, which will make the R function available to your instance of R. That means, that you can load your own package as a library (in this .rmd that you are writing your answers in), and you can show that you can use your R function right here.
 
 7. Do one thing in R that you want to learn how to do (or refresh your memory, or clarify for yourself, or whatever), and that you think your future self would thank yourself for making working code that you can consult later on. Do it, then wait a while (after this course is over), then thank your previous self for doing such a fine job.
 
--->
 
 
 
