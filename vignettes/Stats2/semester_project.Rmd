@@ -62,6 +62,16 @@ For maximum fun, pick the snakes and ladders problem. I know you can do it.
 7. Do one thing in R that you want to learn how to do (or refresh your memory, or clarify for yourself, or whatever), and that you think your future self would thank yourself for making working code that you can consult later on. Do it, then wait a while (after this course is over), then thank your previous self for doing such a fine job.
 
 
+## Slide Decks
+
+It is possible to create slide decks using Rmd documents. Multiple output formats are supported including, pdf, html, and powerpoint. See this page for more information <https://rmarkdown.rstudio.com/lesson-11.html>.
+
+To complete this portion of the semester long project you should: 
+
+1. Create a slide deck using one of the above methods
+2. Save your slide deck to a folder called "slides" in your project folder
+3. Create a new tab on your website, and link to the html for your slide show. NOTE: you will have to make sure your final product gets saved to the docs folder too.
+
 
 
 

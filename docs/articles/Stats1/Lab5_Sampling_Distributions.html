@@ -279,8 +279,8 @@
 <p>We use <code><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm()</a></code> to sample numbers from a normal distribution:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="co">#&gt;  [1] -1.4097134  2.0727632  0.2501567 -0.2370294  0.9405611  0.7595043</span>
-<span class="co">#&gt;  [7] -1.1905671 -0.3966679  1.4365721  0.9867221</span></code></pre></div>
+<span class="co">#&gt;  [1]  0.52560940  0.66376829 -0.32870093  0.06985869  1.46993352 -0.33910315</span>
+<span class="co">#&gt;  [7] -1.11242325  0.43961920  0.23953723  2.79197036</span></code></pre></div>
 <p>We can ‘see’ the distribution by sampling a large number of observations, and plotting them in a histogram:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
@@ -298,73 +298,74 @@
 </ol>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">some_data</span><span class="op">$</span><span class="va">observations</span><span class="op">[</span><span class="va">some_data</span><span class="op">$</span><span class="va">observations</span> <span class="op">&gt;</span> <span class="fl">1.64</span><span class="op">]</span>
-<span class="co">#&gt;   [1] 2.160835 1.763559 2.509307 2.083682 1.970823 2.915501 1.763827 2.168356</span>
-<span class="co">#&gt;   [9] 2.022439 2.478965 2.183712 1.696275 1.809133 1.684660 1.745048 2.094353</span>
-<span class="co">#&gt;  [17] 2.398494 1.876354 1.854108 1.871780 2.303760 1.678826 2.294011 2.347788</span>
-<span class="co">#&gt;  [25] 1.909478 2.625038 1.949434 1.958748 1.695308 1.864553 1.870946 1.700686</span>
-<span class="co">#&gt;  [33] 1.815948 1.902257 1.781170 2.007094 1.792292 1.692510 2.409367 2.122571</span>
-<span class="co">#&gt;  [41] 1.680427 1.779404 1.683266 1.924455 2.104740 2.251382 2.141740 3.555699</span>
-<span class="co">#&gt;  [49] 1.996935 2.174627 1.827833 3.006466 1.880060 2.111069 1.957656 1.833876</span>
-<span class="co">#&gt;  [57] 2.161112 1.798677 2.273213 2.206828 1.650487 1.987830 1.971745 1.973209</span>
-<span class="co">#&gt;  [65] 2.085023 2.138719 1.826016 1.693535 2.192358 1.970982 1.967137 1.672293</span>
-<span class="co">#&gt;  [73] 2.614385 2.370285 1.859084 1.808925 1.645817 2.141491 1.807621 2.186734</span>
-<span class="co">#&gt;  [81] 2.022008 2.080588 1.707541 1.984653 1.674033 1.678679 1.763126 2.151032</span>
-<span class="co">#&gt;  [89] 1.658323 1.750007 1.642248 2.030291 2.001780 2.014632 2.744082 1.677040</span>
-<span class="co">#&gt;  [97] 1.797508 1.981316 1.864871 2.505281 2.603755 1.917275 2.290006 1.760720</span>
-<span class="co">#&gt; [105] 2.672573 1.930416 2.100118 2.905814 1.778171 1.980153 1.728521 1.813296</span>
-<span class="co">#&gt; [113] 2.870451 1.669891 1.855920 3.050648 2.080826 1.672030 1.950778 2.516106</span>
-<span class="co">#&gt; [121] 1.713196 1.910425 1.950877 2.309460 1.750110 2.070754 1.998754 1.859513</span>
-<span class="co">#&gt; [129] 2.034973 1.843286 2.650534 2.574555 1.697740 1.908772 2.487529 2.072802</span>
-<span class="co">#&gt; [137] 1.937494 2.797733 1.654513 2.055241 1.745643 2.308071 1.967292 1.698359</span>
-<span class="co">#&gt; [145] 1.743655 1.675947 2.031143 2.192918 2.968494 2.590022 1.929543 1.794471</span>
-<span class="co">#&gt; [153] 1.935360 2.007118 2.404663 2.393933 2.071089 2.590374 2.054266 1.882086</span>
-<span class="co">#&gt; [161] 1.979343 2.063322 2.080849 1.917088 2.531731 1.794160 1.826303 2.116722</span>
-<span class="co">#&gt; [169] 2.191155 1.758828 1.911892 1.660950 2.414295 1.724962 1.776178 1.969231</span>
-<span class="co">#&gt; [177] 2.533679 1.898454 1.864648 2.140424 1.888026 2.315862 2.578988 1.881405</span>
-<span class="co">#&gt; [185] 2.544113 2.213469 1.970423 2.326214 1.700307 1.775606 1.904358 2.123282</span>
-<span class="co">#&gt; [193] 1.704909 2.115981 2.436738 2.178166 1.662023 2.250972 2.071980 1.685879</span>
-<span class="co">#&gt; [201] 2.183760 1.970172 2.330724 2.282777 1.669078 1.742763 1.820172 1.876415</span>
-<span class="co">#&gt; [209] 1.839888 1.752842 2.406668 2.297820 2.339169 1.695311 1.757120 2.238810</span>
-<span class="co">#&gt; [217] 1.799120 2.158023 2.632745 1.993842 1.674258 1.681547 2.042864 1.909836</span>
-<span class="co">#&gt; [225] 2.287488 1.732391 1.975657 2.586769 2.559073 1.707951 1.763280 2.007156</span>
-<span class="co">#&gt; [233] 1.830587 1.676073 1.888226 1.681638 1.656622 1.748178 2.395591 2.384360</span>
-<span class="co">#&gt; [241] 1.971760 2.102174 1.691581 2.034300 1.894401 1.649878 1.648543 1.935602</span>
-<span class="co">#&gt; [249] 1.803848 1.646988 2.859688 2.526927 3.008876 2.579322 1.870267 1.822524</span>
-<span class="co">#&gt; [257] 1.713613 1.667297 1.815826 1.735882 1.988809 1.772094 2.203091 1.740979</span>
-<span class="co">#&gt; [265] 1.676824 1.997205 2.541708 2.102774 2.447652 1.833568 1.949633 3.467045</span>
-<span class="co">#&gt; [273] 1.755788 2.025648 2.299362 1.786363 2.579492 1.926420 2.070244 2.018753</span>
-<span class="co">#&gt; [281] 2.104021 2.255740 1.662542 2.307947 2.001556 1.650151 1.931564 2.250653</span>
-<span class="co">#&gt; [289] 1.978539 1.780007 1.833867 2.411698 1.896997 1.647504 2.173019 2.316005</span>
-<span class="co">#&gt; [297] 1.978687 3.150276 1.721521 2.616731 1.734480 2.060505 2.193237 2.177840</span>
-<span class="co">#&gt; [305] 1.927467 2.252978 1.872511 1.716636 1.838382 2.117175 1.882689 2.531512</span>
-<span class="co">#&gt; [313] 2.010487 1.659478 1.691481 1.918211 1.726931 2.491852 1.655457 1.916806</span>
-<span class="co">#&gt; [321] 1.739337 2.368541 2.080636 2.068438 1.813048 1.975463 2.273367 1.877708</span>
-<span class="co">#&gt; [329] 2.373521 2.479622 1.812380 1.648769 2.422884 2.117415 1.900708 2.003685</span>
-<span class="co">#&gt; [337] 1.695356 2.797924 2.136433 1.825070 2.415424 2.750397 1.648266 3.270167</span>
-<span class="co">#&gt; [345] 2.954529 1.842773 2.014166 1.671824 1.720324 2.348141 1.756001 2.084108</span>
-<span class="co">#&gt; [353] 1.683090 1.970803 2.444232 1.978240 2.032360 2.354650 2.192295 2.142222</span>
-<span class="co">#&gt; [361] 2.502549 2.185242 1.721107 1.709011 1.822352 2.097637 1.682285 1.867687</span>
-<span class="co">#&gt; [369] 2.668967 1.658892 1.791171 1.696778 2.990761 1.741130 1.895953 1.806008</span>
-<span class="co">#&gt; [377] 1.929345 2.453389 1.750736 1.648458 2.301857 1.883030 1.863447 2.119431</span>
-<span class="co">#&gt; [385] 2.488127 1.690132 2.289462 1.736663 1.747324 1.820204 2.992764 1.661842</span>
-<span class="co">#&gt; [393] 2.699628 2.131252 1.698576 1.661387 1.711495 2.035874 1.855094 2.074477</span>
-<span class="co">#&gt; [401] 2.535661 1.798087 1.656074 2.321613 2.296863 2.205042 1.770269 1.874589</span>
-<span class="co">#&gt; [409] 1.996884 1.924727 1.854862 1.785530 2.074769 2.528263 1.940669 2.052406</span>
-<span class="co">#&gt; [417] 1.976548 2.170311 2.062172 1.849916 1.791679 1.795894 1.830072 1.659089</span>
-<span class="co">#&gt; [425] 1.771099 2.329610 1.655755 2.456228 2.034367 1.712528 2.816031 1.959763</span>
-<span class="co">#&gt; [433] 2.133772 1.810689 2.136593 2.418696 2.277546 2.555518 1.980804 2.139007</span>
-<span class="co">#&gt; [441] 1.966111 1.827449 1.729840 1.962515 1.856216 2.491259 2.547443 1.662368</span>
-<span class="co">#&gt; [449] 1.738150 2.061905 1.978075 2.202115 2.496436 1.745418 2.331448 2.428454</span>
-<span class="co">#&gt; [457] 2.662871 2.143540 2.074297 1.989706 1.831702 1.877673 2.106902 1.673647</span>
-<span class="co">#&gt; [465] 1.688615 2.000875 1.726415 1.741599 1.889844 1.795926 2.468411 2.573554</span>
-<span class="co">#&gt; [473] 2.640711 2.620706 1.688433 2.018740 2.749998 1.650702 2.350947 1.939082</span>
-<span class="co">#&gt; [481] 1.761001 2.742099 1.884197 1.838216 1.744913 1.662455 1.984691 2.291744</span>
-<span class="co">#&gt; [489] 1.760150 1.670390 1.986629 1.771684 1.881873 2.028468 2.215520 2.304709</span>
-<span class="co">#&gt; [497] 1.676986 1.921935 1.804772</span>
+<span class="co">#&gt;   [1] 1.686107 1.759914 1.683701 1.688062 1.830369 1.696243 2.502919 1.797392</span>
+<span class="co">#&gt;   [9] 1.646946 1.928579 2.103243 1.931543 1.714409 1.787892 2.353745 1.745050</span>
+<span class="co">#&gt;  [17] 1.641066 1.800981 1.861507 1.907236 1.915876 2.034567 1.796423 2.036176</span>
+<span class="co">#&gt;  [25] 1.654675 2.031003 1.660313 3.030950 1.680250 1.696315 1.868619 2.936035</span>
+<span class="co">#&gt;  [33] 2.170747 1.834851 1.923565 1.676436 1.755610 2.155389 1.667135 1.736621</span>
+<span class="co">#&gt;  [41] 2.494276 2.104286 1.712427 2.239153 1.834609 2.064587 1.873912 1.712159</span>
+<span class="co">#&gt;  [49] 2.634857 2.237173 1.682237 2.310859 1.891181 1.878729 2.412715 2.392041</span>
+<span class="co">#&gt;  [57] 1.954996 2.022991 2.562387 1.790193 1.953824 1.988900 2.097454 1.947816</span>
+<span class="co">#&gt;  [65] 1.753127 2.164393 2.360186 2.459033 2.507400 2.475756 2.037632 1.672420</span>
+<span class="co">#&gt;  [73] 2.111760 1.986104 2.584785 2.022944 2.071382 2.162775 1.709937 2.350407</span>
+<span class="co">#&gt;  [81] 1.764346 1.797261 1.718719 2.308223 1.657659 2.252678 1.660903 3.222169</span>
+<span class="co">#&gt;  [89] 1.916252 2.279322 1.792101 1.766753 2.839683 1.722877 1.714579 2.131217</span>
+<span class="co">#&gt;  [97] 2.508675 2.190944 2.417900 2.893775 1.717644 1.693631 1.788230 2.053638</span>
+<span class="co">#&gt; [105] 1.954545 2.073523 3.291947 1.850135 1.786307 2.043628 2.581761 2.631123</span>
+<span class="co">#&gt; [113] 1.752862 2.925073 2.687502 2.380113 2.071159 2.030946 1.863390 1.800395</span>
+<span class="co">#&gt; [121] 1.747358 2.277089 1.731092 1.927531 2.109126 2.485702 1.667241 2.310242</span>
+<span class="co">#&gt; [129] 2.415140 2.046682 1.841035 1.823608 2.484822 2.120202 1.944258 1.956719</span>
+<span class="co">#&gt; [137] 2.416641 2.382121 1.939156 2.492125 2.078091 1.869768 1.695297 1.683656</span>
+<span class="co">#&gt; [145] 1.798077 1.643165 1.751328 2.353245 1.977788 1.795518 2.036267 1.946283</span>
+<span class="co">#&gt; [153] 2.124649 2.630756 3.233584 2.021077 2.394429 2.633653 1.810363 1.811233</span>
+<span class="co">#&gt; [161] 1.803591 1.661304 2.388282 1.947488 1.700728 1.901339 1.742709 2.183811</span>
+<span class="co">#&gt; [169] 3.032455 1.926705 1.865615 2.523520 1.763274 2.398068 1.955733 2.428532</span>
+<span class="co">#&gt; [177] 2.034410 2.013525 2.311655 1.958635 1.673275 1.808498 2.715710 1.678214</span>
+<span class="co">#&gt; [185] 2.116306 1.888805 2.353831 2.294869 2.029682 1.738384 2.304313 1.791561</span>
+<span class="co">#&gt; [193] 1.898491 2.093794 1.887938 1.923700 1.773568 1.870533 1.655504 2.849218</span>
+<span class="co">#&gt; [201] 1.895648 2.463097 2.772162 1.645146 2.159823 3.864919 2.170502 1.818843</span>
+<span class="co">#&gt; [209] 2.382119 2.688964 2.005195 2.632958 1.729071 1.728813 2.092198 2.104975</span>
+<span class="co">#&gt; [217] 1.692789 1.969839 2.629438 2.192628 1.809740 1.862790 1.925670 2.105547</span>
+<span class="co">#&gt; [225] 2.669409 1.689217 1.664399 2.793092 2.490781 1.730209 2.438262 2.646154</span>
+<span class="co">#&gt; [233] 1.932538 1.849848 1.835806 2.438926 1.690145 2.848567 1.857155 1.995901</span>
+<span class="co">#&gt; [241] 1.825342 1.716561 1.668377 2.497454 2.742445 2.250204 1.724158 1.779411</span>
+<span class="co">#&gt; [249] 2.026109 1.663806 2.073275 2.544022 1.818347 1.943461 1.876493 2.059399</span>
+<span class="co">#&gt; [257] 2.035960 2.031636 1.955570 1.736583 1.882828 2.784945 1.917353 2.240822</span>
+<span class="co">#&gt; [265] 1.863401 2.061450 2.059084 2.536394 1.740484 1.992239 2.696361 1.733929</span>
+<span class="co">#&gt; [273] 2.308430 1.680262 2.338629 1.892718 2.145902 1.822509 1.896733 3.238146</span>
+<span class="co">#&gt; [281] 3.279495 2.329124 2.281815 2.353718 2.417621 2.026455 1.767286 1.704474</span>
+<span class="co">#&gt; [289] 1.770394 2.884279 2.284037 1.858521 1.853080 1.650826 1.781704 1.752099</span>
+<span class="co">#&gt; [297] 1.728938 1.821893 2.461394 2.174887 2.332168 2.295404 2.116405 2.334941</span>
+<span class="co">#&gt; [305] 1.742096 1.866884 1.935840 1.820473 2.002430 3.073788 1.846974 2.051147</span>
+<span class="co">#&gt; [313] 2.103899 2.133152 2.122619 1.731689 1.817878 2.001838 1.753013 1.972277</span>
+<span class="co">#&gt; [321] 2.744958 1.659498 2.366484 1.788838 1.952772 1.654914 2.116400 2.146011</span>
+<span class="co">#&gt; [329] 2.257064 1.702721 1.771438 1.953933 1.970401 1.801911 1.901079 1.863689</span>
+<span class="co">#&gt; [337] 2.047272 2.128355 1.938634 2.031844 1.781309 1.841473 2.073570 1.844298</span>
+<span class="co">#&gt; [345] 2.325333 2.331113 1.986864 1.642475 1.938727 1.892259 1.730485 2.854158</span>
+<span class="co">#&gt; [353] 2.705151 1.674813 1.848773 2.332031 2.010167 1.833094 2.161060 2.142961</span>
+<span class="co">#&gt; [361] 2.322529 1.913763 2.466903 3.178250 2.279832 1.803958 2.482638 1.891278</span>
+<span class="co">#&gt; [369] 2.421121 1.710397 2.184877 2.314858 1.650466 2.091644 2.013649 1.658113</span>
+<span class="co">#&gt; [377] 1.930041 2.443406 2.218313 1.835423 1.651660 2.536339 1.673225 1.669124</span>
+<span class="co">#&gt; [385] 2.608438 1.670080 1.910536 1.658770 2.063623 1.927823 1.870697 2.103351</span>
+<span class="co">#&gt; [393] 2.144383 1.657063 1.690038 2.284071 2.505261 1.663514 1.953220 1.711206</span>
+<span class="co">#&gt; [401] 1.689008 2.328102 2.419702 1.835337 2.515718 1.805728 1.982669 1.719517</span>
+<span class="co">#&gt; [409] 1.835596 1.716934 2.645448 1.844408 2.441890 2.137050 2.487556 1.952377</span>
+<span class="co">#&gt; [417] 1.705207 2.284647 2.932340 2.247480 2.532584 2.989871 1.859823 1.858681</span>
+<span class="co">#&gt; [425] 1.802062 1.975890 2.676643 2.498562 1.773551 2.287391 1.838661 1.994842</span>
+<span class="co">#&gt; [433] 2.671809 1.812792 1.933287 1.954438 1.683707 1.962643 2.856028 1.950959</span>
+<span class="co">#&gt; [441] 1.803823 2.492707 1.794686 1.726399 2.404831 1.667625 2.039861 1.956833</span>
+<span class="co">#&gt; [449] 1.911743 1.812939 1.806025 1.826935 1.666949 1.644302 1.703352 2.186053</span>
+<span class="co">#&gt; [457] 1.721256 1.921111 2.408864 1.863498 2.487836 2.249667 1.833660 1.988884</span>
+<span class="co">#&gt; [465] 2.208439 2.439515 1.737780 2.315039 1.846474 1.909573 1.854503 2.701021</span>
+<span class="co">#&gt; [473] 1.724234 1.696157 1.711108 1.663064 2.684254 1.648758 1.662799 1.877128</span>
+<span class="co">#&gt; [481] 3.542867 1.677908 2.373907 3.477676 2.232042 2.019661 1.818899 1.979571</span>
+<span class="co">#&gt; [489] 2.136351 2.649654 2.877636 1.667476 1.814891 1.942418 1.837339 2.239251</span>
+<span class="co">#&gt; [497] 1.661966 1.865404 1.646218 2.004473 1.853748 1.805778 1.900475 2.132051</span>
+<span class="co">#&gt; [505] 1.750329 1.796897</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">some_data</span><span class="op">$</span><span class="va">observations</span><span class="op">[</span><span class="va">some_data</span><span class="op">$</span><span class="va">observations</span> <span class="op">&gt;</span> <span class="fl">1.64</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt; [1] 499</span>
+<span class="co">#&gt; [1] 506</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">some_data</span><span class="op">$</span><span class="va">observations</span><span class="op">[</span><span class="va">some_data</span><span class="op">$</span><span class="va">observations</span> <span class="op">&gt;</span> <span class="fl">1.64</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.0499</span></code></pre></div>
+<span class="co">#&gt; [1] 0.0506</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>We could also compute the probability directly using analytical formulas. And, these formulas also exist in R. Specifically, distribution formulas begin with <code>d</code>, <code>p</code>, <code>q</code>, and <code>r</code>, so there are <code>dnorm</code>, <code>pnorm</code>, <code>qnorm</code>, and <code>rnorm</code> functions for the normal distribution (and other distributions).</li>
 </ol>
@@ -374,8 +375,8 @@
 <p><code>rnorm(n, mean = 0, sd = 1)</code> samples observations (or random deviates) from a normal distribution with specified mean and standard deviation.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="co">#&gt;  [1]  0.8929863491 -0.1984742114 -1.5594749886 -0.0002081319  1.6306120959</span>
-<span class="co">#&gt;  [6]  0.0857243211 -0.5772098923  2.5938103731  2.5509671568  0.1434862998</span></code></pre></div>
+<span class="co">#&gt;  [1] -1.30917665 -0.67120518 -0.99983055 -0.51946569  1.08805027  0.46982452</span>
+<span class="co">#&gt;  [7] -1.67522431  0.74390350 -0.54703777  0.02086995</span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="dnorm">dnorm()<a class="anchor" aria-label="anchor" href="#dnorm"></a>
@@ -538,7 +539,7 @@
 <p>We already know what the sample mean is and how to calculate it in R. Here is an example of calculating a sample mean, where the number of observations (n) in the sample is 10.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] -0.1354605</span></code></pre></div>
+<span class="co">#&gt; [1] 0.7100103</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="multiple-sample-means">Multiple sample means<a class="anchor" aria-label="anchor" href="#multiple-sample-means"></a>
@@ -547,15 +548,15 @@
 <p>Here is an example of creating 5 sample means from 5 sets of 10 observations.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.396047</span>
+<span class="co">#&gt; [1] -0.5805673</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] -0.2863516</span>
+<span class="co">#&gt; [1] -0.08127997</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.136062</span>
+<span class="co">#&gt; [1] -0.7970015</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.1338093</span>
+<span class="co">#&gt; [1] 0.1690498</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean<span class="op">=</span><span class="fl">0</span>, sd <span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] -0.03415137</span></code></pre></div>
+<span class="co">#&gt; [1] -0.1593094</span></code></pre></div>
 <p>Notice each of the sample means is different, this is because of the variability introduced by randomly choosing values from the same normal distribution.</p>
 <p>The mean of the distribution that the samples come from is 0, what do we expect the mean of the samples to be? In general, we expect 0, but we can see that not all of the sample means are exactly 0.</p>
 <p>How much variability can we expect for our sample mean? In other words, if we are going to obtain a sample of 10 numbers from this distribution, <strong>what kinds of sample means could we get?</strong>.</p>
@@ -571,7 +572,7 @@
 <p><img src="Lab5_Sampling_Distributions_files/figure-html/unnamed-chunk-17-1.png" width="700"></p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.03165109</span></code></pre></div>
+<span class="co">#&gt; [1] 0.03143931</span></code></pre></div>
 <p>The above is a histogram representing the means for 10,000 samples. We can refer to this as a sampling distribution of the sample means. It is how sample means (in this one particular situation) are generally distributed.</p>
 <p>If you wanted to know what to expect from a single sample mean (if you knew you were taking values from this normal distribution), then you could look at this sampling distribution.</p>
 <p>Sample means close to 0 happen the most. So, most of the time, when you take a sample from this distribution, the mean of that sample will be 0. It is rare for a sample mean to be larger than .5. It is very very rare for a sample mean to be larger than 1.</p>
@@ -589,7 +590,7 @@
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sample_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.3165647</span></code></pre></div>
+<span class="co">#&gt; [1] 0.3130173</span></code></pre></div>
 <p>The value we calculated is a standardized unit, and it describes the amount of error we expect in general from a sample mean. Specifically, if the true population mean is 0, then when we obtain samples, we expect the sample means will have some error, they should on average be 0, but plus or minus the standard deviation we calculated.</p>
 <p>We do not necessarily have to generate a distribution of sample means to calculate the standard error. If we know the population standard deviation (<span class="math inline">\(\sigma\)</span>), then we can use this formula for the standard error of the mean (SEM) is:</p>
 <p><span class="math inline">\(\text{SEM} = \frac{\sigma}{\sqrt{N}}\)</span></p>
@@ -599,7 +600,7 @@
 <code class="sourceCode R"><span class="co"># simulation SEM</span>
 <span class="va">sample_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">10000</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.3166792</span>
+<span class="co">#&gt; [1] 0.3144619</span>
 
 <span class="co"># analytic SEM</span>
 

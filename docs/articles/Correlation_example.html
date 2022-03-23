@@ -267,52 +267,52 @@
 <p><img src="Correlation_example_files/figure-html/unnamed-chunk-1-1.png" width="700"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">some_data</span><span class="op">$</span><span class="va">texts_per_day</span>,<span class="va">some_data</span><span class="op">$</span><span class="va">random_coin</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] -0.795975</span></code></pre>
+<pre><code><span class="co">## [1] 0.3130065</span></code></pre>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">10</span>,nrow<span class="op">=</span><span class="fl">10</span><span class="op">)</span> 
 <span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">##               [,1]</span>
-<span class="co">##  [1,] -0.241797025</span>
-<span class="co">##  [2,] -0.196015459</span>
-<span class="co">##  [3,] -0.733422243</span>
-<span class="co">##  [4,] -0.100019108</span>
-<span class="co">##  [5,]  0.001646191</span>
-<span class="co">##  [6,]  0.035947945</span>
-<span class="co">##  [7,] -0.279849583</span>
-<span class="co">##  [8,] -0.317555180</span>
-<span class="co">##  [9,] -0.377986054</span>
-<span class="co">## [10,] -0.417792158</span></code></pre>
+<pre><code><span class="co">##              [,1]</span>
+<span class="co">##  [1,] -0.11355808</span>
+<span class="co">##  [2,]  0.18550892</span>
+<span class="co">##  [3,] -0.22684599</span>
+<span class="co">##  [4,] -0.69442276</span>
+<span class="co">##  [5,] -0.25325834</span>
+<span class="co">##  [6,] -0.25195817</span>
+<span class="co">##  [7,] -0.52285191</span>
+<span class="co">##  [8,] -0.48967047</span>
+<span class="co">##  [9,]  0.06156116</span>
+<span class="co">## [10,] -0.47516147</span></code></pre>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">##               [,1]         [,2]       [,3]         [,4]        [,5]        [,6]</span>
-<span class="co">##  [1,]  1.000000000 -0.005568019 -0.1690552  0.007740391 -0.36972324  0.03370121</span>
-<span class="co">##  [2,] -0.005568019  1.000000000  0.2293639  0.456165608 -0.44834200 -0.14739642</span>
-<span class="co">##  [3,] -0.169055233  0.229363875  1.0000000  0.243720074  0.23262216 -0.29560140</span>
-<span class="co">##  [4,]  0.007740391  0.456165608  0.2437201  1.000000000 -0.63787498  0.47689157</span>
-<span class="co">##  [5,] -0.369723238 -0.448342002  0.2326222 -0.637874984  1.00000000 -0.35546207</span>
-<span class="co">##  [6,]  0.033701210 -0.147396421 -0.2956014  0.476891572 -0.35546207  1.00000000</span>
-<span class="co">##  [7,] -0.732293083  0.146009778  0.3762457  0.180397433 -0.02851350  0.10883829</span>
-<span class="co">##  [8,]  0.416761835  0.389569799  0.2237080  0.506740910 -0.21326713  0.44778848</span>
-<span class="co">##  [9,]  0.374869715  0.117491348  0.5388504  0.118306781  0.06493571 -0.19765509</span>
-<span class="co">## [10,]  0.210489056 -0.153058699  0.1203544 -0.051219952 -0.16314895 -0.03756204</span>
-<span class="co">##             [,7]       [,8]        [,9]       [,10]</span>
-<span class="co">##  [1,] -0.7322931  0.4167618  0.37486972  0.21048906</span>
-<span class="co">##  [2,]  0.1460098  0.3895698  0.11749135 -0.15305870</span>
-<span class="co">##  [3,]  0.3762457  0.2237080  0.53885039  0.12035439</span>
-<span class="co">##  [4,]  0.1803974  0.5067409  0.11830678 -0.05121995</span>
-<span class="co">##  [5,] -0.0285135 -0.2132671  0.06493571 -0.16314895</span>
-<span class="co">##  [6,]  0.1088383  0.4477885 -0.19765509 -0.03756204</span>
-<span class="co">##  [7,]  1.0000000 -0.2575748 -0.33535585  0.13664871</span>
-<span class="co">##  [8,] -0.2575748  1.0000000  0.43923469 -0.23592753</span>
-<span class="co">##  [9,] -0.3353559  0.4392347  1.00000000 -0.40244183</span>
-<span class="co">## [10,]  0.1366487 -0.2359275 -0.40244183  1.00000000</span></code></pre>
+<pre><code><span class="co">##               [,1]        [,2]        [,3]       [,4]        [,5]        [,6]</span>
+<span class="co">##  [1,]  1.000000000  0.10675730 -0.17833219  0.1740396  0.08851025 -0.28873586</span>
+<span class="co">##  [2,]  0.106757298  1.00000000 -0.48091248 -0.3971115 -0.26070748 -0.01360048</span>
+<span class="co">##  [3,] -0.178332194 -0.48091248  1.00000000  0.3596338  0.41019204 -0.21342651</span>
+<span class="co">##  [4,]  0.174039598 -0.39711148  0.35963383  1.0000000  0.29205220 -0.36242369</span>
+<span class="co">##  [5,]  0.088510255 -0.26070748  0.41019204  0.2920522  1.00000000 -0.32040794</span>
+<span class="co">##  [6,] -0.288735855 -0.01360048 -0.21342651 -0.3624237 -0.32040794  1.00000000</span>
+<span class="co">##  [7,]  0.445773360 -0.24352172  0.46310124  0.4986461  0.43391022 -0.30082853</span>
+<span class="co">##  [8,]  0.007277866 -0.23291943  0.48138602  0.5094510 -0.28150202 -0.11392437</span>
+<span class="co">##  [9,]  0.193697695 -0.23862706 -0.41347277 -0.1202726 -0.37791515  0.49848281</span>
+<span class="co">## [10,]  0.058586131  0.27286601 -0.01575831  0.1283661  0.32059597  0.38537751</span>
+<span class="co">##             [,7]         [,8]       [,9]       [,10]</span>
+<span class="co">##  [1,]  0.4457734  0.007277866  0.1936977  0.05858613</span>
+<span class="co">##  [2,] -0.2435217 -0.232919429 -0.2386271  0.27286601</span>
+<span class="co">##  [3,]  0.4631012  0.481386017 -0.4134728 -0.01575831</span>
+<span class="co">##  [4,]  0.4986461  0.509451039 -0.1202726  0.12836609</span>
+<span class="co">##  [5,]  0.4339102 -0.281502023 -0.3779152  0.32059597</span>
+<span class="co">##  [6,] -0.3008285 -0.113924366  0.4984828  0.38537751</span>
+<span class="co">##  [7,]  1.0000000  0.409121109 -0.2957449  0.10107164</span>
+<span class="co">##  [8,]  0.4091211  1.000000000 -0.2554795 -0.26335581</span>
+<span class="co">##  [9,] -0.2957449 -0.255479510  1.0000000  0.25726248</span>
+<span class="co">## [10,]  0.1010716 -0.263355810  0.2572625  1.00000000</span></code></pre>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">X</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>
 <span class="va">Y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">10</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">X</span>,<span class="va">Y</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] -0.1878788</span></code></pre>
+<pre><code><span class="co">## [1] 0.6363636</span></code></pre>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, breaks<span class="op">=</span><span class="fl">100</span><span class="op">)</span></code></pre></div>
 <p><img src="Correlation_example_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
@@ -331,7 +331,7 @@
 <pre><code><span class="co">## [1] 220</span></code></pre>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] 264</span></code></pre>
+<pre><code><span class="co">## [1] 292</span></code></pre>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

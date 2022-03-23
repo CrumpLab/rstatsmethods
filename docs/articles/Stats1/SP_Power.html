@@ -265,7 +265,7 @@
 
 <span class="co"># the pvalue for this one pretend simulation</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">t.test</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span>,var.equal<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span>
-<span class="co">#&gt; [1] 0.2090953</span>
+<span class="co">#&gt; [1] 0.4321709</span>
 
 <span class="co"># running the simulation</span>
 <span class="co"># everytime we run this function we do one simulated experiment and return the p-value</span>
@@ -285,7 +285,7 @@
 <code class="sourceCode R">
 <span class="co"># proportion of simulated experiments had a p-value less than .05</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">outcomes</span><span class="op">[</span><span class="va">outcomes</span><span class="op">&lt;</span><span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.055</span></code></pre></div>
+<span class="co">#&gt; [1] 0.04</span></code></pre></div>
 <p>We ran the above simulation 1000 times. By definition, we should get approximately 5% of the simulations returning a p-value less than .05. If we increase the number of simulations, then we will get a more accurate answer that converges on 5% every time.</p>
 </div>
 </div>
@@ -298,7 +298,7 @@
 <code class="sourceCode R">  <span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">10</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
   <span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>,mean<span class="op">=</span><span class="fl">15</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span>
   <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">t.test</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span>,var.equal<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span>
-<span class="co">#&gt; [1] 0.0003445356</span>
+<span class="co">#&gt; [1] 0.5411918</span>
 
 <span class="co"># make the mean for B 15 (5 more than A)</span>
 <span class="va">sim_alternative</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
@@ -317,7 +317,7 @@
 <code class="sourceCode R">
 <span class="co"># proportion of simulated experiments had a p-value less than .05</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">outcomes</span><span class="op">[</span><span class="va">outcomes</span><span class="op">&lt;</span><span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">1000</span>
-<span class="co">#&gt; [1] 0.567</span></code></pre></div>
+<span class="co">#&gt; [1] 0.597</span></code></pre></div>
 <p>We programmed a mean difference of 5 between our sample for A and B, and we found p-values less than .05 a much higher proportion of the time. This is sensible, as there really was a difference between the samples (we put it there).</p>
 </div>
 <div class="section level2">
@@ -479,7 +479,7 @@
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">.3</span> 
 <span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fu">sim_power</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">sims</span><span class="op">[</span><span class="va">sims</span><span class="op">&lt;</span><span class="fl">.05</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">sims</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.094</span>
+<span class="co">#&gt; [1] 0.091</span>
 
 <span class="co"># vector of effect sizes</span>
 <span class="va">effect_sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">.1</span>,<span class="fl">2</span>,<span class="fl">.1</span><span class="op">)</span>

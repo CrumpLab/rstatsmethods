@@ -357,56 +357,56 @@
 <thead><tr class="header">
 <th align="left">Effect</th>
 <th align="left"><span class="math inline">\(\hat{\eta}^2_G\)</span></th>
+<th align="left">90% CI</th>
 <th align="left"><span class="math inline">\(F\)</span></th>
 <th align="left"><span class="math inline">\(\mathit{df}\)</span></th>
 <th align="left"><span class="math inline">\(\mathit{df}_{\mathrm{res}}\)</span></th>
-<th align="left"><span class="math inline">\(\mathit{MSE}\)</span></th>
 <th align="left"><span class="math inline">\(p\)</span></th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">IV</td>
 <td align="left">.327</td>
+<td align="left">[.109, .462]</td>
 <td align="left">5.47</td>
 <td align="left">4</td>
 <td align="left">45</td>
-<td align="left">32.00</td>
 <td align="left">.001</td>
 </tr>
 <tr class="even">
 <td align="left">IV <span class="math inline">\(\times\)</span> 1+3+4 vs 2+5</td>
 <td align="left">.319</td>
+<td align="left">[.143, .476]</td>
 <td align="left">21.09</td>
 <td align="left">1</td>
 <td align="left">45</td>
-<td align="left">32.00</td>
 <td align="left">&lt; .001</td>
 </tr>
 <tr class="odd">
 <td align="left">IV <span class="math inline">\(\times\)</span> 1 vs 3+4</td>
 <td align="left">.000</td>
+<td align="left">[.000, .000]</td>
 <td align="left">0.00</td>
 <td align="left">1</td>
 <td align="left">45</td>
-<td align="left">32.00</td>
 <td align="left">&gt; .999</td>
 </tr>
 <tr class="even">
 <td align="left">IV <span class="math inline">\(\times\)</span> 3 vs 4</td>
 <td align="left">.014</td>
+<td align="left">[.000, .116]</td>
 <td align="left">0.62</td>
 <td align="left">1</td>
 <td align="left">45</td>
-<td align="left">32.00</td>
 <td align="left">.433</td>
 </tr>
 <tr class="odd">
 <td align="left">IV <span class="math inline">\(\times\)</span> 2 vs 5</td>
 <td align="left">.003</td>
+<td align="left">[.000, .008]</td>
 <td align="left">0.16</td>
 <td align="left">1</td>
 <td align="left">45</td>
-<td align="left">32.00</td>
 <td align="left">.695</td>
 </tr>
 </tbody>
@@ -589,9 +589,9 @@
 <span class="va">grand_means</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">*</span><span class="fl">2</span>
 <span class="co">#&gt; A B C D </span>
 <span class="co">#&gt; 5 5 9 9</span>
-<span class="va">grand_means</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">*</span><span class="fl">10</span>
+<span class="va">grand_means</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">*</span><span class="fl">3</span>
 <span class="co">#&gt;  A  B  C  D </span>
-<span class="co">#&gt; -3 -3 17 17</span></code></pre></div>
+<span class="co">#&gt;  4  4 10 10</span></code></pre></div>
 <p>In the above example no matter how many times we add the linear contrast to the grand means, we can never get the pattern in the original means…A will also be the same as B, and C will always be the same as D. We won’t capture those extra nuances, so we need the other two contrasts.</p>
 <p>Check this out, I add three of the first contrast, and 1 each of the second and third contrasts. I’m getting something close to the pattern of original means. But, it’s not clear to me exactly how much of each to add. The claim is that there is some combination that will produce the original means, what is it? what are the “coefficients” telling me how much of each contrast to add?</p>
 <p>I could fiddle about by hand and try different coefficients…</p>
@@ -758,16 +758,14 @@ do a monte-carlo simulation...familywise etc.
                                                 <span class="st">"c4"</span><span class="op">=</span> <span class="fl">4</span>,
                                                 <span class="st">"c5"</span> <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
                                         <span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;              Df Sum Sq Mean Sq F value Pr(&gt;F)  </span>
-<span class="co">#&gt; IV            5    6.5   1.299   1.367  0.235  </span>
-<span class="co">#&gt;   IV: c1      1    3.5   3.457   3.638  0.057 .</span>
-<span class="co">#&gt;   IV: c2      1    1.7   1.709   1.798  0.180  </span>
-<span class="co">#&gt;   IV: c3      1    1.0   0.975   1.026  0.312  </span>
-<span class="co">#&gt;   IV: c4      1    0.3   0.342   0.360  0.549  </span>
-<span class="co">#&gt;   IV: c5      1    0.0   0.011   0.012  0.914  </span>
-<span class="co">#&gt; Residuals   594  564.5   0.950                 </span>
-<span class="co">#&gt; ---</span>
-<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
+<span class="co">#&gt;              Df Sum Sq Mean Sq F value Pr(&gt;F)</span>
+<span class="co">#&gt; IV            5    4.6  0.9244   0.893  0.485</span>
+<span class="co">#&gt;   IV: c1      1    0.1  0.1080   0.104  0.747</span>
+<span class="co">#&gt;   IV: c2      1    0.2  0.2263   0.219  0.640</span>
+<span class="co">#&gt;   IV: c3      1    2.6  2.5568   2.470  0.117</span>
+<span class="co">#&gt;   IV: c4      1    0.0  0.0489   0.047  0.828</span>
+<span class="co">#&gt;   IV: c5      1    1.7  1.6818   1.625  0.203</span>
+<span class="co">#&gt; Residuals   594  614.9  1.0352</span></code></pre></div>
 <p>When we conduct the simulation we want to count type I errors. Specifically, let’s count type I errors for the omnibus test, as well as for the linear contrasts. Our simulation will be similar to the one reported in Table 12.1 from the textbook.</p>
 <p>In terms of organizing the code, I will adopt a strategy of saving the necessary data from the simulation into a dataframe that can then be analyzed to produce a summary table.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
@@ -824,17 +822,17 @@ do a monte-carlo simulation...familywise etc.
 <tr class="even">
 <td align="left">contrast</td>
 <td align="right">1</td>
-<td align="right">2001</td>
+<td align="right">2054</td>
 </tr>
 <tr class="odd">
 <td align="left">contrast</td>
 <td align="right">2</td>
-<td align="right">436</td>
+<td align="right">474</td>
 </tr>
 <tr class="even">
 <td align="left">contrast</td>
 <td align="right">3</td>
-<td align="right">30</td>
+<td align="right">39</td>
 </tr>
 <tr class="odd">
 <td align="left">omnibus</td>
@@ -844,7 +842,7 @@ do a monte-carlo simulation...familywise etc.
 <tr class="even">
 <td align="left">omnibus</td>
 <td align="right">1</td>
-<td align="right">508</td>
+<td align="right">518</td>
 </tr>
 </tbody>
 </table>
@@ -854,7 +852,7 @@ do a monte-carlo simulation...familywise etc.
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">type</span> <span class="op">==</span> <span class="st">'omnibus'</span>,
          <span class="va">counts</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">type_I_frequency</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.0508</span></code></pre></div>
+<span class="co">#&gt; [1] 0.0518</span></code></pre></div>
 <p>Similarly, we conducted 50000 total linear contrasts. Looking at individual contrasts, the type I error rate is also close to .05:</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">type_I_errors</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -862,7 +860,7 @@ do a monte-carlo simulation...familywise etc.
          <span class="va">counts</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">type_I_frequency</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="fl">50000</span>
-<span class="co">#&gt; [1] 0.04934</span></code></pre></div>
+<span class="co">#&gt; [1] 0.05134</span></code></pre></div>
 <p>However, <strong>the family-wise</strong> type I error rate is larger. We conducted 10,000 simulated experiments, if asked the question, what was the probability of rejecting the null if any of the linear contrasts were significant, then we find:</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">type_I_errors</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -870,7 +868,7 @@ do a monte-carlo simulation...familywise etc.
          <span class="va">counts</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">type_I_frequency</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.2467</span></code></pre></div>
+<span class="co">#&gt; [1] 0.2567</span></code></pre></div>
 </div>
 </div>
 <div class="section level2">

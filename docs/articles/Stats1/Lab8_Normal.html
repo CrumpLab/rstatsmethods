@@ -431,7 +431,7 @@
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">to_z</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">sample_means</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">to_z</span><span class="op">[</span><span class="va">to_z</span> <span class="op">&gt;</span> <span class="fl">0</span> <span class="op">&amp;</span> <span class="va">to_z</span> <span class="op">&lt;</span> <span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">100000</span>
-<span class="co">#&gt; [1] 0.34402</span></code></pre></div>
+<span class="co">#&gt; [1] 0.34013</span></code></pre></div>
 <p>We’ve just done some rough checking and found that the sampling distribution of the mean seems to be approximately normal (based on the above very minimal comparison). Because this relationship often holds, it is common to use the math of normal distributions to work with sampling distributions of the mean.</p>
 <p>As we will see later, not all sampling distributions create normal distributions, this is a special property of sampling distributions of sample means. In later tests, we will look at sampling distributions of other statistics such as the t-statistic, and F-statistic. These are not distributed normally, and so different distributions (t and F distributions) are used in place of the normal.</p>
 </div>
@@ -475,9 +475,9 @@
 <p>We can estimate them from the simulation:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">)</span>
-<span class="co">#&gt; [1] 55.01324</span>
+<span class="co">#&gt; [1] 54.98917</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">)</span>
-<span class="co">#&gt; [1] 1.582999</span></code></pre></div>
+<span class="co">#&gt; [1] 1.562488</span></code></pre></div>
 <p>Or, we could use analytic formulas to “know” what they should be (at least in the long). For example, we expect that the most likely sample mean will the mean of the population (remember the sample mean is an unbiased estimator of the population mean). So, the mean of sampling distribution is expected to 55.</p>
 <p>Remember in the previous lab on sampling distributions I mentioned that “the standard deviation of the sampling distribution of the sample means is the standard error of the mean”. In this case, the <strong>standard error of the mean</strong> can be computed directly:</p>
 <p><span class="math inline">\(\text{SEM} = \frac{\sigma}{\sqrt{N}}\)</span></p>
@@ -501,7 +501,7 @@
 
 <span class="co"># this is similar to what the simulation showed:</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">sample_means</span><span class="op">[</span><span class="va">sample_means</span> <span class="op">&gt;</span> <span class="fl">60</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
-<span class="co">#&gt; [1] 5e-04</span></code></pre></div>
+<span class="co">#&gt; [1] 4e-04</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="example-3-differences-between-groups">Example 3: differences between groups<a class="anchor" aria-label="anchor" href="#example-3-differences-between-groups"></a>
@@ -527,7 +527,7 @@
 <p>According to a simulation, scores of 3% or greater occur with p &lt;= 0.0917. This would be a “one-tailed” test. If you wanted to know how often you get a score as large as 3% away from the mean in either direction, that would be a two-tailed test:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">mean_differences</span><span class="op">[</span><span class="va">mean_differences</span> <span class="op">&gt;</span> <span class="fl">3</span> <span class="op">|</span> <span class="va">mean_differences</span> <span class="op">&lt;</span> <span class="op">-</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.1841</span></code></pre></div>
+<span class="co">#&gt; [1] 0.1864</span></code></pre></div>
 <p>These two p-values are close estimates of the p-values you would get from a z-test. They are off by a little bit because the simulation is slightly imperfect.</p>
 <p>To do a z-test for real, we need some observed mean difference between our two groups. Let’s say that is a 3% difference on the test. We also need the mean and standard deviation of the normal distribution where the 3% difference came from. Then we can calculate the probability of obtaining a 3% difference or larger by chance. IMPORTANTLY, the mean and standard deviation we need is for the null-distribution specific to a difference between two sample means, not the original parent distribution where the scores come from.</p>
 <ol style="list-style-type: decimal">
@@ -542,7 +542,7 @@
 <p>We could estimate this value from our simulation by calculating the standard deviation:</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">mean_differences</span><span class="op">)</span>
-<span class="co">#&gt; [1] 2.241126</span></code></pre></div>
+<span class="co">#&gt; [1] 2.253348</span></code></pre></div>
 <p>It turns out there is a slightly different analytic formula for the standard error of the mean in this situation:</p>
 <p><span class="math inline">\(\text{SEM} = \frac{\sqrt{2}\sigma}{\sqrt{N}}\)</span></p>
 <p>This formula is required because the distribution of mean differences is a subtraction of the mean for group A and B, each with n=10. And, the expected variation changes a little bit, which we account for with the added <span class="math inline">\(\sqrt{2}\)</span> in the formula.</p>

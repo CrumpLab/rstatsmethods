@@ -468,6 +468,8 @@ F_ratio <- MS_Between/MS_Within
 Note, we go into more detail about aov` in the practical section.
 
 ```{r}
+romeo_juliet$Comprehension <- sample(romeo_juliet$Comprehension)
+
 anova.out <- aov(Comprehension ~ Group, data = romeo_juliet)
 summary(anova.out)
 ```
@@ -505,6 +507,7 @@ SS_total <- sum( (mean(sim_data) - sim_data)^2 )
 SS_total_distribution[i] <- SS_total
 }
 hist(SS_total_distribution)
+mean(SS_total_distribution)
 ```
 
 What would happen to $\text{SS}_\text{Total}$ is the Null hypothesis is false? There are an infinity of ways that the null hypothesis could be false, but let's simulate one of them to see what could happen to $\text{SS}_\text{Total}$.
@@ -698,6 +701,7 @@ The summary function shows that this F-value is associated with a fairly small p
 ```{r}
 ?pf
 pf(7.227,3,16, lower.tail = FALSE)
+
 ```
 
 However, where did the `F` distribution come from? The `F` distribution is just another **sampling distribution**. It is a hypothetical distribution of F values that would be obtained under the null hypothesis for this situation. We can obtain our own F-distribution using monte-carlo simulation. Let's see if we get clsoe.
@@ -709,8 +713,8 @@ aov.out <- aov(Comprehension ~ Group, data = romeo_juliet)
 simulated_F <- summary(aov.out)[[1]]$`F value`[1]
 
 # do the above a bunch of times
-save_F_values <- length(100)
-for(i in 1:100){
+save_F_values <- length(10000)
+for(i in 1:10000){
 romeo_juliet$Comprehension <- rnorm(20,0,1)
 aov.out <- aov(Comprehension ~ Group, data = romeo_juliet)
 simulated_F <- summary(aov.out)[[1]]$`F value`[1]

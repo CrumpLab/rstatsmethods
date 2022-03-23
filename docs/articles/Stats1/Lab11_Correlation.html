@@ -284,28 +284,28 @@
 <code class="sourceCode R"><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">10</span>,nrow<span class="op">=</span><span class="fl">10</span><span class="op">)</span> 
 <span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span><span class="op">)</span>
-<span class="co">#&gt;              [,1]</span>
-<span class="co">#&gt;  [1,]  0.26626654</span>
-<span class="co">#&gt;  [2,]  0.14422306</span>
-<span class="co">#&gt;  [3,]  0.34929229</span>
-<span class="co">#&gt;  [4,]  0.41022534</span>
-<span class="co">#&gt;  [5,]  0.43713564</span>
-<span class="co">#&gt;  [6,] -0.34129357</span>
-<span class="co">#&gt;  [7,] -0.46492842</span>
-<span class="co">#&gt;  [8,]  0.02019523</span>
-<span class="co">#&gt;  [9,]  0.46909443</span>
-<span class="co">#&gt; [10,] -0.22693298</span></code></pre></div>
+<span class="co">#&gt;               [,1]</span>
+<span class="co">#&gt;  [1,]  0.565486038</span>
+<span class="co">#&gt;  [2,] -0.053139473</span>
+<span class="co">#&gt;  [3,] -0.202603912</span>
+<span class="co">#&gt;  [4,] -0.767775860</span>
+<span class="co">#&gt;  [5,] -0.425233040</span>
+<span class="co">#&gt;  [6,] -0.073941495</span>
+<span class="co">#&gt;  [7,] -0.028293402</span>
+<span class="co">#&gt;  [8,] -0.203861382</span>
+<span class="co">#&gt;  [9,] -0.106635830</span>
+<span class="co">#&gt; [10,]  0.007374352</span></code></pre></div>
 <p>If both x and y are matrices, then the correlation between each column of X and Y are computed.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">25</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">5</span>,nrow<span class="op">=</span><span class="fl">5</span><span class="op">)</span> 
 <span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">25</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">5</span>,nrow<span class="op">=</span><span class="fl">5</span><span class="op">)</span> 
 <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span><span class="op">)</span>
-<span class="co">#&gt;             [,1]       [,2]       [,3]      [,4]        [,5]</span>
-<span class="co">#&gt; [1,] -0.71233061  0.6084480  0.7469261 0.2793848 -0.53511038</span>
-<span class="co">#&gt; [2,]  0.56325113  0.2393971 -0.8591864 0.7634284  0.32721486</span>
-<span class="co">#&gt; [3,]  0.44890979 -0.3856293 -0.1797420 0.2246562 -0.08520415</span>
-<span class="co">#&gt; [4,]  0.74333639 -0.5740012 -0.3763902 0.2024117  0.69520292</span>
-<span class="co">#&gt; [5,]  0.09695843  0.6960250 -0.4599535 0.9506266 -0.01257181</span></code></pre></div>
+<span class="co">#&gt;            [,1]       [,2]       [,3]       [,4]        [,5]</span>
+<span class="co">#&gt; [1,]  0.2069651  0.3379005  0.1019548  0.8000282  0.53783036</span>
+<span class="co">#&gt; [2,]  0.5344292  0.1675030  0.3439971 -0.9406181 -0.57546806</span>
+<span class="co">#&gt; [3,] -0.5862254  0.1311182 -0.3217094  0.9437372  0.75737073</span>
+<span class="co">#&gt; [4,] -0.5367367 -0.1306786  0.3105585 -0.4912977 -0.05006565</span>
+<span class="co">#&gt; [5,]  0.6905419  0.6799669  0.2496893 -0.4150472 -0.11063036</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="cor-and-n-1">cor and n-1<a class="anchor" aria-label="anchor" href="#cor-and-n-1"></a>
@@ -431,7 +431,7 @@
 <p><img src="Lab11_Correlation_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">X</span>,<span class="va">Y</span><span class="op">)</span>
-<span class="co">#&gt; [1] -0.6969697</span></code></pre></div>
+<span class="co">#&gt; [1] 0.4060606</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="sum-of-products-and-correlation">Sum of products and correlation<a class="anchor" aria-label="anchor" href="#sum-of-products-and-correlation"></a>
@@ -474,16 +474,16 @@
 </ol>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] 316</span></code></pre></div>
+<span class="co">#&gt; [1] 291</span></code></pre></div>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sim_sums</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">sim_sums</span><span class="op">)</span></code></pre></div>
 <p><img src="Lab11_Correlation_files/figure-html/unnamed-chunk-21-1.png" width="700"></p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">sim_sums</span><span class="op">)</span>
-<span class="co">#&gt; [1] 233</span>
+<span class="co">#&gt; [1] 228</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">sim_sums</span><span class="op">)</span>
-<span class="co">#&gt; [1] 377</span></code></pre></div>
+<span class="co">#&gt; [1] 373</span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -499,12 +499,12 @@
 <code class="sourceCode R"><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
 <span class="va">Y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">X</span>,<span class="va">Y</span><span class="op">)</span>
-<span class="co">#&gt; [1] -0.1112247</span></code></pre></div>
+<span class="co">#&gt; [1] -0.1764776</span></code></pre></div>
 <p>What happens if we do the above 10 times?</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;  [1]  0.27219700 -0.37607954  0.16019227  0.12671080 -0.21869487 -0.12426645</span>
-<span class="co">#&gt;  [7]  0.05152841 -0.05383521 -0.07011156  0.14727380</span></code></pre></div>
+<span class="co">#&gt;  [1]  0.3201403  0.4640895 -0.3102860 -0.1657568  0.7019885  0.1815884</span>
+<span class="co">#&gt;  [7]  0.5274551  0.5319418 -0.3658799  0.2821323</span></code></pre></div>
 <p>How about 1000 times?</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rand_1000</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
@@ -512,14 +512,14 @@
 <p><img src="Lab11_Correlation_files/figure-html/unnamed-chunk-24-1.png" width="700"></p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">rand_1000</span><span class="op">)</span>
-<span class="co">#&gt; [1] -0.001213683</span>
+<span class="co">#&gt; [1] -0.004522381</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">rand_1000</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.9149094</span>
+<span class="co">#&gt; [1] 0.9239584</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">rand_1000</span><span class="op">)</span>
-<span class="co">#&gt; [1] -0.9130114</span>
+<span class="co">#&gt; [1] -0.9213928</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">rand_1000</span><span class="op">[</span><span class="va">rand_1000</span> <span class="op">&gt;</span> <span class="fl">.54</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.0538</span></code></pre></div>
+<span class="co">#&gt; [1] 0.0531</span></code></pre></div>
 <p>In some sense the above simulation creates a null-distribution of sorts, that is the sampling distribution of <span class="math inline">\(r\)</span> values that could be expected when the number of paired scores is 10, and both are drawn randomly and independently from unit normal distributions. It’s clear in this case that by chance alone it is possible to get a wide range of correlation coefficients.</p>
 </div>
 <div class="section level3">
@@ -532,11 +532,11 @@
 <p><img src="Lab11_Correlation_files/figure-html/unnamed-chunk-25-1.png" width="700"></p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">rand_1000</span><span class="op">)</span>
-<span class="co">#&gt; [1] -0.001520906</span>
+<span class="co">#&gt; [1] -0.003822817</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">rand_1000</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.3088372</span>
+<span class="co">#&gt; [1] 0.2910701</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">rand_1000</span><span class="op">)</span>
-<span class="co">#&gt; [1] -0.298397</span></code></pre></div>
+<span class="co">#&gt; [1] -0.3618702</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="permutation-test">Permutation test<a class="anchor" aria-label="anchor" href="#permutation-test"></a>
@@ -685,7 +685,7 @@
 <p>Instead of using the <code><a href="https://rdrr.io/r/stats/cor.test.html" class="external-link">cor.test()</a></code> function, we can use the concept of a permutation test to construct our own null distribution. The basic idea is to imagine that the values in the <code>Length</code> and <code>Meanings</code> variables could be randomly repaired, and then a new correlation coefficient measured. If we did this procedure several thousand times we would create a null distribution representing the kinds of <span class="math inline">\(r\)</span> values that could have been obtained by chance.</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">Length</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">Meanings</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] -0.07741387</span></code></pre></div>
+<span class="co">#&gt; [1] -0.1310081</span></code></pre></div>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sim_rs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">Length</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">Meanings</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">sim_rs</span><span class="op">)</span></code></pre></div>

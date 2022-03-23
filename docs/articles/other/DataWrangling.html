@@ -394,7 +394,8 @@
 <span class="va">new_df</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
           <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">hair_color</span>,<span class="va">eye_color</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
           <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>counts<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">name</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## `summarise()` has grouped output by 'hair_color'. You can override using the `.groups` argument.</span></code></pre>
+<pre><code><span class="co">## `summarise()` has grouped output by 'hair_color'. You can override using the</span>
+<span class="co">## `.groups` argument.</span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="focus-on-summarise">focus on summarise<a class="anchor" aria-label="anchor" href="#focus-on-summarise"></a>
@@ -406,7 +407,8 @@
           <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>mean_years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">birth_year</span>,na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,
                     sd_years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">birth_year</span>,na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,
                     counts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">name</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## `summarise()` has grouped output by 'hair_color'. You can override using the `.groups` argument.</span></code></pre>
+<pre><code><span class="co">## `summarise()` has grouped output by 'hair_color'. You can override using the</span>
+<span class="co">## `.groups` argument.</span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="mutate">Mutate<a class="anchor" aria-label="anchor" href="#mutate"></a>

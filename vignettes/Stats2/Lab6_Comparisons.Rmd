@@ -277,7 +277,7 @@ First, note that we need all of the contrasts to do this. For example, there is 
 ```{r}
 grand_means + contrasts(fake_data$IV)[,1]
 grand_means + contrasts(fake_data$IV)[,1]*2
-grand_means + contrasts(fake_data$IV)[,1]*10
+grand_means + contrasts(fake_data$IV)[,1]*3
 ```
 
 In the above example no matter how many times we add the linear contrast to the grand means, we can never get the pattern in the original means...A will also be the same as B, and C will always be the same as D. We won't capture those extra nuances, so we need the other two contrasts.

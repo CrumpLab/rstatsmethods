@@ -30,6 +30,7 @@ articles:
   Lab8_Contrasts: Stats2/Lab8_Contrasts.html
   Lab9_RM_ANOVA: Stats2/Lab9_RM_ANOVA.html
   semester_project: Stats2/semester_project.html
+  semester_project_2021: Stats2/semester_project_2021.html
   Spring_2022_syllabus: course_docs/Spring_2022_syllabus.html
   Spring_syllabus: course_docs/Spring_syllabus.html
   Syllabus: course_docs/Syllabus.html
@@ -39,7 +40,7 @@ articles:
   DataWrangling: other/DataWrangling.html
   TestAPA: other/TestAPA.html
   testAPA2: other/testAPA2.html
-last_built: 2022-01-26T16:47Z
+last_built: 2022-03-23T13:32Z
 urls:
   reference: https://crumplab.github.io/rstatsmethods/reference
   article: https://crumplab.github.io/rstatsmethods/articles
