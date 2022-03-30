@@ -302,5 +302,7 @@ There are four problems each worth 3 points. Choose two of the four. If you comp
 
 4. In the conceptual section of this lab we used an R simulation to find the family-wise type I error rate for a simple factorial design with 2 independent variables. Use an R simulation to find the family-wise type I error rate for a factorial design with 3 independent variables. (3 points)
 
+5. Show that a 2x2 factorial ANOVA can be accomplished by using a one-factor ANOVA with three linear contrasts. (3 points)
+
 ## References
 
