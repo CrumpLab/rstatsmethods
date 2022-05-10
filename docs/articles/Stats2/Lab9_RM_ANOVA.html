@@ -237,7 +237,7 @@
 <div class="section level2">
 <h2 id="reading">Reading<a class="anchor" aria-label="anchor" href="#reading"></a>
 </h2>
-<p>Chapters 18 and 19 from <span class="citation">Abdi et al. (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>. Also see, additional examples and discussion of simple repeated measures in <span class="citation">Crump et al. (<a href="#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">2018</a>)</span>, here <a href="https://crumplab.github.io/statistics/repeated-measures-anova.html" class="external-link uri">https://crumplab.github.io/statistics/repeated-measures-anova.html</a>.</p>
+<p>Chapters 18 and 19 from <span class="citation"><a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al.</a> (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>. Also see, additional examples and discussion of simple repeated measures in <span class="citation"><a href="#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">Crump et al.</a> (<a href="#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">2018</a>)</span>, here <a href="https://crumplab.github.io/statistics/repeated-measures-anova.html" class="external-link uri">https://crumplab.github.io/statistics/repeated-measures-anova.html</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="practical-1-how-to-run-a-repeated-measures-anova-in-r">Practical 1: How to run a repeated measures ANOVA in R<a class="anchor" aria-label="anchor" href="#practical-1-how-to-run-a-repeated-measures-anova-in-r"></a>
@@ -247,7 +247,7 @@
 <div class="section level3">
 <h3 id="single-factor-example-1">Single factor Example 1<a class="anchor" aria-label="anchor" href="#single-factor-example-1"></a>
 </h3>
-<p>From example 18.13 in <span class="citation">Abdi et al. (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>.</p>
+<p>From example 18.13 in <span class="citation"><a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al.</a> (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/" class="external-link">tibble</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span>
@@ -302,7 +302,7 @@
 <div class="section level2">
 <h2 id="single-factor-example-2">Single Factor Example 2<a class="anchor" aria-label="anchor" href="#single-factor-example-2"></a>
 </h2>
-<p>From example 18.14 in <span class="citation">Abdi et al. (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>.</p>
+<p>From example 18.14 in <span class="citation"><a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al.</a> (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">e2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span><span class="op">~</span><span class="va">Subject</span>, <span class="op">~</span><span class="va">r1</span>, <span class="op">~</span><span class="va">r2</span>, <span class="op">~</span><span class="va">r3</span>, <span class="op">~</span><span class="va">r4</span>, <span class="op">~</span><span class="va">r5</span>, <span class="op">~</span><span class="va">r6</span>,
         <span class="st">"s1"</span>,<span class="fl">30</span>,<span class="fl">18</span>,<span class="fl">21</span>,<span class="fl">15</span>,<span class="fl">18</span>,<span class="fl">12</span>,
@@ -346,7 +346,7 @@
 <p>When there are multiple within-subject factors, we need to specify the error terms appropriately. Here is the general syntax for a two factor ANOVA with two repeated measures.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">IV1</span><span class="op">*</span><span class="va">IV2</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">Error</a></span><span class="op">(</span><span class="va">Subjects</span><span class="op">/</span><span class="va">IV1</span><span class="op">*</span><span class="va">IV2</span><span class="op">)</span>, data<span class="op">=</span> <span class="va">dataframe</span><span class="op">)</span></code></pre></div>
-<p>From example 19.5 in <span class="citation">Abdi et al. (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>.</p>
+<p>From example 19.5 in <span class="citation"><a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al.</a> (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">godden_baddeley</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span><span class="op">~</span><span class="va">Subjects</span>,<span class="op">~</span><span class="va">LearningPlace</span>,<span class="op">~</span><span class="va">TestingPlace</span>,<span class="op">~</span><span class="va">Recall</span>,
         <span class="st">"s1"</span>,<span class="st">"On Land"</span>,<span class="st">"On Land"</span>,<span class="fl">34</span>,
@@ -641,7 +641,7 @@ Crump, M. J. C., Navarro, D., &amp; Suzuki, J. (2018). <em>Answering questions w
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>

@@ -237,7 +237,7 @@
 <div class="section level2">
 <h2 id="reading">Reading<a class="anchor" aria-label="anchor" href="#reading"></a>
 </h2>
-<p>Chapter 16 from <span class="citation">Abdi et al. (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>. See also Chapters <a href="https://crumplab.github.io/statistics/factorial-anova.html" class="external-link">9</a> and <a href="https://crumplab.github.io/statistics/more-on-factorial-designs.html" class="external-link">10</a> from <span class="citation">Crump et al. (<a href="#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">2018</a>)</span> on factorial designs.</p>
+<p>Chapter 16 from <span class="citation"><a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al.</a> (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>. See also Chapters <a href="https://crumplab.github.io/statistics/factorial-anova.html" class="external-link">9</a> and <a href="https://crumplab.github.io/statistics/more-on-factorial-designs.html" class="external-link">10</a> from <span class="citation"><a href="#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">Crump et al.</a> (<a href="#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">2018</a>)</span> on factorial designs.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hjQ3DC2dIcc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
 </div>
@@ -276,31 +276,31 @@
 <code class="sourceCode R"><span class="va">aov_out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">A</span><span class="op">*</span><span class="va">B</span>, data <span class="op">=</span> <span class="va">factorial_data</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">aov_out</span><span class="op">)</span>
 <span class="co">#&gt;             Df Sum Sq Mean Sq F value Pr(&gt;F)</span>
-<span class="co">#&gt; A            1  0.121  0.1209   0.084  0.776</span>
-<span class="co">#&gt; B            1  0.309  0.3086   0.215  0.649</span>
-<span class="co">#&gt; A:B          1  0.273  0.2732   0.190  0.669</span>
-<span class="co">#&gt; Residuals   16 23.018  1.4386</span>
+<span class="co">#&gt; A            1  2.133  2.1326   2.644  0.123</span>
+<span class="co">#&gt; B            1  0.253  0.2532   0.314  0.583</span>
+<span class="co">#&gt; A:B          1  0.194  0.1943   0.241  0.630</span>
+<span class="co">#&gt; Residuals   16 12.906  0.8066</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/model.tables.html" class="external-link">model.tables</a></span><span class="op">(</span><span class="va">aov_out</span>, type <span class="op">=</span> <span class="st">"means"</span><span class="op">)</span>
 <span class="co">#&gt; Tables of means</span>
 <span class="co">#&gt; Grand mean</span>
-<span class="co">#&gt;           </span>
-<span class="co">#&gt; 0.5730558 </span>
+<span class="co">#&gt;            </span>
+<span class="co">#&gt; -0.1422954 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  A </span>
 <span class="co">#&gt; A</span>
-<span class="co">#&gt;     L1     L2 </span>
-<span class="co">#&gt; 0.6508 0.4953 </span>
+<span class="co">#&gt;      L1      L2 </span>
+<span class="co">#&gt;  0.1842 -0.4688 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  B </span>
 <span class="co">#&gt; B</span>
-<span class="co">#&gt;     L1     L2 </span>
-<span class="co">#&gt; 0.6973 0.4488 </span>
+<span class="co">#&gt;       L1       L2 </span>
+<span class="co">#&gt; -0.25480 -0.02979 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  A:B </span>
 <span class="co">#&gt;     B</span>
-<span class="co">#&gt; A    L1     L2    </span>
-<span class="co">#&gt;   L1 0.8919 0.4097</span>
-<span class="co">#&gt;   L2 0.5027 0.4880</span></code></pre></div>
+<span class="co">#&gt; A    L1      L2     </span>
+<span class="co">#&gt;   L1 -0.0268  0.3953</span>
+<span class="co">#&gt;   L2 -0.4828 -0.4549</span></code></pre></div>
 <p>Briefly, if you had factorial design with three IVs, you would another <code>*</code> in the formula along with the name of the third IV. For example, <code>DV_name ~ IV1_name * IV2_name * IV3_name</code>.</p>
 </div>
 <div class="section level3">
@@ -315,15 +315,17 @@
                          DV <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">n</span><span class="op">*</span><span class="fl">2</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">A</span><span class="op">*</span><span class="va">B</span><span class="op">*</span><span class="va">C</span>, data <span class="op">=</span> <span class="va">factorial_data</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;             Df Sum Sq Mean Sq F value Pr(&gt;F)</span>
-<span class="co">#&gt; A            1  0.503  0.5032   0.703  0.414</span>
-<span class="co">#&gt; B            1  2.073  2.0727   2.897  0.108</span>
-<span class="co">#&gt; C            1  0.990  0.9898   1.384  0.257</span>
-<span class="co">#&gt; A:B          1  0.174  0.1740   0.243  0.629</span>
-<span class="co">#&gt; A:C          1  0.133  0.1330   0.186  0.672</span>
-<span class="co">#&gt; B:C          1  0.545  0.5454   0.762  0.396</span>
-<span class="co">#&gt; A:B:C        1  0.585  0.5854   0.818  0.379</span>
-<span class="co">#&gt; Residuals   16 11.446  0.7154</span></code></pre></div>
+<span class="co">#&gt;             Df Sum Sq Mean Sq F value Pr(&gt;F)  </span>
+<span class="co">#&gt; A            1  0.673  0.6732   1.028 0.3257  </span>
+<span class="co">#&gt; B            1  3.108  3.1082   4.747 0.0447 *</span>
+<span class="co">#&gt; C            1  0.031  0.0307   0.047 0.8314  </span>
+<span class="co">#&gt; A:B          1  0.232  0.2322   0.355 0.5599  </span>
+<span class="co">#&gt; A:C          1  0.084  0.0844   0.129 0.7243  </span>
+<span class="co">#&gt; B:C          1  0.738  0.7383   1.127 0.3041  </span>
+<span class="co">#&gt; A:B:C        1  0.038  0.0377   0.058 0.8133  </span>
+<span class="co">#&gt; Residuals   16 10.477  0.6548                 </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="example-with-ggplot">Example with ggplot<a class="anchor" aria-label="anchor" href="#example-with-ggplot"></a>
@@ -349,10 +351,10 @@
 <span class="co">#&gt; <span style="color: #949494;"># Groups:   A [2]</span></span>
 <span class="co">#&gt;   A     B     mean_DV</span>
 <span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> A1    B1     0.590 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> A1    B2     0.540 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> A2    B1    -<span style="color: #BB0000;">0.598</span> </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> A2    B2     0.036<span style="text-decoration: underline;">9</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> A1    B1    -<span style="color: #BB0000;">0.053</span><span style="color: #BB0000; text-decoration: underline;">2</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> A1    B2     0.353 </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> A2    B1     0.011<span style="text-decoration: underline;">1</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> A2    B2    -<span style="color: #BB0000;">0.013</span><span style="color: #BB0000; text-decoration: underline;">8</span></span>
 
 <span class="co"># look at the means in a plot</span>
 <span class="va">factorial_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -395,34 +397,34 @@
 <span class="va">aov_out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">A</span><span class="op">*</span><span class="va">B</span>, data <span class="op">=</span> <span class="va">factorial_data</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">aov_out</span><span class="op">)</span>
 <span class="co">#&gt;             Df Sum Sq Mean Sq F value Pr(&gt;F)</span>
-<span class="co">#&gt; A            1  3.575   3.575   2.872  0.109</span>
-<span class="co">#&gt; B            1  0.427   0.427   0.343  0.566</span>
-<span class="co">#&gt; A:B          1  0.586   0.586   0.471  0.502</span>
-<span class="co">#&gt; Residuals   16 19.913   1.245</span>
+<span class="co">#&gt; A            1  0.114  0.1141   0.095  0.762</span>
+<span class="co">#&gt; B            1  0.181  0.1815   0.151  0.702</span>
+<span class="co">#&gt; A:B          1  0.232  0.2320   0.193  0.666</span>
+<span class="co">#&gt; Residuals   16 19.186  1.1991</span>
 
 <span class="co"># ANOVA means</span>
 <span class="co"># print to console</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/model.tables.html" class="external-link">model.tables</a></span><span class="op">(</span><span class="va">aov_out</span>, type <span class="op">=</span> <span class="st">"means"</span><span class="op">)</span>
 <span class="co">#&gt; Tables of means</span>
 <span class="co">#&gt; Grand mean</span>
-<span class="co">#&gt;           </span>
-<span class="co">#&gt; 0.1423662 </span>
+<span class="co">#&gt;            </span>
+<span class="co">#&gt; 0.07419594 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  A </span>
 <span class="co">#&gt; A</span>
-<span class="co">#&gt;      A1      A2 </span>
-<span class="co">#&gt;  0.5651 -0.2804 </span>
+<span class="co">#&gt;       A1       A2 </span>
+<span class="co">#&gt;  0.14973 -0.00134 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  B </span>
 <span class="co">#&gt; B</span>
 <span class="co">#&gt;       B1       B2 </span>
-<span class="co">#&gt; -0.00372  0.28845 </span>
+<span class="co">#&gt; -0.02105  0.16945 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  A:B </span>
 <span class="co">#&gt;     B</span>
 <span class="co">#&gt; A    B1      B2     </span>
-<span class="co">#&gt;   A1  0.5903  0.5400</span>
-<span class="co">#&gt;   A2 -0.5977  0.0369</span></code></pre></div>
+<span class="co">#&gt;   A1 -0.0532  0.3527</span>
+<span class="co">#&gt;   A2  0.0111 -0.0138</span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -572,7 +574,7 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="op">)</span>
   
 <span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">type_I_errors</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">/</span><span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.1358</span></code></pre></div>
+<span class="co">#&gt; [1] 0.1409</span></code></pre></div>
 <p>If we look at the type I error rates separately for each main effect and interaction what do we find?</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">save_sim</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -581,15 +583,15 @@
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 2</span></span>
 <span class="co">#&gt;   effect type_I_error</span>
 <span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> A            0.049<span style="text-decoration: underline;">8</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> AxB          0.047<span style="text-decoration: underline;">8</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> B            0.049<span style="text-decoration: underline;">9</span></span></code></pre></div>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> A            0.051<span style="text-decoration: underline;">3</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> AxB          0.051<span style="text-decoration: underline;">4</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> B            0.050<span style="text-decoration: underline;">8</span></span></code></pre></div>
 <p>The conclusion here is Factorial ANOVAs are not protected against family-wise type I error rate. As you increase the number of IVs, you will increase the likelihood of finding at least one “significant” effect among the main effects and interactions.</p>
 <p>Finally, here’s a quick alternative simulation using <code><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom()</a></code>. I set the number of simulations to 10000, the size to 3 (representing three independent tests), and I set the probability of getting 1 to .05. Last, I counted how many of results had a value greater than 0 (representing a type I error), and divided by 10000 (the number of simulations) to estimate the family-wise error rate.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="fl">10000</span>,<span class="fl">3</span>,<span class="fl">.05</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">a</span><span class="op">[</span><span class="va">a</span><span class="op">&gt;</span><span class="fl">0</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.1459</span></code></pre></div>
+<span class="co">#&gt; [1] 0.1412</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="lab-7-generalization-assignment">Lab 7 Generalization Assignment<a class="anchor" aria-label="anchor" href="#lab-7-generalization-assignment"></a>
@@ -616,7 +618,7 @@
 <ol style="list-style-type: decimal">
 <li><p>Explain the concept of main effects and interactions with an example using R. For example, this could include a definition of main effects and interactions and a figure depicting main effects and an interaction along with an explanation of the patterns for each. A major point of this problem is for you to to engage in the task of developing an explanation of these concepts that would 1) be helpful for you to understand the concepts, and 2) could be helpful for others to understand these concepts. (3 points)</p></li>
 <li><p>Complete the 2x2 factorial lab found here <a href="https://crumplab.github.io/statisticsLab/lab-10-factorial-anova.html" class="external-link uri">https://crumplab.github.io/statisticsLab/lab-10-factorial-anova.html</a>, up to section 10.4.8. More specifically, your task is to follow that lab exercise to load in the data, transform the data into long-format, conduct a 2x2 between subjects ANOVA, and write a short results section reporting the main effects and interaction. (3 points)</p></li>
-<li><p>In chapter 10 of <span class="citation">Crump et al. (<a href="#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">2018</a>)</span>, there is a discussion of patterns of main effects and interactions that can occur in a 2x2 design, which represents perhaps the simplest factorial design. There are 8 possible outcomes discussed <a href="https://crumplab.github.io/statistics/more-on-factorial-designs.html#looking-at-main-effects-and-interactions" class="external-link uri">https://crumplab.github.io/statistics/more-on-factorial-designs.html#looking-at-main-effects-and-interactions</a>. Examples of these 8 outcomes are shown in two figures, one with bar graphs, and one with line graphs. Reproduce either of these figures using ggplot2. (3 points)</p></li>
+<li><p>In chapter 10 of <span class="citation"><a href="#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">Crump et al.</a> (<a href="#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">2018</a>)</span>, there is a discussion of patterns of main effects and interactions that can occur in a 2x2 design, which represents perhaps the simplest factorial design. There are 8 possible outcomes discussed <a href="https://crumplab.github.io/statistics/more-on-factorial-designs.html#looking-at-main-effects-and-interactions" class="external-link uri">https://crumplab.github.io/statistics/more-on-factorial-designs.html#looking-at-main-effects-and-interactions</a>. Examples of these 8 outcomes are shown in two figures, one with bar graphs, and one with line graphs. Reproduce either of these figures using ggplot2. (3 points)</p></li>
 <li><p>In the conceptual section of this lab we used an R simulation to find the family-wise type I error rate for a simple factorial design with 2 independent variables. Use an R simulation to find the family-wise type I error rate for a factorial design with 3 independent variables. (3 points)</p></li>
 <li><p>Show that a 2x2 factorial ANOVA can be accomplished by using a one-factor ANOVA with three linear contrasts. (3 points)</p></li>
 </ol>
@@ -653,7 +655,7 @@ Crump, M. J. C., Navarro, D., &amp; Suzuki, J. (2018). <em>Answering questions w
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>

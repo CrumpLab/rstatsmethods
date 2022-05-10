@@ -248,7 +248,7 @@
 </h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Og1cPcO551w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-<p>We will start with a practical example of how to do orthogonal contrasts in R. The following R code shows how to reproduce the example from 12.4 in <span class="citation">Abdi et al. (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>. The video briefly reviews that example and discusses some of the details of implementing orthogonal contrasts in R.</p>
+<p>We will start with a practical example of how to do orthogonal contrasts in R. The following R code shows how to reproduce the example from 12.4 in <span class="citation"><a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al.</a> (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>. The video briefly reviews that example and discusses some of the details of implementing orthogonal contrasts in R.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/" class="external-link">tibble</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span>
@@ -356,62 +356,62 @@
 <table class="table">
 <thead><tr class="header">
 <th align="left">Effect</th>
-<th align="left"><span class="math inline">\(\hat{\eta}^2_G\)</span></th>
-<th align="left">90% CI</th>
 <th align="left"><span class="math inline">\(F\)</span></th>
-<th align="left"><span class="math inline">\(\mathit{df}\)</span></th>
-<th align="left"><span class="math inline">\(\mathit{df}_{\mathrm{res}}\)</span></th>
+<th align="left"><span class="math inline">\(\mathit{df}_1\)</span></th>
+<th align="left"><span class="math inline">\(\mathit{df}_2\)</span></th>
+<th align="left"><span class="math inline">\(\mathit{MSE}\)</span></th>
 <th align="left"><span class="math inline">\(p\)</span></th>
+<th align="left"><span class="math inline">\(\hat{\eta}^2_G\)</span></th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">IV</td>
-<td align="left">.327</td>
-<td align="left">[.109, .462]</td>
 <td align="left">5.47</td>
 <td align="left">4</td>
 <td align="left">45</td>
+<td align="left">32.00</td>
 <td align="left">.001</td>
+<td align="left">.327</td>
 </tr>
 <tr class="even">
 <td align="left">IV <span class="math inline">\(\times\)</span> 1+3+4 vs 2+5</td>
-<td align="left">.319</td>
-<td align="left">[.143, .476]</td>
 <td align="left">21.09</td>
 <td align="left">1</td>
 <td align="left">45</td>
+<td align="left">32.00</td>
 <td align="left">&lt; .001</td>
+<td align="left">.319</td>
 </tr>
 <tr class="odd">
 <td align="left">IV <span class="math inline">\(\times\)</span> 1 vs 3+4</td>
-<td align="left">.000</td>
-<td align="left">[.000, .000]</td>
 <td align="left">0.00</td>
 <td align="left">1</td>
 <td align="left">45</td>
+<td align="left">32.00</td>
 <td align="left">&gt; .999</td>
+<td align="left">.000</td>
 </tr>
 <tr class="even">
 <td align="left">IV <span class="math inline">\(\times\)</span> 3 vs 4</td>
-<td align="left">.014</td>
-<td align="left">[.000, .116]</td>
 <td align="left">0.62</td>
 <td align="left">1</td>
 <td align="left">45</td>
+<td align="left">32.00</td>
 <td align="left">.433</td>
+<td align="left">.014</td>
 </tr>
 <tr class="odd">
 <td align="left">IV <span class="math inline">\(\times\)</span> 2 vs 5</td>
-<td align="left">.003</td>
-<td align="left">[.000, .008]</td>
 <td align="left">0.16</td>
 <td align="left">1</td>
 <td align="left">45</td>
+<td align="left">32.00</td>
 <td align="left">.695</td>
+<td align="left">.003</td>
 </tr>
 </tbody>
 </table>
-<p>As a sidenote, <span class="citation">Abdi et al. (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span> points out that when you use a complete set of orthogonal contrasts, the omnibus F-value is the same as the average of the F-values from each of the contrasts.</p>
+<p>As a sidenote, <span class="citation"><a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al.</a> (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span> points out that when you use a complete set of orthogonal contrasts, the omnibus F-value is the same as the average of the F-values from each of the contrasts.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">full_summary</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">`F value`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
 <span class="co">#&gt;         </span>
@@ -454,7 +454,7 @@
 <span class="co">#&gt; B 1 0 0</span>
 <span class="co">#&gt; C 0 1 0</span>
 <span class="co">#&gt; D 0 0 1</span></code></pre></div>
-<p>Let’s walk through this and answer some rhetorical questions. Our question for each group mean is, “how will we estimate this mean?”. First of all, we assume that all of the group means are deviations from the grand mean. So each group mean will be expressed as the sum of the grand mean and a deviation.</p>
+<p>Let’s walk through this and answer some rhetorical questions. Our question for each group mean is, “how will we estimate this mean?” First of all, we assume that all of the group means are deviations from the grand mean. So each group mean will be expressed as the sum of the grand mean and a deviation.</p>
 <p>Let’s start with D. What values from the data will we use to estimate the mean of D? The values in the column for D show the contrast <strong>weights</strong>. We are saying we will take 100% of deviation for D (an 4), and 0% of the other means.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/contrasts.html" class="external-link">contrasts</a></span><span class="op">(</span><span class="va">fake_data</span><span class="op">$</span><span class="va">IV</span><span class="op">)</span><span class="op">[</span>,<span class="st">'D'</span><span class="op">]</span>
@@ -560,7 +560,7 @@
 </h3>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ET-Hz1tUVKM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-<p>This is an addendum to the above “explanation”, which I gave a low score to myself for explanatory value. I thought I could do better, so I came up with this…</p>
+<p>This is an addendum to the above “explanation,” which I gave a low score to myself for explanatory value. I thought I could do better, so I came up with this…</p>
 <p><strong>Here’s the thing about orthogonal linear contrasts</strong>: if you add them up in the right way, you are guaranteed to get the original means back.</p>
 <p>Let’s see this process in action:</p>
 <p>From the above example, our means are:</p>
@@ -576,7 +576,7 @@
 <span class="co">#&gt; C  1  0 -1</span>
 <span class="co">#&gt; D  1  0  1</span></code></pre></div>
 <p>The claim is that if I add these contrasts up in the right way, I can get back the original pattern of means.</p>
-<p>Let’s try adding, remember we start with the grand means. So, the question will be, “can we add some combination of the linear contrasts in such a way that we can get the original pattern of means back?”.</p>
+<p>Let’s try adding, remember we start with the grand means. So, the question will be, “can we add some combination of the linear contrasts in such a way that we can get the original pattern of means back?”</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">grand_means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">7</span>,<span class="fl">7</span>,<span class="fl">7</span>,<span class="fl">7</span><span class="op">)</span>
 <span class="va">grand_means</span>
@@ -720,7 +720,7 @@ do a monte-carlo simulation...familywise etc.
 <p>The textbook describes a monte-carlo simulation of a one-factor design with 6 groups. There are 100 observations per group, all sampled from a normal distribution.</p>
 <p>For each simulation we do two things:</p>
 <ol style="list-style-type: decimal">
-<li><p>Conduct an omnibus ANOVA and compute F. If the p-value is smaller than .05, we “reject the null”, and count this a type I error.</p></li>
+<li><p>Conduct an omnibus ANOVA and compute F. If the p-value is smaller than .05, we “reject the null,” and count this a type I error.</p></li>
 <li><p>conduct 5 linear orthogonal contrasts, compute each F, and if any have p-values smaller than .05, we “reject” them, and count them as type I errors.</p></li>
 </ol>
 <p>In the textbook example, there were 10,000 simulations. The below code contains the basic components we need to perform the simulation.</p>
@@ -758,14 +758,16 @@ do a monte-carlo simulation...familywise etc.
                                                 <span class="st">"c4"</span><span class="op">=</span> <span class="fl">4</span>,
                                                 <span class="st">"c5"</span> <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
                                         <span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;              Df Sum Sq Mean Sq F value Pr(&gt;F)</span>
-<span class="co">#&gt; IV            5    4.6  0.9244   0.893  0.485</span>
-<span class="co">#&gt;   IV: c1      1    0.1  0.1080   0.104  0.747</span>
-<span class="co">#&gt;   IV: c2      1    0.2  0.2263   0.219  0.640</span>
-<span class="co">#&gt;   IV: c3      1    2.6  2.5568   2.470  0.117</span>
-<span class="co">#&gt;   IV: c4      1    0.0  0.0489   0.047  0.828</span>
-<span class="co">#&gt;   IV: c5      1    1.7  1.6818   1.625  0.203</span>
-<span class="co">#&gt; Residuals   594  614.9  1.0352</span></code></pre></div>
+<span class="co">#&gt;              Df Sum Sq Mean Sq F value Pr(&gt;F)  </span>
+<span class="co">#&gt; IV            5   11.7   2.348   2.632 0.0229 *</span>
+<span class="co">#&gt;   IV: c1      1    4.0   4.012   4.498 0.0343 *</span>
+<span class="co">#&gt;   IV: c2      1    0.1   0.110   0.123 0.7254  </span>
+<span class="co">#&gt;   IV: c3      1    5.1   5.147   5.770 0.0166 *</span>
+<span class="co">#&gt;   IV: c4      1    0.2   0.228   0.255 0.6135  </span>
+<span class="co">#&gt;   IV: c5      1    2.2   2.242   2.513 0.1134  </span>
+<span class="co">#&gt; Residuals   594  529.9   0.892                 </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
 <p>When we conduct the simulation we want to count type I errors. Specifically, let’s count type I errors for the omnibus test, as well as for the linear contrasts. Our simulation will be similar to the one reported in Table 12.1 from the textbook.</p>
 <p>In terms of organizing the code, I will adopt a strategy of saving the necessary data from the simulation into a dataframe that can then be analyzed to produce a summary table.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
@@ -822,17 +824,17 @@ do a monte-carlo simulation...familywise etc.
 <tr class="even">
 <td align="left">contrast</td>
 <td align="right">1</td>
-<td align="right">2054</td>
+<td align="right">2056</td>
 </tr>
 <tr class="odd">
 <td align="left">contrast</td>
 <td align="right">2</td>
-<td align="right">474</td>
+<td align="right">424</td>
 </tr>
 <tr class="even">
 <td align="left">contrast</td>
 <td align="right">3</td>
-<td align="right">39</td>
+<td align="right">33</td>
 </tr>
 <tr class="odd">
 <td align="left">omnibus</td>
@@ -842,7 +844,7 @@ do a monte-carlo simulation...familywise etc.
 <tr class="even">
 <td align="left">omnibus</td>
 <td align="right">1</td>
-<td align="right">518</td>
+<td align="right">484</td>
 </tr>
 </tbody>
 </table>
@@ -852,7 +854,7 @@ do a monte-carlo simulation...familywise etc.
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">type</span> <span class="op">==</span> <span class="st">'omnibus'</span>,
          <span class="va">counts</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">type_I_frequency</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.0518</span></code></pre></div>
+<span class="co">#&gt; [1] 0.0484</span></code></pre></div>
 <p>Similarly, we conducted 50000 total linear contrasts. Looking at individual contrasts, the type I error rate is also close to .05:</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">type_I_errors</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -860,7 +862,7 @@ do a monte-carlo simulation...familywise etc.
          <span class="va">counts</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">type_I_frequency</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="fl">50000</span>
-<span class="co">#&gt; [1] 0.05134</span></code></pre></div>
+<span class="co">#&gt; [1] 0.05026</span></code></pre></div>
 <p>However, <strong>the family-wise</strong> type I error rate is larger. We conducted 10,000 simulated experiments, if asked the question, what was the probability of rejecting the null if any of the linear contrasts were significant, then we find:</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">type_I_errors</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -868,7 +870,7 @@ do a monte-carlo simulation...familywise etc.
          <span class="va">counts</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">type_I_frequency</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="op">)</span><span class="op">/</span><span class="fl">10000</span>
-<span class="co">#&gt; [1] 0.2567</span></code></pre></div>
+<span class="co">#&gt; [1] 0.2513</span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -1106,7 +1108,7 @@ do a monte-carlo simulation...familywise etc.
 <h3 id="problems">Problems<a class="anchor" aria-label="anchor" href="#problems"></a>
 </h3>
 <ol style="list-style-type: decimal">
-<li>Section 12.3.3 from your textbook refers to: The problem with replications of a meaningless experiment: ‘alpha and the captain’s age’. The issue here is that if you run an ineffectual experiment enough times you can always find a significant result by chance. The textbook mentions that if you repeat an experiment 20 times, you are guaranteed to find a significant result with .64 probability, and the probability is .92 if you repeat the experiment 50 times.</li>
+<li>Section 12.3.3 from your textbook refers to: The problem with replications of a meaningless experiment: ‘alpha and the captain’s age.’ The issue here is that if you run an ineffectual experiment enough times you can always find a significant result by chance. The textbook mentions that if you repeat an experiment 20 times, you are guaranteed to find a significant result with .64 probability, and the probability is .92 if you repeat the experiment 50 times.</li>
 </ol>
 <ol style="list-style-type: lower-alpha">
 <li><p>Make use of the <code><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom()</a></code> function to show you can reproduce both probabilities. (1 point)</p></li>
@@ -1158,7 +1160,7 @@ Wallis, W. A. (1942). Compounding <span>Probabilities</span> from <span>Independ
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
