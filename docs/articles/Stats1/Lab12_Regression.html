@@ -237,7 +237,7 @@
 <div class="section level2">
 <h2 id="readings">Readings<a class="anchor" aria-label="anchor" href="#readings"></a>
 </h2>
-<p><span class="citation">Vokey &amp; Allen (<a href="#ref-vokeyThinkingData7th2018" role="doc-biblioref">2018</a>)</span>, Chapter 8; <span class="citation">Abdi et al. (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>, Chapters 3 and 4; <span class="citation">Crump et al. (<a href="#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">2018</a>)</span>, <a href="https://crumplab.github.io/statistics/Correlation.html#regression-a-mini-intro" class="external-link">3.5</a>.</p>
+<p><span class="citation"><a href="#ref-vokeyThinkingData7th2018" role="doc-biblioref">Vokey &amp; Allen</a> (<a href="#ref-vokeyThinkingData7th2018" role="doc-biblioref">2018</a>)</span>, Chapter 8; <span class="citation"><a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al.</a> (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>, Chapters 3 and 4; <span class="citation"><a href="#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">Crump et al.</a> (<a href="#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">2018</a>)</span>, <a href="https://crumplab.github.io/statistics/Correlation.html#regression-a-mini-intro" class="external-link">3.5</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
@@ -509,13 +509,12 @@
   <span class="fu"><a href="https://gganimate.com/reference/ease_aes.html" class="external-link">ease_aes</a></span><span class="op">(</span><span class="st">'sine-in-out'</span><span class="op">)</span>
 
 <span class="fu"><a href="https://gganimate.com/reference/animate.html" class="external-link">animate</a></span><span class="op">(</span><span class="va">anim</span>,fps<span class="op">=</span><span class="fl">5</span><span class="op">)</span></code></pre></div>
-<p><img src="Lab12_Regression_files/figure-html/unnamed-chunk-12-1.gif"><!-- --></p>
-<p>This animation shows two key concepts we will reinforce. First, the regression line is the “best fit line”. And, the “best fit line” is the one that minimizes the sum of the squared deviations between each point and the line.</p>
+<p>This animation shows two key concepts we will reinforce. First, the regression line is the “best fit line.” And, the “best fit line” is the one that minimizes the sum of the squared deviations between each point and the line.</p>
 <p>The blue line represents the best fit line found by linear regression. The roving black line represents other possible lines. For simplicity, the black line has the same slope, but the intercept changes so it moves up and down. As the black line moves, the little red lines show the error between the black line and each data point. The shaded rectangle for each dot represents the squared error. I shaded the the error squares…as the black line moves away from the true regression line, the error squares get bigger and bigger, and redder and redder. This indicates the fit between the line is getting worse (because the error is getting bigger), as the line moves away from the best line. As the black line moves toward the best fit line, you can see the error squares getting smaller, and I shaded them less red, to visually indicate less overall error. When the black line converges on the blue line, we have found the best fit line, the one that minimizes the sum of the squared deviations.</p>
 <div class="section level3">
 <h3 id="illustrating-regression-concepts-with-r">Illustrating regression concepts with R<a class="anchor" aria-label="anchor" href="#illustrating-regression-concepts-with-r"></a>
 </h3>
-<p>The <a href="https://crumplab.github.io/statistics/Correlation.html#regression-a-mini-intr" class="external-link">animation example</a> is modified from <span class="citation">Crump et al. (<a href="#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">2018</a>)</span> (I added the little rectangles to indicate the squared error).</p>
+<p>The <a href="https://crumplab.github.io/statistics/Correlation.html#regression-a-mini-intr" class="external-link">animation example</a> is modified from <span class="citation"><a href="#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">Crump et al.</a> (<a href="#ref-crumpAnsweringQuestionsData2018" role="doc-biblioref">2018</a>)</span> (I added the little rectangles to indicate the squared error).</p>
 <p>In this concept section we will use R to create a graph like the above animation. Our goal is to see if we can use R to visually illustrate concepts of linear regression. For example, we can already plot data points as a scatterplot, and we can plot the regression line. It would be nice if we could visualize the error between each data point and the line, and perhaps also see that this error is smallest when we use the best fit line, and not some other line.</p>
 </div>
 <div class="section level3">
@@ -700,8 +699,8 @@
 <div class="section level2">
 <h2 id="concept-ii-r2-f-and-variance-explained">Concept II: <span class="math inline">\(R^2\)</span>, F, and variance explained<a class="anchor" aria-label="anchor" href="#concept-ii-r2-f-and-variance-explained"></a>
 </h2>
-<p><span class="citation">Wright (<a href="#ref-wrightCorrelationCausation" role="doc-biblioref">n.d.</a>)</span> is credited <a href="https://en.wikipedia.org/wiki/Coefficient_of_determination" class="external-link">on wikipedia</a> with coining the term <em>coefficient of determination</em> for <span class="math inline">\(R^2\)</span>. It was interesting to read that paper and think about the term coefficient of determination. Wright discussed how plain old correlations could obviously be caused by multiple causal variables, which is one reason why correlation does not equal causation. He sought methods to break a correlation into component causes or paths, and this seems to inspire the rather loaded inspirational term <em>coefficient of determination</em>. I say this term is inspirational because squaring an <span class="math inline">\(r\)</span>-value and using deterministic language doesn’t magically allow one to identify causal forces from a correlation. Nevertheless, the concept of <span class="math inline">\(R^2\)</span> does involve a systematic process of categorizing components of correlation into different parts, usually parts that can be explained and a leftover part that can’t be explained.</p>
-<p>The word “explained” doesn’t have the common meaning that we actually understand anything, say about the causal relationship between one thing and another. It has a limited statistical meaning. Something like some variation in Y can be expressed in terms of a limited geometric relationship derived from variation in X, and we call some of that relationship “explained”, and call another part “unexplained”. Or, something like, if we have some 2-d points in a scatterplot, we can choose to say that each point is composed of three parts. The mean of Y, plus a prediction from a line that we drew through the points, plus some extra part that has nothing to do with the line.</p>
+<p><span class="citation"><a href="#ref-wrightCorrelationCausation" role="doc-biblioref">Wright</a> (<a href="#ref-wrightCorrelationCausation" role="doc-biblioref">n.d.</a>)</span> is credited <a href="https://en.wikipedia.org/wiki/Coefficient_of_determination" class="external-link">on wikipedia</a> with coining the term <em>coefficient of determination</em> for <span class="math inline">\(R^2\)</span>. It was interesting to read that paper and think about the term coefficient of determination. Wright discussed how plain old correlations could obviously be caused by multiple causal variables, which is one reason why correlation does not equal causation. He sought methods to break a correlation into component causes or paths, and this seems to inspire the rather loaded inspirational term <em>coefficient of determination</em>. I say this term is inspirational because squaring an <span class="math inline">\(r\)</span>-value and using deterministic language doesn’t magically allow one to identify causal forces from a correlation. Nevertheless, the concept of <span class="math inline">\(R^2\)</span> does involve a systematic process of categorizing components of correlation into different parts, usually parts that can be explained and a leftover part that can’t be explained.</p>
+<p>The word “explained” doesn’t have the common meaning that we actually understand anything, say about the causal relationship between one thing and another. It has a limited statistical meaning. Something like some variation in Y can be expressed in terms of a limited geometric relationship derived from variation in X, and we call some of that relationship “explained,” and call another part “unexplained.” Or, something like, if we have some 2-d points in a scatterplot, we can choose to say that each point is composed of three parts. The mean of Y, plus a prediction from a line that we drew through the points, plus some extra part that has nothing to do with the line.</p>
 <div class="section level3">
 <h3 id="explaining-variance">Explaining variance<a class="anchor" aria-label="anchor" href="#explaining-variance"></a>
 </h3>
@@ -737,7 +736,7 @@
 <div class="section level3">
 <h3 id="transforming-r2-to-f">Transforming <span class="math inline">\(R^2\)</span> to <span class="math inline">\(F\)</span><a class="anchor" aria-label="anchor" href="#transforming-r2-to-f"></a>
 </h3>
-<p><span class="citation">Abdi et al. (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span> provide a formula (chapter 3) that shows Fs can be converted from <span class="math inline">\(R^2\)</span>.</p>
+<p><span class="citation"><a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al.</a> (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span> provide a formula (chapter 3) that shows Fs can be converted from <span class="math inline">\(R^2\)</span>.</p>
 <p><span class="math inline">\(F = \frac{R^2}{1-R^2} \times (S-2)\)</span></p>
 <p>The numerator is <span class="math inline">\(R^2\)</span>, which we have previously defined as the proportion of variance <strong>explained</strong>; and the denominator is the proportion of variance <strong>unexplained</strong>. So, this formula again presents F as a ratio of explained over unexplained variance.</p>
 </div>
@@ -761,7 +760,7 @@
 <code class="sourceCode R"><span class="va">SS_total</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">Y</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
 <span class="va">SS_total</span>
 <span class="co">#&gt; [1] 19.5</span></code></pre></div>
-<p>The scatterplot below visualizes <span class="math inline">\(SS_total\)</span>; but, instead of a regression line as we saw earlier, the red line represents the mean of Y. So, the deviations between each dot and the red line represent the components that are added up to produce <span class="math inline">\(SS_total\)</span> for Y. Specifically, the sum of the area in all the error squares is taken as the total amount of stuff that needs to be explained. Slightly more formally, the squared deviations represent departures from the mean of Y. If all of the data in Y had the same number, there would be no departures from the mean, and the mean would “explain everything”, leaving nothing left for any other variable to explain.</p>
+<p>The scatterplot below visualizes <span class="math inline">\(SS_total\)</span>; but, instead of a regression line as we saw earlier, the red line represents the mean of Y. So, the deviations between each dot and the red line represent the components that are added up to produce <span class="math inline">\(SS_total\)</span> for Y. Specifically, the sum of the area in all the error squares is taken as the total amount of stuff that needs to be explained. Slightly more formally, the squared deviations represent departures from the mean of Y. If all of the data in Y had the same number, there would be no departures from the mean, and the mean would “explain everything,” leaving nothing left for any other variable to explain.</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">some_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>Y<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">6</span>,<span class="fl">5</span><span class="op">)</span>,
                         X<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -964,9 +963,9 @@
 <span class="op">}</span>
 
 <span class="va">slope</span>
-<span class="co">#&gt; [1] 0.5</span>
+<span class="co">#&gt; [1] 0.52</span>
 <span class="va">b</span>
-<span class="co">#&gt; [1] 1</span></code></pre></div>
+<span class="co">#&gt; [1] 0.86</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="lab-12-generalization-assignment">Lab 12 Generalization Assignment<a class="anchor" aria-label="anchor" href="#lab-12-generalization-assignment"></a>
@@ -1036,7 +1035,7 @@ Wright, S. (n.d.). Correlation and <span>Causation</span>. <em>Journal of Agricu
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>

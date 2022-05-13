@@ -1286,45 +1286,45 @@
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">52.44766</td>
+<td align="right">58.43861</td>
 <td align="right">19</td>
-<td align="left">TRUE</td>
-<td align="left">v</td>
+<td align="left">FALSE</td>
+<td align="left">y</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">69.59520</td>
-<td align="right">19</td>
+<td align="right">59.87624</td>
+<td align="right">20</td>
+<td align="left">FALSE</td>
+<td align="left">v</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">72.17475</td>
+<td align="right">18</td>
+<td align="left">FALSE</td>
+<td align="left">y</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">60.72828</td>
+<td align="right">20</td>
 <td align="left">TRUE</td>
 <td align="left">o</td>
 </tr>
 <tr class="odd">
-<td align="right">3</td>
-<td align="right">67.47873</td>
+<td align="right">5</td>
+<td align="right">59.12523</td>
 <td align="right">18</td>
 <td align="left">TRUE</td>
-<td align="left">r</td>
-</tr>
-<tr class="even">
-<td align="right">4</td>
-<td align="right">71.12159</td>
-<td align="right">20</td>
-<td align="left">FALSE</td>
-<td align="left">g</td>
-</tr>
-<tr class="odd">
-<td align="right">5</td>
-<td align="right">64.07217</td>
-<td align="right">19</td>
-<td align="left">TRUE</td>
-<td align="left">b</td>
+<td align="left">o</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">69.48171</td>
+<td align="right">64.32323</td>
 <td align="right">20</td>
 <td align="left">TRUE</td>
-<td align="left">i</td>
+<td align="left">r</td>
 </tr>
 </tbody>
 </table>
@@ -1351,24 +1351,23 @@
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 3</span></span>
 <span class="co">#&gt;   likes_chocolate mean_grade sd_grad</span>
 <span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> FALSE                 66.0    6.10</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> TRUE                  65.2    6.72</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> FALSE                 65.4    7.75</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> TRUE                  61.4    2.18</span>
 
 <span class="va">fake_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">likes_chocolate</span>,<span class="va">age</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>mean_grade <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">grades</span><span class="op">)</span>,
             sd_grad <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">grades</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; `summarise()` has grouped output by 'likes_chocolate'. You can override using</span>
-<span class="co">#&gt; the `.groups` argument.</span>
+<span class="co">#&gt; `summarise()` has grouped output by 'likes_chocolate'. You can override using the `.groups` argument.</span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 4</span></span>
 <span class="co">#&gt; <span style="color: #949494;"># Groups:   likes_chocolate [2]</span></span>
 <span class="co">#&gt;   likes_chocolate   age mean_grade sd_grad</span>
 <span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> FALSE              19       63.4    5.87</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> FALSE              20       71.1   <span style="color: #BB0000;">NA</span>   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> TRUE               18       69.9    3.39</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> TRUE               19       61.9    7.15</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> TRUE               20       69.5   <span style="color: #BB0000;">NA</span></span></code></pre></div>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> FALSE              18       73.1    1.25</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> FALSE              19       57.7    1.01</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> FALSE              20       65.5    7.90</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> TRUE               18       60.4    1.75</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> TRUE               20       62.5    2.54</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="filter">filter<a class="anchor" aria-label="anchor" href="#filter"></a>
@@ -1378,18 +1377,22 @@
 <code class="sourceCode R"><span class="va">fake_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">grades</span> <span class="op">&lt;</span> <span class="fl">65</span><span class="op">)</span>
 <span class="co">#&gt;   subjects   grades age likes_chocolate favorite_color</span>
-<span class="co">#&gt; 1        1 52.44766  19            TRUE              v</span>
-<span class="co">#&gt; 2        5 64.07217  19            TRUE              b</span>
-<span class="co">#&gt; 3        7 61.38515  19            TRUE              i</span>
-<span class="co">#&gt; 4        9 59.21829  19           FALSE              b</span>
+<span class="co">#&gt; 1        1 58.43861  19           FALSE              y</span>
+<span class="co">#&gt; 2        2 59.87624  20           FALSE              v</span>
+<span class="co">#&gt; 3        4 60.72828  20            TRUE              o</span>
+<span class="co">#&gt; 4        5 59.12523  18            TRUE              o</span>
+<span class="co">#&gt; 5        6 64.32323  20            TRUE              r</span>
+<span class="co">#&gt; 6        7 57.01695  19           FALSE              r</span>
+<span class="co">#&gt; 7       10 61.59502  18            TRUE              b</span>
 
 <span class="va">fake_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">grades</span> <span class="op">&lt;</span> <span class="fl">65</span>,
          <span class="va">likes_chocolate</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt;   subjects   grades age likes_chocolate favorite_color</span>
-<span class="co">#&gt; 1        1 52.44766  19            TRUE              v</span>
-<span class="co">#&gt; 2        5 64.07217  19            TRUE              b</span>
-<span class="co">#&gt; 3        7 61.38515  19            TRUE              i</span></code></pre></div>
+<span class="co">#&gt; 1        4 60.72828  20            TRUE              o</span>
+<span class="co">#&gt; 2        5 59.12523  18            TRUE              o</span>
+<span class="co">#&gt; 3        6 64.32323  20            TRUE              r</span>
+<span class="co">#&gt; 4       10 61.59502  18            TRUE              b</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="select">select<a class="anchor" aria-label="anchor" href="#select"></a>
@@ -1399,30 +1402,30 @@
 <code class="sourceCode R"><span class="va">fake_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">grades</span><span class="op">)</span>
 <span class="co">#&gt;      grades</span>
-<span class="co">#&gt; 1  52.44766</span>
-<span class="co">#&gt; 2  69.59520</span>
-<span class="co">#&gt; 3  67.47873</span>
-<span class="co">#&gt; 4  71.12159</span>
-<span class="co">#&gt; 5  64.07217</span>
-<span class="co">#&gt; 6  69.48171</span>
-<span class="co">#&gt; 7  61.38515</span>
-<span class="co">#&gt; 8  67.52052</span>
-<span class="co">#&gt; 9  59.21829</span>
-<span class="co">#&gt; 10 72.26660</span>
+<span class="co">#&gt; 1  58.43861</span>
+<span class="co">#&gt; 2  59.87624</span>
+<span class="co">#&gt; 3  72.17475</span>
+<span class="co">#&gt; 4  60.72828</span>
+<span class="co">#&gt; 5  59.12523</span>
+<span class="co">#&gt; 6  64.32323</span>
+<span class="co">#&gt; 7  57.01695</span>
+<span class="co">#&gt; 8  71.04540</span>
+<span class="co">#&gt; 9  73.93889</span>
+<span class="co">#&gt; 10 61.59502</span>
 
 <span class="va">fake_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">grades</span>,<span class="va">likes_chocolate</span><span class="op">)</span>
 <span class="co">#&gt;      grades likes_chocolate</span>
-<span class="co">#&gt; 1  52.44766            TRUE</span>
-<span class="co">#&gt; 2  69.59520            TRUE</span>
-<span class="co">#&gt; 3  67.47873            TRUE</span>
-<span class="co">#&gt; 4  71.12159           FALSE</span>
-<span class="co">#&gt; 5  64.07217            TRUE</span>
-<span class="co">#&gt; 6  69.48171            TRUE</span>
-<span class="co">#&gt; 7  61.38515            TRUE</span>
-<span class="co">#&gt; 8  67.52052           FALSE</span>
-<span class="co">#&gt; 9  59.21829           FALSE</span>
-<span class="co">#&gt; 10 72.26660            TRUE</span></code></pre></div>
+<span class="co">#&gt; 1  58.43861           FALSE</span>
+<span class="co">#&gt; 2  59.87624           FALSE</span>
+<span class="co">#&gt; 3  72.17475           FALSE</span>
+<span class="co">#&gt; 4  60.72828            TRUE</span>
+<span class="co">#&gt; 5  59.12523            TRUE</span>
+<span class="co">#&gt; 6  64.32323            TRUE</span>
+<span class="co">#&gt; 7  57.01695           FALSE</span>
+<span class="co">#&gt; 8  71.04540           FALSE</span>
+<span class="co">#&gt; 9  73.93889           FALSE</span>
+<span class="co">#&gt; 10 61.59502            TRUE</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="mutate">mutate<a class="anchor" aria-label="anchor" href="#mutate"></a>
@@ -1434,16 +1437,16 @@
 
 <span class="va">fake_data</span>
 <span class="co">#&gt;    subjects   grades age likes_chocolate favorite_color new_thing</span>
-<span class="co">#&gt; 1         1 52.44766  19            TRUE              v         0</span>
-<span class="co">#&gt; 2         2 69.59520  19            TRUE              o         0</span>
-<span class="co">#&gt; 3         3 67.47873  18            TRUE              r         0</span>
-<span class="co">#&gt; 4         4 71.12159  20           FALSE              g         0</span>
-<span class="co">#&gt; 5         5 64.07217  19            TRUE              b         0</span>
-<span class="co">#&gt; 6         6 69.48171  20            TRUE              i         0</span>
-<span class="co">#&gt; 7         7 61.38515  19            TRUE              i         0</span>
-<span class="co">#&gt; 8         8 67.52052  19           FALSE              b         0</span>
-<span class="co">#&gt; 9         9 59.21829  19           FALSE              b         0</span>
-<span class="co">#&gt; 10       10 72.26660  18            TRUE              o         0</span></code></pre></div>
+<span class="co">#&gt; 1         1 58.43861  19           FALSE              y         0</span>
+<span class="co">#&gt; 2         2 59.87624  20           FALSE              v         0</span>
+<span class="co">#&gt; 3         3 72.17475  18           FALSE              y         0</span>
+<span class="co">#&gt; 4         4 60.72828  20            TRUE              o         0</span>
+<span class="co">#&gt; 5         5 59.12523  18            TRUE              o         0</span>
+<span class="co">#&gt; 6         6 64.32323  20            TRUE              r         0</span>
+<span class="co">#&gt; 7         7 57.01695  19           FALSE              r         0</span>
+<span class="co">#&gt; 8         8 71.04540  20           FALSE              y         0</span>
+<span class="co">#&gt; 9         9 73.93889  18           FALSE              g         0</span>
+<span class="co">#&gt; 10       10 61.59502  18            TRUE              b         0</span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -2085,11 +2088,11 @@ D
 <div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># returns 1 randomly sampled number from 1 to 10</span>
 <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fl">1</span><span class="op">)</span>
-<span class="co">#&gt; [1] 3</span>
+<span class="co">#&gt; [1] 10</span>
 
 <span class="co"># let's repeat the above 10 times using replicate</span>
 <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;  [1]  6  2  8  6  7  7 10  4  8  6</span></code></pre></div>
+<span class="co">#&gt;  [1] 10  8  5  5  1 10  2  9  7  5</span></code></pre></div>
 <p>The next example shows how to write a function to do something, and then use the function inside replicate to repeat the function many times.</p>
 <p>For example, we write a function to run a one-sample t-test on a random sample drawn from a normal distribution</p>
 <div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
@@ -2102,9 +2105,9 @@ D
 <span class="co"># get 10 t-values from repeating the above 10 times</span>
 <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fu">ttest_result</span><span class="op">(</span><span class="op">)</span> <span class="op">)</span>
 <span class="co">#&gt;           t           t           t           t           t           t </span>
-<span class="co">#&gt; -0.14759143 -0.81104585 -0.04416577  1.71440641 -1.51137609 -2.78297009 </span>
+<span class="co">#&gt;  0.44086756  0.05704441 -0.63355555  1.46300529  0.56502829 -0.28060290 </span>
 <span class="co">#&gt;           t           t           t           t </span>
-<span class="co">#&gt;  0.37198608  1.47215765 -0.61107135 -0.54030635</span></code></pre></div>
+<span class="co">#&gt;  0.86209111  1.76680500 -0.70795401 -1.32528591</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="apply-family">apply family<a class="anchor" aria-label="anchor" href="#apply-family"></a>
@@ -2178,13 +2181,13 @@ D
 <span class="co"># applies the sum function to each row</span>
 <span class="co"># 1 tells apply to go across rows</span>
 <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">random_matrix</span>,<span class="fl">1</span>,<span class="va">sum</span><span class="op">)</span>
-<span class="co">#&gt; [1] 18 38 28 22 15</span></code></pre></div>
+<span class="co">#&gt; [1] 19 32 35 28 28</span></code></pre></div>
 <p>The sum of each column</p>
 <div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># applies the sum function to each column</span>
 <span class="co"># 2 tells apply to go across columns</span>
 <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">random_matrix</span>, <span class="fl">2</span>, <span class="va">sum</span><span class="op">)</span>
-<span class="co">#&gt; [1] 19 22 27 32 21</span></code></pre></div>
+<span class="co">#&gt; [1] 19 29 26 32 36</span></code></pre></div>
 <p>Let’s say we have a matrix storing 3 samples. Each sample has 10 numbers. Each sample is stored in a column, and each row represents an observation.</p>
 <div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sample_matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">30</span>,<span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">3</span><span class="op">)</span></code></pre></div>
@@ -2196,13 +2199,13 @@ D
 <span class="co">#&gt;  One Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  newX[, i]</span>
-<span class="co">#&gt; t = -1.6017, df = 9, p-value = 0.1437</span>
+<span class="co">#&gt; t = -0.26279, df = 9, p-value = 0.7986</span>
 <span class="co">#&gt; alternative hypothesis: true mean is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -1.4139647  0.2416948</span>
+<span class="co">#&gt;  -1.1047741  0.8748087</span>
 <span class="co">#&gt; sample estimates:</span>
 <span class="co">#&gt;  mean of x </span>
-<span class="co">#&gt; -0.5861349 </span>
+<span class="co">#&gt; -0.1149827 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[2]]</span>
@@ -2210,13 +2213,13 @@ D
 <span class="co">#&gt;  One Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  newX[, i]</span>
-<span class="co">#&gt; t = 0.91006, df = 9, p-value = 0.3865</span>
+<span class="co">#&gt; t = 0.28435, df = 9, p-value = 0.7826</span>
 <span class="co">#&gt; alternative hypothesis: true mean is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -0.5240336  1.2294572</span>
+<span class="co">#&gt;  -0.7087147  0.9125005</span>
 <span class="co">#&gt; sample estimates:</span>
 <span class="co">#&gt; mean of x </span>
-<span class="co">#&gt; 0.3527118 </span>
+<span class="co">#&gt; 0.1018929 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[3]]</span>
@@ -2224,13 +2227,13 @@ D
 <span class="co">#&gt;  One Sample t-test</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; data:  newX[, i]</span>
-<span class="co">#&gt; t = -0.47394, df = 9, p-value = 0.6468</span>
+<span class="co">#&gt; t = -0.068312, df = 9, p-value = 0.947</span>
 <span class="co">#&gt; alternative hypothesis: true mean is not equal to 0</span>
 <span class="co">#&gt; 95 percent confidence interval:</span>
-<span class="co">#&gt;  -0.9906703  0.6474663</span>
+<span class="co">#&gt;  -0.6480333  0.6100425</span>
 <span class="co">#&gt; sample estimates:</span>
-<span class="co">#&gt; mean of x </span>
-<span class="co">#&gt; -0.171602</span></code></pre></div>
+<span class="co">#&gt;   mean of x </span>
+<span class="co">#&gt; -0.01899542</span></code></pre></div>
 <p>What if we wanted to return only the t-values, rather than whole output?</p>
 <p>You might try this, but it doesn’t work</p>
 <div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
@@ -2243,7 +2246,7 @@ D
         <span class="va">t_out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">t.test</a></span><span class="op">(</span><span class="va">x</span>,mu<span class="op">=</span><span class="fl">0</span><span class="op">)</span>
         <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">t_out</span><span class="op">$</span><span class="va">statistic</span><span class="op">)</span>
       <span class="op">}</span><span class="op">)</span>
-<span class="co">#&gt; [1] -1.6016933  0.9100585 -0.4739418</span></code></pre></div>
+<span class="co">#&gt; [1] -0.26279176  0.28435184 -0.06831168</span></code></pre></div>
 </div>
 </div>
   </div>
@@ -2265,7 +2268,7 @@ D
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>

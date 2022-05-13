@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
  
 ## Overview:
 
-We will developing and discussing the semester long project throughout the semester. And, I will add more detail and instructions to the project on this page.
+We will develop and discuss the semester long project throughout the semester. And, I will add more detail and instructions to the project on this page.
 
 A major component will be using the R package [pkgdown](https://pkgdown.r-lib.org) to create a website (and more) to act as a portfolio for communicating and displaying the work you do this semester.
 
@@ -71,6 +71,33 @@ To complete this portion of the semester long project you should:
 1. Create a slide deck using one of the above methods
 2. Save your slide deck to a folder called "slides" in your project folder
 3. Create a new tab on your website, and link to the html for your slide show. NOTE: you will have to make sure your final product gets saved to the docs folder too.
+
+## R Package
+
+We are using the pkgdown library to generate websites for the semester long project. The pkgdown library was created to automatically generate websites for R packages. The last component of your semester long project is to create an R package:
+
+1. Add custom functions to the R folder
+2. Add function documentation to the man folder
+3. Be able to install your R package
+4. Show that you can use a function in your R package, for example create a vignette to demonstrate the use of a function
+
+The best resource I have found for authoring are packages is the book by Hadley Wickham and Jenny Bryan called R packages here is the link:
+
+<https://r-pkgs.org>
+
+And here are a few short tutorial videos I put together showing some basic tips for adding functions to your own R package:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1CRPKyDHwtg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/19XZ92RkSeQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mjz8COxtx9g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2Gp3o9JPFV4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+
+
 
 
 

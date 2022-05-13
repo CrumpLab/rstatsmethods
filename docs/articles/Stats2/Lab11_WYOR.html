@@ -237,12 +237,12 @@
 <div class="section level2">
 <h2 id="reading">Reading<a class="anchor" aria-label="anchor" href="#reading"></a>
 </h2>
-<p>Chapter 22 from <span class="citation">Abdi et al. (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>.</p>
+<p>Chapter 22 from <span class="citation"><a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">Abdi et al.</a> (<a href="#ref-abdiExperimentalDesignAnalysis2009" role="doc-biblioref">2009</a>)</span>.</p>
 </div>
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>WYOR refers to “Writing Your own statistical Recipes”. A goal of this course has been to explore principles of statistical analysis to the point where you would be able to use those general principles to craft statistical analyses that are tailored to your designs of interest. In this final lab, the practical section discusses some of the general aspects of R formula for declaring ANOVA and linear regression models. This can help you analyze many designs similar to those discussed in class throughout the last two semesters. The conceptual section is a final example of a simulated statistical analysis, and a few parting thoughts.</p>
+<p>WYOR refers to “Writing Your own statistical Recipes.” A goal of this course has been to explore principles of statistical analysis to the point where you would be able to use those general principles to craft statistical analyses that are tailored to your designs of interest. In this final lab, the practical section discusses some of the general aspects of R formula for declaring ANOVA and linear regression models. This can help you analyze many designs similar to those discussed in class throughout the last two semesters. The conceptual section is a final example of a simulated statistical analysis, and a few parting thoughts.</p>
 </div>
 <div class="section level2">
 <h2 id="practical-i-r-formula">Practical I: R formula<a class="anchor" aria-label="anchor" href="#practical-i-r-formula"></a>
@@ -266,7 +266,7 @@
 <p>Formulas can also be declared outside of these functions. For example, we can assign a formula to a named object.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_formula</span> <span class="op">&lt;-</span> <span class="va">DV</span><span class="op">~</span><span class="va">IV</span></code></pre></div>
-<p>And, we can see that the class of this object is “formula”.</p>
+<p>And, we can see that the class of this object is “formula.”</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">my_formula</span><span class="op">)</span>
 <span class="co">#&gt; [1] "formula"</span></code></pre></div>
@@ -302,22 +302,22 @@
 
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">DV</span> <span class="op">~</span> <span class="va">IV</span>, <span class="va">some_data</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;             Df Sum Sq Mean Sq F value Pr(&gt;F)</span>
-<span class="co">#&gt; IV           1  0.381  0.3806   0.597   0.45</span>
-<span class="co">#&gt; Residuals   18 11.477  0.6376</span>
+<span class="co">#&gt; IV           1   1.07  1.0696   1.244  0.279</span>
+<span class="co">#&gt; Residuals   18  15.48  0.8601</span>
 
 <span class="co"># is the same as</span>
 
 <span class="va">my_formula</span> <span class="op">&lt;-</span> <span class="va">DV</span> <span class="op">~</span> <span class="va">IV</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">my_formula</span>, <span class="va">some_data</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;             Df Sum Sq Mean Sq F value Pr(&gt;F)</span>
-<span class="co">#&gt; IV           1  0.381  0.3806   0.597   0.45</span>
-<span class="co">#&gt; Residuals   18 11.477  0.6376</span></code></pre></div>
+<span class="co">#&gt; IV           1   1.07  1.0696   1.244  0.279</span>
+<span class="co">#&gt; Residuals   18  15.48  0.8601</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="formula-operators">Formula operators<a class="anchor" aria-label="anchor" href="#formula-operators"></a>
 </h3>
 <p>There are several formula operators to be aware of, including <code>~</code>, <code>+</code>, <code>:</code>, <code>*</code>, <code>^</code>, <code>%in%</code>, <code>/</code>, and <code>-</code>.</p>
-<p>The tilda <code>~</code> operator is used to separately declare the dependent variable from the “model”, or set of independent variables used to account for variation in the dependent variable.</p>
+<p>The tilda <code>~</code> operator is used to separately declare the dependent variable from the “model,” or set of independent variables used to account for variation in the dependent variable.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># examples of DV ~ model</span>
@@ -581,7 +581,7 @@
 <span class="co"># simulated F critical value</span>
 <span class="fu">get_critical_value</span><span class="op">(</span><span class="va">null_distribution</span><span class="op">$</span><span class="va">F_val</span>,
                    alpha <span class="op">=</span> <span class="fl">.05</span><span class="op">)</span>
-<span class="co">#&gt; [1] 4.322753</span>
+<span class="co">#&gt; [1] 4.463123</span>
 
 <span class="co"># analytical F critical value</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/Fdist.html" class="external-link">qf</a></span><span class="op">(</span><span class="fl">.95</span>,<span class="fl">1</span>,<span class="fl">18</span><span class="op">)</span>
@@ -603,7 +603,7 @@
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">get_critical_value</span><span class="op">(</span><span class="va">null_distribution</span><span class="op">$</span><span class="va">abs_mean_diff</span>,
                    alpha <span class="op">=</span> <span class="fl">.05</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.8752522</span>
+<span class="co">#&gt; [1] 0.8844787</span>
 
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">null_distribution</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">abs_mean_diff</span><span class="op">)</span><span class="op">)</span><span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span>bins<span class="op">=</span><span class="fl">100</span><span class="op">)</span><span class="op">+</span>
@@ -614,7 +614,7 @@
 <div class="section level3">
 <h3 id="which-null-is-the-true-null">Which null is the true null?<a class="anchor" aria-label="anchor" href="#which-null-is-the-true-null"></a>
 </h3>
-<p>We have created several true null distributions. Above we looked at the values of F that can be produced by chance for this design. As well, we looked at the absolute mean differences that can be produced by chance for this design. We found the critical values for both test-statistics. We could use either of them for the purposes of “null-hypothesis testing”.</p>
+<p>We have created several true null distributions. Above we looked at the values of F that can be produced by chance for this design. As well, we looked at the absolute mean differences that can be produced by chance for this design. We found the critical values for both test-statistics. We could use either of them for the purposes of “null-hypothesis testing.”</p>
 <p>However, the conundrum that I alluded to earlier is that the different Null distributions don’t necessarilly agree. In this particular case, they agree fairly closely, but not perfectly.</p>
 <p>For example, we could use the correlation coefficienty to quickly look check whether the F values are related to the absolute mean differences across the simulations.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
@@ -652,155 +652,155 @@
 <tr class="odd">
 <td align="left">SS_IV</td>
 <td align="right">1.00</td>
-<td align="right">0.01</td>
-<td align="right">0.24</td>
+<td align="right">0.02</td>
+<td align="right">0.25</td>
 <td align="right">1.00</td>
+<td align="right">0.02</td>
+<td align="right">0.91</td>
 <td align="right">0.01</td>
-<td align="right">0.90</td>
-<td align="right">-0.02</td>
-<td align="right">0.93</td>
-<td align="right">-0.02</td>
-<td align="right">0.03</td>
+<td align="right">0.94</td>
+<td align="right">0.01</td>
+<td align="right">-0.01</td>
 <td align="right">0.89</td>
 </tr>
 <tr class="even">
 <td align="left">SS_residuals</td>
-<td align="right">0.01</td>
+<td align="right">0.02</td>
 <td align="right">1.00</td>
 <td align="right">0.97</td>
-<td align="right">0.01</td>
+<td align="right">0.02</td>
 <td align="right">1.00</td>
-<td align="right">-0.21</td>
-<td align="right">0.00</td>
+<td align="right">-0.20</td>
+<td align="right">0.01</td>
+<td align="right">0.02</td>
 <td align="right">0.01</td>
 <td align="right">0.00</td>
-<td align="right">0.00</td>
-<td align="right">-0.21</td>
+<td align="right">-0.20</td>
 </tr>
 <tr class="odd">
 <td align="left">SS_total</td>
-<td align="right">0.24</td>
+<td align="right">0.25</td>
 <td align="right">0.97</td>
 <td align="right">1.00</td>
-<td align="right">0.24</td>
+<td align="right">0.25</td>
 <td align="right">0.97</td>
-<td align="right">0.00</td>
-<td align="right">-0.01</td>
-<td align="right">0.22</td>
+<td align="right">0.01</td>
+<td align="right">0.01</td>
+<td align="right">0.23</td>
+<td align="right">0.01</td>
 <td align="right">-0.01</td>
 <td align="right">0.01</td>
-<td align="right">0.00</td>
 </tr>
 <tr class="even">
 <td align="left">MS_IV</td>
 <td align="right">1.00</td>
-<td align="right">0.01</td>
-<td align="right">0.24</td>
+<td align="right">0.02</td>
+<td align="right">0.25</td>
 <td align="right">1.00</td>
+<td align="right">0.02</td>
+<td align="right">0.91</td>
 <td align="right">0.01</td>
-<td align="right">0.90</td>
-<td align="right">-0.02</td>
-<td align="right">0.93</td>
-<td align="right">-0.02</td>
-<td align="right">0.03</td>
+<td align="right">0.94</td>
+<td align="right">0.01</td>
+<td align="right">-0.01</td>
 <td align="right">0.89</td>
 </tr>
 <tr class="odd">
 <td align="left">MS_residuals</td>
-<td align="right">0.01</td>
+<td align="right">0.02</td>
 <td align="right">1.00</td>
 <td align="right">0.97</td>
-<td align="right">0.01</td>
+<td align="right">0.02</td>
 <td align="right">1.00</td>
-<td align="right">-0.21</td>
-<td align="right">0.00</td>
+<td align="right">-0.20</td>
+<td align="right">0.01</td>
+<td align="right">0.02</td>
 <td align="right">0.01</td>
 <td align="right">0.00</td>
-<td align="right">0.00</td>
-<td align="right">-0.21</td>
+<td align="right">-0.20</td>
 </tr>
 <tr class="even">
 <td align="left">F_val</td>
-<td align="right">0.90</td>
-<td align="right">-0.21</td>
-<td align="right">0.00</td>
-<td align="right">0.90</td>
-<td align="right">-0.21</td>
+<td align="right">0.91</td>
+<td align="right">-0.20</td>
+<td align="right">0.01</td>
+<td align="right">0.91</td>
+<td align="right">-0.20</td>
 <td align="right">1.00</td>
-<td align="right">-0.02</td>
-<td align="right">0.85</td>
-<td align="right">-0.02</td>
-<td align="right">0.03</td>
-<td align="right">0.92</td>
+<td align="right">0.01</td>
+<td align="right">0.86</td>
+<td align="right">0.01</td>
+<td align="right">-0.01</td>
+<td align="right">0.93</td>
 </tr>
 <tr class="odd">
 <td align="left">mean_difference</td>
-<td align="right">-0.02</td>
-<td align="right">0.00</td>
-<td align="right">-0.01</td>
-<td align="right">-0.02</td>
-<td align="right">0.00</td>
-<td align="right">-0.02</td>
+<td align="right">0.01</td>
+<td align="right">0.01</td>
+<td align="right">0.01</td>
+<td align="right">0.01</td>
+<td align="right">0.01</td>
+<td align="right">0.01</td>
 <td align="right">1.00</td>
-<td align="right">-0.01</td>
+<td align="right">0.01</td>
 <td align="right">1.00</td>
 <td align="right">-0.98</td>
-<td align="right">-0.01</td>
+<td align="right">0.01</td>
 </tr>
 <tr class="even">
 <td align="left">abs_mean_diff</td>
-<td align="right">0.93</td>
+<td align="right">0.94</td>
+<td align="right">0.02</td>
+<td align="right">0.23</td>
+<td align="right">0.94</td>
+<td align="right">0.02</td>
+<td align="right">0.86</td>
 <td align="right">0.01</td>
-<td align="right">0.22</td>
-<td align="right">0.93</td>
-<td align="right">0.01</td>
-<td align="right">0.85</td>
-<td align="right">-0.01</td>
 <td align="right">1.00</td>
-<td align="right">-0.01</td>
 <td align="right">0.01</td>
+<td align="right">-0.01</td>
 <td align="right">0.96</td>
 </tr>
 <tr class="odd">
 <td align="left">cohens_D</td>
-<td align="right">-0.02</td>
-<td align="right">0.00</td>
-<td align="right">-0.01</td>
-<td align="right">-0.02</td>
-<td align="right">0.00</td>
-<td align="right">-0.02</td>
+<td align="right">0.01</td>
+<td align="right">0.01</td>
+<td align="right">0.01</td>
+<td align="right">0.01</td>
+<td align="right">0.01</td>
+<td align="right">0.01</td>
 <td align="right">1.00</td>
-<td align="right">-0.01</td>
+<td align="right">0.01</td>
 <td align="right">1.00</td>
 <td align="right">-1.00</td>
-<td align="right">-0.01</td>
+<td align="right">0.01</td>
 </tr>
 <tr class="even">
 <td align="left">t</td>
-<td align="right">0.03</td>
+<td align="right">-0.01</td>
 <td align="right">0.00</td>
-<td align="right">0.01</td>
-<td align="right">0.03</td>
+<td align="right">-0.01</td>
+<td align="right">-0.01</td>
 <td align="right">0.00</td>
-<td align="right">0.03</td>
+<td align="right">-0.01</td>
 <td align="right">-0.98</td>
-<td align="right">0.01</td>
+<td align="right">-0.01</td>
 <td align="right">-1.00</td>
 <td align="right">1.00</td>
-<td align="right">0.01</td>
+<td align="right">-0.01</td>
 </tr>
 <tr class="odd">
 <td align="left">abs_t</td>
 <td align="right">0.89</td>
-<td align="right">-0.21</td>
-<td align="right">0.00</td>
-<td align="right">0.89</td>
-<td align="right">-0.21</td>
-<td align="right">0.92</td>
-<td align="right">-0.01</td>
-<td align="right">0.96</td>
-<td align="right">-0.01</td>
+<td align="right">-0.20</td>
 <td align="right">0.01</td>
+<td align="right">0.89</td>
+<td align="right">-0.20</td>
+<td align="right">0.93</td>
+<td align="right">0.01</td>
+<td align="right">0.96</td>
+<td align="right">0.01</td>
+<td align="right">-0.01</td>
 <td align="right">1.00</td>
 </tr>
 </tbody>
@@ -833,10 +833,10 @@
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 3</span></span>
 <span class="co">#&gt;   significant     counts proportion</span>
 <span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> both               343     0.034<span style="text-decoration: underline;">3</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> F                  146     0.014<span style="text-decoration: underline;">6</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Mean Difference    138     0.013<span style="text-decoration: underline;">8</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> <span style="color: #BB0000;">NA</span>                <span style="text-decoration: underline;">9</span>373     0.937</span></code></pre></div>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> both               361     0.036<span style="text-decoration: underline;">1</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> F                  151     0.015<span style="text-decoration: underline;">1</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Mean Difference    143     0.014<span style="text-decoration: underline;">3</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> <span style="color: #BB0000;">NA</span>                <span style="text-decoration: underline;">9</span>345     0.934</span></code></pre></div>
 </div>
 </div>
 <div class="section level2 unnumbered">
@@ -867,7 +867,7 @@ Abdi, H., Edelman, B., Dowling, W. J., &amp; Valentin, D. (2009). <em>Experiment
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
