@@ -208,7 +208,7 @@ The following code block gives an example of simulating data for a 2x2 design th
 
 ```{r}
 # N per group
-N <- 40
+N <- 200
 
 A_pvalue <- c()
 B_pvalue <- c()
@@ -218,8 +218,8 @@ for(i in 1:1000){
   IVB <- rep(rep(c("1","2"), 2),N)
   DV <- c(replicate(N,c(rnorm(1,0,1), # means A1B1
                         rnorm(1,0,1), # means A1B2
-                        rnorm(1,.5,1), # means A2B1
-                        rnorm(1,.5,1)  # means A2B2
+                        rnorm(1,.2,1), # means A2B1
+                        rnorm(1,.2,1)  # means A2B2
           )))
   sim_df <- data.frame(IVA,IVB,DV)
   
